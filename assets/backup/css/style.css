@@ -1,0 +1,84 @@
+/*!
+ * DynEd Live stylesheet 1.000
+ * Copyright 2014 DynEd International Inc.
+ * @author  Jogi Silalahi <jogi@pistarlabs.com>
+ */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding-top: 60px;
+    background: #f5f4f9;
+    color: #989dbb;
+}
+
+a {
+    color:#989dbb;
+    text-decoration: none;
+    -webkit-transition: border-color .2s linear;
+    -moz-transition: border-color .2s linear;
+    -ms-transition: border-color .2s linear;
+    -o-transition:  border-color .2s linear;
+    transition: border-color .2s linear;
+}
+a:hover { border-color:#363951; text-decoration: none; }
+
+.navbar-inverse {
+    background-color: #398de3;
+    border-color: #4a4f70;
+}
+
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover, .navbar-inverse .navbar-nav > .active > a:focus,
+.navbar-inverse .navbar-nav > li > a:hover{
+    color: #fff;
+    background-color: #4a4f70;
+}
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #fff;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+}
+
+video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background: #f4f4f8;
+    background-size: cover;
+    transition: 1s opacity;
+}
+
+
+.content-wrapper {
+    background: #fff;
+    padding: 10px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    border: 1px solid #ddd;
+    margin-bottom: 100px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #ffffff;
+}
+.container .text-muted {
+    margin: 20px 0;
+}
+p.text-muted {
+    color: #a4a8c3;
+}

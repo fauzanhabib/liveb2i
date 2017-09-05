@@ -1,0 +1,22 @@
+{
+    "name": "aoberoi/opentok-codeigniter2-sample",
+    "authors": [
+        {
+            "name": "Ankur Oberoi",
+            "email": "aoberoi@gmail.com"
+        }
+    ],
+    "require": {
+        "opentok/opentok": "2.3.x",
+        "slim/slim": "^3.0",
+        "slim/views": "^0.1.3",
+        "twig/twig": "^1.24",
+        "smsglobal/rest-api-client": "*"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-0" : {
+            "Smsglobal\\RestApiClient" : ""
+        }
+    }
+}

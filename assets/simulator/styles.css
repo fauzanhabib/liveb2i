@@ -1,0 +1,112 @@
+.container {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+/*.container, .container .OT_subscriber, .container .OT_publisher {
+  overflow: hidden;
+}
+
+.container .OT_subscriber, .container .OT_publisher {
+  float: left;
+  width: 2px !important;
+  height: 2px !important;
+  min-width: 2px !important;
+  max-width: 2px !important;
+  min-height: 2px !important;
+  max-height: 2px !important;
+}*/
+
+.container{
+  position: absolute;
+  top: 15%;
+  width: 100%;
+  text-align: center;
+  margin-top: -40px;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  background: black;
+}
+.OT_mirrored.OT_root.OT_publisher.OT_fit-mode-cover{
+  width: 45% !important;
+  height: 400px !important;
+  display: inline-block;
+  margin-right: 10px;
+}
+.OT_root.OT_subscriber.OT_fit-mode-cover{
+  width: 45% !important;
+  height: 400px !important;
+  display: inline-block;
+}
+
+body {
+  background: #f6f6f6;
+  font-family: "Helvetica Neu", Arial;
+  color: #666;
+  padding: 0;
+  margin: 0;
+}
+
+h1 {
+  margin-top: 0;
+  padding-top: 0;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  background-color: #fff;
+  display: block;
+  font-weight: 200;
+  padding: 0.6rem;
+  margin-bottom: 0px !important;
+}
+
+h1 small {
+  color: #999;
+}
+
+div.prettyBox {
+  box-sizing: border-box;
+  padding: 2rem;
+
+  margin: 0 auto;
+  margin-top: 2rem;
+  width: 100%;
+  background-color: #fff;
+  /*border: 1px solid rgba(0,0,0,0.2);*/
+  /*box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.2);*/
+  text-align: center;
+}
+
+div.prettyBox h2 {
+  margin-top: 0;
+}
+
+div.prettyBox p {
+  color: #999;
+  font-weight: 200;
+  font-size: 26px;
+}
+
+div.prettyBox p {
+  margin: 0;
+  margin-bottom: 1rem;
+}
+
+div.prettyBox img {
+  width: 50px;
+}
+
+@media screen and (max-width: 380px) {
+  h1 {
+    font-size: 24px;
+    padding: 0.5rem;
+  }
+  h2 {
+    font-size: 18px;
+  }
+  div.prettyBox p {
+    font-size: 20px;
+  }
+  div.prettyBox {
+    padding: 1rem;
+  }
+}

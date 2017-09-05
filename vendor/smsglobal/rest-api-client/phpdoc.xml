@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>SMSGlobal REST API Client</title>
+    <parser>
+        <target>docs</target>
+    </parser>
+    <transformer>
+        <target>docs</target>
+    </transformer>
+    <transformations>
+        <template name="responsive" />
+    </transformations>
+    <files>
+        <directory>.</directory>
+        <ignore>tests/*</ignore>
+        <ignore>vendor/*</ignore>
+        <ignore>Smsglobal/RestApiClient/Resource/Proxy/*</ignore>
+    </files>
+    <logging>
+        <paths>
+            <default>/dev/null</default>
+            <errors>/dev/null</errors>
+        </paths>
+    </logging>
+</phpdoc>
