@@ -1,0 +1,263 @@
+body {
+	background-color: #ebebeb;
+}
+
+.left-tabs {
+	margin-top: 10px;
+}
+
+.breadcrumb-tabs {
+	margin: -45px 10px 0 0;
+}
+.breadcrumb { 
+	list-style: none; 
+	overflow: hidden; 
+	font: 14px Helvetica, Arial, Sans-Serif;
+}
+.breadcrumb li { 
+	float: left; 
+}
+.breadcrumb li a, .search-box {
+	color: white;
+	text-decoration: none; 
+	padding: 10px 0 10px 55px;
+	/*background: brown;*/                   /* fallback color */
+	background: hsla(200, 62%, 45%, 1); 
+	position: relative; 
+	display: block;
+	float: left;
+	webkit-transition: .3s ease;
+    -moz-transition: .3s ease;
+    transition: .3s ease;
+}
+.breadcrumb li a:after, .search-box:after { 
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+	border-bottom: 50px solid transparent;
+	border-left: 30px solid hsla(200, 62%, 45%, 1);
+	position: absolute;
+	top: 50%;
+	margin-top: -50px; 
+	left: 100%;
+	z-index: 1; 
+	webkit-transition: .3s ease;
+    -moz-transition: .3s ease;
+    transition: .3s ease;
+}	
+.breadcrumb li a:before, .search-box:before { 
+	content: " "; 
+	display: block; 
+	width: 0; 
+	height: 0;
+	border-top: 50px solid transparent;           /* Go big on the size, and let overflow hide */
+	border-bottom: 50px solid transparent;
+	border-left: 30px solid white;
+	position: absolute;
+	top: 50%;
+	margin-top: -50px; 
+	margin-left: 1px;
+	left: 100%;
+	z-index: 1; 
+}	
+.breadcrumb li:first-child a,
+.breadcrumb li:first-child .search-box {
+	padding-left: 10px;
+}
+.breadcrumb #last-breadcrumb:last-child:after {
+	content: none;
+}
+.breadcrumb li:nth-child(2) a       { background:        hsla(0, 78%, 63%, 1); }
+.breadcrumb li:nth-child(2) a:after { border-left-color: hsla(0, 78%, 63%, 1); } /*red*/
+.breadcrumb li:nth-child(3) a       { background:        hsla(146, 41%, 54%, 1); }
+.breadcrumb li:nth-child(3) a:after { border-left-color: hsla(146, 41%, 54%, 1); } /*green*/
+.breadcrumb li:nth-child(4) a       { background:        hsla(19, 75%, 53%, 1); }
+.breadcrumb li:nth-child(4) a:after { border-left-color: hsla(19, 75%, 53%, 1); } /*orange*/
+.breadcrumb li:nth-child(5) a       { background:        hsla(48, 100%, 47%, 1); }
+.breadcrumb li:nth-child(5) a:after { border-left-color: hsla(48, 100%, 47%, 1); } /*yellow*/
+.breadcrumb li:last-child .search-box 		{ background:        hsla(200, 62%, 45%, 1); }
+.breadcrumb li:last-child .search-box:after 	{ border-left-color: hsla(200, 62%, 45%, 1); } /*blue*/
+
+.breadcrumb li a:hover { background: hsla(0, 0%, 92%, 1); color: #ddd; }
+.breadcrumb li a:hover:after { border-left-color: hsla(0, 0%, 92%, 1) !important; }
+
+.breadcrumb-active {
+  .breadcrumb li:nth-child(3) a       { background:        hsla(146, 41%, 54%, 1); }
+  .breadcrumb li:nth-child(3) a:after { border-left-color: hsla(146, 41%, 54%, 1); }
+}
+
+/*search box*/
+.search-box {
+	height: 16px;
+	width: 165px;
+}
+#search[type="text"] {
+  height: 20px;
+  font-size: 14px;
+  display: inline-block;
+  font-weight: 100;
+  border: none;
+  outline: none;
+  color: #ebebeb!important;
+  padding: 3px;
+  padding-right: 60px;
+  width: 0px;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  z-index: 3;
+  transition: width .4s cubic-bezier(0.000, 0.795, 0.000, 1.000);
+  cursor: pointer;
+}
+
+#search[type="text"]:focus:hover {
+  border-bottom: 1px solid #ebebeb!important;
+}
+
+#search[type="text"]:focus {
+  width: 120px;
+  z-index: 1;
+  border-bottom: 1px solid #ebebeb!important;
+  background: #fff;
+  cursor: text;
+}
+#search_submit[type="submit"] {
+  height: 20px;
+  width: 20px;
+  display: inline-block;
+  float: right;
+  background: url(../img/search-01.svg) center center no-repeat;
+  text-indent: -10000px;
+  border: none;
+  position: absolute;
+  top: 8px;
+  right: 7px;
+  z-index: 2;
+  cursor: pointer;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity .4s ease;
+}
+
+#search_submit[type="submit"]:hover {
+  opacity: 0.8;
+}
+#home-icon {
+	margin-top: -2px;
+	width: 20px;height: 18px;
+}
+
+/***********left list tabs**********/
+
+
+.left-list-tabs {
+	margin-top: 20px;
+}
+.left-list-tabs .pure-menu-selected,
+.left-list-tabs .pure-menu-active
+  > 
+.left-list-tabs .pure-menu-link, 
+.left-list-tabs .pure-menu-link:hover {
+    /* background-color: #fff; */
+    
+}
+
+.left-list-tabs .pure-menu-active > .left-list-tabs .pure-menu-link, .left-list-tabs .pure-menu-link:hover {
+    background-color: #eee;
+    color: #39aae2!important;
+    border-bottom: 3px solid #39aae2;
+    stroke: #39aae2;
+    fill: #39aae2!important;
+}
+.left-list-tabs .pure-menu-selected .pure-menu-link, .left-list-tabs .pure-menu-selected .pure-menu-link:visited {
+    color: #ddd;
+    fill: #939393;
+    background-color: transparent;
+}
+
+/*********Profile Picture********
+.profilePic-square {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #ddd;
+    background-color: #ebebeb;
+}
+.profilePic-square img {
+    padding: 0;
+}*/
+
+/*************** status disable **************/
+
+.status-disable span {
+  font-size: 14px;
+  padding: 1px 17px;
+  -webkit-border-top-right-radius: 50px 40px;
+  -webkit-border-bottom-right-radius: 50px 30px;
+  -webkit-border-top-left-radius: 50px 30px;
+  -webkit-border-bottom-left-radius: 50px 30px;
+  background-color: #ddd;
+}
+
+/********* heading button back and setting *********/
+.btn-goBack button {
+  color: #3baae3!important;
+  fill: #3baae3;
+  stroke: #3baae3;
+}
+
+.btn-setting button {
+  color: #ebebeb!important;
+  fill: #ebebeb;
+  stroke: #ebebeb;
+}
+/********* end heading button back and setting *********/
+
+.break {
+  word-break: break-all;
+}
+
+
+/** The Magic **/
+.btn-breadcrumb .btn:not(:last-child):after {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid white;
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  left: 100%;
+  z-index: 3;
+}
+.btn-breadcrumb .btn:not(:last-child):before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 17px solid transparent;
+  border-bottom: 17px solid transparent;
+  border-left: 10px solid rgb(173, 173, 173);
+  position: absolute;
+  top: 50%;
+  margin-top: -17px;
+  margin-left: 1px;
+  left: 100%;
+  z-index: 3;
+}
+
+/** The Spacing **/
+.btn-breadcrumb .btn {
+  padding:6px 12px 6px 24px;
+}
+.btn-breadcrumb .btn:first-child {
+  padding:6px 6px 6px 10px;
+}
+.btn-breadcrumb .btn:last-child {
+  padding:6px 18px 6px 24px;
+}

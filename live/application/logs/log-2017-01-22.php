@@ -1,0 +1,32 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> date_default_timezone_set(): Timezone ID 'Etc/GMT7' is invalid /var/www/html/live_v20/application/controllers/student/find_coaches.php 2290
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2314
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2316
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> date_default_timezone_set(): Timezone ID 'Etc/GMT7' is invalid /var/www/html/live_v20/application/controllers/student/find_coaches.php 2290
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2314
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2316
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> date_default_timezone_set(): Timezone ID 'Etc/GMT7' is invalid /var/www/html/live_v20/application/controllers/student/find_coaches.php 2290
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2314
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2316
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> date_default_timezone_set(): Timezone ID 'Etc/GMT7' is invalid /var/www/html/live_v20/application/controllers/student/find_coaches.php 2290
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2314
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2316
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> date_default_timezone_set(): Timezone ID 'Etc/GMT7' is invalid /var/www/html/live_v20/application/controllers/student/find_coaches.php 2290
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2314
+ERROR - 2017-01-22 19:35:40 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2316
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> date_default_timezone_set(): Timezone ID 'Etc/GMT7' is invalid /var/www/html/live_v20/application/controllers/student/find_coaches.php 2290
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2314
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2316
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> date_default_timezone_set(): Timezone ID 'Etc/GMT7' is invalid /var/www/html/live_v20/application/controllers/student/find_coaches.php 2290
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2314
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2316
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> date_default_timezone_set(): Timezone ID 'Etc/GMT7' is invalid /var/www/html/live_v20/application/controllers/student/find_coaches.php 2290
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2314
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2316
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> date_default_timezone_set(): Timezone ID 'Etc/GMT7' is invalid /var/www/html/live_v20/application/controllers/student/find_coaches.php 2290
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2314
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2316
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> date_default_timezone_set(): Timezone ID 'Etc/GMT7' is invalid /var/www/html/live_v20/application/controllers/student/find_coaches.php 2290
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2314
+ERROR - 2017-01-22 19:35:52 --> Severity: Notice  --> Trying to get property of non-object /var/www/html/live_v20/application/controllers/student/find_coaches.php 2316

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serv:message xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:serv="http://www.webex.com/schemas/2002/06/service">
+    <header>
+        <securityContext>
+            <siteID>690319</siteID>
+            <webExID>idwihastomo@dyned.com</webExID>
+            <!-- <password>L1vepass</password> -->
+            <partnerID>g0webx</partnerID>
+        </securityContext>
+    </header>
+        <body>
+            <bodyContent
+                xsi:type="java:com.webex.service.binding.user.AuthenticateUser">
+                <samlResponse>live samlResponse message will go here</samlResponse>
+            </bodyContent>
+        </body>
+</serv:message>
