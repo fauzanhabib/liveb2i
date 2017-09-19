@@ -259,7 +259,7 @@ class subgroup extends MY_Site_Controller {
                             // $this->db->delete('subgroup');
 
                         $this->db->trans_commit();
-                        $this->messages->add('Disable Group Succeeded', 'success');
+                        $this->messages->add('Disable Group Successful', 'success');
 
                     } else if(count($check_group) == 0){
                         $this->db->trans_begin();
@@ -270,7 +270,7 @@ class subgroup extends MY_Site_Controller {
                         $this->db->where('type','student');
                         $this->db->update('subgroup', $status);
                         $this->db->trans_commit();
-                        $this->messages->add('Disable Group Succeeded', 'success');
+                        $this->messages->add('Disable Group Successful', 'success');
 
                     }
                 }
@@ -312,7 +312,7 @@ class subgroup extends MY_Site_Controller {
                             // $this->db->delete('subgroup');
 
                         $this->db->trans_commit();
-                        $this->messages->add('Enable Group Succeeded', 'success');
+                        $this->messages->add('Enable Group Successful', 'success');
 
                     }else if(count($check_group) == 0){
                         $this->db->trans_begin();
@@ -323,7 +323,7 @@ class subgroup extends MY_Site_Controller {
                         $this->db->where('type','student');
                         $this->db->update('subgroup', $status);
                         $this->db->trans_commit();
-                        $this->messages->add('Enable Group Succeeded', 'success');
+                        $this->messages->add('Enable Group Successful', 'success');
 
                     }
                 }
@@ -381,7 +381,7 @@ class subgroup extends MY_Site_Controller {
         // Inserting and checking to partner table
         $this->db->insert('subgroup', $student);
 
-        $this->messages->add('Inserting Subgroup Succeeded', 'success');
+        $this->messages->add('Inserting Subgroup Successful', 'success');
         redirect('student_partner/subgroup');
     }
 
@@ -615,7 +615,7 @@ class subgroup extends MY_Site_Controller {
         $this->db->where('type', 'student');
         $this->db->update('subgroup', $partner); 
 
-        $this->messages->add('Update Region Succeeded', 'success');
+        $this->messages->add('Update Region Successful', 'success');
         redirect('student_partner/subgroup');
     }
 
@@ -666,7 +666,7 @@ class subgroup extends MY_Site_Controller {
                 //     $this->db->where_in('id_student',$check_list);
                 //     $this->db->delete('student_supplier_to_student');
                 // $this->db->trans_commit();
-                $this->messages->add('Deleted Succeeded', 'success');
+                $this->messages->add('Delete Successful', 'success');
             }
         } else {
             $this->messages->add('Please choose student', 'error');
@@ -725,7 +725,7 @@ class subgroup extends MY_Site_Controller {
 
        $this->region_model->update_setting($id,$setting);
 
-       $this->messages->add('Update Setting Succeeded', 'success');
+       $this->messages->add('Update Setting Successful', 'success');
 
        redirect('student_partner/subgroup/setting/'.$id);
     }

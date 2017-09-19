@@ -288,7 +288,7 @@ class region extends MY_Site_Controller {
         $this->send_email->superadmin_create_region($this->input->post('fullname'), $this->input->post('email'), $password, 'add');
         // ============
 
-        $this->messages->add('Inserting Admin Regional Succeeded', 'success');
+        $this->messages->add('Inserting Admin Regional Successful', 'success');
         redirect('superadmin/region');
         
     }
@@ -321,7 +321,7 @@ class region extends MY_Site_Controller {
                         redirect('superadmin/region/detail/'.$id_regional);
                         return;
                     }
-                    $this->messages->add('Update Succeeded', 'success');
+                    $this->messages->add('Update Successful', 'success');
                     redirect('superadmin/region/detail/'.$id_regional);
                 }
                     
@@ -405,7 +405,7 @@ class region extends MY_Site_Controller {
             // $this->db->trans_commit();
 
 
-            $this->messages->add('Updated Succeeded', 'success');
+            $this->messages->add('Update Successful', 'success');
 
             redirect('superadmin/region/detail/'.$id);
 
@@ -450,7 +450,7 @@ class region extends MY_Site_Controller {
                 $this->db->delete('partners');
 
                 $this->db->trans_commit();
-                $this->messages->add('Deleted Succeeded', 'success');
+                $this->messages->add('Delete Successful', 'success');
             } else {
                 $this->messages->add('Please Move your affiliate', 'error');
 
@@ -484,7 +484,7 @@ class region extends MY_Site_Controller {
                         $this->db->where_in('user_id',$check_list);
                         $this->db->delete('user_profiles');
                         $this->db->trans_commit();
-                        $this->messages->add('Deleted Succeeded', 'success');
+                        $this->messages->add('Delete Successful', 'success');
 
                     } else if($check->num_rows() > 0){
                         $this->messages->add('You still have a member', 'warning');
@@ -499,7 +499,7 @@ class region extends MY_Site_Controller {
                     $this->db->update('users',array('status' => "disable"));
                 $this->db->trans_commit();
 
-                $this->messages->add('Deactived Succeeded', 'success');
+                $this->messages->add('Deactive Successful', 'success');
             }
 
         } else {
@@ -563,7 +563,7 @@ class region extends MY_Site_Controller {
                         $this->db->where_in('user_id',$check_list);
                         $this->db->delete('user_profiles');
                         $this->db->trans_commit();
-                        $this->messages->add('Deleted Succeeded', 'success');
+                        $this->messages->add('Deleted Successful', 'success');
 
                     } else if($check->num_rows() > 0){
                         $this->messages->add('You still have a member', 'warning');
@@ -578,7 +578,7 @@ class region extends MY_Site_Controller {
                     $this->db->update('users',array('status' => "active"));
                 $this->db->trans_commit();
 
-                $this->messages->add('Active Succeeded', 'success');
+                $this->messages->add('Active Successful', 'success');
             }
 
         } else {
@@ -651,7 +651,7 @@ class region extends MY_Site_Controller {
 
        $this->region_model->update_setting($id,$setting);
 
-       $this->messages->add('Update Setting Succeeded', 'success');
+       $this->messages->add('Update Setting Successful', 'success');
 
        redirect('superadmin/region/setting/'.$id.'/'.$type);
     }

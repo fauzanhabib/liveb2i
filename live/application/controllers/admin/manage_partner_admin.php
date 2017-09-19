@@ -184,7 +184,7 @@ class manage_partner_admin extends MY_Site_Controller {
         // messaging inserting data notification
         // $this->queue->push($database_tube, $data_partner, 'database.insert');
 
-        $this->messages->add('Updating Partner Member Succeeded', 'success');
+        $this->messages->add('Updating Partner Member Successful', 'success');
         redirect($link_redirect);
     }
     
@@ -215,7 +215,7 @@ class manage_partner_admin extends MY_Site_Controller {
         $partner = $this->identity_model->get_identity('profile')->where('user_id', $user_id)->get();
         if($this->identity_model->get_partner_identity($user_id, '', '', '')){
             if($this->user_model->delete($user_id)){
-                $this->messages->add('Delete Partner Member Succeeded', 'success');
+                $this->messages->add('Delete Partner Member Successful', 'success');
                 redirect($role_link.'/manage_partner/partner/'.$type.'/'.$partner_id);
             }
             else{

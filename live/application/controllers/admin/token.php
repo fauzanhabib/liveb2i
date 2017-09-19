@@ -136,7 +136,7 @@ class token extends MY_Site_Controller {
         $this->send_email->send_admin_request_token($get_name[0]->email,$fullname,$this->input->post('token_amount'),'requested');
         $this->send_email->add_token_region($email_superadmin,$fullname,$this->input->post('token_amount'),'requested');
 
-        $this->messages->add('Request Token Succeeded', 'success');
+        $this->messages->add('Request Token Successful', 'success');
         redirect('admin/token');
         
     }

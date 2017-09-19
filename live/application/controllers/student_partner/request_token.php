@@ -188,7 +188,7 @@ class request_token extends MY_Site_Controller {
         // =============
 
         
-        $this->messages->add('Request Token Succeeded', 'success');
+        $this->messages->add('Request Token Successful', 'success');
         redirect('student_partner/request_token');
         
     }

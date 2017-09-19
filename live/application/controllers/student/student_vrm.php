@@ -1303,7 +1303,7 @@ class Student_vrm extends MY_Site_Controller {
                 //print_r($user_profile_id); exit;
                 $this->identity_model->get_identity('profile')->update($user_profile_id->id, $data, TRUE);
                 
-                $this->messages->add('Connect to your DynEd Pro Succeeded', 'success');
+                $this->messages->add('Connect to your DynEd Pro Successful', 'success');
                 redirect('student/student_vrm/single_student');
             }
             else{

@@ -377,7 +377,7 @@ class match_partner extends MY_Site_Controller {
         $this->student_supplier_relation_model->where('class_matchmaking_id', $class_matchmaking_id)->delete();
         $this->student_group_relation_model->where('class_matchmaking_id', $class_matchmaking_id)->delete();
             
-        $this->messages->add('Delete Succeeded', 'success');
+        $this->messages->add('Delete Successful', 'success');
         redirect('admin/match_partner/'); 
     }
 

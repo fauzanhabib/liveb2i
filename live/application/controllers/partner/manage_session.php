@@ -542,7 +542,7 @@ class manage_session extends MY_Site_Controller {
         // messaging inserting data notification
         $this->queue->push($database_tube, $data_coach, 'database.insert');
 
-        $this->messages->add('Updating Appointment Succeeded', 'success');
+        $this->messages->add('Updating Appointment Successful', 'success');
         redirect('partner/schedule/manage/'.$student_id);
     }
 

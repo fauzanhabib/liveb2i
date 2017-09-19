@@ -145,7 +145,7 @@ class member_list extends MY_Site_Controller {
         //unsetting day_adding
         $this->session->unset_userdata("coach_list_id");
         
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('partner/member_list/detail/'.$profile_id->user_id);
     }
     

@@ -434,7 +434,7 @@ class adding extends MY_Site_Controller {
 
        
 
-        $this->messages->add('Inserting Student Succeeded', 'success');
+        $this->messages->add('Inserting Student Successful', 'success');
         redirect('student_partner/subgroup/list_student/'.@$subgroup_id);
     }
 
@@ -1469,7 +1469,7 @@ class adding extends MY_Site_Controller {
         }
         $this->db->trans_commit();
 
-        $this->messages->add('Inserting Class Succeeded', 'success');
+        $this->messages->add('Inserting Class Successful', 'success');
         redirect('student_partner/adding/');
     }
 

@@ -275,7 +275,7 @@ class settings extends MY_Site_Controller {
             $this->db->where('type', $type);
             $this->db->update('global_settings', $data); 
 
-            $this->messages->add('Update setting '.$type.' Succeeded', 'success');
+            $this->messages->add('Update setting '.$type.' Successful', 'success');
             redirect('superadmin/settings/'.$target_redirect);
                         
     

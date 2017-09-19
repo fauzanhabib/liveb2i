@@ -52,7 +52,7 @@ class session_duration extends MY_Site_Controller {
             redirect('partner/member_list/coach');
         }
         
-        $this->messages->add('Update Session Duration Succeeded', 'success');
+        $this->messages->add('Update Session Duration Successful', 'success');
         redirect('partner/member_list/coach');
     }
 }

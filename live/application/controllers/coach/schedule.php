@@ -662,12 +662,12 @@ class schedule extends MY_Site_Controller {
 
         if($minutes == 0){
             if($this->update_schedule($day1, $this->schedule_offwork_block(array_map("unserialize", array_unique(array_map("serialize", $schedule_array1)))))){
-                $this->messages->add('Update Succeeded', 'success');
+                $this->messages->add('Update Successful', 'success');
             }
         }
         else{
             if($this->update_schedule($day1, $this->schedule_offwork_block(array_map("unserialize", array_unique(array_map("serialize", $schedule_array1))))) && $this->update_schedule($day2, $this->schedule_offwork_block(array_map("unserialize", array_unique(array_map("serialize", $schedule_array2)))))){
-                $this->messages->add('Update Succeeded', 'success');
+                $this->messages->add('Update Successful', 'success');
             }
             else{
                 $this->messages->add('Update failed', 'warning');
@@ -696,7 +696,7 @@ class schedule extends MY_Site_Controller {
         //deleting data if in a day has more than one schedule
         if (count($this->schedule_model->where('user_id', $this->auth_manager->userid())->where('day', $day)->get_all()) > 1) {
             $this->schedule_model->where('user_id', $this->auth_manager->userid())->where('day', $day)->delete($id);
-            $this->messages->add('Delete Succeeded', 'success');
+            $this->messages->add('Delete Successful', 'success');
             redirect('coach/schedule/edit/' . $day);
         }
         //one coach must has one schedule each day in database even if start_time and end_time null

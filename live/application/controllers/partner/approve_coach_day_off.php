@@ -115,7 +115,7 @@ class approve_coach_day_off extends MY_Site_Controller {
 
 
 
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('partner/approve_coach_day_off');
     }
 
@@ -187,7 +187,7 @@ class approve_coach_day_off extends MY_Site_Controller {
             
 
 
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('partner/approve_coach_day_off');
     }
 

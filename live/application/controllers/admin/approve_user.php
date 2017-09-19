@@ -121,7 +121,7 @@ class approve_user extends MY_Site_Controller {
         // $this->send_email->admin_approval_user($user_data->email,'','approved',$user_data->fullname, $type);
         // $this->send_email->notif_partner($partnermail, '','approved',$user_data->fullname, $type);
 
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('admin/approve_user/index/'.$type);
     }
     
@@ -178,7 +178,7 @@ class approve_user extends MY_Site_Controller {
         // $this->send_email->superadmin_approval_supplier($user_data->email,'declined',$user_data->fullname, $type);
         //$this->send_email->notif_partner($partnermail, '','approved',$user_data->fullname, $type);
         
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('admin/approve_user/index/'.$type);
     }
 

@@ -187,7 +187,7 @@ class manage_partner extends MY_Site_Controller {
 
         $this->db->trans_commit();
 
-        $this->messages->add('Inserting Affiliate Succeeded', 'success');
+        $this->messages->add('Inserting Affiliate Successful', 'success');
         redirect('admin/manage_partner');
     }
 
@@ -240,7 +240,7 @@ class manage_partner extends MY_Site_Controller {
         }
         $this->db->trans_commit();
 
-        $this->messages->add('Updating Affiliate Succeeded', 'success');
+        $this->messages->add('Updating Affiliate Successful', 'success');
         redirect('admin/manage_partner/detail/'.$id);
     }
 
@@ -266,7 +266,7 @@ class manage_partner extends MY_Site_Controller {
                 $this->db->delete('partners');
 
                 $this->db->trans_commit();
-                $this->messages->add('Deleted Succeeded', 'success');
+                $this->messages->add('Delete Successful', 'success');
             } else {
                 $this->messages->add('You still have member', 'error');
 
@@ -532,7 +532,7 @@ class manage_partner extends MY_Site_Controller {
         $this->send_email->notif_superadmin($email_superadmin,$password,'created',$this->input->post('fullname'),$get_id_region->name,$tor,$type);
         //$this->send_sms->create_partner($full_number, $this->input->post('fullname'), $this->input->post('email'));
 
-        $this->messages->add('Inserting Affiliate Member Succeeded', 'success');
+        $this->messages->add('Inserting Affiliate Member Successful', 'success');
         if($this->input->post('role_id') == 3){
             redirect('admin/manage_partner/partner/coach/'.$this->input->post('partner_id'));
         }elseif($this->input->post('role_id') == 5){
@@ -797,7 +797,7 @@ class manage_partner extends MY_Site_Controller {
                         $this->db->where_in('user_id',$check_list);
                         $this->db->delete('user_profiles');
                     $this->db->trans_commit();
-                    $this->messages->add('Deleted Succeeded', 'success');
+                    $this->messages->add('Delete Successful', 'success');
                 } else if(count($check_group) > 0){
                     $this->messages->add('Please Move your Coach to another affiliate', 'danger');
                 }
@@ -812,7 +812,7 @@ class manage_partner extends MY_Site_Controller {
                     $this->db->update('subgroup',array('partner_id' => $move_partner));
                 $this->db->trans_commit();
 
-                $this->messages->add('Moved Succeeded', 'success');
+                $this->messages->add('Move Successful', 'success');
             }
 
         }
@@ -824,7 +824,7 @@ class manage_partner extends MY_Site_Controller {
         $partner = $this->identity_model->get_identity('profile')->where('user_id', $user_id)->get();
         if($this->identity_model->get_partner_identity($user_id, '', '', '')){
             if($this->user_model->delete($user_id)){
-                $this->messages->add('Delete Affiliate Member Succeeded', 'success');
+                $this->messages->add('Delete Affiliate Member Successful', 'success');
                 redirect('admin/manage_partner/list_partner_member/'.$partner->partner_id);
             }
             else{
@@ -875,7 +875,7 @@ class manage_partner extends MY_Site_Controller {
             }
   
 
-            $this->messages->add('Update Succeeded', 'success');
+            $this->messages->add('Update Successful', 'success');
             redirect('admin/manage_partner/detail/'.$partner_id);
     }
 
@@ -1247,7 +1247,7 @@ class manage_partner extends MY_Site_Controller {
                     $this->db->where_in('id_student',$check_list);
                     $this->db->delete('student_supplier_to_student');
                 $this->db->trans_commit();
-                $this->messages->add('Deleted Succeeded', 'success');
+                $this->messages->add('Delete Successful', 'success');
         } else {
             $this->messages->add('Please choose student', 'error');
         }
@@ -1280,7 +1280,7 @@ class manage_partner extends MY_Site_Controller {
                     $this->db->where_in('id_student',$check_list);
                     $this->db->delete('student_supplier_to_student');
                 $this->db->trans_commit();
-                $this->messages->add('Deleted Succeeded', 'success');
+                $this->messages->add('Delete Successful', 'success');
         } else {
             $this->messages->add('Please choose coach', 'error');
         }
@@ -1351,7 +1351,7 @@ class manage_partner extends MY_Site_Controller {
                     $this->db->where_in('user_id',$check_list);
                     $this->db->delete('user_profiles');
                 $this->db->trans_commit();
-                $this->messages->add('Deleted Succeeded', 'success');
+                $this->messages->add('Delete Successful', 'success');
 
             } else if($type_submit == "deactive_coach"){
                 $this->db->trans_begin();
@@ -1361,7 +1361,7 @@ class manage_partner extends MY_Site_Controller {
                     $this->db->update('users',array('status' => "disable"));
                 $this->db->trans_commit();
 
-                $this->messages->add('Deactived Succeeded', 'success');
+                $this->messages->add('Deactive Successful', 'success');
 
 
             } else if($type_submit == "active_coach"){
@@ -1372,7 +1372,7 @@ class manage_partner extends MY_Site_Controller {
                     $this->db->update('users',array('status' => "active"));
                 $this->db->trans_commit();
 
-                $this->messages->add('Actived Succeeded', 'success');
+                $this->messages->add('Active Successful', 'success');
             }
 
             redirect('admin/manage_partner/member_of_coach/'.$type.'/'.$subgroup_id.'/'.$partner_id);
@@ -1396,7 +1396,7 @@ class manage_partner extends MY_Site_Controller {
                     $this->db->where_in('user_id',$check_list);
                     $this->db->delete('user_profiles');
                 $this->db->trans_commit();
-                $this->messages->add('Deleted Succeeded', 'success');
+                $this->messages->add('Delete Successful', 'success');
 
             } else if($type_submit == "deactive_student"){
                 $this->db->trans_begin();
@@ -1406,7 +1406,7 @@ class manage_partner extends MY_Site_Controller {
                     $this->db->update('users',array('status' => "disable"));
                 $this->db->trans_commit();
 
-                $this->messages->add('Deactived Succeeded', 'success');
+                $this->messages->add('Deactive Successful', 'success');
 
 
             } else if($type_submit == "active_student"){
@@ -1417,7 +1417,7 @@ class manage_partner extends MY_Site_Controller {
                     $this->db->update('users',array('status' => "active"));
                 $this->db->trans_commit();
 
-                $this->messages->add('Actived Succeeded', 'success');
+                $this->messages->add('Active Successful', 'success');
             }
 
             redirect('admin/manage_partner/member_of_student/'.$type.'/'.$subgroup_id.'/'.$partner_id);
@@ -1858,7 +1858,7 @@ class manage_partner extends MY_Site_Controller {
        $this->db->where('partner_id',$id);
        $this->db->update('specific_settings',$setting);
 
-       $this->messages->add('Update Setting Succeeded', 'success');
+       $this->messages->add('Update Setting Successful', 'success');
 
        redirect('admin/manage_partner/setting/'.$id.'/'.$type);
     }

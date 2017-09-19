@@ -63,7 +63,7 @@ class offwork extends MY_Site_Controller {
             //unsetting day_offwork
             $this->session->unset_userdata("day_offwork");
             
-            $this->messages->add('Update Succeeded', 'success');
+            $this->messages->add('Update Successful', 'success');
             redirect('coach/offwork');
         }
         
@@ -72,7 +72,7 @@ class offwork extends MY_Site_Controller {
             //deleting data if in a day has more than one offwork
             if(count($this->offwork_model->where('user_id',$this->auth_manager->userid())->where('day',$day)->get_all()) > 1){
               $this->offwork_model->where('user_id',$this->auth_manager->userid())->where('day',$day)->delete($id);
-                $this->messages->add('Delete Succeeded', 'success');
+                $this->messages->add('Delete Successful', 'success');
                 redirect('coach/offwork/edit/'.$day);  
             }
             //one coach must has one offwork each day in database even if start_time and end_time null

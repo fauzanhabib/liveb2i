@@ -190,7 +190,7 @@ class manage_partner extends MY_Site_Controller {
 
         $this->db->trans_commit();
 
-        $this->messages->add('Inserting Affiliate Succeeded', 'success');
+        $this->messages->add('Inserting Affiliate Successful', 'success');
         redirect('superadmin/region/detail/'.$id);
     }
 
@@ -243,7 +243,7 @@ class manage_partner extends MY_Site_Controller {
         }
         $this->db->trans_commit();
 
-        $this->messages->add('Updating Affiliate Succeeded', 'success');
+        $this->messages->add('Updating Affiliate Successful', 'success');
         redirect('superadmin/manage_partner/detail/'.$id);
     }
 
@@ -257,7 +257,7 @@ class manage_partner extends MY_Site_Controller {
         $delete_specific_setting = $this->db->where('user_id',$id)
                                       ->delete('specific_settings');
 
-        $this->messages->add('Delete Succeeded', 'success');
+        $this->messages->add('Delete Successful', 'success');
         redirect('superadmin/region');
     }
 
@@ -765,7 +765,7 @@ function update_setting($id) {
        $this->db->where('partner_id',$id);
        $this->db->update('specific_settings',$setting);
 
-       $this->messages->add('Update Setting Succeeded', 'success');
+       $this->messages->add('Update Setting Successful', 'success');
 
        redirect('superadmin/manage_partner/setting/'.$id.'/'.$type);
     }
@@ -1010,7 +1010,7 @@ function update_setting($id) {
                         $this->db->where_in('user_id',$check_list);
                         $this->db->delete('user_profiles');
                     $this->db->trans_commit();
-                    $this->messages->add('Deleted Succeeded', 'success');
+                    $this->messages->add('Delete Successful', 'success');
                 } else if(count($check_group) > 0){
                     $this->messages->add('Please Move your Coach to another partner', 'danger');
                 }
@@ -1025,7 +1025,7 @@ function update_setting($id) {
                     $this->db->update('subgroup',array('partner_id' => $move_partner));
                 $this->db->trans_commit();
 
-                $this->messages->add('Moved Succeeded', 'success');
+                $this->messages->add('Move Successful', 'success');
             }
 
         }
@@ -1037,7 +1037,7 @@ function update_setting($id) {
         $partner = $this->identity_model->get_identity('profile')->where('user_id', $user_id)->get();
         if($this->identity_model->get_partner_identity($user_id, '', '', '')){
             if($this->user_model->delete($user_id)){
-                $this->messages->add('Delete Affiliate Member Succeeded', 'success');
+                $this->messages->add('Delete Affiliate Member Successful', 'success');
                 redirect('admin/manage_partner/list_partner_member/'.$partner->partner_id);
             }
             else{
@@ -1352,7 +1352,7 @@ function update_setting($id) {
             $delete_image = $this->upload_path."temp/".$profile_picture['file_name'];
             unlink($delete_image);
 
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('admin/manage_partner/detail/'.$partner_id);
     }
 
@@ -1475,7 +1475,7 @@ function update_setting($id) {
         // messaging inserting data notification for member
         //$this->queue->push($database_tube, $data_member, 'database.insert');
 
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('superadmin/manage_partner/approve_'.$type);
     }
 
@@ -1557,7 +1557,7 @@ function update_setting($id) {
         // Email's content to inform students that their account has been activated
 
         
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('superadmin/manage_partner/approve_'.$type);
     }
 

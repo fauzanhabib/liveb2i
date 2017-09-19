@@ -197,7 +197,7 @@ class partner_setting extends MY_Site_Controller {
             $this->db->where('partner_id', $partner_id);
             $this->db->update('specific_settings', $data); 
 
-            $this->messages->add('Update Region Succeeded', 'success');
+            $this->messages->add('Update Region Successful', 'success');
             redirect('admin/partner_setting/setting_partner/student');
                         
     
@@ -380,7 +380,7 @@ class partner_setting extends MY_Site_Controller {
                 
             );
             $this->partner_setting_model->insert($setting);
-            $this->messages->add('Update Partner Setting Succeeded', 'success');
+            $this->messages->add('Update Partner Setting Successful', 'success');
             redirect('admin/partner_setting/setting_partner/'.$user_id);
 
 
@@ -403,7 +403,7 @@ class partner_setting extends MY_Site_Controller {
             );
             $this->db->where('partner_id',$user_id);
             $this->db->update($this->partner_setting_model->table,$setting);
-            $this->messages->add('Update Partner Setting Succeeded', 'success');
+            $this->messages->add('Update Partner Setting Successful', 'success');
             redirect('admin/partner_setting/setting_partner/'.$user_id);
             
         }

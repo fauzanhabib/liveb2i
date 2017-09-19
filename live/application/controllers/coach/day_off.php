@@ -340,7 +340,7 @@ class day_off extends MY_Site_Controller {
 
     public function delete($id = '') {
         $this->coach_day_off_model->where('coach_id', $this->auth_manager->userid())->delete($id);
-        $this->messages->add('Delete Succeeded', 'success');
+        $this->messages->add('Delete Successful', 'success');
         redirect('coach/day_off/' . $day);
     }
 

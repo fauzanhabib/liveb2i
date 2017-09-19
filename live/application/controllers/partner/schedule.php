@@ -184,7 +184,7 @@ class schedule extends MY_Site_Controller {
             $this->queue->later($delay, $tube, $content_coach_email, 'email.send_email');
         }
         
-        $this->messages->add('Inserting Appointment succeeded', 'success');
+        $this->messages->add('Inserting Appointment Successful', 'success');
         redirect('partner/schedule/manage/' . $student_id);
     }
 
@@ -279,7 +279,7 @@ class schedule extends MY_Site_Controller {
         }
             
         $this->db->trans_commit();
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('partner/schedule/manage/' . $this->input->post('student_id'));
     }
 
@@ -296,7 +296,7 @@ class schedule extends MY_Site_Controller {
             $this->messages->add("Canceling Appointment Failed", "error");
             return;
         }
-        $this->messages->add("Canceling Appointment Succeeded", "success");
+        $this->messages->add("Canceling Appointment Successful", "success");
         redirect('partner/schedule/manage/' . $student_id);
     }
 

@@ -306,7 +306,7 @@ class managing extends MY_Site_Controller {
         }
         $this->db->trans_commit();
 
-        $this->messages->add('Updating Class Succeeded', 'success');
+        $this->messages->add('Updating Class Successful', 'success');
         redirect('student_partner/managing/');
     }
 
@@ -314,7 +314,7 @@ class managing extends MY_Site_Controller {
         //deleting data if in a day has more than one managing
         if ($this->isValidClass($class_id) == true) {
             $this->class_model->delete($class_id);
-            $this->messages->add('Delete Succeeded', 'success');
+            $this->messages->add('Delete Successful', 'success');
             redirect('student_partner/managing/');
         }
     }
@@ -543,7 +543,7 @@ class managing extends MY_Site_Controller {
         //deleting data if in a day has more than one managing
         if ($this->isAssignedStudent($class_id, $student_id) == true) {
             $this->class_member_model->where('class_id', $class_id)->where('student_id', $student_id)->delete();
-            $this->messages->add('Delete Succeeded', 'success');
+            $this->messages->add('Delete Successful', 'success');
             redirect('student_partner/managing/class_member/' . $class_id);
         }
     }

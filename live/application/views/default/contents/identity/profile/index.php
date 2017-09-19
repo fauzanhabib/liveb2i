@@ -173,15 +173,64 @@
                                 <td class="flex width100perc">
                                     
                                     <span class="r-only"> 
-                                        <?php 
-                                            $j = round($rating[0]->rate, 2);
-                                            if($j < 5){
-                                                echo "Need 5 rated sessions to be displayed";
+                                        <div class="profilecoach__rate">
+                                            <section class='rating-widget'>
 
-                                            } else {
-                                                echo $j;
-                                            }
-                                        ?>
+                                                <!-- Rating Stars Box -->
+                                                <div class='rating-stars text-left'>
+                                                    <style type="text/css">
+
+                                                        .disabled {
+                                                            pointer-events: none;
+                                                            opacity: 0.6;
+                                                        }
+
+                                                    </style>
+                                                    <?php 
+                                                        
+
+                                                        $allrate = $this->db->select('rate')
+                                                                        ->from('coach_ratings')
+                                                                        ->where('coach_id', $this->auth_manager->userid())
+                                                                        ->get()->result();
+
+                                                        $temp = array();
+                                                        foreach($allrate as $in)
+                                                        {
+                                                            $temp[] = $in->rate;
+                                                        }
+
+                                                        $sumrate   = array_sum($temp);
+                                                        $countrate = count((array)$allrate);
+
+                                                        if($sumrate != null && $countrate != null){
+                                                            $classrate = $sumrate / $countrate * 20;
+                                                            $tooltip   = $sumrate / $countrate;
+                                                        }else{
+                                                            $classrate = 0;
+                                                            $tooltip   = 0;
+                                                        }
+                                                        
+                                                        $nostar = 5 - $tooltip;
+                                                        
+                                                    ?>
+                                                     <div data-tooltip="<?php echo number_format($classrate);?>% (<?php echo(round($tooltip,1));?> of 5 Stars)">
+                                                        <div class="star-rating">
+                                                            <span style="width:<?php echo $classrate; ?>%"></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="star-ratings-css" style="margin:0;" data-tooltip="<?php echo number_format($classrate);?>% (<?php echo(round($tooltip,1));?> of 5 Stars)">
+                                                      <div class="star-ratings-css-top" style="width: <?php echo $classrate; ?>%"><label>★</label><label>★</label><label>★</label><label>★</label><label>★</label></div>
+                                                      <div class="star-ratings-css-bottom"><label>★</label><label>★</label><label>★</label><label>★</label><label>★</label></div>
+                                                    </div>
+                                                </div>
+
+                                                <div class='success-box'>
+                                                    <div class='text-message'></div>
+                                                </div>
+                                            </section>
+
+                                        </div>
                                     </span>                                    
                                 </td>
                             </tr>
@@ -434,7 +483,7 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
                             </td>
                         </tr>
                         <tr id="active-3-2" class="no-inline">
-                            <td class="pad15">Year of (Teaching) Experience</td>
+                            <td class="pad15">Years of Teaching Experience</td>
 
                             <td>
                                 <span class="r-only"><?php echo @$data[0]->year_experience; ?></span>

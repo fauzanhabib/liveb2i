@@ -132,7 +132,7 @@ class adding extends MY_Site_Controller {
                 
                 $this->db->trans_commit();
 
-		$this->messages->add('Inserting Student Succeeded', 'success');
+		$this->messages->add('Inserting Student Successful', 'success');
 		redirect('partner/adding');
         }
         
@@ -276,7 +276,7 @@ class adding extends MY_Site_Controller {
                 
                 $this->db->trans_commit();
                 
-		$this->messages->add('Inserting Coach Succeeded', 'success');
+		$this->messages->add('Inserting Coach Successful', 'success');
 		redirect('partner/adding');
         }
         
@@ -320,7 +320,7 @@ class adding extends MY_Site_Controller {
             //unsetting day_adding
             $this->session->unset_userdata("day_adding");
             
-            $this->messages->add('Update Succeeded', 'success');
+            $this->messages->add('Update Successful', 'success');
             redirect('coach/adding');
         }
         
@@ -329,7 +329,7 @@ class adding extends MY_Site_Controller {
             //deleting data if in a day has more than one adding
             if(count($this->offwork_model->where('user_id',$this->auth_manager->userid())->where('day',$day)->get_all()) > 1){
               $this->offwork_model->where('user_id',$this->auth_manager->userid())->where('day',$day)->delete($id);
-                $this->messages->add('Delete Succeeded', 'success');
+                $this->messages->add('Delete Successful', 'success');
                 redirect('coach/adding/edit/'.$day);  
             }
             //one coach must has one adding each day in database even if start_time and end_time null

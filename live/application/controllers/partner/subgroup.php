@@ -209,7 +209,7 @@ class subgroup extends MY_Site_Controller {
         // Inserting and checking to partner table
         $this->db->insert('subgroup', $partner);
 
-        $this->messages->add('Inserting Group Succeeded', 'success');
+        $this->messages->add('Inserting Group Successful', 'success');
         redirect('partner/subgroup');
     }
 
@@ -397,7 +397,7 @@ class subgroup extends MY_Site_Controller {
         $this->db->where('type', 'coach');
         $this->db->update('subgroup', $partner); 
 
-        $this->messages->add('Update Group Succeeded', 'success');
+        $this->messages->add('Update Group Successful', 'success');
         redirect('partner/subgroup');
     }
 
@@ -451,7 +451,7 @@ class subgroup extends MY_Site_Controller {
                                 $this->db->delete('subgroup');
 
                             $this->db->trans_commit();
-                            $this->messages->add('Deleted Succeeded', 'success');
+                            $this->messages->add('Delete Successful', 'success');
 
                         } else if(count($check_group) > 0){
                             $this->messages->add('This group has a Coach', 'error');
@@ -501,7 +501,7 @@ class subgroup extends MY_Site_Controller {
                 // $this->db->where_in('user_id',$check_list);
                 // $this->db->delete('user_profiles');
 
-                $this->messages->add('Deleted Succeeded', 'success');
+                $this->messages->add('Delete Successful', 'success');
 
             }
             

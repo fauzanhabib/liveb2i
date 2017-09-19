@@ -122,14 +122,14 @@ class member_list extends MY_Site_Controller {
         //unsetting day_adding
         $this->session->unset_userdata("student_list_id");
         
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('student_partner/member_list/student_detail/'.$profile_id->user_id);
     }
     
     public function delete_student($student_id = ''){
         if($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id())){
             if($this->user_model->delete($student_id)){
-                $this->messages->add('Delete Student Succeeded', 'success');
+                $this->messages->add('Delete Student Successful', 'success');
             }
         }
         redirect('student_partner/member_list/student');

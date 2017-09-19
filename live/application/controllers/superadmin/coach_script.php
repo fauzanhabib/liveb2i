@@ -264,7 +264,7 @@ class Coach_script extends MY_Site_Controller {
       	$this->db->where('certificate_plan', $certificate_plan);
       	$this->db->update('script', $upd_coach);
 
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('superadmin/coach_script/index');
     }
     public function update_coaching_inside(){

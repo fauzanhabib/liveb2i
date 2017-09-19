@@ -575,7 +575,7 @@ class identity extends MY_Site_Controller {
 
                 }
                     $this->session->unset_userdata("key");
-                    $this->messages->add('Update Succeeded', 'success');
+                    $this->messages->add('Update Successful', 'success');
                     redirect('account/identity/detail/profile');
             }
             $old_password = $this->input->post('old_password');
@@ -690,7 +690,7 @@ class identity extends MY_Site_Controller {
         }
 
         $this->session->unset_userdata("key");
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('account/identity/detail/profile');
     }
 

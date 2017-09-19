@@ -547,7 +547,7 @@ class adding extends MY_Site_Controller {
 
 
 
-        $this->messages->add('Inserting Coach Succeeded', 'success');
+        $this->messages->add('Inserting Coach Successful', 'success');
         redirect('partner/subgroup/list_coach/'.$this->input->post('subgroup'));
     }
     

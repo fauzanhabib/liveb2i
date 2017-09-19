@@ -71,7 +71,7 @@ class history_token_requests extends MY_Site_Controller {
             $this->token_request_model->update($token_request_id, $data);
             $this->messaging_student($token_request_id, 'approved');
             
-            $this->messages->add('Approve Token Request Succeeded', 'success');
+            $this->messages->add('Approve Token Request Successful', 'success');
             redirect('student_partner/approve_token_requests');
         }
         else{
@@ -88,7 +88,7 @@ class history_token_requests extends MY_Site_Controller {
             $this->token_request_model->update($token_request_id, $data);
             $this->messaging_student($token_request_id, 'declined');
             
-            $this->messages->add('Decline Token Request Succeeded', 'success');
+            $this->messages->add('Decline Token Request Successful', 'success');
             redirect('student_partner/approve_token_requests');
         }
         else{

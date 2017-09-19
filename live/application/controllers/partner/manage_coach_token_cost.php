@@ -109,7 +109,7 @@ class manage_coach_token_cost extends MY_Site_Controller {
         //unsetting day_adding
         $this->session->unset_userdata("coach_id");
         
-        $this->messages->add('Update Succeeded', 'success');
+        $this->messages->add('Update Successful', 'success');
         redirect('partner/manage_coach_token_cost');
 
 
