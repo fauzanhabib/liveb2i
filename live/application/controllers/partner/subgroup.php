@@ -76,11 +76,11 @@ class subgroup extends MY_Site_Controller {
 
         if($search_subgroup != ''){
             $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'coach',null,$search_subgroup)), $per_page, $uri_segment);
-            $data = $this->identity_model->get_subgroup_identity(null,'coach',null,$search_subgroup,$per_page, $offset);
+            $data = $this->identity_model->get_subgroup_identity(null,'coach','active',null,$search_subgroup,$per_page, $offset);
             $data2 = $this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
         } else if($search_subgroup == ''){
             $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'coach',null,null)), $per_page, $uri_segment);
-            $data = $this->identity_model->get_subgroup_identity(null,'coach',null,null,$per_page, $offset);
+            $data = $this->identity_model->get_subgroup_identity(null,'coach','active',null,null,$per_page, $offset);
             $data2 = $this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
         }
 
@@ -106,6 +106,7 @@ class subgroup extends MY_Site_Controller {
                                 ->join('subgroup','user_profiles.subgroup_id = subgroup.id')
                                 ->where('users.role_id','2')
                                 ->where('users.status','active')
+                                ->where('subgroup.status','active')
                                 ->where('subgroup.partner_id',$partner_id)
                                 ->get()->result();
 
@@ -157,6 +158,104 @@ class subgroup extends MY_Site_Controller {
         // exit();
         
         $this->template->content->view('default/contents/partner/managing_subgroup/index', $vars);
+
+        //publish template
+        $this->template->publish();
+    }
+
+    public function index_disable($page='') {
+        $this->template->title = 'Add Group';
+        $offset = 0;
+        $per_page = 6;
+        $uri_segment = 4;
+        // exit($offset);
+
+        $search_subgroup = $this->input->post('search_subgroup');
+
+        if($search_subgroup != ''){
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'coach',null,$search_subgroup)), $per_page, $uri_segment);
+            $data = $this->identity_model->get_subgroup_identity(null,'coach','disable',null,$search_subgroup,$per_page, $offset);
+            $data2 = $this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
+        } else if($search_subgroup == ''){
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'coach',null,null)), $per_page, $uri_segment);
+            $data = $this->identity_model->get_subgroup_identity(null,'coach','disable',null,null,$per_page, $offset);
+            $data2 = $this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
+        }
+
+        $id = $this->auth_manager->userid();
+        $partner_id = $this->auth_manager->partner_id($id);
+
+        $total_coach = $this->db->select('count(users.id) as id')
+                                ->from('user_profiles')
+                                ->join('users','users.id = user_profiles.user_id')
+                                ->where('users.role_id','2')
+                                ->where('users.status','disable')
+                                ->where('user_profiles.partner_id',$partner_id)
+                                ->get()->result();
+        $total_coach = $total_coach[0]->id;
+
+
+
+        // Total Sessions ---------------------------------------------------------
+        $all_coach = $this->db->select('*')
+                                ->from('user_profiles')
+                                ->join('users','users.id = user_profiles.user_id')
+                                ->join('user_tokens','users.id = user_tokens.user_id')
+                                ->join('subgroup','user_profiles.subgroup_id = subgroup.id')
+                                ->where('users.role_id','2')
+                                ->where('users.status','disable')
+                                ->where('subgroup.status','disable')
+                                ->where('subgroup.partner_id',$partner_id)
+                                ->get()->result();
+
+        $date_limit = date("Y-m-d");
+        $hour_limit = date("H:i:s");
+        $total_stud = count($all_coach);
+        $w = 0;
+        while($w < $total_stud){
+            $asd[] = $all_coach[$w]->user_id;
+            $session_pull[] = $this->db->select('*')
+                    ->from('appointments')
+                    ->where('coach_id',$asd[$w])
+                    ->where('date <=',$date_limit)
+                    ->where('status','completed')
+                    ->get()->result();
+            $w++;
+        }
+        
+        $total_sess_val = count(@$session_pull, COUNT_RECURSIVE);
+        $total_sess_val = $total_sess_val - $w;
+        // Total Sessions ---------------------------------------------------------
+        // echo "<pre>";
+        // print_r($total_sess_val);
+        // exit();
+
+        // echo $pagination;
+        // exit();
+        $number_page = 0;
+        if($page == ''){
+            $number_page = (1 * $per_page)-$per_page+1;
+            
+        } else {
+            $number_page = ($page * $per_page)-$per_page+1;
+        }
+
+
+        $vars = array(
+        'data' => $data,
+        'data2' => $data2,
+        'all_coach' => $all_coach,
+        'pagination' => $pagination,
+        'total_sess_val' => $total_sess_val,
+        'total_coach' => $total_coach,
+        'number_page' => $number_page
+        );
+
+        // echo "<pre>";
+        // print_r($all_coach);
+        // exit();
+        
+        $this->template->content->view('default/contents/partner/managing_subgroup/index_disable', $vars);
 
         //publish template
         $this->template->publish();
@@ -371,6 +470,71 @@ class subgroup extends MY_Site_Controller {
         $this->template->publish();
     }
 
+    public function list_disable_coach($subgroup_id = '', $page='', $id='') {
+
+        $this->template->title = 'Edit Group';
+        $offset = 0;
+        $per_page = 10;
+        $uri_segment = 5;
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/subgroup/list_coach/'.$subgroup_id), count($this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(),null,null,null)), $per_page, $uri_segment,$subgroup_id);
+        
+        $data = $this->identity_model->get_subgroup_identity($id,'coach','disable',null);
+        $partner_id = $this->auth_manager->partner_id($id);
+        // Total Sessions ---------------------------------------------------------
+        $all_coachs = $this->db->select('*')
+                                ->from('user_profiles')
+                                ->join('users','users.id = user_profiles.user_id')
+                                ->join('user_tokens','users.id = user_tokens.user_id')
+                                ->where('users.status','disable')
+                                ->where('users.role_id','2')
+                                ->where('user_profiles.subgroup_id',$subgroup_id)
+                                ->get()->result();
+
+        $date_limit = date("Y-m-d");
+        $hour_limit = date("H:i:s");
+        $total_stud = count($all_coachs);
+        $w = 0;
+        while($w < $total_stud){
+            $asd[] = $all_coachs[$w]->user_id;
+            $session_pull[] = $this->db->select('*')
+                    ->from('appointments')
+                    ->where('coach_id',$asd[$w])
+                    ->where('date <=',$date_limit)
+                    ->where('status','completed')
+                    ->get()->result();
+            $w++;
+        }
+
+        $total_sess_val = count(@$session_pull, COUNT_RECURSIVE);
+        $total_sess_val = $total_sess_val - $w;
+        // Total Sessions ---------------------------------------------------------
+
+        $number_page = 0;
+        if($page == ''){
+            $number_page = (1 * $per_page)-$per_page+1;
+            
+        } else {
+            $number_page = ($page * $per_page)-$per_page+1;
+        }
+
+        $vars = array(
+            'data' => $data,
+            'form_action' => 'update_subgroup',
+            'data2' => $this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(), '', '', '', '', $offset, $subgroup_id),
+            'all_coachs' => $all_coachs,
+            'total_coach' => $this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id()),
+            'subgroup_id' => $subgroup_id,
+            'total_sess_val' => $total_sess_val,
+            'pagination' => $pagination,
+            'number_page' => $number_page
+        );
+
+        
+
+        $this->template->content->view('default/contents/partner/managing_subgroup/detail_disable', $vars);
+        $this->template->publish();
+    }
+
     public function update_subgroup($id = '') {
 
         // inserting user data
@@ -441,25 +605,60 @@ class subgroup extends MY_Site_Controller {
            
                     if($type_submit == 'delete_subgroup'){
                         // check apakah group ada isinya
-                        $check_group = $this->user_profile_model->select('user_profiles.id')->join('users','users.id = user_profiles.user_id')->where('users.status','active')->where_in('user_profiles.subgroup_id',$check_list)->get_all();
-                        $check_group2 = $this->user_profile_model->select('user_profiles.id')->join('users','users.id = user_profiles.user_id')->where('users.status','disable')->where_in('user_profiles.subgroup_id',$check_list)->get_all();
-                        if(count($check_group) == 0 && count($check_group2) == 0){
+                        $check_group = $this->user_profile_model->select('*')->where_in('subgroup_id',$check_list)->get_all();
+                        // $check_group2 = $this->user_profile_model->select('user_profiles.id')->join('users','users.id = user_profiles.user_id')->where('users.status','disable')->where_in('user_profiles.subgroup_id',$check_list)->get_all();
+                        if(count($check_group) == 0){
                             $this->db->trans_begin();
+                            $status = array(
+                            'status' => 'disable',
+                            );
 
                                 $this->db->where_in('id',$check_list);
                                 $this->db->where('type','coach');
-                                $this->db->delete('subgroup');
+                                $this->db->update('subgroup', $status);
 
                             $this->db->trans_commit();
-                            $this->messages->add('Delete Successful', 'success');
+                            $this->messages->add('Disable Group Succeeded', 'success');
 
                         } else if(count($check_group) > 0){
-                            $this->messages->add('This group has a Coach', 'error');
-
-                        } else if(count($check_group2) > 0){
-                            $this->messages->add('This group has a Pending Coach', 'error');
-
+                            $this->db->trans_begin();
+                        $status = array(
+                            'status' => 'disable',
+                        );
+                        foreach ($check_group as $c){ 
+                        $this->db->where('id',$c->user_id);
+                        $this->db->update('users', $status);
                         }
+                        $this->db->flush_cache();
+
+                        $this->db->where_in('id',$check_list);
+                        $this->db->where('type','coach');
+                        $this->db->update('subgroup', $status);
+
+                        $this->db->trans_commit();
+                        $this->messages->add('Disable Group Succeeded', 'success');
+                            // $this->messages->add('This group has a Coach', 'error');
+                        } 
+                        // else if(count($check_group2) > 0){
+                        //     $this->db->trans_begin();
+                        // $status = array(
+                        //     'status' => 'disable',
+                        // );
+                        // foreach ($check_group2 as $c2){ 
+                        // $this->db->where('id',$c2->user_id);
+                        // $this->db->update('users', $status);
+                        // }
+                        // $this->db->flush_cache();
+
+                        // $this->db->where_in('id',$check_list);
+                        // $this->db->where('type','coach');
+                        // $this->db->update('subgroup', $status);
+
+                        // $this->db->trans_commit();
+                        // $this->messages->add('Disable Group Succeeded', 'success');
+                        //     // $this->messages->add('This group has a Coach', 'error');
+
+                        // }
                     }
                 }
           else{
@@ -469,6 +668,59 @@ class subgroup extends MY_Site_Controller {
           redirect ('partner/subgroup');
 
         }
+
+        public function enable_subgroup($id=''){
+
+            if(!empty($_POST['check_list'])) {
+                $check_list = $_POST['check_list'];
+                $type_submit = $_POST['__submit'];
+                if($type_submit == 'enable_subgroup'){
+                    // check apakah group ada isinya
+                    $check_group = $this->user_profile_model->select('*')->where_in('subgroup_id',$check_list)->get_all();
+
+                    if(count($check_group) > 0){
+                        
+                        $this->db->trans_begin();
+                        $status = array(
+                            'status' => 'active',
+                        );
+                        foreach ($check_group as $c){ 
+                        $this->db->where('id',$c->user_id);
+                        $this->db->update('users', $status);
+                        }
+                        $this->db->flush_cache();
+
+                        $this->db->where_in('id',$check_list);
+                        $this->db->where('type','coach');
+                        $this->db->update('subgroup', $status);
+
+                            // $this->db->where_in('id',$check_list);
+                            // $this->db->where('type','student');
+                            // $this->db->delete('subgroup');
+
+                        $this->db->trans_commit();
+                        $this->messages->add('Enable Group Succeeded', 'success');
+
+                    }else if(count($check_group) == 0){
+                        $this->db->trans_begin();
+                        $status = array(
+                            'status' => 'active',
+                        );
+                        $this->db->where_in('id',$check_list);
+                        $this->db->where('type','coach');
+                        $this->db->update('subgroup', $status);
+                        $this->db->trans_commit();
+                        $this->messages->add('Enable Group Succeeded', 'success');
+
+                    }
+                }
+            }
+       else{
+                    $this->messages->add('Please Choose Subgroup', 'error');
+       }
+            redirect ('partner/subgroup');
+
+    }
 
     function delete_coach($id){
         if(!empty($_POST['check_list'])) {

@@ -76,7 +76,15 @@
         </div>
 
     </div>
-
+    <div class="heading pure-g padding-t-30">
+        <div class="left-list-tabs pure-menu pure-menu-horizontal text-center margin0">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue" href="<?php echo site_url('partner/subgroup/');?>">Active Groups</a></li>
+                <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('partner/subgroup/index_disable/');?>" >Disabled Groups</a></li>
+            </ul>
+        </div>
+    </div>
+    
    <div class="content padding-t-0">
        <div class="box">   
             <div class="select-all">                             
