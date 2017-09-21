@@ -17,10 +17,14 @@
                     </div>
                 </a></li>
                 <li><a href="<?php echo site_url('partner/subgroup') ?>">Coach Partner</a></li>
-				<li><a href="#"><?php foreach ($data as $ds) {
+				<li><a href="#"><?php 
+                    if(!$data){
+                        echo "- ";
+                    }
+                    foreach ($data as $ds) {
                     if($ds->id == $subgroup_id){
                         echo $ds->name;
-                    }
+                    } 
                 } ?></a></li>
             </ul>
         </div>
@@ -38,7 +42,7 @@
                         echo $ds->name;
                     }
                 } ?></h1>
-        <span class="padding-l-18 text-cl-secondary font-18 font-semi-bold"><?php echo $data[0]->type; ?> Affiliate</span><br>
+        <span class="padding-l-18 text-cl-secondary font-18 font-semi-bold"><?php echo @$data[0]->type; ?> Affiliate</span><br>
         <!--<span class="padding-l-18 font-14 text-cl-secondary">Bangkok, Thailand</span>-->
     </div>
 

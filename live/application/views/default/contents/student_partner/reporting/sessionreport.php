@@ -377,6 +377,7 @@
 </script>
                        
 <!-- <script type="text/javascript" src="<https://code.jquery.com/jquery-1.12.4.js"></script> -->
+ 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/__jquery.tablesorter.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/remodal.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.dataTables.js"></script>
