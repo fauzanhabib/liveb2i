@@ -2350,7 +2350,7 @@ class find_coaches extends MY_Site_Controller {
             $get_setting = $this->global_settings_model->get_partner_settings();
             $max_per_day = $get_setting[0]->max_session_per_day; 
         } else {
-            $get_setting = $this->specific_settings_model->get_partner_settings($id_partner);
+            $get_setting = $this->specific_settings_model->get_partner_settings($partner_id);
             $max_per_day = $get_setting[0]->max_session_per_day;
         }
 

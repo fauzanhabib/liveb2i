@@ -107,7 +107,7 @@ class Add_token extends MY_Site_Controller {
         // exit();   
         // echo $subgroup_id." - ".$id." -". $page." = ".$per_page;exit();
         // echo "id ".$id;
-        $data = $this->identity_model->get_subgroup_identity('','student','',null);
+        $data = $this->identity_model->get_subgroup_identity('','student','active','');
 
         $id = $this->auth_manager->userid();
         $partner_id = $this->auth_manager->partner_id($id);

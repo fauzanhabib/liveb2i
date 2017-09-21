@@ -180,6 +180,12 @@ class region extends MY_Site_Controller {
             return;
         }
 
+        if(!filter_var($this->input->post('email'), FILTER_VALIDATE_EMAIL)){
+            $this->messages->add('Invalid Email', 'danger');
+            $this->add_region($this->input->post('partner_id'));
+            return;
+        }
+
          // generating password
         $password = $this->generateRandomString();
        
