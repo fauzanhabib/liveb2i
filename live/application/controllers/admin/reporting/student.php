@@ -121,6 +121,7 @@ class Student extends MY_Site_Controller {
                      ->join('users','users.id = user_profiles.user_id')
                      ->join('subgroup','subgroup.id = user_profiles.subgroup_id')
                      ->where_in('subgroup_id',$sglist)
+                     ->where('users.status','active')
                      ->get()->result();
 
             $date_from1   = date('d-M-y', strtotime($_POST["date_from"]));
@@ -242,6 +243,7 @@ class Student extends MY_Site_Controller {
                  ->join('users','users.id = user_profiles.user_id')
                  ->join('subgroup','subgroup.id = user_profiles.subgroup_id')
                  ->where_in('subgroup_id',$sglist)
+                 ->where('users.status','active')
                  ->get()->result();
 
         $vars = array(
@@ -285,6 +287,7 @@ class Student extends MY_Site_Controller {
                  ->order_by('date', 'DESC')
                  ->where_in('subgroup.id',$sglist)
                  ->where('appointments.status','completed')
+                 ->where('users.status','active')
                  ->get()->result();
         }else if(@$date_from && !@$date_to){
         $ses_rpt = $this->db->select('*')
@@ -296,6 +299,7 @@ class Student extends MY_Site_Controller {
                  ->where('date >=', $date_from)
                  ->where_in('subgroup.id',$sglist)
                  ->where('appointments.status','completed')
+                 ->where('users.status','active')
                  ->get()->result();
         }else if(@$date_from && @$date_to){
         $ses_rpt = $this->db->select('*')
@@ -308,6 +312,7 @@ class Student extends MY_Site_Controller {
                  ->where('date <=', $date_to)
                  ->where_in('subgroup.id',$sglist)
                  ->where('appointments.status','completed')
+                 ->where('users.status','active')
                  ->get()->result();
         }
 
