@@ -82,7 +82,7 @@ class manage_partner_admin extends MY_Site_Controller {
         if($role_link == 'superadmin'){
             $regional_id = $this->db->select('admin_regional_id')->from('partners')->where('id',$partner_id)->get()->result();
             $admin_regional_id = $regional_id[0]->admin_regional_id;
-            $link_redirect = 'superadmin/manage_partner/supplier/'.$type.'/'.$partner_id.'/'.$admin_regional_id;
+            $link_redirect = 'superadmin/manage_partner/partner/'.$type.'/'.$partner_id.'/'.$admin_regional_id;
         } else if($role_link == 'admin'){
             $link_redirect = 'admin/manage_partner/partner/'.$type.'/'.$partner_id;
         }
