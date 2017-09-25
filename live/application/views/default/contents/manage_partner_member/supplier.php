@@ -263,7 +263,8 @@
                                         <tr>
                                             <td class="pad15">Email</td>
                                             <td>
-                                                <span><?php echo @$user->email; ?></span>
+                                                <span class="r-only"><?php echo @$user->email; ?></span>
+                                                <input name="email" type="text" value="<?php echo @$user->email; ?>" class="e-only" required readonly data-parsley-required-message="Please input affiliate`s admin Email">
                                             </td>
                                         </tr>
                                         <tr>

@@ -130,7 +130,7 @@
                     </tbody>    
                 </table>
             </div>
-
+        </form>
         </div>
 
 <!--         <div class="left-list-tabs pure-menu pure-menu-horizontal">
