@@ -213,8 +213,10 @@ class reporting extends MY_Site_Controller {
                      ->join('subgroup','subgroup.id = user_profiles.subgroup_id')
                      ->join('appointments','appointments.coach_id = user_profiles.user_id')
                      ->order_by('date', 'DESC')
+                     ->where('appointments.status','completed')
                      ->where_in('subgroup.id',$sglist)
                      ->get()->result();
+
             }else if(@$date_from && !@$date_to){
             $ses_rpt = $this->db->select('*')
                      ->from('user_profiles')
@@ -223,6 +225,7 @@ class reporting extends MY_Site_Controller {
                      ->join('appointments','appointments.coach_id = user_profiles.user_id')
                      ->order_by('date', 'DESC')
                      ->where('date >=', $date_from)
+                     ->where('appointments.status','completed')
                      ->where_in('subgroup.id',$sglist)
                      ->get()->result();
             }else if(@$date_from && @$date_to){
@@ -234,6 +237,7 @@ class reporting extends MY_Site_Controller {
                      ->order_by('date', 'DESC')
                      ->where('date >=', $date_from)
                      ->where('date <=', $date_to)
+                     ->where('appointments.status','completed')
                      ->where_in('subgroup.id',$sglist)
                      ->get()->result();
             }
@@ -413,6 +417,7 @@ class reporting extends MY_Site_Controller {
                  ->join('subgroup','subgroup.id = user_profiles.subgroup_id')
                  ->join('appointments','appointments.coach_id = user_profiles.user_id')
                  ->order_by('date', 'DESC')
+                 ->where('appointments.status','completed')
                  ->where_in('subgroup.id',$sglist)
                  ->get()->result();
         }else if(@$date_from && !@$date_to){
@@ -423,6 +428,7 @@ class reporting extends MY_Site_Controller {
                  ->join('appointments','appointments.coach_id = user_profiles.user_id')
                  ->order_by('date', 'DESC')
                  ->where('date >=', $date_from)
+                 ->where('appointments.status','completed')
                  ->where_in('subgroup.id',$sglist)
                  ->get()->result();
         }else if(@$date_from && @$date_to){
@@ -434,6 +440,7 @@ class reporting extends MY_Site_Controller {
                  ->order_by('date', 'DESC')
                  ->where('date >=', $date_from)
                  ->where('date <=', $date_to)
+                 ->where('appointments.status','completed')
                  ->where_in('subgroup.id',$sglist)
                  ->get()->result();
         }
