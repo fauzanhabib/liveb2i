@@ -17,11 +17,11 @@ class Cronsession extends MY_Controller {
     // Index
     public function index() {
 
-        if (!$this->input->is_cli_request()) {
-            show_error('Direct access is not allowed');
-        }
+        // if (!$this->input->is_cli_request()) {
+        //     show_error('Direct access is not allowed');
+        // }
 
-      $nowdate  = date("Y-m-d"); 
+      $nowdate  = date("Y-m-d");
       $hour_start_db  = date('H:i:s');
 
       $listapp = $this->db->select('*')
@@ -51,7 +51,7 @@ class Cronsession extends MY_Controller {
                 ->from('user_timezones')
                 ->where('user_id', $coach_id)
                 ->get()->result();
-        
+
         $minutes = $tz[0]->minutes_val;
         date_default_timezone_set('UTC');
         $start_time   = $la->start_time;
@@ -73,7 +73,7 @@ class Cronsession extends MY_Controller {
 
         $type_id = $type_coach[0]->coach_type_id;
 
-        
+
         //----------
         $prt_id = $this->db->select('*')
               ->from('user_profiles')
@@ -81,7 +81,7 @@ class Cronsession extends MY_Controller {
               ->get()->result();
 
         $partner_id = $prt_id[0]->partner_id;
-        
+
         $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
         $standard_coach_cost = $setting[0]->standard_coach_cost;
         $elite_coach_cost = $setting[0]->elite_coach_cost;
@@ -160,6 +160,6 @@ class Cronsession extends MY_Controller {
       }
 
     }
-    
+
 
 }
