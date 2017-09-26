@@ -14,12 +14,12 @@
     .changenum{
         color: #535353;font-size: 12px;margin-left: 10px;
     }
-    input[type=number]::-webkit-inner-spin-button, 
-    input[type=number]::-webkit-outer-spin-button { 
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-        margin: 0; 
+        margin: 0;
     }
 </style>
 
@@ -65,7 +65,7 @@
 
                 <div class="pure-u-18-24 profile-detail prelative">
                     <?php echo form_open('account/identity/' . @$form_action . '/info', 'role="form" id="form_info"'); ?>
-                    <table class="table-no-border2"> 
+                    <table class="table-no-border2">
                         <tbody>
 
             <!--                 <tr>
@@ -77,7 +77,7 @@
                                     <span><?php echo @$name_region[0]->region_id; ?></span>
                                 </td>
                             </tr> -->
-                            
+
                             <tr>
                                 <td>Full Name</td>
                                 <td>
@@ -95,7 +95,7 @@
                                     <span><?php echo @$data[0]->email; ?></span>
                                 </td>
                             </tr>
-                            
+
 <!--                            <tr>
                                 <td>Nick Name</td>
                                 <td>
@@ -136,7 +136,7 @@
                             <tr id="active-1-3" class="no-inline">
                                 <td>Phone</td>
                                 <td class="flex width100perc">
-                                    <span class="r-only"> <?php echo @$country_code; ?></span>                                    
+                                    <span class="r-only"> <?php echo @$country_code; ?></span>
                                     <span class="r-only"> <?php echo @$data[0]->phone; ?></span>
                                     <?php if($status != "verified") {?>
                                         <input type="text" name="dial_code" data-parsley-trigger="change" value="<?php echo @$country_code; ?>" id="dial_code" class="pure-input-1-20 e-only" style="margin-right:1px;" readonly>
@@ -147,7 +147,7 @@
                                     <?php } ?>
                                 </td>
                             </tr>
-                            <tr id="active-1-4" class="no-inline">
+                            <!-- <tr id="active-1-4" class="no-inline">
                                 <td></td>
                                 <td class="flex width100perc" style="border-bottom: none !important;">
                                     <input type="hidden" name="phoneverif" id="verifnumber">
@@ -157,10 +157,10 @@
                                         <font><font class="numverified">Verified</font> <a class="e-only changenum" id="chnum">Change</a></font>
                                     <?php } ?>
                                 </td>
-                            </tr>
+                            </tr> -->
                             <?php } ?>
 
-                            <?php if ($this->auth_manager->role() == 'CCH'){ 
+                            <?php if ($this->auth_manager->role() == 'CCH'){
                                 // get total rating
                                 $rating = $this->db->select('AVG(rate) as rate')
                                                    ->from('coach_ratings')
@@ -171,8 +171,8 @@
                             <tr id="active-1-3" class="no-inline">
                                 <td>Average Rating</td>
                                 <td class="flex width100perc">
-                                    
-                                    <span class="r-only"> 
+
+                                    <span class="r-only">
                                         <div class="profilecoach__rate">
                                             <section class='rating-widget'>
 
@@ -186,8 +186,8 @@
                                                         }
 
                                                     </style>
-                                                    <?php 
-                                                        
+                                                    <?php
+
 
                                                         $allrate = $this->db->select('rate')
                                                                         ->from('coach_ratings')
@@ -210,9 +210,9 @@
                                                             $classrate = 0;
                                                             $tooltip   = 0;
                                                         }
-                                                        
+
                                                         $nostar = 5 - $tooltip;
-                                                        
+
                                                     ?>
                                                      <div data-tooltip="<?php echo number_format($classrate);?>% (<?php echo(round($tooltip,1));?> of 5 Stars)">
                                                         <div class="star-rating">
@@ -231,7 +231,7 @@
                                             </section>
 
                                         </div>
-                                    </span>                                    
+                                    </span>
                                 </td>
                             </tr>
                             <?php } ?>
@@ -279,8 +279,8 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
 
         <div class="content">
             <div class="pure-u-24-24 prelative">
-                
-                <table class="table-no-border2"> 
+
+                <table class="table-no-border2">
                     <tbody>
                         <?php if ($this->auth_manager->role() == 'STD') { ?>
                             <tr class="no-inline">
@@ -305,7 +305,7 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
                                 <?php
                                     $country = array_column($option_country, 'name', 'name');
                                     $newoptions = $country;
-                                    echo form_dropdown('country', $newoptions, @$data[0]->country, ' id="td_value_2_3" class="e-only" required data-parsley-required-message="Please select your country"'); 
+                                    echo form_dropdown('country', $newoptions, @$data[0]->country, ' id="td_value_2_3" class="e-only" required data-parsley-required-message="Please select your country"');
                                 ?>
                                 <input type="hidden" name="dial_code" data-parsley-trigger="change" value="<?php echo @$country_code; ?>" id="dial_code" class="pure-input-1-20 e-only" style="margin-right:1px;" readonly>
                             </td>
@@ -317,7 +317,7 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
                                 <input name="city" type="text" value="<?php echo @$data[0]->city; ?>" id="td_value_2_1" class="e-only">
                             </td>
                         </tr>
-                        
+
                         <tr id="active-2-2" class="no-inline">
                             <td class="pad15">State/Province</td>
                             <td>
@@ -342,20 +342,20 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
                                 <input name="phone" type="text" value="<?php echo @$data[0]->phone; ?>" id="td_value_1_3" class="e-only" style="width:80%" data-parsley-type='digits' data-parsley-type-message="Please input numbers only">
                             </td>
                         </tr> -->
-                        
+
                         <?php if ($this->auth_manager->role() == 'STD') { ?>
                             <tr id="active-2-4" class="no-inline">
                                 <td class="pad15">Certification Goal</td>
-                                
+
                                 <?php //$selected = explode(',', $data[0]->language_goal);
                                 $language_goal = Array('A1', 'A1+','A2', 'A2+','B1', 'B1+','B2', 'B2+','C1','C2');?>
                                 <td>
                                     <!-- <span class="r-only"><?php echo @$data[0]->language_goal?></span> -->
-                                    <span class="r-only"><?php 
+                                    <span class="r-only"><?php
                                     echo (@$data[0]->cert_studying == '' ? 'NULL' : @$data[0]->cert_studying); ?>
-                                    </span> 
+                                    </span>
 
-                                    <span class="e-only"><?php 
+                                    <span class="e-only"><?php
                                     echo (@$data[0]->cert_studying == '' ? 'NULL' : @$data[0]->cert_studying); ?>
                                     </span>
 
@@ -406,7 +406,7 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
                             </td> -->
                             <td class="r-only">
                                 <span><?php echo @$user_tz; ?></span>
-                                
+
                             </td>
                             <td class="e-only" style="cursor:not-allowed;background: #ebebeb;color: #939393;">
                                         <span><?php echo @$user_tz; ?></span>
@@ -414,8 +414,8 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
                         </tr>
                     </tbody>
                 </table>
-            </div>  
-        </div>      
+            </div>
+        </div>
     </div>
 
     <?php echo form_close();
@@ -435,7 +435,7 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
         </div>
         <div class="content">
             <div class="pure-u-24-24 prelative">
-                <table class="table-no-border2"> 
+                <table class="table-no-border2">
                     <tbody>
                         <tr class="no-inline">
                             <td class="pad15">Higher Education</td>
@@ -502,7 +502,7 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
                     </tbody>
                 </table>
             </div>
-        </div>   
+        </div>
     </div>
     <?php
     echo form_close();
@@ -533,10 +533,10 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
                 <i class="icon icon-edit edit_click" title="Edit"></i>
             </div>
         </div>
-        <div class="pure-g">           
+        <div class="pure-g">
             <div class="profile-detail prelative padding-t-20 width100perc">
-                
-                <table class="table-no-border2"> 
+
+                <table class="table-no-border2">
                     <tbody>
                         <tr>
                             <td class="pad15">Full Name</td>
@@ -562,13 +562,13 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
                             </td> -->
                             <td class="r-only">
                                 <span><?php echo @$user_tz; ?></span>
-                              
+
                             </td>
                             <td class="e-only" style="cursor:not-allowed;background: #ebebeb;color: #939393;">
                                 <span><?php echo @$user_tz; ?></span>
                             </td>
                         </tr>
-                    </tbody>    
+                    </tbody>
                 </table>
             </div>
             <?php echo form_close();?>
@@ -579,8 +579,8 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
         </div>
         <div class="change-pass-form padding-t-20 padding-l-0">
             <div class="profile-detail prelative padding-tr-15">
-            <form action="<?php echo site_url('account/identity/update/account');?>" method="POST">            
-                <table class="table-no-border2"> 
+            <form action="<?php echo site_url('account/identity/update/account');?>" method="POST">
+                <table class="table-no-border2">
                     <tbody>
                         <tr>
                             <td class="pad15">Current Password</td>
@@ -600,7 +600,7 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
                                 <input name="confirm_password" type="password" value="" id="td_value_1_2" class="border-none" required data-parsley-required-message="Please Confirm Password">
                             </td>
                         </tr>
-                    </tbody>    
+                    </tbody>
                 </table>
             </div>
             <div class="save-cancel-btn text-right padding-t-25">
@@ -612,7 +612,7 @@ if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH'
 <?php echo form_close(); ?>
 
 
-<?php //if (@$data[0]->dyned_pro_id) { 
+<?php //if (@$data[0]->dyned_pro_id) {
 if ($this->auth_manager->role() == 'STD') {
 ?>
     <div class="box">
@@ -628,7 +628,7 @@ if ($this->auth_manager->role() == 'STD') {
                 </div>
             </div> -->
             <!-- end block edit -->
-        
+
 
         <div class="content">
             <div class="pure-u-24-24 prelative">
@@ -636,7 +636,7 @@ if ($this->auth_manager->role() == 'STD') {
                 <?php
                 if(@$data[0]->dyned_pro_id && @$data[0]->server_dyned_pro){ ?>
 
-                <table class="table-no-border2"> 
+                <table class="table-no-border2">
                     <tbody>
                         <tr id="active-5-0" class="no-inline">
                             <td class="pad15">DynEd PRO ID</td>
@@ -653,7 +653,7 @@ if ($this->auth_manager->role() == 'STD') {
                             </td>
                         </tr>
                     </tbody>
-                </table>        
+                </table>
                 <a class="pure-button btn-small btn-white m-t-20 dc" onclick="confirmation('<?php echo(site_url('account/identity/disconnect_to_dyned_pro'));?>', 'single', 'Disconnect From DynEd PRO', '', 'dc');">Disconnect From DynEd PRO</a>
                 <?php
                 }
@@ -664,9 +664,9 @@ if ($this->auth_manager->role() == 'STD') {
                 <?php
                 }
                 ?>
-            </div>  
-        </div>  
-        <?php echo form_close(); ?> 
+            </div>
+        </div>
+        <?php echo form_close(); ?>
     </div>
 <?php } ?>
 <script>
@@ -701,7 +701,7 @@ $(function() {
     $('.box').each(function(){
 
         var _each = $(this);
-        
+
         $('.edit_click', _each).click(function () {
             if (isEnabled == true) {
 
@@ -731,7 +731,7 @@ $(function() {
                 <?php } ?>
                 <?php if ($this->auth_manager->role() == 'CCH') { ?>
                 $('#form_coach').parsley().reset();
-                <?php } ?>    
+                <?php } ?>
                 <?php if ($this->auth_manager->role() == 'CCH' || $this->auth_manager->role() == 'STD') { ?>
                 $('#form_more_info').parsley().reset();
                 <?php } ?>
@@ -747,9 +747,9 @@ $(function() {
                 $('textarea', _each).each(function(){
                     arrTextarea.push($(this).val());
                 });
-                
+
                 arrMultiple = $('.multiple-select').val();
-            }    
+            }
         });
 
         $('.close_click', _each).click(function () {
@@ -767,7 +767,7 @@ $(function() {
             $('#form_account').parsley().reset();
             <?php if ($this->auth_manager->role() == 'CCH') { ?>
             $('#form_coach').parsley().reset();
-            <?php } ?>    
+            <?php } ?>
             <?php if ($this->auth_manager->role() == 'CCH' || $this->auth_manager->role() == 'STD') { ?>
             $('#form_more_info').parsley().reset();
             <?php } ?>
@@ -796,13 +796,13 @@ $(function() {
             var multiple = $('.multiple-select');
             multiple.val(arrMultiple).trigger("change");
 
-            
+
             arrText = [];
             arrTextarea = [];
             arrSelect = [];
             arrMultiple = [];
 
-            
+
         });
 
 
@@ -878,7 +878,7 @@ $(function() {
     });
 
     $('.select2-container--default .select2-selection--multiple').css("cssText", "border: none !important;");
-    
+
 
     $(".multiple-select").on('change',function(){
         document.getElementById('spoken_language').value = $(".multiple-select").val();
@@ -887,7 +887,7 @@ $(function() {
     $('.save_click').on('click',function(){
         document.getElementById('spoken_language').value = $(".multiple-select").val();
     });
-    
+
     $('a.dc').click(function(){
             return false;
     });
@@ -922,9 +922,9 @@ $( "#td_value_2_3" ).change(function() {
     if (chcount == true) {
         $.ajax({
           type:"POST",
-          url:"<?php echo site_url('account/identity/changenumber');?>",    
-          data: {},        
-          success: function(data){    
+          url:"<?php echo site_url('account/identity/changenumber');?>",
+          data: {},
+          success: function(data){
             window.location.href = '<?php echo site_url('account/identity/detail/profile');?>';
           }
         });
@@ -932,7 +932,7 @@ $( "#td_value_2_3" ).change(function() {
 
     }
   }
-  
+
   var dial_code = $('#dial_code').val();
   var country = $(this).val();
     if((dial_code != '') && (country != '')){
@@ -943,18 +943,18 @@ $( "#td_value_2_3" ).change(function() {
             data: { dial_code : dial_code, country : country },
             dataType: "html",
             success: function (response) {
-               //console.log(response); 
-              $('#dial_code').removeClass('loadinggif'); 
+               //console.log(response);
+              $('#dial_code').removeClass('loadinggif');
                var dial_code = response;
 
-               $('input[name=dial_code]').val(dial_code);          
+               $('input[name=dial_code]').val(dial_code);
 
             },
         });
     }
 
   });
-    
+
 </script>
 <script>
 $( "#verifbutton" ).click(function() {
@@ -967,9 +967,9 @@ $( "#verifbutton" ).click(function() {
 
     $.ajax({
       type:"POST",
-      url:"<?php echo site_url('account/identity/verifynumber');?>",    
-      data: {'realnum':realnum, 'phnum':phnum, 'phcode':phcode, 'countupd':countupd},        
-      success: function(data){    
+      url:"<?php echo site_url('account/identity/verifynumber');?>",
+      data: {'realnum':realnum, 'phnum':phnum, 'phcode':phcode, 'countupd':countupd},
+      success: function(data){
         window.location.href = '<?php echo site_url('account/verification');?>';
       }
     });
@@ -979,9 +979,9 @@ $( "#chnum" ).click(function() {
     if (r == true) {
         $.ajax({
           type:"POST",
-          url:"<?php echo site_url('account/identity/changenumber');?>",    
-          data: {},        
-          success: function(data){    
+          url:"<?php echo site_url('account/identity/changenumber');?>",
+          data: {},
+          success: function(data){
             window.location.href = '<?php echo site_url('account/identity/detail/profile');?>';
           }
         });
@@ -1010,7 +1010,7 @@ $( "#chnum" ).click(function() {
     // On focus, always retain the full state name
     customSelect.on('focus', function() {
 
-        customSelectOptions.each(function(index) {   
+        customSelectOptions.each(function(index) {
             $(this).text(states[index].state);
         });
 
