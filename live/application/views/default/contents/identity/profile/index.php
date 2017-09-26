@@ -142,8 +142,8 @@
                                         <input type="text" name="dial_code" data-parsley-trigger="change" value="<?php echo @$country_code; ?>" id="dial_code" class="pure-input-1-20 e-only" style="margin-right:1px;" readonly>
                                         <input name="phone" type="number" value="<?php echo @$data[0]->phone; ?>" id="td_value_1_3" class="e-only" data-parsley-type='digits' data-parsley-type-message="Please input numbers only">
                                     <?php } else{ ?>
-                                        <input type="text" name="dial_code" data-parsley-trigger="change" value="<?php echo @$country_code; ?>" id="dial_code" class="pure-input-1-20 e-only" style="margin-right:1px;" readonly disabled>
-                                        <input name="phone" type="number" value="<?php echo @$data[0]->phone; ?>" id="" class="e-only" data-parsley-type='digits' data-parsley-type-message="Please input numbers only" disabled>
+                                        <input type="text" name="dial_code" data-parsley-trigger="change" value="<?php echo @$country_code; ?>" id="dial_code" class="pure-input-1-20 e-only" style="margin-right:1px;" readonly>
+                                        <input name="phone" type="number" value="<?php echo @$data[0]->phone; ?>" id="" class="e-only" data-parsley-type='digits' data-parsley-type-message="Please input numbers only">
                                     <?php } ?>
                                 </td>
                             </tr>
