@@ -458,11 +458,11 @@ class region extends MY_Site_Controller {
                 $this->db->trans_commit();
                 $this->messages->add('Delete Successful', 'success');
             } else {
-                $this->messages->add('Please Move your affiliate', 'error');
+                $this->messages->add('Please Move your affiliate', 'danger');
 
             }
         } else {
-            $this->messages->add('Please select affiliate', 'error');
+            $this->messages->add('Please select affiliate', 'danger');
         }
 
         redirect('superadmin/region/detail/'.$region_id);
@@ -588,10 +588,10 @@ class region extends MY_Site_Controller {
             }
 
         } else {
-            $this->messages->add('Please select region', 'error');
+            $this->messages->add('Please select region', 'danger');
         }
 
-            redirect('superadmin/region/index/deactivate');
+        redirect('superadmin/region/index/deactivate');
         // =================================
 
     }

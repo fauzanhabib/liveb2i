@@ -1,3 +1,4 @@
+
 <div class="heading text-cl-primary padding15">
 
     <div class="breadcrumb-tabs pure-g">
@@ -132,6 +133,7 @@
             </div>
         </form>
         </div>
+    </form>
 
 <!--         <div class="left-list-tabs pure-menu pure-menu-horizontal">
             <ul class="pure-menu-list">
