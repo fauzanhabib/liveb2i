@@ -754,12 +754,14 @@ class subgroup extends MY_Site_Controller {
         // echo "<pre>";
         // print_r($getsubgroup);
         // exit();
-        $subgroup = '';
-        foreach ($getsubgroup as $value) {
-            $subgroup[$value->id] = $value->name; 
-        }
-        //$timezones = $this->timezone_model->where_not_in('minutes',array('-210','330','570',))->dropdown('id', 'timezone');
 
+        // baru diedit 27 sept 2017
+        $subgroup = $getsubgroup[0]->name;
+        // foreach ($getsubgroup as $value) {
+        //     $subgroup[$value->id] = $value->name; 
+        // }
+        //$timezones = $this->timezone_model->where_not_in('minutes',array('-210','330','570',))->dropdown('id', 'timezone');
+        
         $this->template->title = 'Add Student';
         $vars = array(
             'form_action' => 'create_student',
