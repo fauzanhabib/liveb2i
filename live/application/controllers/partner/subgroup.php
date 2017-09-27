@@ -767,6 +767,7 @@ class subgroup extends MY_Site_Controller {
     }
 	
 	public function coach($subgroup_id = '') {
+        
         $this->template->title = 'Add Coach';
 
         // get partner id
@@ -779,10 +780,11 @@ class subgroup extends MY_Site_Controller {
         //$timezones = $this->timezone_model->where_not_in('minutes',array('-210','330','570',))->dropdown('id', 'timezone');
         $coach_type = $this->db->select('*')->from('coach_type')->get();
 
-        $subgroup = '';
-        foreach ($getsubgroup as $value) {
-            $subgroup[$value->id] = $value->name; 
-        }
+        // baru diedit 27 sept 2017
+        $subgroup = $getsubgroup[0]->name;
+        // foreach ($getsubgroup as $value) {
+        //     $subgroup[$value->id] = $value->name; 
+        // }
 
         $partner_id = $this->auth_manager->partner_id();
         $partner = $this->partner_model->select('name, address, country, state, city, zip')->where('id',$partner_id)->get_all();

@@ -12,11 +12,11 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <div class="label">
-                            <label for="subgroup">Subgroups</label>
+                            <label for="subgroup">Subgroup</label>
                         </div>  
                           <div class="input">
                             <!-- <?php echo form_dropdown('subgroup', $subgroup, trim(@$data->subgroup), 'id="subgroup" class="pure-input-1-2" required data-parsley-required-message="Please select subgroup"') ?> -->
-                            <input type="text" name="subgroup" data-parsley-trigger="change" value="<?php echo $subgroup?>" id="subgroup" class="pure-input-1-2" required data-parsley-required-message="Please input subgroup" data-parsley-type-message="Please input subgroup">
+                            <input type="text" name="subgroup" data-parsley-trigger="change" value="<?php echo $subgroup?>" id="subgroup" class="pure-input-1-2" style="color:#000" required data-parsley-required-message="Please input subgroup" data-parsley-type-message="Please input subgroup" disabled>
                             
                         </div>
                     </div> 
