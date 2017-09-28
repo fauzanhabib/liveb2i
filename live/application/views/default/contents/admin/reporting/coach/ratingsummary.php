@@ -15,18 +15,19 @@
         display: inline;
         font-size: 19px !important;
         font-weight: 600;
-        color: #585858;   
+        color: #585858;
     }
     label input {
         /*display: inline;*/
         font-size: 16px !important;
-        font-weight: 100 !important;    
+        font-weight: 100 !important;
     }
     td{
         font-weight: 400 !important;
     }
     #large_wrapper{
         overflow: auto;
+        padding-bottom: 25px;
     }
 </style>
 <style type="text/css" src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></style>
@@ -57,12 +58,12 @@
                 <div class="pure-g">
                     <div class="pure-u-1 text-center m-t-20" style="text-align: left !important;">
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">  
+                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">
                             <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
-                        <span style="font-size: 16px;margin:0px 10px;">to</span>  
+                        <span style="font-size: 16px;margin:0px 10px;">to</span>
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">  
+                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">
                             <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
                     </div>
@@ -72,23 +73,23 @@
                 <input class="pure-button btn-small btn-green height-32" type="submit" name="submit" value="Session Report">
             </form>
 
-        </div>   
-    </div>   
- 
+        </div>
+    </div>
+
 </div>
 
 <hr style="width: 96%;">
 
 <div class="heading text-cl-primary padding-l-20">
     <h3 class="margin0" style="font-size: 28px;font-weight: 600;color: #2b89b9;">Rating Summary</h3>
-    <?php 
-    if(!@$date_from){  
+    <?php
+    if(!@$date_from){
         echo "Data without date range";
-    }else if(@$date_from && !@$date_to){ 
+    }else if(@$date_from && !@$date_to){
         echo "Data From: <strong>".$date_from."</strong> To: <strong>Today</strong>";
-    }else if(@$date_from && @$date_to){ 
+    }else if(@$date_from && @$date_to){
         echo "Data From: <strong>".$date_from."</strong> To: <strong>".$date_to."</strong>";
-    } 
+    }
     ?>
 </div>
 
@@ -98,7 +99,7 @@
     <div class="content padding-t-10">
         <div class="box">
 
-            <form action="<?php echo site_url('partner/reporting/export_rating');?>" method="POST" target="_blank">
+            <form action="<?php echo site_url('admin/reporting/coach/export_rating');?>" method="POST" target="_blank">
                 <input type="hidden" name="subgrouplist" value="<?php echo $subgrouplist;?>">
                 <input type="hidden" name="date_from" value="<?php echo @$date_from;?>">
                 <input type="hidden" name="date_to" value="<?php echo @$date_to;?>">
@@ -139,7 +140,7 @@
                         <th rowspan="2" class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Group</th>
                         <th rowspan="2" class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Coach</th>
                         <th rowspan="2" class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Email</th>
-                        <th colspan="8" class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Weeks ago</th>              
+                        <th colspan="8" class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Weeks ago</th>
                     </tr>
                     <tr>
                         <th class="bg-secondary uncek text-cl-white border-none">8</th>
@@ -182,7 +183,7 @@
                     foreach($appid8 as $ap8){
                         $app_id8.= $ap8->id.",";
                     }
-                    $appidlist8=rtrim($app_id8,", ");    
+                    $appidlist8=rtrim($app_id8,", ");
                     $idforquery8=explode(",", $appidlist8);
                     $getrating8 = $this->db->select('rate')
                                             ->from('coach_ratings')
@@ -217,7 +218,7 @@
                     foreach($appid7 as $ap7){
                         $app_id7.= $ap7->id.",";
                     }
-                    $appidlist7=rtrim($app_id7,", ");    
+                    $appidlist7=rtrim($app_id7,", ");
                     $idforquery7=explode(",", $appidlist7);
                     $getrating7 = $this->db->select('rate')
                                             ->from('coach_ratings')
@@ -252,7 +253,7 @@
                     foreach($appid6 as $ap6){
                         $app_id6.= $ap6->id.",";
                     }
-                    $appidlist6=rtrim($app_id6,", ");    
+                    $appidlist6=rtrim($app_id6,", ");
                     $idforquery6=explode(",", $appidlist6);
                     $getrating6 = $this->db->select('rate')
                                             ->from('coach_ratings')
@@ -287,7 +288,7 @@
                     foreach($appid5 as $ap5){
                         $app_id5.= $ap5->id.",";
                     }
-                    $appidlist5=rtrim($app_id5,", ");    
+                    $appidlist5=rtrim($app_id5,", ");
                     $idforquery5=explode(",", $appidlist5);
                     $getrating5 = $this->db->select('rate')
                                             ->from('coach_ratings')
@@ -322,7 +323,7 @@
                     foreach($appid4 as $ap4){
                         $app_id4.= $ap4->id.",";
                     }
-                    $appidlist4=rtrim($app_id4,", ");    
+                    $appidlist4=rtrim($app_id4,", ");
                     $idforquery4=explode(",", $appidlist4);
                     $getrating4 = $this->db->select('rate')
                                             ->from('coach_ratings')
@@ -357,7 +358,7 @@
                     foreach($appid3 as $ap3){
                         $app_id3.= $ap3->id.",";
                     }
-                    $appidlist3=rtrim($app_id3,", ");    
+                    $appidlist3=rtrim($app_id3,", ");
                     $idforquery3=explode(",", $appidlist3);
                     $getrating3 = $this->db->select('rate')
                                             ->from('coach_ratings')
@@ -392,7 +393,7 @@
                     foreach($appid2 as $ap2){
                         $app_id2.= $ap2->id.",";
                     }
-                    $appidlist2=rtrim($app_id2,", ");    
+                    $appidlist2=rtrim($app_id2,", ");
                     $idforquery2=explode(",", $appidlist2);
                     $getrating2 = $this->db->select('rate')
                                             ->from('coach_ratings')
@@ -426,7 +427,7 @@
                     foreach($appid1 as $ap1){
                         $app_id1.= $ap1->id.",";
                     }
-                    $appidlist1=rtrim($app_id1,", ");    
+                    $appidlist1=rtrim($app_id1,", ");
                     $idforquery1=explode(",", $appidlist1);
                     $getrating1 = $this->db->select('rate')
                                             ->from('coach_ratings')
@@ -467,7 +468,7 @@
                         <td></td>
                         <td style="text-align: left;padding-left: 5px !important;"><?php echo $partname; ?></td>
                         <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->name; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;">><?php echo $d->fullname; ?></td>
+                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->fullname; ?></td>
                         <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->email; ?></td>
                         <td><?php echo $rateaverage8; ?></td>
                         <td><?php echo $rateaverage7; ?></td>
@@ -483,7 +484,7 @@
             </table>
         </div>
     </div>
- 
+
 </div>
 
 <script>
@@ -532,7 +533,7 @@
         });
     });
 </script>
-                       
+
 <!-- <script type="text/javascript" src="<https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/__jquery.tablesorter.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/remodal.min.js"></script>

@@ -24,18 +24,18 @@ class Coach extends MY_Site_Controller {
         // for messaging action and timing
         $this->load->library('queue');
         $this->load->library('common_function');
-        
+
         //checking user role and giving action
         if (!$this->auth_manager->role() || $this->auth_manager->role() != 'ADM') {
             $this->messages->add('Access Denied');
             redirect('account/identity/detail/profile');
         }
     }
-    
+
         function generateRandomString($length = 5) {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
-    
+
 
     public function index() {
         $this->template->title = 'Reporting';
@@ -54,7 +54,7 @@ class Coach extends MY_Site_Controller {
         $partnerlistid = '';
         foreach($list_sp as $ls){
             $id = $ls->id;
-            
+
             if ($i == 0) {
                 $partnerlistid .= $id.', ';
             } else if ($i == $len - 1) {
@@ -94,7 +94,7 @@ class Coach extends MY_Site_Controller {
     $partnerlistid = '';
     foreach($list_sp as $ls){
         $id = $ls->id;
-        
+
         if ($i == 0) {
             $partnerlistid .= $id.', ';
         } else if ($i == $len - 1) {
@@ -117,7 +117,7 @@ class Coach extends MY_Site_Controller {
     $date_to      = $_POST["date_to"];
 
     $date_from1   = date('d-M-y', strtotime($_POST["date_from"]));
-    $date_to1     = date('d-M-y', strtotime($_POST["date_to"])); 
+    $date_to1     = date('d-M-y', strtotime($_POST["date_to"]));
 
     if(!$subgrouplist){
         $subgrouplist = $defaultlist;
@@ -127,14 +127,14 @@ class Coach extends MY_Site_Controller {
 
         if($report == "Coach Summary"){
             $this->template->title = 'Coach Summary';
-            
+
             $cch_sum = $this->db->select('*')
                      ->from('user_profiles')
                      ->join('users','users.id = user_profiles.user_id')
                      ->join('subgroup','subgroup.id = user_profiles.subgroup_id')
                      ->where_in('subgroup.id',$sglist)
                      ->get()->result();
-            
+
 
             $selected = $this->db->select('*')
                          ->from('subgroup')
@@ -170,14 +170,14 @@ class Coach extends MY_Site_Controller {
                 // 'standard_coach_cost' => $standard_coach_cost,
                 // 'elite_coach_cost' => $elite_coach_cost
             );
-            
+
             // echo "<pre>";print_r($vars);exit();
 
             $this->template->content->view('default/contents/admin/reporting/coach/coachsummary', $vars);
             $this->template->publish();
         }else if($report == "Rating Summary"){
             $this->template->title = 'Rating Summary';
-            
+
             $id    = $this->auth_manager->userid();
             $get_tz  = $this->db->select('minutes_val')
                      ->from('user_timezones')
@@ -227,7 +227,7 @@ class Coach extends MY_Site_Controller {
             $this->template->publish();
         }else if($report == "Session Report"){
             $this->template->title = 'Session Report';
-            
+
             $id    = $this->auth_manager->userid();
             $get_tz  = $this->db->select('minutes_val')
                      ->from('user_timezones')
@@ -281,7 +281,7 @@ class Coach extends MY_Site_Controller {
                          ->get()->result();
 
             $date_from1   = date('d-M-y', strtotime($_POST["date_from"]));
-			$date_to1     = date('d-M-y', strtotime($_POST["date_to"])); 
+			$date_to1     = date('d-M-y', strtotime($_POST["date_to"]));
 
             $vars = array(
                 'ses_rpt' => $ses_rpt,
@@ -329,7 +329,7 @@ class Coach extends MY_Site_Controller {
                         ->from('user_profiles')
                         ->where('user_id',$user_id)
                         ->get()->result();
-        
+
         $coachtype = $pullcoachprof[0]->coach_type_id;
 
         if($coachtype == 1){
@@ -366,11 +366,11 @@ class Coach extends MY_Site_Controller {
 	    $date_from    = $_POST["date_from"];
 	    $date_to      = $_POST["date_to"];
 	    $date_from1   = date('d-M-y', strtotime($_POST["date_from"]));
-		$date_to1     = date('d-M-y', strtotime($_POST["date_to"])); 
+		  $date_to1     = date('d-M-y', strtotime($_POST["date_to"]));
 	    $sglist = explode(",", $subgrouplist);
 
 	    $this->template->title = 'Coach Summary';
-            
+
         // if(!@$date_from){
         $cch_sum = $this->db->select('*')
                  ->from('user_profiles')
@@ -395,8 +395,8 @@ class Coach extends MY_Site_Controller {
                      ->get()->result();
 
         $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
-        $standard_coach_cost = $setting[0]->standard_coach_cost;
-    	$elite_coach_cost = $setting[0]->elite_coach_cost;
+        $standard_coach_cost = @$setting[0]->standard_coach_cost;
+    	  $elite_coach_cost = @$setting[0]->elite_coach_cost;
 
         $vars = array(
             'cch_sum'      => $cch_sum,
@@ -404,9 +404,9 @@ class Coach extends MY_Site_Controller {
             'subgrouplist' => $subgrouplist,
             'date_from'    => $date_from,
             'date_to'      => $date_to,
-            'date_from1'    => $date_from1,
-            'date_to1'      => $date_to1,
-            'sglist'      => $sglist,
+            'date_from1'   => $date_from1,
+            'date_to1'     => $date_to1,
+            'sglist'       => $sglist,
             'selected' => $selected,
             'noselect' => $noselect,
             'standard_coach_cost' => $standard_coach_cost,
@@ -415,7 +415,7 @@ class Coach extends MY_Site_Controller {
 
         // echo "<pre>";print_r($vars);exit();
 
-        $this->load->view('default/contents/partner/reporting/coachsummaryexp', $vars);
+        $this->load->view('default/contents/admin/reporting/coach/coachsummaryexp', $vars);
     }
     public function export_session(){
     	$report       = $_POST['submit'];
@@ -424,11 +424,11 @@ class Coach extends MY_Site_Controller {
 	    $date_from    = $_POST["date_from"];
 	    $date_to      = $_POST["date_to"];
 	    $date_from1   = date('d-M-y', strtotime($_POST["date_from"]));
-		$date_to1     = date('d-M-y', strtotime($_POST["date_to"])); 
+		  $date_to1     = date('d-M-y', strtotime($_POST["date_to"]));
 	    $sglist = explode(",", $subgrouplist);
 
 	    $this->template->title = 'Session Report';
-            
+
         $id    = $this->auth_manager->userid();
         $get_tz  = $this->db->select('minutes_val')
                  ->from('user_timezones')
@@ -482,7 +482,7 @@ class Coach extends MY_Site_Controller {
                      ->get()->result();
 
         $date_from1   = date('d-M-y', strtotime($_POST["date_from"]));
-		$date_to1     = date('d-M-y', strtotime($_POST["date_to"])); 
+		$date_to1     = date('d-M-y', strtotime($_POST["date_to"]));
 
         $vars = array(
             'ses_rpt' => $ses_rpt,
@@ -497,21 +497,21 @@ class Coach extends MY_Site_Controller {
             'noselect' => $noselect
         );
 
-	    $this->load->view('default/contents/partner/reporting/sessionreportexp', $vars);
+	    $this->load->view('default/contents/admin/reporting/coach/sessionreportexp', $vars);
 	}
 
 	public function export_rating(){
 		$report       = $_POST['submit'];
-	    $partner_id   = $this->auth_manager->partner_id();
-	    $subgrouplist = $_POST["subgrouplist"];
-	    $date_from    = $_POST["date_from"];
-	    $date_to      = $_POST["date_to"];
-	    $date_from1   = date('d-M-y', strtotime($_POST["date_from"]));
-		$date_to1     = date('d-M-y', strtotime($_POST["date_to"])); 
-	    $sglist = explode(",", $subgrouplist);
+    $partner_id   = $this->auth_manager->partner_id();
+    $subgrouplist = $_POST["subgrouplist"];
+    $date_from    = $_POST["date_from"];
+    $date_to      = $_POST["date_to"];
+    $date_from1   = date('d-M-y', strtotime($_POST["date_from"]));
+	  $date_to1     = date('d-M-y', strtotime($_POST["date_to"]));
+	  $sglist = explode(",", $subgrouplist);
 
 		$this->template->title = 'Rating Summary';
-            
+
         $id    = $this->auth_manager->userid();
         $get_tz  = $this->db->select('minutes_val')
                  ->from('user_timezones')
@@ -552,7 +552,7 @@ class Coach extends MY_Site_Controller {
             'noselect' => $noselect
         );
 
-        $this->load->view('default/contents/partner/reporting/ratingsummaryexp', $vars);
+        $this->load->view('default/contents/admin/reporting/coach/ratingsummaryexp', $vars);
 	}
 
 }

@@ -26,11 +26,11 @@ class match_partner extends MY_Site_Controller {
 
     // Index
     public function index() {
-        $this->template->title = 'Affiliate Matching';
-        
+        $this->template->title = 'Affiliate Matches';
+
         $data = array();
         foreach($this->class_matchmaking_model->get_all() as $d){
-            
+
             $data[$d->id] = array(
                 'id' => $d->id,
                 'student_supplier_data' => $this->class_matchmaking_model->get_student_supplier($d->id),
@@ -40,16 +40,16 @@ class match_partner extends MY_Site_Controller {
         $vars = array(
             'data' => $data,
         );
-        
+
 //        echo('<pre>');
 //        print_r($vars); exit;
-        
+
         $this->template->content->view('default/contents/match_partner/index', $vars);
 
         //publish template
         $this->template->publish();
     }
-    
+
     public function add(){
         $id = $this->auth_manager->userid();
 
@@ -57,7 +57,7 @@ class match_partner extends MY_Site_Controller {
         $data_student_supplier = $this->partner_model->get_student_supplier($id);
         $data_coach_supplier = $this->partner_model->get_coach_supplier($id);
        // echo('<pre>');
-       //print_r($data_student_supplier); 
+       //print_r($data_student_supplier);
        // print_r($data_coach_supplier);
        // exit;
         $vars = array(
@@ -70,13 +70,13 @@ class match_partner extends MY_Site_Controller {
         //publish template
         $this->template->publish();
     }
-    
+
     public function create(){
         if(!$this->input->post('__submit')){
            $this->messages->add('An error has occured, please try again.', 'warning');
-           redirect('admin/match_partner/'); 
+           redirect('admin/match_partner/');
         }
-        
+
         if($this->input->post('student_supplier_id') && $this->input->post('coach_supplier_id')){
             // explode multiple supplier id
             $student = explode(',' , $this->input->post('student_supplier_id'));
@@ -89,7 +89,7 @@ class match_partner extends MY_Site_Controller {
                     redirect('admin/match_partner/');
                 }
             }
-            
+
             if($status == 0){
                 $data_class_matchmaking = array();
                 $class_matchmaking_id = $this->class_matchmaking_model->insert($data_class_matchmaking);
@@ -112,27 +112,27 @@ class match_partner extends MY_Site_Controller {
                     );
                     $this->coach_supplier_relation_model->insert($data_coach_supplier);
                 }
-                
+
                 $this->messages->add('Matchmaking created', 'success');
-                redirect('admin/match_partner/'); 
+                redirect('admin/match_partner/');
             }
             else{
                 $this->messages->add('Invalid Action', 'warning');
-                redirect('admin/match_partner/'); 
+                redirect('admin/match_partner/');
             }
         }
         else{
             $this->messages->add('Invalid Action', 'warning');
-            redirect('admin/match_partner/'); 
-        } 
+            redirect('admin/match_partner/');
+        }
     }
-    
+
     public function edit($class_matchmaking_id = ''){
         $this->template->title = 'Edit Affiliate Match';
         $data_student_supplier = $this->partner_model->get_student_supplier();
         $data_coach_supplier = $this->partner_model->get_coach_supplier();
 //        echo('<pre>');
-//        print_r($data_student_supplier); 
+//        print_r($data_student_supplier);
 //        print_r($data_coach_supplier);exit;
         $selected_student_supplier = $this->class_matchmaking_model->get_student_supplier($class_matchmaking_id);
         $student_temp = array();
@@ -158,7 +158,7 @@ class match_partner extends MY_Site_Controller {
             'data_student_supplier' => $data_student_supplier,
             'data_coach_supplier' => $data_coach_supplier,
             );
-        
+
 //        echo('<pre>');
 //        print_r($vars); exit;
         $this->template->content->view('default/contents/match_partner/form', $vars);
@@ -166,7 +166,7 @@ class match_partner extends MY_Site_Controller {
         //publish template
         $this->template->publish();
     }
-    
+
     public function update(){
 //        echo('<pre>');
 //        print_r($this->input->post()); exit;
@@ -176,15 +176,15 @@ class match_partner extends MY_Site_Controller {
 //        [coach_supplier_id] => 3,5
         if(!$this->input->post('__submit')){
             $this->messages->add('Invalid Action', 'warning');
-            redirect('admin/match_partner/'); 
+            redirect('admin/match_partner/');
         }
-        
+
         if($this->input->post('class_matchmaking_id') && $this->input->post('student_supplier_id') && $this->input->post('coach_supplier_id')){
-            
+
             // explode multiple supplier id
             $student = array_filter(explode(',' , $this->input->post('student_supplier_id')));
             $coach = array_filter(explode(',' , $this->input->post('coach_supplier_id')));
-            
+
             $status = 0;
             foreach($student as $s){
                 if($this->student_supplier_relation_model->where_not_in('class_matchmaking_id', $this->input->post('class_matchmaking_id'))->where('student_supplier_id', $s)->get()){
@@ -222,19 +222,19 @@ class match_partner extends MY_Site_Controller {
         }
         else{
             $this->messages->add('Invalid Action', 'warning');
-            redirect('admin/match_partner/'); 
-        } 
-        
-        
+            redirect('admin/match_partner/');
+        }
+
+
     }
-    
+
     public function delete($class_matchmaking_id = ''){
         $this->class_matchmaking_model->delete($class_matchmaking_id);
         // delete table student_supplier_relation_model
         $this->student_supplier_relation_model->where('class_matchmaking_id', $class_matchmaking_id)->delete();
-            
+
 	    $this->messages->add('Delete Successful', 'success');
-        redirect('admin/match_partner/'); 
+        redirect('admin/match_partner/');
     }
 
 

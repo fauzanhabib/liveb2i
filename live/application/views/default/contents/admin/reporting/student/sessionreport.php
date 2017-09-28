@@ -15,18 +15,19 @@
         display: inline;
         font-size: 19px !important;
         font-weight: 600;
-        color: #585858;   
+        color: #585858;
     }
     label input {
         /*display: inline;*/
         font-size: 16px !important;
-        font-weight: 100 !important;    
+        font-weight: 100 !important;
     }
     td{
         font-weight: 400 !important;
     }
     #large_wrapper{
         overflow: auto;
+        padding-bottom: 25px;
     }
 </style>
 <style type="text/css" src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></style>
@@ -51,18 +52,18 @@
                             <option value="<?php echo $ls->id; ?>"><?php echo $ls->name; ?></option>
                         <?php } ?>
                     <?php } ?>
-                </select>   
+                </select>
                 <input name="subgrouplist" type="hidden" id="subgrouplist" value="">
 
                 <div class="pure-g">
                     <div class="pure-u-1 text-center m-t-20" style="text-align: left !important;">
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">  
+                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">
                             <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
-                        <span style="font-size: 16px;margin:0px 10px;">to</span>  
+                        <span style="font-size: 16px;margin:0px 10px;">to</span>
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">  
+                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">
                             <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
                     </div>
@@ -71,23 +72,23 @@
                 <input class="pure-button btn-small btn-green height-32" type="submit" name="submit" value="Session Report">
             </form>
 
-        </div>   
-    </div>   
- 
+        </div>
+    </div>
+
 </div>
 
 <hr style="width: 96%;">
 
 <div class="heading text-cl-primary padding-l-20">
     <h3 class="margin0" style="font-size: 28px;font-weight: 600;color: #2b89b9;">Session Report</h3>
-    <?php 
-    if(!@$date_from){  
+    <?php
+    if(!@$date_from){
         echo "Data without date range";
-    }else if(@$date_from && !@$date_to){ 
+    }else if(@$date_from && !@$date_to){
         echo "Data From: <strong>".$date_from1."</strong> To: <strong>Today</strong>";
-    }else if(@$date_from && @$date_to){ 
+    }else if(@$date_from && @$date_to){
         echo "Data From: <strong>".$date_from1."</strong> To: <strong>".$date_to1."</strong>";
-    } 
+    }
     ?>
 </div>
 
@@ -195,10 +196,10 @@
 
                     $type_id = $type_coach[0]->coach_type_id;
 
-                    
+
                     //----------
                     $partner_id = $this->auth_manager->partner_id($d->coach_id);
-                    
+
                     $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
                     $standard_coach_cost = $setting[0]->standard_coach_cost;
                     $elite_coach_cost = $setting[0]->elite_coach_cost;
@@ -209,7 +210,7 @@
                     }else if($type_id == 2){
                         $cost = $elite_coach_cost;
                     }
-                    
+
                     if(@$getrating != NULL){
                         $ratingsess = $getrating[0]->rate;
                     }else{
@@ -290,7 +291,7 @@
                     ?>
                     <tr>
                         <td></td>
-                        <td style="text-align: left;padding-left: 10px !important;"><?php 
+                        <td style="text-align: left;padding-left: 10px !important;"><?php
                             $minutes_to_add = $spr_tz;
 
                             $time = new DateTime($d->date." ".$d->start_time);
@@ -299,11 +300,11 @@
                             $stamp = $time->format('Y-m-d');
 
                             echo $stamp;
-                            // echo $d->date; 
+                            // echo $d->date;
                         ?></td>
-                        <td style="text-align: center;padding-left: 0px !important;"><?php 
-                            // echo $d->start_time." - ".$end_time."<br>"; 
-                            echo $start_conv_real." - ".$endmin_real; 
+                        <td style="text-align: center;padding-left: 0px !important;"><?php
+                            // echo $d->start_time." - ".$end_time."<br>";
+                            echo $start_conv_real." - ".$endmin_real;
                         ?></td>
                         <td style="text-align: left;padding-left: 5px !important;"><a href="<?php echo site_url('student_partner/member_list/student_detail/'.$d->user_id);?>" class="text-cl-tertiary" target="_blank"><?php echo $d->fullname; ?></a></td>
                         <td><?php echo $partname; ?></td>
@@ -314,7 +315,7 @@
                         <td style="text-align: left;padding-left: 10px !important;"><?php echo $cch_name[0]->fullname; ?></td>
                         <td style="text-align: left;padding-left: 10px !important;"><?php echo $cchaffname; ?></td>
                         <td><?php echo $ratingsess; ?></td>
-                        <!-- td><?php 
+                        <!-- td><?php
                             if(!@$std_attend){
                                 echo '<span class="labels tooltip-bottom" data-tooltip="Student did not attend" style="color:#000 !important;font-size:14px;">-</span>';
                             }else{
@@ -342,7 +343,7 @@
             </table>
         </div>
     </div>
- 
+
 </div>
 
 
@@ -392,7 +393,7 @@
         });
     });
 </script>
-                       
+
 <!-- <script type="text/javascript" src="<https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/__jquery.tablesorter.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/remodal.min.js"></script>

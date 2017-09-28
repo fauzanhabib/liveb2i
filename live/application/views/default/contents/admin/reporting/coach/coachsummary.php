@@ -15,12 +15,12 @@
         display: inline;
         font-size: 19px !important;
         font-weight: 600;
-        color: #585858;   
+        color: #585858;
     }
     label input {
         /*display: inline;*/
         font-size: 16px !important;
-        font-weight: 100 !important;    
+        font-weight: 100 !important;
     }
     td{
         font-weight: 400 !important;
@@ -33,6 +33,7 @@
     }
     #large_wrapper{
         overflow: auto;
+        padding-bottom: 25px;
     }
 </style>
 <script type="text/javascript" src="<https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -59,19 +60,19 @@
                             <option value="<?php echo $ls->id; ?>"><?php echo $ls->name; ?></option>
                         <?php } ?>
                     <?php } ?>
-                </select>                                    
+                </select>
                 <input name="subgrouplist" type="hidden" id="subgrouplist" value="">
                 <input name="partnerlistid" type="hidden" value="<?php echo $partnerlistid; ?>">
 
                 <div class="pure-g">
                     <div class="pure-u-1 text-center m-t-20" style="text-align: left !important;">
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">  
+                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">
                             <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
-                        <span style="font-size: 16px;margin:0px 10px;">to</span>  
+                        <span style="font-size: 16px;margin:0px 10px;">to</span>
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">  
+                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">
                             <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
                     </div>
@@ -81,23 +82,23 @@
                 <input class="pure-button btn-small btn-green height-32" type="submit" name="submit" value="Session Report">
             </form>
 
-        </div>   
-    </div> 
- 
+        </div>
+    </div>
+
 </div>
 
 <hr style="width: 96%;">
 
 <div class="heading text-cl-primary padding-l-20">
     <h3 class="margin0" style="font-size: 28px;font-weight: 600;color: #2b89b9;">Coach Summary</h3>
-    <?php 
-    if(!@$date_from){  
+    <?php
+    if(!@$date_from){
         echo "Data without date range";
-    }else if(@$date_from && !@$date_to){ 
+    }else if(@$date_from && !@$date_to){
         echo "Data From: <strong>".$date_from1."</strong> To: <strong>Today</strong>";
-    }else if(@$date_from && @$date_to){ 
+    }else if(@$date_from && @$date_to){
         echo "Data From: <strong>".$date_from1."</strong> To: <strong>".$date_to1."</strong>";
-    } 
+    }
     ?>
 </div>
 
@@ -107,7 +108,7 @@
     <div class="content padding-t-10">
         <div class="box">
 
-            <form action="<?php echo site_url('partner/reporting/export_summary');?>" method="POST" target="_blank">
+            <form action="<?php echo site_url('admin/reporting/coach/export_summary');?>" method="POST" target="_blank">
                 <input type="hidden" name="subgrouplist" value="<?php echo $subgrouplist;?>">
                 <input type="hidden" name="date_from" value="<?php echo @$date_from;?>">
                 <input type="hidden" name="date_to" value="<?php echo @$date_to;?>">
@@ -121,7 +122,7 @@
 
                         "footerCallback": function ( row, data, start, end, display ) {
                             var api = this.api(), data;
-                 
+
                             // Remove the formatting to get integer data for summation
                             var intVal = function ( i ) {
                                 return typeof i === 'string' ?
@@ -129,7 +130,7 @@
                                     typeof i === 'number' ?
                                         i : 0;
                             };
-                 
+
                             // Total over all pages
                             startb = api.column( 5 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             earned = api.column( 6 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
@@ -138,7 +139,7 @@
                             comses = api.column( 9 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             latses = api.column( 10 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             rating = api.column( 11 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
-                 
+
                             // Update footer
                             $( api.column( 5 ).footer() ).html(startb);
                             $( api.column( 6 ).footer() ).html(earned);
@@ -188,11 +189,11 @@
                         <th class="bg-secondary uncek text-cl-white border-none">Email</th>
                         <th class="bg-secondary uncek text-cl-white border-none">Start Balance</th>
                         <th class="bg-secondary uncek text-cl-white border-none">Earned Tokens</th>
-                        <th class="bg-secondary uncek text-cl-white border-none">Refunded Tokens</th>               
-                        <th class="bg-secondary uncek text-cl-white border-none">Token Balance</th>               
-                        <th class="bg-secondary uncek text-cl-white border-none">Completed Sessions</th>               
-                        <th class="bg-secondary uncek text-cl-white border-none">Late Session</th>         
-                        <th class="bg-secondary uncek text-cl-white border-none">Rating Average</th>               
+                        <th class="bg-secondary uncek text-cl-white border-none">Refunded Tokens</th>
+                        <th class="bg-secondary uncek text-cl-white border-none">Token Balance</th>
+                        <th class="bg-secondary uncek text-cl-white border-none">Completed Sessions</th>
+                        <th class="bg-secondary uncek text-cl-white border-none">Late Session</th>
+                        <th class="bg-secondary uncek text-cl-white border-none">Rating Average</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -248,7 +249,7 @@
                         foreach($appid as $ap){
                             $app_id.= $ap->id.",";
                         }
-                        $appidlist=rtrim($app_id,", ");    
+                        $appidlist=rtrim($app_id,", ");
                         $idforquery=explode(",", $appidlist);
 
                         $getrating = $this->db->select('rate')
@@ -300,7 +301,7 @@
                         foreach($appid as $ap){
                             $app_id.= $ap->id.",";
                         }
-                        $appidlist=rtrim($app_id,", ");    
+                        $appidlist=rtrim($app_id,", ");
                         $idforquery=explode(",", $appidlist);
 
                         $getrating = $this->db->select('rate')
@@ -351,7 +352,7 @@
                         foreach($appid as $ap){
                             $app_id.= $ap->id.",";
                         }
-                        $appidlist=rtrim($app_id,", ");    
+                        $appidlist=rtrim($app_id,", ");
                         $idforquery=explode(",", $appidlist);
 
                         $getrating = $this->db->select('rate')
@@ -391,7 +392,7 @@
                                     ->from('user_profiles')
                                     ->where('user_id',$d->user_id)
                                     ->get()->result();
-                    
+
                     $coachtype = $pullcoachprof[0]->coach_type_id;
 
                     $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$d->partner_id)->get()->result();
@@ -467,7 +468,7 @@
                             <?php }else{ echo "0"; }?>
                         </td>
                         <td>
-                            <?php 
+                            <?php
                                 if($sum3 != 0){
                                 echo $sum3;
                                 }else{ echo "0"; }
@@ -477,10 +478,10 @@
                         <td>
                             <?php echo count($earned_tokens); ?>
                         </td>
-                        <td><?php 
+                        <td><?php
                                 echo @$totalrfd;
                         ?></td>
-                        <td><?php 
+                        <td><?php
                             if(@$rateaverage == 0){
                                 echo '';
                             }else{
@@ -493,7 +494,7 @@
             </table>
         </div>
     </div>
- 
+
 </div>
 
 <script>
@@ -542,7 +543,7 @@
         });
     });
 </script>
-                       
+
 <!-- <script type="text/javascript" src="<https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/__jquery.tablesorter.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/remodal.min.js"></script>
@@ -566,7 +567,7 @@
         if ( typeof b === 'string' ) {
             b = b.replace(/[^\d.-]/g, '') * 1;
         }
- 
+
         return a + b;
     }, 0 );
 } );
