@@ -16,10 +16,10 @@
                     <td>Coach Name</td>
                     <td><?php echo($data_coach[0]->fullname); ?></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td>Email</td>
                     <td><?php echo($data_coach[0]->email); ?></td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td>Date</td>
                     <td><?php echo(date('l jS \of F Y', @$date)); ?></td>
