@@ -7,9 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Twig_' => array($vendorDir . '/twig/twig/lib'),
-    'Smsglobal\\RestApiClient' => array($baseDir . '/', $vendorDir . '/smsglobal/rest-api-client'),
     'Pimple' => array($vendorDir . '/pimple/pimple/src'),
-    'JohnStevenson\\JsonWorks' => array($vendorDir . '/aoberoi/json-works/src'),
     'Guzzle\\Tests' => array($vendorDir . '/guzzle/guzzle/tests'),
     'Guzzle' => array($vendorDir . '/guzzle/guzzle/src'),
 );

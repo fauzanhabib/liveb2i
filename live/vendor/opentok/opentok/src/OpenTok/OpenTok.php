@@ -4,6 +4,8 @@ namespace OpenTok;
 
 use OpenTok\Session;
 use OpenTok\Archive;
+use OpenTok\Broadcast;
+use OpenTok\Layout;
 use OpenTok\Role;
 use OpenTok\MediaMode;
 use OpenTok\ArchiveMode;
@@ -18,7 +20,7 @@ use OpenTok\Exception\InvalidArgumentException;
 * Contains methods for creating OpenTok sessions, generating tokens, and working with archives.
 * <p>
 * To create a new OpenTok object, call the OpenTok() constructor with your OpenTok API key
-* and the API secret from <a href="https://dashboard.tokbox.com">the OpenTok dashboard</a>. Do not
+* and the API secret for your <a href="https://tokbox.com/account">TokBox account</a>. Do not
 * publicly share your API secret. You will use it with the OpenTok() constructor (only on your web
 * server) to create OpenTok sessions.
 * <p>
@@ -57,8 +59,8 @@ class OpenTok {
      * Creates a token for connecting to an OpenTok session. In order to authenticate a user
      * connecting to an OpenTok session, the client passes a token when connecting to the session.
      * <p>
-     * For testing, you can also use the <a href="https://dashboard.tokbox.com/projects">OpenTok
-     * dashboard</a> page to generate test tokens.
+     * For testing, you generate tokens or by logging in to your
+     * <a href="https://tokbox.com/account">TokBox account</a>.
      *
      * @param string $sessionId The session ID corresponding to the session to which the user
      * will connect.
@@ -130,9 +132,8 @@ class OpenTok {
     * Calling this method results in an OpenTokException in the event of an error.
     * Check the error message for details.
     * <p>
-    * You can also create a session using the
-    * <a href="http://www.tokbox.com/opentok/api/#session_id_production">OpenTok
-    * REST API</a> or the <a href="https://dashboard.tokbox.com/projects">OpenTok dashboard</a>.
+    * You can also create a session by logging in to your
+    * <a href="https://tokbox.com/account">TokBox account</a>.
     *
     * @param array $options (Optional) This array defines options for the session. The array includes
     * the following keys (all of which are optional):
@@ -330,7 +331,7 @@ class OpenTok {
      * @param String $archiveId The archive ID.
      *
      * @throws ArchiveException There is no archive with the specified ID.
-     * @throws OpenTokArgumentException The archive ID provided is null or an empty string.
+     * @throws InvalidArgumentException The archive ID provided is null or an empty string.
      *
      * @return Archive The Archive object.
      */
@@ -383,6 +384,171 @@ class OpenTok {
 
         $archiveListData = $this->client->listArchives($offset, $count);
         return new ArchiveList($archiveListData, array( 'client' => $this->client ));
+    }
+
+    public function forceDisconnect($sessionId, $connectionId)
+    {
+        Validators::validateSessionId($sessionId);
+        Validators::validateConnectionId($connectionId);
+
+        return $this->client->forceDisconnect($sessionId, $connectionId);
+    }
+
+    public function startBroadcast($sessionId, $options=array())
+    {
+        // unpack optional arguments (merging with default values) into named variables
+        // NOTE: although the server can be authoritative about the default value of layout, its
+        // not preferred to depend on that in the SDK because its then harder to garauntee backwards
+        // compatibility
+        $defaults = array(
+            'layout' => Layout::getBestFit()
+        );
+        $options = array_merge($defaults, array_intersect_key($options, $defaults));
+        list($layout) = array_values($options);
+
+        // validate arguments
+        Validators::validateSessionId($sessionId);
+        Validators::validateLayout($layout);
+
+        // make API call
+        $broadcastData = $this->client->startBroadcast($sessionId, $options);
+
+        return new Broadcast($broadcastData, array( 'client' => $this->client ));
+    }
+
+    public function stopBroadcast($broadcastId)
+    {
+        // validate arguments
+        Validators::validateBroadcastId($broadcastId);
+
+        // make API call
+        $broadcastData = $this->client->stopBroadcast($broadcastId);
+        return new Broadcast($broadcastData, array(
+            'client' => $this->client,
+            'isStopped' => true
+        ));
+    }
+
+    public function getBroadcast($broadcastId)
+    {
+        Validators::validateBroadcastId($broadcastId);
+
+        $broadcastData = $this->client->getBroadcast($broadcastId);
+        return new Broadcast($broadcastData, array( 'client' => $this->client ));
+    }
+
+    // TODO: not yet implemented by the platform
+    // public function getBroadcastLayout($broadcastId)
+    // {
+    //     Validators::validateBroadcastId($broadcastId);
+    //
+    //     $layoutData = $this->client->getLayout($broadcastId, 'broadcast');
+    //     return Layout::fromData($layoutData);
+    // }
+
+    public function updateBroadcastLayout($broadcastId, $layout)
+    {
+        Validators::validateBroadcastId($broadcastId);
+        Validators::validateLayout($layout);
+
+        // TODO: platform implementation does not meet API Review spec
+        // $layoutData = $this->client->updateLayout($broadcastId, $layout, 'broadcast');
+        // return Layout::fromData($layoutData);
+
+        $this->client->updateLayout($broadcastId, $layout, 'broadcast');
+    }
+
+    public function updateStream($sessionId, $streamId, $properties = array())
+    {
+        // unpack optional arguments (merging with default values) into named variables
+        $defaults = array(
+            'layoutClassList' => array()
+        );
+        $properties = array_merge($defaults, array_intersect_key($properties, $defaults));
+        list($layoutClassList) = array_values($properties);
+
+        // validate arguments
+        Validators::validateSessionId($sessionId);
+        Validators::validateStreamId($streamId);
+        Validators::validateLayoutClassList($layoutClassList, 'JSON');
+
+        // make API call
+        $this->client->updateStream($sessionId, $streamId, $properties);
+    }
+
+    /**
+     * Initiate an outgoing SIP call
+     *
+     * @param string $sessionId The OpenTok SessionIdwhere the participant being called
+     * will join.
+     *
+     * @param string $token The token for conecting to an OpenTok session. This is the same
+     * as the one created by Session.generateToken.
+     *
+     * @param string $sipUrl The SIP Uri to be used as destination of the SIP Call initiated from
+     * OpenTok to the Third Party SIP Platform.
+     * If the SIP Uri contains a transport=tlsheader, the negotiation between TokBox and
+     * the SIP Endpoint will be done securely. Note that this will only apply to the negotiation
+     * itself, and not to the transmission of audio. If you also need the latter, please see the
+     * "secure" property.
+     * Example of secure call negotiation:
+     * "sip:access@thirparty.com;transport=tls"
+     * Example of insecure call negotiation:
+     * "sip:access@thirparty.com"
+     *
+     * @param array $options This array defines options for the token. This array includes the
+     * following keys, all of which are optional:
+     *
+     * <ul>
+     *
+     *    <li><code>'headers'</code> (array) &mdash; Headers​: Custom Headers to be added to the
+     *    SIP INVITE request initiated from OpenTok to the Third Party SIP Platform. All of this
+     *    custom headers must start with the "X-" prefix, or a Bad Request (400) will be thrown.</li>
+     *
+     *    <li><code>'auth'</code> (array) &mdash; Auth​: Username and Password to be used in the SIP
+     *    INVITE request for HTTP Digest authentication in case this is required by the Third Party
+     *    SIP Platform.
+     *
+     *     <ul>
+     *
+     *       <li><code>'username'</code> (string) &mdash; Username: String</li>
+     *
+     *       <li><code>'password'</code> (string) &mdash; Password: String</li>
+     *
+     *     </ul>
+     *
+     *    <li><code>'secure'</code> (int) &mdash; Secure​: Boolean (true or false) flag that indicates
+     *    whether the media must be transmitted encrypted or not.</li>
+     *
+     * </ul>
+     *
+     * @return SipCall The SipCall, which contains the ids of the Sip connection.
+     */
+    public function dial($sessionId, $token, $sipUri, $options=array())
+    {
+        // unpack optional arguments (merging with default values) into named variables
+        $defaults = array(
+            'auth' => null,
+            'headers' => null,
+            'secure' => true,
+        );
+        $options = array_merge($defaults, array_intersect_key($options, $defaults));
+        list($headers, $secure) = array_values($options);
+
+        // validate arguments
+        Validators::validateSessionIdBelongsToKey($sessionId, $this->apiKey);
+
+        // make API call
+        $sipJson = $this->client->dial($sessionId, $token, $sipUri, $options);
+
+        // check response
+        $id = $sipJson['id'];
+        if (!$id) {
+            $errorMessage = 'Failed to initiate a SIP call. Server response: '. (string)$sipJson;
+            throw new UnexpectedValueException($errorMessage);
+        }
+
+        return new SipCall($sipJson);
     }
 
     /** @internal */

@@ -38,9 +38,8 @@ use OpenTok\Exception\ArchiveUnexpectedValueException;
 * The API key associated with the archive.
 *
 * @property string $reason
-* For archives with the status "stopped", this can be set to "maximum duration
-* exceeded", "maximum idle time exceeded", "session ended", "user initiated". For archives with
-* the status "failed", this can be set to "failure".
+* For archives with the status "stopped" or "failed", this string describes the reason
+* the archive stopped (such as "maximum duration exceeded") or failed.
 *
 * @property string $sessionId
 * The session ID of the OpenTok session associated with this archive.
@@ -65,8 +64,8 @@ use OpenTok\Exception\ArchiveUnexpectedValueException;
 *   <li> "started" -- The archive started and is in the process of being recorded.</li>
 *   <li> "stopped" -- The archive stopped recording.</li>
 *   <li> "uploaded" -- The archive is available for download from the the upload target
-*        Amazon S3 bucket or Windows Azure container you specified at
-*        <a href="https://dashboard.tokbox.com">the OpenTok dashboard</a>.</li>
+*        Amazon S3 bucket or Windows Azure container you set up for your
+*        <a href="https://tokbox.com/account">OpenTok project</a>.</li>
 * </ul>
 *
 * @property string $url
@@ -76,6 +75,7 @@ use OpenTok\Exception\ArchiveUnexpectedValueException;
 * 10 minutes. To generate a new URL, call the Archive.listArchives() or OpenTok.getArchive() method.
 */
 class Archive {
+    // NOTE: after PHP 5.3.0 support is dropped, the class can implement JsonSerializable
 
     /** @internal */
     private $data;
@@ -196,13 +196,20 @@ class Archive {
      */
     public function toJson()
     {
-        return json_encode($this->data);
+        return json_encode($this->jsonSerialize());
     }
 
     /**
      * Returns an associative array representation of this Archive object.
+     * @deprecated 3.0.0 A more standard name for this method is supplied by JsonSerializable
+     * @see Archive::jsonSerialize() for a method with the same behavior
      */
     public function toArray()
+    {
+        return $this->data;
+    }
+
+    public function jsonSerialize()
     {
         return $this->data;
     }

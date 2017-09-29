@@ -3,12 +3,12 @@
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-<script>    
+<script>
 $(document).ready(function(){
 
     $('#coachscript').click(function(){
-       var cch_script = $("input[name='check_list[]']:checked").map(function() { 
-                        return this.value; 
+       var cch_script = $("input[name='check_list[]']:checked").map(function() {
+                        return this.value;
                       }).get();
        var std_id = $('#std_id').val();
        var status_script = $('#status_script').val();
@@ -20,7 +20,7 @@ $(document).ready(function(){
           // alert( Updated );
           $.ajax({
             type:"POST",
-            url:"<?php echo site_url('opentok/live/coaching_script');?>",    
+            url:"<?php echo site_url('opentok/live/coaching_script');?>",
             data: {
               'std_id' : std_id,
               'check_list' : cch_script,
@@ -130,14 +130,14 @@ $(document).ready(function(){
         </div>
     </div> <br>
     <?php if(@$script){?>
-    <div class="box-lists pure-g" style="overflow-y: auto;height:400px;">
-    <?php 
+    <div class="box-lists pure-g" style="overflow-y: auto;height:600px;">
+    <?php
         $std_cert = @$student_vrm->cert_studying;
 
         foreach ($script as $as) {
     ?>
         <div class="accordion"><?php echo $as->unit; ?></div>
-        <div class="panel"> 
+        <div class="panel">
          <?php
             $wm = $as->unit;
 
@@ -159,7 +159,7 @@ $(document).ready(function(){
                 width: 6%;
                 width: 6%;
                 border-bottom: 1px solid #eee;">
-            
+
             <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $v->id;?>" class="centang font-12" /><label for="checkbox-1-<?php echo $no;?>"></label>
             <input type="hidden" id="std_id" name="std_id" value="<?php echo $std_id_for_cert; ?>">
             <input type="hidden" id="status_script" name="status_script" value="<?php echo $status_script; ?>">
@@ -168,7 +168,7 @@ $(document).ready(function(){
                 width: 90%;
                 border-bottom: 1px solid #eee;color:black;">
             <p>
-              <?php 
+              <?php
                   echo $v->script;
               ?>
             </p>
@@ -186,7 +186,7 @@ $(document).ready(function(){
                 width: 90%;
                 border-bottom: 1px solid #eee;">
             <p>
-              <?php 
+              <?php
                   echo $v->script;
               ?>
             </p>
@@ -195,7 +195,7 @@ $(document).ready(function(){
           </table>
          <?php $no++; } ?>
         </div>
-      <?php } }else{ ?> 
+      <?php } }else{ ?>
         It's the first time for student to attend a session. Scripts are just stored and you can now refresh to load the scripts.
       <?php } ?>
       </div>
@@ -207,7 +207,7 @@ $(document).ready(function(){
     <p>No Data Yet.</p>
 </div>
 <div id='tab-right3' class="font-12" style="overflow-y: auto;height:700px;">
-    <?php 
+    <?php
     if ($student_vrm){
     echo $content;
     } else{ ?>
@@ -239,7 +239,7 @@ for (i = 0; i < acc.length; i++) {
         var std_id = "<?php echo $std_id_for_cert; ?>";
         // console.log('asdsafasf');
         $("#ajaxscript").hide();
-       
+
         $.post("<?php echo site_url('opentok/call_loader_coach/call_ajax');?>", { 'std_id': std_id },function(data) {
          $("#reloading2").hide();
          $("#ajaxscript").show();
@@ -248,7 +248,7 @@ for (i = 0; i < acc.length; i++) {
          });
 
     } );
- 
+
 </script>
 </body>
 </html>

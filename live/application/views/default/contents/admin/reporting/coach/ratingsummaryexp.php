@@ -385,7 +385,7 @@
                 {
                     extend: 'pdfHtml5',
                     orientation: 'landscape',
-                    title: 'Student Report'
+                    title: 'Coach Rating Summary'
                 },
                 {
                     extend: 'print',

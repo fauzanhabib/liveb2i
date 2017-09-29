@@ -12,7 +12,7 @@ class dashboard extends MY_Site_Controller {
         $this->load->model('webex_model');
         $this->load->model('class_meeting_day_model');
         $this->load->model('class_member_model');
-        
+
         $this->load->library('schedule_function');
 
         //checking user role and giving action
@@ -38,7 +38,7 @@ class dashboard extends MY_Site_Controller {
         //------------wm
         $id    = $this->auth_manager->userid();
         // date_default_timezone_set('Asia/Jakarta');
-        
+
         $tipe = '';
         if($this->auth_manager->role() == "STD"){
             $tipe = 'student_id';
@@ -47,7 +47,7 @@ class dashboard extends MY_Site_Controller {
         }
 
         $nowd  = date('Y-m-d');
-        // $nowd  = "2016-08-21"; 
+        // $nowd  = "2016-08-21";
         $hour_start_db  = date('H:i:s');
         // $hour_start_db  = "02:40:01";
 
@@ -60,7 +60,7 @@ class dashboard extends MY_Site_Controller {
                       ->order_by('date', 'ASC')
                       ->order_by('start_time', 'ASC')
                       ->limit(5)
-                      ->get()->result(); 
+                      ->get()->result();
 
         $pull_appoint2 = $this->db->select('*')
                       ->from('appointments')
@@ -71,14 +71,12 @@ class dashboard extends MY_Site_Controller {
                       ->order_by('date', 'ASC')
                       ->order_by('start_time', 'ASC')
                       ->limit(5)
-                      ->get()->result(); 
+                      ->get()->result();
         //------------wm
-        // echo "<pre>";
-        // print_r($hour_start_db);
-        // exit();
+        // echo "<pre>";print_r($pull_appoint);exit();
         $data = @$pull_appoint;
         // $data = $this->appointment_model->get_appointment_for_upcoming_session('coach_id', '', '', $this->auth_manager->userid());
-        
+
         if ($data) {
             foreach ($data as $d) {
                 $data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);
@@ -89,7 +87,7 @@ class dashboard extends MY_Site_Controller {
         }
 
         $data_class_upcoming = $this->class_meeting_day_model->get_appointment_for_upcoming_session('', '', $this->auth_manager->userid());
-        
+
         if ($data_class_upcoming) {
             foreach ($data_class_upcoming as $data_class) {
                 $data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes, strtotime($data_class->date), $data_class->start_time, $data_class->end_time);
@@ -128,7 +126,7 @@ class dashboard extends MY_Site_Controller {
             ->from('user_timezones')
             ->where('user_id', $id)
             ->get()->result();
-        
+
         $minutes = @$tz[0]->minutes_val;
         $gmt_val = @$tz[0]->gmt_val;
 
@@ -139,16 +137,16 @@ class dashboard extends MY_Site_Controller {
         $date     = date('H:i:s');
         $default2 = strtotime($date);
         $usertime2 = $default2+(60*$minutes);
-        $nowh  = date("H:i:s", $usertime2); 
-        // $nowh  = "09:40:01"; 
-        // $nowd  = date("Y-m-d"); 
-        
+        $nowh  = date("H:i:s", $usertime2);
+        // $nowh  = "09:40:01";
+        // $nowd  = date("Y-m-d");
+
 
         $nowc  = $nowd.' '.$nowh;
         $countdown = $datestart.' '.$hourstart;
 
         // wimo----------------------
-        
+
         //Check Already Opened Live Session -------------------------------
         $checksess = $this->db->select('*')
                     ->from('session_live')
@@ -182,7 +180,7 @@ class dashboard extends MY_Site_Controller {
             'countdown'  => $countdown
         );
 
-       
+
         $this->template->content->view('default/contents/coach/dashboard/index',$vars);
         $this->template->publish();
     }
@@ -194,7 +192,7 @@ class dashboard extends MY_Site_Controller {
             ->from('user_timezones')
             ->where('user_id', $id)
             ->get()->result();
-        
+
         $minutes = @$tz[0]->minutes_val;
 
         $tipe = '';
@@ -203,9 +201,9 @@ class dashboard extends MY_Site_Controller {
         } else if($this->auth_manager->role() == "CCH"){
             $tipe = 'coach_id';
         }
-        
+
         $nowd  = date('Y-m-d');
-        // $nowd  = "2016-08-21"; 
+        // $nowd  = "2016-08-21";
         $hour_start_db  = date('H:i:s');
         // $hour_start_db  = "02:40:01";
 
@@ -218,7 +216,7 @@ class dashboard extends MY_Site_Controller {
                       ->order_by('date', 'ASC')
                       ->order_by('start_time', 'ASC')
                       ->limit(5)
-                      ->get()->result(); 
+                      ->get()->result();
 
         $he_pull2    = strtotime(@$pull_appoint[0]->end_time) - (5 * 60);
         $hourend2    = date("H:i:s", $he_pull2);
@@ -242,7 +240,7 @@ class dashboard extends MY_Site_Controller {
 
         $data = $this->identity_model->get_student_identity($student_id);
 
-    
+
         $name = $data[0]->fullname;
         $email = $data[0]->email;
         $birthdate = $data[0]->date_of_birth;
@@ -257,7 +255,7 @@ class dashboard extends MY_Site_Controller {
                 'timezone' => $timezone,
                 'profile_picture' => $profile_picture,
                 ];
-   
+
         echo json_encode($var);
 
     }
@@ -266,7 +264,7 @@ class dashboard extends MY_Site_Controller {
         $id    = $this->auth_manager->userid();
 
         $this->db->where('user_id', $id);
-        $this->db->delete('session_live'); 
+        $this->db->delete('session_live');
     }
 
 }

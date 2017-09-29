@@ -16,7 +16,7 @@ Add this package (`opentok/opentok`) to your `composer.json` file, or just run t
 command line:
 
 ```
-$ ./composer.phar require opentok/opentok 2.3.x
+$ ./composer.phar require opentok/opentok 3.0.x
 ```
 
 ## Manually:
@@ -52,7 +52,7 @@ $opentok = new OpenTok($apiKey, $apiSecret);
 To create an OpenTok Session, use the `createSession($options)` method of the
 `OpenTok\OpenTok` class. The `$options` parameter is an optional array used to specify the following:
 
-* Setting whether the session will use the OpenTok Media Router or attempt send streams directly
+* Setting whether the session will use the OpenTok Media Router or attempt to send streams directly
   between clients.
 
 * Setting whether the session will automatically create archives (implies use of routed session)
@@ -69,7 +69,7 @@ use OpenTok\ArchiveMode;
 // Create a session that attempts to use peer-to-peer streaming:
 $session = $opentok->createSession();
 
-// A session that uses the OpenTok Media Router:
+// A session that uses the OpenTok Media Router, which is required for archiving:
 $session = $opentok->createSession(array( 'mediaMode' => MediaMode::ROUTED ));
 
 // A session with a location hint:
@@ -114,6 +114,9 @@ $token = $session->generateToken(array(
 
 ## Working with Archives
 
+You can only archive sessions that use the OpenTok Media Router
+(sessions with the media mode set to routed).
+
 You can start the recording of an OpenTok Session using the `startArchive($sessionId, $name)` method
 of the `OpenTok\OpenTok` class. This will return an `OpenTok\Archive` instance. The parameter
 `$archiveOptions` is an optional array and is used to assign a name, whether to record audio and/or
@@ -138,7 +141,7 @@ $archive = $opentok->startArchive($sessionId, $archiveOptions);
 $archiveId = $archive->id;
 ```
 
-Setting the output mode to `OutputMode::INDIVIDUAL` setting causes each stream in the archive to be recorded to its own individual file. The `OutputMode::COMPOSED` setting (the default) causes all streams in the archive are recorded to a single (composed) file.
+Setting the output mode to `OutputMode::INDIVIDUAL` setting causes each stream in the archive to be recorded to its own individual file. The `OutputMode::COMPOSED` setting (the default) causes all streams in the archive to be recorded to a single (composed) file.
 
 You can stop the recording of a started Archive using the `stopArchive($archiveId)` method of the
 `OpenTok\OpenTok` object. You can also do this using the `stop()` method of the
@@ -205,9 +208,12 @@ Reference documentation is available at
 
 # Requirements
 
-You need an OpenTok API key and API secret, which you can obtain at <https://dashboard.tokbox.com>.
+You need an OpenTok API key and API secret, which you can obtain by logging into your
+[TokBox account](https://tokbox.com/account).
 
-The OpenTok PHP SDK requires PHP 5.3 or greater.
+The OpenTok PHP SDK requires PHP 5.6+ or PHP 7+
+
+For PHP 5.5 and lower please use PHP SDK v2.5
 
 # Release Notes
 

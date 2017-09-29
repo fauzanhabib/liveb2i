@@ -28,12 +28,12 @@ class Live extends MY_Site_Controller {
             redirect('home');
         } */
     }
-    
+
     // Index
     public function index()
     {
         $this->template->title = "Live Session";
-        
+
         $id = $this->auth_manager->userid();
         // $utz = $this->db->select('user_timezone')
         //         ->from('user_profiles')
@@ -44,28 +44,28 @@ class Live extends MY_Site_Controller {
         //         ->from('timezones')
         //         ->where('id', $idutz)
         //         ->get()->result();
-        
+
         // $minutes = $tz[0]->minutes;
         $tz    = $this->db->select('*')
                 ->from('user_timezones')
                 ->where('user_id', $id)
                 ->get()->result();
 
-        
+
         $minutes = $tz[0]->minutes_val;
         //User Hour
         date_default_timezone_set('UTC');
         $date     = date('H:i:s');
         $default  = strtotime($date);
         $usertime = $default+(60*$minutes);
-        // $hour  = date("H:i:s", $usertime);     
-        $hour  = date("H:i:s");     
-        // $hour = "00:00:59";        
+        // $hour  = date("H:i:s", $usertime);
+        $hour  = date("H:i:s");
+        // $hour = "00:00:59";
         // print_r($hour);
         // exit();
         $today = date('Y-m-d');
 
-         
+
         $data       = $this->appointment_model->get_appointment_for_upcoming_session('student_id','','',  $this->auth_manager->userid());
         $data_class = $this->class_member_model->get_appointment_for_upcoming_session('', '', $this->auth_manager->userid());
 
@@ -75,14 +75,14 @@ class Live extends MY_Site_Controller {
         //         $d->date = date('Y-m-d', $data_schedule['date']);
         //         $d->start_time = $data_schedule['start_time'];
         //         $d->end_time = $data_schedule['end_time'];
-                
+
         //     }
         // }
-        
+
         // if ($data_class) {
         //     foreach ($data_class as $d) {
-        //         $data_schedule = $this->convertBookSchedule($this->identity_model->get_gmt($this->auth_manager->userid())[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);                             
-                
+        //         $data_schedule = $this->convertBookSchedule($this->identity_model->get_gmt($this->auth_manager->userid())[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);
+
         //         $d->date = date('Y-m-d', $data_schedule['date']);
         //         $d->start_time = $data_schedule['start_time'];
         //         $d->end_time = $data_schedule['end_time'];
@@ -113,19 +113,19 @@ class Live extends MY_Site_Controller {
             // echo "<pre>";
             // print_r($checkcch);exit();
         }
-         
+
         //Appointment Hour
         // $appoint_id = @$sess[0]->id;
 
-        
+
 
         @$appoint  = $sess[0]->start_time;
         $default1  = strtotime($appoint);
         $usertime1 = $default1+(60*$minutes);
-        
+
         //@$starthour_conv = date("H:i:s", $usertime1);
         //@$endhour_conv   = date("H:i:s", $usertime1);
-       
+
         $opentok    = new OpenTok($this->config->item('opentok_key'), $this->config->item('opentok_secret'));
         @$sessionId = $sess[0]->session;
         @$token     = $sess[0]->token;
@@ -159,7 +159,7 @@ class Live extends MY_Site_Controller {
             $sentence  = "Your session started ";
             @$notes_c   = "";
             $notes_s   = "You may participate in the session until it ends.";
-            
+
         }
         else if($different_val >= 300 && $hour > $starthour_conv){
             $sentence  = "Your session started ";
@@ -203,8 +203,8 @@ class Live extends MY_Site_Controller {
                   ->where('appointments.id', $appoint_id)
                   ->get()->result();
         }
-      
-        
+
+
         @$user_extract = $user[0];
         @$user_extract2 = $user2[0];
         @$std_id_for_cert = $user_extract2->student_id;
@@ -212,7 +212,7 @@ class Live extends MY_Site_Controller {
 
         $userrole   = $this->auth_manager->role();
         if($userrole == "STD"){
-            if(@$appoint_id){   
+            if(@$appoint_id){
                 if(@$token == NULL){
                     $gentoken   = $opentok->generateToken($sessionId);
                     $checktoken = array(
@@ -221,18 +221,18 @@ class Live extends MY_Site_Controller {
 
                     $this->db->where('id', $appoint_id);
                     $this->db->update('appointments', $checktoken);
-                    
+
                     $sessioning = $this->db->select('*')
                                 ->from('appointments')
                                 ->where($tipe_, $id)
                                 ->where('session', $sessionId)
                                 ->where('date', $today)
                                 ->get()->result();
-                                
+
                     @$sessionIdn  = $sessioning[0]->session;
                     @$tokenn      = $sessioning[0]->token;
                     $apiKey       = $this->config->item('opentok_key');
-                    
+
                     $livesession = array(
                     'sessionId'  => @$sessionId,
                     'token'      => @$tokenn,
@@ -258,11 +258,11 @@ class Live extends MY_Site_Controller {
                                 ->where('session', $sessionId)
                                 ->where('date', $today)
                                 ->get()->result();
-                                
+
                     @$sessionIde  = $sessioninge[0]->session;
                     @$tokene      = $sessioninge[0]->token;
                     $apiKey       = $this->config->item('opentok_key');
-                    
+
                     $livesession = array(
                     'sessionId'  => @$sessionId,
                     'token'      => @$token,
@@ -281,7 +281,7 @@ class Live extends MY_Site_Controller {
                     'student_vrm_json' => @$student_vrm_json
                     );
                 }
-                       
+
                 $std_hour_check = $this->db->select('std_attend')
                                 ->from('appointments')
                                 ->where($tipe_, $id)
@@ -311,7 +311,7 @@ class Live extends MY_Site_Controller {
                 $this->template->publish();
             }
         }
-            
+
         else{
             if(@$appoint_id){
                 if(@$token == NULL){
@@ -322,20 +322,20 @@ class Live extends MY_Site_Controller {
 
                     $this->db->where('id', $appoint_id);
                     $this->db->update('appointments', $checktoken);
-                    
+
                     $sessioning = $this->db->select('*')
                                 ->from('appointments')
                                 ->where($tipe_, $id)
                                 ->where('session', $sessionId)
                                 ->where('date', $today)
                                 ->get()->result();
-                                
+
                     @$sessionIdn  = $sessioning[0]->session;
                     @$tokenn      = $sessioning[0]->token;
                     $apiKey       = $this->config->item('opentok_key');
                     // $script = $this->coaching_script_model->get_student_script();
                     @$std_id   = $user_extract->student_id;
-                    
+
                     $livesession = array(
                     'sessionId'  => @$sessionId,
                     'token'      => @$tokenn,
@@ -363,7 +363,7 @@ class Live extends MY_Site_Controller {
                                 ->where('session', $sessionId)
                                 ->where('date', $today)
                                 ->get()->result();
-                                
+
                     @$sessionIde  = $sessioninge[0]->session;
                     @$tokene      = $sessioninge[0]->token;
                     $apiKey       = $this->config->item('opentok_key');
@@ -373,7 +373,7 @@ class Live extends MY_Site_Controller {
                     // print_r($std_cert);
                     // exit();
 
-                  
+
 
                     $livesession = array(
                     'sessionId'  => @$sessionId,
@@ -395,7 +395,7 @@ class Live extends MY_Site_Controller {
                     'appointment_id' => $appoint_id
                     );
                 }
-                
+
                 $cch_hour_check = $this->db->select('cch_attend')
                                 ->from('appointments')
                                 ->where($tipe_, $id)
@@ -416,10 +416,29 @@ class Live extends MY_Site_Controller {
                   $this->db->update('appointments', $data2c);
                 }
 
-                // echo "<pre>";print_r($livesession);exit();
+                //check if student is b2c or b2i
+                $std_idpull = $this->db->select('student_id')
+                                ->from('appointments')
+                                ->where('id', $livesession['appointment_id'])
+                                ->get()->result();
 
-                $this->template->content->view('contents/opentok/coach/session', $livesession);
-                $this->template->publish();
+                $std_check_id = $std_idpull[0]->student_id;
+
+                $b2c_checkpull = $this->db->select('login_type')
+                                ->from('users')
+                                ->where('id', $std_check_id)
+                                ->get()->result();
+
+                $b2c_id = $b2c_checkpull[0]->login_type;
+                // echo "<pre>";print_r($b2c_id);exit();
+                //check if student is b2c or b2i
+                if($b2c_id == 0){
+                  $this->template->content->view('contents/opentok/coach/session', $livesession);
+                  $this->template->publish();
+                }else{
+                  $this->template->content->view('contents/opentok/coach/session_b2c', $livesession);
+                  $this->template->publish();
+                }
             }else{
                 $this->template->content->view('contents/opentok/coach/nosession');
                 $this->template->publish();
@@ -427,13 +446,13 @@ class Live extends MY_Site_Controller {
         }
 
     }
-    
+
     public function session_leave(){
         $id = $this->auth_manager->userid();
         $id_appointment = $this->input->post("appointment_id");
 
         if($this->auth_manager->role() == 'STD'){
-            
+
             $updstd = array(
                'status' => 0
             );
@@ -441,7 +460,7 @@ class Live extends MY_Site_Controller {
             $this->db->where('user_id', $id);
             $this->db->where('appointment_id', $id_appointment);
             $this->db->update('session_live', $updstd);
-            
+
 
         } else if($this->auth_manager->role() == 'CCH'){
 
@@ -452,7 +471,7 @@ class Live extends MY_Site_Controller {
             $this->db->where('user_id', $id);
             $this->db->where('appointment_id', $id_appointment);
             $this->db->update('session_live', $updcch);
-            
+
         }
     }
 
@@ -461,7 +480,7 @@ class Live extends MY_Site_Controller {
         $id_appointment = $this->input->post("appointment_id");
 
         if($this->auth_manager->role() == 'STD'){
-            
+
             $updstd = array(
                'status' => 1
             );
@@ -469,7 +488,7 @@ class Live extends MY_Site_Controller {
             $this->db->where('user_id', $id);
             $this->db->where('appointment_id', $id_appointment);
             $this->db->update('session_live', $updstd);
-            
+
 
         } else if($this->auth_manager->role() == 'CCH'){
 
@@ -480,7 +499,7 @@ class Live extends MY_Site_Controller {
             $this->db->where('user_id', $id);
             $this->db->where('appointment_id', $id_appointment);
             $this->db->update('session_live', $updcch);
-            
+
         }
     }
 
@@ -490,7 +509,7 @@ class Live extends MY_Site_Controller {
         $pesan=$this->input->post("pesan");
         $pesan2 = mysql_real_escape_string($pesan);
         $appointment_id = $this->input->post("appointment_id");
-        
+
         $id  = $this->auth_manager->userid();
 
         $tz    = $this->db->select('*')
@@ -498,16 +517,16 @@ class Live extends MY_Site_Controller {
                 ->where('user_id', $id)
                 ->get()->result();
 
-        
+
         $minutes = $tz[0]->minutes_val;
         //User Hour
-        $hourss = date("H:i");     
+        $hourss = date("H:i");
 
-        mysql_query("insert into chat (coach_name,chat_messages, appointment_id, time) 
+        mysql_query("insert into chat (coach_name,chat_messages, appointment_id, time)
           VALUES ('$user','$pesan2','$appointment_id','$hourss')");
         redirect("opentok/live/ambil_pesan");
     }
-     
+
     public function ambil_pesan()
     {
         $id  = $this->auth_manager->userid();
@@ -516,25 +535,25 @@ class Live extends MY_Site_Controller {
                 ->where('user_id', $id)
                 ->get()->result();
 
-        
+
         $minutes = $tz[0]->minutes_val;
 
                 // echo "<pre>";
                 // print_r($tz);
                 // exit();
-        
+
         // $minutes = $tz[0]->minutes;
         //User Hour
         date_default_timezone_set('UTC');
-        $hour = date("H:i:s");     
-        // $hour = "00:00:59";        
-        
+        $hour = date("H:i:s");
+        // $hour = "00:00:59";
+
         /* print_r($hour);
         exit(); */
         $today = date('Y-m-d');
 
         // $today = "2016-10-17";
-        
+
         if($this->auth_manager->role() == 'STD'){
             $sess = $this->db->select('*')
                     ->from('appointments')
@@ -553,7 +572,7 @@ class Live extends MY_Site_Controller {
                     ->get()->result();
         }
         @$a = $sess[0]->id;
-        
+
         $loadchat = $this->db->select('id, coach_name, chat_messages, time')
                     ->from('chat')
                     ->where('appointment_id', $a)
@@ -564,7 +583,7 @@ class Live extends MY_Site_Controller {
             $date     = $lc->time;
             $default  = strtotime($date);
             $usertime = $default+(60*$minutes);
-            $tchat    = date("H:i", $usertime); 
+            $tchat    = date("H:i", $usertime);
             echo "<li><b>$lc->coach_name</b> : $lc->chat_messages <div class='font-12' style='float:right;''>$tchat</div>";
         }
         // $tampil=mysql_query("select id, coach_name, chat_messages, time from chat where appointment_id='$a' order by id desc");
@@ -580,18 +599,18 @@ class Live extends MY_Site_Controller {
     {
         $cch_note       = $this->input->post("cch_note");
         $appoint_id_cch = $this->input->post("appointment_id");
-  
+
         $ins_note = array(
             'cch_notes' => $cch_note
         );
-        
+
         $this->db->where('id', $appoint_id_cch);
         $this->db->update('appointments', $ins_note);
-        
+
 
         // redirect("opentok/live/ambil_pesan");
     }
-    
+
     function coaching_script(){
         if(!empty($_POST['check_list'])) {
             $check_list  = $_POST['check_list'];
@@ -602,7 +621,7 @@ class Live extends MY_Site_Controller {
             // $status_script1 = $_POST['status_script1'];
             // print_r($status_script0);
             // echo "<pre>";
-                    
+
             if($check_list != NULL){
                     // print_r($check_list);
                     // exit();
@@ -621,7 +640,7 @@ class Live extends MY_Site_Controller {
                         $this->db->update('coaching_scripts', array('status' => "0"));
                     $this->db->trans_commit();
                 }
-               
+
                 $this->messages->add('Coaching Scripts Updated', 'success');
 
         }else {
@@ -676,7 +695,7 @@ class Live extends MY_Site_Controller {
                     ->get()->result();
 
                 $checkstd = @$checksess[0]->status;
-                
+
                 if(!@$checksess){
                     $sesslivecch = array(
                        'appointment_id' => $appoint_id,
@@ -728,7 +747,7 @@ class Live extends MY_Site_Controller {
                 //$tomorrow = date('m-d-Y',strtotime($date . "+1 days"));
                 $start_time = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
                 $end_time = date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time)));
-                
+
 //                $date2 = strtotime('+ 1days'.date('Y-m-d',$date));
 //                //$tomorrow = date('m-d-Y',strtotime($date . "+1 days"));
 //                $start_time2 = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
@@ -745,13 +764,13 @@ class Live extends MY_Site_Controller {
                 $date = strtotime('- 1days'.date('Y-m-d',$date));
                 $start_time = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
                 $end_time = (date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))) == '00:00:00' ? '23:59:59' : date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))));
-                
+
 //                $date2 = strtotime('- 1days'.date('Y-m-d',$date));
 //                $start_time2 = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
 //                $end_time2 = (date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))) == '00:00:00' ? '23:59:59' : date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))));
             }
         }
-        
+
         return array(
             'date' => $date,
             'start_time' => $start_time,
@@ -761,5 +780,5 @@ class Live extends MY_Site_Controller {
 //            'end_time2' => @$end_time2,
         );
     }
-   
+
 }

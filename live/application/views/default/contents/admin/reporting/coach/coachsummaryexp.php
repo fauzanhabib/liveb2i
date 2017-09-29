@@ -328,12 +328,12 @@
             buttons: [
                 {
                     extend: 'excelHtml5',
-                    title: 'Student Report'
+                    title: 'Coach Summary Report'
                 },
                 {
                     extend: 'pdfHtml5',
                     orientation: 'landscape',
-                    title: 'Student Report'
+                    title: 'Coach Summary Report'
                 },
                 {
                     extend: 'print',

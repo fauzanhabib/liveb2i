@@ -113,7 +113,7 @@
     });
 </script>
 
-<script src='//static.opentok.com/v2/js/opentok.min.js'></script> 
+<script src='//static.opentok.com/v2/js/opentok.min.js'></script>
 <script charset="utf-8">
     var apiKey = '<?php echo $apiKey ?>';
     var sessionId = '<?php echo $sessionId ?>';
@@ -207,7 +207,7 @@
       }
     });
     // OT.registerScreenSharingExtension('chrome', extensionId2, 2);
-    
+
     function screenshare() {
       OT.checkScreenSharingCapability(function(response) {
       // console.log(response.extensionInstalled);
@@ -253,7 +253,7 @@
       });
     }
 
-    
+
 </script>
 <script>
     function makeFullScreen(divId){
@@ -269,7 +269,7 @@
     }
 </script>
 
-<script>    
+<script>
     $(document).ready(function(){
      var countmsg;
      var checkmsg;
@@ -278,19 +278,19 @@
     function tampildata(){
        $.ajax({
         type:"POST",
-        url:"<?php echo site_url('opentok/live/ambil_pesan');?>",    
+        url:"<?php echo site_url('opentok/live/ambil_pesan');?>",
         success: function(data){
           $('#isi_chat').html(data);
           checkmsg = data.length;
           sendername = data;
-        }  
+        }
        });
     }
 
 
      $('#kirim').click(function(){
       // console.log('chat');
-       var pesan = $('#pesan').val(); 
+       var pesan = $('#pesan').val();
        var user = $('#user').val();
        var appointment_id = '<?php echo $appointment_id ?>';
             if (pesan == null || pesan == "") {
@@ -300,20 +300,20 @@
             else{
              $.ajax({
               type:"POST",
-              url:"<?php echo site_url('opentok/live/kirim_chat');?>",    
-              data: {'pesan':pesan,'user': user, 'appointment_id': appointment_id},        
+              url:"<?php echo site_url('opentok/live/kirim_chat');?>",
+              data: {'pesan':pesan,'user': user, 'appointment_id': appointment_id},
               success: function(data){
-                countmsg = data.length;    
+                countmsg = data.length;
                 $('#pesan').val('');
                 $('#isi_chat').html(data);
-              }  
+              }
              });
-            } 
+            }
           });
-          
+
           $('#pesan').keypress(function (e){
-          if(e.keyCode == 13){    
-           var pesan = $('#pesan').val(); 
+          if(e.keyCode == 13){
+           var pesan = $('#pesan').val();
            var user = $('#user').val();
            var appointment_id = '<?php echo $appointment_id ?>';
            if (pesan == null || pesan == "") {
@@ -323,10 +323,10 @@
             else{
                $.ajax({
                 type:"POST",
-                url:"<?php echo site_url('opentok/live/kirim_chat');?>",    
-                data: {'pesan':pesan,'user': user, 'appointment_id': appointment_id},        
+                url:"<?php echo site_url('opentok/live/kirim_chat');?>",
+                data: {'pesan':pesan,'user': user, 'appointment_id': appointment_id},
                 success: function(data){
-                  $('#pesan').val('');    
+                  $('#pesan').val('');
                   $('#isi_chat').html(data);
                 }
                });
@@ -348,7 +348,7 @@
 </script>
 
 <!-- COACH NOTE STARTS -->
-<script>    
+<script>
 $(document).ready(function(){
 
     $('#save_note').click(function(){
@@ -363,7 +363,7 @@ $(document).ready(function(){
           // alert( appointment_id );
           $.ajax({
             type:"POST",
-            url:"<?php echo site_url('opentok/live/save_cchnote');?>",    
+            url:"<?php echo site_url('opentok/live/save_cchnote');?>",
             data: {
               'cch_note' : cch_note,
               'appointment_id' : appointment_id
@@ -380,12 +380,12 @@ $(document).ready(function(){
 <!-- COACH NOTE ENDS -->
 
 <!-- COACH SCRIPT STARTS -->
-<script>    
+<script>
 $(document).ready(function(){
 
     $('#coachscript').click(function(){
-       var cch_script = $("input[name='check_list[]']:checked").map(function() { 
-                        return this.value; 
+       var cch_script = $("input[name='check_list[]']:checked").map(function() {
+                        return this.value;
                       }).get();
        var std_id = $('#std_id').val();
        var status_script = $('#status_script').val();
@@ -397,7 +397,7 @@ $(document).ready(function(){
           // alert( Updated );
           $.ajax({
             type:"POST",
-            url:"<?php echo site_url('opentok/live/coaching_script');?>",    
+            url:"<?php echo site_url('opentok/live/coaching_script');?>",
             data: {
               'std_id' : std_id,
               'check_list' : cch_script,
@@ -436,7 +436,7 @@ if(isChrome == true && isFirefox == false){
         }else{
          callback(false);
         }
-     }); 
+     });
     }
     //check online extension - chrome webstore
     IsExist(extensionId,function(installed){
@@ -447,10 +447,10 @@ if(isChrome == true && isFirefox == false){
      else{
       $("#sharescreenava").removeClass("hidden");
       $("#sharescreenavan").addClass("hidden");
-     } 
+     }
     });
     // check offline extension - .crx file
-    
+
   },1000);
 }else if(isChrome == false && isFirefox == true){
   // console.log('as');
@@ -458,7 +458,7 @@ if(isChrome == true && isFirefox == false){
   $("#sharescreenava").hide();
   $("#sharescreenava").hide();
 }
-</script> 
+</script>
 <!-- COACH SCRIPT ENDS -->
 
     <style>
@@ -563,7 +563,7 @@ div.accordion.active, div.accordion:hover {
     background-color: #3baae3;
     border-top: 2px solid #fff;
     color:#fff;
-    opacity: 1 !important; 
+    opacity: 1 !important;
 }
 
 /* Style the accordion panel. Note: hidden by default */
@@ -649,18 +649,18 @@ div.panel.show {
     -o-transition: all 1s ease-in-out;
     -ms-transition: all 1s ease-in-out;
     transition: all 1s ease-in-out;
-    
+
     -webkit-animation-direction: normal;
     -webkit-animation-duration: 1s;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-name: blink;
     -webkit-animation-timing-function: ease-in-out;
-    
+
 -moz-animation-direction: normal;
     -moz-animation-duration: 1s;
     -moz-animation-iteration-count: infinite;
     -moz-animation-name: blink;
-    -moz-animation-timing-function: ease-in-out;    
+    -moz-animation-timing-function: ease-in-out;
 }
 </style>
 <style>
@@ -680,10 +680,10 @@ div.panel.show {
 <!-- modal -->
 <audio id="chat_audio" src="<?php echo base_url();?>assets/sound/chat.mp3" preload="auto"></audio>
   <div class="sess-details-modal remodal max-width900" data-remodal-id="modal" role="dialog" aria-labelledby="modal1Title" aria-describedby="modal1Desc">
-      <div class="pure-g">         
+      <div class="pure-g">
           <div class="profile-detail text-left prelative width75perc">
               <h4 class="border-b-1 font-semi-bold text-cl-grey">Session Information</h4>
-              <table class="table-no-border2"> 
+              <table class="table-no-border2">
                   <tbody>
                       <tr>
                           <td class="">Student Name</td>
@@ -691,15 +691,15 @@ div.panel.show {
                               <span class=""><?php echo @$user_extract->fullname?></span>
                           </td>
                       </tr>
-                  </tbody>    
+                  </tbody>
               </table>
           </div>
       </div>
- 
+
       <div class="coach-comment width100perc">
           <div class="comment-message padding0 clearfix">
               <div class="text-left">
-                  
+
                   <p><?php echo $sentence.''.$different.' ago.';?></p>
                   <p><?php echo $notes_c;?></p><br>
                   <span>Notes :</span>
@@ -715,9 +715,9 @@ div.panel.show {
                   </table>
                   <br>
                   <div>
-                  <?php 
-                  $duration   = $different_val; 
-                  
+                  <?php
+                  $duration   = $different_val;
+
                   if($duration <= 300){
                     // echo "<pre>";
                     //   print_r($different_val);
@@ -794,7 +794,7 @@ div.panel.show {
 
     <div class="heading objblink hidden" id="camerablocked" style="background: #ffe9e9;border-left: solid 5px #c87373;">
       <div style="color: #c36969;font-weight: 400;">
-        Your browser is blocking your camera, please enable it and then reload the page. See How To: 
+        Your browser is blocking your camera, please enable it and then reload the page. See How To:
         <b><a id="myBtn">Chrome</a></b>
       </div>
     </div>
@@ -851,7 +851,7 @@ div.panel.show {
                       <input type="hidden" name="appoint_id" value="<?php echo $appoint_id ?>">
                       <input type="submit" value="Leave Session" class="pure-button btn-small btn-red cancel hidden">
                   </form>
-                    
+
                   <div id="demo"></div>
                 </div>
               </div>
@@ -899,7 +899,7 @@ div.panel.show {
                     <div class="box-capsule width20perc text-cl-tertiary font-14">
                         <span>Previous Notes</span>
                     </div>
-                    <?php 
+                    <?php
                       // $pull = $user_extract->coach_id;
                       if($user_extract){
                         $cch_id = $user_extract->coach_id;
@@ -910,7 +910,7 @@ div.panel.show {
                         $cch_id = $user_extract2->coach_id;
                         $std_id = $user_extract2->student_id;
                       }
-                      
+
                       $pn = $this->db->select('*')
                           ->from('appointments a')
                           ->join('user_profiles up', 'up.user_id = a.coach_id')
@@ -940,8 +940,8 @@ div.panel.show {
                 <div class="col-md-12">
                       <div class="col-md-2">
                           <input placeholder="Please write here..." type="text" id="pesan" class="form-control" style="width: 82%;">
-                          <input placeholder="<?php echo $this->auth_manager->get_name();?>" type="hidden" id="user" 
-                              style="width: 15%;float: right;" 
+                          <input placeholder="<?php echo $this->auth_manager->get_name();?>" type="hidden" id="user"
+                              style="width: 15%;float: right;"
                               class="form-control" value="<?php echo $this->auth_manager->get_name();?>" disabled>
                           <input type="button" value="Send" id="kirim" class="pure-button btn-small btn-tertiary"
                               style="width: 15%;float: right;height: 26px;">
@@ -1062,11 +1062,11 @@ window.onclick = function(event) {
      });
 
   } );
- 
+
 </script>
 
 <script>
-    $(function(){ 
+    $(function(){
         var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
         inst.open();
     });
@@ -1117,7 +1117,7 @@ function timer() {
     var minutes     = Math.floor(minutesLeft/60);
     var remainingSeconds = seconds % 60;
     if (remainingSeconds < 10) {
-        remainingSeconds = "0" + remainingSeconds; 
+        remainingSeconds = "0" + remainingSeconds;
     }
     document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
     if (seconds == 0) {
@@ -1145,7 +1145,7 @@ function timer2() {
     var minutes2     = Math.floor(minutesLeft2/60);
     var remainingSeconds2 = seconds2 % 60;
     if (remainingSeconds2 < 10) {
-        remainingSeconds2 = "0" + remainingSeconds2; 
+        remainingSeconds2 = "0" + remainingSeconds2;
     }
     document.getElementById('countdown2').innerHTML = minutes2 + ":" + remainingSeconds2;
     if (seconds2 == 0) {
@@ -1170,12 +1170,12 @@ function timer3() {
     var minutes3     = Math.floor(minutesLeft3/60);
     var remainingSeconds3 = seconds3 % 60;
     if (remainingSeconds3 < 10) {
-        remainingSeconds3 = "0" + remainingSeconds3; 
+        remainingSeconds3 = "0" + remainingSeconds3;
     }
     document.getElementById('countdown3').innerHTML = minutes3 + ":" + remainingSeconds3;
     if (seconds3 == 0) {
         clearInterval(countdownTimer3);
-        
+
     } else {
         seconds3--;
     }
@@ -1280,11 +1280,11 @@ var data = {
             data: [wss, repeat, mic, headphone, sr, mt]
         }
     ]
-};    
+};
 
 if($(document).width() < 490){
     var bar = new Chart(canvas.getContext('2d')).Radar(data, {
-      
+
         tooltipTemplate : valueData,
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
         responsive: true,
@@ -1311,7 +1311,7 @@ if($(document).width() < 490){
 }
 else {
     var bar = new Chart(canvas.getContext('2d')).Radar(data, {
-      
+
         tooltipTemplate : valueData,
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
         responsive: true,

@@ -15,9 +15,15 @@ use OpenTok\Exception\ArchiveDomainException;
 use OpenTok\Exception\ArchiveUnexpectedValueException;
 use OpenTok\Exception\ArchiveAuthenticationException;
 
+use OpenTok\Exception\BroadcastException;
+use OpenTok\Exception\BroadcastDomainException;
+use OpenTok\Exception\BroadcastUnexpectedValueException;
+use OpenTok\Exception\BroadcastAuthenticationException;
+use OpenTok\MediaMode;
+
 // TODO: build this dynamically
 /** @internal */
-define('OPENTOK_SDK_VERSION', '2.3.2');
+define('OPENTOK_SDK_VERSION', '3.0.0');
 /** @internal */
 define('OPENTOK_SDK_USER_AGENT', 'OpenTok-PHP-SDK/' . OPENTOK_SDK_VERSION);
 
@@ -38,8 +44,8 @@ class Client extends \Guzzle\Http\Client
         $this->setUserAgent(OPENTOK_SDK_USER_AGENT, true);
 
         // TODO: attach plugins
-        $partnerAuthPlugin = new Plugin\PartnerAuth($apiKey, $apiSecret);
-        $this->addSubscriber($partnerAuthPlugin);
+        $opentokAuthPlugin = new Plugin\OpentokAuth($apiKey, $apiSecret);
+        $this->addSubscriber($opentokAuthPlugin);
 
         $this->configured = true;
     }
@@ -73,7 +79,7 @@ class Client extends \Guzzle\Http\Client
     public function startArchive($sessionId, $options)
     {
         // set up the request
-        $request = $this->post('/v2/partner/'.$this->apiKey.'/archive');
+        $request = $this->post('/v2/project/'.$this->apiKey.'/archive');
         $request->setBody(json_encode(array_merge(array( 'sessionId' => $sessionId ), $options)));
         $request->setHeader('Content-Type', 'application/json');
 
@@ -88,7 +94,7 @@ class Client extends \Guzzle\Http\Client
     public function stopArchive($archiveId)
     {
         // set up the request
-        $request = $this->post('/v2/partner/'.$this->apiKey.'/archive/'.$archiveId.'/stop');
+        $request = $this->post('/v2/project/'.$this->apiKey.'/archive/'.$archiveId.'/stop');
         $request->setHeader('Content-Type', 'application/json');
 
         try {
@@ -102,7 +108,7 @@ class Client extends \Guzzle\Http\Client
 
     public function getArchive($archiveId)
     {
-        $request = $this->get('/v2/partner/'.$this->apiKey.'/archive/'.$archiveId);
+        $request = $this->get('/v2/project/'.$this->apiKey.'/archive/'.$archiveId);
         try {
             $archiveJson = $request->send()->json();
         } catch (\Exception $e) {
@@ -114,10 +120,29 @@ class Client extends \Guzzle\Http\Client
 
     public function deleteArchive($archiveId)
     {
-        $request = $this->delete('/v2/partner/'.$this->apiKey.'/archive/'.$archiveId);
+        $request = $this->delete('/v2/project/'.$this->apiKey.'/archive/'.$archiveId);
         $request->setHeader('Content-Type', 'application/json');
         try {
-            $request->send()->json();
+            $response = $request->send();
+            if ($response->getStatusCode() != 204) {
+                $response->json();
+            }
+        } catch (\Exception $e) {
+            $this->handleException($e);
+            return false;
+        }
+        return true;
+    }
+
+    public function forceDisconnect($sessionId,$connectionId)
+    {
+        $request = $this->delete('/v2/project/'.$this->apiKey.'/session/'.$sessionId.'/connection/'.$connectionId);
+        $request->setHeader('Content-Type', 'application/json');
+        try {
+            $response = $request->send();
+            if ($response->getStatusCode() != 204) {
+                $response->json();
+            }
         } catch (\Exception $e) {
             $this->handleException($e);
             return false;
@@ -127,7 +152,7 @@ class Client extends \Guzzle\Http\Client
 
     public function listArchives($offset, $count)
     {
-        $request = $this->get('/v2/partner/'.$this->apiKey.'/archive');
+        $request = $this->get('/v2/project/'.$this->apiKey.'/archive');
         if ($offset != 0) $request->getQuery()->set('offset', $offset);
         if (!empty($count)) $request->getQuery()->set('count', $count);
         try {
@@ -137,6 +162,118 @@ class Client extends \Guzzle\Http\Client
             return;
         }
         return $archiveListJson;
+    }
+
+    public function startBroadcast($sessionId, $options)
+    {
+        $request = $this->post('/v2/project/'.$this->apiKey.'/broadcast');
+        $request->setBody(json_encode(array(
+            'sessionId' => $sessionId,
+            'layout' => $options['layout']->jsonSerialize()
+        )));
+        $request->setHeader('Content-Type', 'application/json');
+
+        try {
+            $broadcastJson = $request->send()->json();
+        } catch (\Exception $e) {
+            $this->handleBroadcastException($e);
+        }
+        return $broadcastJson;
+    }
+
+    public function stopBroadcast($broadcastId)
+    {
+        $request = $this->post('/v2/project/'.$this->apiKey.'/broadcast/'.$broadcastId.'/stop');
+        $request->setHeader('Content-Type', 'application/json');
+
+        try {
+            $broadcastJson = $request->send()->json();
+        } catch (\Exception $e) {
+            $this->handleBroadcastException($e);
+        }
+        return $broadcastJson;
+    }
+
+    public function getBroadcast($broadcastId)
+    {
+        $request = $this->get('/v2/project/'.$this->apiKey.'/broadcast/'.$broadcastId);
+        try {
+            $broadcastJson = $request->send()->json();
+        } catch (\Exception $e) {
+            $this->handleBroadcastException($e);
+        }
+        return $broadcastJson;
+    }
+
+    public function getLayout($resourceId, $resourceType = 'broadcast')
+    {
+        $request = $this->get('/v2/project/'.$this->apiKey.'/'.$resourceType.'/'.$resourceId.'/layout');
+        try {
+            $layoutJson = $request->send()->json();
+        } catch (\Exception $e) {
+            $this->handleException($e);
+        }
+        return $layoutJson;
+    }
+
+    public function updateLayout($resourceId, $layout, $resourceType = 'broadcast')
+    {
+        $request = $this->put('/v2/project/'.$this->apiKey.'/'.$resourceType.'/'.$resourceId.'/layout');
+        $request->setBody(json_encode($layout->jsonSerialize()));
+        $request->setHeader('Content-Type', 'application/json');
+        try {
+            $layoutJson = $request->send()->json();
+        } catch (\Exception $e) {
+            $this->handleException($e);
+        }
+        return $layoutJson;
+    }
+
+    public function updateStream($sessionId, $streamId, $properties)
+    {
+        $request = $this->put('/v2/project/'.$this->apiKey.'/session/'.$sessionId.'/stream/'.$streamId);
+        $request->setBody(json_encode($properties));
+        $request->setHeader('Content-Type', 'application/json');
+        try {
+            $response = $request->send();
+            if ($response->getStatusCode() != 204) {
+                $response->json();
+            }
+        } catch (\Exception $e) {
+            $this->handleException($e);
+        }
+    }
+
+    public function dial($sessionId, $token, $sipUri, $options)
+    {
+        $body = array(
+          'sessionId' => $sessionId,
+          'token' => $token,
+          'sip' => array(
+            'uri' => $sipUri,
+            'secure' => $options['secure']
+          )
+        );
+
+        if (isset($options) && array_key_exists('headers', $options) && sizeof($options['headers']) > 0) {
+            $body['sip']['headers'] = $options['headers'];
+        }
+
+        if (isset($options) && array_key_exists('auth', $options)) {
+            $body['sip']['auth'] = $options['auth'];
+        }
+
+        // set up the request
+        $request = $this->post('/v2/project/'.$this->apiKey.'/call');
+        $request->setBody(json_encode($body));
+        $request->setHeader('Content-Type', 'application/json');
+
+        try {
+            $sipJson = $request->send()->json();
+        } catch (\Exception $e) {
+            $this->handleException($e);
+        }
+        return $sipJson;
     }
 
     // Helpers
@@ -186,7 +323,7 @@ class Client extends \Guzzle\Http\Client
             );
         } else {
             // TODO: check if this works because Exception is an interface not a class
-            throw new Exception('An unexpected error occurred');
+            throw new \Exception('An unexpected error occurred');
         }
     }
 
@@ -203,6 +340,22 @@ class Client extends \Guzzle\Http\Client
         } catch (Exception $oe) {
             // TODO: check if this works because ArchiveException is an interface not a class
             throw new ArchiveException($e->getMessage(), null, $oe->getPrevious());
+        }
+    }
+
+    private function handleBroadcastException($e)
+    {
+        try {
+            $this->handleException($e);
+        } catch (AuthenticationException $ae) {
+            throw new BroadcastAuthenticationException($this->apiKey, $this->apiSecret, null, $ae->getPrevious());
+        } catch (DomainException $de) {
+            throw new BroadcastDomainException($e->getMessage(), null, $de->getPrevious());
+        } catch (UnexpectedValueException $uve) {
+            throw new BroadcastUnexpectedValueException($e->getMessage(), null, $uve->getPrevious());
+        } catch (Exception $oe) {
+            // TODO: check if this works because BroadcastException is an interface not a class
+            throw new BroadcastException($e->getMessage(), null, $oe->getPrevious());
         }
     }
 

@@ -1,10 +1,9 @@
 *.DS_Store
+composer.phar
+composer.lock
 opentok.phar
 vendor/
 phpunit.xml
-sample/HelloWorld/vendor/
-sample/HelloWorld/cache/
-sample/HelloWorld/composer.lock
-sample/Archiving/vendor/
-sample/Archiving/cache/
-sample/Archiving/composer.lock
+sample/*/vendor/
+sample/*/cache/
+composer.lock

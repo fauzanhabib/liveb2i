@@ -8,9 +8,16 @@ class ComposerStaticInitf24fd55946a7ac352436704e1e97592b
 {
     public static $files = array (
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
         'S' => 
         array (
             'Symfony\\Component\\EventDispatcher\\' => 34,
@@ -19,6 +26,7 @@ class ComposerStaticInitf24fd55946a7ac352436704e1e97592b
         ),
         'P' => 
         array (
+            'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
         ),
@@ -26,17 +34,32 @@ class ComposerStaticInitf24fd55946a7ac352436704e1e97592b
         array (
             'OpenTok\\' => 8,
         ),
+        'J' => 
+        array (
+            'JohnStevenson\\JsonWorks\\' => 24,
+        ),
         'I' => 
         array (
             'Interop\\Container\\' => 18,
         ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
+        ),
         'F' => 
         array (
+            'Firebase\\JWT\\' => 13,
             'FastRoute\\' => 10,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Twig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/twig/src',
+        ),
         'Symfony\\Component\\EventDispatcher\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
@@ -48,6 +71,10 @@ class ComposerStaticInitf24fd55946a7ac352436704e1e97592b
         'Slim\\' => 
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
+        ),
+        'Psr\\Log\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
         'Psr\\Http\\Message\\' => 
         array (
@@ -61,9 +88,29 @@ class ComposerStaticInitf24fd55946a7ac352436704e1e97592b
         array (
             0 => __DIR__ . '/..' . '/opentok/opentok/src/OpenTok',
         ),
+        'JohnStevenson\\JsonWorks\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/johnstevenson/json-works/src',
+        ),
         'Interop\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
+        ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Firebase\\JWT\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/firebase/php-jwt/src',
         ),
         'FastRoute\\' => 
         array (
@@ -79,26 +126,11 @@ class ComposerStaticInitf24fd55946a7ac352436704e1e97592b
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
             ),
         ),
-        'S' => 
-        array (
-            'Smsglobal\\RestApiClient' => 
-            array (
-                0 => __DIR__ . '/../..' . '/',
-                1 => __DIR__ . '/..' . '/smsglobal/rest-api-client',
-            ),
-        ),
         'P' => 
         array (
             'Pimple' => 
             array (
                 0 => __DIR__ . '/..' . '/pimple/pimple/src',
-            ),
-        ),
-        'J' => 
-        array (
-            'JohnStevenson\\JsonWorks' => 
-            array (
-                0 => __DIR__ . '/..' . '/aoberoi/json-works/src',
             ),
         ),
         'G' => 
