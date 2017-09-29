@@ -142,7 +142,7 @@
                               // =====
 
                                 // if($dat > $dat_now){
-                                if($h > 24){
+                                if($h > 1){
 
                                 $appointmen_id = $d->id;
                                 $sqla = $this->db->select('id')
