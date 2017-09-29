@@ -1276,7 +1276,7 @@ class managing extends MY_Site_Controller {
         }
         
         // checking if the date is valid
-        if (!$this->is_date_available(trim($date_), 2)) {
+        if (!$this->is_date_available(trim($date_), 0)) {
             $vars = array();
             $this->template->content->view('default/contents/find_coach/availability', $vars);
         }
