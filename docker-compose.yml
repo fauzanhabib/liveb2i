@@ -18,3 +18,8 @@ services:
     volumes:
       - ./live/.:/var/www/html/
     env_file: .env
+    #command: ["env", ">>", "/etc/environment"]
+  beanstalkd:
+    image: schickling/beanstalkd
+    ports:
+      - "11300:11300"
