@@ -44,7 +44,7 @@ class Queue {
 
         // Connecting to message server
         // $this->pheanstalk = new Pheanstalk($this->host, $this->port);
-        $this->pheanstalk = new Pheanstalk('127.0.0.1');
+        $this->pheanstalk = new Pheanstalk(getenv("QUEUE_HOST"));
 
     }
 
@@ -67,7 +67,7 @@ class Queue {
      * @param steing $route
      */
     public function push($tube, $payload=array(), $route) {
-        
+
         $payload['route'] = $route;
         $payload = json_encode($payload);
 
