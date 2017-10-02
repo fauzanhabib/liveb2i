@@ -1,0 +1,6 @@
+kill -15 $(ps aux | grep [l]ive_messaging_* | awk '{print $2}')
+
+sleep 10s
+
+cd /var/www/DynEdLiveMessagingService/worker/
+nohup php -f live_messaging_email.php >> /var/www/DynEdLiveMessagingService/logs/live_log_email.txt  2>&1&

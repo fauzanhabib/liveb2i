@@ -1,0 +1,898 @@
+nohup: ignoring input
+nohup: ignoring input
+[INFO] 2015-10-21 15:39:50 - Updating table webex  succeed
+
+
+BerhasilFile is not ready yet or meeting is not recorded[INFO] 2015-10-21 16:09:50 - Updating table webex  succeed
+
+
+Berhasilnohup: ignoring input
+stdClass Object
+(
+    [table] => webex
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 869669539
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866483591
+    [route] => download.webex
+)
+PHP Notice:  Array to string conversion in /home/dynedadmin/DynEdLiveMessagingService/worker/live_messaging_download.php on line 77
+
+Notice: Array to string conversion in /home/dynedadmin/DynEdLiveMessagingService/worker/live_messaging_download.php on line 77
+Array
+[INFO] 2015-10-21 17:11:29 - Updating table webex  succeed
+
+
+Berhasil
+nohup: ignoring input
+stdClass Object
+(
+    [table] => webex
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866483591
+    [route] => download.webex
+)
+<pre>Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=b6205bca14306c675a8331d1a9228d77
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=7f2403f746d019e2a22723a18a62c505
+)
+[INFO] 2015-10-21 17:41:28 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 99
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 863349934
+    [route] => download.webex
+)
+<pre>Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=ca4bb5fe51b3c4106bf3255b9391de7d
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=10e600f93786f5d8a740bf56573023aa
+)
+[INFO] 2015-10-21 17:46:44 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 99
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 863349934
+    [route] => download.webex
+)
+<pre>Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=ca4bb5fe51b3c4106bf3255b9391de7d
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=10e600f93786f5d8a740bf56573023aa
+)
+[INFO] 2015-10-21 17:51:44 - Updating table webex  succeed
+
+
+Berhasil
+nohup: ignoring input
+stdClass Object
+(
+    [table] => webex
+    [id] => 6
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 869753126
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 6
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 869753126
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=e9ec06f2b12d8ee9e7692f566634380b
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=1ffd530485f12e758c495881430e78e7
+)
+[INFO] 2015-10-21 18:11:41 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 26
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866877322
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 26
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866877322
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 27
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865250906
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 27
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865250906
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 26
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866877322
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 26
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866877322
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 27
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865250906
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 28
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 861528407
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=14f63859a560ca7840962db841ee7bdb
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=baa908919c95825e93bb4c3f7248578e
+)
+[INFO] 2015-10-22 02:08:26 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 29
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 869724851
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=b42b58feb21c3f7437fa61bb6bd8941c
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=2dc705265d01beeaaefdfa27118442d6
+)
+[INFO] 2015-10-22 02:10:05 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 27
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865250906
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 29
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 869724851
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=b42b58feb21c3f7437fa61bb6bd8941c
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=2dc705265d01beeaaefdfa27118442d6
+)
+[INFO] 2015-10-22 02:18:33 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 30
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866515515
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 28
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 861528407
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=14f63859a560ca7840962db841ee7bdb
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=baa908919c95825e93bb4c3f7248578e
+)
+[INFO] 2015-10-22 02:38:26 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 29
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 869724851
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=b42b58feb21c3f7437fa61bb6bd8941c
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=2dc705265d01beeaaefdfa27118442d6
+)
+[INFO] 2015-10-22 02:40:05 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 29
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 869724851
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=b42b58feb21c3f7437fa61bb6bd8941c
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=2dc705265d01beeaaefdfa27118442d6
+)
+[INFO] 2015-10-22 02:48:34 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 30
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866515515
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex_class
+    [id] => 
+    [subdomain_webex] => 
+    [webex_id] => 
+    [password] => 
+    [session_key] => 
+    [route] => download.webex
+)
+php_network_getaddresses: getaddrinfo failed: Name or service not known (0)<br />
+Bad XML!nohup: ignoring input
+stdClass Object
+(
+    [table] => webex_class
+    [id] => 
+    [subdomain_webex] => 
+    [webex_id] => 
+    [password] => 
+    [session_key] => 
+    [route] => download.webex
+)
+php_network_getaddresses: getaddrinfo failed: Name or service not known (0)<br />
+[ERROR] 2015-10-22 08:12:04 - Bad XML!
+stdClass Object
+(
+    [table] => webex_class
+    [id] => 
+    [subdomain_webex] => 
+    [webex_id] => 
+    [password] => 
+    [session_key] => 
+    [route] => download.webex
+)
+php_network_getaddresses: getaddrinfo failed: Name or service not known (0)<br />
+[ERROR] 2015-10-22 08:12:04 - Bad XML!
+stdClass Object
+(
+    [table] => webex_class
+    [id] => 24
+    [subdomain_webex] => apidemoeu
+    [webex_id] => apidemoadmin123
+    [password] => passw0rd
+    [session_key] => 622099367
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex_class
+    [id] => 24
+    [subdomain_webex] => apidemoeu
+    [webex_id] => apidemoadmin123
+    [password] => passw0rd
+    [session_key] => 622099367
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex_class
+    [id] => 25
+    [subdomain_webex] => apidemoeu
+    [webex_id] => apidemoadmin123
+    [password] => passw0rd
+    [session_key] => 625648281
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex_class
+    [id] => 24
+    [subdomain_webex] => apidemoeu
+    [webex_id] => apidemoadmin123
+    [password] => passw0rd
+    [session_key] => 622099367
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex_class
+    [id] => 24
+    [subdomain_webex] => apidemoeu
+    [webex_id] => apidemoadmin123
+    [password] => passw0rd
+    [session_key] => 622099367
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex_class
+    [id] => 25
+    [subdomain_webex] => apidemoeu
+    [webex_id] => apidemoadmin123
+    [password] => passw0rd
+    [session_key] => 625648281
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 101
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 860855278
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 101
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 860855278
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 104
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866015145
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 104
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866015145
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 120
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865442994
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=ffeb5e066af3d3ae7cfaa1bcf45182a1
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=83e49369fe7b973d1394d2142f253fb1
+)
+PHP Fatal error:  Problem preparing query (UPDATE webex SET `stream_url` = ?, `file_url` = ? WHERE   id = ? ) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (UPDATE webex SET `stream_url` = ?, `file_url` = ? WHERE   id = ? ) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+nohup: ignoring input
+stdClass Object
+(
+    [table] => webex
+    [id] => 120
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865442994
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=ffeb5e066af3d3ae7cfaa1bcf45182a1
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=83e49369fe7b973d1394d2142f253fb1
+)
+[INFO] 2015-10-22 17:55:48 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 120
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865442994
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=ffeb5e066af3d3ae7cfaa1bcf45182a1
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=83e49369fe7b973d1394d2142f253fb1
+)
+[INFO] 2015-10-22 17:55:50 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 120
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865442994
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=ffeb5e066af3d3ae7cfaa1bcf45182a1
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=83e49369fe7b973d1394d2142f253fb1
+)
+[INFO] 2015-10-22 17:55:51 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 120
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865442994
+    [route] => download.webex
+)
+Array
+(
+    [stream_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=ffeb5e066af3d3ae7cfaa1bcf45182a1
+    [file_url] => https://pistarlabs.webex.com/pistarlabs/lsr.php?RCID=83e49369fe7b973d1394d2142f253fb1
+)
+[INFO] 2015-10-22 17:55:52 - Updating table webex  succeed
+
+
+Berhasil
+stdClass Object
+(
+    [table] => webex
+    [id] => 124
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 863024421
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 124
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 863024421
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 127
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 863112643
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 129
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866005292
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 127
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 863112643
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 129
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866005292
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 130
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865119108
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 129
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866005292
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 129
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 866005292
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 131
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 863553367
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 130
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 865119108
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+stdClass Object
+(
+    [table] => webex
+    [id] => 131
+    [subdomain_webex] => pistarlabs
+    [webex_id] => sutomo
+    [password] => 123Pistar*()
+    [session_key] => 863553367
+    [route] => download.webex
+)
+File is not ready yet or meeting is not recorded
+nohup: ignoring input
+nohup: ignoring input
+nohup: ignoring input
+nohup: ignoring input
+nohup: ignoring input
+nohup: ignoring input
+[ERROR] 2015-11-10 12:57:31 - [General] Failed to get stream url
+[ERROR] 2015-11-11 11:01:00 - [General] Failed to get stream url
+nohup: ignoring input
+nohup: ignoring input
+nohup: ignoring input
+nohup: ignoring input
+[ERROR] 2015-12-04 16:06:32 - [General] Failed to get stream url
+[ERROR] 2015-12-07 11:12:37 - [General] Failed to get stream url
+[ERROR] 2015-12-08 09:45:59 - [General] Failed to get stream url
+[ERROR] 2015-12-08 10:09:27 - [General] Failed to get stream url
+[ERROR] 2016-02-18 14:08:06 - [General] Failed to get stream url
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+nohup: ignoring input
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php
+Could not open input file: live_messaging_download.php

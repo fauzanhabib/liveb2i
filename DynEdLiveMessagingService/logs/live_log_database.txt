@@ -1,0 +1,2111 @@
+PHP Warning:  require_once(/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php): failed to open stream: No such file or directory in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_db.php on line 8
+
+Warning: require_once(/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php): failed to open stream: No such file or directory in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_db.php on line 8
+PHP Fatal error:  require_once(): Failed opening required '/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_db.php on line 8
+
+Fatal error: require_once(): Failed opening required '/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_db.php on line 8
+nohup: ignoring input
+PHP Warning:  require_once(/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php): failed to open stream: No such file or directory in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_db.php on line 8
+
+Warning: require_once(/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php): failed to open stream: No such file or directory in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_db.php on line 8
+PHP Fatal error:  require_once(): Failed opening required '/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_db.php on line 8
+
+Fatal error: require_once(): Failed opening required '/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_db.php on line 8
+PHP Warning:  require_once(/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php): failed to open stream: No such file or directory in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+
+Warning: require_once(/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php): failed to open stream: No such file or directory in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+PHP Fatal error:  require_once(): Failed opening required '/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+
+Fatal error: require_once(): Failed opening required '/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+nohup: ignoring input
+PHP Warning:  require_once(/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php): failed to open stream: No such file or directory in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+
+Warning: require_once(/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php): failed to open stream: No such file or directory in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+PHP Fatal error:  require_once(): Failed opening required '/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+
+Fatal error: require_once(): Failed opening required '/home/dynedadmin/DynEdLiveMessagingService/../vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+PHP Warning:  require_once(/home/dynedadmin/DynEdLiveMessagingService/home/dynedadmin/DynEdLiveMessagingService/vendor/autoload.php): failed to open stream: No such file or directory in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+
+Warning: require_once(/home/dynedadmin/DynEdLiveMessagingService/home/dynedadmin/DynEdLiveMessagingService/vendor/autoload.php): failed to open stream: No such file or directory in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+PHP Fatal error:  require_once(): Failed opening required '/home/dynedadmin/DynEdLiveMessagingService/home/dynedadmin/DynEdLiveMessagingService/vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+
+Fatal error: require_once(): Failed opening required '/home/dynedadmin/DynEdLiveMessagingService/home/dynedadmin/DynEdLiveMessagingService/vendor/autoload.php' (include_path='.:/usr/share/php:/usr/share/pear') in /home/dynedadmin/DynEdLiveMessagingService/live_messaging_database.php on line 8
+[INFO] 2015-10-20 01:11:49 - Inserting data into user_notifications succeed
+[INFO] 2015-10-20 01:26:52 - Inserting data into user_notifications succeed
+[INFO] 2015-10-20 01:28:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-20 01:55:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-20 02:14:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-20 02:26:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-20 02:56:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-20 03:36:44 - Inserting data into user_notifications succeed
+[INFO] 2015-10-20 03:37:08 - Inserting data into user_notifications succeed
+[ERROR] 2015-10-20 07:30:25 - Failed to modify database
+[INFO] 2015-10-20 08:21:59 - Inserting data into user_notifications succeed
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+nohup: ignoring input
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:15:40 - Inserting data into user_notifications succeed
+nohup: ignoring input
+[INFO] 2015-10-21 10:29:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 10:32:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:08:17 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:12:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:13:20 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:13:20 - Inserting data into user_notifications succeed
+nohup: ignoring input
+[INFO] 2015-10-21 11:43:42 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:44:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:46:35 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:51:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:51:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:51:53 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:52:18 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:53:38 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:53:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:54:18 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:54:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:54:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:55:39 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:56:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:56:20 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:56:35 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:56:52 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:57:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:57:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:57:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:58:13 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:58:20 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:58:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:58:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:58:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:59:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 11:59:54 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 12:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 12:00:17 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:00:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:00:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:01:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:01:35 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:01:49 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:02:08 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:02:22 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:02:38 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:02:52 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:03:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:03:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:04:10 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:04:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 12:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 12:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 12:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 12:22:21 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 12:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 12:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 12:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 12:46:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 12:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 12:50:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:50:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:56:27 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:57:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:57:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:57:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:58:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:58:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 12:59:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 13:00:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:02:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:02:45 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:03:08 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:03:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:03:49 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:04:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:04:17 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:04:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:04:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:05:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:05:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:06:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:06:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:07:57 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:08:10 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:08:27 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:09:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:09:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:09:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:09:39 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:09:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:10:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:10:18 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:10:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:10:44 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:10:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:11:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:11:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:11:42 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:12:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:13:20 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:13:35 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:14:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:14:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:15:18 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:15:33 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:15:45 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:16:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:16:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:16:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:16:30 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:16:43 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 13:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 13:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:35:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 13:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 13:44:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:49:00 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 13:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 13:57:10 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 14:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 14:04:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:04:54 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:04:54 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:12:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:15:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 14:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 14:28:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:28:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:29:28 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:29:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:30:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:30:22 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:30:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 14:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 14:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 14:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 14:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 14:50:00 - Inserting data into table user_notifications succeed
+nohup: ignoring input
+[INFO] 2015-10-21 15:00:10 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:00:10 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 15:00:10 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:00:10 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 15:00:10 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:00:10 - Inserting data into table coach_ratings succeed
+nohup: ignoring input
+[INFO] 2015-10-21 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 15:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 15:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 15:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 15:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 15:53:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 15:54:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 16:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 16:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 16:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 16:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 16:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:20:00 - Inserting data into table coach_ratings succeed
+nohup: ignoring input
+[INFO] 2015-10-21 16:30:18 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:30:18 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:30:18 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:30:18 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:30:18 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:30:18 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 16:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 16:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 16:40:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 17:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 17:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 17:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 17:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:30:00 - Inserting data into table user_notifications succeed
+nohup: ignoring input
+[INFO] 2015-10-21 17:34:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 17:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 17:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 17:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 17:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 17:50:00 - Inserting data into table user_notifications succeed
+nohup: ignoring input
+[INFO] 2015-10-21 18:01:19 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:01:19 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 18:01:19 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:01:19 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 18:01:19 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:01:19 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 18:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 18:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 18:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 18:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 19:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 19:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 19:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 19:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 19:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 19:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 20:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 20:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 20:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 20:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 20:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 20:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 21:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 21:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 21:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 21:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 21:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 21:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-21 21:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 21:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-21 22:07:39 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 22:55:33 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 23:00:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 23:03:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-21 23:03:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:03:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:04:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:44:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:44:10 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:52:41 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:53:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:53:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:53:20 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:54:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:54:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:54:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:54:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:54:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:54:52 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:54:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:58:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:58:57 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:59:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:59:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:59:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:59:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 01:59:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:04:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:07:35 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:07:41 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:07:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:07:52 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:07:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:08:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:08:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:08:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:08:20 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:08:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:08:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:08:42 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:11:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:11:13 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:11:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:11:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:17:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:17:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:17:39 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:17:44 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:17:50 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:17:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:18:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:18:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:18:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:18:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:18:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:18:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:19:13 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:19:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:20:00 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 02:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 02:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 02:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 02:20:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:20:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:20:18 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:20:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:20:30 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:20:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:20:42 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:20:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:20:54 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:21:00 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:21:08 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:22:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:22:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:22:21 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:22:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:22:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:29:00 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:29:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:29:17 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:29:21 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:29:27 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:29:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:29:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:29:42 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:29:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 02:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 02:31:21 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:33:08 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:33:35 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:33:41 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:33:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:33:53 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:00 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:10 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:21 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:41 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:34:55 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:00 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:13 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:18 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:39 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:44 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:53 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:35:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:36:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:36:08 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:36:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:36:21 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:36:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:36:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:36:45 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:36:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:36:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:22 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:41 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:37:54 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:38:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 02:40:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 02:40:01 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 02:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 02:50:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 02:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 02:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 02:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 02:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 03:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 03:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 03:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:40:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:40:01 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 03:41:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 03:42:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 03:42:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 03:50:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:50:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:50:01 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 03:50:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:50:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:50:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 03:54:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 03:55:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 03:56:17 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 04:00:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:05:08 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:06:30 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:09:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:13:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:13:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:13:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:16:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:18:43 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:19:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:19:27 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 04:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 04:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:22:55 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:23:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:23:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:23:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:23:17 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:23:20 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:23:22 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:23:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:23:28 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:23:30 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:23:38 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:24:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:25:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:25:39 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:28:27 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:29:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:30:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:31:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:34:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 04:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 04:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 04:52:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:35 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:41 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:44 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:49 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:52 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:58:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:59:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:59:50 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 04:59:50 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 05:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 05:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:17:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:18:43 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:18:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:19:17 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:19:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:19:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:19:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:19:35 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:19:35 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 05:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 05:22:08 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:23:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:23:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:23:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:24:08 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:24:10 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:24:10 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:33:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:33:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:33:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:35:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:35:33 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:35:33 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:35:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:36:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:36:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:36:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 05:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 05:45:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:45:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:45:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:45:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:45:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:45:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:45:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:45:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:45:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:46:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:46:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:46:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:46:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:46:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:46:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:46:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:46:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:46:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:49:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 05:52:07 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 05:53:20 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 06:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 06:01:55 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:02:21 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:02:27 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:06:17 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:06:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:07:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:07:42 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:07:42 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:09:43 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:09:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:09:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:10:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:10:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:10:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:10:42 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:10:43 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:10:43 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:11:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:11:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:11:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:13:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:13:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:13:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:14:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:14:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:14:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:19:43 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:19:45 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:19:45 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 06:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 06:20:13 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:20:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:20:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:21:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:21:57 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:21:57 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:23:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:23:39 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:23:39 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:24:00 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:24:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:24:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:25:54 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:25:54 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:25:54 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:25:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:25:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:25:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:26:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:26:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:26:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:27:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:27:27 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:27:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:27:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:27:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:27:45 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:27:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:27:46 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:28:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:28:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:28:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:28:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:28:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:38:52 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:39:13 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:39:33 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 06:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 06:40:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:42:28 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:42:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:43:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:43:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:43:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:44:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:45:08 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:45:18 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:45:53 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:46:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:46:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:46:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:47:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:47:18 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:47:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:47:50 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:48:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:48:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:48:43 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:48:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:49:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:49:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:49:40 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:49:55 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 06:50:08 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:50:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:50:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:51:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:51:10 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:51:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:51:35 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:51:38 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 06:52:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 07:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 07:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 07:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 07:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:37:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 07:41:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:44:53 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:44:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 07:57:13 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:57:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:57:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:58:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:58:57 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:58:57 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:59:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:59:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:59:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:59:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:59:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:59:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:59:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:59:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 07:59:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:00:00 - Inserting data into table coach_ratings succeed
+nohup: ignoring input
+[INFO] 2015-10-22 08:12:04 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:12:04 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:12:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:12:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:12:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:12:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:12:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:12:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:13:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:19:59 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:19:59 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 08:25:28 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:25:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:25:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:25:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:25:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:25:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:28 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:53 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:54 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:26:54 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:32 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:33 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:33 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:27:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:29:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:29:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:29:12 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:29:33 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:29:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:29:34 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:29:49 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:29:50 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:29:50 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:30:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:50 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:30:51 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:06 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:21 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:22 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:22 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:47 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:31:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:32:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:32:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:32:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:32:41 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:32:42 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:32:42 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:32:52 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:32:52 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:32:52 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:20 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:20 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:45 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:45 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:45 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:33:59 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:34:13 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:34:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:34:14 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:34:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:34:57 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:34:57 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:05 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:36 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:37 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:55 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:35:56 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:36:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:36:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:36:04 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 08:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 08:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 08:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 08:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 08:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 09:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 09:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 09:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 09:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 09:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:20:01 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 09:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 09:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 09:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 09:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 09:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 10:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 10:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 10:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 10:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 10:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 10:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 10:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 10:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 10:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 10:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 11:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 11:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 11:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:10:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 11:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 11:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 11:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 11:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 11:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 11:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 11:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 12:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 12:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 12:00:25 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 12:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 12:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 12:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 12:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 12:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 12:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 12:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 12:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 13:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 13:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 13:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 13:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 13:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 13:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 13:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 13:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 13:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 13:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 14:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 14:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 14:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 14:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 14:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 14:40:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:40:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:40:01 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 14:40:01 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 14:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:50:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:50:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:50:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 14:50:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 15:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 15:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 15:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 15:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 15:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 15:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 15:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 16:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 16:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 16:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 16:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 16:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 16:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 16:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 16:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 17:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 17:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 17:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 17:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 17:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 17:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 17:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 17:50:00 - Inserting data into table user_notifications succeed
+nohup: ignoring input
+[INFO] 2015-10-22 18:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 18:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 18:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 18:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 18:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 18:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 18:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 18:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 19:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 19:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:18:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:18:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:18:48 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:18:53 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:18:53 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:18:53 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:09 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:16 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:19:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 19:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 19:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 19:20:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:20:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:20:11 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:20:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:20:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:20:15 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:21:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:21:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:21:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:36:31 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 19:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 19:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 19:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 19:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 20:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 20:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 20:00:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 20:00:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:15:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 20:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 20:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 20:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:32:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 20:32:02 - Inserting data into user_notifications succeed
+[INFO] 2015-10-22 20:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 20:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 20:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 20:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 21:00:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 21:00:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 21:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 21:10:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 21:20:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 21:20:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-22 21:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-22 21:30:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-23 03:48:26 - Inserting data into user_notifications succeed
+[INFO] 2015-10-23 03:48:29 - Inserting data into user_notifications succeed
+[INFO] 2015-10-23 03:48:58 - Inserting data into user_notifications succeed
+[INFO] 2015-10-23 03:49:00 - Inserting data into user_notifications succeed
+[INFO] 2015-10-23 07:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-23 07:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-23 07:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-23 07:50:00 - Inserting data into table user_notifications succeed
+PHP Fatal error:  Problem preparing query (SELECT * FROM appointments WHERE   id = ?  LIMIT 1) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (SELECT * FROM appointments WHERE   id = ?  LIMIT 1) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+[INFO] 2015-10-27 01:08:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-27 01:08:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-27 01:08:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-27 01:08:01 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-27 01:08:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-27 01:08:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-27 01:08:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-27 01:08:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-27 01:08:01 - Inserting data into user_notifications succeed
+[INFO] 2015-10-27 02:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-27 02:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-27 02:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-27 02:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-27 03:27:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-27 03:27:19 - Inserting data into user_notifications succeed
+[INFO] 2015-10-27 03:27:23 - Inserting data into user_notifications succeed
+[INFO] 2015-10-27 03:27:23 - Inserting data into user_notifications succeed
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+nohup: ignoring input
+[INFO] 2015-10-27 22:52:45 - Inserting data into user_notifications succeed
+[INFO] 2015-10-28 00:40:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-28 00:40:00 - Inserting data into table coach_ratings succeed
+[INFO] 2015-10-28 00:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-28 00:50:00 - Inserting data into table user_notifications succeed
+[INFO] 2015-10-28 01:00:38 - Inserting data into user_notifications succeed
+[INFO] 2015-10-28 01:00:43 - Inserting data into user_notifications succeed
+[INFO] 2015-10-28 02:42:28 - Inserting data into user_notifications succeed
+[INFO] 2015-10-28 02:43:03 - Inserting data into user_notifications succeed
+[INFO] 2015-10-28 02:43:22 - Inserting data into user_notifications succeed
+[INFO] 2015-10-28 02:44:24 - Inserting data into user_notifications succeed
+[INFO] 2015-10-28 02:46:52 - Inserting data into user_notifications succeed
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+nohup: ignoring input
+[WARNING] 2015-11-02 20:16:45 - Appointment is not active or the table user_notifications is not exsist
+[WARNING] 2015-11-02 20:16:45 - Appointment is not active or the table coach_ratings is not exsist
+[WARNING] 2015-11-02 20:16:45 - Appointment is not active or the table user_notifications is not exsist
+[WARNING] 2015-11-02 20:16:45 - Appointment is not active or the table user_notifications is not exsist
+[INFO] 2015-11-02 20:16:45 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:45 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[WARNING] 2015-11-02 20:16:46 - Appointment is not active or the table user_notifications is not exsist
+[WARNING] 2015-11-02 20:16:46 - Appointment is not active or the table coach_ratings is not exsist
+[WARNING] 2015-11-02 20:16:46 - Appointment is not active or the table user_notifications is not exsist
+[WARNING] 2015-11-02 20:16:46 - Appointment is not active or the table user_notifications is not exsist
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+[INFO] 2015-11-02 20:16:46 - Inserting data into user_notifications succeed
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+nohup: ignoring input
+[INFO] 2015-11-03 22:02:29 - Inserting data into user_notifications succeed
+[INFO] 2015-11-03 22:02:29 - Inserting data into user_notifications succeed
+[INFO] 2015-11-03 22:02:29 - Inserting data into user_notifications succeed
+[INFO] 2015-11-03 22:02:29 - Inserting data into user_notifications succeed
+[INFO] 2015-11-03 22:02:29 - Inserting data into user_notifications succeed
+[INFO] 2015-11-03 22:02:29 - Inserting data into user_notifications succeed
+[INFO] 2015-11-03 22:02:29 - Inserting data into user_notifications succeed
+[INFO] 2015-11-03 22:02:29 - Inserting data into user_notifications succeed
+[INFO] 2015-11-03 22:02:29 - Inserting data into user_notifications succeed
+[INFO] 2015-11-04 01:03:09 - Inserting data into user_notifications succeed
+[INFO] 2015-11-04 01:07:26 - Inserting data into user_notifications succeed
+[INFO] 2015-11-04 01:07:26 - Inserting data into user_notifications succeed
+[INFO] 2015-11-04 01:09:06 - Inserting data into user_notifications succeed
+[INFO] 2015-11-04 01:10:57 - Inserting data into user_notifications succeed
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+[INFO] 2015-11-04 22:32:07 - Inserting data into user_notifications succeed
+[INFO] 2015-11-04 22:33:06 - Inserting data into user_notifications succeed
+[INFO] 2015-11-04 22:33:06 - Inserting data into user_notifications succeed
+[INFO] 2015-11-04 23:02:14 - Inserting data into user_notifications succeed
+[INFO] 2015-11-04 23:02:26 - Inserting data into user_notifications succeed
+[INFO] 2015-11-04 23:02:26 - Inserting data into user_notifications succeed
+[INFO] 2015-11-05 01:10:01 - Inserting data into user_notifications succeed
+[INFO] 2015-11-05 02:40:35 - Inserting data into user_notifications succeed
+[INFO] 2015-11-05 02:40:55 - Inserting data into user_notifications succeed
+[INFO] 2015-11-05 02:40:55 - Inserting data into user_notifications succeed
+nohup: ignoring input
+PHP Fatal error:  Problem preparing query (SELECT * FROM appointments WHERE   id = ?  LIMIT 1) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (SELECT * FROM appointments WHERE   id = ?  LIMIT 1) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+nohup: ignoring input
+[WARNING] 2015-11-06 00:50:22 - Appointment is not active or the table user_notifications is not exsist
+[WARNING] 2015-11-06 00:50:22 - Appointment is not active or the table coach_ratings is not exsist
+[WARNING] 2015-11-06 00:50:22 - Appointment is not active or the table user_notifications is not exsist
+[WARNING] 2015-11-06 00:50:22 - Appointment is not active or the table user_notifications is not exsist
+[INFO] 2015-11-06 01:00:48 - Inserting data into user_notifications succeed
+[INFO] 2015-11-06 01:00:48 - Inserting data into user_notifications succeed
+PHP Fatal error:  Problem preparing query (SELECT * FROM appointments WHERE   id = ?  LIMIT 1) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (SELECT * FROM appointments WHERE   id = ?  LIMIT 1) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+nohup: ignoring input
+[WARNING] 2015-11-10 01:16:16 - Appointment is not active or the table user_notifications is not exsist
+[WARNING] 2015-11-10 01:16:17 - Appointment is not active or the table coach_ratings is not exsist
+[WARNING] 2015-11-10 01:16:17 - Appointment is not active or the table user_notifications is not exsist
+[WARNING] 2015-11-10 01:16:17 - Appointment is not active or the table user_notifications is not exsist
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into user_notifications succeed
+[INFO] 2015-11-10 01:16:17 - Inserting data into user_notifications succeed
+[ERROR] 2015-11-10 12:57:31 - Failed to modify database
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`status`, `dcrea`, `dupd`, `description`, `user_id`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`status`, `dcrea`, `dupd`, `description`, `user_id`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+nohup: ignoring input
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+[INFO] 2015-11-11 23:16:23 - Inserting data into user_notifications succeed
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+nohup: ignoring input
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into table coach_ratings succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into table user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+[INFO] 2015-11-26 21:38:51 - Inserting data into user_notifications succeed
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`status`, `dcrea`, `dupd`, `description`, `user_id`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`status`, `dcrea`, `dupd`, `description`, `user_id`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+nohup: ignoring input
+[INFO] 2015-12-02 01:26:27 - Inserting data into user_notifications succeed
+[INFO] 2015-12-02 01:26:27 - Inserting data into user_notifications succeed
+[INFO] 2015-12-02 01:26:27 - Inserting data into user_notifications succeed
+[INFO] 2015-12-02 01:26:27 - Inserting data into user_notifications succeed
+nohup: ignoring input
+[INFO] 2015-12-02 02:50:42 - Inserting data into user_notifications succeed
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+[INFO] 2015-12-03 23:50:57 - Inserting data into user_notifications succeed
+[INFO] 2015-12-03 23:50:57 - Inserting data into user_notifications succeed
+[INFO] 2015-12-03 23:50:57 - Inserting data into user_notifications succeed
+[INFO] 2015-12-03 23:50:57 - Inserting data into user_notifications succeed
+[INFO] 2015-12-03 23:50:57 - Inserting data into user_notifications succeed
+[INFO] 2015-12-03 23:57:37 - Inserting data into user_notifications succeed
+[INFO] 2015-12-03 23:57:37 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 00:01:30 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 00:01:30 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:01:49 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:02:57 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:05:28 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:06:08 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:06:08 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:06:11 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:06:11 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:42:06 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:42:14 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:42:21 - Inserting data into user_notifications succeed
+[INFO] 2015-12-04 01:43:40 - Inserting data into user_notifications succeed
+[ERROR] 2015-12-04 16:06:32 - Failed to modify database
+[ERROR] 2015-12-07 11:12:37 - Failed to modify database
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`status`, `dcrea`, `dupd`, `description`, `user_id`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`status`, `dcrea`, `dupd`, `description`, `user_id`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+[ERROR] 2015-12-08 10:09:27 - Failed to modify database
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+[INFO] 2016-02-17 20:50:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into table user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into table coach_ratings succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into table user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into table user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into table user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into table coach_ratings succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into table user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into table user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-17 20:50:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:29:57 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:30:50 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:51:39 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:52:17 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:53:02 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:53:59 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:53:59 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:54:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:54:03 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:54:08 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 01:54:08 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:04:06 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:13:44 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:14:57 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:15:27 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:15:47 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:16:30 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:17:34 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:17:34 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:17:38 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:17:38 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:17:41 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:17:41 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:30:24 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:30:30 - Inserting data into user_notifications succeed
+[INFO] 2016-02-18 02:30:36 - Inserting data into user_notifications succeed
+[ERROR] 2016-02-18 14:08:06 - Failed to modify database
+PHP Fatal error:  Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+
+Fatal error: Problem preparing query (INSERT into user_notifications(`user_id`, `description`, `status`, `dcrea`, `dupd`) VALUES(?, ?, ?, ?, ?)) MySQL server has gone away in /home/dynedadmin/DynEdLiveMessagingService/libraries/db.php on line 904
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[ERROR] 2016-02-25 23:42:14 - Inserting data into user_notifications failed! Cannot add or update a child row: a foreign key constraint fails (`live`.`user_notifications`, CONSTRAINT `FK_User_notifications_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[ERROR] 2016-02-25 23:42:14 - Inserting data into user_notifications failed! Cannot add or update a child row: a foreign key constraint fails (`live`.`user_notifications`, CONSTRAINT `FK_User_notifications_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[WARNING] 2016-02-25 23:42:14 - Appointment is not active or the table user_notifications is not exsist
+[WARNING] 2016-02-25 23:42:14 - Appointment is not active or the table coach_ratings is not exsist
+[WARNING] 2016-02-25 23:42:14 - Appointment is not active or the table user_notifications is not exsist
+[WARNING] 2016-02-25 23:42:14 - Appointment is not active or the table user_notifications is not exsist
+[ERROR] 2016-02-25 23:42:14 - Inserting data into user_notifications failed! Cannot add or update a child row: a foreign key constraint fails (`live`.`user_notifications`, CONSTRAINT `FK_User_notifications_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[ERROR] 2016-02-25 23:42:14 - Inserting data into user_notifications failed! Cannot add or update a child row: a foreign key constraint fails (`live`.`user_notifications`, CONSTRAINT `FK_User_notifications_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+[ERROR] 2016-02-25 23:42:14 - Inserting data into user_notifications failed! Cannot add or update a child row: a foreign key constraint fails (`live`.`user_notifications`, CONSTRAINT `FK_User_notifications_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[ERROR] 2016-02-25 23:42:14 - Inserting data into user_notifications failed! Cannot add or update a child row: a foreign key constraint fails (`live`.`user_notifications`, CONSTRAINT `FK_User_notifications_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[ERROR] 2016-02-25 23:42:14 - Inserting data into user_notifications failed! Cannot add or update a child row: a foreign key constraint fails (`live`.`user_notifications`, CONSTRAINT `FK_User_notifications_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[ERROR] 2016-02-25 23:42:14 - Inserting data into user_notifications failed! Cannot add or update a child row: a foreign key constraint fails (`live`.`user_notifications`, CONSTRAINT `FK_User_notifications_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[ERROR] 2016-02-25 23:42:14 - Inserting data into user_notifications failed! Cannot add or update a child row: a foreign key constraint fails (`live`.`user_notifications`, CONSTRAINT `FK_User_notifications_Users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE)
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-25 23:42:14 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:28:28 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:28:53 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:29:19 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:29:53 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:29:53 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:29:56 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:29:56 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:29:59 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:29:59 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:30:01 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:30:01 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:30:04 - Inserting data into user_notifications succeed
+[INFO] 2016-02-26 01:30:04 - Inserting data into user_notifications succeed
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+nohup: ignoring input
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
+Could not open input file: live_messaging_database.php
