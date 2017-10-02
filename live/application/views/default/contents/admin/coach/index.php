@@ -191,7 +191,7 @@
             <!-- <li class="pure-menu-item pure-menu-selected no-hover"><a href="<?php echo site_url('admin/manage_partner/member_of_coach/deactive/'.$subgroup_id.'/'.$partner_id);?>" class="pure-menu-link padding-t-b-5 font-semi-bold font-14 padding-lr-5 active-tabs-blue">Inactive Regions</a></li> -->
             <?php } ?>
               <li class="pure-menu-item pure-menu-selected no-hover">
-                    <a href="<?php echo site_url($role_link.'/manage_partner/supplier/'.$type.'/'.$partner_id.'/'.@$partner->admin_regional_id);?>" class="pure-menu-link padding-t-b-5 font-14 font-semi-bold">
+                    <a href="<?php echo site_url($role_link.'/manage_partner/partner/'.$type.'/'.$partner_id.'/'.@$partner->admin_regional_id);?>" class="pure-menu-link padding-t-b-5 font-14 font-semi-bold">
                         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                  viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve" class="width15">
                         <g id="tab-basic">

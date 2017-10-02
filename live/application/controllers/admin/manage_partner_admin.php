@@ -211,10 +211,26 @@ class manage_partner_admin extends MY_Site_Controller {
         } else {
             $role_link = "admin";
         }
+        $status = array(
+                    'status' => 'disable',
+        );
+        $check_appointment = $this->db->select('*')
+                                    ->from('users')
+                                    ->where('id', $user_id)
+                                    ->get()->result();
+
+
+        $this->db->where('id', $user_id);
+        $this->db->update('users', $status);
+
+        $check_status = $this->db->select('status')
+                                    ->from('users')
+                                    ->where('id',$user_id)
+                                    ->get()->result();
 
         $partner = $this->identity_model->get_identity('profile')->where('user_id', $user_id)->get();
         if($this->identity_model->get_partner_identity($user_id, '', '', '')){
-            if($this->user_model->delete($user_id)){
+            if($check_status[0]->status == 'disable'){
                 $this->messages->add('Delete Partner Member Successful', 'success');
                 redirect($role_link.'/manage_partner/partner/'.$type.'/'.$partner_id);
             }
