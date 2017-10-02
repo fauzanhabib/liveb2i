@@ -118,5 +118,9 @@ ADD ./config/php.ini /usr/local/etc/php/
 
 ADD ./live/* /var/www/html/
 
+# DynEdLiveMessagingService #
+RUN mkdir -p /var/www/DynEdLiveMessagingService
+ADD ./DynEdLiveMessagingService /var/www/DynEdLiveMessagingService/
+
 EXPOSE 80
 CMD ["apache2-foreground-cron"]
