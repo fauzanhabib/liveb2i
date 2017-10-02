@@ -4,6 +4,7 @@ set -e
 cron -f &
 
 env >> /etc/environment
+/var/www/DynEdLiveMessagingService/messaging_start >> /var/www/DynEdLiveMessagingService/logs/start.log 2>&1;
 
 # Apache gets grumpy about PID files pre-existing
 rm -f /var/run/apache2/apache2.pid
