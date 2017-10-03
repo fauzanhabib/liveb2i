@@ -1,5 +1,9 @@
 <?php
 class Study_progress {
+    var $gcp;
+    var $gsp;
+    var $gwp;
+
     // var $tokenresult;
     function __construct() {}
 
@@ -19,7 +23,7 @@ class Study_progress {
       ));
       $tokenconnect = curl_exec($rt) ;
       $pulltr = json_decode($tokenconnect);
-      $tokenresult = $pulltr->token;
+      $tokenresult = @$pulltr->token;
       return $tokenresult;
     }
 
@@ -75,13 +79,15 @@ class Study_progress {
           'X-Dyned-Tkn: ' . $tokenresult)
         );
 
-        $resp = curl_exec($ch);
-
-        // close the connection, release resources used
+        $gcp = curl_exec($ch);
         curl_close($ch);
-
-        return json_decode($resp);
-
+        // $this->gcp = json_decode($gcp);
+        return $gcp;
+        // $gcp = curl_exec($ch);
+        // curl_close($ch);
+        //
+        // $this->gcp = json_decode($this->gcp);
+        // return $this->gcp;
         // echo $result;
     }
     public function GetStudyProgress($tokenresult) {
@@ -103,7 +109,7 @@ class Study_progress {
         // close the connection, release resources used
         curl_close($ch);
 
-        return json_decode($resp);
+        return $resp;
 
         // echo $result;
     }
@@ -126,7 +132,7 @@ class Study_progress {
         // close the connection, release resources used
         curl_close($ch);
 
-        return json_decode($resp);
+        return $resp;
 
         // echo $result;
     }
