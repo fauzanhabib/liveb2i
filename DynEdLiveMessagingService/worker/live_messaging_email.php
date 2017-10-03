@@ -44,19 +44,19 @@ try{
                     //Set PHPMailer to use SMTP.
                     $mail->isSMTP();
                     //Set SMTP host name
-                    $mail->Host = "smtp.office365.com";
+                    $mail->Host = getenv("EMAIL_SMTP_HOST");
                     //Set this to true if SMTP host requires authentication to send email
                     $mail->SMTPAuth = true;
                     //Provide username and password
-                    $mail->Username = "mobilesupport@dyned.com";
-                    $mail->Password = "Courseware24";
+                    $mail->Username = getenv("EMAIL_SMTP_USERNAME");
+                    $mail->Password = getenv("EMAIL_SMTP_PASSWORD");
                     //If SMTP requires TLS encryption then set it
                     $mail->SMTPSecure = "tls";
                     //Set TCP port to connect to
-                    $mail->Port = 587;
+                    $mail->Port = getenv("EMAIL_SMTP_PORT");
 
-                    $mail->From = "mobilesupport@dyned.com";
-                    $mail->FromName = "DynEd Live";
+                    $mail->From = getenv("EMAIL_FROM");
+                    $mail->FromName = getenv("EMAIL_FROM_NAME");
 
                     //$mail->addAddress("$data->email", "Recepient Name");
                     $mail->addAddress("$data->email");
