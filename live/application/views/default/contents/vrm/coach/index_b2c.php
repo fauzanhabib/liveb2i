@@ -1,5 +1,12 @@
 <div class="box pure-g">
-    <div class="study__dashboard__top">
+  <div class="studydash__info">
+    <div class="studydash__info__img">
+    </div>
+    <div class="studydash__info__name">
+      Juki Marcelino
+    </div>
+  </div>
+  <div class="study__dashboard__top">
     <!-- achievement goal step -->
     <div class="progress__step">
         <div class="donut__progress">
@@ -144,7 +151,7 @@
 
     <!-- daily progress donut graph -->
     <div class="progress__step">
-                  <h5>Progress to goals</h5>
+        <h5>Progress to goals</h5>
         <div class="donut__progress">
           <div class="step--circle circle"
                data-thickness="15"
@@ -160,8 +167,8 @@
                       <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                  viewBox="0 0 61.8 61.8" style="enable-background:new 0 0 61.8 61.8;" xml:space="preserve">
                                 <style type="text/css">
-                                    .st0{fill:#49C5FE;}
-                                    .st1{fill:#49C5FE;stroke:#49C5FE;stroke-miterlimit:10;}
+                                    .st0{fill:#3caae3;}
+                                    .st1{fill:#3caae3;stroke:#3caae3;stroke-miterlimit:10;}
                                 </style>
                                 <title>icHelp</title>
                                 <desc>Created with Sketch.</desc>
@@ -262,195 +269,195 @@
     </div>
     <!-- end daily progress donut graph -->
   </div>
-    <div class="study__dashboard__bottom">
-  		<!-- comprehension graph -->
-  		<div class="study__progress__graph">
-  			<h5>Comprehension</h5>
-  			<div class="graph__wrap">
-  			  	<div class="bar__graph">
-  			    	<ul class="graph b2">
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[0]->comprehension_grammar;?>">
-  			          		<span class="graph__legend">Now</span>
-  			        		<label><?php echo $gwp->data[0]->comprehension_grammar;?></label>
-  			        		</li>
-  			      		</span>
+  <div class="study__dashboard__bottom">
+		<!-- comprehension graph -->
+		<div class="study__progress__graph">
+			<h5>Comprehension</h5>
+			<div class="graph__wrap">
+			  	<div class="bar__graph">
+			    	<ul class="graph b2">
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[0]->comprehension_grammar;?>">
+			          		<span class="graph__legend">Now</span>
+			        		<label><?php echo $gwp->data[0]->comprehension_grammar;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[1]->comprehension_grammar;?>">
-  			          		<span class="graph__legend">w 1</span>
-  			        		<label><?php echo $gwp->data[1]->comprehension_grammar;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[1]->comprehension_grammar;?>">
+			          		<span class="graph__legend">w 1</span>
+			        		<label><?php echo $gwp->data[1]->comprehension_grammar;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[2]->comprehension_grammar;?>">
-  			          		<span class="graph__legend">w 2</span>
-  			        		<label><?php echo $gwp->data[2]->comprehension_grammar;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[2]->comprehension_grammar;?>">
+			          		<span class="graph__legend">w 2</span>
+			        		<label><?php echo $gwp->data[2]->comprehension_grammar;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[3]->comprehension_grammar;?>">
-  			          		<span class="graph__legend">w 3</span>
-  			        		<label><?php echo $gwp->data[3]->comprehension_grammar;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[3]->comprehension_grammar;?>">
+			          		<span class="graph__legend">w 3</span>
+			        		<label><?php echo $gwp->data[3]->comprehension_grammar;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<div class="v__bar">
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			      		</div>
-  			    	</ul>
-  			  	</div>
-  			</div>
-  		</div>
-  		<!-- end comprehension graph -->
+			      		<div class="v__bar">
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			      		</div>
+			    	</ul>
+			  	</div>
+			</div>
+		</div>
+		<!-- end comprehension graph -->
 
-  		<!-- pronunciation graph -->
-  		<div class="study__progress__graph">
-  			<h5>Pronunciation</h5>
-  			<div class="graph__wrap">
-  			  	<div class="bar__graph">
-  			    	<ul class="graph b2">
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[0]->pronunciation;?>">
-  			          		<span class="graph__legend">Now</span>
-  			        		<label><?php echo $gwp->data[0]->pronunciation;?></label>
-  			        		</li>
-  			      		</span>
+		<!-- pronunciation graph -->
+		<div class="study__progress__graph">
+			<h5>Pronunciation</h5>
+			<div class="graph__wrap">
+			  	<div class="bar__graph">
+			    	<ul class="graph b2">
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[0]->pronunciation;?>">
+			          		<span class="graph__legend">Now</span>
+			        		<label><?php echo $gwp->data[0]->pronunciation;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[1]->pronunciation;?>">
-  			          		<span class="graph__legend">w 1</span>
-  			        		<label><?php echo $gwp->data[1]->pronunciation;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[1]->pronunciation;?>">
+			          		<span class="graph__legend">w 1</span>
+			        		<label><?php echo $gwp->data[1]->pronunciation;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[2]->pronunciation;?>">
-  			          		<span class="graph__legend">w 2</span>
-  			        		<label><?php echo $gwp->data[2]->pronunciation;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[2]->pronunciation;?>">
+			          		<span class="graph__legend">w 2</span>
+			        		<label><?php echo $gwp->data[2]->pronunciation;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[3]->pronunciation;?>">
-  			          		<span class="graph__legend">w 3</span>
-  			        		<label><?php echo $gwp->data[3]->pronunciation;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[3]->pronunciation;?>">
+			          		<span class="graph__legend">w 3</span>
+			        		<label><?php echo $gwp->data[3]->pronunciation;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<div class="v__bar">
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			      		</div>
-  			    	</ul>
-  			  	</div>
-  			</div>
-  		</div>
-  		<!-- end pronunciation graph -->
+			      		<div class="v__bar">
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			      		</div>
+			    	</ul>
+			  	</div>
+			</div>
+		</div>
+		<!-- end pronunciation graph -->
 
-  		<!-- listening graph -->
-  		<div class="study__progress__graph">
-  			<h5>Listening</h5>
-  			<div class="graph__wrap">
-  			  	<div class="bar__graph">
-  			    	<ul class="graph b2">
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[0]->listening;?>">
-  			          		<span class="graph__legend">Now</span>
-  			        		<label><?php echo $gwp->data[0]->listening;?></label>
-  			        		</li>
-  			      		</span>
+		<!-- listening graph -->
+		<div class="study__progress__graph">
+			<h5>Listening</h5>
+			<div class="graph__wrap">
+			  	<div class="bar__graph">
+			    	<ul class="graph b2">
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[0]->listening;?>">
+			          		<span class="graph__legend">Now</span>
+			        		<label><?php echo $gwp->data[0]->listening;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[1]->listening;?>">
-  			          		<span class="graph__legend">w 1</span>
-  			        		<label><?php echo $gwp->data[1]->listening;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[1]->listening;?>">
+			          		<span class="graph__legend">w 1</span>
+			        		<label><?php echo $gwp->data[1]->listening;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[2]->listening;?>">
-  			          		<span class="graph__legend">w 2</span>
-  			        		<label><?php echo $gwp->data[2]->listening;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[2]->listening;?>">
+			          		<span class="graph__legend">w 2</span>
+			        		<label><?php echo $gwp->data[2]->listening;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[3]->listening;?>">
-  			          		<span class="graph__legend">w 3</span>
-  			        		<label><?php echo $gwp->data[3]->listening;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[3]->listening;?>">
+			          		<span class="graph__legend">w 3</span>
+			        		<label><?php echo $gwp->data[3]->listening;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<div class="v__bar">
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			      		</div>
-  			    	</ul>
-  			  	</div>
-  			</div>
-  		</div>
-  		<!-- end listening graph -->
+			      		<div class="v__bar">
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			      		</div>
+			    	</ul>
+			  	</div>
+			</div>
+		</div>
+		<!-- end listening graph -->
 
-  		<!-- speaking graph -->
-  		<div class="study__progress__graph">
-  			<h5>Speaking</h5>
-  			<div class="graph__wrap">
-  			  	<div class="bar__graph">
-  			    	<ul class="graph b2">
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[0]->speaking;?>">
-  			          		<span class="graph__legend">Now</span>
-  			        		<label><?php echo $gwp->data[0]->speaking;?></label>
-  			        		</li>
-  			      		</span>
+		<!-- speaking graph -->
+		<div class="study__progress__graph">
+			<h5>Speaking</h5>
+			<div class="graph__wrap">
+			  	<div class="bar__graph">
+			    	<ul class="graph b2">
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[0]->speaking;?>">
+			          		<span class="graph__legend">Now</span>
+			        		<label><?php echo $gwp->data[0]->speaking;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[1]->speaking;?>">
-  			          		<span class="graph__legend">w 1</span>
-  			        		<label><?php echo $gwp->data[1]->speaking;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[1]->speaking;?>">
+			          		<span class="graph__legend">w 1</span>
+			        		<label><?php echo $gwp->data[1]->speaking;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[2]->speaking;?>">
-  			          		<span class="graph__legend">w 2</span>
-  			        		<label><?php echo $gwp->data[2]->speaking;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[2]->speaking;?>">
+			          		<span class="graph__legend">w 2</span>
+			        		<label><?php echo $gwp->data[2]->speaking;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<span class="graph__bar__cont">
-  			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[3]->speaking;?>">
-  			          		<span class="graph__legend">w 3</span>
-  			        		<label><?php echo $gwp->data[3]->speaking;?></label>
-  			        		</li>
-  			      		</span>
+			      		<span class="graph__bar__cont">
+			        		<li class="graph__bar__each" data-value="<?php echo $gwp->data[3]->speaking;?>">
+			          		<span class="graph__legend">w 3</span>
+			        		<label><?php echo $gwp->data[3]->speaking;?></label>
+			        		</li>
+			      		</span>
 
-  			      		<div class="v__bar">
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			        		<div class="v__line"></div>
-  			      		</div>
-  			    	</ul>
-  			  	</div>
-  			</div>
-  		</div>
-  		<!-- end speaking graph -->
-  	</div>
+			      		<div class="v__bar">
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			        		<div class="v__line"></div>
+			      		</div>
+			    	</ul>
+			  	</div>
+			</div>
+		</div>
+		<!-- end speaking graph -->
+	</div>
 </div>
 
 

@@ -518,6 +518,11 @@ label {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
 }
+.rounded-box {
+  border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
 
 .border-1-grey {
   border: 1px solid #939393;
@@ -1728,7 +1733,7 @@ input:focus:-ms-input-placeholder {
 
 .status-disable span {
   font-size: 12px!important;
-  /*padding: 3px 17px!important;*/
+  padding: 3px 17px!important;
   border-radius: 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -7412,6 +7417,42 @@ label {
 /*NEW STUDY DASHBOARD BASED ON B2C*/
 
   /* circle progress */
+
+  .studydash__info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%;
+    margin: 20px 0 15px;
+  }
+  .studydash__info__img {
+    border: 1px solid #606983;
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin: auto;
+    position: relative;
+  }
+  .studydash__info__img img {
+    width: 100%;
+  }
+  .studydash__info__name {
+    color: #2b89b9;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
   .progress__step {
     width: 25%;
     max-height: 300px;
@@ -7424,6 +7465,7 @@ label {
   }
   .progress__step h5 font {
     font-size: 1.4em;
+    font-weight: 600;
   }
 
   .outter--circle {
@@ -7473,6 +7515,7 @@ label {
     color: #3baae3;
     font-size: 1em;
     text-align: center;
+    font-weight: 600;
   }
 
   .step__progress__info {
@@ -7480,11 +7523,17 @@ label {
     top: 55px;
     left: 40px;
     text-align: center;
+    font-weight: 600;
   }
   .step__progress__info .step__info__label {
     color: #59ba82;
     font-size: 2em;
+    font-weight: 600;
   }
+  .step__progress__info .step__info__label svg {
+    top: -58px;
+    left: -44px;
+  } 
 
   .progress__achievement {
     width: 50%;
@@ -7505,16 +7554,18 @@ label {
   }
 
   .study__progress__achievement {
-    width: 20px;
+    width: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
   }
   .study__progress__achievement .achievement__point__info h5 {
     color: #59ba82;
+    font-weight: 600;
   }
   .study__progress__achievement .achievement__point__info h3 {
     color: #59ba82;
+    font-weight: 600;
   }
 
   .coach__progress__achievement {
@@ -7528,9 +7579,11 @@ label {
   }
   .coach__progress__achievement .achievement__point__info h5 {
     color: #3baae3;
+    font-weight: 600;
   }
   .coach__progress__achievement .achievement__point__info h3 {
     color: #3baae3;
+    font-weight: 600;
   }
 
   .bullet__achievement {
@@ -7560,10 +7613,12 @@ label {
     color: #3baae3;
     text-align: center;
     margin: 20px 10px;
+    font-weight: 600;
   }
 
   .progress__step h5 {
     color: #3baae3;
+    font-weight: 600;
   }
 
   .study__dashboard__bottom {
@@ -7583,6 +7638,7 @@ label {
     text-align: left;
     margin: 20px 10px;
     color: #3baae3;
+    font-weight: 600;
   }
 
   .graph__wrap {
