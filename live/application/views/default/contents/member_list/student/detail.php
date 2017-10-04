@@ -52,8 +52,8 @@
                        <tr>
                             <td class="pad15">Subgroup</td>
                             <td>
-                                <span class="r-only"><?php echo(@$subgroup->subgroupname); ?></span>
-                                <?php echo form_dropdown('subgroup', $listsubgroup, trim(@$subgroup->subgroupname), 'class="e-only" required data-parsley-required-message="Please select your subgroup"') ?>
+                                <span class="r-only"><?php echo(@$subgroup[0]->subgroupname); ?></span>
+                                <?php echo form_dropdown('subgroup', $listsubgroup, trim(@$subgroup[0]->subgroupid), 'class="e-only" required data-parsley-required-message="Please select your subgroup"') ?>
                             </td>
                         </tr>
                         <tr>

@@ -147,13 +147,13 @@ class member_list extends MY_Site_Controller {
         $data = $this->identity_model->get_student_identity($student_id, '', $partner_id);
    
         // get subgroup
-        $subgroup = $this->subgroup_model->select('subgroup.name as subgroupname')->join('user_profiles', 'user_profiles.subgroup_id = subgroup.id')->where('user_profiles.user_id',$student_id)->get();
+        $subgroup = $this->subgroup_model->select('subgroup.name as subgroupname, subgroup.id as subgroupid')->join('user_profiles', 'user_profiles.subgroup_id = subgroup.id')->where('user_profiles.user_id',$student_id)->get_all();
         // =================
         // get sub group by partner id
         $getlistsubgroup = $this->subgroup_model->select('*')->where('partner_id',$partner_id)->where('type','student')->get_all();
 
-        $listsubgroup = '';
-        foreach ($getlistsubgroup as $value) {
+        // $listsubgroup = '';
+        foreach($getlistsubgroup as $value){
             $listsubgroup[$value->id] = $value->name;        
         }
         
@@ -171,6 +171,10 @@ class member_list extends MY_Site_Controller {
             'subgroup_id' => $subgroup_id,
             'back' => $back
         );
+        // echo "<pre>";
+        // print_r($subgroup);
+        // exit();
+        // die();
         $this->session->set_userdata("student_list_id", $student_id);
         $this->template->content->view('default/contents/member_list/student/detail', $vars);
         $this->template->publish();

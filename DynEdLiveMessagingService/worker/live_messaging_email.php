@@ -36,45 +36,34 @@ try{
                 // Simple action berdasarkan routing
                 if( $data->route == 'email.send_email')
                 {
-                    //PHPMailer Object
-                    $mail = new PHPMailer;
 
-                    //Enable SMTP debugging.
-                    $mail->SMTPDebug = 2;
-                    //Set PHPMailer to use SMTP.
-                    $mail->isSMTP();
-                    //Set SMTP host name
-                    $mail->Host = "smtp.office365.com";
-                    //Set this to true if SMTP host requires authentication to send email
-                    $mail->SMTPAuth = true;
-                    //Provide username and password
-                    $mail->Username = "mobilesupport@dyned.com";
-                    $mail->Password = "Courseware24";
-                    //If SMTP requires TLS encryption then set it
-                    $mail->SMTPSecure = "tls";
-                    //Set TCP port to connect to
-                    $mail->Port = 587;
+                    $mail = new PHPMailer; //PHPMailer Object
+                    $mail->isSMTP(); //Set PHPMailer to use SMTP.
+                    $mail->SMTPDebug = 1; //debugging: 1 = errors and messages, 2 = messages only
+                    $mail->SMTPAuth = true; //Set this to true if SMTP host requires authentication to send email
 
-                    $mail->From = "mobilesupport@dyned.com";
-                    $mail->FromName = "DynEd Live";
+                    $mail->Host = getenv("EMAIL_SMTP_HOST"); //Set SMTP host name
+                    $mail->Port = getenv("EMAIL_SMTP_PORT"); //Set TCP port to connect to
+                    $mail->isHTML(true);
+
+                    $mail->Username = getenv("EMAIL_SMTP_USERNAME"); //Provide username and password
+                    $mail->Password = getenv("EMAIL_SMTP_PASSWORD");
+                    $mail->setFrom(getenv("EMAIL_FROM"), "DynEd Live");
+                    //$mail->From = getenv("EMAIL_FROM");
+                    //$mail->FromName = "DynEd Live";
+
+                    $mail->SMTPSecure = "tls"; //If SMTP requires TLS encryption then set it
 
                     //$mail->addAddress("$data->email", "Recepient Name");
                     $mail->addAddress("$data->email");
-
-                    $mail->isHTML(true);
-
                     $mail->Subject = $data->subject;
                     $mail->Body = $data->content;
                     $mail->AltBody = "This is the plain text version of the email content";
 
-                    if(!$mail->send())
-                    {
+                    if(!$mail->send()) {
                         //echo "Mailer Error: " . $mail->ErrorInfo;
                         $log->write('error', $mail->ErrorInfo);
-                    }
-                    else
-                    {
-                        //echo "Message has been sent successfully";
+                    } else {
                         $log->write('info', "Email has been sent to ".$data->email);
                     }
                 }

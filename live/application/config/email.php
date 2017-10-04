@@ -1,4 +1,4 @@
-<!-- config office365 
+<!-- config office365
 <?php
 /* $config['protocol'] = 'smtp';
 $config['smtp_host'] = 'smtp.office365.com';
@@ -12,14 +12,14 @@ $config['smtp_crypto'] = 'tls'; */
 ?> -->
 
 <?php
-$config['protocol'] = 'smtp';
-$config['smtp_host'] = 'ssl://smtp.gmail.com';
-$config['smtp_port'] = '465';
-$config['smtp_user'] = 'test.soerbakti@gmail.com';
-$config['smtp_pass'] = 'rdewantara';
-$config['mailtype'] = 'html';
-$config['charset'] = 'utf-8';
-$config['newline'] = "\r\n";
+// $config['protocol'] = 'smtp';
+// $config['smtp_host'] = 'ssl://smtp.gmail.com';
+// $config['smtp_port'] = '465';
+// $config['smtp_user'] = 'test.soerbakti@gmail.com';
+// $config['smtp_pass'] = 'rdewantara';
+// $config['mailtype'] = 'html';
+// $config['charset'] = 'utf-8';
+// $config['newline'] = "\r\n";
 
 
 
