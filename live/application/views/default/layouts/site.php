@@ -585,10 +585,13 @@
         <?php } ?>
 
         <!-- UPDATE TIMEZONE -->
-
+        <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
+        
         <script type="text/javascript">
             var d = new Date()
             var n = d.getTimezoneOffset();
+
+    
 
             $.post("<?php echo site_url('timezone_convert');?>", { 'n': n },function(data) {
                 // console.log(data);
@@ -635,7 +638,7 @@
         </script>
 <!--        <a href="<?php echo site_url('lang_switch/switch_language/english'); ?>">English</a>
         <a href="<?php echo site_url('lang_switch/switch_language/traditional-chinese'); ?>">Chinese</a>-->
-        <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
+        
         <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.js"></script>
         <script type="text/javascript">
             $(".checkAll").change(function () {
