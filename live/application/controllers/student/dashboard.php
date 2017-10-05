@@ -171,6 +171,29 @@ class Dashboard extends MY_Site_Controller {
         // echo "<pre>";print_r($nowdate);exit();
         //Check Already Opened Live Session -------------------------------
         
+        $pull_notif = $this->db->select('*')
+                      ->from('user_notifications')
+                      ->where('user_id', $id)
+                      ->get()->result();
+
+        $pull_name = $this->db->select('*')
+                      ->from('user_profiles')
+                      ->where('user_id', $id)
+                      ->get()->result();
+
+        if(!$pull_notif){
+
+            $user_notification = array(
+                'user_id' => $id,
+                'description' => 'Congratulation '.$pull_name[0]->fullname.' and Welcome to DynEd Live.',
+                'status' => 2,
+                'dcrea' => time(),
+                'dupd' => time(),
+            );
+                        
+            $this->user_notification_model->insert($user_notification);
+        }
+        
         $vars = array(
             'title' => 'Upcoming Session',
             'role'  => 'Coach',

@@ -193,6 +193,31 @@ class identity extends MY_Site_Controller {
         $status = @$getsat[0]->status;
         //Check Number Verification ------------------------------
 
+        $id = $this->auth_manager->userid();
+        
+        $pull_notif = $this->db->select('*')
+                      ->from('user_notifications')
+                      ->where('user_id', $id)
+                      ->get()->result();
+
+        $pull_name = $this->db->select('*')
+                      ->from('user_profiles')
+                      ->where('user_id', $id)
+                      ->get()->result();
+
+        if(!$pull_notif){
+
+            $user_notification = array(
+                'user_id' => $id,
+                'description' => 'Congratulation '.$pull_name[0]->fullname.' and Welcome to DynEd Live.',
+                'status' => 2,
+                'dcrea' => time(),
+                'dupd' => time(),
+            );
+                        
+            $this->user_notification_model->insert($user_notification);
+        }
+
         $vars = array(
             'name_region' => @$name_region,
             'title' => 'Detail ' . $this->detail[$key],
