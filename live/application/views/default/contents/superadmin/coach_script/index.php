@@ -83,19 +83,19 @@
                     var cert = '<?php echo $a->certificate_plan ?>';
                     $.ajax({
                       type:"POST",
-                      url:"<?php echo site_url('superadmin/coach_script/unit_list');?>",    
-                      data: {'cert':cert},        
-                      success: function(data){ 
-                        $("#unit_list").html(data);   
+                      url:"<?php echo site_url('superadmin/coach_script/unit_list');?>",
+                      data: {'cert':cert},
+                      success: function(data){
+                        $("#unit_list").html(data);
                         // console.log(data);
-                      }  
+                      }
                      });
                 });
               </script>
             <?php } ?>
             </ul>
 
-            
+
         </div>
     </div>
 
