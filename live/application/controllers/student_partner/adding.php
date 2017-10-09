@@ -54,7 +54,7 @@ class adding extends MY_Site_Controller {
         );
         $this->template->content->view('default/contents/adding/class/index', $vars);
 
-        //publish template
+        //publish templates
         $this->template->publish();
     }
 
