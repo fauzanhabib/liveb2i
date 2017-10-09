@@ -331,7 +331,7 @@ class identity extends MY_Site_Controller {
             $rules = array(
                 array('field'=>'fullname', 'label' => 'Name', 'rules'=>'trim|required|xss_clean|max_length[50]'),
                 // array('field'=>'date_of_birth', 'label' => 'Birthday', 'rules'=>'trim|required|xss_clean'),
-                array('field'=>'spoken_language', 'label' => 'Spoken Language', 'rules'=>'trim|required|xss_clean|max_length[150]'),
+                // array('field'=>'spoken_language', 'label' => 'Spoken Language', 'rules'=>'trim|required|xss_clean|max_length[150]'),
                 array('field'=>'gender', 'label' => 'Gender', 'rules'=>'trim|required|xss_clean')
             );
             

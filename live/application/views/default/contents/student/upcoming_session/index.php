@@ -237,9 +237,9 @@
     </div>
 </div>
 
-<!-- 
+ 
 <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
- -->
+
 <script type="text/javascript">
 
     // ajax
@@ -315,8 +315,4 @@
             $(function() {
                 $("table").tablesorter({debug: true});
             });
-        </script>
-
-
-    </body>
-</html>
+    </script>

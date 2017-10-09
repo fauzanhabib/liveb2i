@@ -244,7 +244,7 @@ class adding extends MY_Site_Controller {
         $timezones = $this->timezone_model->where_not_in('minutes',array('-210','330','570',))->dropdown('id', 'timezone');
         $coach_type = $this->db->select('*')->from('coach_type')->get();
 
-        $id_partner = $this->auth_manager->partner_id($id);
+        $id_partner = $this->auth_manager->partner_id();
         
         $partner = $this->partner_model->select('name, address, country, state, city, zip')->where('id',$id_partner)->get_all();
         $partner_country = $partner[0]->country;
@@ -276,6 +276,10 @@ class adding extends MY_Site_Controller {
             redirect('partner/member_list/coach');
         }
 
+        $getsubgroup = $this->subgroup_model->select('*')->where('partner_id',$this->auth_manager->partner_id())->where('type','coach')->where('id',$idsubgroup)->get_all();
+
+        $subgroup = $getsubgroup[0]->name;
+
         $id = $this->auth_manager->userid();
         $id_partner = $this->auth_manager->partner_id($id);
 
@@ -299,9 +303,10 @@ class adding extends MY_Site_Controller {
             // array('field'=>'token_for_student', 'label' => 'Token Cost For Student', 'rules'=>'trim|required|xss_clean|numeric|max_length[150]|greater_than[0]'),
             //array('field'=>'token_for_group', 'label' => 'Token Cost For Group', 'rules'=>'trim|required|xss_clean|numeric|max_length[150]')
         );
+
         if (!$this->common_function->run_validation($rules)) {
             $this->messages->add(validation_errors(), 'warning');
-            $this->coach();
+            redirect('partner/subgroup/coach/'.$idsubgroup);
             return;
         }
 
@@ -366,7 +371,7 @@ class adding extends MY_Site_Controller {
             'phone' => $phone_number,
             'partner_id' => $this->auth_manager->partner_id(),
             'user_timezone' => $this->input->post('user_timezone'),
-            'subgroup_id' => $this->input->post('subgroup'),
+            'subgroup_id' => $idsubgroup,
             'dyned_pro_id' => $this->input->post('email_pro_id'),
             'server_dyned_pro' => $this->input->post('server_dyned_pro'),
             'pt_score' => $this->input->post('ptscore'),
@@ -548,7 +553,7 @@ class adding extends MY_Site_Controller {
 
 
         $this->messages->add('Inserting Coach Successful', 'success');
-        redirect('partner/subgroup/list_coach/'.$this->input->post('subgroup'));
+        redirect('partner/subgroup/list_coach/'.$idsubgroup);
     }
     
     public function student_token($student_id = ''){
