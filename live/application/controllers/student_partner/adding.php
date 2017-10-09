@@ -141,7 +141,8 @@ class adding extends MY_Site_Controller {
         );
         if (!$this->common_function->run_validation($rules)) {
             $this->messages->add(validation_errors(), 'warning');
-            $this->student($subgroup_id);
+            redirect('student_partner/subgroup/student/'.@$subgroup_id);
+            
             return;
         }
 
@@ -218,7 +219,6 @@ class adding extends MY_Site_Controller {
             $this->messages->add('Email already registered');
             $this->student();
         }
-
         // inserting user data
         $user = array(
             'email' => $this->input->post('email'),
