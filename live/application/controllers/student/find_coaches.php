@@ -2508,15 +2508,15 @@ class find_coaches extends MY_Site_Controller {
                              // ->where('user_id', $coach_id)
                              ->get()->result();
 
-        if($gmt_coach[0]->gmt == $gmt_student[0]->gmt){
+        if(@$gmt_coach[0]->gmt == $gmt_student[0]->gmt){
             $a = 1;
         } else {
-            if($gmt_coach[0]->gmt < 0){
-            echo "plus";
+            if(@$gmt_coach[0]->gmt < 0){
+            
             $a = 1;
             
             } else {
-                echo "min";
+                
                 $a = -1;
                 
             }
