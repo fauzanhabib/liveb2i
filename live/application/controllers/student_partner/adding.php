@@ -260,7 +260,7 @@ class adding extends MY_Site_Controller {
             'phone' => $phone_number,
             'partner_id' => $user_id_to_partner_id[$this->auth_manager->userid()],
             'user_timezone' => 27,
-            'subgroup_id' => $this->input->post('subgroup'),
+            'subgroup_id' => $subgroup_id,
             'dyned_pro_id' => $this->input->post('email_pro_id'),
             'server_dyned_pro' => $this->input->post('server_dyned_pro'),
             'cert_studying' => $this->input->post('cert_studying'),
