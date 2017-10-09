@@ -87,8 +87,8 @@
                     <td class="t-center">
                         <div class="rw">
                             <div class="blue-red-btn">
-                                <div class="pure-button btn-blue btn-small approve-user" onclick="confirmation('<?php echo site_url('superadmin/manage_partner/approve_supplier/'.@$u->id.'/'.'coach' ); ?>', 'group', 'Approve User', 'approve-users', 'approve-user');">Approve</div>
-                                <div class="pure-button btn-red btn-small decline-user" onclick="confirmation('<?php echo site_url('superadmin/manage_partner/decline_supplier/'.@$u->id.'/'.'coach' ); ?>', 'group', 'Decline User', 'approve-users', 'decline-user');">Decline</div>
+                                <div class="pure-button btn-blue btn-small approve-user" onclick="confirmation('<?php echo site_url('superadmin/manage_partner/approve_affiliate/'.@$u->id.'/'.'coach' ); ?>', 'group', 'Approve User', 'approve-users', 'approve-user');">Approve</div>
+                                <div class="pure-button btn-red btn-small decline-user" onclick="confirmation('<?php echo site_url('superadmin/manage_partner/decline_affiliate/'.@$u->id.'/'.'coach' ); ?>', 'group', 'Decline User', 'approve-users', 'decline-user');">Decline</div>
                             </div>
                         </div>
                     </td>

@@ -1400,7 +1400,7 @@ function update_setting($id) {
 
     }
 
-    public function approve_supplier($id = '', $type='') {
+    public function approve_affiliate($id = '', $type='') {
         // echo $id." - ".$type; exit;
         // Checking ID
         if (!$id) {
@@ -1479,7 +1479,7 @@ function update_setting($id) {
         redirect('superadmin/manage_partner/approve_'.$type);
     }
 
-    public function decline_supplier($id = '', $type='') {
+    public function decline_affiliate($id = '', $type='') {
         // Checking ID
         if (!$id) {
             $this->messages->add('Invalid User ID', 'danger');
