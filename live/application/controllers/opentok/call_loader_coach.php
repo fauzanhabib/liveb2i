@@ -23,13 +23,13 @@ class Call_loader_coach extends MY_Site_Controller {
     public function call_ajax() {
         // $std_id_for_cert = isset($_POST['std_id']);
         $std_id_for_cert=$this->input->post('std_id');
-        
+
         $data_dyned_pro = $this->identity_model->get_student_identity($std_id_for_cert);
         $pro_id         = $data_dyned_pro[0]->dyned_pro_id;
         $pro_server     = $data_dyned_pro[0]->server_dyned_pro;
         $this->call2->init($data_dyned_pro[0]->server_dyned_pro, $data_dyned_pro[0]->dyned_pro_id);
         $this->call1->init($data_dyned_pro[0]->dyned_pro_id,'' , $data_dyned_pro[0]->server_dyned_pro);
-        
+
         $student_vrm      = $this->call2->getdataObj();
         $student_vrm_json = $this->call2->getDataJson();
 
@@ -37,9 +37,9 @@ class Call_loader_coach extends MY_Site_Controller {
 
         $checkCallOne   = @$callOneJson->studentName;
 
-        
+
         if(@$checkCallOne){
-                
+
             $student_cert   = @$student_vrm->cert_studying;
 
             $script = $this->db->distinct()
@@ -62,7 +62,7 @@ class Call_loader_coach extends MY_Site_Controller {
 
                 // echo "<pre>";print_r($scripts);exit();
 
-                for($i=0; $i < $script_total; $i++) 
+                for($i=0; $i < $script_total; $i++)
                 {
                     @$datascript[$i] = array(
                     'user_id'   => $std_id_for_cert,
@@ -76,7 +76,7 @@ class Call_loader_coach extends MY_Site_Controller {
                 
                 $this->db->insert_batch('coaching_scripts', @$datascript);
 
-                
+
             }
 
             $bag = $this->db->select('*')
@@ -85,8 +85,8 @@ class Call_loader_coach extends MY_Site_Controller {
             $content = $bag['0']->content;
 
         }
-        
-    
+
+
         $data = array(
               'content'   => @$content,
               'script'    => @$script,
@@ -95,8 +95,8 @@ class Call_loader_coach extends MY_Site_Controller {
               'student_vrm_json' => @$student_vrm_json
         );
         // echo "<pre>";print_r($script);exit();
-        
+
         $this->load->view('contents/opentok/call_loader_view_script', $data);
-    
+
     }
 }

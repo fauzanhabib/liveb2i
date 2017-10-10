@@ -864,8 +864,8 @@ div.panel.show {
                 <li><a href='#tab4' id="tabsss" class="">Chat</a></li>
             </ul>
 
-            <div id='tab3' class="w3-animate-opacity" style="max-height: 300px;">
-                <div style="height: 300px !important;">
+            <div id='tab3' class="w3-animate-opacity" style="max-height: 325px;">
+                <div style="height: 325px !important;">
                     <?php
                       $cn = $this->db->select('*')
                           ->from('appointments')
