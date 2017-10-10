@@ -4526,6 +4526,418 @@ var $tube = 'com.live.email';
     }
 
         //----------------------------------------------------Super Admin Region Create Region ----------------------------------------------------------
+    function superadmin_edit_email_region($fullname='', $email = '', $pass_default = ''){
+        
+        $super_cre_reg = array(
+            'subject' => 'Region Created',
+            'email' => $email,
+        );
+        $year = date("Y");
+        $super_cre_reg['content'] = '<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <title>DynEd-Live Email Template</title>
+
+    <style type="text/css">
+     
+        
+        #outlook a {
+            padding: 0;
+        }
+        
+        body {
+            width: 100% !important;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .ExternalClass {
+            width: 100%;
+        }
+        /* Konfigurasi untuk Hotmail */
+        
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+            line-height: 100%;
+        }
+        /* Konfigurasi Hotmail*/
+        
+        #backgroundTable {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            line-height: 100% !important;
+        }
+        
+        img {
+            outline: none;
+            text-decoration: none;
+            border: none;
+            -ms-interpolation-mode: bicubic;
+        }
+        
+        a img {
+            border: none;
+        }
+        
+        .image_fix {
+            display: block;
+        }
+        
+        p {
+            margin: 0px 0px !important;
+        }
+        
+        table td {
+            border-collapse: collapse;
+        }
+        
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        
+        a {
+            color: #0a8cce;
+            text-decoration: none;
+            text-decoration: none!important;
+        }
+        /*STYLES*/
+        
+        table[class=full] {
+            width: 100%;
+            clear: both;
+        }
+        /*IPAD STYLES*/
+        
+        @media only screen and (max-width: 640px) {
+            a[href^="tel"],
+            a[href^="sms"] {
+                text-decoration: none;
+                color: #0a8cce;
+                pointer-events: none;
+                cursor: default;
+            }
+            .mobile_link a[href^="tel"],
+            .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #0a8cce !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+            table[class=devicewidth] {
+                width: 440px!important;
+                text-align: center!important;
+            }
+            table[class=devicewidthinner] {
+                width: 420px!important;
+                text-align: center!important;
+            }
+            img[class=banner] {
+                width: 440px!important;
+                height: 220px!important;
+            }
+            img[class=colimg2] {
+                width: 440px!important;
+                height: 220px!important;
+            }
+        }
+        /*IPHONE STYLES*/
+        
+        @media only screen and (max-width: 480px) {
+            a[href^="tel"],
+            a[href^="sms"] {
+                text-decoration: none;
+                color: #0a8cce;
+                pointer-events: none;
+                cursor: default;
+            }
+            .mobile_link a[href^="tel"],
+            .mobile_link a[href^="sms"] {
+                text-decoration: default;
+                color: #0a8cce !important;
+                pointer-events: auto;
+                cursor: default;
+            }
+            table[class=devicewidth] {
+                width: 280px!important;
+                text-align: center!important;
+            }
+            table[class=devicewidthinner] {
+                width: 260px!important;
+                text-align: center!important;
+            }
+            img[class=banner] {
+                width: 280px!important;
+                height: 140px!important;
+            }
+            img[class=colimg2] {
+                width: 280px!important;
+                height: 140px!important;
+            }
+            td[class=mobile-hide] {
+                display: none!important;
+            }
+            td[class="padding-bottom25"] {
+                padding-bottom: 25px!important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+   
+    <!-- Start of header -->
+    <tr>
+                                                <td height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="header">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td width="100%">
+                                    <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth" style="border-top: 3px solid #144d80;">
+                                        <tbody>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td>
+                                                    <!-- logo -->
+                                                    <table width="140" align="left" border="0" cellpadding="0" cellspacing="0" class="devicewidth">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="169" height="45" align="center">
+                                                                    <div class="imgpop">
+                                                                        <a target="_blank" href="http://live.dyned.com">
+                                                                            <img src="https://live.dyned.com/uploads/images/dyned-logo.png" alt="" border="0" width="100%" height="auto" style="display:block; border:none; outline:none; text-decoration:none;">
+                                                                        </a>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- end of logo -->
+                                                </td>
+                                            </tr>
+                                           
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- End of Header -->
+   
+    <table>
+        
+    </table>
+   
+    
+    <table width="600" align="center" cellpadding="0" border="0" class="devicewidthinner">
+        <tbody>
+            <tr style="background-color:#2b89b9;">
+                                                                <td style="color: #fff;font-family: Helvetica, arial, sans-serif; font-size: 30px; padding:15px; text-align:center; line-height: 35px; font-weight:600;" st-title="fulltext-heading">
+                                                                    Region Created
+                                                                </td>
+                                                            </tr>
+                                                            <!-- spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="35" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                            </tr>
+                                                            <!-- End of spacing -->
+                                                            <tr>
+                                                                <td style="font-family: Helvetica, arial, sans-serif; font-size: 28px; color: #919191; text-align:center; line-height: auto;" st-title="fulltext-heading" >
+                                                                    <br>
+                                                                    Hi '.$fullname.'`s Admin, <br>Welcome to DynEd Live!
+                                                                </td>
+                                                            </tr>
+                                                            <!-- spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="35" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                            </tr>
+                                                            <!-- End of spacing -->
+        </tbody>
+    </table>
+   
+    <!-- Detail Account Start -->
+    
+    <table width="560" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
+                                                        <tbody>
+                                                            <!-- Title -->
+                                                            
+                                                            <!-- End of Title -->
+                                                            <!-- spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                            </tr>
+                                                            <!-- End of spacing -->
+                                                            <!-- content -->
+                                                            <tr>
+                                                                <td style="font-family: Helvetica, arial, sans-serif; font-size: 30px; color: #ea5656; text-align:center; line-height: 35px; font-weight:600;" st-title="fulltext-heading">
+                                                                    New email for '.$fullname.' region has been Changed. Login Information : 
+                                                                </td>
+                                                            </tr>
+                                                            <!-- End of Title -->
+                                                            <!-- spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                            </tr>
+                                                            <!-- End of spacing -->
+                                                            <!-- content -->
+                                                            <tr>
+                                                                <td style="font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #919191; text-align:center; line-height: 30px;" st-content="fulltext-content">
+                                                                 
+                                                                  
+                                                                   Email : '.$email.'
+                                                                   <br>
+                                                                    Password : '.$realpassword.'
+                                                                   <br>
+                                                                   Please change your password after login
+                                                                   <br>
+                                                                   <br>
+                                                                   Best,
+                                                                   <br>DynEd Live Teams.
+                                                                   <br><br>
+                                                                   <p style="font-weight:400;font-size:14px;line-height:30px;">For more information, please contact <a href="mailto:livesupport@dyned.com">administrator</a>. Thank you!</p>
+                                                                   
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                            <!-- End of content -->
+                                                            <!-- spacing -->
+                                                            <tr>
+                                                                <td width="100%" height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
+                                                            </tr>
+                                                            <!-- End of spacing -->
+                                                            <tr>
+                                                                   
+                                                                    <td width="auto" align="center" valign="middle" height="36" style="background-color:#2b89b9; border-top-left-radius:4px; border-bottom-left-radius:4px;border-top-right-radius:4px; border-bottom-right-radius:4px; background-clip: padding-box;font-size:1.5em; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;padding-top:25px;padding-bottom:25px;">
+
+                                                                        <span style="color: #ffffff; font-weight: 300;">
+                                                                              <a style="color: #ffffff; text-align:center;text-decoration: none;" href="http://live.dyned.com">Login to DynEd Live</a>
+                                                                           </span>
+                                                                    </td>
+                                                                </tr>
+                                                        </tbody>
+                                                    </table>
+    
+    <!-- Detail Account End -->
+     
+   
+    <!-- Start of seperator -->
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="seperator">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="600" align="center" cellspacing="0" cellpadding="0" border="0" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td align="center" height="30" style="font-size:1px; line-height:1px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="550" align="center" height="1" bgcolor="#d1d1d1" style="font-size:1px; line-height:1px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="center" height="30" style="font-size:1px; line-height:1px;">&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- End of seperator -->
+    <!-- 2columns -->
+    
+    
+    
+    <!-- Start of Postfooter -->
+    <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="postfooter">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                        <tbody>
+                            <tr>
+                                <td width="100%">
+                                    <table width="600" cellpadding="0" cellspacing="0" border="0" align="center" class="devicewidth">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" valign="middle" style="font-family: Helvetica, arial, sans-serif; font-size: 14px;color: #919191" st-content="postfooter">
+                                                    DynEd Live © '.$year.' DynEd International, Inc. All rights reserved.
+                                                </td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                            <tr>
+                                                <td width="100%" height="20"></td>
+                                            </tr>
+                                            <!-- Spacing -->
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- End of postfooter -->
+
+</body>
+
+</html>';
+
+        $this->CI->queue->push($this->tube, $super_cre_reg, 'email.send_email');
+            
+        //     $this->CI->email->from('no-reply@dyned.com', 'no-reply');
+        //     $this->CI->email->to($email);
+        //     $this->CI->email->bcc('test.soerbakti@gmail.com');
+        //     $this->CI->email->set_mailtype('html');
+            
+        // if ($content == 'add') {
+        //         $data['subject'] = 'Region Created';
+        //         $this->CI->email->subject($data['subject']);
+        //             $this->CI->email->message($email_body);
+        //         if ($this->CI->email->send($content)) {
+
+        //             } else { 
+        //             echo $this->CI->email->print_debugger();
+        //             }
+        //     } else if ($content == 'activate') {
+                
+        //         $data['subject'] = 'Region Activated';
+        //             $this->CI->email->subject($data['subject']);
+        //             $this->CI->email->message($email_activate);
+        //          if ($this->CI->email->send($id = '', $content = '')) {
+
+        //             } else { 
+        //             echo $this->CI->email->print_debugger();
+        //             }
+        //     }
+    }
+
+        //----------------------------------------------------Super Admin Region Create Region ----------------------------------------------------------
     function superadmin_create_region($fullname='', $email = '', $realpassword = '', $content = ''){
         
         $super_cre_reg = array(

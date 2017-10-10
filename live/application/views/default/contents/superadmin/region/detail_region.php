@@ -93,13 +93,14 @@
                         </tr>
                          <tr>
                             <td class="pad15">Email</td>
-                            <td  class="r-only">
-                                <span><?php echo @$data_admin[0]->email; ?></span>
-                            </td>
-                            <td class="e-only" style="cursor:not-allowed;background: #ebebeb;color: #939393;padding-left: 5px;">
-                                <span><?php echo @$data_admin[0]->email; ?></span>
+                            <td>
+                                <span class="r-only"><?php echo @$data_admin[0]->email; ?></span>
+                                <span>
+                                    <input name="email" type="text" id="td_value_4_0" value="<?php echo @$data_admin[0]->email; ?>" class="e-only" required data-parsley-required-message="Email name can’t be blank">
+                                </span>
                             </td>
                         </tr>
+                        
                         <tr>
                             <td class="pad15">Tokens</td>
                             <td  class="r-only">

@@ -307,11 +307,19 @@ class region extends MY_Site_Controller {
         $data_admin = $this->identity_model->get_region_admin_identity($id);
 
         $id_regional = $data_admin[0]->id;
+
+        $get_old_email = $this->db->select('email')
+                              ->from('users')
+                              ->where('id',$id)
+                              ->get()->result();
+        $old_email = $get_old_email[0]->email;
+
         $submit = $this->input->post('_submit');
                 if($submit == 'SAVE'){
 
                      $rules = array(
-                        array('field'=>'region', 'label' => 'region', 'rules'=>'trim|required|xss_clean|max_length[50]')
+                        array('field'=>'region', 'label' => 'region', 'rules'=>'trim|required|xss_clean|max_length[50]'),
+                        array('field'=>'email', 'label' => 'Email', 'rules'=>'trim|required|valid_email')
                     );
 
                     if (!$this->common_function->run_validation($rules)) {
@@ -319,14 +327,46 @@ class region extends MY_Site_Controller {
                         redirect('superadmin/region/detail/'.$id_regional);
                         return;
                     }
+
+                     // check email
+                     $status_email = $this->cek_emailnya($id, $this->input->post('email'));
+
+                     if($status_email != 1){
+                        $this->messages->add('Email already registered', 'warning');
+                        redirect('superadmin/region/detail/'.$id_regional);
+                     }
+
                     $update_admin = $this->user_profile_model->where('user_id', $id_regional)->get();
                     $data_region = ['region_id' => $this->input->post('region')];
+
+                     
+                    
                     
                     if (!$this->user_profile_model->update($update_admin->id, $data_region, TRUE)) {
                         $this->messages->add(validation_errors(), 'warning');
                         redirect('superadmin/region/detail/'.$id_regional);
                         return;
                     }
+
+                    if($old_email != $this->input->post('email')){
+
+                        $pass_default = 'dyned123';
+                        $data_surel = ['email' => $this->input->post('email'),
+                                       'password' => $this->phpass->hash($pass_default)];
+                        $update_email = $this->db->where('id', $id)
+                                                 ->update('users', $data_surel);
+                        // old_data
+                        $old_data = $this->db->select('region_id')
+                                             ->from('user_profiles')
+                                             ->where('user_id',$id)
+                                             ->get()->result();
+
+                        // sent email
+
+                        $this->send_email->superadmin_edit_email_region($old_data[0]->region_id, $email, $pass_default);
+                    }
+
+                    
                     $this->messages->add('Update Successful', 'success');
                     redirect('superadmin/region/detail/'.$id_regional);
                 }
@@ -372,6 +412,30 @@ class region extends MY_Site_Controller {
 
         $this->template->content->view('default/contents/superadmin/region/detail_region', $vars);
         $this->template->publish();
+    }
+
+    function cek_emailnya($id=2061, $email){
+        // check prev email
+        $a = $this->db->select('email')
+                      ->from('users')
+                      ->where('id',$id)
+                      ->get()->result();
+        $b = $a[0]->email;
+
+        if($email != $b){
+            $cemail = $this->db->select('email')
+                          ->from('users')
+                          ->where('email =',$email)
+                          ->get()->result();
+            if(!$cemail){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return true;
+        }
+
     }
 
     function change_status(){
