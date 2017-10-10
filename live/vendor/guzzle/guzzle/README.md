@@ -9,7 +9,8 @@ been released and is available at
 documentation for Guzzle version 5+ can be found at
 [http://guzzlephp.org](http://guzzlephp.org).
 
-Guzzle 3 is no longer maintained and is now end of life.
+Guzzle 3 is only maintained for bug and security fixes. Guzzle 3 will be EOL
+at some point in late 2015.
 
 ### About Guzzle 3
 
@@ -20,6 +21,8 @@ Guzzle 3 is no longer maintained and is now end of life.
 - Truly take advantage of HTTP/1.1 with persistent connections, connection pooling, and parallel requests.
 - Service description DSL allows you build awesome web service clients faster.
 - Symfony2 event-based plugin system allows you to completely modify the behavior of a request.
+
+Get answers with: [Documentation](http://guzzle3.readthedocs.org/en/latest/), [Forums](https://groups.google.com/forum/?hl=en#!forum/guzzle), IRC ([#guzzlephp](irc://irc.freenode.net/#guzzlephp) @ irc.freenode.net)
 
 ### Installing via Composer
 
