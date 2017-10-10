@@ -750,7 +750,7 @@ class subgroup extends MY_Site_Controller {
         $dial_code = $option_country[$arsearch]['dial_code'];
 
         // get sub group by partner id
-        $getsubgroup = $this->subgroup_model->select('*')->where('id',$subgroup_id)->where('type','student')->get_all();
+        $getsubgroup = $this->subgroup_model->select('*')->where('partner_id',$this->auth_manager->partner_id())->where('type','student')->where('id',$subgroup_id)->get_all();
         // echo "<pre>";
         // print_r($getsubgroup);
         // exit();

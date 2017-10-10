@@ -276,9 +276,9 @@ class adding extends MY_Site_Controller {
             redirect('partner/member_list/coach');
         }
 
-        $getsubgroup = $this->subgroup_model->select('*')->where('partner_id',$this->auth_manager->partner_id())->where('type','coach')->where('id',$idsubgroup)->get_all();
+        // $getsubgroup = $this->subgroup_model->select('*')->where('partner_id',$this->auth_manager->partner_id())->where('type','coach')->where('id',$idsubgroup)->get_all();
 
-        $subgroup = $getsubgroup[0]->name;
+        // $subgroup = $getsubgroup[0]->name;
 
         $id = $this->auth_manager->userid();
         $id_partner = $this->auth_manager->partner_id($id);
@@ -554,10 +554,6 @@ class adding extends MY_Site_Controller {
 
         $this->messages->add('Inserting Coach Successful', 'success');
         redirect('partner/subgroup/list_coach/'.$idsubgroup);
-    }
-    
-    public function student_token($student_id = ''){
-        
     }
     
     public function is_email_available($email) {
