@@ -283,28 +283,28 @@ class adding extends MY_Site_Controller {
 
 
         // ======
-        $scripts = $this->db->select('*')
-                  ->from('script')
-                  ->like('certificate_plan', $this->input->post('cert_studying'))
-                  ->get()->result();
+        // $scripts = $this->db->select('*')
+        //           ->from('script')
+        //           ->like('certificate_plan', $this->input->post('cert_studying'))
+        //           ->get()->result();
 
-            $script_total = count($scripts);
-            $datascript =array();
-            $n = 1; 
+        //     $script_total = count($scripts);
+        //     $datascript =array();
+        //     $n = 1; 
 
      
-            for($i=0; $i < $script_total; $i++) 
-            {
-                $datascript[$i] = array(
-                'user_id'   => $user_id,
-                'script_id' => $n,
-                'cert_plan' => $this->input->post('cert_studying'),
-                'status'    => '0'
-                );
-                $n++;
-            }
+        //     for($i=0; $i < $script_total; $i++) 
+        //     {
+        //         $datascript[$i] = array(
+        //         'user_id'   => $user_id,
+        //         'script_id' => $n,
+        //         'cert_plan' => $this->input->post('cert_studying'),
+        //         'status'    => '0'
+        //         );
+        //         $n++;
+        //     }
    
-            $this->db->insert_batch('coaching_scripts', $datascript);
+        //     $this->db->insert_batch('coaching_scripts', $datascript);
         // ======
 
         // Inserting and checking to profile table then storing it into users_profile table
