@@ -109,7 +109,7 @@
                         <div class="input">
                             <div class="flex">
                                 <input type="text" name="dial_code" data-parsley-trigger="change" value="<?php echo $dial_code; ?>" id="dial_code" class="pure-input-1-8" style="margin-right:1px;" readonly> 
-                                <?php echo form_input('phone', set_value('phone', @$data->phone), 'id="phone" class="pure-input-1-2" data-parsley-type="digits" required data-parsley-required-message="Please input coach affiliate phone number" data-parsley-type-message="Please input numbers only"') ?>
+                                <?php echo form_input('phone', set_value('phone', @$data->phone), 'id="phone" class="pure-input-1-2" data-parsley-type="digits" required data-parsley-required-message="Please input affiliate`s phone number" data-parsley-type-message="Please input numbers only"') ?>
                             </div>
                         </div>
                     </div>

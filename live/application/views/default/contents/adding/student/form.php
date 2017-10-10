@@ -35,7 +35,7 @@
                             <label for="email">Email</label>
                         </div>
                         <div class="input">
-                            <input type="email" name="email" data-parsley-trigger="change" value="<?php echo @$data->email?>" id="email" class="pure-input-1-2" required data-parsley-required-message="Please input coach e-mail address" data-parsley-type-message="Please input valid e-mail address">
+                            <input type="email" name="email" data-parsley-trigger="change" value="<?php echo @$data->email?>" id="email" class="pure-input-1-2" required data-parsley-required-message="Please input student e-mail address" data-parsley-type-message="Please input valid e-mail address">
                         </div>
                     </div>
 
@@ -44,7 +44,7 @@
                             <label for="nickname">Nick Name</label>
                         </div>  
                         <div class="input">
-                            <?php echo form_input('nickname', set_value('nickname', @$data->nickname), 'id="nickname" class="pure-input-1-2" required data-parsley-required-message="Please input student name"') ?>
+                            <?php echo form_input('nickname', set_value('nickname', @$data->nickname), 'id="nickname" class="pure-input-1-2" required data-parsley-required-message="Please input student nick name"') ?>
                         </div>
                     </div>
   
@@ -53,7 +53,7 @@
                             <label for="email">DynEd Pro ID (Email)</label>
                         </div>
                         <div class="input">
-                            <input type="email" name="email_pro_id" data-parsley-trigger="change" value="<?php echo @$data->email_pro_id?>" id="email_pro_id" class="pure-input-1-2" required data-parsley-required-message="Please input coach e-mail Pro ID address" data-parsley-type-message="Please input valid e-mail Pro ID address">
+                            <input type="email" name="email_pro_id" data-parsley-trigger="change" value="<?php echo @$data->email_pro_id?>" id="email_pro_id" class="pure-input-1-2" required data-parsley-required-message="Please input student e-mail Pro ID address" data-parsley-type-message="Please input valid e-mail Pro ID address">
                         </div>
                     </div>
 
