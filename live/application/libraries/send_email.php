@@ -4529,7 +4529,7 @@ var $tube = 'com.live.email';
     function superadmin_edit_email_region($fullname='', $email = '', $pass_default = ''){
         
         $super_cre_reg = array(
-            'subject' => 'Region Created',
+            'subject' => 'New Email Region',
             'email' => $email,
         );
         $year = date("Y");
@@ -4810,7 +4810,7 @@ var $tube = 'com.live.email';
                                                                   
                                                                    Email : '.$email.'
                                                                    <br>
-                                                                    Password : '.$realpassword.'
+                                                                    Password : '.$pass_default.'
                                                                    <br>
                                                                    Please change your password after login
                                                                    <br>
