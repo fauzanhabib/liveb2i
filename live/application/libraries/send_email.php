@@ -4527,9 +4527,9 @@ var $tube = 'com.live.email';
 
         //----------------------------------------------------Super Admin Region Create Region ----------------------------------------------------------
     function superadmin_edit_email_region($fullname='', $email = '', $pass_default = ''){
-        
+        //
         $super_cre_reg = array(
-            'subject' => 'New Email Region',
+            'subject' => 'New Email Region', 
             'email' => $email,
         );
         $year = date("Y");
