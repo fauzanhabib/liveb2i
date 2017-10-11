@@ -1251,13 +1251,16 @@ class Coach_vrm extends MY_Site_Controller {
                   }
 
 
-                 // $cchnote = $this->db->select('*')
-                 //            ->from('appointments')
-                 //            ->where('student_id', $student_id)
-                 //            ->where('status', 'completed')
-                 //            ->order_by('id','desc')
-                 //            ->get()->result();
+                 $cchnote = $this->db->select('ap.date, ap.cch_notes, up.fullname')
+                            ->from('appointments ap')
+                            ->join('user_profiles up', 'up.user_id = ap.coach_id')
+                            ->where('ap.student_id', $student_id)
+                            ->where('ap.status', 'completed')
+                            ->order_by('ap.date','desc')
+                            ->limit(10)
+                            ->get()->result();
 
+                //  echo "<pre>";print_r($cchnote);exit();
 
                  $vars = array(
                       'student_fullname' => $data_dyned_pro[0]->fullname,
@@ -1273,9 +1276,7 @@ class Coach_vrm extends MY_Site_Controller {
                       'allmodule6'   => @$allmodule6
                   );
 
-                 // echo "<pre>";
-                 // print_r($callOneJson);
-                 // exit();
+                //  echo "<pre>";print_r($cchnote);exit();
 
                   $this->template->content->view('default/contents/vrm/coach/index', $vars);
                   $this->template->publish();
