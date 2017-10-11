@@ -363,7 +363,7 @@ class region extends MY_Site_Controller {
 
                         // sent email
 
-                        $this->send_email->superadmin_edit_email_region($old_data[0]->region_id, $email, $pass_default);
+                        $this->send_email->superadmin_edit_email_region($old_data[0]->region_id, $this->input->post('email'), $pass_default);
                     }
 
                     
