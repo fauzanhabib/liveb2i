@@ -668,9 +668,9 @@ class region extends MY_Site_Controller {
                     array('field'=>'max_day_per_week', 'label' => 'max_day_per_week', 'rules'=>'trim|required|xss_clean'),
                     array('field'=>'max_session_per_day', 'label' => 'max_session_per_day', 'rules'=>'trim|required|xss_clean'),
                     array('field'=>'max_token', 'label' => 'max_token', 'rules'=>'trim|required|xss_clean'),
-                    array('field'=>'max_token_for_student', 'label' => 'max_token_for_student', 'rules'=>'trim|required|xss_clean'),
-                    array('field'=>'max_session_per_x_day', 'label' => 'max_session_per_x_day', 'rules'=>'trim|required|xss_clean'),
-                    array('field'=>'x_day', 'label' => 'x_day', 'rules'=>'trim|required|xss_clean')
+                    array('field'=>'max_token_for_student', 'label' => 'max_token_for_student', 'rules'=>'trim|required|xss_clean')
+                    // array('field'=>'max_session_per_x_day', 'label' => 'max_session_per_x_day', 'rules'=>'trim|required|xss_clean')
+                    // array('field'=>'x_day', 'label' => 'x_day', 'rules'=>'trim|required|xss_clean')
                 );
 
             if (!$this->common_function->run_validation($rules)) {
@@ -695,7 +695,7 @@ class region extends MY_Site_Controller {
                 'max_session_per_day' => $this->input->post('max_session_per_day'),
                 'max_token' => $this->input->post('max_token'),
                 'max_token_for_student' => $this->input->post('max_token_for_student'),
-                'max_session_per_x_day' => $this->input->post('max_session_per_x_day'), 
+                // 'max_session_per_x_day' => $this->input->post('max_session_per_x_day'), 
                 'x_day' => $this->input->post('x_day'),
                 'set_max_session' => $this->input->post('set_max_session'),
                 
