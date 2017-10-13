@@ -164,14 +164,18 @@ class adding extends MY_Site_Controller {
         
         $max_token_for_student = '';
         $max_student_supplier = '';
+        $max_student_class = '';
         if($get_status_setting_region[0]->status_set_setting == 0){
             $get_setting = $this->global_settings_model->get_partner_settings();
             $max_token_for_student = $get_setting[0]->max_token_for_student; 
             $max_student_supplier = $get_setting[0]->max_student_supplier; 
+            $max_student_class = $get_setting[0]->max_student_class;
+
         } else {
             $get_setting = $this->specific_settings_model->get_partner_settings($id_partner);
             $max_token_for_student = $get_setting[0]->max_token_for_student;
             $max_student_supplier = $get_setting[0]->max_student_supplier;
+            $max_student_class = $get_setting[0]->max_student_class;
         }
         // =======================
         $get_user_token = $this->user_token_model->get_token($id,'user');
@@ -189,16 +193,52 @@ class adding extends MY_Site_Controller {
         $student_token = $get_token[0]->token_amount;
         // =================
 
-        $student_member = $this->db->select('member_id')
+        // xxxxxx======xxxxxx
+         // total maximum student 
+        $get_student_member = $this->db->select('member_id')
                                    ->from('creator_members')
                                    ->where('creator_id', $this->auth_manager->userid())
-                                   ->get();
-        
-        if(@$student_member->num_rows() >= @$max_student_supplier){
-            $this->messages->add('Exceeded Maximum Quota', 'warning');
+                                   ->get()->result();
+
+        $tot_stu = 0;
+        foreach ($get_student_member as $key) {
+            $student_member = $this->db->select('id')
+                                   ->from('users')
+                                   ->where('id',$key->member_id)
+                                   ->where('status','active')
+                                   ->get()->result();
+            if($student_member){
+                $tot_stu++; 
+            }
+        }
+
+        // total maximum student in class 
+        $get_stu_class = $this->db->select('user_id')
+                                  ->from('user_profiles')
+                                  ->where('subgroup_id',$subgroup_id)
+                                  ->get()->result();
+
+        $tot_stu_class = 0;
+        foreach ($get_stu_class as $v) {
+            $student_member_class = $this->db->select('id')
+                                   ->from('users')
+                                   ->where('id',$v->user_id)
+                                   ->where('status','active')
+                                   ->get()->result();
+            if($student_member_class){
+                $tot_stu_class++; 
+            }
+        }
+        // xxxxxx======xxxxxx
+        if(@$tot_stu_class >= @$max_student_class){
+            $this->messages->add('Exceeded Maximum Quota Class', 'warning');
             redirect('student_partner/subgroup/list_student/'.@$subgroup_id);
         }
 
+        if(@$tot_stu >= @$max_student_supplier){
+            $this->messages->add('Exceeded Maximum Quota student affiliate', 'warning');
+            redirect('student_partner/subgroup/list_student/'.@$subgroup_id);
+        }
 
         // update token
         $update_token = $user_token - $request_token;
