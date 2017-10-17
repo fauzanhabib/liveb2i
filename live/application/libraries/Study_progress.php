@@ -91,7 +91,7 @@ class Study_progress {
         // echo $result;
     }
     public function GetStudyProgress($tokenresult) {
-        $ch = curl_init('https://b2ctest.dyned.com/api/v1/dsa/v1/study-record/tobbysembiring@gmail.com/progress');
+        $ch = curl_init('https://b2ctest.dyned.com/api/v1/dsa/v1/study-progress/tobbysembiring@gmail.com');
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // true or false

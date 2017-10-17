@@ -71,7 +71,7 @@
             <div class="bullet__achievement <?php echo $mt_color['mt6']; ?>"></div>
 
             <div class="achievement__point__info">
-              <h5><?php echo $gsp->data->study_points_until_today;?></h5>
+              <h5><?php echo $gsp->data->study->points_until_today;?></h5>
               <h3>Study</h3>
             </div>
           </div>
@@ -88,7 +88,7 @@
             <div class="bullet__achievement <?php echo $ct_color['ct10']; ?>"></div>
 
             <div class="achievement__point__info">
-              <h5><?php echo $gsp->data->coach_points_until_today;?></h5>
+              <h5><?php echo $gsp->data->coach->points_until_today;?></h5>
               <h3>Coach</h3>
             </div>
           </div>

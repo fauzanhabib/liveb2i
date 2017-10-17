@@ -1304,25 +1304,25 @@ class Coach_vrm extends MY_Site_Controller {
               "failed" => "bg-red-gradient"
             );
             $mt_color = array(
-              'mt1' => $mt_status_to_colour[$gsp->data->mastery_tests[0]->status],
-              'mt2' => $mt_status_to_colour[$gsp->data->mastery_tests[1]->status],
-              'mt3' => $mt_status_to_colour[$gsp->data->mastery_tests[2]->status],
-              'mt4' => $mt_status_to_colour[$gsp->data->mastery_tests[3]->status],
-              'mt5' => $mt_status_to_colour[$gsp->data->mastery_tests[4]->status],
-              'mt6' => $mt_status_to_colour[$gsp->data->mastery_tests[5]->status]
+              'mt1' => $mt_status_to_colour[$gsp->data->study->mastery_tests[0]->status],
+              'mt2' => $mt_status_to_colour[$gsp->data->study->mastery_tests[1]->status],
+              'mt3' => $mt_status_to_colour[$gsp->data->study->mastery_tests[2]->status],
+              'mt4' => $mt_status_to_colour[$gsp->data->study->mastery_tests[3]->status],
+              'mt5' => $mt_status_to_colour[$gsp->data->study->mastery_tests[4]->status],
+              'mt6' => $mt_status_to_colour[$gsp->data->study->mastery_tests[5]->status]
             );
 
             $ct_color = array(
-              'ct1' => $mt_status_to_colour[$gsp->data->coach_sessions[0]->status],
-              'ct2' => $mt_status_to_colour[$gsp->data->coach_sessions[1]->status],
-              'ct3' => $mt_status_to_colour[$gsp->data->coach_sessions[2]->status],
-              'ct4' => $mt_status_to_colour[$gsp->data->coach_sessions[3]->status],
-              'ct5' => $mt_status_to_colour[$gsp->data->coach_sessions[4]->status],
-              'ct6' => $mt_status_to_colour[$gsp->data->coach_sessions[5]->status],
-              'ct7' => $mt_status_to_colour[$gsp->data->coach_sessions[6]->status],
-              'ct8' => $mt_status_to_colour[$gsp->data->coach_sessions[7]->status],
-              'ct9' => $mt_status_to_colour[$gsp->data->coach_sessions[8]->status],
-              'ct10' => $mt_status_to_colour[$gsp->data->coach_sessions[9]->status]
+              'ct1' => $mt_status_to_colour[$gsp->data->coach->sessions[0]->status],
+              'ct2' => $mt_status_to_colour[$gsp->data->coach->sessions[1]->status],
+              'ct3' => $mt_status_to_colour[$gsp->data->coach->sessions[2]->status],
+              'ct4' => $mt_status_to_colour[$gsp->data->coach->sessions[3]->status],
+              'ct5' => $mt_status_to_colour[$gsp->data->coach->sessions[4]->status],
+              'ct6' => $mt_status_to_colour[$gsp->data->coach->sessions[5]->status],
+              'ct7' => $mt_status_to_colour[$gsp->data->coach->sessions[6]->status],
+              'ct8' => $mt_status_to_colour[$gsp->data->coach->sessions[7]->status],
+              'ct9' => $mt_status_to_colour[$gsp->data->coach->sessions[8]->status],
+              'ct10' => $mt_status_to_colour[$gsp->data->coach->sessions[9]->status]
             );
 
             $vars = array(
