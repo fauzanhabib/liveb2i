@@ -31,6 +31,7 @@ class identity extends MY_Site_Controller {
         'ADM' => array('profile'),
         'SPR' => array('profile'),
         'RAD' => array('profile'),
+        'SPN' => array('profile'),
     );
 
     /**
@@ -78,12 +79,12 @@ class identity extends MY_Site_Controller {
         // To convert id to name of Social Media
         $this->load->model('social_media_model');
         $this->load->model('timezone_model');
-        
+
         $this->load->library('common_function');
 
         // Load language
         $this->lang->load('view');
-        
+
         // Get user role
         $this->role = $this->auth_manager->role();
         if (!$this->role) {
@@ -109,7 +110,7 @@ class identity extends MY_Site_Controller {
 
         // setting key for edit data
         $this->session->set_userdata("key", $key);
-        
+
         // Querying record based on ID and role checking
         // If there is no social media will redirect to fill/login one of the social media
         if ($this->auth_manager->role() == 'STD') {
@@ -133,6 +134,9 @@ class identity extends MY_Site_Controller {
             @$name_region = $this->db->select('region_id')->from('user_profiles')->where('user_id',$get_region[0]->admin_regional_id)->get()->result();
             @$get_partner = $this->db->select('name')->from('partners')->where('id',$data[0]->partner_id)->get()->result();
         } else if (($this->auth_manager->role() == 'ADM') || ($this->auth_manager->role() == 'RAD')) {
+            $data = $this->identity_model->get_identity('user')->select('users.id as id, users.email as email, users.password as password, users.status as status, users.status_set_setting as status_set_setting, users.last_login as last_login, users.role_id as role_id, user_profiles.profile_picture as profile_picture, user_profiles.fullname as fullname, user_profiles.region_id as region_id, user_profiles.user_timezone as user_timezone')->join('user_profiles','user_profiles.user_id = users.id')->where('users.id', $this->auth_manager->userid())->get_all();
+            $data_timezone_admin = $this->identity_model->get_identity('profile')->select('user_timezone')->where('user_id', $this->auth_manager->userid())->get();
+        }else if ($this->auth_manager->role() == 'SPN') {
             $data = $this->identity_model->get_identity('user')->select('users.id as id, users.email as email, users.password as password, users.status as status, users.status_set_setting as status_set_setting, users.last_login as last_login, users.role_id as role_id, user_profiles.profile_picture as profile_picture, user_profiles.fullname as fullname, user_profiles.region_id as region_id, user_profiles.user_timezone as user_timezone')->join('user_profiles','user_profiles.user_id = users.id')->where('users.id', $this->auth_manager->userid())->get_all();
             $data_timezone_admin = $this->identity_model->get_identity('profile')->select('user_timezone')->where('user_id', $this->auth_manager->userid())->get();
         }// else if ($this->auth_manager->role() == 'RAD') {
@@ -159,9 +163,9 @@ class identity extends MY_Site_Controller {
         $this->template->title = 'Detail ' . $this->detail[$key];
         $timezones = $this->timezone_model->where_not_in('minutes',array('-210','330','570',))->dropdown('id', 'timezone');
         $get_user_timezone = $this->db->select('minutes_val')->from('user_timezones')->where('user_id',$this->auth_manager->userid())->get()->result();
-        
+
         if(!$get_user_timezone){
-            $minute_user_timezone = 0;            
+            $minute_user_timezone = 0;
         } else {
             $minute_user_timezone = $get_user_timezone[0]->minutes_val;
         }
@@ -180,7 +184,7 @@ class identity extends MY_Site_Controller {
             $arsearch = array_search($partner_country, array_column($option_country, 'name'));
             $country_code = $option_country[$arsearch]['dial_code'];
         }
-       
+
         array_search('Indonesia', array_column($this->common_function->country_code, 'name'));
 
         //Check Number Verification ------------------------------
@@ -194,7 +198,7 @@ class identity extends MY_Site_Controller {
         //Check Number Verification ------------------------------
 
         $id = $this->auth_manager->userid();
-        
+
         $pull_notif = $this->db->select('*')
                       ->from('user_notifications')
                       ->where('user_id', $id)
@@ -214,7 +218,7 @@ class identity extends MY_Site_Controller {
                 'dcrea' => time(),
                 'dupd' => time(),
             );
-                        
+
             $this->user_notification_model->insert($user_notification);
         }
 
@@ -233,7 +237,7 @@ class identity extends MY_Site_Controller {
             'country_code' => $country_code,
             'partner_country' => $partner_country,
             'status' => $status
-             
+
         );
         if ($this->auth_manager->role() == 'STD') {
             $vars['server_dyned_pro'] = $this->common_function->server_code();
@@ -308,13 +312,13 @@ class identity extends MY_Site_Controller {
 
         //storing the data
         $data = array();
-        
+
         if ($part == 'info') {
 
 
             foreach ($this->input->post() as $t => $value) {
                 if ($t != "__submit" && $t != "spoken_lang") {
-                    $data[$t] = $value; 
+                    $data[$t] = $value;
                 }
                 if($t == "spoken_language"){
                     if($value != ''){
@@ -327,20 +331,20 @@ class identity extends MY_Site_Controller {
                     }
                 }
             }
-            
+
             $rules = array(
                 array('field'=>'fullname', 'label' => 'Name', 'rules'=>'trim|required|xss_clean|max_length[50]'),
                 // array('field'=>'date_of_birth', 'label' => 'Birthday', 'rules'=>'trim|required|xss_clean'),
                 // array('field'=>'spoken_language', 'label' => 'Spoken Language', 'rules'=>'trim|required|xss_clean|max_length[150]'),
                 array('field'=>'gender', 'label' => 'Gender', 'rules'=>'trim|required|xss_clean')
             );
-            
+
             if($this->input->post('date_of_birth') > date('Y-m-d', now())){
                 $this->messages->add('Invalid Date', 'warning');
                 redirect('account/identity/detail/profile');
             }
 
-            
+
             if($this->auth_manager->role() == 'PRT' || $this->auth_manager->role() == 'SPR'){
                 //$rules[] = array('field'=>'user_timezone', 'label' => 'Timezone', 'rules'=>'trim|required|xss_clean');
             }
@@ -351,14 +355,14 @@ class identity extends MY_Site_Controller {
                 return;
             }
 
-            
+
             $id_profile = $this->identity_model->get_identity('profile')->select('id')->where('user_id', $this->auth_manager->userid())->get();
             if (!$this->identity_model->get_identity('profile')->update($id_profile->id, $data, TRUE)) {
                 $this->messages->add(validation_errors(), 'warning');
                 $this->detail('profile');
                 return;
             }
-            
+
         } else if ($part == 'more_info') {
 
             $rules = array(
@@ -371,7 +375,7 @@ class identity extends MY_Site_Controller {
             );
 
             if($this->auth_manager->role() == 'CCH'){
-           
+
                 // get status appointment by userid
                                 // get status appointment by userid
                 $get_appointment = $this->db->select('id')
@@ -403,10 +407,10 @@ class identity extends MY_Site_Controller {
                     'ge.address' => htmlentities($this->input->post('address')),
                     'ge.country' => htmlentities($this->input->post('country'))
                 );
-                
+
                 $user_profile = $this->identity_model->get_identity('profile')->select('id')->where('user_id', $this->auth_manager->userid())->get();
                 $geography = $this->identity_model->get_identity('geography')->select('id')->where('user_id', $this->auth_manager->userid())->get();
-                
+
                 if(!$user_profile || !$geography){
                     $this->messages->add('Update Failed', 'warning');
                     $this->detail('profile');
@@ -455,7 +459,7 @@ class identity extends MY_Site_Controller {
                         'up.dial_code' => htmlentities($this->input->post('dial_code'))
                     );
                 }
-          
+
 
 
                 $data_geography = Array(
@@ -471,11 +475,11 @@ class identity extends MY_Site_Controller {
                     'sd.like' => htmlentities($this->input->post('like')),
                     'sd.dislike' => htmlentities($this->input->post('dislike'))
                 );
-                
+
                 $user_profile = $this->identity_model->get_identity('profile')->select('id')->where('user_id', $this->auth_manager->userid())->get();
                 $geography = $this->identity_model->get_identity('geography')->select('id')->where('user_id', $this->auth_manager->userid())->get();
                 $student_detail = $this->identity_model->get_identity('student_detail')->select('id')->where('student_id', $this->auth_manager->userid())->get();
-                
+
                 if(!$user_profile || !$geography || !$student_detail){
                     $this->messages->add('Update Failed ', 'warning');
                     $this->detail('profile');
@@ -517,13 +521,13 @@ class identity extends MY_Site_Controller {
                     // ===========
 
                    $old_password = $this->input->post('old_password');
-            
+
                     if (!$this->auth_manager->check_password($this->auth_manager->user_email(), $old_password)) {
                         $this->messages->add('Incorrect old password', 'warning');
                         $this->detail('profile');
                         return;
                     }
-                    
+
                     $rules = array(
                         array('field'=>'old_password', 'label' => 'Old Password', 'rules'=>'trim|required|xss_clean'),
                         array('field'=>'new_password', 'label' => 'New Password', 'rules'=>'trim|required|xss_clean'),
@@ -535,7 +539,7 @@ class identity extends MY_Site_Controller {
                         $this->detail('profile');
                         return;
                     }
-                    
+
                     $errors = "";
                     if(!$this->auth_manager->is_password_valid($this->input->post('new_password'), $errors)){
                         foreach ($errors as $error){
@@ -544,7 +548,7 @@ class identity extends MY_Site_Controller {
                         $this->detail('profile');
                         return;
                     }
-                    
+
                     if($this->input->post('new_password') != $this->input->post('confirm_password')){
                         $this->messages->add('Password not match', 'warning');
                         $this->detail('profile');
@@ -555,14 +559,14 @@ class identity extends MY_Site_Controller {
 
                     $this->load->library('phpass');
                     $data = Array('password' => $new_pass);
-                    
+
                     $user = $this->identity_model->get_identity('user')->select('id')->where('id', $this->auth_manager->userid())->get();
                     if (!$this->identity_model->get_identity('user')->update($user->id, $data)) {
                         $this->messages->add(validation_errors(), 'warning');
                         $this->detail('profile');
                         return;
                     }
-                    
+
                     if($this->auth_manager->role() == 'ADM'){
                         $data_timezone_admin = array(
                             'user_timezone' => htmlentities($this->input->post('user_timezone')),
@@ -604,13 +608,13 @@ class identity extends MY_Site_Controller {
                     redirect('account/identity/detail/profile');
             }
             $old_password = $this->input->post('old_password');
-            
+
             if (!$this->auth_manager->check_password($this->auth_manager->user_email(), $old_password)) {
                 $this->messages->add('Incorrect old password', 'warning');
                 $this->detail('profile');
                 return;
             }
-            
+
             $rules = array(
                 array('field'=>'old_password', 'label' => 'Old Password', 'rules'=>'trim|required|xss_clean'),
                 array('field'=>'new_password', 'label' => 'New Password', 'rules'=>'trim|required|xss_clean'),
@@ -622,7 +626,7 @@ class identity extends MY_Site_Controller {
                 $this->detail('profile');
                 return;
             }
-            
+
             $errors = "";
             if(!$this->auth_manager->is_password_valid($this->input->post('new_password'), $errors)){
                 foreach ($errors as $error){
@@ -631,22 +635,22 @@ class identity extends MY_Site_Controller {
                 $this->detail('profile');
                 return;
             }
-            
+
             if($this->input->post('new_password') != $this->input->post('confirm_password')){
                 $this->messages->add('Password not match', 'warning');
                 $this->detail('profile');
                 return;
             }
-            
+
             $data = Array('password' => $this->auth_manager->hashing_password($this->input->post('new_password')));
-            
+
             $user = $this->identity_model->get_identity('user')->select('id')->where('id', $this->auth_manager->userid())->get();
             if (!$this->identity_model->get_identity('user')->update($user->id, $data)) {
                 $this->messages->add(validation_errors(), 'warning');
                 $this->detail('profile');
                 return;
             }
-            
+
             if($this->auth_manager->role() == 'ADM'){
                 $data_timezone_admin = array(
                     'user_timezone' => htmlentities($this->input->post('user_timezone')),
@@ -664,23 +668,23 @@ class identity extends MY_Site_Controller {
         } elseif ($part == 'profile_picture') {
             $profile_picture = $this->do_upload('profile_picture');
             // $resize = $this->do_resize($profile_picture);
-      
+
             $propicname = $this->db->select('profile_picture')->from('user_profiles')->where('user_id',$this->auth_manager->userid())->get()->result();
             $propicname = $propicname[0]->profile_picture;
             $propicname = explode('/', $propicname);
-  
-  
+
+
 
             if (!$profile_picture) {
                 $this->messages->add('Failed to upload image', 'warning');
                 return $this->detail('profile');
-            } 
+            }
             $data_profile_picture['profile_picture'] = $this->upload_path . $profile_picture['file_name'];
 
             // delete image sebelumnya
             $delete_image = $this->upload_path."".$propicname[3];;
             unlink($delete_image);
-      
+
             $profile = $this->identity_model->get_identity('profile')->select('id')->where('user_id', $this->auth_manager->userid())->get();
             if (!$this->identity_model->get_identity('profile')->update($profile->id, $data_profile_picture, TRUE)) {
                 $this->messages->add(validation_errors(), 'warning');
@@ -688,7 +692,7 @@ class identity extends MY_Site_Controller {
             }
 
         } elseif ($part == 'education') {
-            
+
             $rules = array(
                 array('field'=>'higher_education', 'label' => 'Higher Education', 'rules'=>'trim|required|xss_clean'),
                 array('field'=>'undergraduate', 'label' => 'Undergraduate', 'rules'=>'trim|required|xss_clean')
@@ -699,12 +703,12 @@ class identity extends MY_Site_Controller {
                 $this->detail('profile');
                 return;
             }
-            
+
             foreach ($this->input->post() as $t => $value) {
                 if ($t != "__submit") {
                     $data[$t] = $value;
                 }
-            } 
+            }
 
             $id_profile = $this->identity_model->get_identity('education')->select('id')->where('user_id', $this->auth_manager->userid())->get();
             if (!$this->identity_model->get_identity('education')->update($id_profile->id, $data)) {
@@ -720,7 +724,7 @@ class identity extends MY_Site_Controller {
     }
 
     private function do_upload($name) {
-   
+
         $config['upload_path'] = $this->upload_path;
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['max_size']     = '1024';
@@ -775,16 +779,16 @@ class identity extends MY_Site_Controller {
             // echo "hai";
             // print_r($config);
             // exit();
-         
+
             //this is the magic line that enables you generate multiple thumbnails
             //you have to call the initialize() function each time you call the resize()
             //otherwise it will not work and only generate one thumbnail
 
             $this->image_lib->initialize($config);
             return $this->image_lib->resize();
-         
+
     }
-    
+
     public function disconnect_to_dyned_pro(){
         $data = array(
             'dyned_pro_id' => '',
@@ -799,7 +803,7 @@ class identity extends MY_Site_Controller {
             $this->messages->add('Invalid Action', 'Warning');
             redirect('account/identity/detail/profile');
         }
-        
+
     }
 
     function alpha_dash_space($str){
@@ -820,7 +824,7 @@ class identity extends MY_Site_Controller {
             );
 
         $this->db->where('user_id', $userid);
-        $this->db->update('user_profiles', $data); 
+        $this->db->update('user_profiles', $data);
 
         $data2 = array(
                'country' => $countupd,
@@ -844,7 +848,7 @@ class identity extends MY_Site_Controller {
 			   'code' => $codenumber
 			);
 
-			$this->db->insert('verified_numbers', $data3); 
+			$this->db->insert('verified_numbers', $data3);
 		}else{
             $checkstatus =  $this->db->select('*')
                             ->from('verified_numbers')

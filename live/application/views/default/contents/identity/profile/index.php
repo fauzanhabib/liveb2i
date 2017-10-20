@@ -115,7 +115,7 @@
                             <tr>
                                 <td><?php echo ($this->auth_manager->role() == 'STD') ? 'Home Language':'Spoken Languages';?></td>
                                 <td>
-                                    <?php $selected = explode('#', $data[0]->spoken_language);?>
+                                    <?php $selected = explode('#', @$data[0]->spoken_language);?>
                                     <span class="r-only rersre"><?php echo str_replace('#', ', ', @$data[0]->spoken_language, $multiplier) ; ?></span>
                                     <?php echo form_multiselect('spoken_lang', $this->common_function->language(), $selected, 'id="td_value_1_2" class="e-only multiple-select" multiple="multiple" style="width:100%"') ?>
                                     <input name="spoken_language" type="hidden" id="spoken_language" value="<?php echo str_replace('#', ',', @$data[0]->spoken_language, $multiplier) ; ?>">

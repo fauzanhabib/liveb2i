@@ -24,7 +24,7 @@ class subgroup extends MY_Site_Controller {
         // for messaging action and timing
 
         //checking user role and giving action
-        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'SPR') {
+        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'SPN') {
             $this->messages->add('Access Denied');
             redirect('account/identity/detail/profile');
         }
@@ -45,11 +45,11 @@ class subgroup extends MY_Site_Controller {
         $search_subgroup = $this->input->post('search_subgroup');
 
         if($search_subgroup != ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null, $search_subgroup)), $per_page, $uri_segment);
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner_neo/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null, $search_subgroup)), $per_page, $uri_segment);
             $data = $this->identity_model->get_subgroup_identity(null,'student','active',null,$search_subgroup,$per_page, $offset);
             $data2 = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
         } else if($search_subgroup == ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null,null)), $per_page, $uri_segment);
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner_neo/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null,null)), $per_page, $uri_segment);
             $data = $this->identity_model->get_subgroup_identity(null,'student','active',null,null,$per_page, $offset);
             $data2 = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
         }
@@ -125,7 +125,7 @@ class subgroup extends MY_Site_Controller {
         // print_r($data2);
         // exit();
 
-        $this->template->content->view('default/contents/student_partner/managing_subgroup/index', $vars);
+        $this->template->content->view('default/contents/student_partner_neo/managing_subgroup/index', $vars);
 
         //publish template
         $this->template->publish();
@@ -142,11 +142,11 @@ class subgroup extends MY_Site_Controller {
         $search_subgroup = $this->input->post('search_subgroup');
 
         if($search_subgroup != ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null, $search_subgroup)), $per_page, $uri_segment);
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner_neo/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null, $search_subgroup)), $per_page, $uri_segment);
             $data = $this->identity_model->get_subgroup_identity(null,'student','disable',null,$search_subgroup,$per_page, $offset);
             $data2 = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
         } else if($search_subgroup == ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null,null)), $per_page, $uri_segment);
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner_neo/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null,null)), $per_page, $uri_segment);
             $data = $this->identity_model->get_subgroup_identity(null,'student','disable',null,null,$per_page, $offset);
             $data2 = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
         }
@@ -222,7 +222,7 @@ class subgroup extends MY_Site_Controller {
         // print_r($data2);
         // exit();
 
-        $this->template->content->view('default/contents/student_partner/managing_subgroup/index_disable', $vars);
+        $this->template->content->view('default/contents/student_partner_neo/managing_subgroup/index_disable', $vars);
 
         //publish template
         $this->template->publish();
@@ -278,7 +278,7 @@ class subgroup extends MY_Site_Controller {
        else{
                     $this->messages->add('Please Choose Subgroup', 'error');
        }
-            redirect ('student_partner/subgroup');
+            redirect ('student_partner_neo/subgroup');
 
     }
 
@@ -331,7 +331,7 @@ class subgroup extends MY_Site_Controller {
        else{
                     $this->messages->add('Please Choose Subgroup', 'error');
        }
-            redirect ('student_partner/subgroup');
+            redirect ('student_partner_neo/subgroup');
 
     }
 
@@ -346,7 +346,7 @@ class subgroup extends MY_Site_Controller {
         //print_r($vars);
         //exit;
 
-        $this->template->content->view('default/contents/student_partner/managing_subgroup/add_subgroup_form', $vars);
+        $this->template->content->view('default/contents/student_partner_neo/managing_subgroup/add_subgroup_form', $vars);
         $this->template->publish();
     }
 
@@ -354,7 +354,7 @@ class subgroup extends MY_Site_Controller {
         // Creating a student
         if (!$this->input->post('__submit')) {
             $this->messages->add('Invalid action', 'warning');
-            redirect('student_partner/subgroup');
+            redirect('student_partner_neo/subgroup');
         }
         if(!$partner_id){
             $partner_id = $this->auth_manager->partner_id();
@@ -367,7 +367,7 @@ class subgroup extends MY_Site_Controller {
 
             if (!$this->common_function->run_validation($rules)) {
                 $this->messages->add(validation_errors(), 'warning');
-                redirect('student_partner/subgroup/add_subgroup');
+                redirect('student_partner_neo/subgroup/add_subgroup');
             }
 
         // inserting user data
@@ -382,7 +382,7 @@ class subgroup extends MY_Site_Controller {
         $this->db->insert('subgroup', $student);
 
         $this->messages->add('Inserting Subgroup Successful', 'success');
-        redirect('student_partner/subgroup');
+        redirect('student_partner_neo/subgroup');
     }
 
     public function is_subgroup_available($name) {
@@ -403,7 +403,7 @@ class subgroup extends MY_Site_Controller {
         $per_page = 10;
         $uri_segment = 5;
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/list_student/'.$subgroup_id), count($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(),'')), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner_neo/subgroup/list_student/'.$subgroup_id), count($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(),'')), $per_page, $uri_segment);
         // echo $subgroup_id." - ".$id." -". $page." = ".$per_page;exit();
         // echo "id ".$id;
         $data = $this->identity_model->get_subgroup_identity('','student','active','',null);
@@ -477,7 +477,7 @@ class subgroup extends MY_Site_Controller {
         // exit();
 
 
-        $this->template->content->view('default/contents/student_partner/managing_subgroup/detail', $vars);
+        $this->template->content->view('default/contents/student_partner_neo/managing_subgroup/detail', $vars);
         $this->template->publish();
     }
 
@@ -488,7 +488,7 @@ class subgroup extends MY_Site_Controller {
         $per_page = 10;
         $uri_segment = 5;
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/list_disable_student/'.$subgroup_id), count($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(),'')), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner_neo/subgroup/list_disable_student/'.$subgroup_id), count($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(),'')), $per_page, $uri_segment);
         // echo $subgroup_id." - ".$id." -". $page." = ".$per_page;exit();
         // echo "id ".$id;
         $data = $this->identity_model->get_subgroup_identity('','student','disable','',null);
@@ -562,7 +562,7 @@ class subgroup extends MY_Site_Controller {
         // exit();
 
 
-        $this->template->content->view('default/contents/student_partner/managing_subgroup/detail_disable', $vars);
+        $this->template->content->view('default/contents/student_partner_neo/managing_subgroup/detail_disable', $vars);
         $this->template->publish();
     }
 
@@ -572,7 +572,7 @@ class subgroup extends MY_Site_Controller {
         $offset = 0;
         $per_page = 6;
         $uri_segment = 4;
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/member_list/student'.$subgroup_id), count($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(),$subgroup_id)), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner_neo/member_list/student'.$subgroup_id), count($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(),$subgroup_id)), $per_page, $uri_segment);
 
         $data = $this->identity_model->get_subgroup_identity($id,'student','',$subgroup_id);
         $vars = array(
@@ -585,7 +585,7 @@ class subgroup extends MY_Site_Controller {
         print_r($vars);
         exit; */
 
-        $this->template->content->view('default/contents/student_partner/managing_subgroup/detail', $vars);
+        $this->template->content->view('default/contents/student_partner_neo/managing_subgroup/detail', $vars);
         $this->template->publish();
     }
 
@@ -594,7 +594,7 @@ class subgroup extends MY_Site_Controller {
         // inserting user data
          if (!$this->input->post('__submit')) {
             $this->messages->add('Invalid action', 'danger');
-            redirect('student_partner/subgroup');
+            redirect('student_partner_neo/subgroup');
         }
         $rules = array(
                 array('field'=>'name', 'label' => 'Name', 'rules'=>'trim|required|xss_clean'),
@@ -616,7 +616,7 @@ class subgroup extends MY_Site_Controller {
         $this->db->update('subgroup', $partner);
 
         $this->messages->add('Update Region Successful', 'success');
-        redirect('student_partner/subgroup');
+        redirect('student_partner_neo/subgroup');
     }
 
     // Delete student
@@ -637,7 +637,7 @@ class subgroup extends MY_Site_Controller {
 
             if($check_appointment){
                 $this->messages->add('This student still have a session scheduled', 'error');
-                redirect('student_partner/subgroup/list_student/'.$subgroup_id);
+                redirect('student_partner_neo/subgroup/list_student/'.$subgroup_id);
             } else {
             $status = array(
                     'status' => 'disable',
@@ -671,7 +671,7 @@ class subgroup extends MY_Site_Controller {
         } else {
             $this->messages->add('Please choose student', 'error');
         }
-            redirect('student_partner/subgroup/list_student/'.$subgroup_id);
+            redirect('student_partner_neo/subgroup/list_student/'.$subgroup_id);
     }
 
     public function setting($subgroup_id='', $id='')
@@ -687,7 +687,7 @@ class subgroup extends MY_Site_Controller {
 
 
 
-        $this->template->content->view('default/contents/student_partner/setting', $vars);
+        $this->template->content->view('default/contents/student_partner_neo/setting', $vars);
         $this->template->publish();
     }
 
@@ -706,7 +706,7 @@ class subgroup extends MY_Site_Controller {
 
         if (!$this->common_function->run_validation($rules)) {
             $this->messages->add(validation_errors(), 'warning');
-            redirect('student_partner/subgroup/setting/'.$id);
+            redirect('student_partner_neo/subgroup/setting/'.$id);
         }
 
        $setting = array(
@@ -727,7 +727,7 @@ class subgroup extends MY_Site_Controller {
 
        $this->messages->add('Update Setting Successful', 'success');
 
-       redirect('student_partner/subgroup/setting/'.$id);
+       redirect('student_partner_neo/subgroup/setting/'.$id);
     }
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -799,7 +799,7 @@ class subgroup extends MY_Site_Controller {
         // Creating a student user data must be followed by creating profile data and status still disable/need approval from admin
         if (!$this->input->post('__submit')) {
             $this->messages->add('Invalid action', 'warning');
-            redirect('student_partner/member_list/student');
+            redirect('student_partner_neo/member_list/student');
         }
 
         $rules = array(
@@ -821,7 +821,7 @@ class subgroup extends MY_Site_Controller {
         $student_member = count ($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id()));
         if(@$student_member >= @$setting->max_student_class){
             $this->messages->add('Exceeded Maximum Quota', 'warning');
-            redirect('student_partner/subgroup/student');
+            redirect('student_partner_neo/subgroup/student');
         }
 
         // cek maks student token
@@ -933,7 +933,7 @@ class subgroup extends MY_Site_Controller {
                 $this->messages->add('Delete Student Succeeded', 'success');
             }
         }
-        redirect('student_partner/member_list/student');
+        redirect('student_partner_neo/member_list/student');
     } */
 
     public function is_email_available($email) {

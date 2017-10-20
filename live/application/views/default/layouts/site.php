@@ -1,4 +1,4 @@
-<?php 
+<?php
     $role = array(
         'STD' => 'Student',
         'CCH' => 'Coach',
@@ -6,6 +6,7 @@
         'ADM' => 'Admin Region',
         'SPR' => 'Student Affiliate',
         'RAD' => 'Super Admin',
+        'SPN' => 'Student Affiliate Neo',
     );
 ?>
 <!DOCTYPE html>
@@ -55,7 +56,7 @@
             document.body.innerHTML = document.body.innerHTML.replace(satu, ' ');
             document.body.innerHTML = document.body.innerHTML.replace(dua, ' ');
         </script>
- 
+
         <script type="text/javascript">
         (function(d) {
             var tkTimeout=3000;
@@ -87,7 +88,7 @@
                                 </div>
                             </li>
                         </ul>
-                        
+
                         <div class="menu-drop">
                             <a href="<?php echo site_url('account/identity/detail/profile'); ?>"><i class="icon icon-edit-profile"></i></a>
                             <a href="<?php echo site_url('logout'); ?>"><i class="icon icon-logout"></i></a>
@@ -145,7 +146,7 @@
                                     <a target="_blank" href="<?php echo site_url('coach/simulator'); ?>" class="pure-menu-link icon icon-star-i">Session Simulator</a>
                                 </li>
                                 <!-- <li class="pure-menu-item std-profile"><a href="<?php echo site_url('opentok/live'); ?>" class="pure-menu-link icon icon-user">Live Session</a></li> -->
-                                
+
                              <?php } else if ($this->auth_manager->role() == 'PRT') { ?>
                                 <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link menu-profile icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
                                 <!-- <li class="pure-menu-item prt-mem"><a href="<?php echo site_url('partner/member_list/subgroup');?>" class="pure-menu-link menu-profile icon icon-member">Coaches</a></li> -->
@@ -167,6 +168,13 @@
                                     <a href="<?php echo site_url('student_partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
                                 </li>
 
+                            <?php } else if ($this->auth_manager->role() == 'SPN') { ?>
+                                <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
+                                <li class="pure-menu-item spr-sgroup"><a href="<?php echo site_url('student_partner_neo/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Student Groups</a></li>
+                                <li class="pure-menu-item prt-reporting">
+                                    <a href="<?php echo site_url('student_partner_neo/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
+                                </li>
+
                             <?php } else if ($this->auth_manager->role() == 'ADM') { ?>
                                 <li class="pure-menu-item std-profile">
                                     <a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon dyned-icon-profile">Profile</a>
@@ -179,7 +187,7 @@
                                 <li class="pure-menu-item adm-pmatches">
                                     <a href="<?php echo site_url('admin/match_partner'); ?>" class="pure-menu-link icon dyned-icon-partners-matching">Affiliate Matches</a>
                                 </li>
-                                
+
                                 <li class="pure-menu-item adm-capproval">
                                     <a href="<?php echo site_url('admin/approve_user/index/coach'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Coach Approvals</a>
                                 </li>
@@ -195,7 +203,7 @@
                                         <li class="pure-menu-item adm-tapproval">
                                             <a href="<?php echo site_url('admin/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-request">Token Approval</a>
                                         </li>
-                                    </ul>                     
+                                    </ul>
                                 </li>
 
                                 <li id="dropdown" class="pure-menu-item dropdown">
@@ -209,19 +217,19 @@
                                         <li class="pure-menu-item adm-tapproval">
                                             <a href="<?php echo site_url('admin/reporting/student'); ?>" class="pure-menu-link icon icon-study-dashboard">Student</a>
                                         </li>
-                                    </ul>                     
+                                    </ul>
                                 </li>
                             <?php } else if ($this->auth_manager->role() == 'RAD') { ?>
                                 <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
                                 <li class="pure-menu-item rad-region"><a href="<?php echo site_url('superadmin/region/index/active'); ?>" class="pure-menu-link icon dyned-icon-region">Region</a></li>
-                                
+
                                 <li id="dropdown" class="pure-menu-item dropdown">
                                     <a class="pure-menu-link icon dyned-icon-partner" data-toggle="dropdown">Affiliate
                                         <span></span>
                                     </a>
                                     <ul class="menu-dropdown">
                                         <li class="pure-menu-item rad-papproval"><a href="<?php echo site_url('superadmin/manage_partner/approve_coach'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Affiliate Approval</a></li>
-                                        <li class="pure-menu-item rad-trapproval"><a href="<?php echo site_url('superadmin/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-approval">Token Request Approval</a></li>                                                
+                                        <li class="pure-menu-item rad-trapproval"><a href="<?php echo site_url('superadmin/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-approval">Token Request Approval</a></li>
                                     </ul>
                                 </li>
 
@@ -260,7 +268,7 @@
                                     $timenow     = date('H:i:s');
                                     $default_timenow  = strtotime($timenow);
                                     $usertime_timenow = $default_timenow+(60*$minutes);
-                                    @$hour_timenow = date("H:i", $usertime_timenow); 
+                                    @$hour_timenow = date("H:i", $usertime_timenow);
                                     @$m_timenow = date('i',$usertime_timenow);
                                     ?>
 
@@ -273,7 +281,7 @@
                                         if(h.toString().length < 2){
                                             h = "0"+h;
                                         }
-                                     
+
                                         if(m.toString().length < 2){
                                             m = "0"+m;
                                         }
@@ -295,19 +303,19 @@
                                             $('.timezone_confirm').html('Your timezone ('+ user_time +') doesn’t match your system time ('+ client_time +')');
                                         }
                                     </script>
-                                    
+
                         </h5>
-                        
+
                     </div>
                     <div class="pure-g">
-                        
+
                         <!-- mobile menu icon -->
                         <div class="grids toggle-nav menu-mobile">
                             <div class="menu-mobile-icon">
                                 <i class="icon icon-menu"></i>
                             </div>
                         </div>
-                        
+
                         <!-- logo -->
                         <div class="grids logo">
                             <img src="<?php echo base_url(); ?>assets/images/logo.png">
@@ -356,7 +364,7 @@
                                     <div class="dropdown-notif-box" style="display:none">
                                         <div class="dropdown-notification">
 
-                                            <?php 
+                                            <?php
                                             foreach($this->auth_manager->new_notification()['data_notification'] as $d){
                                             ?>
                                             <div class="list-notification">
@@ -365,11 +373,11 @@
                                                 <div class="time"><?php echo($this->auth_manager->new_notification()['received_time'][$d->id]);?></div>
                                                 </a>
                                             </div>
-                                            <?php } ?> 
+                                            <?php } ?>
 
                                             <div class="see-all">
                                                 <a href="<?php echo site_url('account/notification'); ?>">SEE ALL</a>
-                                            </div>  
+                                            </div>
                                         </div>
                                     </div>
                                 </li>
@@ -404,7 +412,7 @@
                                         <li class="pure-menu-item std-profile">
                                             <a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a>
                                         </li>
-        
+
                                         <li class="pure-menu-item std-book">
                                             <a href="<?php echo site_url('student/find_coaches/single_date'); ?>" class="pure-menu-link icon dyned-icon-request-token">Book a Coach</a>
                                         </li>
@@ -449,7 +457,7 @@
                                         </li>
                                         <!-- <li class="pure-menu-item std-profile"><a href="<?php echo site_url('opentok/live'); ?>" class="pure-menu-link icon icon-user">Live Session</a></li> -->
 
-                                        
+
                                     <?php } else if ($this->auth_manager->role() == 'PRT') { ?>
                                         <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link menu-profile icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
                                         <!-- <li class="pure-menu-item prt-mem"><a href="<?php echo site_url('partner/member_list/subgroup');?>" class="pure-menu-link menu-profile icon icon-member">Coaches</a></li> -->
@@ -468,7 +476,12 @@
                                         <li class="pure-menu-item spr-sgroup"><a href="<?php echo site_url('student_partner/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Student Groups</a></li>
                                         <li class="pure-menu-item spr-addtoken"><a href="<?php echo site_url('student_partner/add_token');?>" class="pure-menu-link menu-create-session icon dyned-icon-add">Add Tokens</a></li>
                                         <li class="pure-menu-item prt-reporting"><a href="<?php echo site_url('student_partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a></li>
-
+                                    <?php } else if ($this->auth_manager->role() == 'SPN') { ?>
+                                        <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
+                                        <li class="pure-menu-item spr-sgroup"><a href="<?php echo site_url('student_partner_neo/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Student Groups</a></li>
+                                        <li class="pure-menu-item prt-reporting">
+                                            <a href="<?php echo site_url('student_partner_neo/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
+                                        </li>
                                     <?php } else if ($this->auth_manager->role() == 'ADM') { ?>
                                        <!--  <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon icon-user"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
                                         <li class="pure-menu-item adm-partner"><a href="<?php echo site_url('admin/manage_partner'); ?>" class="pure-menu-link icon icon-coachpartner-list">Partners</a></li>
@@ -477,7 +490,7 @@
                                         <li class="pure-menu-item adm-approve"><a href="<?php echo site_url('admin/token'); ?>" class="pure-menu-link icon icon-approve-dayoff">Token</a></li>
                                         <li class="pure-menu-item adm-approve"><a href="<?php echo site_url('admin/manage_partner/token'); ?>" class="pure-menu-link icon icon-approve-dayoff">Token Request(SS)</a></li>
                                         -->
-                                        
+
                                         <li class="pure-menu-item std-profile">
                                             <a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon dyned-icon-profile">Profile</a>
                                         </li>
@@ -489,7 +502,7 @@
                                         <li class="pure-menu-item adm-pmatches">
                                             <a href="<?php echo site_url('admin/match_partner'); ?>" class="pure-menu-link icon dyned-icon-partners-matching">Affiliate Matches</a>
                                         </li>
-                                        
+
                                         <li class="pure-menu-item adm-capproval">
                                             <a href="<?php echo site_url('admin/approve_user/index/coach'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Coach Approvals</a>
                                         </li>
@@ -501,7 +514,7 @@
                                             <ul class="menu-dropdown">
                                                 <li class="pure-menu-item adm-rtoken"><a href="<?php echo site_url('admin/token'); ?>" class="pure-menu-link icon dyned-icon-token-approval">Request Token</a></li>
                                                 <li class="pure-menu-item adm-tapproval"><a href="<?php echo site_url('admin/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-request">Token Approval</a></li>
-                                            </ul>                     
+                                            </ul>
                                         </li>
 
                                         <li id="dropdown" class="pure-menu-item dropdown">
@@ -515,9 +528,9 @@
                                                 <li class="pure-menu-item adm-tapproval">
                                                     <a href="<?php echo site_url('admin/reporting/student'); ?>" class="pure-menu-link icon icon-study-dashboard">Student</a>
                                                 </li>
-                                            </ul>                     
+                                            </ul>
                                         </li>
-             
+
                                     <?php } else if ($this->auth_manager->role() == 'RAD') { ?>
                                         <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
                                         <li class="pure-menu-item rad-region"><a href="<?php echo site_url('superadmin/region/index/active'); ?>" class="pure-menu-link icon dyned-icon-region">Region</a></li>
@@ -527,7 +540,7 @@
                                             </a>
                                             <ul class="menu-dropdown part">
                                                 <li class="pure-menu-item rad-papproval"><a href="<?php echo site_url('superadmin/manage_partner/approve_coach'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Affiliate Approval</a></li>
-                                                <li class="pure-menu-item rad-trapproval"><a href="<?php echo site_url('superadmin/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-approval">Token Request Approval</a></li>                                                
+                                                <li class="pure-menu-item rad-trapproval"><a href="<?php echo site_url('superadmin/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-approval">Token Request Approval</a></li>
                                             </ul>
                                         </li>
                                         <li class="pure-menu-item rad-pmatches"><a href="<?php echo site_url('superadmin/match_partner'); ?>" class="pure-menu-link icon dyned-icon-partners-matching">Affiliate Matches</a></li>
@@ -542,7 +555,7 @@
                                         </li>
                                         <li class="pure-menu-item rad-cmaterials"><a href="<?php echo site_url('superadmin/coach_script'); ?>" class="pure-menu-link icon icon-study-dashboard">Coach Materials</a></li>
 
-                                        <!-- 
+                                        <!--
                                         <li class="pure-menu-item adm-admin-partner"><a href="<?php echo site_url('superadmin/manage_admin_partner'); ?>" class="pure-menu-link icon icon-coachpartner-list">Manage Admin Partner</a></li>
                                         <li class="pure-menu-item adm-coach-partner"><a href="<?php echo site_url('superadmin/manage_coach_partner'); ?>" class="pure-menu-link icon icon-coachpartner-list">Manage Coach Partner</a></li>
                                         <li class="pure-menu-item adm-coach-partner"><a href="<?php echo site_url('superadmin/manage_student_partner'); ?>" class="pure-menu-link icon icon-coachpartner-list">Manage Student Partner</a></li>
@@ -552,7 +565,7 @@
                                 <p style="left: 10px;bottom: 0px;position: absolute; color:#fff">
                                     Version 1.0
                                 </p>
-                    
+
                             </div>
                         </div>
                         <!-- end menu-->
@@ -569,7 +582,7 @@
                 </section>
             </div>
         </div>
-        
+
         <?php if ($this->auth_manager->role() == 'CCH' || $this->auth_manager->role() == 'STD') { ?>
 
             <!-- <script type="text/javascript">
@@ -586,12 +599,12 @@
 
         <!-- UPDATE TIMEZONE -->
         <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-        
+
         <script type="text/javascript">
             var d = new Date()
             var n = d.getTimezoneOffset();
 
-    
+
 
             $.post("<?php echo site_url('timezone_convert');?>", { 'n': n },function(data) {
                 // console.log(data);
@@ -607,7 +620,7 @@
                var id = '<?php echo $this->auth_manager->userid(); ?>';
                 $.ajax({
                   type:"POST",
-                  url:"<?php echo site_url('account/notification/ajax_update');?>",    
+                  url:"<?php echo site_url('account/notification/ajax_update');?>",
                   data: {'id':id},
                   success: function(data){
                       console.log(id);
@@ -617,8 +630,8 @@
             }
         </script>
         <script type="text/javascript">
-            // $(document).ready(function(){    
-            // $(".listTop, .listBottom").children("ul").hide();            
+            // $(document).ready(function(){
+            // $(".listTop, .listBottom").children("ul").hide();
             //    $(".listTop, .listBottom").click(function(event){
             //      event.stopPropagation();
             //      $(this).children("ul").slideToggle();
@@ -631,14 +644,14 @@
                 $(".listTop > a").prepend($("<span/>"));
                 $(".listBottom > a").prepend($("<span/>"));
                 $(".listTop, .listBottom").click(function(event){
-                 event.stopPropagation(); 
+                 event.stopPropagation();
                  $(this).children("ul").slideToggle();
                });
             });
         </script>
 <!--        <a href="<?php echo site_url('lang_switch/switch_language/english'); ?>">English</a>
         <a href="<?php echo site_url('lang_switch/switch_language/traditional-chinese'); ?>">Chinese</a>-->
-        
+
         <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.js"></script>
         <script type="text/javascript">
             $(".checkAll").change(function () {
@@ -656,7 +669,7 @@
         <script>
        $("#breadcrum-home").click(function(){
              window.location.replace("<?php echo site_url('account/identity/detail/profile');?>");
-           
+
         });
         </script>
 
@@ -679,7 +692,7 @@
             });
         }
         </script>
-        
+
         <script>
             var current_page = location.href;
             var opentok      = '<?php echo site_url('opentok/live');?>';
@@ -754,11 +767,11 @@
 
         <script>
             var isFirefox = typeof InstallTrigger !== 'undefined';
-                
+
             if (isFirefox) {
                 $('.breadcrumb li a').css('padding-top', '13px')
             }
-        </script>               
+        </script>
         <script>
             // $('body').html($('body').html().replace('/*',' '));
             // $('body').html($('body').html().replace('*/',' '));
@@ -774,7 +787,7 @@
 <!-- End of LiveChat code -->
 
     <script>
-    window.onbeforeunload = function() { 
+    window.onbeforeunload = function() {
         location.reload();
     };
     </script>

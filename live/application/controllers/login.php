@@ -18,7 +18,7 @@ class Login extends MY_Controller {
                 $user_id = $this->auth_manager->userid();
                 session_start();
                 $session_user_login = session_id();
-                
+
                 $check_session = $this->db->select('user_login.user_id, user_login.session')
                                       ->from('user_login')
                                       ->where('user_login.user_id',$user_id)
@@ -26,17 +26,17 @@ class Login extends MY_Controller {
                                       ->get()->result();
                 if($check_session){
                     if((!$check_session[0]->user_id) && (!$check_session[0]->session)){
-                        
+
                         $this->session->set_userdata('user_id_session',$user->id);
-                        redirect('home/confirmation'); 
+                        redirect('home/confirmation');
                     } else if (!$check_session){
-                        
+
                         redirect('login');
                     } else {
                         if($this->auth_manager->role() == 'STD'){
-                            redirect('student/dashboard');                    
+                            redirect('student/dashboard');
                         } else if($this->auth_manager->role() == 'CCH'){
-                            redirect('coach/dashboard');                    
+                            redirect('coach/dashboard');
                         } else{
                             redirect('account/identity/detail/profile');
                         }
@@ -51,7 +51,7 @@ class Login extends MY_Controller {
             if($this->input->post('__submit')) {
                 // Success to identify
                 if( $this->auth_manager->login( $this->input->post('email'), $this->input->post('password')) ) {
-            
+
                     // insert timezone
                     $min_raw = $this->input->post("min_raw");
                     $userid  = $this->auth_manager->userid();
@@ -79,28 +79,29 @@ class Login extends MY_Controller {
                     // ====
 
                     if($this->auth_manager->role() == 'STD'){
-                        redirect('student/dashboard');                    
+                        redirect('student/dashboard');
                     } else if($this->auth_manager->role() == 'CCH'){
-                        redirect('coach/dashboard');                    
+                        redirect('coach/dashboard');
                     } else{
+											// exit();
                         redirect('account/identity/detail/profile');
                     }
                 }
                 // Not valid user
                 redirect('login');
             }
-                
+
         // Set Template
         // $this->template->content->view('default/contents/login/index');
         $this->template->title = 'Login';
-       
+
         $this->template->set_template('default/layouts/login');
         $this->template->publish();
 	}
 
     function update_login(){
-        session_start();    
-        $session_user_login = session_id(); 
+        session_start();
+        $session_user_login = session_id();
         $user_id = $this->input->post('user_id');
 
         $update = $this->db->where('user_id',$user_id)
