@@ -10,6 +10,7 @@
     $role = array(
         'PRT' => 'Coach Partner',
         'SPR' => 'Student Partner',
+        'SPN' => 'Student Partner New'
     );
 ?>
 

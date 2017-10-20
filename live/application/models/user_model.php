@@ -55,7 +55,7 @@ class user_model extends MY_Model {
         if($type == 'coach'){
             @$ntype = 3;
         } elseif( $type == 'student'){
-            @$ntype = 5;
+            @$ntype = array(5,8);
         } elseif($type=''){
             @$ntype = 3;
         }
@@ -65,10 +65,14 @@ class user_model extends MY_Model {
                 ->join('user_profiles up', 'up.user_id = u.id')
                 ->join('partners p', 'up.partner_id = p.id')
                 ->join('user_roles ur', 'ur.id = u.role_id')
-                ->where('up.partner_id', $partner_id)
+                ->where('up.partner_id', $partner_id);
                 // ->where("(u.role_id = '3' OR u.role_id = '5')", NULL, FALSE)
-                ->where('u.role_id',$ntype)
-                ->where('u.status', 'active')
+                if($type == 'coach'){
+                    $this->db->where('u.role_id',$ntype);
+                } else if($type == 'student'){
+                    $this->db->where_in('u.role_id',$ntype);
+                }
+                $this->db->where('u.status', 'active')
                 ->where('up.partner_id', $partner_id);
                 if($user_id){
                     $this->db->where('u.id', $user_id);
