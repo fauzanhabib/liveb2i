@@ -6310,10 +6310,17 @@ div.panel.show {
 .bxhistory__devider {
   margin: 10px 0 0;
 }
+.bxhistory__devider .flex__column span {
+  color: #252525;
+}
 
 .bxhistory__boxnotifstatus i {
   font-size: 0.6em;
   color: rgba(255, 255, 255, 0.71);
+}
+
+.bxhistory__boxnotifstatus .flex__column label {
+  color: #252525;
 }
 
 .bxhistory__boxstatus {
@@ -6359,7 +6366,7 @@ div.panel.show {
 }
 
 .bxhistory__boxstatus label {
-  color: #8b8b8b;
+  color: #252525;
   font-size: 14px;
   font-weight: 400;
   margin-left: 10px;
@@ -6375,6 +6382,7 @@ div.panel.show {
   align-items: center;
   justify-content: center;
   padding: 3px;
+  color: #252525;
 }
 .toggleScript span {
   font-size: .9em;
