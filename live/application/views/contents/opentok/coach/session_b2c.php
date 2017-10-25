@@ -1288,6 +1288,31 @@ div.panel.show {
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/remodal.min.js"></script>
 
 <script>
+    $(function(){
+        var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
+        inst.open();
+    });
+
+    $(document).ready(function () {
+      $('.remodal-wrapper').unbind('click.remodal');
+
+      $(document).unbind('keydown.remodal');
+    });
+
+</script>
+<script type="text/javascript">
+  var myBtn = document.getElementById('closemodal');
+
+  //add event listener
+  myBtn.addEventListener('click', function(event) {
+    var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
+        inst.close();
+
+    loadscript();
+  });
+</script>
+
+<script>
   var appointment_id = "<?php echo $appointment_id; ?>";
   var stat_check;
 
@@ -1333,8 +1358,8 @@ window.onclick = function(event) {
 <script type="text/javascript">
   var std_id = "<?php echo $std_id; ?>";
   // console.log(std_id);
-  $( function() {
-    $.post("<?php echo site_url('opentok/call_loader_coach/call_ajax');?>", { 'std_id': std_id },function(data) {
+   function loadscript() {
+    $.post("<?php echo site_url('opentok/call_script/call_ajax');?>", { 'std_id': std_id },function(data) {
      $("#reloading2").hide();
      $("#ajaxscript").html(data);
      // alert(data);
@@ -1344,7 +1369,7 @@ window.onclick = function(event) {
     $.post("<?php echo site_url('opentok/live/store_session');?>", { 'appointment_id': appointment_id },function(data) {
     });
 
-  } );
+  }
 
   //ON REFRESH -----------------------
   $("#reloadajax").click(function() {
@@ -1362,7 +1387,7 @@ window.onclick = function(event) {
   $("#reloadajax2").click(function() {
     $("#ajaxscript").hide();
 
-    $.post("<?php echo site_url('opentok/call_loader_coach/call_ajax');?>", { 'std_id': std_id },function(data) {
+    $.post("<?php echo site_url('opentok/call_script/call_ajax');?>", { 'std_id': std_id },function(data) {
      $("#ajaxscript").show();
      $("#ajaxscript").html(data);
      $("#reloading2").hide();
@@ -1371,29 +1396,6 @@ window.onclick = function(event) {
 
   } );
 
-</script>
-
-<script>
-    $(function(){
-        var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
-        inst.open();
-    });
-
-    $(document).ready(function () {
-      $('.remodal-wrapper').unbind('click.remodal');
-
-      $(document).unbind('keydown.remodal');
-    });
-
-</script>
-<script type="text/javascript">
-  var myBtn = document.getElementById('closemodal');
-
-  //add event listener
-  myBtn.addEventListener('click', function(event) {
-    var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
-        inst.close();
-  });
 </script>
 
 <script type="text/javascript">
