@@ -6282,7 +6282,9 @@ div.panel.show {
 
 /*NEW ACCORDION*/
 .accordion_book {
+  height: 720px;
   padding: 0;
+  overflow-y: scroll;
 }
 
 .accordion_book li {
@@ -6298,7 +6300,6 @@ div.panel.show {
 }
 
 .bxhistory__boxnotifstatus {
-  background-color: #fafafa;
   padding: 5px;
   justify-content: space-between;
   align-items: center;
@@ -6306,8 +6307,12 @@ div.panel.show {
   border-radius: 5px;
 }
 
+.bxhistory__devider {
+  margin: 10px 0 0;
+}
+
 .bxhistory__boxnotifstatus i {
-  font-size: 0.8em;
+  font-size: 0.6em;
   color: rgba(255, 255, 255, 0.71);
 }
 
@@ -6315,6 +6320,7 @@ div.panel.show {
   padding: 5px;
   border: 1px solid #fafafa;
   border-radius: 5px;
+  background-color: #fafafa;
 }
 
 .bxhistory__boxstatus .daterefund {
@@ -6362,6 +6368,22 @@ div.panel.show {
 .bxhistory__boxstatus span {
   font-weight: bold;
   margin-right: 30px;
+}
+
+.toggleScript {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+}
+.toggleScript span {
+  font-size: .9em;
+  cursor: pointer;
+}
+.toggleScript i {
+  font-size: .6em;
+  cursor: pointer;
+  padding: 3px 0 0 5px;
 }
 /*NEW ACCORDION*/
 
