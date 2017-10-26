@@ -4,39 +4,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 <script>
-$(document).ready(function(){
-
-    $('#coachscript').click(function(){
-       var cch_script = $("input[name='check_list[]']:checked").map(function() {
-                        return this.value;
-                      }).get();
-       var std_id = $('#std_id').val();
-       var status_script = $('#status_script').val();
-        if ( !cch_script )
-        {
-          alert("You can't send an empty note");
-          return false;
-        }else{
-          // alert( Updated );
-          $.ajax({
-            type:"POST",
-            url:"<?php echo site_url('opentok/live/coaching_script');?>",
-            data: {
-              'std_id' : std_id,
-              'check_list' : cch_script,
-              'status_script' : status_script,
-              },
-            success: function(){
-              // alert(" Scripts Updated ");
-              $("#coachsciptupdated").removeClass("hidden");
-            }
-          });
-        }
-      });
-
-});
-</script>
-<script>
     // Wait until the DOM has loaded before querying the document
     $(document).ready(function(){
         $('div.tabs2').each(function(){
@@ -170,13 +137,23 @@ $(document).ready(function(){
             //  $status_script = $v->status;
           ?>
               <div class="bxhistory__boxstatus">
-                  <input class="checkbox_trigger" type="checkbox" value="1">
+                <?php
+                 if($v->script_type == 0){
+                 if($v->status == 0){ ?>
+                   <div class="checkbox_input">
+                     <input class="checkbox_trigger" type="checkbox" value="1">
+                 </div>
+                <?php } else if($v->status == 1){ ?>
+                  <div class="checkbox_input">
+                      <input class="checkbox_trigger" type="checkbox" value="1" checked="checked" disabled>
+                  </div>
+                <?php } ?>
                   <!-- MODAL -->
                   <div class="modal-wrapper">
                       <div class="modal__checkbox">
                           <div class="modal__content">
                               <div>Are you sure?</div>
-                              <span><a class="checked__checkbox">Yes</a></span>
+                              <span><a class="checked__checkbox" idscript="<?php echo $v->id; ?>">Yes</a></span>
                               <span><a class="span-close">No</a></span>
                           </div>
                       </div>
@@ -184,6 +161,9 @@ $(document).ready(function(){
                   <!-- MODAL -->
 
                   <label><?php echo $v->script; ?></label>
+                <?php } else{?>
+                  <label><?php echo $v->script; ?></label>
+                <?php } ?>
               </div>
           <?php } ?>
           </div>
@@ -238,22 +218,35 @@ $(document).ready(function(){
            foreach ($bv as $v){
             //  $status_script = $v->status;
           ?>
-              <div class="bxhistory__boxstatus">
-                  <input class="checkbox_trigger" type="checkbox" value="1">
-                  <!-- MODAL -->
-                  <div class="modal-wrapper">
-                      <div class="modal__checkbox">
-                          <div class="modal__content">
-                              <div>Are you sure?</div>
-                              <span><a class="checked__checkbox">Yes</a></span>
-                              <span><a class="span-close">No</a></span>
-                          </div>
-                      </div>
-                  </div>
-                  <!-- MODAL -->
+            <div class="bxhistory__boxstatus">
+              <?php
+               if($v->script_type == 0){
+               if($v->status == 0){ ?>
+                 <div class="checkbox_input">
+                     <input class="checkbox_trigger" type="checkbox" value="1">
+                 </div>
+              <?php } else if($v->status == 1){ ?>
+                <div class="checkbox_input">
+                    <input class="checkbox_trigger" type="checkbox" value="1" checked="checked" disabled>
+                </div>
+              <?php } ?>
+                <!-- MODAL -->
+                <div class="modal-wrapper">
+                    <div class="modal__checkbox">
+                        <div class="modal__content">
+                            <div>Are you sure?</div>
+                            <span><a class="checked__checkbox" idscript="<?php echo $v->id; ?>">Yes</a></span>
+                            <span><a class="span-close">No</a></span>
+                        </div>
+                    </div>
+                </div>
+                <!-- MODAL -->
 
-                  <label><?php echo $v->script; ?></label>
-              </div>
+                <label><?php echo $v->script; ?></label>
+              <?php } else{?>
+                <label><?php echo $v->script; ?></label>
+              <?php } ?>
+            </div>
           <?php } ?>
           </div>
 
@@ -319,13 +312,21 @@ $(document).ready(function(){
                   //  $status_script = $v->status;
                 ?>
                     <div class="bxhistory__boxstatus">
-                        <input class="checkbox_trigger" type="checkbox" value="1">
+                      <?php if($v->status == 0){ ?>
+                        <div class="checkbox_input">
+                    <input class="checkbox_trigger" type="checkbox" value="1">
+                </div>
+                      <?php } else if($v->status == 1){ ?>
+                        <div class="checkbox_input">
+                            <input class="checkbox_trigger" type="checkbox" value="1" checked="checked" disabled>
+                        </div>
+                      <?php } ?>
                         <!-- MODAL -->
                         <div class="modal-wrapper">
                             <div class="modal__checkbox">
                                 <div class="modal__content">
                                     <div>Are you sure?</div>
-                                    <span><a class="checked__checkbox">Yes</a></span>
+                                    <span><a class="checked__checkbox" idscript="<?php echo $v->id; ?>">Yes</a></span>
                                     <span><a class="span-close">No</a></span>
                                 </div>
                             </div>
@@ -364,7 +365,23 @@ $(document).ready(function(){
 
     $('.checked__checkbox').each(function() {
         $(this).click(function() {
+            var script_id = $(this).attr('idscript');
+            // console.log(script_id);
+            $.ajax({
+              type:"POST",
+              url:"<?php echo site_url('opentok/call_script/update_script');?>",
+              data: {
+                'std_id' : <?php echo $std_id_for_cert; ?>,
+                'script_id' : script_id
+                },
+              success: function(data){
+                // console.log(data);
+              }
+            });
+
             $(this).parents('.modal-wrapper').prev('.checkbox_trigger').attr('checked', true);
+            $(this).parents('.modal-wrapper').prev('.checkbox_trigger').attr('disabled', true);
+            $(this).parents('.modal-wrapper').removeClass('open');
         })
     })
 </script>

@@ -23,7 +23,7 @@ class Call_script extends MY_Site_Controller {
     public function call_ajax() {
       // exit('a');
         // $std_id_for_cert = isset($_POST['std_id']);
-        $lesson_step = 65;
+        $lesson_step = 30;
         $std_id_for_cert=$this->input->post('std_id');
 
         $get_gl_users = $this->db->select('cl_id')
@@ -54,7 +54,7 @@ class Call_script extends MY_Site_Controller {
               ->join('b2c_script bc', 'bc.id = bs.script_id')
               ->where('bs.user_id', $std_id_for_cert)
               ->where('bc.certificate_plan', $get_gl_dsa[0]->cl_name)
-              ->where('bc.step_up <=', $lesson_step)
+              ->where('bc.step_up <', $lesson_step)
               ->get()->result();
 
       $script_curr = $this->db->distinct()
@@ -64,7 +64,7 @@ class Call_script extends MY_Site_Controller {
               ->where('bs.user_id', $std_id_for_cert)
               ->where('bc.certificate_plan', $get_gl_dsa[0]->cl_name)
               ->where('bc.step_up >=', $lesson_step)
-              ->where('bc.step_bot <=', $lesson_step)
+              ->where('bc.step_bot <', $lesson_step)
               ->get()->result();
 
       $script_next = $this->db->distinct()
@@ -123,6 +123,18 @@ class Call_script extends MY_Site_Controller {
     // echo "<pre>";print_r($script_curr);exit();
 
     $this->load->view('contents/opentok/coach/call_script_view', $data);
+  }
+  public function update_script(){
+    $script_id = $this->input->post('script_id');
+    $std_id    = $this->input->post('std_id');
+
+    $data = array(
+               'status' => 1
+            );
+
+    $this->db->where('id', $script_id);
+    $this->db->update('b2c_script_student', $data);
+    echo 'success';
   }
 
 }
