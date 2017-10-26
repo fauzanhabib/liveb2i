@@ -6304,7 +6304,7 @@ div.panel.show {
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 3px;
 }
 
 .bxhistory__devider {
@@ -6392,6 +6392,10 @@ div.panel.show {
   font-size: .6em;
   cursor: pointer;
   padding: 3px 0 0 5px;
+}
+
+.checkbox_trigger {
+  width: 35px;
 }
 /*NEW ACCORDION*/
 
