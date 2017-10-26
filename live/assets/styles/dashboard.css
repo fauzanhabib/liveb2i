@@ -6396,7 +6396,7 @@ div.panel.show {
 }
 
 .checkbox_trigger {
-  width: 35px;
+  width: 20px;
 }
 /*NEW ACCORDION*/
 
@@ -7802,7 +7802,7 @@ label {
     position: absolute;
     top: 4px;
     left: 10px;
-    color: #8b8b8b;
+    color: #252525;
     font-size: 0.8em;
   }
 
@@ -7855,6 +7855,7 @@ label {
     top: 3px;
     left: -50px;
     z-index: 9999;
+    color: #252525;
   }
 
   /* end progress bar */
