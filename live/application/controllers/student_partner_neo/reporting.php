@@ -86,7 +86,7 @@ class Reporting extends MY_Site_Controller {
                          ->get()->result();
 
             $date_from1   = date('d-M-y', strtotime($_POST["date_from"]));
-			$date_to1     = date('d-M-y', strtotime($_POST["date_to"]));
+			      $date_to1     = date('d-M-y', strtotime($_POST["date_to"]));
 
             $vars = array(
                 'stu_rpt'      => $stu_rpt,
@@ -105,7 +105,7 @@ class Reporting extends MY_Site_Controller {
 
             $this->template->content->view('default/contents/student_partner_neo/reporting/studentreport', $vars);
             $this->template->publish();
-        }else{
+        }else if($report == "Session Report"){
             $this->template->title = 'Session Report';
 
             $id    = $this->auth_manager->userid();
@@ -167,7 +167,7 @@ class Reporting extends MY_Site_Controller {
                          ->get()->result();
 
          	$date_from1   = date('d-M-y', strtotime($_POST["date_from"]));
-			$date_to1     = date('d-M-y', strtotime($_POST["date_to"]));
+			    $date_to1     = date('d-M-y', strtotime($_POST["date_to"]));
 
             $vars = array(
                 'ses_rpt' => $ses_rpt,
@@ -186,6 +186,51 @@ class Reporting extends MY_Site_Controller {
 
             $this->template->content->view('default/contents/student_partner_neo/reporting/sessionreport', $vars);
             $this->template->publish();
+        }else {
+          $this->template->title = 'Student Data';
+
+          $id    = $this->auth_manager->userid();
+          $get_tz  = $this->db->select('minutes_val')
+                   ->from('user_timezones')
+                   ->where('user_id',$id)
+                   ->get()->result();
+          $spr_tz = $get_tz[0]->minutes_val;
+
+          $stu_dat = $this->db->select('up.fullname, us.email, us.dcrea, us.cl_id, subgroup.name')
+                   ->from('user_profiles up')
+                   ->join('users us','us.id = up.user_id')
+                   ->join('subgroup','subgroup.id = up.subgroup_id')
+                   ->where_in('subgroup_id',$sglist)
+                   ->where('us.status','active')
+                   ->get()->result();
+
+           $selected = $this->db->select('*')
+                        ->from('subgroup')
+                        ->where_in('id',$sglist)
+                        ->where('type','student')
+                        ->get()->result();
+
+           $noselect = $this->db->select('*')
+                        ->from('subgroup')
+                        ->where('partner_id',$partner_id)
+                        ->where_not_in('id',$sglist)
+                        ->where('type','student')
+                        ->get()->result();
+
+           $vars = array(
+               'stu_dat' => $stu_dat,
+               'spr_tz' => $spr_tz,
+               'partner_id'   => $partner_id,
+               'subgrouplist' => $subgrouplist,
+               'selected' => $selected,
+               'noselect' => $noselect
+           );
+
+          //  echo "<pre>";print_r($vars);exit();
+
+           $this->template->content->view('default/contents/student_partner_neo/reporting/studentdata', $vars);
+           $this->template->publish();
+
         }
     }
 
@@ -404,4 +449,56 @@ class Reporting extends MY_Site_Controller {
         $this->template->content->view('default/contents/student_partner_neo/reporting/comses', $vars);
         $this->template->publish();
     }
+
+    public function export_data() {
+      $report = $_POST['submit'];
+      $partner_id   = $this->auth_manager->partner_id();
+      $subgrouplist = $_POST["subgrouplist"];
+      $sglist       = explode(",", $subgrouplist);
+
+      $this->template->title = 'Student Data';
+
+      $id    = $this->auth_manager->userid();
+      $get_tz  = $this->db->select('minutes_val')
+               ->from('user_timezones')
+               ->where('user_id',$id)
+               ->get()->result();
+      $spr_tz = $get_tz[0]->minutes_val;
+
+      $stu_dat = $this->db->select('up.fullname, us.email, us.dcrea, us.cl_id, subgroup.name')
+               ->from('user_profiles up')
+               ->join('users us','us.id = up.user_id')
+               ->join('subgroup','subgroup.id = up.subgroup_id')
+               ->where_in('subgroup_id',$sglist)
+               ->where('us.status','active')
+               ->get()->result();
+
+       $selected = $this->db->select('*')
+                    ->from('subgroup')
+                    ->where_in('id',$sglist)
+                    ->where('type','student')
+                    ->get()->result();
+
+       $noselect = $this->db->select('*')
+                    ->from('subgroup')
+                    ->where('partner_id',$partner_id)
+                    ->where_not_in('id',$sglist)
+                    ->where('type','student')
+                    ->get()->result();
+
+       $vars = array(
+           'stu_dat' => $stu_dat,
+           'spr_tz' => $spr_tz,
+           'partner_id'   => $partner_id,
+           'subgrouplist' => $subgrouplist,
+           'selected' => $selected,
+           'noselect' => $noselect
+       );
+
+      //  echo "<pre>";print_r($vars);exit();
+
+       $this->load->view('default/contents/student_partner_neo/reporting/export_dat', $vars);
+
+    }
+
 }

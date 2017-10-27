@@ -1288,7 +1288,10 @@ class Coach_vrm extends MY_Site_Controller {
           }
         }
         else{
-
+            $student_profile = $this->db->select('*')
+                            ->from('user_profiles')
+                            ->where('user_id', $student_id)
+                            ->get()->result();
             $tokenresult = $this->study_progress->GenerateToken();
 
             $gsp = json_decode($this->study_progress->GetStudyProgress($tokenresult));
@@ -1330,7 +1333,8 @@ class Coach_vrm extends MY_Site_Controller {
                 'gcp' => @$gcp,
                 'gwp' => @$gwp,
                 'mt_color' => @$mt_color,
-                'ct_color' => @$ct_color
+                'ct_color' => @$ct_color,
+                'student_profile' => @$student_profile
             );
 
             // echo "<pre>";print_r($vars);exit();

@@ -99,9 +99,9 @@
         <form class="pure-g pure-u-md-24-24 pure-u-sm-24-24 pure-u-lg-24-24" action="<?php echo site_url('student_partner_neo/subgroup/delete_student/'.$this->uri->segment(4));?>" method="POST">
 
         <div class="delete-add-btn padding-l-10 padding-t-65 pure-u-md-8-24 pure-u-lg-10-24">
-            <div class="btn-noborder btn-normal bg-white-fff left"><a href="<?php echo site_url('student_partner_neo/subgroup/student/'.@$subgroup_id ); ?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Student To Group</em></a></div>
+            <!-- <div class="btn-noborder btn-normal bg-white-fff left"><a href="<?php echo site_url('student_partner_neo/subgroup/student/'.@$subgroup_id ); ?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Student To Group</em></a></div>
             <div class="btn-noborder btn-normal bg-white-fff left"><a href="<?php echo site_url('student_partner_neo/adding/multiple_student/'.@$subgroup_id ); ?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Multiple Student To Group</em></a></div>
-            <button class="btn-noborder btn-normal bg-white-fff" name="_submit" type="submit" onclick="return confirm('Are you sure you want to delete?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Delete Student From Group</em></a></button>
+            <button class="btn-noborder btn-normal bg-white-fff" name="_submit" type="submit" onclick="return confirm('Are you sure you want to delete?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Delete Student From Group</em></a></button> -->
         </div>
 
         <div class="pure-menu-horizontal pure-u-md-10-24 pure-u-lg-10-24 padding-r-10 right">
@@ -144,14 +144,14 @@
     <div class="content padding-t-10">
        <div class="box">
             <div class="flex justify_content-sb padding-b-5">
-                <div class="select-all flex">
+                <!-- <div class="select-all flex">
                     <div class="padding-r-5 m-t-2">
                         <input type="checkbox" id="checkbox-1-0" name="Region" value="Region-1" class="regular-checkbox checkAll" /><label class="" for="checkbox-1-0"></label>
                     </div>
                     <div class="">
                         <label class="font-12">Select All</label>
                     </div>
-                </div>
+                </div> -->
                 <input type="text" id="myInput" class="font-12" onkeyup="myFunction()" placeholder="Search for names..">
             </div>
             <style type="text/css">
@@ -182,7 +182,6 @@
             <table id="large" class="display table-session tablesorter paginated" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th class="bg-secondary bg-none text-cl-white border-none" style="width:30px;"></th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">No</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Name</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Phone</th>
@@ -197,9 +196,6 @@
 
                     ?>
                     <tr>
-                        <td>
-                            <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $d->id;?>" class="regular-checkbox" /><label for="checkbox-1-<?php echo $no;?>"></label>
-                        </td>
                         <td><?php echo $a?></td>
                         <td><a href="<?php echo site_url('student_partner_neo/member_list/student_detail/'.$d->id);?>" class="text-cl-tertiary"><u><?php echo $d->fullname?></u></a></td>
                         <td><?php echo $d->dial_code.$d->phone?></td>

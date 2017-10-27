@@ -3,7 +3,7 @@
     <div class="studydash__info__img">
     </div>
     <div class="studydash__info__name">
-      Juki Marcelino
+      <?php echo $student_profile[0]->fullname;?>
     </div>
   </div>
   <div class="study__dashboard__top">

@@ -70,8 +70,9 @@
                         </div>
                     </div>
                 </div><br>
-                <input class="pure-button btn-small btn-tertiary height-32" type="submit" name="submit" value="Student Report">
-                <input class="pure-button btn-small btn-green height-32" type="submit" name="submit" value="Session Report">
+                <input class="pure-button btn-small btn-secondary height-32" type="submit" name="submit" value="Student Report">
+                <input class="pure-button btn-small btn-tertiary height-32" type="submit" name="submit" value="Session Report">
+                <input class="pure-button btn-small btn-green height-32" type="submit" name="submit" value="Student Data">
             </form>
 
         </div>
