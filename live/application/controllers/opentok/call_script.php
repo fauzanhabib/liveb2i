@@ -31,13 +31,13 @@ class Call_script extends MY_Site_Controller {
                 ->where('id', $std_id_for_cert)
                 ->get()->result();
 
-        $id_gl_users = $get_gl_users[0]->cl_id+1;
+        $id_gl_users = $get_gl_users[0]->cl_id;
 
         $get_gl_dsa = $this->db->select('cl_name')
                 ->from('dsa_cert_levels')
                 ->where('cl_id', $id_gl_users)
                 ->get()->result();
-
+                // echo "<pre>";print_r($get_gl_dsa);exit();
         $script = $this->db->distinct()
                 ->select('bc.unit')
                 ->from('b2c_script_student bs')
@@ -99,7 +99,7 @@ class Call_script extends MY_Site_Controller {
                 $n++;
             }
 
-
+            $this->db->set($datascript);
             $this->db->insert_batch('b2c_script_student', @$datascript);
 
 

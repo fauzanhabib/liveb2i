@@ -104,22 +104,22 @@
         <div class="left-list-tabs pure-menu pure-menu-horizontal text-center margin0">
             <ul class='tabs padding0 clearfix'>
                 <?php if(@$a1){ ?>
-                <li class="width33perc"><a href='#tab-right1' class="width87perc">A1</a></li>
+                <li class="width33perc m-t-10"><a href='#tab-right1' class="width87perc">A1</a></li>
                 <?php } ?>
                 <?php if(@$a2){ ?>
-                <li class="width33perc"><a href='#tab-right2' class="width87perc">A2</a></li>
+                <li class="width33perc m-t-10"><a href='#tab-right2' class="width87perc">A2</a></li>
                 <?php } ?>
                 <?php if(@$b1){ ?>
-                <li class="width33perc"><a href='#tab-right3' class="width87perc">B1</a></li>
+                <li class="width33perc m-t-10"><a href='#tab-right3' class="width87perc">B1</a></li>
                 <?php } ?>
                 <?php if(@$b2){ ?>
-                <li class="width33perc"><a href='#tab-right4' class="width87perc">B2</a></li>
+                <li class="width33perc m-t-10"><a href='#tab-right4' class="width87perc">B2</a></li>
                 <?php } ?>
                 <?php if(@$c1){ ?>
-                <li class="width33perc"><a href='#tab-right5' class="width87perc">C1</a></li>
+                <li class="width33perc m-t-10"><a href='#tab-right5' class="width87perc">C1</a></li>
                 <?php } ?>
                 <?php if(@$c2){ ?>
-                <li class="width33perc"><a href='#tab-right6' class="width87perc">C2</a></li>
+                <li class="width33perc m-t-10"><a href='#tab-right6' class="width87perc">C2</a></li>
                 <?php } ?>
             </ul>
 
@@ -150,7 +150,7 @@
                         $no = 2;
                         foreach ($av as $v){
                      ?>
-                     <table>
+                     <table style="min-width: 100%;">
                         <td style="width: 90%;border-bottom: 1px solid #eee;">
                         <p style="font-size: 14px; color:black;">
                           <?php
@@ -186,7 +186,7 @@
                         $no = 2;
                         foreach ($av as $v){
                      ?>
-                     <table>
+                     <table style="min-width: 100%;">
                         <td style="width: 90%;border-bottom: 1px solid #eee;">
                         <p style="font-size: 14px; color:black;">
                           <?php
@@ -221,7 +221,7 @@
                         $no = 2;
                         foreach ($av as $v){
                      ?>
-                     <table>
+                     <table style="min-width: 100%;">
                         <td style="width: 90%;border-bottom: 1px solid #eee;">
                         <p style="font-size: 14px; color:black;">
                           <?php
@@ -255,7 +255,7 @@
                         $no = 2;
                         foreach ($av as $v){
                      ?>
-                     <table>
+                     <table style="min-width: 100%;">
                         <td style="width: 90%;border-bottom: 1px solid #eee;">
                         <p style="font-size: 14px; color:black;">
                           <?php
@@ -272,7 +272,7 @@
 
             <div id='tab-right5'>
                 <div class="pure-u-1 text-center m-t-20 w3-animate-bottom" style="margin-bottom: 20px;">
-                    <div class="pure-button btn-small btn-tertiary height-32">Cerification Plan: B2</div>
+                    <div class="pure-button btn-small btn-tertiary height-32">Cerification Plan: C1</div>
                 </div>
 
                 <?php foreach (@$c1 as $as) { ?>
@@ -290,7 +290,7 @@
                         $no = 2;
                         foreach ($av as $v){
                      ?>
-                     <table>
+                     <table style="min-width: 100%;">
                         <td style="width: 90%;border-bottom: 1px solid #eee;">
                         <p style="font-size: 14px; color:black;">
                           <?php
@@ -307,7 +307,7 @@
 
             <div id='tab-right6'>
                 <div class="pure-u-1 text-center m-t-20 w3-animate-bottom" style="margin-bottom: 20px;">
-                    <div class="pure-button btn-small btn-tertiary height-32">Cerification Plan: B2</div>
+                    <div class="pure-button btn-small btn-tertiary height-32">Cerification Plan: C2</div>
                 </div>
 
                 <?php foreach (@$c2 as $as) { ?>
@@ -325,7 +325,7 @@
                         $no = 2;
                         foreach ($av as $v){
                      ?>
-                     <table>
+                     <table style="min-width: 100%;">
                         <td style="width: 90%;border-bottom: 1px solid #eee;">
                         <p style="font-size: 14px; color:black;">
                           <?php

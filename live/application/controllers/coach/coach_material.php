@@ -65,9 +65,9 @@ class Coach_material extends MY_Site_Controller {
         // print_r($a1);
         // exit();
         $vars = array(
-            'a1' => $a1,
-            'a2' => $a2,
-            'b1' => $b1,
+            'a1' => @$a1,
+            'a2' => @$a2,
+            'b1' => @$b1,
             'b2' => @$b2,
             'c1' => @$c1,
             'c2' => @$c2
@@ -83,51 +83,49 @@ class Coach_material extends MY_Site_Controller {
 
         $a1 = $this->db->distinct()
             ->select('unit')
-            ->from('script')
+            ->from('b2c_script')
             ->where('certificate_plan', 'A1')
             ->get()->result();
 
         $a2 = $this->db->distinct()
             ->select('unit')
-            ->from('script')
+            ->from('b2c_script')
             ->where('certificate_plan', 'A2')
             ->get()->result();
 
         $b1 = $this->db->distinct()
             ->select('unit')
-            ->from('script')
+            ->from('b2c_script')
             ->where('certificate_plan', 'B1')
             ->get()->result();
 
         $b2 = $this->db->distinct()
             ->select('unit')
-            ->from('script')
+            ->from('b2c_script')
             ->where('certificate_plan', 'B2')
             ->get()->result();
 
         $c1 = $this->db->distinct()
             ->select('unit')
-            ->from('script')
+            ->from('b2c_script')
             ->where('certificate_plan', 'C1')
             ->get()->result();
 
         $c2 = $this->db->distinct()
             ->select('unit')
-            ->from('script')
+            ->from('b2c_script')
             ->where('certificate_plan', 'C2')
             ->get()->result();
-        // echo "<pre>";
-        // print_r($a1);
-        // exit();
+
         $vars = array(
-            'a1' => $a1,
-            'a2' => $a2,
-            'b1' => $b1,
+            'a1' => @$a1,
+            'a2' => @$a2,
+            'b1' => @$b1,
             'b2' => @$b2,
             'c1' => @$c1,
             'c2' => @$c2
         );
-
+        // echo "<pre>";print_r($vars);exit();
         $this->template->content->view('default/contents/coach/coach_material/index_bc', $vars);
         $this->template->publish();
     }
