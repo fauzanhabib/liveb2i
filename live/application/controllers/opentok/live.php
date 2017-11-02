@@ -134,9 +134,7 @@ class Live extends MY_Site_Controller {
         @$starthour_conv = $sess[0]->start_time;
         @$endhour_conv   = $sess[0]->end_time;
 
-        // echo "<pre>";
-        // print_r($appoint_id);
-        // exit();
+        // echo "<pre>";print_r($opentok);exit();
 
         $datetime1 = new DateTime($hour);
         $datetime2 = new DateTime($starthour_conv);
