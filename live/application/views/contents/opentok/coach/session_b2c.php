@@ -837,7 +837,7 @@ div.panel.show {
                       <div class="preloader2" id="connecting">
                         <img src="http://idbuild.id.dyned.com/live_v20/uploads/images/dyned-circle.png" width="200" class="small-preload2">
                       </div>
-                      <div class="subscriber" id="subscriberContainer"><div class="publisher" id="myPublisherElementId"></div></div>
+                      <div class="subscriber" id="subscriberContainer"><div class="publisher" id="myPublisherElementId" style="min-height: 100px;"></div></div>
                       <a onclick="makeFullScreen(fullarea)" style="position: absolute; bottom: 52px; left: 25px;">
                         <img class="fs-icon" src="<?php echo base_url();?>assets/icon/expand2x.png"></img>
                       </a>
@@ -883,15 +883,15 @@ div.panel.show {
                             customConfig: '<?php echo base_url();?>assets/ckeditor/config.js'
                           });
                         </script>
-                        <div class="save-cancel-btn padding-r-5 right">
+                        <div class="save-cancel-btn right" style="width:100%;">
                             <input type="hidden" id="appoint_id_cch" value="<?php echo $appointment_id ?>">
-                            <input type="submit" id="save_note" class="pure-button btn-tertiary btn-small" value="Save">
+                            <input type="submit" id="save_note" class="pure-button btn-tertiary btn-small" value="Save" style="width:100%;">
                         </div>
                     </div>
-                    <div style="overflow: auto;max-height: 125px;">
-                      <div class="box-capsule width20perc text-cl-tertiary font-14">
+                      <div class="box-capsule width20perc font-14">
                           <span>Previous Notes</span>
                       </div>
+                      <div style="overflow: auto;max-height: 125px;">
                       <?php
                         // $pull = $user_extract->coach_id;
                         if($user_extract){

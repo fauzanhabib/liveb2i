@@ -99,7 +99,7 @@ class Call_script extends MY_Site_Controller {
                 $n++;
             }
 
-            $this->db->set($datascript);
+            // $this->db->set($datascript);
             $this->db->insert_batch('b2c_script_student', @$datascript);
 
 
