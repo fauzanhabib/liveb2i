@@ -1,4 +1,4 @@
 
-sleep 120s
+#sleep 120s
 
 nohup php -f /var/www/DynEdLiveMessagingService/worker/live_messaging_email.php >> /var/www/DynEdLiveMessagingService/logs/live_log_email.txt  2>&1&
