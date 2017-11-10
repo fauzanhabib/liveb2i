@@ -101,20 +101,50 @@ class find_coaches extends MY_Site_Controller {
         }
 
         $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
+        $region_id = $this->auth_manager->region_id($partner_id);
 
         $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
-        $standard_coach_cost = $setting[0]->standard_coach_cost;
-        $elite_coach_cost = $setting[0]->elite_coach_cost;
-        $session_duration = $setting[0]->session_duration;
+        $region_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('user_id',$region_id)->get()->result();
+        $global_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
+
+        $standard_coach_cost = @$setting[0]->standard_coach_cost;
+        if(!$standard_coach_cost || $standard_coach_cost == 0){
+            $standard_coach_cost_region = @$region_setting[0]->standard_coach_cost;
+            $standard_coach_cost = $standard_coach_cost_region;
+            if(!$standard_coach_cost_region || $standard_coach_cost_region == 0){
+                $standard_coach_cost_global = @$global_setting[0]->standard_coach_cost;
+                $standard_coach_cost = $standard_coach_cost_global;
+            }
+        }
+
+        $elite_coach_cost = @$setting[0]->elite_coach_cost;
+        if(!$elite_coach_cost || $elite_coach_cost == 0){
+            $elite_coach_cost_region = @$region_setting[0]->elite_coach_cost;
+            $elite_coach_cost = $elite_coach_cost_region;
+            if(!$elite_coach_cost_region || $elite_coach_cost_region == 0){
+                $elite_coach_cost_global = @$global_setting[0]->elite_coach_cost;
+                $elite_coach_cost = $elite_coach_cost_global;
+            }
+        }
+
+        $session_duration = @$setting[0]->session_duration;
+        if(!$session_duration || $session_duration == 0){
+            $session_duration_region = @$region_setting[0]->session_duration;
+            $session_duration = $session_duration_region;
+            if(!$session_duration_region || $session_duration_region == 0){
+                $session_duration_global = @$global_setting[0]->session_duration;
+                $session_duration = $session_duration_global;
+            }
+        }
 
         $vars = array(
             'coaches' => $coaches,
             'selected' => $category,
             'rating' => $this->coach_rating_model->get_average_rate(),
             'pagination' => @$pagination,
-            'standard_coach_cost' => $standard_coach_cost,
-            'elite_coach_cost' => $elite_coach_cost,
-            'session_duration' => $session_duration
+            'standard_coach_cost' => @$standard_coach_cost,
+            'elite_coach_cost' => @$elite_coach_cost,
+            'session_duration' => @$session_duration
         );
        // echo('<pre>');
        // print_r($vars); exit;
@@ -2669,10 +2699,31 @@ class find_coaches extends MY_Site_Controller {
         $this->template->title = 'Booking Summary';
 
         $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
+        $region_id = $this->auth_manager->region_id($partner_id);
         
-        $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
-        $standard_coach_cost = $setting[0]->standard_coach_cost;
-        $elite_coach_cost = $setting[0]->elite_coach_cost;
+        $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+        $region_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('user_id',$region_id)->get()->result();
+        $global_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
+
+        $standard_coach_cost = @$setting[0]->standard_coach_cost;
+        if(!$standard_coach_cost || $standard_coach_cost == 0){
+            $standard_coach_cost_region = @$region_setting[0]->standard_coach_cost;
+            $standard_coach_cost = $standard_coach_cost_region;
+            if(!$standard_coach_cost_region || $standard_coach_cost_region == 0){
+                $standard_coach_cost_global = @$global_setting[0]->standard_coach_cost;
+                $standard_coach_cost = $standard_coach_cost_global;
+            }
+        }
+
+        $elite_coach_cost = @$setting[0]->elite_coach_cost;
+        if(!$elite_coach_cost || $elite_coach_cost == 0){
+            $elite_coach_cost_region = @$region_setting[0]->elite_coach_cost;
+            $elite_coach_cost = $elite_coach_cost_region;
+            if(!$elite_coach_cost_region || $elite_coach_cost_region == 0){
+                $elite_coach_cost_global = @$global_setting[0]->elite_coach_cost;
+                $elite_coach_cost = $elite_coach_cost_global;
+            }
+        }
 
         $vars = array(
             'data_coach' => $this->identity_model->get_coach_identity($coach_id),
