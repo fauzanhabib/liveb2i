@@ -118,10 +118,31 @@ class Leavesession extends MY_Site_Controller {
         
         //----------
         $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
-        
-        $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
-        $standard_coach_cost = $setting[0]->standard_coach_cost;
-        $elite_coach_cost = $setting[0]->elite_coach_cost;
+        $region_id = $this->auth_manager->region_id($partner_id);
+
+        $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+        $region_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('user_id',$region_id)->get()->result();
+        $global_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
+
+        $standard_coach_cost = @$setting[0]->standard_coach_cost;
+        if(!$standard_coach_cost || $standard_coach_cost == 0){
+            $standard_coach_cost_region = @$region_setting[0]->standard_coach_cost;
+            $standard_coach_cost = $standard_coach_cost_region;
+            if(!$standard_coach_cost_region || $standard_coach_cost_region == 0){
+                $standard_coach_cost_global = @$global_setting[0]->standard_coach_cost;
+                $standard_coach_cost = $standard_coach_cost_global;
+            }
+        }
+
+        $elite_coach_cost = @$setting[0]->elite_coach_cost;
+        if(!$elite_coach_cost || $elite_coach_cost == 0){
+            $elite_coach_cost_region = @$region_setting[0]->elite_coach_cost;
+            $elite_coach_cost = $elite_coach_cost_region;
+            if(!$elite_coach_cost_region || $elite_coach_cost_region == 0){
+                $elite_coach_cost_global = @$global_setting[0]->elite_coach_cost;
+                $elite_coach_cost = $elite_coach_cost_global;
+            }
+        }
 
         $cost = '';
         if($type_id == 1){
