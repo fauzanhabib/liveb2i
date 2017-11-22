@@ -1306,27 +1306,61 @@ class Coach_vrm extends MY_Site_Controller {
               "locked" => "",
               "failed" => "bg-red-gradient"
             );
-            $mt_color = array(
-              'mt1' => $mt_status_to_colour[$gsp->data->study->mastery_tests[0]->status],
-              'mt2' => $mt_status_to_colour[$gsp->data->study->mastery_tests[1]->status],
-              'mt3' => $mt_status_to_colour[$gsp->data->study->mastery_tests[2]->status],
-              'mt4' => $mt_status_to_colour[$gsp->data->study->mastery_tests[3]->status],
-              'mt5' => $mt_status_to_colour[$gsp->data->study->mastery_tests[4]->status],
-              'mt6' => $mt_status_to_colour[$gsp->data->study->mastery_tests[5]->status]
-            );
 
-            $ct_color = array(
-              'ct1' => $mt_status_to_colour[$gsp->data->coach->sessions[0]->status],
-              'ct2' => $mt_status_to_colour[$gsp->data->coach->sessions[1]->status],
-              'ct3' => $mt_status_to_colour[$gsp->data->coach->sessions[2]->status],
-              'ct4' => $mt_status_to_colour[$gsp->data->coach->sessions[3]->status],
-              'ct5' => $mt_status_to_colour[$gsp->data->coach->sessions[4]->status],
-              'ct6' => $mt_status_to_colour[$gsp->data->coach->sessions[5]->status],
-              'ct7' => $mt_status_to_colour[$gsp->data->coach->sessions[6]->status],
-              'ct8' => $mt_status_to_colour[$gsp->data->coach->sessions[7]->status],
-              'ct9' => $mt_status_to_colour[$gsp->data->coach->sessions[8]->status],
-              'ct10' => $mt_status_to_colour[$gsp->data->coach->sessions[9]->status]
-            );
+            // $mt_color = array(
+            //   'mt1' => $mt_status_to_colour[$gsp->data->study->mastery_tests[0]->status],
+            //   'mt2' => $mt_status_to_colour[$gsp->data->study->mastery_tests[1]->status],
+            //   'mt3' => $mt_status_to_colour[$gsp->data->study->mastery_tests[2]->status],
+            //   'mt4' => $mt_status_to_colour[$gsp->data->study->mastery_tests[3]->status],
+            //   'mt5' => $mt_status_to_colour[$gsp->data->study->mastery_tests[4]->status],
+            //   'mt6' => $mt_status_to_colour[$gsp->data->study->mastery_tests[5]->status]
+            // );
+
+            /*==============  
+              rendy bustari
+            ===============*/
+
+            $mt_color = [];
+            $k = 1;
+            $max_buletan_student = sizeof($gsp->data->study->mastery_tests);
+            
+            for($l=0;$l<$max_buletan_student;$l++){
+              $mt_color['mt'.$k] = @$mt_status_to_colour[$gsp->data->coach->sessions[$l]->status];
+              $k++;
+            }
+
+            $coach_status_color = array(
+              "passed" => "bg-green-gradient",
+              "open" => "bg-white-gradient",
+              "locked" => "",
+              "failed" => "bg-red-gradient"
+              );
+
+            $ct_color = [];
+            $j = 1;
+            $max_buletan = sizeof($gsp->data->coach->sessions);
+            
+            for($i=0;$i<$max_buletan;$i++){
+              $ct_color['cc'.$j] = @$coach_status_color[$gsp->data->coach->sessions[$i]->status];
+              $j++;
+            }
+
+            /*============================
+              end of edited rendy bustari
+            =============================*/
+
+            // $ct_color = array(
+            //   'ct1' => $mt_status_to_colour[$gsp->data->coach->sessions[0]->status],
+            //   'ct2' => $mt_status_to_colour[$gsp->data->coach->sessions[1]->status],
+            //   'ct3' => $mt_status_to_colour[$gsp->data->coach->sessions[2]->status],
+            //   'ct4' => $mt_status_to_colour[$gsp->data->coach->sessions[3]->status],
+            //   'ct5' => $mt_status_to_colour[$gsp->data->coach->sessions[4]->status],
+            //   'ct6' => $mt_status_to_colour[$gsp->data->coach->sessions[5]->status],
+            //   'ct7' => $mt_status_to_colour[$gsp->data->coach->sessions[6]->status],
+            //   'ct8' => $mt_status_to_colour[$gsp->data->coach->sessions[7]->status],
+            //   'ct9' => $mt_status_to_colour[$gsp->data->coach->sessions[8]->status],
+            //   'ct10' => $mt_status_to_colour[$gsp->data->coach->sessions[9]->status]
+            // );
 
             $vars = array(
                 'gsp' => @$gsp,
@@ -1334,7 +1368,9 @@ class Coach_vrm extends MY_Site_Controller {
                 'gwp' => @$gwp,
                 'mt_color' => @$mt_color,
                 'ct_color' => @$ct_color,
-                'student_profile' => @$student_profile
+                'student_profile' => @$student_profile,
+                'max_buletan_student' => @$max_buletan_student,
+                'max_buletan' => @$max_buletan
             );
 
             // echo "<pre>";print_r($vars);exit();
