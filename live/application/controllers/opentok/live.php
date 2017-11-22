@@ -34,6 +34,7 @@ class Live extends MY_Site_Controller {
     {
         $this->template->title = "Live Session";
 
+
         $id = $this->auth_manager->userid();
         // $utz = $this->db->select('user_timezone')
         //         ->from('user_profiles')
@@ -301,7 +302,6 @@ class Live extends MY_Site_Controller {
                 }
 
                 // echo "<pre>";print_r($livesession);exit();
-
                 $this->template->content->view('contents/opentok/student/session', $livesession);
                 $this->template->publish();
             }else{
@@ -371,6 +371,47 @@ class Live extends MY_Site_Controller {
                     // print_r($std_cert);
                     // exit();
 
+                    // study dashboard
+                    $this->load->library('Study_progress');
+                    $tokenresult = $this->study_progress->GenerateToken();
+
+                    $gsp = json_decode($this->study_progress->GetStudyProgress($tokenresult));
+                    $gcp = json_decode($this->study_progress->GetCurrentProgress($tokenresult));
+                    $gwp = json_decode($this->study_progress->GetWeeklyProgress($tokenresult));
+
+                    $mt_status_to_colour = array(
+                      "passed" => "bg-blue-gradient",
+                      "open" => "bg-white-gradient",
+                      "locked" => "",
+                      "failed" => "bg-red-gradient"
+                    );
+
+                    $mt_color = [];
+                    $k = 1;
+                    $max_buletan_student = sizeof($gsp->data->study->mastery_tests);
+                    
+                    for($l=0;$l<$max_buletan_student;$l++){
+                      $mt_color['mt'.$k] = @$mt_status_to_colour[$gsp->data->coach->sessions[$l]->status];
+                      $k++;
+                    }
+
+                    $coach_status_color = array(
+                      "passed" => "bg-green-gradient",
+                      "open" => "bg-white-gradient",
+                      "locked" => "",
+                      "failed" => "bg-red-gradient"
+                      );
+
+                    $ct_color = [];
+                    $j = 1;
+                    $max_buletan = sizeof($gsp->data->coach->sessions);
+                    
+                    for($i=0;$i<$max_buletan;$i++){
+                      $ct_color['cc'.$j] = @$coach_status_color[$gsp->data->coach->sessions[$i]->status];
+                      $j++;
+                    }
+                    // ===============
+
 
 
                     $livesession = array(
@@ -390,7 +431,15 @@ class Live extends MY_Site_Controller {
                     'different_val'  => $different_val,
                     'user_extract'   => @$user_extract,
                     'user_extract2'  => @$user_extract2,
-                    'appointment_id' => $appoint_id
+                    'appointment_id' => $appoint_id,
+                    'gsp' => @$gsp,
+                    'gcp' => @$gcp,
+                    'gwp' => @$gwp,
+                    'mt_color' => @$mt_color,
+                    'ct_color' => @$ct_color,
+                    'student_profile' => @$student_profile,
+                    'max_buletan_student' => @$max_buletan_student,
+                    'max_buletan' => @$max_buletan
                     );
                 }
 
@@ -434,10 +483,12 @@ class Live extends MY_Site_Controller {
                   $this->template->content->view('contents/opentok/coach/session', $livesession);
                   $this->template->publish();
                 }else{
+ 
                   $this->template->content->view('contents/opentok/coach/session_b2c', $livesession);
                   $this->template->publish();
                 }
             }else{
+
                 $this->template->content->view('contents/opentok/coach/nosession');
                 $this->template->publish();
             }
