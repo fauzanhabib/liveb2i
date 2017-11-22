@@ -7646,14 +7646,14 @@ label {
 
   .step__progress__info {
     position: absolute;
-    top: 55px;
+    top: 60px;
     left: 40px;
     text-align: center;
     font-weight: 600;
   }
   .step__progress__info .step__info__label {
     color: #59ba82;
-    font-size: 2em;
+    font-size: 1.2em;
     font-weight: 600;
   }
   .step__progress__info .step__info__label svg {
