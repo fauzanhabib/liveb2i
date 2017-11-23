@@ -93,12 +93,12 @@
                         $pc_sr = @$student_vrm2->sr->percent_to_goal;
                         $pc_wss = @$student_vrm2->wss->percent_to_goal;
 
-                        $val_mt = $student_vrm2->mt->raw_value;
-                        $val_rp = $student_vrm2->repeats->raw_value;
-                        $val_hp = $student_vrm2->headphone->raw_value;
-                        $val_sp = $student_vrm2->mic->raw_value;
-                        $val_sr = $student_vrm2->sr->raw_value;
-                        $val_wss = $student_vrm2->wss->raw_value;
+                        $val_mt = @$student_vrm2->mt->raw_value;
+                        $val_rp = @$student_vrm2->repeats->raw_value;
+                        $val_hp = @$student_vrm2->headphone->raw_value;
+                        $val_sp = @$student_vrm2->mic->raw_value;
+                        $val_sr = @$student_vrm2->sr->raw_value;
+                        $val_wss = @$student_vrm2->wss->raw_value;
                         // echo "<pre>";print_r($student_vrm2);exit();
                         ?>
                         <div class="othr-graph hide">
@@ -173,7 +173,7 @@
                //      echo "<pre>";
                // print_r($student_vrm2->cert_level_completion);
 
-                $cert_level = $student_vrm2->cert_level_completion;
+                $cert_level = @$student_vrm2->cert_level_completion;
                 // echo $cert_level->A1;
                 // exit();
                
@@ -187,43 +187,43 @@
                     <a href="#content-a1" id="A1" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">A1</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->A1; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->A1; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->A1; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->A1; ?>" max="100"></progress>
                         </div>
                     </a>
                     <a href="#content-b1" id="A2" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">A2</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->A2; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->A2; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->A2; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->A2; ?>" max="100"></progress>
                         </div>
                     </a>
                     <a href="#content-c1" id="B1" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">B1</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->B1; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->B1; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->B1; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->B1; ?>" max="100"></progress>
                         </div>
                     </a>
                     <a href="#content-a2" id="B2" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">B2</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->B2; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->B2; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->B2; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->B2; ?>" max="100"></progress>
                         </div>
                     </a>
                     <a href="#content-b2" id="C1" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">C1</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->C1; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->C1; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->C1; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->C1; ?>" max="100"></progress>
                         </div>
                     </a>
                     <a href="#content-c2" id="C2" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">C2</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->C2; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->C2; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->C2; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->C2; ?>" max="100"></progress>
                         </div>
                     </a>
                 </div>            
