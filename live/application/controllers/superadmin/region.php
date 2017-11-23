@@ -842,7 +842,7 @@ class region extends MY_Site_Controller {
         // messaging inserting data notification
 
         $this->user_notification_model->insert($partner_notification);
-        $this->send_email->add_token($get_email[0]->email, $get_name[0]->fullname, $request_token, $get_email[0]->role_id, $get_name2[0]->fullname);
+        // $this->send_email->add_token($get_email[0]->email, $get_name[0]->fullname, $request_token, $get_email[0]->role_id, $get_name2[0]->fullname);
 
         $this->messages->add('Your token success refund ', 'success');
         redirect('superadmin/region/detail/'.$region_id);
