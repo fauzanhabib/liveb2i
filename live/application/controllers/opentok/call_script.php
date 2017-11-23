@@ -101,8 +101,9 @@ class Call_script extends MY_Site_Controller {
 
             // $this->db->set($datascript);
             $this->db->insert_batch('b2c_script_student', @$datascript);
+            // echo "<pre>";print_r($script_curr);exit();
 
-
+            $this->load->view('contents/opentok/coach/call_script_view_first', $data);
         }
 
     $bag = $this->db->select('*')

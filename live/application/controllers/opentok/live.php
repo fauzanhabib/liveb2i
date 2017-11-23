@@ -24,6 +24,7 @@ class Live extends MY_Site_Controller {
         $this->load->library('call1');
         $this->load->library('call2');
         $this->load->model('coaching_script_model');
+        $this->load->library('Study_progress');
         /* if ($this->auth_manager->role() != 'STD' || $this->auth_manager->role() != 'CCH') {
             redirect('home');
         } */
@@ -389,7 +390,7 @@ class Live extends MY_Site_Controller {
                     $mt_color = [];
                     $k = 1;
                     $max_buletan_student = sizeof($gsp->data->study->mastery_tests);
-                    
+
                     for($l=0;$l<$max_buletan_student;$l++){
                       $mt_color['mt'.$k] = @$mt_status_to_colour[$gsp->data->coach->sessions[$l]->status];
                       $k++;
@@ -405,7 +406,7 @@ class Live extends MY_Site_Controller {
                     $ct_color = [];
                     $j = 1;
                     $max_buletan = sizeof($gsp->data->coach->sessions);
-                    
+
                     for($i=0;$i<$max_buletan;$i++){
                       $ct_color['cc'.$j] = @$coach_status_color[$gsp->data->coach->sessions[$i]->status];
                       $j++;
@@ -483,7 +484,7 @@ class Live extends MY_Site_Controller {
                   $this->template->content->view('contents/opentok/coach/session', $livesession);
                   $this->template->publish();
                 }else{
- 
+
                   $this->template->content->view('contents/opentok/coach/session_b2c', $livesession);
                   $this->template->publish();
                 }
