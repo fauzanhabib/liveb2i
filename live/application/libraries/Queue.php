@@ -43,8 +43,12 @@ class Queue {
         }
 
         // Connecting to message server
+
         // $this->pheanstalk = new Pheanstalk($this->host, $this->port);
-        $this->pheanstalk = new Pheanstalk(getenv("QUEUE_HOST"));
+        // menggunakan docker
+        // $this->pheanstalk = new Pheanstalk(getenv("QUEUE_HOST"));
+        // tidak menggunakan docker
+        $this->pheanstalk = new Pheanstalk(127.0.0.1);
 
     }
 
