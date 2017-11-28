@@ -86,10 +86,29 @@
         });
     });
 </script>
+<style>
+  #refreshScript{
+    border: solid 1px #2e89b8;
+  }
+  #refreshScript:hover{
+   cursor: pointer;
+   color: #2e89b8;
+   background: white;
+  }
+</style>
 
 <div id='tab-right1'>
   <ul class="accordion_book">
+    <!-- First Time Loaded-->
+    <?php if(!@$script){ ?>
+      <p style="color: black;text-align: center;">
+          It's the first time for student to attend a session. Scripts are just stored and you can now refresh to load the scripts.
+      </p>
 
+      <div class="box-capsule width20perc font-14" style="margin: auto;border-radius: 50px;" id="refreshScript">
+          <span>Refresh</span>
+      </div>
+    <?php } ?>
     <!-- HISTORY SCRIPTS STARTS-->
     <?php
     if(@$script_hist){
@@ -414,21 +433,18 @@ for (i = 0; i < acc.length; i++) {
 </script> -->
 
 <script>
-    $("#reloadajax3").click(function() {
-        $("#reloading2").show();
-        var std_id = "<?php echo $std_id_for_cert; ?>";
-        // console.log('asdsafasf');
-        $("#ajaxscript").hide();
+$("#refreshScript").click(function() {
+    var std_id = "<?php echo $std_id_for_cert; ?>";
+    $("#reloading2").show();
+    // console.log('asdsafasf');
+    $("#ajaxscript").hide();
+    $.post("<?php echo site_url('opentok/call_script/call_ajax');?>", { 'std_id': std_id },function(data) {
+      $("#reloading2").hide();
+      $("#ajaxscript").show();
+      $("#ajaxscript").html(data);
+     });
 
-        $.post("<?php echo site_url('opentok/call_loader_coach/call_ajax');?>", { 'std_id': std_id },function(data) {
-         $("#reloading2").hide();
-         $("#ajaxscript").show();
-         $("#ajaxscript").html(data);
-         // alert(data);
-         });
-
-    } );
-
+} );
 </script>
 </body>
 </html>

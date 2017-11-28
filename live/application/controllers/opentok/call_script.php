@@ -14,15 +14,19 @@ class Call_script extends MY_Site_Controller {
         $this->load->model('class_member_model');
         $this->load->model('user_model');
         $this->load->library('Auth_manager');
-        $this->load->library('call1');
-        $this->load->library('call2');
         $this->load->model('coaching_script_model');
+        $this->load->library('Study_progress');
     }
 
     // Index
     public function call_ajax() {
       // exit('a');
         // $std_id_for_cert = isset($_POST['std_id']);
+        $tokenresult = $this->study_progress->GenerateToken();
+        $gsp = json_decode($this->study_progress->GetStudyProgress($tokenresult));
+        $pull_step = end($gsp->data->study->mastery_tests);
+        // echo "<pre>";print_r($pull_step);exit();
+
         $lesson_step = 30;
         $std_id_for_cert=$this->input->post('std_id');
 
@@ -102,8 +106,10 @@ class Call_script extends MY_Site_Controller {
             // $this->db->set($datascript);
             $this->db->insert_batch('b2c_script_student', @$datascript);
             // echo "<pre>";print_r($script_curr);exit();
-
-            $this->load->view('contents/opentok/coach/call_script_view_first', $data);
+            // $data = array(
+            //   'std_id_for_cert'  => @$std_id_for_cert
+            // );
+            // $this->load->view('contents/opentok/coach/call_script_view_first', $data);
         }
 
     $bag = $this->db->select('*')
