@@ -48,7 +48,7 @@ class Queue {
         // menggunakan docker
         // $this->pheanstalk = new Pheanstalk(getenv("QUEUE_HOST"));
         // tidak menggunakan docker
-        $this->pheanstalk = new Pheanstalk(127.0.0.1);
+        $this->pheanstalk = new Pheanstalk('127.0.0.1');
 
     }
 
