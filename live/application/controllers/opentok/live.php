@@ -372,12 +372,24 @@ class Live extends MY_Site_Controller {
 
                     // study dashboard
                     // $this->load->library('Study_progress');
-                    $tokenresult = $this->study_progress->GenerateToken();
+                    // $tokenresult = $this->study_progress->GenerateToken();
 
-                    $gsp = json_decode($this->study_progress->GetStudyProgress($tokenresult));
-                    $gcp = json_decode($this->study_progress->GetCurrentProgress($tokenresult));
-                    $gwp = json_decode($this->study_progress->GetWeeklyProgress($tokenresult));
+                    $pull_gcp = $this->db->select('*')
+                              ->from('b2c_student_progress')
+                              ->where('user_id', $std_id)
+                              ->get()->result();
+
+                    $gsp = json_decode($pull_gcp[0]->json_gsp);
+                    $gcp = json_decode($pull_gcp[0]->json_gcp);
+                    $gwp = json_decode($pull_gcp[0]->json_gwp);
+                    // $gsp = json_decode($this->study_progress->GetStudyProgress($tokenresult));
+                    // $gcp = json_decode($this->study_progress->GetCurrentProgress($tokenresult));
+                    // $gwp = json_decode($this->study_progress->GetWeeklyProgress($tokenresult));
+
+                    // $pull_step = end($gsp->data->study->units);
+                    // $val_step  = $pull_step->study_path_index;
                     // echo "<pre>";print_r($gsp);exit();
+
                     $mt_status_to_colour = array(
                       "passed" => "bg-blue-gradient",
                       "open" => "bg-white-gradient",

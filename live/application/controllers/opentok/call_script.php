@@ -22,15 +22,14 @@ class Call_script extends MY_Site_Controller {
     public function call_ajax() {
       // exit('a');
         // $std_id_for_cert = isset($_POST['std_id']);
-        $tokenresult = $this->study_progress->GenerateToken();
-        $gsp = json_decode($this->study_progress->GetStudyProgress($tokenresult));
-        $pull_step = end($gsp->data->study->mastery_tests);
-        // echo "<pre>";print_r($pull_step);exit();
+        // $val_step    = $pull_step->study_path_index;
+        // $val_lesson  = $pull_lesson[1];
+        // echo "<pre>";print_r($val_step);exit();
 
-        $lesson_step = 30;
+        // $val_step = 30;
         $std_id_for_cert=$this->input->post('std_id');
 
-        $get_gl_users = $this->db->select('cl_id')
+        $get_gl_users = $this->db->select('cl_id, sso_username')
                 ->from('users')
                 ->where('id', $std_id_for_cert)
                 ->get()->result();
@@ -41,16 +40,48 @@ class Call_script extends MY_Site_Controller {
                 ->from('dsa_cert_levels')
                 ->where('cl_id', $id_gl_users)
                 ->get()->result();
-                // echo "<pre>";print_r($get_gl_dsa);exit();
+                // echo "<pre>";print_r($get_gl_users);exit();
+
+        $std_sso = $get_gl_users[0]->sso_username;
+
+        // $tokenresult = $this->study_progress->GenerateToken($std_sso);
+        // $gsp = json_decode($this->study_progress->GetStudyProgress($tokenresult));
+        $pull_gcp = $this->db->select('*')
+                  ->from('b2c_student_progress')
+                  ->where('user_id', $std_id_for_cert)
+                  ->get()->result();
+
+        $gsp = json_decode($pull_gcp[0]->json_gsp);
+        $gcp = json_decode($pull_gcp[0]->json_gcp);
+        $gwp = json_decode($pull_gcp[0]->json_gwp);
+
+        $pull_step   = end($gsp->data->study->units);
+        $pull_lesson = explode('_',$gsp->data->last_lesson_code);
+
+        $val_step    = 81;
+        $val_lesson  = 'feu1';
+
+
         $script = $this->db->distinct()
                 ->select('bc.unit')
                 ->from('b2c_script_student bs')
                 ->join('b2c_script bc', 'bc.id = bs.script_id')
                 ->where('bs.user_id', $std_id_for_cert)
                 ->where('bc.certificate_plan', $get_gl_dsa[0]->cl_name)
-                // ->where('bc.step_bot <=', $lesson_step)
                 ->get()->result();
                 // echo "<pre>";print_r($script);exit();
+
+        $limiter = $this->db->select('id')
+                 ->from('b2c_script')
+                 ->where('certificate_plan', $get_gl_dsa[0]->cl_name)
+                 ->where('lesson =', $val_lesson)
+                 ->where('step_bot <=', $val_step)
+                 ->where('step_up >=', $val_step)
+                 ->get()->result();
+
+        $limit_bot = @$limiter[0]->id;
+        $limit_top = end($limiter)->id;
+        // echo "<pre>";print_r($limit_top);exit();
 
       $script_hist = $this->db->distinct()
               ->select('bc.unit')
@@ -58,8 +89,9 @@ class Call_script extends MY_Site_Controller {
               ->join('b2c_script bc', 'bc.id = bs.script_id')
               ->where('bs.user_id', $std_id_for_cert)
               ->where('bc.certificate_plan', $get_gl_dsa[0]->cl_name)
-              ->where('bc.step_up <', $lesson_step)
+              ->where('bc.id <', $limit_bot)
               ->get()->result();
+
 
       $script_curr = $this->db->distinct()
               ->select('bc.unit')
@@ -67,9 +99,12 @@ class Call_script extends MY_Site_Controller {
               ->join('b2c_script bc', 'bc.id = bs.script_id')
               ->where('bs.user_id', $std_id_for_cert)
               ->where('bc.certificate_plan', $get_gl_dsa[0]->cl_name)
-              ->where('bc.step_up >=', $lesson_step)
-              ->where('bc.step_bot <', $lesson_step)
+              ->where('bc.lesson =', $val_lesson)
+              ->where('bc.step_up >=', $val_step)
+              ->where('bc.step_bot <=', $val_step)
               ->get()->result();
+
+              // echo "<pre>";print_r($script_curr);exit();
 
       $script_next = $this->db->distinct()
               ->select('bc.unit')
@@ -77,7 +112,7 @@ class Call_script extends MY_Site_Controller {
               ->join('b2c_script bc', 'bc.id = bs.script_id')
               ->where('bs.user_id', $std_id_for_cert)
               ->where('bc.certificate_plan', $get_gl_dsa[0]->cl_name)
-              ->where('bc.step_bot >=', $lesson_step)
+              ->where('bc.id >', $limit_top)
               ->get()->result();
 
         if(!@$script){
@@ -123,7 +158,7 @@ class Call_script extends MY_Site_Controller {
           'script_hist'    => @$script_hist,
           'script_curr'    => @$script_curr,
           'script_next'    => @$script_next,
-          'lesson_step'    => @$lesson_step,
+          'lesson_step'    => @$val_step,
           'std_id_for_cert'  => @$std_id_for_cert,
           'std_cert'  => @$get_gl_dsa[0]->cl_name
     );
