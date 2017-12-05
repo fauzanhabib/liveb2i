@@ -42,7 +42,7 @@ class Downloadrecord extends MY_Site_Controller {
         }
         @$a = $sess[0]->id;
 
-        
+
         $deletechat = $this->db->delete('chat', array('appointment_id' => $a));
 
         if($this->auth_manager->role() == 'STD'){
@@ -58,16 +58,16 @@ class Downloadrecord extends MY_Site_Controller {
                   ->where('appointments.id', $a)
                   ->get()->result();
         }
-        
-         
+
+
         $user_extract = $user[0];
 
         $opentok    = new OpenTok($this->config->item('opentok_key'), $this->config->item('opentok_secret'));
         $sessid       = $user_extract->session;
 
-        $this->host = 'https://api.opentok.com/v2/partner/45621312/archive';
+        $this->host = 'https://api.opentok.com/v2/partner/45992642/archive';
         $ch = curl_init($this->host);
-        curl_setopt($ch,CURLOPT_HTTPHEADER,array('X-TB-PARTNER-AUTH: 45621312:701237532dcdef5da13ef2deee8029e11f84c060'));
+        curl_setopt($ch,CURLOPT_HTTPHEADER,array('X-TB-PARTNER-AUTH: 45992642:c071e1e9cb983752fea257416b17e03209796a12'));
         $result = curl_exec($ch);
         curl_close($ch);
         $record = json_decode($result);
@@ -86,6 +86,6 @@ class Downloadrecord extends MY_Site_Controller {
         $this->template->content->view('contents/opentok/leave', $sessionhist);
         $this->template->publish();
     }
-    
+
 
 }

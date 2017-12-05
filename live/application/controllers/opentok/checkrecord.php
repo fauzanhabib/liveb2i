@@ -57,21 +57,19 @@ class Checkrecord extends MY_Site_Controller {
         }else{
             $note = "Recording links are only available for 72 hours after end of session.";
         }
-        
+
         $check = array(
             'status' => @$stat,
             'note'   => @$note,
             'downloadurl'   => @$downloadurl
         );
 
-        // echo "<pre>";
-        // print_r($note);
-        // exit();
+        echo "<pre>";print_r($asd);exit();
 
         $this->template->title = "Download Record";
         $this->template->content->view('contents/opentok/checkrecord', $check);
         $this->template->publish();
     }
-    
+
 
 }

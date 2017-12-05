@@ -11,10 +11,10 @@ class Downloadrecord {
 
         // Preparing API URL
 
-        $this->host = 'https://api.opentok.com/v2/partner/45489992/archive';
+        $this->host = 'https://api.opentok.com/v2/partner/45992642/archive';
         $ch = curl_init($this->host);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch,CURLOPT_HTTPHEADER,array('X-TB-PARTNER-AUTH: 45489992:7aeb87a21f3074b991f02e1ffdd6dc882a911f10'));
+        curl_setopt($ch,CURLOPT_HTTPHEADER,array('X-TB-PARTNER-AUTH: 45992642:c071e1e9cb983752fea257416b17e03209796a12'));
         $result = curl_exec($ch);
         curl_close($ch);
 
