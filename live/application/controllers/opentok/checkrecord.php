@@ -64,7 +64,7 @@ class Checkrecord extends MY_Site_Controller {
             'downloadurl'   => @$downloadurl
         );
 
-        echo "<pre>";print_r($asd);exit();
+        // echo "<pre>";print_r($asd);exit();
 
         $this->template->title = "Download Record";
         $this->template->content->view('contents/opentok/checkrecord', $check);
