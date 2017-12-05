@@ -379,9 +379,9 @@ class Live extends MY_Site_Controller {
                               ->where('user_id', $std_id)
                               ->get()->result();
 
-                    $gsp = json_decode($pull_gcp[0]->json_gsp);
-                    $gcp = json_decode($pull_gcp[0]->json_gcp);
-                    $gwp = json_decode($pull_gcp[0]->json_gwp);
+                    $gsp = json_decode(@$pull_gcp[0]->json_gsp);
+                    $gcp = json_decode(@$pull_gcp[0]->json_gcp);
+                    $gwp = json_decode(@$pull_gcp[0]->json_gwp);
                     // $gsp = json_decode($this->study_progress->GetStudyProgress($tokenresult));
                     // $gcp = json_decode($this->study_progress->GetCurrentProgress($tokenresult));
                     // $gwp = json_decode($this->study_progress->GetWeeklyProgress($tokenresult));
@@ -399,10 +399,10 @@ class Live extends MY_Site_Controller {
 
                     $mt_color = [];
                     $k = 1;
-                    $max_buletan_student = sizeof($gsp->data->study->mastery_tests);
+                    $max_buletan_student = sizeof(@$gsp->data->study->mastery_tests);
 
                     for($l=0;$l<$max_buletan_student;$l++){
-                      $mt_color['mt'.$k] = @$mt_status_to_colour[$gsp->data->coach->sessions[$l]->status];
+                      $mt_color['mt'.$k] = @$mt_status_to_colour[@$gsp->data->coach->sessions[$l]->status];
                       $k++;
                     }
 
@@ -415,10 +415,10 @@ class Live extends MY_Site_Controller {
 
                     $ct_color = [];
                     $j = 1;
-                    $max_buletan = sizeof($gsp->data->coach->sessions);
+                    $max_buletan = sizeof(@$gsp->data->coach->sessions);
 
                     for($i=0;$i<$max_buletan;$i++){
-                      $ct_color['cc'.$j] = @$coach_status_color[$gsp->data->coach->sessions[$i]->status];
+                      $ct_color['cc'.$j] = @$coach_status_color[@$gsp->data->coach->sessions[$i]->status];
                       $j++;
                     }
                     // ===============
