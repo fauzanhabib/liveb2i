@@ -9,7 +9,7 @@ class Study_progress {
 
     public function GenerateToken(){
       $useraccount = json_encode(array(
-          'username'=>'tobbysembiring@gmail.com',
+          'username'=>'2',
           'password'=>'password'
       ));
       // Preparing API URL
@@ -29,7 +29,7 @@ class Study_progress {
 
     public function GetCurrentProgress($tokenresult) {
         // $useraccount = json_encode(array(
-        //     'username'=>'tobbysembiring@gmail.com',
+        //     'username'=>'2',
         //     'password'=>'password'
         // ));
         // // Preparing API URL
@@ -47,7 +47,7 @@ class Study_progress {
         // $tokenresult = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE1MDQ4NzQ3NjcsImV4cGlyYXRpb24iOjE1MDQ4NzQ3NjcsInVzZXJuYW1lIjoidG9iYnlzZW1iaXJpbmdAZ21haWwuY29tIiwidXVpZCI6IjI3NzIxNjAwNjYwMjU1NTM5MyJ9.nQPQpc3mkivgFKgbUBB9lCyQKtJeqmC73O_zZqe7TcvJUw7szuZiyoMpg5kG4QHpi5zSoy4xxPjwPmyWqJIv1e3rO_cBGaA4DepYi9BO-9nBtLCyjejGCKfHO-DUl0RAvzLfJxjg-dxvGrZj5N028FGysagLLRyaggM2LTZcnAi-qH58Rd-4GgBSeWhyLloHX6REzyiQv9xSMGF8RBJNL1iwfCYCcVcZHNIwCd-hR_ktpBxL9PqiUzSLxwhQxBud8mE-t68XspfhA-tu42Y2SSXXe1z2_GEraTvRr3tVqVWZ3ulvUpEGFjGjC_MRY0R6kTVu6VFiwk4qaVmph8EhRw';
         // echo('<pre>');print_r($asdf->token); exit;
         // $data_string = json_encode($data);
-        // $url = "https://b2ctest.dyned.com/api/v1/dsa/v1/study-record/tobbysembiring@gmail.com/current";
+        // $url = "https://b2ctest.dyned.com/api/v1/dsa/v1/study-record/2/current";
         // $curl = curl_init($url);
         //
         // curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
@@ -66,7 +66,7 @@ class Study_progress {
         // // Free up the resources $curl is using
         // curl_close($curl);
 
-        $ch = curl_init('https://b2ctest.dyned.com/api/v1/dsa/v1/study-record/tobbysembiring@gmail.com/current');
+        $ch = curl_init('https://b2ctest.dyned.com/api/v1/dsa/v1/study-record/2/current');
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // true or false
@@ -91,7 +91,7 @@ class Study_progress {
         // echo $result;
     }
     public function GetStudyProgress($tokenresult) {
-        $ch = curl_init('https://b2ctest.dyned.com/api/v1/dsa/v1/study-progress/tobbysembiring@gmail.com');
+        $ch = curl_init('https://b2ctest.dyned.com/api/v1/dsa/v1/study-progress/2');
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // true or false
@@ -114,7 +114,7 @@ class Study_progress {
         // echo $result;
     }
     public function GetWeeklyProgress($tokenresult) {
-        $ch = curl_init('https://b2ctest.dyned.com/api/v1/dsa/v1/study-record/tobbysembiring@gmail.com');
+        $ch = curl_init('https://b2ctest.dyned.com/api/v1/dsa/v1/study-record/2');
 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // true or false

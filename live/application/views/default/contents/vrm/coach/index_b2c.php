@@ -1,4 +1,11 @@
 <div class="box pure-g">
+  <?php if(@$gsp->status == "" || @$gwp->status == "" || @$gcp->status == ""){?>
+  <div class="studydash__info">
+    <div class="studydash__info__name">
+      Cannot load data
+    </div>
+  </div>
+  <?php }else{ ?>
   <div class="studydash__info">
     <div class="studydash__info__img">
     </div>
@@ -73,7 +80,7 @@
               <?php
               for($l=1;$l<=$max_buletan_student;$l++){ ?>
                 <div class="bullet__achievement <?php echo @$student_color['mt'.$l];?>"></div>
-              <?php 
+              <?php
                 }
               ?>
 
@@ -90,7 +97,7 @@
             <?php
             for($i=1;$i<=$max_buletan;$i++){ ?>
               <div class="bullet__achievement <?php echo @$coach_color['cc'.$i];?>"></div>
-            <?php 
+            <?php
               }
             ?>
             <!-- ================================ -->
@@ -476,6 +483,7 @@
 		</div>
 		<!-- end speaking graph -->
 	</div>
+  <?php } ?>
 </div>
 
 
