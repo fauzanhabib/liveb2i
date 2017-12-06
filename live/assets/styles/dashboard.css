@@ -4114,6 +4114,7 @@ figure:hover {
   height: 128px;
   background-color: #fff;
   font-family: 'calibri', sans-serif;
+  display: flex;
 }
 .icon-left {
   margin: 0;
@@ -4125,7 +4126,10 @@ figure:hover {
 }
 .info-right {
   text-align: center;
+  font-size: 1.5em;
   font-weight: 400;
+  display: flex;
+  align-items: center;
 }
 .info-right h5 {
   padding-top: 20px;
@@ -9115,6 +9119,32 @@ label {
   }
   .tbl-nm-left {
     text-align: center!important;
+  }
+
+  #clockdiv > div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .start-session {
+    width: auto;
+    margin: 5px;
+  }
+
+  .view-session-details {
+    width: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .view-session-details li {
+    float: none!important;
+  }
+  .view-session-details .box-green {
+    width: auto!important;
+  }
+  .view-session-details .session-details-view {
+    padding: 10px 10px!important;
   }
 }
 

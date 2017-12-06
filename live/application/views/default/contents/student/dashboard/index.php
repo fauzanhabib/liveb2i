@@ -58,7 +58,7 @@
         ?>
             <?php if(@$statuscheck == 0){ ?>
                 <div class="pure-u-lg-10-24">
-                    <span class="session-title-left float-none">Live Session</span>
+                    <span class="session-title-left float-none m-l-5">Live Session</span>
                     <div class="start-session m-t-10">
                         <div class="icon-left">
                             <form name ="livesession" action="<?php echo(site_url('opentok/live/'));?>" method="post">
@@ -96,7 +96,7 @@
                     <div class="icon-left">
                         <img src="<?php echo base_url();?>assets/img/Play-Before.svg">
                     </div>
-                    <div class="info-right font-22 padding-t-35">
+                    <div class="info-right">
                         You Have No Sessions Today
                     </div>
                 </div>
