@@ -51,16 +51,29 @@ class Call_script extends MY_Site_Controller {
                   ->where('user_id', $std_id_for_cert)
                   ->get()->result();
 
-        $gsp = json_decode($pull_gcp[0]->json_gsp);
-        $gcp = json_decode($pull_gcp[0]->json_gcp);
-        $gwp = json_decode($pull_gcp[0]->json_gwp);
+        $gsp = json_decode(@$pull_gcp[0]->json_gsp);
+        $gcp = json_decode(@$pull_gcp[0]->json_gcp);
+        $gwp = json_decode(@$pull_gcp[0]->json_gwp);
 
         $pull_step   = end($gsp->data->study->units);
-        $pull_lesson = explode('_',$gsp->data->last_lesson_code);
+        $pull_lesson = explode('_',@$gsp->data->last_lesson_code);
 
-        $val_step    = 81;
-        $val_lesson  = 'feu1';
+        // $val_step    = 81;
+        // $val_lesson  = 'feu1';
+        $val_step    = $pull_step->study_path_index;
+        $val_lesson  = $pull_lesson[0];
 
+        if(!@$val_lesson){
+          $def_lesson = $this->db->select('lesson')
+                      ->from('b2c_script')
+                      ->where('certificate_plan', $get_gl_dsa[0]->cl_name)
+                      ->get()->result();
+
+          $val_lesson = $def_lesson[0]->lesson;
+          $val_step   = 0;
+        }
+
+        // echo "<pre>";print_r($val_lesson);exit();
 
         $script = $this->db->distinct()
                 ->select('bc.unit')
