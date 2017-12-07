@@ -348,8 +348,9 @@ if(@$user_extract2){
 @media only screen and (max-width: 768px) {
     .publisher {
         display: none;
-        width: 50%;
-        bottom: 10em;
+        width: 25%;
+        bottom: 8em;
+        right: 5px;
         height: 100px;
     }
 }

@@ -19,7 +19,7 @@
                                          <p>$message</p>
                                      </div>
                                  <div class='pure-u-1-2 close'>
-                                     <i class='icon icon-close btn-close'></i>
+                                     <i class='icon btn-close'></i>
                                  </div>
                                  </div>
                              </div>";

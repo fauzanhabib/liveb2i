@@ -68,7 +68,7 @@
                         </div>
                         <div class="info-right">
                             <div id="clockdiv">
-                                <div class="info-right text-cl-tertiary font-22 padding-t-40">You Have a Live Session</div>
+                                <div class="info-right text-cl-tertiary font-22">You Have a Live Session</div>
                             </div>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
                     <div class="start-session m-t-10">
                         <div class="info-right">
                             <div id="clockdiv">
-                                <div class="info-right text-cl-tertiary font-22 padding-t-40">
+                                <div class="info-right text-cl-tertiary font-22">
                                     You Have Opened Live Session<br>
                                     <font id="clearlive" class="refbtn" style="font-size: 16px;">Not Yet Open? Click Here</font>
                                 </div>
@@ -126,7 +126,7 @@
                         </form>
                     </div>
                     <div class="info-right">
-                        <div class="info-right font-22 padding-t-35">
+                        <div class="info-right font-22">
                             <a class="text-cl-tertiary">
                                 Please join your session now
                             </a>
@@ -139,7 +139,7 @@
 
             <div class="pure-u-lg-13-24">
                 <div class="view-session">
-                    <div class="session-title padding-l-0 margin0 clearfix">
+                    <div class="session-title padding-l-0 margin0">
                         <div class="session-title-left">Today's Sessions</div>
                         <div><a href="<?php echo site_url('student/upcoming_session');?>" class="session-title-right text-cl-grey font-semi-bold">Upcoming Sessions</a></div>
                     </div>

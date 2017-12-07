@@ -211,13 +211,13 @@ label {
 }
 
 .alert,.alert-timezone {
-  padding: 3.5px 15px;
+  padding: 10px 15px;
   color: #fff;
 }
 .alert h3 {
     font-size: 16px;
     font-weight: 600;
-    margin: 10px 0px 0px;
+    margin: 0;
     text-transform: uppercase;
 }
 .alert p {
@@ -4053,10 +4053,11 @@ figure:hover {
   margin: 0;
   padding-left: 0;
   padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 .session-title-left {
   color: #585858;
-  float: left;
   font-weight: 600;
   font-family: 'calibri';
 }
@@ -4069,7 +4070,6 @@ figure:hover {
 .session-title-right {
   color: #939393;
   font-weight: 600;
-  float: right;
   font-family: 'calibri';
   transition: 0.3s;
 }
@@ -4083,25 +4083,27 @@ figure:hover {
 .view-session li {
   list-style: none;
   display: inline-block;
-  /*padding: 10px 10px;*/
+  padding: 5px 3px;
 }
 .view-session-details {
   width: 424px;
   padding: 10px;
+  margin: 0 0 10px;
   background-color: #fff;
+  display: flex;
+  justify-content: space-around;
   /*-webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;*/
 }
 .session-details-time {
-  float: left;
+  width: auto;
   font-size: 14px;
   font-weight: 600;
   text-align: center;
 }
 .session-details-date {
-  float: left;
-  width: 250px;
+  /*width: 250px;*/
   padding: 7px 0;
   text-align: center;
 }
@@ -4115,6 +4117,8 @@ figure:hover {
   background-color: #fff;
   font-family: 'calibri', sans-serif;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 .icon-left {
   margin: 0;
@@ -4122,7 +4126,7 @@ figure:hover {
 }
 .icon-left img {
   width: 100px;
-  padding: 15px 5px 8px 15px;
+  padding: 10px;
 }
 .info-right {
   text-align: center;
@@ -4311,14 +4315,16 @@ figure:hover {
   padding-top: 5px;
   text-align: center;
   font-family: 'calibri';
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 #clockdiv > div{
-  /*padding: 10px;
-  border-radius: 3px;
+  /*border-radius: 3px;
   background: #fff;*/
   display: inline-block;
+  padding: 0 5px;
 }
 
 #clockdiv div > span{
@@ -8686,7 +8692,7 @@ label {
 
   .table-session td .pure-button {
     /*display: block;*/
-    width: 100px;
+    /*width: 100px;*/
   }
   /*.table-session tbody tr td:first-child {
     background: #ededed;
@@ -9121,18 +9127,36 @@ label {
     text-align: center!important;
   }
 
+  .content-bottom > div {
+    width: 100%;
+    margin: 80px 5px 0;
+  }
+  .comment-message {
+    width: auto;
+  }
+
   #clockdiv > div {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    flex-direction: column;
+  }
+  #clockdiv > h5 {
+    width: 100%;
   }
   .start-session {
     width: auto;
-    margin: 5px;
+    margin: 0 0 5px;
+  }
+
+  .session-title {
+    width: auto;
+    /*padding: 0;*/
   }
 
   .view-session-details {
     width: auto;
+    margin: 5px 0;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -9633,7 +9657,7 @@ progress::-ms-fill {
   width: 32px;
   height: 6px;
   display: block;
-  background: #ddd;
+  background: #fff;
 }
 
 .btn-close::before {
