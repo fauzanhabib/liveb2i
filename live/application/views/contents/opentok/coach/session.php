@@ -292,6 +292,7 @@
       // console.log('chat');
        var pesan = $('#pesan').val();
        var user = $('#user').val();
+       $('#pesan').val('');
        var appointment_id = '<?php echo $appointment_id ?>';
             if (pesan == null || pesan == "") {
                 alert("Oops, you can't send an empty chat");
@@ -315,6 +316,7 @@
           if(e.keyCode == 13){
            var pesan = $('#pesan').val();
            var user = $('#user').val();
+           $('#pesan').val('');
            var appointment_id = '<?php echo $appointment_id ?>';
            if (pesan == null || pesan == "") {
                 alert("Oops, you can't send an empty chat");
