@@ -667,7 +667,7 @@ class find_coaches extends MY_Site_Controller {
                 }
 
                 $this->session->set_flashdata('booking_message',$arr_message);
-                redirect('student/upcoming_session');
+                //redirect('student/upcoming_session');
 
         } 
 
