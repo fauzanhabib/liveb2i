@@ -425,7 +425,7 @@ class find_coaches extends MY_Site_Controller {
     }
 
     public function book_by_single_date($date = '', $page='') {
-        $booking_type =  $this->input->post('selector');
+        /*$booking_type =  $this->input->post('selector');
         
         if(!$booking_type){
             $this->messages->add('Invalid Booking Type', 'warning');
@@ -437,6 +437,28 @@ class find_coaches extends MY_Site_Controller {
             $recurring_booking_type = 1;
         } else if($booking_type = 'multiple-book'){
             $recurring_booking_type = $this->input->post('type_booking');
+        } */
+        
+        $booking_type =  $this->input->post('selector');
+        
+        if(!$booking_type){
+            $booking_type = $this->session->userdata("selector_booking_type");
+            if(!$booking_type){
+                $this->messages->add('Invalid Booking Type', 'warning');
+                redirect('student/find_coaches/single_date/');
+            }
+        }
+
+        $this->session->set_userdata('selector_booking_type',$booking_type);
+
+        $recurring_booking_type = '';
+        if($booking_type == 'single-book'){
+            $recurring_booking_type = 1;
+        } else if($booking_type = 'multiple-book'){
+            $recurring_booking_type = $this->input->post('type_booking');
+            if(!$recurring_booking_type){
+                $recurring_booking_type = $this->session->userdata("recurring_booking_type");
+            }
         }
 
         $this->session->set_userdata("recurring_booking_type",$recurring_booking_type);
