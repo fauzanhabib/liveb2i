@@ -55,15 +55,15 @@ class Call_script extends MY_Site_Controller {
         $gcp = json_decode(@$pull_gcp[0]->json_gcp);
         $gwp = json_decode(@$pull_gcp[0]->json_gwp);
 
-        $pull_step   = end($gsp->data->study->units);
-        $pull_lesson = explode('_',@$gsp->data->last_lesson_code);
+        if(@$gsp->data->certification_level){
+          $pull_step   = end($gsp->data->study->units);
+          $pull_lesson = explode('_',@$gsp->data->last_lesson_code);
 
-        // $val_step    = 81;
-        // $val_lesson  = 'feu1';
-        $val_step    = $pull_step->study_path_index;
-        $val_lesson  = $pull_lesson[0];
-
-        if(!@$val_lesson){
+          // $val_step    = 81;
+          // $val_lesson  = 'feu1';
+          $val_step    = $pull_step->study_path_index;
+          $val_lesson  = $pull_lesson[1];
+        }else{
           $def_lesson = $this->db->select('lesson')
                       ->from('b2c_script')
                       ->where('certificate_plan', $get_gl_dsa[0]->cl_name)
@@ -72,6 +72,16 @@ class Call_script extends MY_Site_Controller {
           $val_lesson = $def_lesson[0]->lesson;
           $val_step   = 0;
         }
+
+        // if(!@$val_lesson){
+        //   $def_lesson = $this->db->select('lesson')
+        //               ->from('b2c_script')
+        //               ->where('certificate_plan', $get_gl_dsa[0]->cl_name)
+        //               ->get()->result();
+        //
+        //   $val_lesson = $def_lesson[0]->lesson;
+        //   $val_step   = 0;
+        // }
 
         // echo "<pre>";print_r($val_lesson);exit();
 
@@ -92,8 +102,19 @@ class Call_script extends MY_Site_Controller {
                  ->where('step_up >=', $val_step)
                  ->get()->result();
 
-        $limit_bot = @$limiter[0]->id;
-        $limit_top = end($limiter)->id;
+        if(@$limiter){
+          $limit_bot = @$limiter[0]->id;
+          $limit_top = end($limiter)->id;
+        }else{
+          $def_lesson = $this->db->select('lesson')
+                      ->from('b2c_script')
+                      ->where('certificate_plan', $get_gl_dsa[0]->cl_name)
+                      ->get()->result();
+
+          $val_lesson = $def_lesson[0]->lesson;
+          $limit_bot  = 0;
+          $limit_top  = 0;
+        }
         // echo "<pre>";print_r($limit_top);exit();
 
       $script_hist = $this->db->distinct()

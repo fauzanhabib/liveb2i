@@ -962,346 +962,353 @@ div.panel.show {
             </div>
             <div id="ajaxscript"></div>
         </div>
+        <?php
+          if(@$gsp->data->certification_level){
+          // echo "<pre>";print_r(@$gsp->data->certification_level);exit();
+        ?>
+          <div class="study__dashboard__top">
+              <!-- achievement goal step -->
+              <div class="progress__step">
+                  <div class="donut__progress">
+                      <div class="outter--circle circle"
+                           data-thickness="15"
+                           data-size="140">
+                          <div class="inner--circle circle"
+                               data-thickness="15"
+                               data-size="110">
+                              <div class="donut__progress__info">
+                                  <div class="point__progress__info"><?php echo @$gsp->data->certification_level;?></div>
+                              </div>
+                          </div>
+                      </div>
 
-        <div class="study__dashboard__top">
-            <!-- achievement goal step -->
-            <div class="progress__step">
-                <div class="donut__progress">
-                    <div class="outter--circle circle"
-                         data-thickness="15"
-                         data-size="140">
-                        <div class="inner--circle circle"
-                             data-thickness="15"
-                             data-size="110">
-                            <div class="donut__progress__info">
-                                <div class="point__progress__info"><?php echo @$gsp->data->certification_level;?></div>
-                            </div>
-                        </div>
-                    </div>
+                      <div class="progress__info__label"><?php echo @$gsp->data->total_points_until_today;?> / <?php echo @$gsp->data->total_points_to_pass;?></div>
+                  </div>
 
-                    <div class="progress__info__label"><?php echo @$gsp->data->total_points_until_today;?> / <?php echo @$gsp->data->total_points_to_pass;?></div>
-                </div>
-
-                <div class="progress__achievement">
-                    <div class="study__progress__achievement">
-                        <!-- <div class="bullet__achievement bg-blue-gradient"></div>
-                        <div class="bullet__achievement bg-blue-gradient"></div>
-                        <div class="bullet__achievement bg-blue-gradient"></div>
-                        <div class="bullet__achievement bg-red-gradient"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div> -->
-                        <?php
-                        for($l=1;$l<=@$max_buletan_student;$l++){ ?>
-                          <div class="bullet__achievement <?php echo @$student_color['mt'.$l];?>"></div>
-                        <?php
-                          }
-                        ?>
-
-                        <div class="achievement__point__info">
-                            <h5><?php echo @$gsp->data->study->points_until_today;?></h5>
-                            <h3>Study</h3>
-                        </div>
-                    </div>
-                    <div class="coach__progress__achievement">
-                        <!-- <div class="bullet__achievement bg-green-gradient"></div>
-                        <div class="bullet__achievement bg-green-gradient"></div>
-                        <div class="bullet__achievement bg-green-gradient"></div>
-                        <div class="bullet__achievement bg-green-gradient"></div>
-                        <div class="bullet__achievement bg-red-gradient"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div>
-                        <div class="bullet__achievement"></div> -->
-                        <?php
-                          for($i=1;$i<=$max_buletan;$i++){ ?>
-                            <div class="bullet__achievement <?php echo @$coach_color['cc'.$i];?>"></div>
+                  <div class="progress__achievement">
+                      <div class="study__progress__achievement">
+                          <!-- <div class="bullet__achievement bg-blue-gradient"></div>
+                          <div class="bullet__achievement bg-blue-gradient"></div>
+                          <div class="bullet__achievement bg-blue-gradient"></div>
+                          <div class="bullet__achievement bg-red-gradient"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div> -->
+                          <?php
+                          for($l=1;$l<=@$max_buletan_student;$l++){ ?>
+                            <div class="bullet__achievement <?php echo @$student_color['mt'.$l];?>"></div>
                           <?php
                             }
                           ?>
 
-                        <div class="achievement__point__info">
-                            <h5><?php echo @$gsp->data->coach->points_until_today;?></h5>
-                            <h3>Coach</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end achievement goal step -->
+                          <div class="achievement__point__info">
+                              <h5><?php echo @$gsp->data->study->points_until_today;?></h5>
+                              <h3>Study</h3>
+                          </div>
+                      </div>
+                      <div class="coach__progress__achievement">
+                          <!-- <div class="bullet__achievement bg-green-gradient"></div>
+                          <div class="bullet__achievement bg-green-gradient"></div>
+                          <div class="bullet__achievement bg-green-gradient"></div>
+                          <div class="bullet__achievement bg-green-gradient"></div>
+                          <div class="bullet__achievement bg-red-gradient"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div>
+                          <div class="bullet__achievement"></div> -->
+                          <?php
+                            for($i=1;$i<=$max_buletan;$i++){ ?>
+                              <div class="bullet__achievement <?php echo @$coach_color['cc'.$i];?>"></div>
+                            <?php
+                              }
+                            ?>
 
-            <!-- top point graph -->
-            <div class="progress__point__top">
-                <h5>Points</h5>
-                <div class="graph__wrap">
-                    <div class="bar__graph">
-                       <?php
-                        $bar_now = ( @$gwp->data[0]->points_goal == 0 ? 0 : @$gwp->data[0]->points / @$gwp->data[0]->points_goal);
-                        $bar_w1  = ( @$gwp->data[1]->points_goal == 0 ? 0 : @$gwp->data[1]->points / @$gwp->data[1]->points_goal);
-                        $bar_w2  = ( @$gwp->data[2]->points_goal == 0 ? 0 : @$gwp->data[2]->points / @$gwp->data[2]->points_goal);
-                        $bar_w3  = ( @$gwp->data[3]->points_goal == 0 ? 0 : @$gwp->data[3]->points / @$gwp->data[3]->points_goal);
-                        ?>
-                        <ul class="graph b2">
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo $bar_now; ?>">
-                                <span class="graph__legend">Now</span>
-                                <label><?php echo @$gwp->data[0]->points;?></label>
-                                </li>
-                            </span>
+                          <div class="achievement__point__info">
+                              <h5><?php echo @$gsp->data->coach->points_until_today;?></h5>
+                              <h3>Coach</h3>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- end achievement goal step -->
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo $bar_w1; ?>">
-                                <span class="graph__legend">w -1</span>
-                                <label><?php echo @$gwp->data[1]->points;?></label>
-                                </li>
-                            </span>
+              <!-- top point graph -->
+              <div class="progress__point__top">
+                  <h5>Points</h5>
+                  <div class="graph__wrap">
+                      <div class="bar__graph">
+                         <?php
+                          $bar_now = ( @$gwp->data[0]->points_goal == 0 ? 0 : @$gwp->data[0]->points / @$gwp->data[0]->points_goal);
+                          $bar_w1  = ( @$gwp->data[1]->points_goal == 0 ? 0 : @$gwp->data[1]->points / @$gwp->data[1]->points_goal);
+                          $bar_w2  = ( @$gwp->data[2]->points_goal == 0 ? 0 : @$gwp->data[2]->points / @$gwp->data[2]->points_goal);
+                          $bar_w3  = ( @$gwp->data[3]->points_goal == 0 ? 0 : @$gwp->data[3]->points / @$gwp->data[3]->points_goal);
+                          ?>
+                          <ul class="graph b2">
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo $bar_now; ?>">
+                                  <span class="graph__legend">Now</span>
+                                  <label><?php echo @$gwp->data[0]->points;?></label>
+                                  </li>
+                              </span>
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo $bar_w2; ?>">
-                                <span class="graph__legend">w -2</span>
-                                <label><?php echo @$gwp->data[2]->points;?></label>
-                                </li>
-                            </span>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo $bar_w1; ?>">
+                                  <span class="graph__legend">w -1</span>
+                                  <label><?php echo @$gwp->data[1]->points;?></label>
+                                  </li>
+                              </span>
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo $bar_w3; ?>">
-                                <span class="graph__legend">w -3</span>
-                                <label><?php echo @$gwp->data[3]->points;?></label>
-                                </li>
-                            </span>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo $bar_w2; ?>">
+                                  <span class="graph__legend">w -2</span>
+                                  <label><?php echo @$gwp->data[2]->points;?></label>
+                                  </li>
+                              </span>
 
-                            <div class="v__bar">
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- end top point graph -->
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo $bar_w3; ?>">
+                                  <span class="graph__legend">w -3</span>
+                                  <label><?php echo @$gwp->data[3]->points;?></label>
+                                  </li>
+                              </span>
 
-            <!-- daily progress donut graph -->
-            <div class="progress__step">
-                <h5>Progress to goals</h5>
-                <div class="donut__progress">
-                    <div class="step--circle circle"
-                         data-thickness="15"
-                         data-size="150">
-                        <svg>
-                            <path stroke-linecap="round" id="arc1" fill="none" stroke="transparent" stroke-width="10" />
-                        </svg>
-                        <svg>
-                            <path stroke-linecap="round" id="arc2" fill="none" stroke="#fafafa" stroke-width="20" />
-                        </svg>
-                        <div class="step__progress__info">
-                            <div class="step__info__label"><?php echo @$gsp->data->total_points_to_pass;?></div>
-                        </div>
-                    </div>
-                </div>
-                <h4><font><?php echo (@$gsp->data->total_points_to_pass - @$gsp->data->total_points_until_today);?></font> points left</h4>
-            </div>
-            <!-- end daily progress donut graph -->
-        </div>
-        <div class="study__dashboard__bottom">
-            <!-- comprehension graph -->
-            <div class="study__progress__graph">
-                <h5>Comprehension</h5>
-                <div class="graph__wrap">
-                    <div class="bar__graph">
-                        <ul class="graph b2">
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[0]->comprehension_grammar;?>">
-                                <span class="graph__legend">Now</span>
-                                <label><?php echo strtok(@$gwp->data[0]->comprehension_grammar, '.');?></label>
-                                </li>
-                            </span>
+                              <div class="v__bar">
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                              </div>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <!-- end top point graph -->
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[1]->comprehension_grammar;?>">
-                                <span class="graph__legend">w -1</span>
-                                <label><?php echo strtok(@$gwp->data[1]->comprehension_grammar, '.');?></label>
-                                </li>
-                            </span>
+              <!-- daily progress donut graph -->
+              <div class="progress__step">
+                  <h5>Progress to goals</h5>
+                  <div class="donut__progress">
+                      <div class="step--circle circle"
+                           data-thickness="15"
+                           data-size="150">
+                          <svg>
+                              <path stroke-linecap="round" id="arc1" fill="none" stroke="transparent" stroke-width="10" />
+                          </svg>
+                          <svg>
+                              <path stroke-linecap="round" id="arc2" fill="none" stroke="#fafafa" stroke-width="20" />
+                          </svg>
+                          <div class="step__progress__info">
+                              <div class="step__info__label"><?php echo @$gsp->data->total_points_to_pass;?></div>
+                          </div>
+                      </div>
+                  </div>
+                  <h4><font><?php echo (@$gsp->data->total_points_to_pass - @$gsp->data->total_points_until_today);?></font> points left</h4>
+              </div>
+              <!-- end daily progress donut graph -->
+          </div>
+          <div class="study__dashboard__bottom">
+              <!-- comprehension graph -->
+              <div class="study__progress__graph">
+                  <h5>Comprehension</h5>
+                  <div class="graph__wrap">
+                      <div class="bar__graph">
+                          <ul class="graph b2">
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[0]->comprehension_grammar;?>">
+                                  <span class="graph__legend">Now</span>
+                                  <label><?php echo strtok(@$gwp->data[0]->comprehension_grammar, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[2]->comprehension_grammar;?>">
-                                <span class="graph__legend">w -2</span>
-                                <label><?php echo strtok(@$gwp->data[2]->comprehension_grammar, '.');?></label>
-                                </li>
-                            </span>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[1]->comprehension_grammar;?>">
+                                  <span class="graph__legend">w -1</span>
+                                  <label><?php echo strtok(@$gwp->data[1]->comprehension_grammar, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[3]->comprehension_grammar;?>">
-                                <span class="graph__legend">w -3</span>
-                                <label><?php echo strtok(@$gwp->data[3]->comprehension_grammar, '.');?></label>
-                                </li>
-                            </span>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[2]->comprehension_grammar;?>">
+                                  <span class="graph__legend">w -2</span>
+                                  <label><?php echo strtok(@$gwp->data[2]->comprehension_grammar, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <div class="v__bar">
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- end comprehension graph -->
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[3]->comprehension_grammar;?>">
+                                  <span class="graph__legend">w -3</span>
+                                  <label><?php echo strtok(@$gwp->data[3]->comprehension_grammar, '.');?></label>
+                                  </li>
+                              </span>
 
-            <!-- pronunciation graph -->
-            <div class="study__progress__graph">
-                <h5>Pronunciation</h5>
-                <div class="graph__wrap">
-                    <div class="bar__graph">
-                        <ul class="graph b2">
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[0]->pronunciation;?>">
-                                <span class="graph__legend">Now</span>
-                                <label><?php echo strtok(@$gwp->data[0]->pronunciation, '.');?></label>
-                                </li>
-                            </span>
+                              <div class="v__bar">
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                              </div>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <!-- end comprehension graph -->
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[1]->pronunciation;?>">
-                                <span class="graph__legend">w -1</span>
-                                <label><?php echo strtok(@$gwp->data[1]->pronunciation, '.');?></label>
-                                </li>
-                            </span>
+              <!-- pronunciation graph -->
+              <div class="study__progress__graph">
+                  <h5>Pronunciation</h5>
+                  <div class="graph__wrap">
+                      <div class="bar__graph">
+                          <ul class="graph b2">
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[0]->pronunciation;?>">
+                                  <span class="graph__legend">Now</span>
+                                  <label><?php echo strtok(@$gwp->data[0]->pronunciation, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[2]->pronunciation;?>">
-                                <span class="graph__legend">w -2</span>
-                                <label><?php echo strtok(@$gwp->data[2]->pronunciation, '.');?></label>
-                                </li>
-                            </span>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[1]->pronunciation;?>">
+                                  <span class="graph__legend">w -1</span>
+                                  <label><?php echo strtok(@$gwp->data[1]->pronunciation, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[3]->pronunciation;?>">
-                                <span class="graph__legend">w -3</span>
-                                <label><?php echo strtok(@$gwp->data[3]->pronunciation, '.');?></label>
-                                </li>
-                            </span>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[2]->pronunciation;?>">
+                                  <span class="graph__legend">w -2</span>
+                                  <label><?php echo strtok(@$gwp->data[2]->pronunciation, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <div class="v__bar">
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- end pronunciation graph -->
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[3]->pronunciation;?>">
+                                  <span class="graph__legend">w -3</span>
+                                  <label><?php echo strtok(@$gwp->data[3]->pronunciation, '.');?></label>
+                                  </li>
+                              </span>
 
-            <!-- listening graph -->
-            <div class="study__progress__graph">
-                <h5>Listening</h5>
-                <div class="graph__wrap">
-                    <div class="bar__graph">
-                        <ul class="graph b2">
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[0]->listening;?>">
-                                <span class="graph__legend">Now</span>
-                                <label><?php echo strtok(@$gwp->data[0]->listening, '.');?></label>
-                                </li>
-                            </span>
+                              <div class="v__bar">
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                              </div>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <!-- end pronunciation graph -->
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[1]->listening;?>">
-                                <span class="graph__legend">w -1</span>
-                                <label><?php echo strtok(@$gwp->data[1]->listening, '.');?></label>
-                                </li>
-                            </span>
+              <!-- listening graph -->
+              <div class="study__progress__graph">
+                  <h5>Listening</h5>
+                  <div class="graph__wrap">
+                      <div class="bar__graph">
+                          <ul class="graph b2">
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[0]->listening;?>">
+                                  <span class="graph__legend">Now</span>
+                                  <label><?php echo strtok(@$gwp->data[0]->listening, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[2]->listening;?>">
-                                <span class="graph__legend">w -2</span>
-                                <label><?php echo strtok(@$gwp->data[2]->listening, '.');?></label>
-                                </li>
-                            </span>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[1]->listening;?>">
+                                  <span class="graph__legend">w -1</span>
+                                  <label><?php echo strtok(@$gwp->data[1]->listening, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[3]->listening;?>">
-                                <span class="graph__legend">w -3</span>
-                                <label><?php echo strtok(@$gwp->data[3]->listening, '.');?></label>
-                                </li>
-                            </span>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[2]->listening;?>">
+                                  <span class="graph__legend">w -2</span>
+                                  <label><?php echo strtok(@$gwp->data[2]->listening, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <div class="v__bar">
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- end listening graph -->
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[3]->listening;?>">
+                                  <span class="graph__legend">w -3</span>
+                                  <label><?php echo strtok(@$gwp->data[3]->listening, '.');?></label>
+                                  </li>
+                              </span>
 
-            <!-- speaking graph -->
-            <div class="study__progress__graph">
-                <h5>Speaking</h5>
-                <div class="graph__wrap">
-                    <div class="bar__graph">
-                        <ul class="graph b2">
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[0]->speaking;?>">
-                                <span class="graph__legend">Now</span>
-                                <label><?php echo strtok(@$gwp->data[0]->speaking, '.');?></label>
-                                </li>
-                            </span>
+                              <div class="v__bar">
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                              </div>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <!-- end listening graph -->
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[1]->speaking;?>">
-                                <span class="graph__legend">w -1</span>
-                                <label><?php echo strtok(@$gwp->data[1]->speaking, '.');?></label>
-                                </li>
-                            </span>
+              <!-- speaking graph -->
+              <div class="study__progress__graph">
+                  <h5>Speaking</h5>
+                  <div class="graph__wrap">
+                      <div class="bar__graph">
+                          <ul class="graph b2">
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[0]->speaking;?>">
+                                  <span class="graph__legend">Now</span>
+                                  <label><?php echo strtok(@$gwp->data[0]->speaking, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[2]->speaking;?>">
-                                <span class="graph__legend">w -2</span>
-                                <label><?php echo strtok(@$gwp->data[2]->speaking, '.');?></label>
-                                </li>
-                            </span>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[1]->speaking;?>">
+                                  <span class="graph__legend">w -1</span>
+                                  <label><?php echo strtok(@$gwp->data[1]->speaking, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <span class="graph__bar__cont">
-                                <li class="graph__bar__each" data-value="<?php echo @$gwp->data[3]->speaking;?>">
-                                <span class="graph__legend">w -3</span>
-                                <label><?php echo strtok(@$gwp->data[3]->speaking, '.');?></label>
-                                </li>
-                            </span>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[2]->speaking;?>">
+                                  <span class="graph__legend">w -2</span>
+                                  <label><?php echo strtok(@$gwp->data[2]->speaking, '.');?></label>
+                                  </li>
+                              </span>
 
-                            <div class="v__bar">
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                                <div class="v__line"></div>
-                            </div>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- end speaking graph -->
-        </div>
+                              <span class="graph__bar__cont">
+                                  <li class="graph__bar__each" data-value="<?php echo @$gwp->data[3]->speaking;?>">
+                                  <span class="graph__legend">w -3</span>
+                                  <label><?php echo strtok(@$gwp->data[3]->speaking, '.');?></label>
+                                  </li>
+                              </span>
 
+                              <div class="v__bar">
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                                  <div class="v__line"></div>
+                              </div>
+                          </ul>
+                      </div>
+                  </div>
+              </div>
+              <!-- end speaking graph -->
+          </div>
+        <?php } else {?>
+          <div style="margin: auto;color: #144c80;font-weight: 600;">
+              Cannot Access Right Now
+          </div>
+        <?php } ?>
     </div>
 </div>
 

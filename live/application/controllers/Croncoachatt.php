@@ -78,7 +78,7 @@ class Croncoachatt extends MY_Controller {
 
           $type_id = @$type_coach[0]->coach_type_id;
 
-          $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
+          $partner_id = $this->auth_manager->partner_id($coach_id);
           // echo "<pre>";print_r($partner_id);exit();
           $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
           $standard_coach_cost = @$setting[0]->standard_coach_cost;
