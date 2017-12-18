@@ -153,6 +153,7 @@ class identity_model extends MY_Model {
     public function get_coach_identity($id = '', $fullname = '', $country = '', $partner_id = '', $date_available = '', $creator_id = '', $spoken_language='', $limit='', $offset='', $subgroup_id = ''){   
         // echo $id;
         // exit('a');
+
         if(($this->uri->segment(1) == 'partner') && ($this->uri->segment(3) != 'coach_detail')){
            $subgroup_id = $this->uri->segment(4);
         }
@@ -203,6 +204,13 @@ class identity_model extends MY_Model {
         $this->db->order_by('c.fullname', 'asc');
         if($subgroup_id){
             $this->db->where('c.subgroup_id',$subgroup_id);
+        }
+        if($country){
+            $this->db->where('e.country',$country);
+        }
+
+        if($spoken_language){
+            $this->db->where('c.spoken_language',$spoken_language);
         }
         if($partner_id){
             if(!$id){

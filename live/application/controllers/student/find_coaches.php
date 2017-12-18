@@ -100,50 +100,50 @@ class find_coaches extends MY_Site_Controller {
             redirect('account/identity/detail/profile');
         }
 
-        $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
-        $region_id = $this->auth_manager->region_id($partner_id);
+        // $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
+        // $region_id = $this->auth_manager->region_id($partner_id);
 
-        $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
-        $region_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('user_id',$region_id)->get()->result();
-        $global_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
+        // $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+        // $region_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('user_id',$region_id)->get()->result();
+        // $global_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
 
-        $standard_coach_cost = @$setting[0]->standard_coach_cost;
-        if(!$standard_coach_cost || $standard_coach_cost == 0){
-            $standard_coach_cost_region = @$region_setting[0]->standard_coach_cost;
-            $standard_coach_cost = $standard_coach_cost_region;
-            if(!$standard_coach_cost_region || $standard_coach_cost_region == 0){
-                $standard_coach_cost_global = @$global_setting[0]->standard_coach_cost;
-                $standard_coach_cost = $standard_coach_cost_global;
-            }
-        }
+        // $standard_coach_cost = @$setting[0]->standard_coach_cost;
+        // if(!$standard_coach_cost || $standard_coach_cost == 0){
+        //     $standard_coach_cost_region = @$region_setting[0]->standard_coach_cost;
+        //     $standard_coach_cost = $standard_coach_cost_region;
+        //     if(!$standard_coach_cost_region || $standard_coach_cost_region == 0){
+        //         $standard_coach_cost_global = @$global_setting[0]->standard_coach_cost;
+        //         $standard_coach_cost = $standard_coach_cost_global;
+        //     }
+        // }
 
-        $elite_coach_cost = @$setting[0]->elite_coach_cost;
-        if(!$elite_coach_cost || $elite_coach_cost == 0){
-            $elite_coach_cost_region = @$region_setting[0]->elite_coach_cost;
-            $elite_coach_cost = $elite_coach_cost_region;
-            if(!$elite_coach_cost_region || $elite_coach_cost_region == 0){
-                $elite_coach_cost_global = @$global_setting[0]->elite_coach_cost;
-                $elite_coach_cost = $elite_coach_cost_global;
-            }
-        }
+        // $elite_coach_cost = @$setting[0]->elite_coach_cost;
+        // if(!$elite_coach_cost || $elite_coach_cost == 0){
+        //     $elite_coach_cost_region = @$region_setting[0]->elite_coach_cost;
+        //     $elite_coach_cost = $elite_coach_cost_region;
+        //     if(!$elite_coach_cost_region || $elite_coach_cost_region == 0){
+        //         $elite_coach_cost_global = @$global_setting[0]->elite_coach_cost;
+        //         $elite_coach_cost = $elite_coach_cost_global;
+        //     }
+        // }
 
-        $session_duration = @$setting[0]->session_duration;
-        if(!$session_duration || $session_duration == 0){
-            $session_duration_region = @$region_setting[0]->session_duration;
-            $session_duration = $session_duration_region;
-            if(!$session_duration_region || $session_duration_region == 0){
-                $session_duration_global = @$global_setting[0]->session_duration;
-                $session_duration = $session_duration_global;
-            }
-        }
+        // $session_duration = @$setting[0]->session_duration;
+        // if(!$session_duration || $session_duration == 0){
+        //     $session_duration_region = @$region_setting[0]->session_duration;
+        //     $session_duration = $session_duration_region;
+        //     if(!$session_duration_region || $session_duration_region == 0){
+        //         $session_duration_global = @$global_setting[0]->session_duration;
+        //         $session_duration = $session_duration_global;
+        //     }
+        // }
 
         $vars = array(
             'coaches' => $coaches,
             'selected' => $category,
             'rating' => $this->coach_rating_model->get_average_rate(),
             'pagination' => @$pagination,
-            'standard_coach_cost' => @$standard_coach_cost,
-            'elite_coach_cost' => @$elite_coach_cost,
+            // 'standard_coach_cost' => @$standard_coach_cost,
+            // 'elite_coach_cost' => @$elite_coach_cost,
             'session_duration' => @$session_duration
         );
        // echo('<pre>');
@@ -425,7 +425,7 @@ class find_coaches extends MY_Site_Controller {
     }
 
     public function book_by_single_date($date = '', $page='') {
-        $booking_type =  $this->input->post('selector');
+        /*$booking_type =  $this->input->post('selector');
         
         if(!$booking_type){
             $this->messages->add('Invalid Booking Type', 'warning');
@@ -437,6 +437,28 @@ class find_coaches extends MY_Site_Controller {
             $recurring_booking_type = 1;
         } else if($booking_type = 'multiple-book'){
             $recurring_booking_type = $this->input->post('type_booking');
+        } */
+        
+        $booking_type =  $this->input->post('selector');
+        
+        if(!$booking_type){
+            $booking_type = $this->session->userdata("selector_booking_type");
+            if(!$booking_type){
+                $this->messages->add('Invalid Booking Type', 'warning');
+                redirect('student/find_coaches/single_date/');
+            }
+        }
+
+        $this->session->set_userdata('selector_booking_type',$booking_type);
+
+        $recurring_booking_type = '';
+        if($booking_type == 'single-book'){
+            $recurring_booking_type = 1;
+        } else if($booking_type = 'multiple-book'){
+            $recurring_booking_type = $this->input->post('type_booking');
+            if(!$recurring_booking_type){
+                $recurring_booking_type = $this->session->userdata("recurring_booking_type");
+            }
         }
 
         $this->session->set_userdata("recurring_booking_type",$recurring_booking_type);
@@ -474,8 +496,8 @@ class find_coaches extends MY_Site_Controller {
             'gmt_val_user' => $gmt_student[0]->gmt,
             'data' => $data,
             'date' => $date,
-            'standard_coach_cost' => $standard_coach_cost,
-            'elite_coach_cost' => $elite_coach_cost,
+            // 'standard_coach_cost' => $standard_coach_cost,
+            // 'elite_coach_cost' => $elite_coach_cost,
             'rating' => $this->coach_rating_model->get_average_rate(),
             'pagination' => @$pagination,
             'cert_studying' => $cert_studying[0]->cert_studying
@@ -667,7 +689,7 @@ class find_coaches extends MY_Site_Controller {
                 }
 
                 $this->session->set_flashdata('booking_message',$arr_message);
-                redirect('student/upcoming_session');
+                //redirect('student/upcoming_session');
 
         } 
 
@@ -2698,7 +2720,7 @@ class find_coaches extends MY_Site_Controller {
     public function summary_book($search_by = '', $coach_id = '', $date = '', $start_time = '', $end_time = '') {
         $this->template->title = 'Booking Summary';
 
-        $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
+        $partner_id = $this->auth_manager->partner_id($coach_id);
         $region_id = $this->auth_manager->region_id($partner_id);
         
         $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();

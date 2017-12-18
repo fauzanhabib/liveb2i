@@ -565,7 +565,7 @@ class Student_vrm extends MY_Site_Controller {
                         'dbe1' => $dbe1, 'dbe2' => $dbe2, 'dbe3' => $dbe3, 'dbe4' => $dbe4, 'dbe5' => $dbe5, 'dbe6' => $dbe6,  
                         'pcdbe1' => $pcdbe1, 'pcdbe2' => $pcdbe2, 'pcdbe3' => $pcdbe3, 'pcdbe4' => $pcdbe4, 'pcdbe5' => $pcdbe5, 
                         'pcdbe6' => $pcdbe6,   
-                        @'titleDbe' => $titleDbe
+                        'titleDbe' => @$titleDbe
                     );
 
                     // --------------------------------------------------------------
