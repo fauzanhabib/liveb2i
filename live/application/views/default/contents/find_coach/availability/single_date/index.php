@@ -19,9 +19,9 @@
                             echo form_open('student/find_coaches/book_by_single_date', 'id="date_value" role="form" class="pure-g pure-form"');        
                         ?>
                     <div class="width100perc" style="padding: 0 15px;">
-                        <div class='border-2-primary border-rounded-5' style="padding: 0 6px;">
+                        <div class='border-2-primary border-rounded-5'>
                             <span class='custom-dropdown'>
-                                <select name="selector" id="selector">
+                                <select class="width100perc" name="selector" id="selector">
                                     <option disabled selected>Booking Type</option>
                                     <option value="single-book">Single Book</option>
                                     <option value="multiple-book">Recurring Book</option>

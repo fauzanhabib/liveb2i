@@ -77,7 +77,7 @@
                         </div>
                         <div class="info-right">
                             <div id="clockdiv">
-                                <div class="info-right text-cl-tertiary font-22 padding-t-40">You Have a Live Session</div>
+                                <div class="info-right text-cl-tertiary font-22">You Have a Live Session</div>
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                     <div class="start-session m-t-10">
                         <div class="info-right">
                             <div id="clockdiv">
-                                <div class="info-right text-cl-tertiary font-22 padding-t-40">
+                                <div class="info-right text-cl-tertiary font-22">
                                     You Have Opened Live Session<br>
                                     <font id="clearlive" class="refbtn" style="font-size: 16px;">Not Yet Open? Click Here</font>
                                 </div>
@@ -105,7 +105,7 @@
                         <div class="icon-left">
                             <img src="<?php echo base_url();?>assets/img/Play-Before.svg">
                         </div>
-                       <div class="info-right font-22 padding-t-35">
+                       <div class="info-right font-22">
                             You Have No Sessions Today
                         </div>
                     </div>

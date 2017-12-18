@@ -46,6 +46,22 @@
       content: '\f006';
       font-family: FontAwesome;
     }
+
+    @media only screen and (max-width: 500px) {
+      div.stars {
+        width: auto
+      }
+
+      #thetable tbody tr {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+      }
+    }
 </style>
 
 <script>

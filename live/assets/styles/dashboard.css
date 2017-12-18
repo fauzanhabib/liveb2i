@@ -1287,6 +1287,17 @@ label {
   position: absolute;
 }
 
+.flex--wrap {
+  display: flex;
+  flex-wrap: wrap;
+  display: -webkit-box;
+  display: -webkit-flexbox;
+  display: -moz-flexbox;
+  display: -ms-flexbox;
+  display: flexbox;
+  display: flex;
+}
+
 .font-semi-bold {
   font-weight: 600 !important
 }

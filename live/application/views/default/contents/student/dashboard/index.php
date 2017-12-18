@@ -11,8 +11,8 @@
 </style>
 <div class="box">
         <div class="content bg-white-fff">
-            <div class="box-lists clearfix pure-g padding-l-20">
-                <div class="box-list-icon2 grids pure-u-sm-1-2 pure-u-md-6-12 pure-u-lg-4-24">
+            <div class="box-lists flex--wrap pure-g padding-l-20">
+                <div class="box-list-icon2 grids padding-lr-20 pure-u-md-6-12 pure-u-lg-4-24">
                     <div class="box-icon">
                         <a href="<?php echo site_url('student/histories');?>">
                            <img src="<?php echo base_url();?>assets/img/MenuMain-Coaching-Sessions.svg">
@@ -20,7 +20,7 @@
                     </div>
                     <a href="<?php echo site_url('student/histories');?>" class="text-cl-grey"><span>Session History</span></a>
                 </div>
-                <div class="box-list-icon2 grids pure-u-sm-1-2 pure-u-md-6-12 pure-u-lg-4-24">
+                <div class="box-list-icon2 grids padding-lr-20 pure-u-md-6-12 pure-u-lg-4-24">
                     <div class="box-icon">
                         <a href="<?php echo site_url('student/token');?>">
                            <img src="<?php echo base_url();?>assets/img/MenuMain-Token-Finance.svg">
@@ -28,7 +28,7 @@
                     </div>
                     <a href="<?php echo site_url('student/token');?>" class="text-cl-grey"><span>Tokens / Credit</span></a>
                 </div>
-                <div class="box-list-icon2 grids pure-u-sm-1-2 pure-u-md-6-12 pure-u-lg-4-24">
+                <div class="box-list-icon2 grids padding-lr-20 pure-u-md-6-12 pure-u-lg-4-24">
                     <div class="box-icon">
                         <a href="<?php echo site_url('student/find_coaches/single_date');?>">
                            <img src="<?php echo base_url();?>assets/img/MenuMain-Teacher-Materials.svg">
@@ -36,7 +36,7 @@
                     </div>
                     <a href="<?php echo site_url('student/find_coaches/single_date');?>" class="text-cl-grey"><span>Book a Coach</span></a>
                 </div>
-                <div class="box-list-icon2 grids pure-u-sm-1-2 pure-u-md-6-12 pure-u-lg-4-24">
+                <div class="box-list-icon2 grids padding-lr-20 pure-u-md-6-12 pure-u-lg-4-24">
                     <div class="box-icon">
                         <a href="<?php echo site_url('student/help');?>">
                            <img src="<?php echo base_url();?>assets/img/MenuMain-Help.svg">
