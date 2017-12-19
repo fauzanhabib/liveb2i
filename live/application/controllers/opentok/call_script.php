@@ -106,16 +106,21 @@ class Call_script extends MY_Site_Controller {
           $limit_bot = @$limiter[0]->id;
           $limit_top = end($limiter)->id;
         }else{
-          $def_lesson = $this->db->select('lesson')
+          $def_lesson = $this->db->select('lesson, unit')
                       ->from('b2c_script')
                       ->where('certificate_plan', $get_gl_dsa[0]->cl_name)
                       ->get()->result();
 
           $val_lesson = $def_lesson[0]->lesson;
           $limit_bot  = 0;
-          $limit_top  = 0;
+          $def_lesson2 = $this->db->select('id')
+                      ->from('b2c_script')
+                      ->where('certificate_plan', $get_gl_dsa[0]->cl_name)
+                      ->where('unit', $def_lesson[0]->unit)
+                      ->get()->result();
+          $limit_top  = end($def_lesson2)->id;
         }
-        // echo "<pre>";print_r($limit_top);exit();
+        // echo "<pre>";print_r(end($def_lesson2)->id);exit();
 
       $script_hist = $this->db->distinct()
               ->select('bc.unit')

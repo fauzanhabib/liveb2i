@@ -388,7 +388,7 @@ class Live extends MY_Site_Controller {
 
                     // $pull_step = end($gsp->data->study->units);
                     // $val_step  = $pull_step->study_path_index;
-                    // echo "<pre>";print_r($gsp);exit();
+                    // echo "<pre>";print_r($pull_gcp);exit();
 
                     $mt_status_to_colour = array(
                       "passed" => "bg-blue-gradient",
