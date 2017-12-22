@@ -333,8 +333,8 @@
                     <div class="bxhistory__boxstatus">
                       <?php if($v->status == 0){ ?>
                         <div class="checkbox_input">
-                    <input class="checkbox_trigger" type="checkbox" value="1">
-                </div>
+                          <input class="checkbox_trigger" type="checkbox" value="1">
+                        </div>
                       <?php } else if($v->status == 1){ ?>
                         <div class="checkbox_input">
                             <input class="checkbox_trigger" type="checkbox" value="1" checked="checked" disabled>
@@ -371,7 +371,8 @@
     // MODAL
     $('.checkbox_trigger').each(function() {
         $(this).click(function() {
-            $(this).next().addClass('open');
+          // console.log($(this).parent().next());
+            $(this).parent().next().addClass('open');
             return false;
         });
     });
@@ -384,6 +385,7 @@
 
     $('.checked__checkbox').each(function() {
         $(this).click(function() {
+          // console.log($(this).parents('.bxhistory__boxstatus').find('.checkbox_trigger'));
             var script_id = $(this).attr('idscript');
             // console.log(script_id);
             $.ajax({
@@ -395,12 +397,13 @@
                 },
               success: function(data){
                 // console.log(data);
+
               }
             });
+            $(this).parents('.bxhistory__boxstatus').find('.checkbox_trigger').attr('checked', true);
+            $(this).parents('.bxhistory__boxstatus').find('.checkbox_trigger').attr('disabled', true);
+            $(this).parent().parent().parent().parent().removeClass('open');
 
-            $(this).parents('.modal-wrapper').prev('.checkbox_trigger').attr('checked', true);
-            $(this).parents('.modal-wrapper').prev('.checkbox_trigger').attr('disabled', true);
-            $(this).parents('.modal-wrapper').removeClass('open');
         })
     })
 </script>
