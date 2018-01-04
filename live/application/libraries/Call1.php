@@ -58,7 +58,11 @@ class Call1 {
         curl_close($curl_connection);
 
         $this->result = json_decode($result);
-        return $this->result;
+        if(@$this->result->message == 'Invalid studentLoginId'){
+            return false;
+        }else{
+            return $this->result;
+        }
     }
 
     /**
