@@ -34,6 +34,10 @@ class Call1 {
 
         //$this->host = 'https://'. $server .'.records.dyned.com/lms.php';
         $this->host = getenv("CALL1_URL");
+        
+        if(!$this->host){
+            $this->host = 'https://site1.records.dyned.com/lms.php';
+        }
 
 
         // Parameter query of student
