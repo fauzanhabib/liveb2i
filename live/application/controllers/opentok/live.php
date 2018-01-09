@@ -312,6 +312,155 @@ class Live extends MY_Site_Controller {
         }
 
         else{
+          $check_sess_type = $this->db->select('app_type')
+              ->from('appointments')
+              ->where('appointments.id', $appoint_id)
+              ->get()->result();
+
+          if($check_sess_type[0]->app_type == 1){
+            // exit('a');
+            $sessioninge = $this->db->select('*')
+                        ->from('appointments')
+                        ->where($tipe_, $id)
+                        ->where('session', $sessionId)
+                        ->where('date', $today)
+                        ->get()->result();
+
+            @$sessionIde  = $sessioninge[0]->session;
+            @$tokene      = $sessioninge[0]->token;
+            $apiKey       = $this->config->item('opentok_key');
+            @$std_id   = $user_extract->student_id;
+            @$std_cert = $user_extract->cert_plan;
+
+            if(@!$std_id){
+              $std_id = $user_extract2->student_id;
+              // exit($std_id);
+            }
+            // study dashboard
+            // $this->load->library('Study_progress');
+            // $tokenresult = $this->study_progress->GenerateToken();
+
+            $pull_gcp = $this->db->select('*')
+                      ->from('b2c_student_progress')
+                      ->where('user_id', $std_id)
+                      ->get()->result();
+
+            $gsp = json_decode(@$pull_gcp[0]->json_gsp);
+            $gcp = json_decode(@$pull_gcp[0]->json_gcp);
+            $gwp = json_decode(@$pull_gcp[0]->json_gwp);
+            // $gsp = json_decode($this->study_progress->GetStudyProgress($tokenresult));
+            // $gcp = json_decode($this->study_progress->GetCurrentProgress($tokenresult));
+            // $gwp = json_decode($this->study_progress->GetWeeklyProgress($tokenresult));
+
+            // $pull_step = end($gsp->data->study->units);
+            // $val_step  = $pull_step->study_path_index;
+            // echo "<pre>";print_r($std_id);exit();
+
+            $mt_status_to_colour = array(
+              "passed" => "bg-blue-gradient",
+              "open" => "bg-white-gradient",
+              "locked" => "",
+              "failed" => "bg-red-gradient"
+            );
+
+            $mt_color = [];
+            $k = 1;
+            $max_buletan_student = sizeof(@$gsp->data->study->mastery_tests);
+
+            for($l=0;$l<$max_buletan_student;$l++){
+              $mt_color['mt'.$k] = @$mt_status_to_colour[@$gsp->data->coach->sessions[$l]->status];
+              $k++;
+            }
+
+            $coach_status_color = array(
+              "passed" => "bg-green-gradient",
+              "open" => "bg-white-gradient",
+              "locked" => "",
+              "failed" => "bg-red-gradient"
+              );
+
+            $ct_color = [];
+            $j = 1;
+            $max_buletan = sizeof(@$gsp->data->coach->sessions);
+
+            for($i=0;$i<$max_buletan;$i++){
+              $ct_color['cc'.$j] = @$coach_status_color[@$gsp->data->coach->sessions[$i]->status];
+              $j++;
+            }
+            // ===============
+
+
+
+            $livesession = array(
+            'sessionId'  => @$sessionId,
+            'token'      => @$token,
+            'apiKey'     => @$apiKey,
+            'sentence'   => $sentence,
+            'different'  => $different,
+            'notes_c'    => @$notes_c,
+            'total_sec'  => $total_sec,
+            'allmodule'  => @$allmodule,
+            'cert_plan'  => @$cert_plan,
+            'content'    => @$content,
+            'student_vrm'    => @$student_vrm,
+            'annualtoken'    => @$annualtoken,
+            'student_vrm_json' => @$student_vrm_json,
+            'different_val'  => $different_val,
+            'user_extract'   => @$user_extract,
+            'user_extract2'  => @$user_extract2,
+            'appointment_id' => $appoint_id,
+            'gsp' => @$gsp,
+            'gcp' => @$gcp,
+            'gwp' => @$gwp,
+            'mt_color' => @$mt_color,
+            'ct_color' => @$ct_color,
+            'student_profile' => @$student_profile,
+            'max_buletan_student' => @$max_buletan_student,
+            'max_buletan' => @$max_buletan
+            );
+
+
+          $cch_hour_check = $this->db->select('cch_attend')
+                          ->from('appointments')
+                          ->where($tipe_, $id)
+                          ->where('session', $sessionId)
+                          ->where('date', $today)
+                          ->get()->result();
+
+          $ca_exist = $cch_hour_check[0]->cch_attend;
+
+          if($ca_exist == NULL){
+
+            $id_appoint = $livesession['appointment_id'];
+            $data2c = array(
+               'cch_attend' => $hour
+            );
+
+            $this->db->where('id', $id_appoint);
+            $this->db->update('appointments', $data2c);
+          }
+
+          //check if student is b2c or b2i
+          $std_idpull = $this->db->select('student_id')
+                          ->from('appointments')
+                          ->where('id', $livesession['appointment_id'])
+                          ->get()->result();
+
+          $std_check_id = $std_idpull[0]->student_id;
+
+          $b2c_checkpull = $this->db->select('login_type')
+                          ->from('users')
+                          ->where('id', $std_check_id)
+                          ->get()->result();
+
+          $b2c_id = $b2c_checkpull[0]->login_type;
+          // echo "<pre>";print_r($b2c_id);exit();
+          //check if student is b2c or b2i
+
+          $this->template->content->view('contents/opentok/coach/session_agora_b2c', $livesession);
+          $this->template->publish();
+
+          }else{
             if(@$appoint_id){
                 if(@$token == NULL){
                     $gentoken   = $opentok->generateToken($sessionId);
@@ -574,6 +723,7 @@ class Live extends MY_Site_Controller {
                 $this->template->content->view('contents/opentok/coach/nosession');
                 $this->template->publish();
             }
+          }
         }
 
     }

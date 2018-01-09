@@ -400,7 +400,7 @@
 
               }
             });
-            $(this).parents('.bxhistory__boxstatus').find('.checkbox_trigger').attr('checked', true);
+            $(this).parents('.bxhistory__boxstatus').find('.checkbox_trigger').prop("checked", true);
             $(this).parents('.bxhistory__boxstatus').find('.checkbox_trigger').attr('disabled', true);
             $(this).parent().parent().parent().parent().removeClass('open');
 

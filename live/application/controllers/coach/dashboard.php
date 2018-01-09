@@ -158,7 +158,7 @@ class dashboard extends MY_Site_Controller {
 
         // echo "<pre>";print_r($hourend);exit();
         //Check Already Opened Live Session -------------------------------
-        
+
         $pull_notif = $this->db->select('*')
                       ->from('user_notifications')
                       ->where('user_id', $id)
@@ -178,9 +178,17 @@ class dashboard extends MY_Site_Controller {
                 'dcrea' => time(),
                 'dupd' => time(),
             );
-                        
+
             $this->user_notification_model->insert($user_notification);
         }
+
+        if(@$wm->app_type == 1){
+          $url_session = site_url('b2c/student/agora/');
+        }else if(@$wm->app_type == 0){
+          $url_session = site_url('b2c/student/opentok/live/');
+        }
+
+        // echo "<pre>";print_r($wm->app_type);exit();
 
         $vars = array(
             'title' => 'Upcoming Session',
@@ -200,7 +208,8 @@ class dashboard extends MY_Site_Controller {
             'data_class' => $data_class_upcoming,
             'id_to_name' => $this->identity_model->get_identity('profile')->dropdown('user_id', 'fullname'),
             'id_webex' => $this->webex_model->select('id')->where('status', 'SCHE')->get_all(),
-            'countdown'  => $countdown
+            'countdown'  => $countdown,
+            'url_session'  => $url_session
         );
 
 
