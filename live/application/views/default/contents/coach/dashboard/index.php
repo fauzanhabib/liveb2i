@@ -317,7 +317,36 @@ $("ul li#viewstudent").click(function() {
     function time_remaining(endtime){
         // var t = Date.parse(endtime) - Date.parse(new Date());
         // var t = Date.parse(endtime) - Date.parse("<?php echo $nowc ?>");
-        var t = Date.parse(endtime) - Date.parse(new Date());
+        var first = endtime.replace("-","/");
+        var datetime = first.replace("-","/");
+        var year = new Date(datetime).getFullYear();
+        var day = new Date(datetime).getDate();
+        if(day<=9 && day>0) {
+            day = "0" + day;
+        }else{
+            day = day;
+        }
+        var month = new Date(datetime).getMonth()+1;
+        var hours = new Date(datetime).getHours();
+        if(hours<=9 && hours>=0) {
+            hours = "0" + hours;
+        }else{
+            hours = hours;
+        }
+        var minutes = new Date(datetime).getMinutes();
+        if(minutes<=9 && minutes>=0) {
+            minutes = "0" + minutes;
+        }else{
+            minutes = minutes;
+        }
+        var seconds = new Date(datetime).getSeconds();
+        if(seconds<=9 && seconds>=0) {
+            seconds = "0" + seconds;
+        }else{
+            seconds = seconds;
+        }
+        var realendtime = month + "/" + day + "/" + year + " " + hours + ":" + minutes + ":" + seconds;
+        var t = Date.parse(realendtime) - Date.parse(new Date());
         var seconds = Math.floor( (t/1000) % 60 );
         var minutes = Math.floor( (t/1000/60) % 60 );
         var hours = Math.floor( (t/(1000*60*60)) % 24 );
