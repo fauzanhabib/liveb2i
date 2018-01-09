@@ -156,9 +156,8 @@
                                 <form class="pure-form">
                                     <div class="list-schedule">
                                         <p class="txt text-cl-primary">Click on the green button to see if your coach is available</p>
-                                        <div id="result_<?php echo($coaches[$i]->id);?>">
-                                            <img src='<?php echo base_url(); ?>images/small-loading.gif' alt='loading...' style="display:none;" id="schedule-loading"/>
-                                        </div>
+                                        <img src='<?php echo base_url(); ?>images/small-loading.gif' alt='loading...' style="display:none;" class="schedule-loading"/>
+                                        <div id="result_<?php echo($coaches[$i]->id);?>"></div>
                                     </div>          
                                 </form>
                             </div>
@@ -251,14 +250,14 @@
             var m = $('[id^=result_]').html($('[id^=result_]').val());
             //alert(loadUrl);
             if($(this).val() != ''){
-                $("#schedule-loading").show();
+                $(".schedule-loading").show();
                 $(".txt").hide();
                 $("#result_"+this.name).load(loadUrl, function () {
                     for(i=0; i<m.length; i++){
                         $('#'+m[i].id).html($('#'+m[i].id).html().replace('/*',' '));
                         $('#'+m[i].id).html($('#'+m[i].id).html().replace('*/',' '));
                     }   
-                    $("#schedule-loading").hide();
+                    $(".schedule-loading").hide();
                 });
             }
             
@@ -270,14 +269,14 @@
             var m = $('[id^=result_]').html($('[id^=result_]').val());
             //alert(loadUrl);
             if(this.value != ''){
-                $("#schedule-loading").show();
+                $(".schedule-loading").show();
                 $(".txt").hide();
                 $("#result_"+this.value).load(loadUrl, function () {
                     for(i=0; i<m.length; i++){
                         $('#'+m[i].id).html($('#'+m[i].id).html().replace('/*',' '));
                         $('#'+m[i].id).html($('#'+m[i].id).html().replace('*/',' '));
                     }   
-                    $("#schedule-loading").hide();
+                    $(".schedule-loading").hide();
                 });
             }
             
