@@ -18,7 +18,7 @@ class user_profile_model extends MY_Model {
     // Get student per partner
     public function get_students($partner='', $subgroup_id = '', $status='', $limit='', $offset='') {
 
-        $this->db->select('u.status as status, u.email as email, up.user_id as id, up.fullname, up.subgroup_id as subgroup_id, up.profile_picture, up.gender, up.date_of_birth, ug.country')
+        $this->db->select('u.status as status, u.email as email, up.user_id as id, up.fullname, up.subgroup_id as subgroup_id, up.profile_picture, up.gender, up.date_of_birth, up.dial_code, up.phone, ug.country')
             ->from($this->table . ' up')
             ->join('users u', 'u.id = up.user_id')
             ->join('user_profiles c', 'u.id = c.user_id')

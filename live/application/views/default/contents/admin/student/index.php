@@ -291,6 +291,7 @@
                     <?php 
                         $no = 2;
                         $a = $number_page;
+                        $ph = 0;
                         foreach ($students as $student) { 
                           if($student->subgroup_id == $subgroup_id){
                     ?>
@@ -300,10 +301,10 @@
                         
                         <td><?php echo $a?></td>
                         <td><a href="<?php echo site_url($role_link.'/manage_partner/student_detail/'.$partner_id.'/'.$student->id);?>" class="status-disable bg-green text-cl-white"><?php echo $student->fullname?></a></td>
-                        <td><?php echo $subgroup[0]->dial_code.$subgroup[0]->phone;?></td>
+                        <td><?php echo $student->dial_code.$student->phone;?></td>
                         <td><?php echo $student->email;?></td>
                     </tr>
-                    <?php $no++; $a++; } } ?>
+                    <?php $no++; $a++; $ph++; } } ?>
                 </tbody>
             </table>
         </div>
