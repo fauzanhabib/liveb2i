@@ -177,7 +177,7 @@
         var connectionCount;
         session.on({
           connectionCreated: function (event) {
-            connectionCount++;
+            connectionCount = 1;
             if (event.connection.connectionId != session.connection.connectionId) {
               $("#waiting").hide();
               $("#heading1").hide();
@@ -187,7 +187,7 @@
             }
           },
           connectionDestroyed: function connectionDestroyedHandler(event) {
-            connectionCount--;
+            connectionCount = 2;
               $("#heading2").show();
               $("#connecting").show();
               $("#disconnect").removeClass("hidden");
@@ -195,6 +195,14 @@
             console.log('A client disconnected.');
           }
         });
+        function check_subs(){
+          if(connectionCount == null){
+            location.reload();
+          }
+        };
+        setInterval(function(){
+          check_subs();
+        }, 10000);
 
 
     OT.registerScreenSharingExtension('chrome', extensionId, 2);
@@ -351,7 +359,7 @@
 
 <!-- COACH NOTE STARTS -->
 <script>
-$(document).ready(function(){
+  $(document).ready(function(){
 
     $('#save_note').click(function(){
        // var cch_note = $("#cch_note").val();
@@ -377,13 +385,13 @@ $(document).ready(function(){
         }
       });
 
-});
+    });
 </script>
 <!-- COACH NOTE ENDS -->
 
 <!-- COACH SCRIPT STARTS -->
 <script>
-$(document).ready(function(){
+  $(document).ready(function(){
 
     $('#coachscript').click(function(){
        var cch_script = $("input[name='check_list[]']:checked").map(function() {
@@ -413,53 +421,51 @@ $(document).ready(function(){
         }
       });
 
-});
+    });
 </script>
 <script type="text/javascript">
-// console.log(extensionId);
+  // console.log(extensionId);
+  var isFirefox = typeof InstallTrigger !== 'undefined';
 
+  var isChrome = !!window.chrome && !!window.chrome.webstore;
 
-var isFirefox = typeof InstallTrigger !== 'undefined';
-
-var isChrome = !!window.chrome && !!window.chrome.webstore;
-
-if(isChrome == true && isFirefox == false){
-  $(document).ready(function(){
-    $("#sharescreenff").hide();
-    $("#sharescreenff").addClass("hidden");
-  });
-  // console.log('a');
-  setInterval(function(){
-    function IsExist(extensionId,callback){
-     chrome.runtime.sendMessage(extensionId, { message: "installed" },
-       function (reply) {
-        if (reply) {
-         callback(true);
-        }else{
-         callback(false);
-        }
-     });
-    }
-    //check online extension - chrome webstore
-    IsExist(extensionId,function(installed){
-     if(!installed){
-      $("#sharescreenavan").removeClass("hidden");
-      $("#sharescreenava").addClass("hidden");
-     }
-     else{
-      $("#sharescreenava").removeClass("hidden");
-      $("#sharescreenavan").addClass("hidden");
-     }
+  if(isChrome == true && isFirefox == false){
+    $(document).ready(function(){
+      $("#sharescreenff").hide();
+      $("#sharescreenff").addClass("hidden");
     });
-    // check offline extension - .crx file
+    // console.log('a');
+    setInterval(function(){
+      function IsExist(extensionId,callback){
+       chrome.runtime.sendMessage(extensionId, { message: "installed" },
+         function (reply) {
+          if (reply) {
+           callback(true);
+          }else{
+           callback(false);
+          }
+       });
+      }
+      //check online extension - chrome webstore
+      IsExist(extensionId,function(installed){
+       if(!installed){
+        $("#sharescreenavan").removeClass("hidden");
+        $("#sharescreenava").addClass("hidden");
+       }
+       else{
+        $("#sharescreenava").removeClass("hidden");
+        $("#sharescreenavan").addClass("hidden");
+       }
+      });
+      // check offline extension - .crx file
 
-  },1000);
-}else if(isChrome == false && isFirefox == true){
-  // console.log('as');
-  $("#sharescreenff").removeClass("hidden");
-  $("#sharescreenava").hide();
-  $("#sharescreenava").hide();
-}
+    },1000);
+  }else if(isChrome == false && isFirefox == true){
+    // console.log('as');
+    $("#sharescreenff").removeClass("hidden");
+    $("#sharescreenava").hide();
+    $("#sharescreenava").hide();
+  }
 </script>
 <!-- COACH SCRIPT ENDS -->
 
@@ -514,158 +520,158 @@ if(isChrome == true && isFirefox == false){
     .btn-green:hover {
     opacity: 1 !important;
     }
-@media only screen and (max-width: 768px) {
-    .publisher {
-        display: none;
-        width: 50%;
-        bottom: 10em;
-        height: 100px;
+    @media only screen and (max-width: 768px) {
+        .publisher {
+            display: none;
+            width: 50%;
+            bottom: 10em;
+            height: 100px;
+        }
     }
-}
 </style>
 <style>
-#fullarea:-webkit-full-screen {
-  width: 100% !important;
-  height: 100% !important;
-}
+  #fullarea:-webkit-full-screen {
+    width: 100% !important;
+    height: 100% !important;
+  }
 
-#fullarea:-moz-full-screen {
-  width: 100% !important;
- height: 100% !important;
-}
+  #fullarea:-moz-full-screen {
+    width: 100% !important;
+   height: 100% !important;
+  }
 
-#fullarea:-ms-full-screen {
-  width: 100% !important;
- height: 100% !important;
-}
+  #fullarea:-ms-full-screen {
+    width: 100% !important;
+   height: 100% !important;
+  }
 
-#fullarea:-o-full-screen {
-  width: 100% !important;
-  height: 100% !important;
-}
+  #fullarea:-o-full-screen {
+    width: 100% !important;
+    height: 100% !important;
+  }
 
-#fullarea:full-screen {
-  width: 100% !important;
- height: 100% !important;
-}
+  #fullarea:full-screen {
+    width: 100% !important;
+   height: 100% !important;
+  }
 </style>
 
 <style type="text/css">
-div.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 5px;
-    width: 100%;
-    border-top: 2px solid #fff;
-    outline: none;
-    transition: 0.4s;
-}
+  div.accordion {
+      background-color: #eee;
+      color: #444;
+      cursor: pointer;
+      padding: 5px;
+      width: 100%;
+      border-top: 2px solid #fff;
+      outline: none;
+      transition: 0.4s;
+  }
 
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-div.accordion.active, div.accordion:hover {
-    background-color: #3baae3;
-    border-top: 2px solid #fff;
-    color:#fff;
-    opacity: 1 !important;
-}
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  div.accordion.active, div.accordion:hover {
+      background-color: #3baae3;
+      border-top: 2px solid #fff;
+      color:#fff;
+      opacity: 1 !important;
+  }
 
-/* Style the accordion panel. Note: hidden by default */
-div.panel {
-    background-color: white;
-    display: none;
-}
+  /* Style the accordion panel. Note: hidden by default */
+  div.panel {
+      background-color: white;
+      display: none;
+  }
 
-/* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
-div.panel.show {
-    display: block !important;
-}
+  /* The "show" class is added to the accordion panel when the user clicks on one of the buttons. This will show the panel content */
+  div.panel.show {
+      display: block !important;
+  }
 </style>
 <style>
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 170px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
-}
+  /* The Modal (background) */
+  .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      padding-top: 170px; /* Location of the box */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgb(0,0,0); /* Fallback color */
+      background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+  }
 
-/* Modal Content */
-.modal-content {
-    background-color: #fefefe;
-    color: black;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 90%;
-}
+  /* Modal Content */
+  .modal-content {
+      background-color: #fefefe;
+      color: black;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 90%;
+  }
 
-/* The Close Button */
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
+  /* The Close Button */
+  .close {
+      color: #aaaaaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+  }
 
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
+  .close:hover,
+  .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+  }
 </style>
 
 <style type="text/css">
 
-@-webkit-keyframes blink {
-    0% {
-        opacity:1;
-    }
-    50% {
-        background-color: transparent;
-    }
-    100% {
-        opacity:1;
-    }
-}
-@-moz-keyframes blink {
-    0% {
-        opacity:1;
-    }
-    50% {
-        background-color: transparent;
-    }
-    100% {
-        opacity:1;
-    }
-}
-.objblink {
--webkit-transition: all 1s ease-in-out;
-    -moz-transition: all 1s ease-in-out;
-    -o-transition: all 1s ease-in-out;
-    -ms-transition: all 1s ease-in-out;
-    transition: all 1s ease-in-out;
+  @-webkit-keyframes blink {
+      0% {
+          opacity:1;
+      }
+      50% {
+          background-color: transparent;
+      }
+      100% {
+          opacity:1;
+      }
+  }
+  @-moz-keyframes blink {
+      0% {
+          opacity:1;
+      }
+      50% {
+          background-color: transparent;
+      }
+      100% {
+          opacity:1;
+      }
+  }
+  .objblink {
+  -webkit-transition: all 1s ease-in-out;
+      -moz-transition: all 1s ease-in-out;
+      -o-transition: all 1s ease-in-out;
+      -ms-transition: all 1s ease-in-out;
+      transition: all 1s ease-in-out;
 
-    -webkit-animation-direction: normal;
-    -webkit-animation-duration: 1s;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-name: blink;
-    -webkit-animation-timing-function: ease-in-out;
+      -webkit-animation-direction: normal;
+      -webkit-animation-duration: 1s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-name: blink;
+      -webkit-animation-timing-function: ease-in-out;
 
--moz-animation-direction: normal;
-    -moz-animation-duration: 1s;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-name: blink;
-    -moz-animation-timing-function: ease-in-out;
-}
+  -moz-animation-direction: normal;
+      -moz-animation-duration: 1s;
+      -moz-animation-iteration-count: infinite;
+      -moz-animation-name: blink;
+      -moz-animation-timing-function: ease-in-out;
+  }
 </style>
 <style>
   .cke_editable{
@@ -752,7 +758,7 @@ div.panel.show {
 
     <div class="heading" id="heading1" style="background: #d3ffe6;border-left: solid 5px #4fa574">
       <div id="waiting" style="color: #419c68;font-weight: 400;">
-        Waiting for <b><?php echo $student_name; ?></b> to join the session. Remain in the session until the end to receive your tokens.
+        Waiting for <b><?php echo $student_name; ?></b> to join the session. Remain in the session until the end to receive your tokens. (This page will keep refreshing until Student joined the session)
         <!-- <?php if($total_sec <= 300) {?>
         If <b><?php echo $student_name; ?></b> isn't connected, <br>you have to wait until the end of session in case <b><?php echo $student_name; ?></b> shows up. And you will get your token at the end of session.
         <?php } else{ ?>

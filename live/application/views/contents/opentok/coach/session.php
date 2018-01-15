@@ -195,7 +195,14 @@
             console.log('A client disconnected.');
           }
         });
-
+        function check_subs(){
+          if(connectionCount == null){
+            location.reload();
+          }
+        };
+        setInterval(function(){
+          check_subs();
+        }, 10000);
 
     OT.registerScreenSharingExtension('chrome', extensionId, 2);
 
