@@ -59,8 +59,8 @@ class Call_script extends MY_Site_Controller {
           $pull_step   = end($gsp->data->study->units);
           $pull_lesson = explode('_',@$gsp->data->last_lesson_code);
 
-          // $val_step    = 81;
-          // $val_lesson  = 'feu1';
+          // $val_step    = 37;
+          // $val_lesson  = 'ndem1u1';
           $val_step    = $pull_step->study_path_index;
           $val_lesson  = $pull_lesson[1];
         }else{
@@ -83,7 +83,7 @@ class Call_script extends MY_Site_Controller {
         //   $val_step   = 0;
         // }
 
-        // echo "<pre>";print_r($val_lesson);exit();
+
 
         $script = $this->db->distinct()
                 ->select('bc.unit')
@@ -102,6 +102,8 @@ class Call_script extends MY_Site_Controller {
                  ->where('step_up >=', $val_step)
                  ->get()->result();
 
+
+
         if(@$limiter){
           $limit_bot = @$limiter[0]->id;
           $limit_top = end($limiter)->id;
@@ -112,6 +114,8 @@ class Call_script extends MY_Site_Controller {
                       ->get()->result();
 
           $val_lesson = $def_lesson[0]->lesson;
+          $val_step   = 0;
+          // echo "<pre>";print_r($val_step);exit();
           $limit_bot  = 0;
           $def_lesson2 = $this->db->select('id')
                       ->from('b2c_script')
@@ -143,7 +147,7 @@ class Call_script extends MY_Site_Controller {
               ->where('bc.step_bot <=', $val_step)
               ->get()->result();
 
-              // echo "<pre>";print_r($script_curr);exit();
+              // echo "<pre>";print_r($val_step);exit();
 
       $script_next = $this->db->distinct()
               ->select('bc.unit')
