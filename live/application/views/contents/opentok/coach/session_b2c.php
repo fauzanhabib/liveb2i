@@ -1001,7 +1001,7 @@
                           <div class="bullet__achievement"></div> -->
                           <?php
                           for($l=1;$l<=@$max_buletan_student;$l++){ ?>
-                            <div class="bullet__achievement <?php echo @$student_color['mt'.$l];?>"></div>
+                            <div class="bullet__achievement <?php echo @$mt_color['mt'.$l];?>"></div>
                           <?php
                             }
                           ?>
@@ -1032,7 +1032,7 @@
                           <div class="bullet__achievement"></div> -->
                           <?php
                             for($i=1;$i<=$max_buletan;$i++){ ?>
-                              <div class="bullet__achievement <?php echo @$coach_color['cc'.$i];?>"></div>
+                              <div class="bullet__achievement <?php echo @$ct_color['cc'.$i];?>"></div>
                             <?php
                               }
                             ?>

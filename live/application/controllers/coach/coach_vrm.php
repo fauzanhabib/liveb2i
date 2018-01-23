@@ -75,7 +75,7 @@ class Coach_vrm extends MY_Site_Controller {
 
                  $checkCallOne   = @$callOneJson->studentName;
                  if($checkCallOne){
-                      $module_extract = $callOneJson->lessonCompletion;
+                      $module_extract = @$callOneJson->lessonCompletion;
                       // $placement_test = end(@$callOneJson->placementTestGENs);
                       // $pt_val         = @$placement_test->placementLevel;
                       $student_cert   = @$student_vrm2->cert_studying;
