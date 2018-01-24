@@ -35,7 +35,7 @@ class Call_script extends MY_Site_Controller {
                 ->get()->result();
 
         $id_gl_users = $get_gl_users[0]->cl_id;
-        echo "<pre>";print_r($get_gl_users);exit();
+        // echo "<pre>";print_r($get_gl_users);exit();
         $get_gl_dsa = $this->db->select('cl_name')
                 ->from('dsa_cert_levels')
                 ->where('cl_id', $id_gl_users)
