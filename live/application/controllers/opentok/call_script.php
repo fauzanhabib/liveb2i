@@ -61,7 +61,7 @@ class Call_script extends MY_Site_Controller {
 
           // $val_step    = 37;
           // $val_lesson  = 'ndem1u1';
-          if(@$pull_step){
+          if(@$pull_step || @$pull_lesson){
             $val_step    = @$pull_step->study_path_index;
             $val_lesson  = @$pull_lesson[1];
           }else{
