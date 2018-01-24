@@ -40,7 +40,7 @@ class Call_script extends MY_Site_Controller {
                 ->from('dsa_cert_levels')
                 ->where('cl_id', $id_gl_users)
                 ->get()->result();
-                echo "<pre>";print_r($std_id_for_cert);exit();
+                // echo "<pre>";print_r($std_id_for_cert);exit();
 
         $std_sso = $get_gl_users[0]->sso_username;
 
