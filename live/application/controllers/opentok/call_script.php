@@ -59,11 +59,13 @@ class Call_script extends MY_Site_Controller {
           $pull_step   = end($gsp->data->study->units);
           $pull_lesson = explode('_',@$gsp->data->last_lesson_code);
 
+          $check_step    = $pull_step->study_path_index;
+          $check_lesson  = $pull_lesson[1];
           // $val_step    = 37;
           // $val_lesson  = 'ndem1u1';
-          if(@$pull_step || @$pull_lesson){
-            $val_step    = @$pull_step->study_path_index;
-            $val_lesson  = @$pull_lesson[1];
+          if(@$check_step && @$check_lesson){
+            $val_step    = @$check_step;
+            $val_lesson  = @$check_lesson;
           }else{
             $def_lesson = $this->db->select('lesson')
                         ->from('b2c_script')
