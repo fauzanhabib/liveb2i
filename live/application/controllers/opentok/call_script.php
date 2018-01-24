@@ -35,12 +35,12 @@ class Call_script extends MY_Site_Controller {
                 ->get()->result();
 
         $id_gl_users = $get_gl_users[0]->cl_id;
-
+        echo "<pre>";print_r($get_gl_users);exit();
         $get_gl_dsa = $this->db->select('cl_name')
                 ->from('dsa_cert_levels')
                 ->where('cl_id', $id_gl_users)
                 ->get()->result();
-                // echo "<pre>";print_r($get_gl_users);exit();
+                echo "<pre>";print_r($std_id_for_cert);exit();
 
         $std_sso = $get_gl_users[0]->sso_username;
 
@@ -61,8 +61,19 @@ class Call_script extends MY_Site_Controller {
 
           // $val_step    = 37;
           // $val_lesson  = 'ndem1u1';
-          $val_step    = $pull_step->study_path_index;
-          $val_lesson  = $pull_lesson[1];
+          if(@$pull_step){
+            $val_step    = @$pull_step->study_path_index;
+            $val_lesson  = @$pull_lesson[1];
+          }else{
+            $def_lesson = $this->db->select('lesson')
+                        ->from('b2c_script')
+                        ->where('certificate_plan', $get_gl_dsa[0]->cl_name)
+                        ->get()->result();
+
+            $val_lesson = $def_lesson[0]->lesson;
+            $val_step   = 0;
+          }
+
         }else{
           $def_lesson = $this->db->select('lesson')
                       ->from('b2c_script')
