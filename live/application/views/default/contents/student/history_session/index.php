@@ -18,7 +18,7 @@
                     <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue" href="<?php echo site_url('admin/coach_histories');?>">Session History</a></li>
                     <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('admin/coach_histories/class_session');?>">Class Session History</a></li>
                 <?php }
-                elseif($this->auth_manager->role()=='SPR'){?>
+                elseif($this->auth_manager->role()=='SPR' || $this->auth_manager->role()=='SPN'){?>
                     <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('student_partner/student_upcoming_session/one_to_one_session/'.@$student_id);?>">Upcoming Session</a></li>
                     <!-- <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('student_partner/student_upcoming_session/class_session/'.@$student_id);?>" >Class Session</a></li> -->
                     <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue" href="<?php echo site_url('student_partner/student_histories/index/'.@$student_id);?>">Session History</a></li>
@@ -63,36 +63,36 @@
     </div>
             <div class="margin0 padding15">
                 <a href="#" class="link-filter">Please select date to filter <i class="icon icon-arrow-down"></i></a>
-                <?php 
+                <?php
                 if($this->auth_manager->role() == 'PRT'){
-                    echo form_open('partner/coach_histories/search/one_to_one/'.@$coach_id, 'class="pure-form filter-form" style="border:none"'); 
+                    echo form_open('partner/coach_histories/search/one_to_one/'.@$coach_id, 'class="pure-form filter-form" style="border:none"');
                 }elseif($this->auth_manager->role() == 'SPR'){
-                    echo form_open('student_partner/student_histories/search/one_to_one/'.@$student_id, 'class="pure-form filter-form" style="border:none"'); 
+                    echo form_open('student_partner/student_histories/search/one_to_one/'.@$student_id, 'class="pure-form filter-form" style="border:none"');
                 }elseif($this->auth_manager->role() == 'RAD' && @$user == 'coach'){
-                    echo form_open('superadmin/coach_histories/search/one_to_one', 'class="pure-form filter-form" style="border:none"'); 
+                    echo form_open('superadmin/coach_histories/search/one_to_one', 'class="pure-form filter-form" style="border:none"');
                 }elseif($this->auth_manager->role() == 'ADM' && @$user == 'coach'){
-                    echo form_open('admin/coach_histories/search/one_to_one', 'class="pure-form filter-form" style="border:none"'); 
+                    echo form_open('admin/coach_histories/search/one_to_one', 'class="pure-form filter-form" style="border:none"');
                 }elseif($this->auth_manager->role() == 'ADM' && @$user == 'student'){
-                    echo form_open('admin/student_histories/search/one_to_one/'.@$student_id, 'class="pure-form filter-form" style="border:none"'); 
+                    echo form_open('admin/student_histories/search/one_to_one/'.@$student_id, 'class="pure-form filter-form" style="border:none"');
                 }elseif($this->auth_manager->role() == 'RAD' && @$user == 'student'){
-                    echo form_open('superadmin/student_histories/search/one_to_one/'.@$student_id, 'class="pure-form filter-form" style="border:none"'); 
+                    echo form_open('superadmin/student_histories/search/one_to_one/'.@$student_id, 'class="pure-form filter-form" style="border:none"');
                 }elseif ($this->auth_manager->role() == 'CCH') {
-                    echo form_open('coach/histories/search/one_to_one', 'class="pure-form filter-form" style="border:none"'); 
+                    echo form_open('coach/histories/search/one_to_one', 'class="pure-form filter-form" style="border:none"');
                 }elseif ($this->auth_manager->role() == 'STD') {
-                    echo form_open('student/histories/search/one_to_one', 'class="pure-form filter-form" style="border:none"'); 
+                    echo form_open('student/histories/search/one_to_one', 'class="pure-form filter-form" style="border:none"');
                 }
-                
+
                 ?>
 
                 <div class="pure-g">
                     <div class="pure-u-1 text-center m-t-20">
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">  
+                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">
                     <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
-                        <span style="font-size: 16px;margin:0px 10px;">to</span>  
+                        <span style="font-size: 16px;margin:0px 10px;">to</span>
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">  
+                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">
                     <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
                         <?php echo form_submit('__submit', 'Go','class="pure-button btn-small btn-tertiary border-rounded height-32" style="margin:0px 10px;"'); ?>
@@ -133,11 +133,11 @@
                                 <?php } ?>
                                 <!--<th class="text-cl-tertiary font-light font-16 border-none">STUDENT ATTENDANCE</th>
                                 <th class="text-cl-tertiary font-light font-16 border-none">COACH ATTENDANCE</th>-->
-                                <th class="text-cl-tertiary font-light font-16 border-none">RECORDED SESSIONS</th>               
+                                <th class="text-cl-tertiary font-light font-16 border-none">RECORDED SESSIONS</th>
                             </tr>
                         </thead>
                         <tbody>
-                    <?php foreach (@$histories as $history) { 
+                    <?php foreach (@$histories as $history) {
                         $gmt_student = $this->identity_model->new_get_gmt($student_id);
                         $gmt_user = $this->identity_model->new_get_gmt($this->auth_manager->userid());
 
@@ -154,14 +154,14 @@
                             // if($gmt_user[0]->gmt > 0){
                             //     $new_gmt = '+'.$gmt_user[0]->gmt;
                             // }else{
-                            //     $new_gmt = $gmt_user[0]->gmt;    
+                            //     $new_gmt = $gmt_user[0]->gmt;
                             // }
                         else{
                             if(@!$gmt_student){
                                 if($gmt_user[0]->gmt > 0){
                                 $new_gmt = '+'.$gmt_user[0]->gmt;
                                 }else{
-                                $new_gmt = $gmt_user[0]->gmt;    
+                                $new_gmt = $gmt_user[0]->gmt;
                                 }
                             }else if($gmt_student[0]->gmt > 0){
                                 $new_gmt = '+'.$gmt_student[0]->gmt;
@@ -179,16 +179,16 @@
                             <tr>
                                 <!-- <td><?php echo date("M j Y  H:i:s", $history->dupd); ?></td> -->
                                 <td>
-                                    <?php 
+                                    <?php
                                     date_default_timezone_set('UTC');
                                     $dt     = date('H:i:s',$history->dupd);
                                     $default_dt  = strtotime($dt);
                                     $usertime = $default_dt+(60*$new_minutes);
-                                    $hour = date("H:i:s", $usertime); 
+                                    $hour = date("H:i:s", $usertime);
 
 
                                     $date     = date('M j Y',$history->dupd);
-                             
+
                                     echo $date." ".$hour;
                                     ?>
                                 </td>
@@ -234,14 +234,14 @@
                                             <?php
                                                 $defaultstart  = strtotime($history->start_time);
                                                 $hourattstart  = date("H:i", $defaultstart);
-                                                echo $hourattstart; 
-                                            ?> 
+                                                echo $hourattstart;
+                                            ?>
                                             -
                                             <?php
                                                 $defaultend  = strtotime($history->end_time);
                                                 $endsession = $defaultend-(5*60);
                                                 $hourattend  = date("H:i", $endsession);
-                                                echo $hourattend . " (UTC " . $new_gmt .")"; 
+                                                echo $hourattend . " (UTC " . $new_gmt .")";
                                             ?>
                                         </span>
                                     </div>
@@ -253,9 +253,9 @@
                                             <?php
                                                 $defaultstd  = strtotime($history->std_attend);
                                                 $usertimestd = $defaultstd+(60*$minutes);
-                                                $hourattstd  = date("H:i:s", $usertimestd); 
-                                                echo $hourattstd; 
-                                            ?>    
+                                                $hourattstd  = date("H:i:s", $usertimestd);
+                                                echo $hourattstd;
+                                            ?>
                                         </span>
                                     </div>
                                 </td>
@@ -265,9 +265,9 @@
                                             <?php
                                                 $defaultcch  = strtotime($history->cch_attend);
                                                 $usertimecch = $defaultcch+(60*$minutes);
-                                                $hourattcch  = date("H:i:s", $usertimecch); 
-                                                echo $hourattcch; 
-                                            ?>    
+                                                $hourattcch  = date("H:i:s", $usertimecch);
+                                                echo $hourattcch;
+                                            ?>
                                         </span>
                                     </div>
                                 </td>-->
