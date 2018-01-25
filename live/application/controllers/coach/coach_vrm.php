@@ -74,8 +74,9 @@ class Coach_vrm extends MY_Site_Controller {
                  $student_vrm2 = $this->call2->getdataObj();
 
                  $checkCallOne   = @$callOneJson->studentName;
-                 if($checkCallOne){
-                      $module_extract = @$callOneJson->lessonCompletion;
+                 $module_extract = @$callOneJson->lessonCompletion;
+                 if($checkCallOne && @$module_extract){
+                      // $module_extract = @$callOneJson->lessonCompletion;
                       // $placement_test = end(@$callOneJson->placementTestGENs);
                       // $pt_val         = @$placement_test->placementLevel;
                       $student_cert   = @$student_vrm2->cert_studying;
@@ -1334,7 +1335,7 @@ class Coach_vrm extends MY_Site_Controller {
             $max_buletan_student = sizeof(@$gsp->data->study->mastery_tests);
 
             for($l=0;$l<$max_buletan_student;$l++){
-              $mt_color['mt'.$k] = @$mt_status_to_colour[$gsp->data->coach->sessions[$l]->status];
+              $mt_color['mt'.$k] = @$mt_status_to_colour[@$gsp->data->study->mastery_tests[$l]->status];
               $k++;
             }
 
