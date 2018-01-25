@@ -317,7 +317,7 @@ class Live extends MY_Site_Controller {
               ->where('appointments.id', $appoint_id)
               ->get()->result();
 
-          if($check_sess_type[0]->app_type == 1){
+          if(@$check_sess_type[0]->app_type == 1){
             // exit('a');
             $sessioninge = $this->db->select('*')
                         ->from('appointments')
