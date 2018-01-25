@@ -40,7 +40,7 @@ class Call_script extends MY_Site_Controller {
                 ->from('dsa_cert_levels')
                 ->where('cl_id', $id_gl_users)
                 ->get()->result();
-                // echo "<pre>";print_r($std_id_for_cert);exit();
+
 
         $std_sso = $get_gl_users[0]->sso_username;
 
@@ -55,6 +55,7 @@ class Call_script extends MY_Site_Controller {
         $gcp = json_decode(@$pull_gcp[0]->json_gcp);
         $gwp = json_decode(@$pull_gcp[0]->json_gwp);
 
+        // echo "<pre>";print_r($pull_gcp);exit();
         if(@$gsp->data->certification_level){
           $pull_step   = end($gsp->data->study->units);
           $pull_lesson = explode('_',@$gsp->data->last_lesson_code);
@@ -71,6 +72,13 @@ class Call_script extends MY_Site_Controller {
                         ->from('b2c_script')
                         ->where('certificate_plan', $get_gl_dsa[0]->cl_name)
                         ->get()->result();
+
+            if(!@$def_lesson){
+              // echo "<pre>";print_r($noscript);exit();
+              // $this->load->view('contents/opentok/coach/call_script_no_script', $noscript);
+              echo "<p style='color: black;text-align: center;''>We're sorry but we don't have the script yet for ".$get_gl_dsa[0]->cl_name." students.</p>";
+              exit();
+            }
 
             $val_lesson = $def_lesson[0]->lesson;
             $val_step   = 0;
@@ -96,8 +104,6 @@ class Call_script extends MY_Site_Controller {
         //   $val_step   = 0;
         // }
 
-
-
         $script = $this->db->distinct()
                 ->select('bc.unit')
                 ->from('b2c_script_student bs')
@@ -105,7 +111,8 @@ class Call_script extends MY_Site_Controller {
                 ->where('bs.user_id', $std_id_for_cert)
                 ->where('bc.certificate_plan', $get_gl_dsa[0]->cl_name)
                 ->get()->result();
-                // echo "<pre>";print_r($script);exit();
+
+        // echo "<pre>";print_r($script);exit();
 
         $limiter = $this->db->select('id')
                  ->from('b2c_script')
