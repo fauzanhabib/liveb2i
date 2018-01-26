@@ -171,13 +171,13 @@
                 <div class="grids pure-u-md-8-24 padding-t-12">
                     <span class="r-only"><?php echo(@$data[0]->set_max_session); ?></span>
                     <div class="pure-g e-only margin-t-min7">
-                        <div class="m-b-5 padding-r-10 left">
+                        <!-- <div class="m-b-5 padding-r-10 left">
                             <label class="radio d-i-block m-b-15">
                                 <input type="radio" name="set_max_session" value="Per X Number of Days" <?php echo(@$data[0]->set_max_session == 'Per X Number of Days' ? 'checked="true"' : '');?>>
                                 <span class="outer m-r-10"><span class="inner"></span></span>
                                 Per X Number of Days
                             </label>
-                        </div>
+                        </div> -->
                         <div class="">
                             <label class="radio d-i-block m-b-15">
                                 <input type="radio" name="set_max_session" value="Per Week" <?php echo(@$data[0]->set_max_session == 'Per Week' ? 'checked="true"' : '');?>>

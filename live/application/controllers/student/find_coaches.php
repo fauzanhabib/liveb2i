@@ -591,6 +591,12 @@ class find_coaches extends MY_Site_Controller {
             $usertime2_coach = $et_coach+(60*$minutes_coach)-(5*60);
             $end_hour_coach = date("H:i", $usertime2_coach);
 
+            $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
+            if(!$check_max_book_coach_per_day){
+                $this->messages->add('This coach has exceeded maximum booked today', 'warning');
+                redirect('student/find_coaches/search/name/');
+            }
+
 
                 $isValid = $this->isAvailable($coach_id, $date, $start_time, $end_time);
 
@@ -783,11 +789,11 @@ class find_coaches extends MY_Site_Controller {
                     $usertime2_coach = $et_coach+(60*$minutes_coach)-(5*60);
                     $end_hour_coach = date("H:i", $usertime2_coach);
 
-        // $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
-        // if(!$check_max_book_coach_per_day){
-        //     $this->messages->add('This coach has exceeded maximum booked today', 'warning');
-        //     redirect('student/find_coaches/single_date/');
-        // }
+        $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
+        if(!$check_max_book_coach_per_day){
+            $this->messages->add('This coach has exceeded maximum booked today', 'warning');
+            redirect('student/find_coaches/single_date/');
+        }
         
         try {
             // First of all, let's begin a transaction
@@ -884,8 +890,8 @@ class find_coaches extends MY_Site_Controller {
                         $student_gmt = $gmt_student[0]->gmt;
                         $coach_gmt = $gmt_coach[0]->gmt;
 
-                        $this->send_email->student_book_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour, $end_hour, $dateconvert, 'booked', $student_gmt);
-                        $this->send_email->notif_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour_coach, $end_hour_coach, $new_date_for_coach, 'booked', $coach_gmt);
+                        // $this->send_email->student_book_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour, $end_hour, $dateconvert, 'booked', $student_gmt);
+                        // $this->send_email->notif_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour_coach, $end_hour_coach, $new_date_for_coach, 'booked', $coach_gmt);
                         
                         $this->messages->add($message, 'success');
   
@@ -2297,8 +2303,8 @@ class find_coaches extends MY_Site_Controller {
                         $student_gmt = $gmt_student[0]->gmt;
                         $coach_gmt = $gmt_coach[0]->gmt;
 
-                        $this->send_email->student_book_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour, $end_hour, $dateconvert, 'booked', $student_gmt);
-                        $this->send_email->notif_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour_coach, $end_hour_coach, $new_date_for_coach, 'booked', $coach_gmt);
+                        // $this->send_email->student_book_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour, $end_hour, $dateconvert, 'booked', $student_gmt);
+                        // $this->send_email->notif_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour_coach, $end_hour_coach, $new_date_for_coach, 'booked', $coach_gmt);
                         
                         
                         $this->messages->add($message, 'success');
@@ -2390,6 +2396,7 @@ class find_coaches extends MY_Site_Controller {
         // get setting partner
         // $coach_id = '187';
         // $date = '2016-07-28';
+        $student_id = $this->auth_manager->userid();
         $partner_id = $this->auth_manager->partner_id($coach_id);
 
         // check apakah status setting region allow atau disallow
@@ -2433,7 +2440,8 @@ class find_coaches extends MY_Site_Controller {
         
         // partner setting about student appointment
         // $setting = $this->partner_setting_model->get();
-        $partner_id = $this->auth_manager->partner_id($coach_id);
+        $student_id = $this->auth_manager->userid();
+        $partner_id = $this->auth_manager->partner_id($student_id);
         
         // check apakah status setting region allow atau disallow
         $region_id = $this->auth_manager->region_id($partner_id);
@@ -2455,7 +2463,7 @@ class find_coaches extends MY_Site_Controller {
 
 
       // $appointment_count = count($this->appointment_model->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', date("Y-m-d", $date))->get_all());
-        $student_id = $this->auth_manager->userid();
+        
         $appointment_count = count($this->appointment_model->where('student_id', $student_id)->where('date', date("Y-m-d", $date))->get_all());
      
         // print_r($this->get_date_week($date)); exit;

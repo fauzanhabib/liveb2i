@@ -94,8 +94,8 @@ class settings extends MY_Site_Controller {
                     'max_student_supplier' => $this->input->post('max_student_supplier'),
                     'max_day_per_week' => $this->input->post('max_day_per_week'),
                     'max_session_per_day' => $this->input->post('max_session_per_day'), 
-                    'max_session_per_x_day' => $this->input->post('max_session_per_x_day'), 
-                    'x_day' => $this->input->post('x_day'),
+                    // 'max_session_per_x_day' => $this->input->post('max_session_per_x_day'), 
+                    // 'x_day' => $this->input->post('x_day'),
                     'set_max_session' => $this->input->post('set_max_session'),
                     'status_set_setting' => $this->input->post('status_set_setting'), 
 
