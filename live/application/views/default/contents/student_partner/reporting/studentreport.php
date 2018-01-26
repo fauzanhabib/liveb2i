@@ -15,12 +15,12 @@
         display: inline;
         font-size: 19px !important;
         font-weight: 600;
-        color: #585858;   
+        color: #585858;
     }
     label input {
         /*display: inline;*/
         font-size: 16px !important;
-        font-weight: 100 !important;    
+        font-weight: 100 !important;
     }
     td{
         font-weight: 400 !important;
@@ -45,8 +45,8 @@
             <form action="<?php echo site_url('student_partner/reporting/studentreport');?>" method="POST">
                 <span class="r-only rersre"></span>
                 <select name="defaultlist" id="td_value_1_2" class="e-only multiple-select" multiple="multiple" style="width:100%" required required data-parsley-required-message="Please select at least 1 student group">
-                    <?php 
-                        if(@$selected){ 
+                    <?php
+                        if(@$selected){
                         foreach($selected as $sl){
                     ?>
                         <option value="<?php echo $sl->id; ?>" selected><?php echo $sl->name; ?></option>
@@ -60,12 +60,12 @@
                 <div class="pure-g">
                     <div class="pure-u-1 text-center m-t-20" style="text-align: left !important;">
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">  
+                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">
                             <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
-                        <span style="font-size: 16px;margin:0px 10px;">to</span>  
+                        <span style="font-size: 16px;margin:0px 10px;">to</span>
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">  
+                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">
                             <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
                     </div>
@@ -74,23 +74,23 @@
                 <input class="pure-button btn-small btn-green height-32" type="submit" name="submit" value="Session Report">
             </form>
 
-        </div>   
-    </div>   
- 
+        </div>
+    </div>
+
 </div>
 
 <hr style="width: 96%;">
 
 <div class="heading text-cl-primary padding-l-20">
     <h3 class="margin0" style="font-size: 28px;font-weight: 600;color: #2b89b9;">Student Report</h3>
-    <?php 
-    if(!@$date_from){  
+    <?php
+    if(!@$date_from){
         echo "Data without date range";
-    }else if(@$date_from && !@$date_to){ 
+    }else if(@$date_from && !@$date_to){
         echo "Data From: <strong>".$date_from1."</strong> To: <strong>Today</strong>";
-    }else if(@$date_from && @$date_to){ 
+    }else if(@$date_from && @$date_to){
         echo "Data From: <strong>".$date_from1."</strong> To: <strong>".$date_to1."</strong>";
-    } 
+    }
     ?>
 </div>
 
@@ -113,7 +113,7 @@
                     var t = $('#large').DataTable( {
                         "footerCallback": function ( row, data, start, end, display ) {
                             var api = this.api(), data;
-                 
+
                             // Remove the formatting to get integer data for summation
                             var intVal = function ( i ) {
                                 return typeof i === 'string' ?
@@ -121,14 +121,14 @@
                                     typeof i === 'number' ?
                                         i : 0;
                             };
-                 
+
                             // Total over all pages
                             startb = api.column( 6 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             addeds = api.column( 7 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             usedto = api.column( 8 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             tokbal = api.column( 9 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             comses = api.column( 10 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
-                 
+
                             // Update footer
                             $( api.column( 6 ).footer() ).html(startb);
                             $( api.column( 7 ).footer() ).html(addeds);
@@ -181,10 +181,10 @@
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Added Tokens</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Used Tokens</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Token Balance</th>
-                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Completed Sessions</th>               
-                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Last Session</th>               
-                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Next Session</th>               
-                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Avg. Coach Rating</th>               
+                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Completed Sessions</th>
+                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Last Session</th>
+                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Next Session</th>
+                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Avg. Coach Rating</th>
                     </tr>
                 </thead>
                 <tfoot>
@@ -338,7 +338,7 @@
                                         ->order_by('transaction_date','DESC')
                                         ->get()->result();
 
-                        $tokenbal = $token_balance2[0]->balance;
+                        $tokenbal = @$token_balance2[0]->balance;
 
                         $token_added = $this->db->select('token_amount')
                                         ->from('token_histories')
@@ -378,7 +378,7 @@
                                             ->get()->result();
                     }
 
-                    
+
 
                     $sum = 0;
                     foreach($token_usage as $key=>$value){
@@ -391,7 +391,7 @@
                     foreach($appid as $ap){
                         $app_id.= $ap->id.",";
                     }
-                    $appidlist=rtrim($app_id,", ");    
+                    $appidlist=rtrim($app_id,", ");
                     $idforquery=explode(",", $appidlist);
 
                     $getrating = $this->db->select('rate')
@@ -442,20 +442,20 @@
                                 <?php echo $total_ses->num_rows(); ?>
                             <?php }else{ echo $total_ses->num_rows(); }?>
                         </td>
-                        <td><?php 
+                        <td><?php
                             if(!@$last_ses){
                                 echo '<span class="labels tooltip-bottom" data-tooltip="No Session" style="color:#000 !important;font-size:14px;">-</span>';
                             }
-                            echo @$last_ses[0]->date; 
+                            echo @$last_ses[0]->date;
                         ?></td>
-                        <td><?php 
+                        <td><?php
                             if(!@$next_ses){
                                 echo '<span class="labels tooltip-bottom" data-tooltip="No Session" style="color:#000 !important;font-size:14px;">-</span>';
                             }else{
                                 echo @$next_ses[0]->date;
                             }
                         ?></td>
-                        <td><?php 
+                        <td><?php
                             if(@$rateaverage == 0){
                                 echo '';
                             }else{
@@ -468,7 +468,7 @@
             </table>
         </div>
     </div>
- 
+
 </div>
 
 <script>
@@ -517,7 +517,7 @@
         });
     });
 </script>
-                       
+
 <!-- <script type="text/javascript" src="<https://code.jquery.com/jquery-1.12.4.js"></script> -->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/__jquery.tablesorter.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/remodal.min.js"></script>

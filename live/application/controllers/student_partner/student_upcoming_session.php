@@ -11,15 +11,15 @@ class Student_upcoming_session extends MY_Site_Controller {
         $this->load->model('appointment_model');
         $this->load->model('class_member_model');
         $this->load->model('class_meeting_day_model');
-        
+
         $this->load->library('schedule_function');
-                
+
 
         //checking user role and giving action
-        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'SPR') {
-            $this->messages->add('ERROR');
-            redirect('account/identity/detail/profile');
-        }
+        // if (!$this->auth_manager->role() || $this->auth_manager->role() != 'SPR' || $this->auth_manager->role() != 'SPN') {
+        //     $this->messages->add('ERROR');
+        //     redirect('account/identity/detail/profile');
+        // }
     }
 
     // Index
@@ -27,7 +27,7 @@ class Student_upcoming_session extends MY_Site_Controller {
         $this->template->title = "Upcoming Session";
         $data = $this->appointment_model->get_appointment_for_upcoming_session('student_id');
         $data_class = $this->class_member_model->get_appointment_for_upcoming_session();
-        
+
         $upcoming = array();
         if ($data) {
             foreach ($data as $d) {
@@ -42,7 +42,7 @@ class Student_upcoming_session extends MY_Site_Controller {
                 $d->date = date('Y-m-d', $data_schedule['date']);
                 $d->start_time = $data_schedule['start_time'];
                 $d->end_time = $data_schedule['end_time'];
-                
+
             }
         }
 
@@ -74,11 +74,11 @@ class Student_upcoming_session extends MY_Site_Controller {
         $this->template->content->view('default/contents/student/upcoming_session/index', $vars);
         $this->template->publish();
     }
-    
+
     public function coach_detail($coach_id = '') {
         redirect('student/session/coach_detail/'.$coach_id);
     }
-    
+
     // public function one_to_one_session($student_id='', $page='') {
     //     $this->template->title = "Upcoming Session";
     //     $offset = 0;
@@ -132,7 +132,7 @@ class Student_upcoming_session extends MY_Site_Controller {
                     $data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($student_id)[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);
                     }
 
-                //$data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($spr_id)[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);    
+                //$data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($spr_id)[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);
                 $d->date = date('Y-m-d', $data_schedule['date']);
                 $d->start_time = $data_schedule['start_time'];
                 $d->end_time = $data_schedule['end_time'];
@@ -184,12 +184,12 @@ class Student_upcoming_session extends MY_Site_Controller {
 
     // public function search($session = '', $student_id='',  $page='') {
     //     $this->template->title = 'Coach Session';
-        
+
     //     if($this->input->post('date_from') && $this->input->post('date_to')){
     //         $this->session->set_userdata('date_from', $this->input->post('date_from'));
     //         $this->session->set_userdata('date_to', $this->input->post('date_to'));
     //     }
-        
+
     //     $rules = array(
     //         array('field'=>'date_from', 'label' => 'Date From', 'rules'=>'trim|required|xss_clean'),
     //         array('field'=>'date_to', 'label' => 'Date To', 'rules'=>'trim|required|xss_clean')
@@ -199,17 +199,17 @@ class Student_upcoming_session extends MY_Site_Controller {
     //         $this->messages->add(validation_errors(), 'warning');
     //         redirect('student_partner/student_upcoming_session/'.$session.'_session/'.@$student_id);
     //     }
-        
+
     //     $date_from = ($this->input->post('date_from') ? $this->input->post('date_from') : $this->session->userdata('date_from'));
     //     $date_to = ($this->input->post('date_to') ? $this->input->post('date_to') : $this->session->userdata('date_to'));
     //     if(!$date_from && !$date_to){
     //         redirect('student_partner/student_upcoming_session/'.$session.'_session/'.@$student_id);
     //     }
-        
+
     //     $offset = 0;
     //     $per_page = 5;
     //     $uri_segment = 5;
- 
+
     //     if ($session == 'one_to_one') {
     //         $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/student_upcoming_session/search/one_to_one/'.@$student_id), count($this->appointment_model->get_appointment_for_upcoming_session('student_id', $date_from, $date_to, $student_id)), $per_page, $uri_segment);
     //         $data = $this->appointment_model->get_appointment_for_upcoming_session('student_id', $date_from, $date_to, $student_id, $per_page, $offset);
@@ -233,7 +233,7 @@ class Student_upcoming_session extends MY_Site_Controller {
     //             }
     //         }
     //     }
-        
+
     //     $vars = array(
     //         'title' => 'Upcoming Session',
     //         'role' => 'Student',
@@ -256,7 +256,7 @@ class Student_upcoming_session extends MY_Site_Controller {
             $this->session->set_userdata('date_from', $this->input->post('date_from'));
             $this->session->set_userdata('date_to', $this->input->post('date_to'));
         }
-        
+
         $rules = array(
             array('field'=>'date_from', 'label' => 'Date From', 'rules'=>'trim|required|xss_clean'),
             array('field'=>'date_to', 'label' => 'Date To', 'rules'=>'trim|required|xss_clean')
@@ -268,17 +268,17 @@ if(($this->input->post('__submit')))
             redirect('student_partner/student_upcoming_session/'.$session.'_session/'.@$student_id);
         }
     }
-        
+
         $date_from = ($this->input->post('date_from') ? $this->input->post('date_from') : $this->session->userdata('date_from'));
         $date_to = ($this->input->post('date_to') ? $this->input->post('date_to') : $this->session->userdata('date_to'));
         if(!$date_from && !$date_to){
             redirect('student_partner/student_upcoming_session/'.$session.'_session/'.@$student_id);
         }
-        
+
         $offset = 0;
         $per_page = 5;
         $uri_segment = 6;
- 
+
         if ($session == 'one_to_one') {
             $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/student_upcoming_session/search/one_to_one/'.@$student_id), count($this->appointment_model->get_appointment_for_upcoming_session('student_id', $date_from, $date_to, $student_id)), $per_page, $uri_segment);
             $data = $this->appointment_model->get_appointment_for_upcoming_session('student_id', $date_from, $date_to, $student_id, $per_page, $offset);
@@ -297,8 +297,8 @@ if(($this->input->post('__submit')))
                     }else{
                     $data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($student_id)[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);
                     }
-                
-                //$data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($spr_id)[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);    
+
+                //$data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($spr_id)[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);
                 $d->date = date('Y-m-d', $data_schedule['date']);
                 $d->start_time = $data_schedule['start_time'];
                 $d->end_time = $data_schedule['end_time'];
@@ -316,7 +316,7 @@ if(($this->input->post('__submit')))
                 }
             }
         }
-        
+
         $vars = array(
             'title' => 'Upcoming Session',
             'role' => 'Student',
@@ -336,5 +336,5 @@ if(($this->input->post('__submit')))
         //$this->template->content->view('default/contents/student_partner/student_upcoming_session/' . (($session == 'one_to_one') ? 'one_to_one_session' : 'class_session'), $vars);
         $this->template->publish();
     }
-    
+
 }

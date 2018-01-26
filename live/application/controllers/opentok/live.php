@@ -317,7 +317,7 @@ class Live extends MY_Site_Controller {
               ->where('appointments.id', $appoint_id)
               ->get()->result();
 
-          if($check_sess_type[0]->app_type == 1){
+          if(@$check_sess_type[0]->app_type == 1){
             // exit('a');
             $sessioninge = $this->db->select('*')
                         ->from('appointments')
@@ -454,7 +454,7 @@ class Live extends MY_Site_Controller {
                           ->get()->result();
 
           $b2c_id = $b2c_checkpull[0]->login_type;
-          // echo "<pre>";print_r($b2c_id);exit();
+          // echo "<pre>";print_r($livesession);exit();
           //check if student is b2c or b2i
 
           $this->template->content->view('contents/opentok/coach/session_agora_b2c', $livesession);
@@ -521,7 +521,7 @@ class Live extends MY_Site_Controller {
                     $max_buletan_student = sizeof(@$gsp->data->study->mastery_tests);
 
                     for($l=0;$l<$max_buletan_student;$l++){
-                      $mt_color['mt'.$k] = @$mt_status_to_colour[@$gsp->data->coach->sessions[$l]->status];
+                      $mt_color['mt'.$k] = @$mt_status_to_colour[@$gsp->data->study->mastery_tests[$l]->status];
                       $k++;
                     }
 
@@ -622,10 +622,11 @@ class Live extends MY_Site_Controller {
                     $max_buletan_student = sizeof(@$gsp->data->study->mastery_tests);
 
                     for($l=0;$l<$max_buletan_student;$l++){
-                      $mt_color['mt'.$k] = @$mt_status_to_colour[@$gsp->data->coach->sessions[$l]->status];
+                      $mt_color['mt'.$k] = @$mt_status_to_colour[@$gsp->data->study->mastery_tests[$l]->status];
                       $k++;
                     }
 
+                    // echo "<pre>";print_r($mt_color);exit();
                     $coach_status_color = array(
                       "passed" => "bg-green-gradient",
                       "open" => "bg-white-gradient",
@@ -708,7 +709,7 @@ class Live extends MY_Site_Controller {
                                 ->get()->result();
 
                 $b2c_id = $b2c_checkpull[0]->login_type;
-                // echo "<pre>";print_r($b2c_id);exit();
+                // echo "<pre>";print_r($livesession);exit();
                 //check if student is b2c or b2i
                 if($b2c_id == 0){
                   $this->template->content->view('contents/opentok/coach/session', $livesession);
