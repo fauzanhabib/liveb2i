@@ -499,7 +499,7 @@
 
 <script>
     $('.multiple-select').select2({
-         placeholder: "Student Group Lists"
+         placeholder: "Coach Group Lists"
     });
     $(".multiple-select").on('change',function(){
         document.getElementById('subgrouplist').value = $(".multiple-select").val();
