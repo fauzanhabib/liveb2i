@@ -591,11 +591,11 @@ class find_coaches extends MY_Site_Controller {
             $usertime2_coach = $et_coach+(60*$minutes_coach)-(5*60);
             $end_hour_coach = date("H:i", $usertime2_coach);
 
-            $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
-            if(!$check_max_book_coach_per_day){
-                $this->messages->add('This coach has exceeded maximum booked today', 'warning');
-                redirect('student/find_coaches/search/name/');
-            }
+            // $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
+            // if(!$check_max_book_coach_per_day){
+            //     $this->messages->add('This coach has exceeded maximum booked today', 'warning');
+            //     redirect('student/find_coaches/search/name/');
+            // }
 
 
                 $isValid = $this->isAvailable($coach_id, $date, $start_time, $end_time);
@@ -1000,11 +1000,11 @@ class find_coaches extends MY_Site_Controller {
         $start_time = $convert['start_time'];
         $end_time = $convert['end_time'];
 
-        $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
-        if(!$check_max_book_coach_per_day){
-            $this->messages->add('This coach has exceeded maximum booked today', 'warning');
-            redirect('student/find_coaches/book_by_multiple_date_index/' . $index);
-        }
+        // $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
+        // if(!$check_max_book_coach_per_day){
+        //     $this->messages->add('This coach has exceeded maximum booked today', 'warning');
+        //     redirect('student/find_coaches/book_by_multiple_date_index/' . $index);
+        // }
         
         //echo('<pre>');print_r($convert);
         //echo(date('Y-m-d', $convert['date'])); exit;
@@ -2205,11 +2205,11 @@ class find_coaches extends MY_Site_Controller {
                     $usertime2_coach = $et_coach+(60*$minutes_coach)-(5*60);
                     $end_hour_coach = date("H:i", $usertime2_coach);
 
-        $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
-        if(!$check_max_book_coach_per_day){
-            $this->messages->add('This coach has exceeded maximum booked today', 'warning');
-            redirect('student/find_coaches/search/name/');
-        }
+        // $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
+        // if(!$check_max_book_coach_per_day){
+        //     $this->messages->add('This coach has exceeded maximum booked today', 'warning');
+        //     redirect('student/find_coaches/search/name/');
+        // }
 
         //print_r(date('Y-m-d', $date)); exit;
         
@@ -2303,8 +2303,8 @@ class find_coaches extends MY_Site_Controller {
                         $student_gmt = $gmt_student[0]->gmt;
                         $coach_gmt = $gmt_coach[0]->gmt;
 
-                        // $this->send_email->student_book_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour, $end_hour, $dateconvert, 'booked', $student_gmt);
-                        // $this->send_email->notif_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour_coach, $end_hour_coach, $new_date_for_coach, 'booked', $coach_gmt);
+                        $this->send_email->student_book_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour, $end_hour, $dateconvert, 'booked', $student_gmt);
+                        $this->send_email->notif_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour_coach, $end_hour_coach, $new_date_for_coach, 'booked', $coach_gmt);
                         
                         
                         $this->messages->add($message, 'success');
