@@ -98,9 +98,9 @@ class manage_appointments extends MY_Site_Controller {
        // get other coach
         $offset = 0;
         $per_page = 6;
-        $uri_segment = 5;
+        $uri_segment = 6;
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student/manage_appointments/new_reschedule/'.$appointment_id."/"), count($this->identity_model->get_coach_identity(null)), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student/manage_appointments/reschedule/'.$appointment_id."/".$coach_id."/"), count($this->identity_model->get_coach_identity(null)), $per_page, $uri_segment);
         $coaches = $this->identity_model->get_coach_identity(null, null, null, null, null, null, null, $per_page, $offset);
 
         $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
