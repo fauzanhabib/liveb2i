@@ -79,6 +79,19 @@ class manage_appointments extends MY_Site_Controller {
         $student_id_ = $appointment_data->student_id;
         $old_coach_id = $appointment_data->coach_id;  
         $date = $appointment_data->date;  
+        $get_start_time = $appointment_data->start_time;
+
+        $gmt_student = $this->identity_model->new_get_gmt($student_id_);
+        
+        // student
+        $minutes = $gmt_student[0]->minutes;
+        // coach
+
+        @date_default_timezone_set('UTC');
+        // student
+        $st  = strtotime($get_start_time);
+        $usertime1 = $st+(60*$minutes);
+        $start_time = date("H:i", $usertime1);
 
         $week_date = $this->x_week_range($date);
  
@@ -107,6 +120,7 @@ class manage_appointments extends MY_Site_Controller {
             'old_coach_id' => $old_coach_id,
             'end_date' => $week_date[1],
             'start_date' => $date, 
+            'start_time' => $start_time
         );
        // echo('<pre>');
        // print_r($vars); exit;
@@ -116,7 +130,7 @@ class manage_appointments extends MY_Site_Controller {
        $this->template->publish();
     }
 
-    public function availability($search_by = '', $coach_id = '', $date_ = '') {
+    public function availability($search_by = '', $coach_id = '', $date_ = '', $start_hour_ = '') {
         $this->template->title = 'Availability';
         
         if (!$date_ || !$coach_id) {
@@ -330,6 +344,7 @@ class manage_appointments extends MY_Site_Controller {
             'date' => $date_parameter,
             'date_title' => strtotime($date_),
             'search_by' => $search_by,
+            'start_hour_' => $start_hour_,
             'cost' => $this->coach_token_cost_model->select('token_for_student')->where('coach_id', $coach_id)->get()
         );
         // echo "<pre>";
@@ -1936,7 +1951,7 @@ class manage_appointments extends MY_Site_Controller {
                 </header>
                 <body>
                 <bodyContent xsi:type=\"java:com.webex.service.binding.meeting.CreateMeeting\"
-                    xmlns:meet=\"http://www.webex.com/schemas/2002/06/service/meeting\">	
+                    xmlns:meet=\"http://www.webex.com/schemas/2002/06/service/meeting\">    
                     <accessControl>
                         <meetingPassword>{$password}</meetingPassword>
                     </accessControl>
