@@ -31,7 +31,7 @@
                         }
 
                     for($i=0;$i<count($coaches);$i++){
-                        if($coaches[$i]->id != $old_coach_id){
+                        // if($coaches[$i]->id != $old_coach_id){
 
                     ?>
                     <div class="grids list-people pure-u-1 pure-u-sm-24-24 pure-u-md-12-24 pure-u-lg-8-24 list">
@@ -118,7 +118,9 @@
                         </div>
                         <!-- ======== -->
                     </div>
-                    <?php } }?>
+                    <?php } 
+                // }
+                ?>
                     <div class="height-200"></div>
                     <?php echo @$pagination?>
                 </div>
@@ -180,9 +182,9 @@
 
         $(".date_available").on('change', function() {
             //alert(this.name);
-            var loadUrl = "<?php echo site_url('student/manage_appointments/availability/name'); ?>"+ "/" +this.name+ "/" +$(this).val();
+            var loadUrl = "<?php echo site_url('student/manage_appointments/availability/name'); ?>"+ "/" +this.name+ "/" +$(this).val()+"/<?php echo $start_time;?>";
             var m = $('[id^=result_]').html($('[id^=result_]').val());
-            //alert(loadUrl);
+            alert(loadUrl);
             if($(this).val() != ''){
                 $("#schedule-loading").show();
                 $(".txt").hide();

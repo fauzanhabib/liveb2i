@@ -148,13 +148,22 @@ if (!@$availability) {
                     @date_default_timezone_set('Etc/GMT+0');
                     ?>
                     <tr>
-                        <td class="text-center"><?php echo(date('H:i',strtotime(@$availability[$i]['start_time']))); ?></td>
+                        <?php 
+                            $x =(date('H:i',strtotime(@$availability[$i]['start_time']))); 
+
+                            if($x > $start_hour_){ ?>
+
+                        <td class="text-center"><?php echo $x; ?></td>
+                        
                         <td class="text-center"><?php echo $endtime; ?></td>
+
                         <td>
                         <?php if(($this->auth_manager->role() != "PRT") && ($this->auth_manager->role() != 'ADM') && ($this->auth_manager->role() != 'RAD')){ ?>
                             <a href="<?php echo site_url('student/manage_appointments/summary_book/'.$search_by.'/' . $coach_id . '/' . strtotime(@$adate) . '/' . @$availability[$i]['start_time'] . '/' . @$availability[$i]['end_time']); ?>" class="pure-button btn-small btn-white">Book</a>
                         <?php } ?>
                         </td>
+                        <?php }
+                        ?>
                     </tr>
                 <?php } //penutup dari if adate <= $bdate
             }
