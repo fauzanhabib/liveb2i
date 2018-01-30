@@ -184,7 +184,7 @@
             //alert(this.name);
             var loadUrl = "<?php echo site_url('student/manage_appointments/availability/name'); ?>"+ "/" +this.name+ "/" +$(this).val()+"/<?php echo $start_time;?>";
             var m = $('[id^=result_]').html($('[id^=result_]').val());
-            alert(loadUrl);
+            // alert(loadUrl);
             if($(this).val() != ''){
                 $("#schedule-loading").show();
                 $(".txt").hide();
