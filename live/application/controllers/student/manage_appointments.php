@@ -481,12 +481,12 @@ class manage_appointments extends MY_Site_Controller {
                     $end_hour_coach = date("H:i", $usertime2_coach);
 
 
-        $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
-        if(!$check_max_book_coach_per_day){
-            $this->messages->add('This coach has exceeded maximum booked today', 'warning');
-            redirect('student/manage_appointments/reschedule/'.$appointment_id_old.'/'.$old_coach);
+        // $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
+        // if(!$check_max_book_coach_per_day){
+        //     $this->messages->add('This coach has exceeded maximum booked today', 'warning');
+        //     redirect('student/manage_appointments/reschedule/'.$appointment_id_old.'/'.$old_coach);
             
-        }
+        // }
 
         //print_r(date('Y-m-d', $date)); exit;
         
