@@ -1455,8 +1455,8 @@ class adding extends MY_Site_Controller {
     }
 
     private function isValidDynedProID($email = '') {
-        if ($this->user_profile_model->where('dyned_pro_id', $email)->get_all()) {
-            return false;
+        // if ($this->user_profile_model->where('dyned_pro_id', $email)->get_all()) {
+            return true;
         } else {
             return true;
         }
@@ -1934,8 +1934,8 @@ class adding extends MY_Site_Controller {
  
         $sql = $this->db->select('dyned_pro_id,server_dyned_pro')->from('user_profiles')->where('dyned_pro_id',$email)->get()->result();
         if($sql){
-            $this->form_validation->set_message('check_email_pro_id', $email.' has been registered, use another DynEd Pro ID');
-            return false;
+            // $this->form_validation->set_message('check_email_pro_id', $email.' has been registered, use another DynEd Pro ID');
+            return true;
         } else {
             return true;
         }

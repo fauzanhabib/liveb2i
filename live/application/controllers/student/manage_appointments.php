@@ -427,6 +427,10 @@ class manage_appointments extends MY_Site_Controller {
     public function booking($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '', $token) {
 
         $appointment_id_old = $this->session->userdata('appointment_id');
+        // get_old_coach
+        $old_coach = $this->db->select('coach_id')->from('appointments')->where('id',$appointment_id_old)->get()->result();
+        $old_coach = $old_coach[0]->coach_id;
+       
         // exit($appointment_id_old);
 
         $start_time_available = $start_time_;
@@ -480,7 +484,7 @@ class manage_appointments extends MY_Site_Controller {
         $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
         if(!$check_max_book_coach_per_day){
             $this->messages->add('This coach has exceeded maximum booked today', 'warning');
-            redirect('student/manage_appointments/new_reschedule/'.$appointment_id_old);
+            redirect('student/manage_appointments/reschedule/'.$appointment_id_old.'/'.$old_coach);
             
         }
 
@@ -498,7 +502,7 @@ class manage_appointments extends MY_Site_Controller {
                     //exit;
                 } else {
                     $this->messages->add('Invalid Time', 'warning');
-                    redirect('student/manage_appointments/new_reschedule/'.$appointment_id_old);
+                    redirect('student/manage_appointments/reschedule/'.$appointment_id_old.'/'.$old_coach);
                 }
                 // begin the transaction to ensure all data created or modified structural
  
@@ -509,16 +513,16 @@ class manage_appointments extends MY_Site_Controller {
                 
                 if ($this->db->trans_status() === true && $remain_token >= 0){
                     
-                    redirect('student/manage_appointments/reschedule_booking/'.$appointment_id_old."/".$coach_id."/". $dateconvert."/". $start_hour."/". $end_hour);
+                    redirect('student/manage_appointments/reschedule_booking/'.$appointment_id_old.'/'.$old_coach."/".$coach_id."/". $dateconvert."/". $start_hour."/". $end_hour);
                 } else {
                     $this->db->trans_rollback();
                     $this->messages->add('Not Enough Token', 'warning');
-                    redirect('student/manage_appointments/new_reschedule/'.$appointment_id_old);
+                    redirect('student/manage_appointments/reschedule/'.$appointment_id_old.'/'.$old_coach);
                 }
             } else {
                 $this->db->trans_rollback();
                 $this->messages->add('Invalid Appointment', 'warning');
-                redirect('student/manage_appointments/new_reschedule/'.$appointment_id_old);
+                redirect('student/manage_appointments/reschedule/'.$appointment_id_old.'/'.$old_coach);
             }
 
 
@@ -530,7 +534,7 @@ class manage_appointments extends MY_Site_Controller {
             // We must rollback the transaction
             $this->db->trans_rollback();
             $this->messages->add('An error has occured, please try again.', 'warning');
-            redirect('student/manage_appointments/new_reschedule/'.$appointment_id_old);
+            redirect('student/manage_appointments/reschedule/'.$appointment_id_old.'/'.$old_coach);
         }
     }
 
