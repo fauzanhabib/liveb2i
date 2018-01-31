@@ -82,7 +82,7 @@ class manage_appointments extends MY_Site_Controller {
         $get_start_time = $appointment_data->start_time;
 
         $gmt_student = $this->identity_model->new_get_gmt($student_id_);
-        
+            
         // student
         $minutes = $gmt_student[0]->minutes;
         // coach
@@ -100,8 +100,17 @@ class manage_appointments extends MY_Site_Controller {
         $per_page = 6;
         $uri_segment = 6;
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student/manage_appointments/reschedule/'.$appointment_id."/".$coach_id."/"), count($this->identity_model->get_coach_identity(null)), $per_page, $uri_segment);
-        $coaches = $this->identity_model->get_coach_identity(null, null, null, null, null, null, null, $per_page, $offset);
+        $coach_type = $this->db->select('coach_type_id')->from('user_profiles')->where('user_id',$old_coach_id)->get()->result();
+        $coach_type = $coach_type[0]->coach_type_id;
+
+        
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student/manage_appointments/reschedule/'.$appointment_id."/".$coach_id."/"), count($this->identity_model->get_coach_identity_reschedule(null, null, null, null, null, null, null,$coach_type)), $per_page, $uri_segment);
+        $coaches = $this->identity_model->get_coach_identity_reschedule(null, null, null, null, null, null, null,$coach_type, $per_page, $offset);
+        
+        // echo "<pre>";
+        // print_r($coaches);
+        // exit();
+
 
         $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
 
@@ -120,7 +129,8 @@ class manage_appointments extends MY_Site_Controller {
             'old_coach_id' => $old_coach_id,
             'end_date' => $week_date[1],
             'start_date' => $date, 
-            'start_time' => $start_time
+            'start_time' => $start_time,
+            'coach_type' => $coach_type,
         );
        // echo('<pre>');
        // print_r($vars); exit;
@@ -417,7 +427,7 @@ class manage_appointments extends MY_Site_Controller {
     public function booking($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '', $token) {
 
         $appointment_id_old = $this->session->userdata('appointment_id');
-    
+        // exit($appointment_id_old);
 
         $start_time_available = $start_time_;
         $end_time_available = $end_time_;
@@ -492,10 +502,10 @@ class manage_appointments extends MY_Site_Controller {
                 }
                 // begin the transaction to ensure all data created or modified structural
  
-                 $token_cost = $token;
+                 // $token_cost = $token;
 
 
-                $remain_token = $this->update_token($token_cost);
+                // $remain_token = $this->update_token($token_cost);
                 
                 if ($this->db->trans_status() === true && $remain_token >= 0){
                     
@@ -1392,16 +1402,16 @@ class manage_appointments extends MY_Site_Controller {
         // $update_appointment = $this->db->where('id',$appointment_id)->update('appointments',$appointment_update);
         // print_r($update_appointment);
         // exit();
-        if (!$update_appointment) {
+        // if (!$update_appointment) {
             // $this->db->trans_rollback();
             
             // $this->messages->add('Invalid Action', 'danger');
             // redirect('student/upcoming_session');
-        } else {
+        // } else {
             // if student reschedule the session 2 days/ 48 hours before the sessioin start, student will get the token back 100%
             // $student_token_data = $this->identity_model->get_identity('token')->where('user_id', $this->auth_manager->userid())->get();
-            $coach_token_cost = $this->coach_token_cost_model->select('id, token_for_student')->where('coach_id', $appointment_data->coach_id)->get();
-            $time_left_before_session = $this->time_reminder_before_session($appointment_data->date . ' ' . $appointment_data->start_time, (2 * 24 * 60 * 60));
+//coach_token_cost = $this->coach_token_cost_model->select('id, token_for_student')->where('coach_id', $appointment_data->coach_id)->get();
+//$time_left_before_session = $this->time_reminder_before_session($appointment_data->date . ' ' . $appointment_data->start_time, (2 * 24 * 60 * 60));
 
             // if ($time_left_before_session > 0) {
             //     $student_token = $student_token_data->token_amount + $coach_token_cost->token_for_student;
@@ -1430,7 +1440,7 @@ class manage_appointments extends MY_Site_Controller {
             //         return;
             //     }
             // }
-        }
+        // }
 
         // exit('hos');
         $day = strtolower(date('l', $date));

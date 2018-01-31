@@ -31,6 +31,7 @@
                         }
 
                     for($i=0;$i<count($coaches);$i++){
+                        if($coach_type == $coaches[$i]->coach_type_id){
                         // if($coaches[$i]->id != $old_coach_id){
 
                     ?>
@@ -118,7 +119,8 @@
                         </div>
                         <!-- ======== -->
                     </div>
-                    <?php } 
+                    <?php }
+                    } 
                 // }
                 ?>
                     <div class="height-200"></div>
