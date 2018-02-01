@@ -432,6 +432,7 @@ class manage_appointments extends MY_Site_Controller {
         $old_coach = $old_coach[0]->coach_id;
        
         // exit($appointment_id_old);
+        
 
         $start_time_available = $start_time_;
         $end_time_available = $end_time_;
@@ -494,6 +495,7 @@ class manage_appointments extends MY_Site_Controller {
             // First of all, let's begin a transaction
             // A set of queries; if one fails, an exception should be thrown
             $isValid = $this->isAvailable($coach_id, $date, $start_time, $end_time);
+            // exit($isValid);
             if ($isValid) {
                 $availability = $this->isOnAvailability($coach_id, date('Y-m-d', $date_));
 
@@ -511,9 +513,9 @@ class manage_appointments extends MY_Site_Controller {
 
                 // $remain_token = $this->update_token($token_cost);
                 
-                if ($this->db->trans_status() === true && $remain_token >= 0){
+                if ($this->db->trans_status() === true){
                     
-                    redirect('student/manage_appointments/reschedule_booking/'.$appointment_id_old.'/'.$old_coach."/".$coach_id."/". $dateconvert."/". $start_hour."/". $end_hour);
+                    redirect('student/manage_appointments/reschedule_booking/'.$appointment_id_old."/".$coach_id."/". $dateconvert."/". $start_hour."/". $end_hour);
                 } else {
                     $this->db->trans_rollback();
                     $this->messages->add('Not Enough Token', 'warning');
@@ -538,7 +540,7 @@ class manage_appointments extends MY_Site_Controller {
         }
     }
 
-    private function isAvailable($coach_id = '', $date = '', $start_time = '', $end_time = '') {
+       private function isAvailable($coach_id = '', $date = '', $start_time = '', $end_time = '') {
         //getting the day of $date
         $day = strtolower(date('l', $date));
         $schedule_data = $this->schedule_model->select('id, user_id, day, start_time, end_time, dcrea, dupd')->where('user_id', $coach_id)->where('day', $day)->order_by('id', 'asc')->get();
@@ -556,7 +558,8 @@ class manage_appointments extends MY_Site_Controller {
         
         // partner setting about student appointment
         // $setting = $this->partner_setting_model->get();
-        $partner_id = $this->auth_manager->partner_id($coach_id);
+        $student_id = $this->auth_manager->userid();
+        $partner_id = $this->auth_manager->partner_id($student_id);
         
         // check apakah status setting region allow atau disallow
         $region_id = $this->auth_manager->region_id($partner_id);
@@ -574,15 +577,38 @@ class manage_appointments extends MY_Site_Controller {
             $max_session_per_day = $get_setting[0]->max_session_per_day;
             $max_day_per_week = $get_setting[0]->max_day_per_week;
         }
-      
-        $student_id = $this->auth_manager->userid();
+        // $setting = $this->db->select('max_session_per_day, max_day_per_week')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+
+
+      // $appointment_count = count($this->appointment_model->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', date("Y-m-d", $date))->get_all());
+        
         $appointment_count = count($this->appointment_model->where('student_id', $student_id)->where('date', date("Y-m-d", $date))->get_all());
      
+        // print_r($this->get_date_week($date)); exit;
         $appointment_count_week = 0;
         foreach($this->get_date_week($date) as $s){
             $appointment_count_week = $appointment_count_week + count($this->appointment_model->where('student_id', $student_id)->where('date', $s)->get_all());
+            // $appointment_count_week = $appointment_count_week + count($this->appointment_model->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', $s)->get_all());
         }
      
+       //  echo $partner_id." - ".$coach_id." - ".date('Y-m-d',$date);
+       //  echo "<br />";
+       // print_r($appointment_count); 
+       // echo "<br >";
+       // print_r($appointment_count_week); 
+       // echo "<br >";
+       // print_r($setting[0]->max_session_per_day); 
+       // echo "<br >";
+       // print_r($setting[0]->max_day_per_week);
+       // exit;
+//        echo('<pre>');
+//        echo(date('Y-m-d', $date));
+//        echo('<br>');
+//        print_r($start_time);
+//        print_r($end_time);
+//        print_r($schedule); exit;
+
+
         $status1 = 0;
         if ($appointment || $appointment_student || $appointment_class) {
             return false;
@@ -603,11 +629,11 @@ class manage_appointments extends MY_Site_Controller {
                 }
             }
             else{
-                $this->messages->add('Exceeded Max Session Per Day or Week', 'warning');
-                return false; 
+                // $this->messages->add('Exceeded Max Session Per Day or Week', 'warning');
+                // return false; 
                 // diganti tanggal 23 maret 2017
 
-                // return true; 
+                return true; 
             }
         }
     }
@@ -1312,7 +1338,7 @@ class manage_appointments extends MY_Site_Controller {
     }
 
     public function reschedule_booking($appointment_id = '', $coach_id = '', $date = '', $start_time = '', $end_time = '') {
-        
+        // exit($coach_id);
         $get_name_student = $this->db->select('fullname')->from('user_profiles')->where('user_id',$this->auth_manager->userid())->get()->result();
         $get_email_student = $this->db->select('email')->from('users')->where('id',$this->auth_manager->userid())->get()->result();
         $get_name_coach = $this->db->select('fullname')->from('user_profiles')->where('user_id',$coach_id)->get()->result();
