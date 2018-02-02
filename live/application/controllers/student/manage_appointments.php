@@ -105,7 +105,7 @@ class manage_appointments extends MY_Site_Controller {
 
         
         $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student/manage_appointments/reschedule/'.$appointment_id."/".$coach_id."/"), count($this->identity_model->get_coach_identity_reschedule(null, null, null, null, null, null, null,$coach_type)), $per_page, $uri_segment);
-        $coaches = $this->identity_model->get_coach_identity_reschedule(null, null, null, null, null, null, null,$coach_type, $per_page, $offset);
+        $coaches = $this->identity_model->get_coach_identity_reschedule(null, null, null, null, null, null, null, $coach_type, $per_page, $offset);
         
         // echo "<pre>";
         // print_r($coaches);

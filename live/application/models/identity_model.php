@@ -429,6 +429,7 @@ class identity_model extends MY_Model {
         }
         
         $this->db->where('b.id', 2);
+        $this->db->where('c.coach_type_id', $coach_type);
         
         if($id)
             $this->db->where('a.id', $id);
