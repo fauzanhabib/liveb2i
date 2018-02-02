@@ -30,9 +30,9 @@
                         </div>
                     </div>
                     <div class="width100perc" id="multi-book2" style="padding: 10px 15px 0;">
-                        <div class='border-2-primary border-rounded-5' style="padding: 0 6px;">
+                        <div class='border-2-primary border-rounded-5'>
                             <span class='custom-dropdown'>
-                                <select name="type_booking">
+                                <select name="type_booking" style="width:100%;">
                                     <option value="2" selected>2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
@@ -44,7 +44,7 @@
                         <div class="text-right book-date" style="padding: 1px 15px;">
                             <div class="width100perc">
                                 <div class="frm-date">
-                                    <input type="text" name="date" value="" class="dateavailable datepicker frm-date width100perc border-2-primary border-rounded-5 text-left" id="date" data-parsley-no-focus="" required="" readonly="" data-parsley-id="8951" placeholder="Date" data-parsley-required-message="Please click for date." style="padding: 1.02em 0.5em;">
+                                    <input type="text" name="date" value="" class="dateavailable datepicker frm-date width100perc border-2-primary border-rounded-5 text-left" id="date" data-parsley-no-focus="" required="" readonly="" data-parsley-id="8951" placeholder="Date" data-parsley-required-message="Please click for date.">
                                 </div>
                             </div>
                         </div>
