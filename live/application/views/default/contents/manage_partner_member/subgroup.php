@@ -220,7 +220,7 @@
                     </thead>
                     <tbody>
                         
-                        <?php $no = 2; $a=1; foreach ($subgroup as $s) { ?>
+                        <?php $no = 2; $a=$number_page; foreach ($subgroup as $s) { ?>
                         <div class="box-info-list-checkbox grids list-people pure-u-1 pure-u-sm-12-24 pure-u-md-12-24 pure-u-lg-8-24 padding-b-20">
                             <tr>
                             <?php if($this->auth_manager->role() == 'RAD') { ?>
@@ -238,6 +238,7 @@
                 </table>
             </div>
         </div>
+        <?php echo $pagination;?>
         <?php $uri_move = $this->uri->segment(3); 
             if($uri_move == 'move_supplier') {
         ?>
@@ -271,7 +272,7 @@
 </div>
 
 
-<?php echo $pagination;?>
+
 
 
 <script type="text/javascript">

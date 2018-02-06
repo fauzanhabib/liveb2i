@@ -906,15 +906,27 @@ function update_setting($id) {
         }
 
         $offset = 0;
-        $per_page = 6;
+        $per_page = 5;
         $uri_segment = 7;
+
+        $number_page = 0;
+        if($page == ''){
+            $number_page = (1 * $per_page)-$per_page+1;
+            
+        } else {
+            $number_page = ($page * $per_page)-$per_page+1;
+        }
 
 
         $partner = $this->partner_model->select('*')->where('id', $partner_id)->get();
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/manage_partner/list_supplier/'.$type.'/'.$partner_id.'/'.$region_id.'/'), count($this->subgroup_model->select('*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->group_by('subgroup.id')->get_all()), $per_page, $uri_segment);
-        // $subgroup = $this->subgroup_model->select('*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->limit($per_page)->offset($offset)->group_by('subgroup.id')->get_all();
-        $subgroup = $this->subgroup_model->select('subgroup.*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id','left')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->limit($per_page)->offset($offset)->group_by('subgroup.id')->get_all();
+        // $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/manage_partner/list_partner/'.$type.'/'.$partner_id.'/'.$region_id.'/'), count($this->subgroup_model->select('*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->group_by('subgroup.id')->get_all()), $per_page, $uri_segment);
+
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/manage_partner/list_partner/'.$type.'/'.$partner_id.'/'.$region_id.'/'), count($this->subgroup_model->select('*')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->group_by('subgroup.id')->get_all()), $per_page, $uri_segment);
+        
+        // $subgroup = $this->subgroup_model->select('subgroup.*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id','left')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->limit($per_page)->offset($offset)->group_by('subgroup.id')->get_all();
+
+        $subgroup = $this->subgroup_model->select('subgroup.*')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->limit($per_page)->offset($offset)->group_by('subgroup.id')->get_all();
         
         $vars = array(
             'subgroup' => $subgroup,
@@ -923,11 +935,12 @@ function update_setting($id) {
             'partner' => $partner,
             'type' => $type,
             'pagination' => @$pagination,
-            'back' => site_url('superadmin/region/detail/'.$region_id)
+            'back' => site_url('superadmin/region/detail/'.$region_id),
+            'number_page' => $number_page
 
         );
         // echo "<pre>";
-        // print_r($vars);
+        // print_r($subgroup);
         // exit();
 
         // $this->template->content->view('default/contents/manage_partner_member/index', $vars);
