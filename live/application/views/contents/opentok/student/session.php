@@ -723,7 +723,19 @@ window.onclick = function(event) {
 <script type="text/javascript">
   $('#closesessionalert').click(function(){
     $("#sessionalert").hide();
-});
+  });
+</script>
+<script>
+  var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+
+  console.log(isSafari)
+
+  if (isSafari == true) {
+    $('#ajaxcall').height('100vh');
+    
+  } else {
+    $('#ajaxcall').height('auto');
+  }
 </script>
 <script>
 var upgradeTime = '<?php echo $total_sec ?>';
