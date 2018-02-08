@@ -2567,20 +2567,27 @@ class find_coaches extends MY_Site_Controller {
                              ->where('user_id', $this->auth_manager->userid())
                              // ->where('user_id', $coach_id)
                              ->get()->result();
+        
+        $co = @$gmt_coach[0]->gmt*(1);
+        $stu = $gmt_student[0]->gmt*(1);
+        $b = $co - $stu;
 
-        if(@$gmt_coach[0]->gmt == $gmt_student[0]->gmt){
-            $a = 1;
+        // echo $co."()".$stu;
+        // echo "<br >";
+        if($b == 0){
+            $a = 0;
+            $date_ = $date_;
+        } else if($b < 0) {
+            // $a = 1;
+            $date_ = date('Y-m-d',date(strtotime("-1 day", strtotime("$date_"))));
         } else {
-            if(@$gmt_coach[0]->gmt < 0){
-            
-            $a = 1;
-            
-            } else {
-                
-                $a = -1;
-                
-            }
+            // $a = -1;
+            $date_ = date('Y-m-d',date(strtotime("+1 day", strtotime("$date_"))));
         }
+       
+        
+        // echo $date_;
+        // exit();
 
         @date_default_timezone_set('Etc/GMT'.$gmt_coach[0]->gmt*($a));
         
@@ -2590,19 +2597,23 @@ class find_coaches extends MY_Site_Controller {
         $diff=date_diff(date_create($date_),date_create($chek_date));
         $get_sel = $diff->format("%R%a");
 
+        // exit('aa '.$a);
 
+        // if($get_sel < 0){
 
-        if($get_sel < 0){
-            if($a == 1){
-                $date_ = date('Y-m-d',date(strtotime("-1 day", strtotime("$date_"))));
-            } 
-            if($a == -1){
-                $date_ = date('Y-m-d',date(strtotime("+1 day", strtotime("$date_"))));
-            }
-        } else {
-            $date_ = $date_;
-        }
-
+        //     if($a == 1){
+        //         exit('a');
+        //         $date_ = date('Y-m-d',date(strtotime("-1 day", strtotime("$date_"))));
+        //     } 
+        //     if($a == -1){
+        //         exit('b');
+        //         $date_ = date('Y-m-d',date(strtotime("+1 day", strtotime("$date_"))));
+        //         exit($date_);
+        //     }
+        // } else {
+        //     exit('c');
+        //     $date_ = $date_;
+        // }
 
         // $date_ = $chek_date;
 
