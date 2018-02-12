@@ -195,11 +195,11 @@
             <!-- <button type="submit" name="_submit" value="subgroup_delete" class="btn-noborder btn-normal bg-white-fff" onclick="return confirm('Are you sure you want to delete?')"><a href=""><img src="<?php echo base_url('assets/img/iconmonstr-x-mark-7-16.png');?>" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Delete Group</em></a></button> -->
         </div>
         <?php } ?>
-        
+
         <div class="content padding-t-0">
             <div class="box">
                 <?php if($role_link == "superadmin"){?>
-     <!--            <div class="select-all">                             
+     <!--            <div class="select-all">
                     <div class="padding-r-5 m-t-2 left">
                         <input type="checkbox" id="checkbox-1-0" name="Region" value="Region-1" class="regular-checkbox checkAll" /><label class="" for="checkbox-1-0"></label>
                     </div>
@@ -216,30 +216,72 @@
                             <?php } ?>
                             <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">No</th>
                             <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Group</th>
+                            <?php if($this->auth_manager->role() == 'RAD') { ?>
+                              <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Session Type</th>
+                              <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;"></th>
+                            <?php } ?>
                             </tr>
                     </thead>
                     <tbody>
-                        
-                        <?php $no = 2; $a=$number_page; foreach ($subgroup as $s) { ?>
+
+                        <?php $no = 2; $a=1; foreach ($subgroup as $s) { ?>
                         <div class="box-info-list-checkbox grids list-people pure-u-1 pure-u-sm-12-24 pure-u-md-12-24 pure-u-lg-8-24 padding-b-20">
                             <tr>
                             <?php if($this->auth_manager->role() == 'RAD') { ?>
-                            
+
                   <!--               <td class="text-left">
                                     <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $s->id;?>" class="regular-checkbox" /><label for="checkbox-1-<?php echo $no;?>"></label>
                                 </td> -->
                             <?php } ?>
                             <td><?php echo $a; ?></td>
                             <td><a href="<?php echo site_url($role_link.'/manage_partner/member_of_'.$type.'/active/'.$s->id.'/'.$partner_id);?>" class="text-cl-tertiary"><u><?php echo $s->name?></u></a></td>
-                                   
+                            <?php
+                            if($this->auth_manager->role() == 'RAD') {
+                              $check_sess_type = $this->db->select('session_type')
+                                                          ->from('user_profiles')
+                                                          ->where('subgroup_id', $s->id)
+                                                          ->get()->result();
+                              $temp = array();
+                              foreach($check_sess_type as $cs){
+                                if($cs->session_type == '0'){
+                                  $temp[] = $cs->session_type;
+                                }
+                              }
+
+                              // $raw_array = '3';
+                              $raw_array = count($check_sess_type);
+                              if(count($temp) == "0"){
+                              ?>
+                                <td><?php echo 'Agora'; ?></td>
+                                <td><a class="pure-button btn-blue btn-small text-cl-white" href="<?php echo site_url('superadmin/manage_partner/sw_opentok/'.$s->id.'/'.$partner_id.'/'.$region_id); ?>">Switch to Opentok</a></td>
+                              <?php
+                              }else if($raw_array == count($temp)){
+                              ?>
+                                <td><?php echo 'Opentok'; ?></td>
+                                <td><a class="pure-button btn-green btn-small text-cl-white" href="<?php echo site_url('superadmin/manage_partner/sw_agora/'.$s->id.'/'.$partner_id.'/'.$region_id); ?>">Switch to Agora</a></td>
+                              <?php
+                              }else{
+                              ?>
+                                <td><?php echo 'Mixed'; ?><br />(Agora/Opentok)</td>
+                                <td>
+                                  <a class="pure-button btn-green btn-small text-cl-white" href="<?php echo site_url('superadmin/manage_partner/sw_agora/'.$s->id.'/'.$partner_id.'/'.$region_id); ?>">Switch to Agora</a>
+                                  <br />
+                                  <a class="pure-button btn-blue btn-small text-cl-white" href="<?php echo site_url('superadmin/manage_partner/sw_opentok/'.$s->id.'/'.$partner_id.'/'.$region_id); ?>" style="margin-top: 5px;">Switch to Opentok</a>
+                                </td>
+                              <?php
+                              }
+
+                              // echo "<pre>";print_r(count($temp));exit();
+                              // echo "<pre>";print_r(count(array_keys($check_sess_type, '0', true)));exit();
+                            }
+                            ?>
                          </tr>
                         <?php $no++; $a++; } ?>
                     </tbody>
                 </table>
             </div>
         </div>
-        <?php echo $pagination;?>
-        <?php $uri_move = $this->uri->segment(3); 
+        <?php $uri_move = $this->uri->segment(3);
             if($uri_move == 'move_supplier') {
         ?>
 
@@ -267,12 +309,12 @@
         </div>
         <?php } ?>
             </form>
-        </div>  
+        </div>
     </div>
 </div>
 
 
-
+<?php echo $pagination;?>
 
 
 <script type="text/javascript">
@@ -287,7 +329,7 @@ $(document).ready(function(){
             dataType: "html",
             success: function (response) {
                 $('.get_partner').html(response);
-               // console.log(response);             
+               // console.log(response);
 
             },
             error: function(jqXHR, textStatus, errorThrown) {
