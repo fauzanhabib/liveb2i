@@ -17,7 +17,7 @@ $("#reloadajax4").click(function() {
      });
 
 } );
- 
+
 </script>
 <script>
     // Wait until the DOM has loaded before querying the document
@@ -107,7 +107,7 @@ $("#reloadajax4").click(function() {
     <li><a href='#tab1'>Study Data</a></li>
     <li><a href='#tab2'>Academic Plan</a></li>
 </ul>
- 
+
 <div id='tab2' class="w3-animate-opacity" style="height: 461.391px;">
 <?php if($module_extract){?>
     <div class="coaching-info">
@@ -144,7 +144,7 @@ $("#reloadajax4").click(function() {
         if(@$nde){
           $ndecheck = implode($nde);
         }else{ $ndecheck = "";}
-        
+
         if(@$fe){
           $fecheck = implode($fe);
         }else{ $fecheck = "";}
@@ -181,52 +181,52 @@ $("#reloadajax4").click(function() {
           $ebncheck = implode($ebn);
         }else{ $ebncheck = "";}
 
-        ?>  
+        ?>
             <?php if($fecheck != NULL) {?>
             <a href='#tabs-content1' class="square-tabs">
                 <h5 class="m-t-20"><?php echo @$fe['titleFe']; ?></h5>
             </a>
-            <?php } else{} 
+            <?php } else{}
             if($ndecheck != NULL) {?>
             <a href='#tabs-content2' class="square-tabs">
                 <h5 class="m-t-13"><?php echo @$nde['titleNde']; ?></h5>
             </a>
-            <?php } else{} 
+            <?php } else{}
             if($efscheck != NULL) {?>
             <a href='#tabs-content3' class="square-tabs">
                 <h5 class="m-t-13"><?php echo @$efs['titleEfs']; ?></h5>
             </a>
-            <?php } else{} 
+            <?php } else{}
             if($rfscheck != NULL) {?>
             <a href='#tabs-content4' class="square-tabs">
                 <h5 class="m-t-13"><?php echo @$rfs['titleRfs']; ?></h5>
             </a>
-            <?php } else{} 
+            <?php } else{}
             if($dbecheck != NULL) {?>
             <a href='#tabs-content5' class="square-tabs">
                 <h5 class="m-t-5"><?php echo @$dbe['titleDbe']; ?></h5>
             </a>
-            <?php } else{} 
+            <?php } else{}
             if($tlscheck != NULL) {?>
             <a href='#tabs-content6' class="square-tabs">
                 <h5 class="m-t-20"><?php echo @$tls['titleTls']; ?></h5>
             </a>
-            <?php } else{} 
+            <?php } else{}
             if($ebncheck != NULL) {?>
             <a href='#tabs-content7' class="square-tabs">
                 <h5 class="m-t-13"><?php echo @$ebn['titleEbn']; ?></h5>
             </a>
-            <?php } else{} 
+            <?php } else{}
             if($fibcheck != NULL) {?>
             <a href='#tabs-content8' class="square-tabs">
                 <h5 class="m-t-13"><?php echo @$fib['titleFib']; ?></h5>
             </a>
-            <?php } else{} 
+            <?php } else{}
             if($alscheck != NULL) {?>
             <a href='#tabs-content9' class="square-tabs">
                 <h5 class="m-t-20"><?php echo @$als['titleAls']; ?></h5>
             </a>
-            <?php } else{} 
+            <?php } else{}
             if($dlgcheck != NULL) {?>
             <a href='#tabs-content10' class="square-tabs">
                 <h5 class="m-t-20"><?php echo @$dlg['titleDlg']; ?></h5>
@@ -250,15 +250,15 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$fe['pcfe3']; ?>%</font><br>
                     <?php echo @$fe['fe3']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$fe['fe4'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$fe['pcfe4']; ?>%</font><br>
                     <?php echo @$fe['fe4']; ?></h5>
-                
+
             </div>
-        <?php }else{ }?>                  
+        <?php }else{ }?>
         </div>
         <?php } else {} if($ndecheck != NULL) { ?>
         <div id="tabs-content2" class="tabs-c clearfix">
@@ -266,49 +266,49 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$nde['pcnde1']; ?>%</font><br>
                     <?php echo @$nde['nde1']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$nde['nde2'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$nde['pcnde2']; ?>%</font><br>
                     <?php echo @$nde['nde2']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$nde['nde3'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$nde['pcnde3']; ?>%</font><br>
                     <?php echo @$nde['nde3']; ?></h5>
-                
+
             </div>
            <?php }else{ } if(@$nde['nde4'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$nde['pcnde4']; ?>%</font><br>
                     <?php echo @$nde['nde4']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$nde['nde5'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$nde['pcnde5']; ?>%</font><br>
                     <?php echo @$nde['nde5']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$nde['nde6'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$nde['pcnde6']; ?>%</font><br>
                     <?php echo @$nde['nde6']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$nde['nde7'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$nde['pcnde7']; ?>%</font><br>
                     <?php echo @$nde['nde7']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$nde['nde8'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$nde['pcnde8']; ?>%</font><br>
                     <?php echo @$nde['nde8']; ?></h5>
-                
+
             </div>
             <?php }else{ }?>
         </div>
@@ -318,49 +318,49 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs1']; ?>%</font><br>
                     <?php echo @$efs['efs1']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs2'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs2']; ?>%</font><br>
                     <?php echo @$efs['efs2']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs3'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs3']; ?>%</font><br>
                     <?php echo @$efs['efs3']; ?></h5>
-                
+
             </div>
            <?php }else{ } if(@$efs['efs4'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs4']; ?>%</font><br>
                     <?php echo @$efs['efs4']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs5'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs5']; ?>%</font><br>
                     <?php echo @$efs['efs5']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs6'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs6']; ?>%</font><br>
                     <?php echo @$efs['efs6']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs7'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs7']; ?>%</font><br>
                     <?php echo @$efs['efs7']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs8'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs8']; ?>%</font><br>
                     <?php echo @$efs['efs8']; ?></h5>
-                
+
             </div>
             <?php }else{ }?>
 
@@ -368,13 +368,13 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs9']; ?>%</font><br>
                     <?php echo @$efs['efs9']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs10'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcef10']; ?>%</font><br>
                     <?php echo @$efs['efs10']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs11'] != null){ ?>
             <div class="square-tabs bg-forthblue">
@@ -385,55 +385,55 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs12']; ?>%</font><br>
                     <?php echo @$efs['efs12']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs13'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs13']; ?>%</font><br>
                     <?php echo @$efs['efs13']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs14'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs14']; ?>%</font><br>
                     <?php echo @$efs['efs14']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs15'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs15']; ?>%</font><br>
                     <?php echo @$efs['efs15']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs16'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs16']; ?>%</font><br>
                     <?php echo @$efs['efs16']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs17'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs17']; ?>%</font><br>
                     <?php echo @$efs['efs17']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs18'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs18']; ?>%</font><br>
                     <?php echo @$efs['efs18']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs19'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs19']; ?>%</font><br>
                     <?php echo @$efs['efs19']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$efs['efs20'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$efs['pcefs20']; ?>%</font><br>
                     <?php echo @$efs['efs20']; ?></h5>
-                
+
             </div>
             <?php }else{ }?>
         </div>
@@ -443,49 +443,49 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs1']; ?>%</font><br>
                     <?php echo @$rfs['rfs1']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs2'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs2']; ?>%</font><br>
                     <?php echo @$rfs['rfs2']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs3'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs3']; ?>%</font><br>
                     <?php echo @$rfs['rfs3']; ?></h5>
-                
+
             </div>
            <?php }else{ } if(@$rfs['rfs4'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs4']; ?>%</font><br>
                     <?php echo @$rfs['rfs4']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs5'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs5']; ?>%</font><br>
                     <?php echo @$rfs['rfs5']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs6'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs6']; ?>%</font><br>
                     <?php echo @$rfs['rfs6']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs7'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs7']; ?>%</font><br>
                     <?php echo @$rfs['rfs7']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs8'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs8']; ?>%</font><br>
                     <?php echo @$rfs['rfs8']; ?></h5>
-                
+
             </div>
             <?php }else{ }?>
 
@@ -493,73 +493,73 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs9']; ?>%</font><br>
                     <?php echo @$rfs['rfs9']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs10'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcef10']; ?>%</font><br>
                     <?php echo @$rfs['rfs10']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs11'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs11']; ?>%</font><br>
                     <?php echo @$rfs['rfs11']; ?></h5>
-                
+
             </div>
            <?php }else{ } if(@$rfs['rfs12'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs12']; ?>%</font><br>
                     <?php echo @$rfs['rfs12']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs13'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs13']; ?>%</font><br>
                     <?php echo @$rfs['rfs13']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs14'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs14']; ?>%</font><br>
                     <?php echo @$rfs['rfs14']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs15'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs15']; ?>%</font><br>
                     <?php echo @$rfs['rfs15']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs16'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs16']; ?>%</font><br>
                     <?php echo @$rfs['rfs16']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs17'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs17']; ?>%</font><br>
                     <?php echo @$rfs['rfs17']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs18'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs18']; ?>%</font><br>
                     <?php echo @$rfs['rfs18']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs19'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs19']; ?>%</font><br>
                     <?php echo @$rfs['rfs19']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$rfs['rfs20'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$rfs['pcrfs20']; ?>%</font><br>
                     <?php echo @$rfs['rfs20']; ?></h5>
-                
+
             </div>
             <?php }else{ }?>
         </div>
@@ -569,37 +569,37 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$dbe['pcdbe1']; ?>%</font><br>
                     <?php echo @$dbe['dbe1']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$dbe['dbe2'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$dbe['pcdbe2']; ?>%</font><br>
                     <?php echo @$dbe['dbe2']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$dbe['dbe3'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$dbe['pcdbe3']; ?>%</font><br>
                     <?php echo @$dbe['dbe3']; ?></h5>
-                
+
             </div>
            <?php }else{ } if(@$dbe['dbe4'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$dbe['pcdbe4']; ?>%</font><br>
                     <?php echo @$dbe['dbe4']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$dbe['dbe5'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$dbe['pcdbe5']; ?>%</font><br>
                     <?php echo @$dbe['dbe5']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$dbe['dbe6'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$dbe['pcdbe6']; ?>%</font><br>
                     <?php echo @$dbe['dbe6']; ?></h5>
-                
+
             </div>
             <?php }else{ }?>
         </div>
@@ -609,61 +609,61 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$tls['pctls1']; ?>%</font><br>
                     <?php echo @$tls['tls1']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$tls['tls2'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$tls['pctls2']; ?>%</font><br>
                     <?php echo @$tls['tls2']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$tls['tls3'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$tls['pctls3']; ?>%</font><br>
                     <?php echo @$tls['tls3']; ?></h5>
-                
+
             </div>
            <?php }else{ } if(@$tls['tls4'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$tls['pctls4']; ?>%</font><br>
                     <?php echo @$tls['tls4']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$tls['tls5'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$tls['pctls5']; ?>%</font><br>
                     <?php echo @$tls['tls5']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$tls['tls6'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$tls['pctls6']; ?>%</font><br>
                     <?php echo @$tls['tls6']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$tls['tls7'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$tls['pctls7']; ?>%</font><br>
                     <?php echo @$tls['tls7']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$tls['tls8'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$tls['pctls8']; ?>%</font><br>
                     <?php echo @$tls['tls8']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$tls['tls9'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$tls['pctls9']; ?>%</font><br>
                     <?php echo @$tls['tls9']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$tls['tls10'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$tls['pctls10']; ?>%</font><br>
                     <?php echo @$tls['tls10']; ?></h5>
-                
+
             </div>
             <?php }else{ } ?>
         </div>
@@ -673,43 +673,43 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$ebn['pcebn1']; ?>%</font><br>
                     <?php echo @$ebn['ebn1']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$ebn['ebn2'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$ebn['pcebn2']; ?>%</font><br>
                     <?php echo @$ebn['ebn2']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$ebn['ebn3'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$ebn['pcebn3']; ?>%</font><br>
                     <?php echo @$ebn['ebn3']; ?></h5>
-                
+
             </div>
            <?php }else{ } if(@$ebn['ebn4'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$ebn['pcebn4']; ?>%</font><br>
                     <?php echo @$ebn['ebn4']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$ebn['ebn5'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$ebn['pcebn5']; ?>%</font><br>
                     <?php echo @$ebn['ebn5']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$ebn['ebn6'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$ebn['pcebn6']; ?>%</font><br>
                     <?php echo @$ebn['ebn6']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$ebn['ebn7'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$ebn['pcebn7']; ?>%</font><br>
                     <?php echo @$ebn['ebn7']; ?></h5>
-                
+
             </div>
             <?php }else{ } ?>
         </div>
@@ -719,25 +719,25 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$fib['pcfib1']; ?>%</font><br>
                     <?php echo @$fib['fib1']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$fib['fib2'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$fib['pcfib2']; ?>%</font><br>
                     <?php echo @$fib['fib2']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$fib['fib3'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$fib['pcfib3']; ?>%</font><br>
                     <?php echo @$fib['fib3']; ?></h5>
-                
+
             </div>
            <?php }else{ } if(@$fib['fib4'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$fib['pcfib4']; ?>%</font><br>
                     <?php echo @$fib['fib4']; ?></h5>
-                
+
             </div>
             <?php }else{ } ?>
         </div>
@@ -747,49 +747,49 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$als['pcals1']; ?>%</font><br>
                     <?php echo @$als['als1']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$als['als2'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$als['pcals2']; ?>%</font><br>
                     <?php echo @$als['als2']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$als['als3'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$als['pcals3']; ?>%</font><br>
                     <?php echo @$als['als3']; ?></h5>
-                
+
             </div>
            <?php }else{ } if(@$als['als4'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$als['pcals4']; ?>%</font><br>
                     <?php echo @$als['als4']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$als['als5'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$als['pcals5']; ?>%</font><br>
                     <?php echo @$als['als5']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$als['als6'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$als['pcals6']; ?>%</font><br>
                     <?php echo @$als['als6']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$als['als7'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$als['pcals7']; ?>%</font><br>
                     <?php echo @$als['als7']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$als['als8'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$als['pcals8']; ?>%</font><br>
                     <?php echo @$als['als8']; ?></h5>
-                
+
             </div>
             <?php }else{ }?>
 
@@ -797,7 +797,7 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$als['pcals9']; ?>%</font><br>
                     <?php echo @$als['als9']; ?></h5>
-                
+
             </div>
             <?php }else{ }?>
         </div>
@@ -807,19 +807,19 @@ $("#reloadajax4").click(function() {
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$dlg['pcdlg1']; ?>%</font><br>
                     <?php echo @$dlg['dlg1']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$dlg['dlg2'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$dlg['pcdlg2']; ?>%</font><br>
                     <?php echo @$dlg['dlg2']; ?></h5>
-                
+
             </div>
             <?php }else{ } if(@$dlg['dlg3'] != null){ ?>
             <div class="square-tabs bg-forthblue">
                 <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo @$dlg['pcdlg3']; ?>%</font><br>
                     <?php echo @$dlg['dlg3']; ?></h5>
-                
+
             </div>
            <?php }else{ } ?>
         </div>
@@ -894,19 +894,19 @@ $("#reloadajax4").click(function() {
           </div>
         </div>
         <?php
-        $pc_mt = $student_vrm->mt->percent_to_goal;
-        $pc_rp = $student_vrm->repeats->percent_to_goal;
-        $pc_hp = $student_vrm->headphone->percent_to_goal;
-        $pc_sp = $student_vrm->mic->percent_to_goal;
-        $pc_sr = $student_vrm->sr->percent_to_goal;
-        $pc_wss = $student_vrm->wss->percent_to_goal;
+        $pc_mt = @$student_vrm->mt->percent_to_goal;
+        $pc_rp = @$student_vrm->repeats->percent_to_goal;
+        $pc_hp = @$student_vrm->headphone->percent_to_goal;
+        $pc_sp = @$student_vrm->mic->percent_to_goal;
+        $pc_sr = @$student_vrm->sr->percent_to_goal;
+        $pc_wss = @$student_vrm->wss->percent_to_goal;
 
-        $val_mt = $student_vrm->mt->raw_value;
-        $val_rp = $student_vrm->repeats->raw_value;
-        $val_hp = $student_vrm->headphone->raw_value;
-        $val_sp = $student_vrm->mic->raw_value;
-        $val_sr = $student_vrm->sr->raw_value;
-        $val_wss = $student_vrm->wss->raw_value;
+        $val_mt = @$student_vrm->mt->raw_value;
+        $val_rp = @$student_vrm->repeats->raw_value;
+        $val_hp = @$student_vrm->headphone->raw_value;
+        $val_sp = @$student_vrm->mic->raw_value;
+        $val_sr = @$student_vrm->sr->raw_value;
+        $val_wss = @$student_vrm->wss->raw_value;
         // echo "<pre>";print_r($student_vrm2);exit();
         ?>
         <div class="othr-graph hide">
@@ -1050,11 +1050,11 @@ var data = {
             data: [wss, repeat, mic, headphone, sr, mt]
         }
     ]
-};    
+};
 
 if($(document).width() < 490){
     var bar = new Chart(canvas.getContext('2d')).Radar(data, {
-      
+
         tooltipTemplate : valueData,
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
         responsive: true,
@@ -1081,7 +1081,7 @@ if($(document).width() < 490){
 }
 else {
     var bar = new Chart(canvas.getContext('2d')).Radar(data, {
-      
+
         tooltipTemplate : valueData,
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
         responsive: true,

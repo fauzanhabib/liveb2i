@@ -212,6 +212,65 @@ class Live extends MY_Site_Controller {
 
         $userrole   = $this->auth_manager->role();
         if($userrole == "STD"){
+          $check_sess_type = $this->db->select('app_type')
+              ->from('appointments')
+              ->where('appointments.id', $appoint_id)
+              ->get()->result();
+          if(@$check_sess_type[0]->app_type == 1){
+            //=========================================================
+            $sessioninge = $this->db->select('*')
+                        ->from('appointments')
+                        ->where($tipe_, $id)
+                        ->where('session', $sessionId)
+                        ->where('date', $today)
+                        ->get()->result();
+
+            @$sessionIde  = $sessioninge[0]->session;
+            @$tokene      = $sessioninge[0]->token;
+
+            $livesession = array(
+                'sessionId'  => @$sessionId,
+                'token'      => @$token,
+                'apiKey'     => @$apiKey,
+                'sentence'   => $sentence,
+                'different'  => $different,
+                'notes_s'    => @$notes_s,
+                'total_sec'  => $total_sec,
+                'different_val'  => $different_val,
+                'user_extract'   => @$user_extract,
+                'user_extract2'   => @$user_extract2,
+                'appointment_id' => $appoint_id,
+                'allmodule'  => @$allmodule,
+                'cert_plan'  => @$cert_plan,
+                'student_vrm'    => @$student_vrm,
+                'student_vrm_json' => @$student_vrm_json
+            );
+
+            $std_hour_check = $this->db->select('std_attend')
+                            ->from('appointments')
+                            ->where($tipe_, $id)
+                            ->where('session', $sessionId)
+                            ->where('date', $today)
+                            ->get()->result();
+
+            $sa_exist = $std_hour_check[0]->std_attend;
+
+            if($sa_exist == NULL){
+
+              $id_appoint = $livesession['appointment_id'];
+              $data2s = array(
+                 'std_attend' => $hour
+              );
+
+              $this->db->where('id', $id_appoint);
+              $this->db->update('appointments', $data2s);
+            }
+
+            // echo "<pre>";print_r($livesession);exit();
+            $this->template->content->view('contents/opentok/student/session_agora', $livesession);
+            $this->template->publish();
+            //=========================================================
+          }else{
             if(@$appoint_id){
                 if(@$token == NULL){
                     $gentoken   = $opentok->generateToken($sessionId);
@@ -309,6 +368,7 @@ class Live extends MY_Site_Controller {
                 $this->template->content->view('contents/opentok/student/nosession');
                 $this->template->publish();
             }
+          }
         }
 
         else{
@@ -389,34 +449,32 @@ class Live extends MY_Site_Controller {
             }
             // ===============
 
-
-
             $livesession = array(
-            'sessionId'  => @$sessionId,
-            'token'      => @$token,
-            'apiKey'     => @$apiKey,
-            'sentence'   => $sentence,
-            'different'  => $different,
-            'notes_c'    => @$notes_c,
-            'total_sec'  => $total_sec,
-            'allmodule'  => @$allmodule,
-            'cert_plan'  => @$cert_plan,
-            'content'    => @$content,
-            'student_vrm'    => @$student_vrm,
-            'annualtoken'    => @$annualtoken,
-            'student_vrm_json' => @$student_vrm_json,
-            'different_val'  => $different_val,
-            'user_extract'   => @$user_extract,
-            'user_extract2'  => @$user_extract2,
-            'appointment_id' => $appoint_id,
-            'gsp' => @$gsp,
-            'gcp' => @$gcp,
-            'gwp' => @$gwp,
-            'mt_color' => @$mt_color,
-            'ct_color' => @$ct_color,
-            'student_profile' => @$student_profile,
-            'max_buletan_student' => @$max_buletan_student,
-            'max_buletan' => @$max_buletan
+              'sessionId'  => @$sessionId,
+              'token'      => @$token,
+              'apiKey'     => @$apiKey,
+              'sentence'   => $sentence,
+              'different'  => $different,
+              'notes_c'    => @$notes_c,
+              'total_sec'  => $total_sec,
+              'allmodule'  => @$allmodule,
+              'cert_plan'  => @$cert_plan,
+              'content'    => @$content,
+              'student_vrm'    => @$student_vrm,
+              'annualtoken'    => @$annualtoken,
+              'student_vrm_json' => @$student_vrm_json,
+              'different_val'  => $different_val,
+              'user_extract'   => @$user_extract,
+              'user_extract2'  => @$user_extract2,
+              'appointment_id' => $appoint_id,
+              'gsp' => @$gsp,
+              'gcp' => @$gcp,
+              'gwp' => @$gwp,
+              'mt_color' => @$mt_color,
+              'ct_color' => @$ct_color,
+              'student_profile' => @$student_profile,
+              'max_buletan_student' => @$max_buletan_student,
+              'max_buletan' => @$max_buletan
             );
 
 
@@ -457,8 +515,29 @@ class Live extends MY_Site_Controller {
           // echo "<pre>";print_r($livesession);exit();
           //check if student is b2c or b2i
 
-          $this->template->content->view('contents/opentok/coach/session_agora_b2c', $livesession);
-          $this->template->publish();
+          //check if student is b2c or b2i
+          $std_idpull = $this->db->select('student_id')
+                          ->from('appointments')
+                          ->where('id', $livesession['appointment_id'])
+                          ->get()->result();
+
+          $std_check_id = $std_idpull[0]->student_id;
+
+          $b2c_checkpull = $this->db->select('login_type')
+                          ->from('users')
+                          ->where('id', $std_check_id)
+                          ->get()->result();
+
+          $b2c_id = $b2c_checkpull[0]->login_type;
+          // echo "<pre>";print_r($livesession);exit();
+          //check if student is b2c or b2i
+          if($b2c_id == 0){
+            $this->template->content->view('contents/opentok/coach/session_agora', $livesession);
+            $this->template->publish();
+          }else{
+            $this->template->content->view('contents/opentok/coach/session_agora_b2c', $livesession);
+            $this->template->publish();
+          }
 
           }else{
             if(@$appoint_id){
