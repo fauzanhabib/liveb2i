@@ -63,27 +63,39 @@ if($this->auth_manager->role() == 'RAD'){
                             <td class="padding15" data-label="STUDENT PARTNER">
                                 <span class="text-cl-secondary">
                                     <?php 
-                                    
+                                    $temp1 = array();
                                     foreach(@$ss as $d2){ 
-                                        // @$temp1[]=@$d2->name; 
-                                        echo @$d2->name;
+                                        @$temp1[]=@$d2->name;
+                                        // if(count(@$ss) > 1){ 
+                                        //     @$d2->name = @$d2->name.', ';
+                                        //     echo @$d2->name;
+                                        // }else{
+                                        //     @$d2->name = @$d2->name;
+                                        //     echo @$d2->name;
+                                        // }
                                     }
 
-
-                                    // echo implode( ', ', @$temp1); 
-                                    // @$temp1=''; 
+                                    echo implode( ', ', @$temp1); 
+                                    @$temp1=''; 
                                     ?>
                                 </span>
                                 <br>
                                 <?php if(count($sg) > 0){ ?>
                                 (<span class="text-cl-secondary">
                                     <?php 
-                                        foreach(@$sg as $d4){ 
-                                            // @$temp3[]=@$d4->name; 
-                                            echo @$d4->name;
-                                        } 
-                                        // echo @implode( ', ', @$temp3); 
-                                        // @$temp3=''; 
+                                    $temp3 = array();
+                                    foreach(@$sg as $d4){ 
+                                        @$temp3[]=@$d4->name; 
+                                        // if(count(@$sg) > 1){ 
+                                        //     @$d4->name = @$d4->name.', ';
+                                        //     echo @$d4->name;
+                                        // }else{
+                                        //     @$d4->name = @$d4->name;
+                                        //     echo @$d4->name;
+                                        // }
+                                    } 
+                                        echo @implode( ', ', @$temp3); 
+                                        @$temp3=''; 
                                             // print_r($temp3);
                                     ?>
                                 </span>)
@@ -92,25 +104,40 @@ if($this->auth_manager->role() == 'RAD'){
                             <td class="padding15" data-label="COACH PARTNER">
                                 <span class="text-cl-green">
                                     <?php 
-                                        foreach($d['coach_supplier_data'] as $d3){ 
-                                            // @$temp2[] = @$d3->name; 
-                                            echo @$d3->name;
-                                        } 
+                                    $temp2 = array();
+                                    foreach($sp as $d3){ 
+                                        @$temp2[] = @$d3->name; 
+                                        // if(count(@$sp) > 1){ 
+                                        //     @$d3->name = @$d3->name.', ';
+                                        //     echo @$d3->name;
+                                        // }else{
+                                        //     @$d3->name = @$d3->name;
+                                        //     echo @$d3->name;
+                                        // }
+                                    } 
                                         
-                                        // echo @implode( ', ', @$temp2); 
-                                        // @$temp2='';
+                                        echo @implode( ', ', @$temp2); 
+                                        @$temp2='';
                                     ?>
                                 </span>
                                 <br>
                                 <?php if(count($cg) > 0){ ?>
                                     (<span class="text-cl-green">
-                                        <?php foreach($d['coach_group_data'] as $d5){ 
-                                            // @$temp4[]=@$d5->name; 
-                                            echo @$d5->name;
-                                        } 
+                                    <?php 
+                                    $temp4 = array();
+                                    foreach($cg as $d5){ 
+                                        @$temp4[]=@$d5->name; 
+                                        // if(count(@$cg) > 1){ 
+                                        //     @$d5->name = @$d5->name.', ';
+                                        //     echo @$d5->name;
+                                        // }else{
+                                        //     @$d5->name = @$d5->name;
+                                        //     echo @$d5->name;
+                                        // }
+                                    } 
                                         
-                                        // echo @implode( ', ', @$temp4); 
-                                        // @$temp4=''; 
+                                        echo @implode( ', ', @$temp4); 
+                                        @$temp4=''; 
                                         ?>
                                     </span>)
                                 <?php } ?>
