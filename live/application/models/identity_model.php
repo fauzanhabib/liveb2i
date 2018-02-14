@@ -183,13 +183,29 @@ class identity_model extends MY_Model {
             if($this->auth_manager->role() == 'STD'){
                 $user_subgroup = $this->db->select('user_profiles.subgroup_id as subgroup_id')->from('user_profiles')->where('user_profiles.user_id',$this->auth_manager->userid())->get()->result();
                 $user_subgroup = $user_subgroup[0]->subgroup_id;
-                $coach_group = $this->get_coach_group($user_subgroup);
+                $coach_group = $this->get_coach_group($user_subgroup); 
             }
+            
+            // echo "<pre>";
+            // print_r($coach_group);
+            // exit();
 
-        //echo('<pre>');
-        //print_r($this->get_coach_supplier($partner_id)); exit;
+        // echo('<pre>');
+        // print_r($this->get_coach_supplier($partner_id)); exit;
         $coach_supplier = $this->get_coach_supplier($partner_id);
-        
+        // print_r($coach_supplier);
+        // exit();
+        $partner_group = array();
+        foreach($coach_group as $cogu){
+            $partner_group[] = $this->get_partner_group($cogu->subgroup_id);
+        }
+
+        $partners_group = array();
+        $pagu_c = 0;
+        // echo "<pre>";
+        // print_r($partners_group);
+        // exit();
+
         $this->db->select("a.id, a.status, a.email, b.code as 'role', c.profile_picture, c.fullname, c.nickname, c.gender, c.date_of_birth, c.dial_code, c.phone, c.skype_id, c.partner_id, c.dyned_pro_id, c.spoken_language, c.user_timezone, c.pt_score, d.teaching_credential, d.dyned_certification_level, d.year_experience, d.special_english_skill, d.higher_education, d.undergraduate, d.masters, d.phd, e.city, e.state, e.zip, e.country, e.address, h.token_for_student, h.token_for_group, j.timezone, c.coach_type_id as coach_type_id");
         $this->db->from('users a');
         $this->db->order_by("a.status", "desc");
@@ -223,72 +239,80 @@ class identity_model extends MY_Model {
                                 }
                             }
                         }
-                    $this->db->where_in('c.subgroup_id', $group_array);
-                    if($date_available){
-                        $this->db->join('coach_dayoffs f', 'a.id = f.coach_id', 'full');
-                    }
-                    if($creator_id){
-                        $this->db->join('creator_members g', 'a.id = g.member_id');
-                        $this->db->where('g.creator_id', $creator_id);
-                    }
-                    if(($this->uri->segment(3) == 'list_disable_coach') || ($this->uri->segment(3) == 'index_disable')){
-                        $this->db->where('a.status', 'disable');
-                    }else
-                    {
-                        $this->db->where('a.status', 'active');
-                    }
-                    $this->db->where('b.id', 2);
-                    if($id){
-                        $this->db->where('a.id', $id);
-                    }
-                    if($fullname){
-                        $this->db->where("c.fullname LIKE '%$fullname%'");
-                    }
-                    if($country){
-                        $this->db->where('e.country', $country);
-                    }
-                    if($spoken_language){
-                        $this->db->where("c.spoken_language LIKE '%$spoken_language%'");
-                    }
-                    
-                    if($date_available){
-                        if($this->db->set("day_off_status", "case when f.status = 'disable'")){
-                            $this->db->where('f.start_date > ', $date_available);
-                            $this->db->or_where('f.end_date < ', $date_available);
-                        }
-                    }
-                    if($this->uri->segment(1) != 'b2c'){
-                        if(($this->uri->segment(1) == 'student') && ($this->uri->segment(2) == 'find_coaches')){
-                            // echo $cert_studying;
-                            // exit();
-                           if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
-                                $this->db->where('c.pt_score >=','2.5');
-                            } else if (($cert_studying == 'B1') || ($cert_studying == 'B2')){
-                                $this->db->where('c.pt_score >=','3');
-                            } else if (($cert_studying == 'C1') || ($cert_studying == 'C2')){
-                                $this->db->where('c.pt_score >=','3.5');
-                            } 
-                            else if($cert_studying == 0){
-                                $this->db->where('c.pt_score >','999999');
+                    $new_partner_array= array_unique($partner_array);
+                    $new_group_array= array_unique($group_array);
+                    foreach($partner_group as $pg){
+                        $partners_group[] = $pg[$pagu_c]->partner_id;
+                        if (($key = array_search($pg[$pagu_c]->partner_id, $new_partner_array)) !== false) {
+                                unset($new_partner_array[$key]);
                             }
-                        }
-                    }else{
-                        if(($this->uri->segment(2) == 'student') && ($this->uri->segment(3) == 'find_coaches')){
-                            // echo $cert_studying;
-                            // exit();
-                           if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
-                                $this->db->where('c.pt_score >=','2.5');
-                            } else if (($cert_studying == 'B1') || ($cert_studying == 'B2')){
-                                $this->db->where('c.pt_score >=','3');
-                            } else if (($cert_studying == 'C1') || ($cert_studying == 'C2')){
-                                $this->db->where('c.pt_score >=','3.5');
-                            } 
-                            else if($cert_studying == 0){
-                                $this->db->where('c.pt_score >','999999');
-                            }
-                        }
                     }
-                    $this->db->where_in('c.partner_id', $partner_array);
+                    $this->db->where_in('c.subgroup_id', $new_group_array);
+                         if($date_available){
+                            $this->db->join('coach_dayoffs f', 'a.id = f.coach_id', 'full');
+                         }
+                         if($creator_id){
+                             $this->db->join('creator_members g', 'a.id = g.member_id');
+                             $this->db->where('g.creator_id', $creator_id);
+                         }
+                         if(($this->uri->segment(3) == 'list_disable_coach') || ($this->uri->segment(3) == 'index_disable')){
+                            $this->db->where('a.status', 'disable');
+                         }else
+                         {
+                            $this->db->where('a.status', 'active');
+                         }
+                            $this->db->where('b.id', 2);
+                         if($id){
+                            $this->db->where('a.id', $id);
+                         }
+                         if($fullname){
+                            $this->db->where("c.fullname LIKE '%$fullname%'");
+                         }
+                         if($country){
+                            $this->db->where('e.country', $country);
+                         }
+                         if($spoken_language){
+                            $this->db->where("c.spoken_language LIKE '%$spoken_language%'");
+                         }
+                         
+                         if($date_available){
+                             if($this->db->set("day_off_status", "case when f.status = 'disable'")){
+                                 $this->db->where('f.start_date > ', $date_available);
+                                 $this->db->or_where('f.end_date < ', $date_available);
+                             }
+                         }
+                         if($this->uri->segment(1) != 'b2c'){
+                             if(($this->uri->segment(1) == 'student') && ($this->uri->segment(2) == 'find_coaches')){
+                             // echo $cert_studying;
+                             // exit();
+                                 if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
+                                    $this->db->where('c.pt_score >=','2.5');
+                                 }else if (($cert_studying == 'B1') || ($cert_studying == 'B2')){
+                                    $this->db->where('c.pt_score >=','3');
+                                 } else if (($cert_studying == 'C1') || ($cert_studying == 'C2')){
+                                    $this->db->where('c.pt_score >=','3.5');
+                                 } 
+                                 else if($cert_studying == 0){
+                                    $this->db->where('c.pt_score >','999999');
+                                 }
+                             }
+                         }else{
+                             if(($this->uri->segment(2) == 'student') && ($this->uri->segment(3) == 'find_coaches')){
+                             // echo $cert_studying;
+                             // exit();
+                                 if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
+                                    $this->db->where('c.pt_score >=','2.5');
+                                 } else if (($cert_studying == 'B1') || ($cert_studying == 'B2')){
+                                    $this->db->where('c.pt_score >=','3');
+                                 } else if (($cert_studying == 'C1') || ($cert_studying == 'C2')){
+                                    $this->db->where('c.pt_score >=','3.5');
+                                 } 
+                                 else if($cert_studying == 0){
+                                    $this->db->where('c.pt_score >','999999');
+                                 }
+                             }
+                         }
+                         $this->db->or_where_in('c.partner_id', $new_partner_array);
                     }else{
                         $partner_array= array($partner_id);
                         foreach(@$coach_supplier as $cs){
@@ -778,7 +802,7 @@ class identity_model extends MY_Model {
         return $this->db->get()->result();
     }
     
-    private function get_coach_supplier($student_partner_id){
+        private function get_coach_supplier($student_partner_id){
             $this->db->select("csr.coach_supplier_id");
             $this->db->from('coach_supplier_relations csr');
             $this->db->join('student_supplier_relations ssr', 'csr.class_matchmaking_id = ssr.class_matchmaking_id');
@@ -792,6 +816,15 @@ class identity_model extends MY_Model {
             $this->db->from('coach_group_relations cgr');
             $this->db->join('student_group_relations sgr', 'cgr.class_matchmaking_id = sgr.class_matchmaking_id');
             $this->db->where('sgr.subgroup_id', $student_group_id);
+
+            return $this->db->get()->result();
+        }
+
+        private function get_partner_group($group_id){
+            $this->db->select("s.partner_id");
+            $this->db->from('subgroup s');
+            $this->db->join('partners p', 's.partner_id = p.id');
+            $this->db->where('s.id', $group_id);
 
             return $this->db->get()->result();
         }
