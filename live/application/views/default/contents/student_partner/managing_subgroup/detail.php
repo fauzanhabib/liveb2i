@@ -144,7 +144,7 @@
     <div class="content padding-t-10">
        <div class="box">
             <div class="flex justify_content-sb padding-b-5">
-                <div class="select-all flex">                             
+                <div class="select-all flex">
                     <div class="padding-r-5 m-t-2">
                         <input type="checkbox" id="checkbox-1-0" name="Region" value="Region-1" class="regular-checkbox checkAll" /><label class="" for="checkbox-1-0"></label>
                     </div>
@@ -186,7 +186,7 @@
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">No</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Name</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Phone</th>
-                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Email</th>               
+                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Email</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -194,14 +194,14 @@
                     $a = $number_page;
                 $no = 2;
                 foreach ($data2 as $d) {
-                    
+
                     ?>
                     <tr>
                         <td>
                             <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $d->id;?>" class="regular-checkbox" /><label for="checkbox-1-<?php echo $no;?>"></label>
                         </td>
                         <td><?php echo $a?></td>
-                        <td><a href="<?php echo site_url('student_partner/member_list/student_detail/'.$d->id);?>" class="text-cl-tertiary"><u><?php echo $d->fullname?></u></a></td>
+                        <td><a href="<?php echo site_url('student_partner/member_list/student_detail/'.$d->id);?>" class="text-cl-tertiary"><u><?php echo $d->fsullname?></u></a></td>
                         <td><?php echo $d->dial_code.$d->phone?></td>
                         <td><?php echo $d->email?></td>
                     </tr>
@@ -210,11 +210,11 @@
             </table>
         </div>
     </div>
-    
+
 </div>
 </form>
 
-                       
+
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/__jquery.tablesorter.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/remodal.min.js"></script>
@@ -232,7 +232,7 @@
 </script>
 <script type="text/javascript">
 function myFunction() {
-  // Declare variables 
+  // Declare variables
   var input, filter, table, tr, td, i;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
@@ -248,13 +248,13 @@ function myFunction() {
       } else {
         tr[i].style.display = "none";
       }
-    } 
+    }
   }
 }
 
 $('#myInput').keypress(function(event){
 
-    if (event.keyCode === 10 || event.keyCode === 13) 
+    if (event.keyCode === 10 || event.keyCode === 13)
         event.preventDefault();
 
   });

@@ -1,3 +1,4 @@
+<?php $id = $this->auth_manager->partner_id();?>
 <div class="heading text-cl-primary padding-l-20">
 
     <div class="breadcrumb-tabs pure-g">
@@ -86,6 +87,7 @@
             <ul class="pure-menu-list">
                 <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue" href="<?php echo site_url('student_partner_neo/subgroup/');?>">Active Groups</a></li>
                 <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('student_partner_neo/subgroup/index_disable/');?>" >Disabled Groups</a></li>
+                <!-- <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('student_partner_neo/subgroup/list_disable_student/'. $id); ?>" >Disabled Students</a></li> -->
             </ul>
         </div>
     </div>
