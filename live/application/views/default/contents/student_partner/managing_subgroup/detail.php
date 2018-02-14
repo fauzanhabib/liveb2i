@@ -201,7 +201,7 @@
                             <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $d->id;?>" class="regular-checkbox" /><label for="checkbox-1-<?php echo $no;?>"></label>
                         </td>
                         <td><?php echo $a?></td>
-                        <td><a href="<?php echo site_url('student_partner/member_list/student_detail/'.$d->id);?>" class="text-cl-tertiary"><u><?php echo $d->fsullname?></u></a></td>
+                        <td><a href="<?php echo site_url('student_partner/member_list/student_detail/'.$d->id);?>" class="text-cl-tertiary"><u><?php echo $d->fullname?></u></a></td>
                         <td><?php echo $d->dial_code.$d->phone?></td>
                         <td><?php echo $d->email?></td>
                     </tr>
