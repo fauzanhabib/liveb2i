@@ -481,14 +481,14 @@ class subgroup extends MY_Site_Controller {
         $this->template->publish();
     }
 
-    public function list_disable_student($subgroup_id = '', $page='') {
+    public function list_disable_student($partner_id = '', $page='') {
 
         $this->template->title = 'Detail Subgroup';
         $offset = 0;
         $per_page = 10;
         $uri_segment = 5;
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner_neo/subgroup/list_disable_student/'.$subgroup_id), count($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(),'')), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner_neo/subgroup/list_disable_student/'.$partner_id), count($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(),'')), $per_page, $uri_segment);
         // echo $subgroup_id." - ".$id." -". $page." = ".$per_page;exit();
         // echo "id ".$id;
         $data = $this->identity_model->get_subgroup_identity('','student','disable','',null);
@@ -634,13 +634,89 @@ class subgroup extends MY_Site_Controller {
                                           ->where('date >=', $now_date)
                                           ->get()->result();
 
+            $check_status = $this->db->select('status')
+                                      ->from('users')
+                                      ->where_in('id',$check_list)
+                                      ->get()->result();
+
+            $list_stat = array();
+            $haystack = array('active','disable');
+            foreach($check_status as $cs){
+              $list_stat[] = $cs->status;
+            }
+            if(in_array("disable", $list_stat) && !in_array("active", $list_stat)){
+              $changed_stat_to = "active";
+              $mess = "Enable";
+            }else if(in_array("active", $list_stat) && !in_array("disable", $list_stat)){
+              $changed_stat_to = "disable";
+              $mess = "Delete";
+            }else if(in_array("active", $list_stat) && in_array("disable", $list_stat)){
+              $this->messages->add('Mixed Student Status', 'warning');
+
+              redirect('student_partner_neo/subgroup/list_student/'.$subgroup_id);
+            }
+
+            // echo "<pre>";print_r($list_stat);exit;
+            if($check_appointment){
+                $this->messages->add('This student still have a session scheduled', 'error');
+                redirect('student_partner_neo/subgroup/list_student/'.$subgroup_id);
+            } else {
+            $status = array(
+                    'status' => $changed_stat_to,
+                    );
+                    $this->db->where('role_id',1);
+                    $this->db->where_in('id',$check_list);
+                    $this->db->update('users', $status);
+
+                //     $this->db->trans_begin();
+                //     $this->db->where('role_id', 1);
+                //     $this->db->where_in('id',$check_list);
+                //     $this->db->delete('users');
+
+                //     $this->db->flush_cache();
+
+                //     $this->db->where_in('user_id',$check_list);
+                //     $this->db->delete('user_profiles');
+
+                //     $this->db->flush_cache();
+
+                //     $this->db->where_in('user_id',$check_list);
+                //     $this->db->delete('user_tokens');
+
+                //     $this->db->flush_cache();
+
+                //     $this->db->where_in('id_student',$check_list);
+                //     $this->db->delete('student_supplier_to_student');
+                // $this->db->trans_commit();
+                $this->messages->add($mess.' Successful', 'success');
+            }
+        } else {
+            $this->messages->add('Please choose student', 'error');
+        }
+            redirect('student_partner_neo/subgroup/list_student/'.$subgroup_id);
+    }
+
+    function enable_student($subgroup_id = ''){
+
+        if(!empty($_POST['check_list'])) {
+            $check_list = $_POST['check_list'];
+            $type_submit = $_POST['_submit'];
+
+            $now_date = date('Y-m-d');
+            // check apakah coach ada appointment
+            $check_appointment = $this->db->select('id, date, status, coach_id')
+                                          ->from('appointments')
+                                          ->where_in('student_id',$check_list)
+                                          ->where('date >=', $now_date)
+                                          ->get()->result();
+
 
             if($check_appointment){
                 $this->messages->add('This student still have a session scheduled', 'error');
                 redirect('student_partner_neo/subgroup/list_student/'.$subgroup_id);
             } else {
             $status = array(
-                    'status' => 'disable',
+                    'status' => 'active',
                     );
                     $this->db->where('role_id',1);
                     $this->db->where_in('id',$check_list);
