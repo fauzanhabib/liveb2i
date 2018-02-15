@@ -8247,7 +8247,11 @@ label {
     .rdr-2 > .radar-ainner {
       margin-top: 20px;
       margin-left: -115px;
-  }
+    }
+
+    .box-list-icon2 {
+      width: auto;
+    }
 }
 
 
