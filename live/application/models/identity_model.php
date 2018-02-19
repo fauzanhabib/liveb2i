@@ -329,6 +329,7 @@ class identity_model extends MY_Model {
                                     $partner_array[] = $cs->coach_supplier_id;
                             }
                         }
+                        $new_partner_array= array_unique($partner_array);
                         $this->db->where_in('c.partner_id', $new_partner_array);
                     }elseif(!$coach_group && $partner_subgroup_group && $coach_supplier){
                             $this->db->where('c.partner_id', $partner_id);
