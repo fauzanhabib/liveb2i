@@ -27,19 +27,19 @@
                 </div>
 
                 <?php
-                $pc_mt = $student_vrm2->mt->percent_to_goal;
-                $pc_rp = $student_vrm2->repeats->percent_to_goal;
-                $pc_hp = $student_vrm2->headphone->percent_to_goal;
-                $pc_sp = $student_vrm2->mic->percent_to_goal;
-                $pc_sr = $student_vrm2->sr->percent_to_goal;
-                $pc_wss = $student_vrm2->wss->percent_to_goal;
+                $pc_mt = @$student_vrm2->mt->percent_to_goal;
+                $pc_rp = @$student_vrm2->repeats->percent_to_goal;
+                $pc_hp = @$student_vrm2->headphone->percent_to_goal;
+                $pc_sp = @$student_vrm2->mic->percent_to_goal;
+                $pc_sr = @$student_vrm2->sr->percent_to_goal;
+                $pc_wss = @$student_vrm2->wss->percent_to_goal;
 
-                $val_mt = $student_vrm2->mt->raw_value;
-                $val_rp = $student_vrm2->repeats->raw_value;
-                $val_hp = $student_vrm2->headphone->raw_value;
-                $val_sp = $student_vrm2->mic->raw_value;
-                $val_sr = $student_vrm2->sr->raw_value;
-                $val_wss = $student_vrm2->wss->raw_value;
+                $val_mt = @$student_vrm2->mt->raw_value;
+                $val_rp = @$student_vrm2->repeats->raw_value;
+                $val_hp = @$student_vrm2->headphone->raw_value;
+                $val_sp = @$student_vrm2->mic->raw_value;
+                $val_sr = @$student_vrm2->sr->raw_value;
+                $val_wss = @$student_vrm2->wss->raw_value;
                 // echo "<pre>";print_r($student_vrm2);exit();
                 ?>
                 <div class="othr-graph hide">
@@ -107,7 +107,7 @@
                 </div>
 
             </div>
-            
+
             <div class="pure-u-md-12-24">
                 <div class="box-capsule m-t-20 margin-auto font-14 width190">
                     <span>Study Data Average</span>
@@ -157,7 +157,7 @@
                 </div>
                 <div class="comment-section height-200 m-t-20">
                     <div class="comment-message clearfix">
-                    <?php 
+                    <?php
                     if($cchnote){
                     foreach($cchnote as $n){ ?>
                         <div class="padding-t-5">
@@ -170,7 +170,7 @@
                     </div>
                 </div>
             </div>
-            <?php $cert_level = $student_vrm2->cert_level_completion; ?>
+            <?php $cert_level = @$student_vrm2->cert_level_completion; ?>
             <div class="pure-u-md-12-24">
 
                 <div class="box-capsule m-t-20 margin-auto font-14 width190">
@@ -180,52 +180,52 @@
                     <a href="#content-a1" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">A1</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->A1; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->A1; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->A1; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->A1; ?>" max="100"></progress>
                         </div>
                     </a>
                     <a href="#content-b1" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">A2</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->A2; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->A2; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->A2; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->A2; ?>" max="100"></progress>
                         </div>
                     </a>
                     <a href="#content-c1" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">B1</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->B1; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->B1; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->B1; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->B1; ?>" max="100"></progress>
                         </div>
                     </a>
                     <a href="#content-a2" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">B2</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->B2; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->B2; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->B2; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->B2; ?>" max="100"></progress>
                         </div>
                     </a>
                     <a href="#content-b2" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">C1</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->C1; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->C1; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->C1; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->C1; ?>" max="100"></progress>
                         </div>
                     </a>
                     <a href="#content-c2" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">C2</h5>
                         <div class="block ac-blue a1">
-                            <span class="progress-value"><i class="val"><?php echo $cert_level->C2; ?>%</i></span>
-                            <progress value="<?php echo $cert_level->C2; ?>" max="100"></progress>
+                            <span class="progress-value"><i class="val"><?php echo @$cert_level->C2; ?>%</i></span>
+                            <progress value="<?php echo @$cert_level->C2; ?>" max="100"></progress>
                         </div>
                     </a>
-                </div>            
+                </div>
 
                 <div id="content-a1">
                 <?php
                 $nde1 = @$allmodule1['nde1'];
                 $fe1  = @$allmodule1['fe1'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -269,7 +269,7 @@
                 <?php
                 $nde2 = @$allmodule2['nde2'];
                 $tls2  = @$allmodule2['tls2'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -315,7 +315,7 @@
                 $dbe3  = @$allmodule3['dbe3'];
                 $tls3  = @$allmodule3['tls3'];
                 $ebn3  = @$allmodule3['ebn3'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -345,7 +345,7 @@
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $dbe3['pcdbe1']; ?>%</h5>
                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $dbe3['dbe1']; ?></h5>
-                            
+
                         </div>
                     </div>
                     <div id="tabs-tls3" class="tabs-c clearfix" style="display: none;">
@@ -396,7 +396,7 @@
                 $dbe4  = @$allmodule4['dbe4'];
                 $fib4  = @$allmodule4['fib4'];
                 $ebn4  = @$allmodule4['ebn4'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -466,7 +466,7 @@
                 $ebn5  = @$allmodule5['ebn5'];
                 $dlg5  = @$allmodule5['dlg5'];
                 $als5  = @$allmodule5['als5'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -581,7 +581,7 @@
                 $ebn6  = @$allmodule6['ebn6'];
                 $dlg6  = @$allmodule6['dlg6'];
                 $als6  = @$allmodule6['als6'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -662,7 +662,7 @@
 
             </div>
         </div>
-    </div>  
+    </div>
 </div>
 
 </div>
@@ -675,7 +675,7 @@
                 $(".listTop > a").prepend($("<span/>"));
                 $(".listBottom > a").prepend($("<span/>"));
                 $(".listTop, .listBottom").click(function(event){
-                 event.stopPropagation(); 
+                 event.stopPropagation();
                  $(this).children("ul").slideToggle();
                });
             });
@@ -779,11 +779,11 @@ var data = {
             data: [wss, repeat, mic, headphone, sr, mt]
         }
     ]
-};    
+};
 
 if($(document).width() < 490){
     var bar = new Chart(canvas.getContext('2d')).Radar(data, {
-      
+
         tooltipTemplate : valueData,
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
         responsive: true,
@@ -810,7 +810,7 @@ if($(document).width() < 490){
 }
 else {
     var bar = new Chart(canvas.getContext('2d')).Radar(data, {
-      
+
         tooltipTemplate : valueData,
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
         responsive: true,
