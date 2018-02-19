@@ -185,20 +185,27 @@ class identity_model extends MY_Model {
                 $user_subgroup = $user_subgroup[0]->subgroup_id;
                 $coach_group = $this->get_coach_group($user_subgroup);
 
+                $partner_subgroup = $this->db->select('id')->from('subgroup')->where('partner_id', $partner_id)->where('status', 'active')->where('type', 'student')->get()->result();
+
+                $partner_subgroup_group = array();
+                foreach($partner_subgroup as $psg){
+                    $partner_subgroup_group[] = $this->get_coach_group($psg->id);
+                }
+
                 // echo "<pre>";
-                // print_r($coach_group);
+                // print_r($partner_subgroup_group);
                 // exit();
 
                 $partner_group = array();
                 foreach($coach_group as $cogu){
-                $partner_group[] = $this->get_partner_group($cogu->subgroup_id);
+                    $partner_group[] = $this->get_partner_group($cogu->subgroup_id);
                 }
 
                 $partners_group = array();
                 $pagu_c = 0;
             }
             // echo "<pre>";
-            // print_r($partners_group);
+            // print_r($partner_group);
             // exit();
 
         // echo('<pre>');
@@ -314,7 +321,7 @@ class identity_model extends MY_Model {
                              }
                          }
                          $this->db->or_where_in('c.partner_id', $new_partner_array);
-                    }else{
+                    }elseif(!$coach_group && !$partner_subgroup_group && $coach_supplier){
                         $partner_array= array($partner_id);
                         foreach(@$coach_supplier as $cs){
                             if($cs->coach_supplier_id != $partner_id){
@@ -322,8 +329,10 @@ class identity_model extends MY_Model {
                                     $partner_array[] = $cs->coach_supplier_id;
                             }
                         }
-                        $this->db->where_in('c.partner_id', $partner_array);
-                    }
+                        $this->db->where_in('c.partner_id', $new_partner_array);
+                    }elseif(!$coach_group && $partner_subgroup_group && $coach_supplier){
+                            $this->db->where('c.partner_id', $partner_id);
+                        }
                 }else{
                     $this->db->where('c.partner_id', $partner_id);
                 }
