@@ -192,8 +192,23 @@ class identity_model extends MY_Model {
                     $partner_subgroup_group[] = $this->get_coach_group($psg->id);
                 }
 
+                $partner_subgroup_student = array();
+                foreach($partner_subgroup as $psg){
+                    $partner_subgroup_student[] = $this->get_student_group($psg->id);
+                }
+
+                $check_array_coach = array_filter($partner_subgroup_group);
+                $check_array_student = array_filter($partner_subgroup_student);
+                // if($user_subgroup == $partner_subgroup_student[0][0]->subgroup_id){
+                //     echo "a";
+                //     exit();
+                // }else{
+                //     echo "b";
+                //     exit();
+                // }
+
                 // echo "<pre>";
-                // print_r($partner_subgroup_group);
+                // print_r($check_array_coach);
                 // exit();
 
                 $partner_group = array();
@@ -203,17 +218,43 @@ class identity_model extends MY_Model {
 
                 $partners_group = array();
                 $pagu_c = 0;
+                $core_c = 0;
+                @$coach_supplier = $this->get_coach_supplier($partner_id);
+                $coach_relation = array();
+                foreach($coach_supplier as $sup){
+                    @$coach_relation[] = $this->db->select('class_matchmaking_id')->from('coach_supplier_relations')->where('coach_supplier_id', $sup->coach_supplier_id)->order_by('id', 'desc')->get()->result();
+                }
+                
+                $corel = array();
+                foreach($coach_relation as $cr){
+                    @$corel[] = $cr[0]->class_matchmaking_id;
+                }
+                $corel_new = array_unique($corel);
+                $coregro = array();
+                foreach($corel_new as $cl){
+                    @$coregro[] = $this->db->select('subgroup_id')->from('coach_group_relations')->where('class_matchmaking_id', $cl)->get()->result();
+                }
+                $partner_group2 = array();
+                foreach($coregro as $cgo){
+                    foreach($cgo as $cgval){
+                        $partner_group2[] = $this->get_partner_group($cgval->subgroup_id);
+                    }
+                }
+                // if(empty($coregro[0])){
+                //     echo "a";
+                //     exit();
+                // }else{
+                //     echo "b";
+                //     exit();
+                // }
             }
             // echo "<pre>";
-            // print_r($partner_group);
+            // print_r($partner_group2);
             // exit();
-
+        @$coach_supplier = $this->get_coach_supplier($partner_id);
         // echo('<pre>');
         // print_r($this->get_coach_supplier($partner_id)); exit;
-        $coach_supplier = $this->get_coach_supplier($partner_id);
-        // print_r($coach_supplier);
-        // exit();
-
+        
         $this->db->select("a.id, a.status, a.email, b.code as 'role', c.profile_picture, c.fullname, c.nickname, c.gender, c.date_of_birth, c.dial_code, c.phone, c.skype_id, c.partner_id, c.dyned_pro_id, c.spoken_language, c.user_timezone, c.pt_score, d.teaching_credential, d.dyned_certification_level, d.year_experience, d.special_english_skill, d.higher_education, d.undergraduate, d.masters, d.phd, e.city, e.state, e.zip, e.country, e.address, h.token_for_student, h.token_for_group, j.timezone, c.coach_type_id as coach_type_id");
         $this->db->from('users a');
         $this->db->order_by("a.status", "desc");
@@ -321,7 +362,9 @@ class identity_model extends MY_Model {
                              }
                          }
                          $this->db->or_where_in('c.partner_id', $new_partner_array);
-                    }elseif(!$coach_group && !$partner_subgroup_group && $coach_supplier){
+                    }elseif(empty($coach_group) && empty($check_array_coach) && empty($check_array_student) && $coach_supplier && empty($coregro[0])){
+                        // echo "a";
+                        // exit();
                         $partner_array= array($partner_id);
                         foreach(@$coach_supplier as $cs){
                             if($cs->coach_supplier_id != $partner_id){
@@ -331,9 +374,49 @@ class identity_model extends MY_Model {
                         }
                         $new_partner_array= array_unique($partner_array);
                         $this->db->where_in('c.partner_id', $new_partner_array);
-                    }elseif(!$coach_group && $partner_subgroup_group && $coach_supplier){
-                            $this->db->where('c.partner_id', $partner_id);
-                        }
+                    }elseif(empty($coach_group) && ($check_array_student || $check_array_coach) && $coach_supplier){
+                        // echo "b";
+                        // exit();
+                            foreach($check_array_student as $ch){
+                                $ccc = $ch[$pagu_c]->subgroup_id;
+                                if($ccc == $user_subgroup){
+                                    $partner_array= array($partner_id);
+                                    foreach(@$coach_supplier as $cs){
+                                        if($cs->coach_supplier_id != $partner_id){
+                                                //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
+                                                $partner_array[] = $cs->coach_supplier_id;
+                                        }
+                                    }
+                                    $new_partner_array= array_unique($partner_array);
+                                    $this->db->where_in('c.partner_id', $new_partner_array);
+                                }else{
+                                    $this->db->where('c.partner_id', $partner_id);
+                                }
+                            }
+                    }elseif(empty($coach_group) && empty($check_array_coach) && empty($check_array_student) && $coach_supplier && $coregro){
+                            // echo 'c';
+                            // exit();
+                            $partner_array= array($partner_id);
+                            $coregro_array= array();
+                            foreach(@$coach_supplier as $cs){
+                                foreach(@$coregro as $cgo){
+                                    foreach($cgo as $cgval){
+                                        $coregro_array[] = $cgval->subgroup_id;
+                                        $partner_array[] = $cs->coach_supplier_id;
+                                    }
+                                }
+                            }
+                            $new_partner_array= array_unique($partner_array);
+                            $new_group_array= array_unique($coregro_array);
+                            foreach($partner_group2 as $pg2){
+                                $partners_group2[] = $pg2[$pagu_c]->partner_id;
+                                if(($key = array_search($pg2[$pagu_c]->partner_id, $new_partner_array)) !== false){
+                                        unset($new_partner_array[$key]);
+                                }
+                            }
+                            $this->db->where_in('c.subgroup_id', $new_group_array);
+                            $this->db->or_where_in('c.partner_id', $new_partner_array);
+                    }
                 }else{
                     $this->db->where('c.partner_id', $partner_id);
                 }
@@ -826,6 +909,14 @@ class identity_model extends MY_Model {
             $this->db->select("cgr.subgroup_id");
             $this->db->from('coach_group_relations cgr');
             $this->db->join('student_group_relations sgr', 'cgr.class_matchmaking_id = sgr.class_matchmaking_id');
+            $this->db->where('sgr.subgroup_id', $student_group_id);
+
+            return $this->db->get()->result();
+        }
+
+        private function get_student_group($student_group_id){
+            $this->db->select("sgr.subgroup_id");
+            $this->db->from('student_group_relations sgr');
             $this->db->where('sgr.subgroup_id', $student_group_id);
 
             return $this->db->get()->result();
