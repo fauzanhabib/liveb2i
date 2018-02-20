@@ -9632,7 +9632,7 @@ progress::-ms-fill {
   z-index: 9999999;
 }
 
-.modal {
+/*.modal {
   width: 50%;
   height: 300px;
   position: relative;
@@ -9642,7 +9642,7 @@ progress::-ms-fill {
   border-bottom: 7px solid #5367A4;
   -webkit-transition: all 0.5s ease-in-out;
   transition: all 0.5s ease-in-out;
-}
+}*/
 .modal__watch {
   width: 66%;
   position: relative;
