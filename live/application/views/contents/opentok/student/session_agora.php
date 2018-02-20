@@ -378,11 +378,27 @@ if(@$user_extract2){
 .localAgora{
   position: absolute;
   z-index: 10;
-  width: 150px;
+  width: 200px;
   height: 150px;
+  left: 7px;
 }
 #video{
   min-height: 300px;
+}
+
+/*best fit for student to see the coach*/
+.agora_css :nth-child(1) {
+  display: flex;
+}
+.agora_css :nth-child(1) > video {
+  width: 61%!important;
+  margin: auto;
+  position: relative!important;
+}
+/*best fit for student to see the coach*/
+
+.agora_css :nth-child(3) {
+  display: none;
 }
 </style>
 
@@ -805,7 +821,7 @@ var countdownTimer = setInterval('timer()', 1000);
       var stream = evt.stream;
       // console.log("Subscribe remote stream successfully: " + stream.getId());
       if ($('div#video #agora_remote'+stream.getId()).length === 0) {
-        $('div#video').append('<div id="agora_remote'+stream.getId()+'" style="width:100%;height:500px;"></div>');
+        $('div#video').append('<div class="agora_css" id="agora_remote'+stream.getId()+'" style="width:100%;height:500px;"></div>');
         // $('video#video'+stream.getId()).addClass('subscriber_video');
         // var video = document.getElementsByTagName("video")[0];
         console.log($('video#video'+stream.getId()));
