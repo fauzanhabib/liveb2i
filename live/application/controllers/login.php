@@ -79,7 +79,18 @@ class Login extends MY_Controller {
                     // ====
 
                     if($this->auth_manager->role() == 'STD'){
-                        redirect('student/dashboard');
+											$check_pro_ID = $this->db->select('dyned_pro_id')
+																->from('user_profiles')
+																->where('user_id', $userid)
+																->get()->result();
+
+												// echo $userid;
+												if(!$check_pro_ID[0]->dyned_pro_id){
+													$this->messages->add('DynEd Pro ID not connected', 'warning');
+													redirect('logout');
+												}else{
+                        	redirect('student/dashboard');
+												}
                     } else if($this->auth_manager->role() == 'CCH'){
                         redirect('coach/dashboard');
                     } else{

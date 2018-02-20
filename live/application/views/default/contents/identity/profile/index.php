@@ -652,7 +652,7 @@ echo form_close();
                             </tr>
                         </tbody>
                     </table>
-                    <a class="pure-button btn-small btn-white m-t-20 dc" onclick="confirmation('<?php echo(site_url('account/identity/disconnect_to_dyned_pro'));?>', 'single', 'Disconnect From DynEd PRO', '', 'dc');">Disconnect From DynEd PRO</a>
+                    <!-- <a class="pure-button btn-small btn-white m-t-20 dc" onclick="confirmation('<?php echo(site_url('account/identity/disconnect_to_dyned_pro'));?>', 'single', 'Disconnect From DynEd PRO', '', 'dc');">Disconnect From DynEd PRO</a> -->
                     <?php
                 }
                 else{ ?>
