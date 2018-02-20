@@ -416,6 +416,10 @@ class identity_model extends MY_Model {
                             }
                             $this->db->where_in('c.subgroup_id', $new_group_array);
                             $this->db->or_where_in('c.partner_id', $new_partner_array);
+                    }elseif(empty($coach_group) && empty($check_array_coach) && empty($check_array_student) && empty($coach_supplier) && empty($coregro[0])){
+                            // echo 'd';
+                            // exit();
+                            $this->db->where('c.partner_id', $partner_id);
                     }
                 }else{
                     $this->db->where('c.partner_id', $partner_id);
