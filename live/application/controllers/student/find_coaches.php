@@ -602,14 +602,17 @@ class find_coaches extends MY_Site_Controller {
 
                 $message = '';
                 if(!$isValid){
-                    $message = 'Invalid Appointment';
+                    $this->messages->add('Invalid Appointment Or Coach is Having Day Off', 'warning');
+                    $message = 'Invalid Appointment Or Coach is Having Day Off';
                 }
 
                 $dayoff = $this->is_day_off($coach_id, $dateconvertcoach);
 
                 // if dayoff 1, coach cuti
                 if($dayoff){
-                    $message = 'Cuti';
+                    $message = "Coach is Having Day Off";
+                    $this->messages->add('Coach is Having Day Off', 'warning');
+
                 }
 
                 $token_cost = $token;
@@ -618,7 +621,14 @@ class find_coaches extends MY_Site_Controller {
 
                 if($remain_token < 1){
                     $message = "Not Enough Token";
+                    $this->messages->add('Not Enough Token', 'warning');
                 }
+
+                $data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($coach_id)[0]->minutes, strtotime($date), $start_time, $end_time);
+                    // print_r($data_schedule);
+                    // echo date('Y-m-d', 1523404800);
+                    // exit();                
+
 
                 if(($message == '') && ($remain_token >0)){
 
@@ -693,7 +703,7 @@ class find_coaches extends MY_Site_Controller {
                     $arr_message[] = $message;
 
                 }
-
+                
                 $this->session->set_flashdata('booking_message',$arr_message);
                 //redirect('student/upcoming_session');
 
@@ -2592,21 +2602,21 @@ class find_coaches extends MY_Site_Controller {
         // echo "<br >";
         if($b == 0){
             $a = 0;
-            $date_ = $date_;
+            //$date_ = $date_;
         } else if($b < 0) {
             // $a = 1;
-            $date_ = date('Y-m-d',date(strtotime("-1 day", strtotime("$date_"))));
+            //$date_ = date('Y-m-d',date(strtotime("-1 day", strtotime("$date_"))));
         } else {
             // $a = -1;
-            $date_ = date('Y-m-d',date(strtotime("+1 day", strtotime("$date_"))));
+          //  $date_ = date('Y-m-d',date(strtotime("+1 day", strtotime("$date_"))));
         }
 
 
         // echo $date_;
         // exit();
 
-        @date_default_timezone_set('Etc/GMT'.$gmt_coach[0]->gmt*($a));
 
+        //@date_default_timezone_set('Etc/GMT'.$gmt_coach[0]->gmt*($a));
 
         $chek_date = gmdate('Y-m-d', strtotime($date_) );
 
