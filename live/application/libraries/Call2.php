@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Class    : Call2.php
  * Author   : Tobby Sembiring (tobby@pistarlabs.co.id)
@@ -12,7 +12,7 @@ class Call2 {
 
     private $host;
     private $params;
-	
+
     public $dataJson;
     public $dataObj;
 
@@ -20,8 +20,8 @@ class Call2 {
 
     public function init($server, $email){
 
-		//$call2_api_url = "https://" . $server . ".records.dyned.com/api/v1/call2/";
-		$call2_api_url = getenv("CALL2_URL");
+		$call2_api_url = "https://" . $server . ".records.dyned.com/api/v1/call2/";
+		// $call2_api_url = getenv("CALL2_URL");
 
         $this->host = $call2_api_url . $email ."/summary";
         $conn = curl_init($this->host);
@@ -34,9 +34,9 @@ class Call2 {
         $this->dataJson = curl_exec($conn);
         $this->dataObj = json_decode($this->dataJson);
 
-        curl_close($conn); 
+        curl_close($conn);
     }
-    
+
     public function getDataJson() {
         return $this->dataJson;
     }

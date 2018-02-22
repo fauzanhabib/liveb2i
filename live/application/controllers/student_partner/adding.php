@@ -62,7 +62,7 @@ class adding extends MY_Site_Controller {
 
         $id = $this->auth_manager->userid();
         $id_partner = $this->auth_manager->partner_id($id);
-        
+
         $partner = $this->partner_model->select('name, address, country, state, city, zip')->where('id',$id_partner)->get_all();
         $partner_country = $partner[0]->country;
 
@@ -142,7 +142,7 @@ class adding extends MY_Site_Controller {
         if (!$this->common_function->run_validation($rules)) {
             $this->messages->add(validation_errors(), 'warning');
             redirect('student_partner/subgroup/student/'.@$subgroup_id);
-            
+
             return;
         }
 
@@ -159,16 +159,16 @@ class adding extends MY_Site_Controller {
 
         // check apakah status setting region allow atau disallow
         $region_id = $this->auth_manager->region_id($id_partner);
-        
+
         $get_status_setting_region = $this->specific_settings_model->get_specific_settings($region_id,'region');
-        
+
         $max_token_for_student = '';
         $max_student_supplier = '';
         $max_student_class = '';
         if($get_status_setting_region[0]->status_set_setting == 0){
             $get_setting = $this->global_settings_model->get_partner_settings();
-            $max_token_for_student = $get_setting[0]->max_token_for_student; 
-            $max_student_supplier = $get_setting[0]->max_student_supplier; 
+            $max_token_for_student = $get_setting[0]->max_token_for_student;
+            $max_student_supplier = $get_setting[0]->max_student_supplier;
             $max_student_class = $get_setting[0]->max_student_class;
 
         } else {
@@ -180,7 +180,7 @@ class adding extends MY_Site_Controller {
         // =======================
         $get_user_token = $this->user_token_model->get_token($id,'user');
         $user_token = $get_user_token[0]->token_amount;
-   
+
 
         // check jika token user tidak mencukupi
         if($user_token < $request_token){
@@ -194,7 +194,7 @@ class adding extends MY_Site_Controller {
         // =================
 
         // xxxxxx======xxxxxx
-         // total maximum student 
+         // total maximum student
         $get_student_member = $this->db->select('member_id')
                                    ->from('creator_members')
                                    ->where('creator_id', $this->auth_manager->userid())
@@ -208,11 +208,11 @@ class adding extends MY_Site_Controller {
                                    ->where('status','active')
                                    ->get()->result();
             if($student_member){
-                $tot_stu++; 
+                $tot_stu++;
             }
         }
 
-        // total maximum student in class 
+        // total maximum student in class
         $get_stu_class = $this->db->select('user_id')
                                   ->from('user_profiles')
                                   ->where('subgroup_id',$subgroup_id)
@@ -226,7 +226,7 @@ class adding extends MY_Site_Controller {
                                    ->where('status','active')
                                    ->get()->result();
             if($student_member_class){
-                $tot_stu_class++; 
+                $tot_stu_class++;
             }
         }
         // xxxxxx======xxxxxx
@@ -285,7 +285,7 @@ class adding extends MY_Site_Controller {
         $phone_number = $this->input->post('phone');
         $phone = $country_code . $phone_number;
         $full_number = substr($phone, 1);
-        
+
 
         // Inserting user profile data
         $user_id_to_partner_id = $this->identity_model->get_identity('profile')->dropdown('user_id', 'partner_id');
@@ -304,6 +304,7 @@ class adding extends MY_Site_Controller {
             'dyned_pro_id' => $this->input->post('email_pro_id'),
             'server_dyned_pro' => $this->input->post('server_dyned_pro'),
             'cert_studying' => $this->input->post('cert_studying'),
+            'pt_score' => $this->input->post('pt_score'),
             'dcrea' => time(),
             'dupd' => time()
         );
@@ -330,10 +331,10 @@ class adding extends MY_Site_Controller {
 
         //     $script_total = count($scripts);
         //     $datascript =array();
-        //     $n = 1; 
+        //     $n = 1;
 
-     
-        //     for($i=0; $i < $script_total; $i++) 
+
+        //     for($i=0; $i < $script_total; $i++)
         //     {
         //         $datascript[$i] = array(
         //         'user_id'   => $user_id,
@@ -343,7 +344,7 @@ class adding extends MY_Site_Controller {
         //         );
         //         $n++;
         //     }
-   
+
         //     $this->db->insert_batch('coaching_scripts', $datascript);
         // ======
 
@@ -444,17 +445,17 @@ class adding extends MY_Site_Controller {
             'dcrea' => time(),
             'dupd' => time(),
         );
-   
+
         $partners = $this->partner_model->select('*')->where('id', $this->auth_manager->partner_id())->get_all();
         // echo "<pre>";
         // print_r($partners);
         $partnername = $partners[0]->name;
         // echo $partnername;
-    
+
 
          $this->db->trans_commit();
 
-      
+
 
         // messaging inserting data notification
 
@@ -472,7 +473,7 @@ class adding extends MY_Site_Controller {
         //sms
         //$this->send_sms->create_student($full_number, $this->input->post('fullname'), $this->input->post('email'));
 
-       
+
 
         $this->messages->add('Inserting Student Successful', 'success');
         redirect('student_partner/subgroup/list_student/'.@$subgroup_id);
@@ -486,24 +487,24 @@ class adding extends MY_Site_Controller {
         $this->template->title = 'Add Multiple Student';
         $id_partner = $this->auth_manager->partner_id();
         $region_id = $this->auth_manager->region_id($id_partner);
-        
+
         $get_status_setting_region = $this->specific_settings_model->get_specific_settings($region_id,'region');
-        
+
         $max_student_supplier = '';
         if(@$get_status_setting_region[0]->status_set_setting == 0){
             $get_setting = $this->global_settings_model->get_partner_settings();
-            $max_student_supplier = $get_setting[0]->max_student_supplier; 
+            $max_student_supplier = $get_setting[0]->max_student_supplier;
         } else {
             $get_setting = $this->specific_settings_model->get_partner_settings($id_partner);
             $max_student_supplier = $get_setting[0]->max_student_supplier;
         }
-        
+
         $student_member = $this->db->select('member_id')
                                    ->from('creator_members')
                                    ->where('creator_id', $this->auth_manager->userid())
                                    ->get();
 
-      
+
         $max_student = $max_student_supplier - $student_member->num_rows();
 
         if($max_student < 1){
@@ -575,16 +576,16 @@ class adding extends MY_Site_Controller {
         // }
 
         $region_id = $this->auth_manager->region_id($id_partner);
-        
+
         $get_status_setting_region = $this->specific_settings_model->get_specific_settings($region_id,'region');
-        
+
         $max_student_supplier = '';
         $max_token_for_student = '';
-       
+
         if($get_status_setting_region[0]->status_set_setting == 0){
             $get_setting = $this->global_settings_model->get_partner_settings();
-            $max_student_supplier = $get_setting[0]->max_student_supplier; 
-            $max_token_for_student = $get_setting[0]->max_token_for_student; 
+            $max_student_supplier = $get_setting[0]->max_student_supplier;
+            $max_token_for_student = $get_setting[0]->max_token_for_student;
         } else {
             $get_setting = $this->specific_settings_model->get_partner_settings($id_partner);
             $max_student_supplier = $get_setting[0]->max_student_supplier;
@@ -620,7 +621,7 @@ class adding extends MY_Site_Controller {
                 $timezone = @$value['J'];
                 $password = $this->generateRandomString();
 
-                
+
                 $date_of_birth = date('Y-m-d',($birthdate - 25569) * 86400);
 
                 if(empty($email_dyned_pro)){
@@ -664,13 +665,13 @@ class adding extends MY_Site_Controller {
                     } else {
                         // checking token
                         $request_token = $this->input->post('token_amount');
-                      
+
                         // =======================
 
                         // check token student_partner
                         $get_user_token = $this->user_token_model->get_token($id,'user');
                         $user_token = $get_user_token[0]->token_amount;
-                     
+
                         // check jika token user tidak mencukupi
                         if($user_token < $request_token){
                             $this->messages->add('Your token not enough ', 'warning');
@@ -828,7 +829,7 @@ class adding extends MY_Site_Controller {
 
         }
         redirect('student_partner/subgroup/list_student/'.@$subgroup_id);
-        
+
     }
 
     public function create_multiple_student2($subgroup_id = '') {
@@ -852,7 +853,7 @@ class adding extends MY_Site_Controller {
 
 
         $this->load->library('excel');
-        
+
         $objPHPExcel = PHPExcel_IOFactory::load($file);
         $cell_collection = $objPHPExcel->getActiveSheet()->getCellCollection();
         $data_student = '';
@@ -874,16 +875,16 @@ class adding extends MY_Site_Controller {
 
 
         $region_id = $this->auth_manager->region_id($id_partner);
-        
+
         $get_status_setting_region = $this->specific_settings_model->get_specific_settings($region_id,'region');
-        
+
         $max_student_supplier = '';
         $max_token_for_student = '';
-       
+
         if($get_status_setting_region[0]->status_set_setting == 0){
             $get_setting = $this->global_settings_model->get_partner_settings();
-            $max_student_supplier = $get_setting[0]->max_student_supplier; 
-            $max_token_for_student = $get_setting[0]->max_token_for_student; 
+            $max_student_supplier = $get_setting[0]->max_student_supplier;
+            $max_token_for_student = $get_setting[0]->max_token_for_student;
         } else {
             $get_setting = $this->specific_settings_model->get_partner_settings($id_partner);
             $max_student_supplier = $get_setting[0]->max_student_supplier;
@@ -898,7 +899,7 @@ class adding extends MY_Site_Controller {
                                    ->where('creator_id', $this->auth_manager->userid())
                                    ->get();
 
-      
+
         $max_student = $max_student_supplier - $student_member->num_rows();
 
 
@@ -918,7 +919,7 @@ class adding extends MY_Site_Controller {
                 $timezone = @$value['J'];
                 $password = $this->generateRandomString();
 
-                
+
                 $date_of_birth = date('Y-m-d',($birthdate - 25569) * 86400);
 
 
@@ -964,22 +965,22 @@ class adding extends MY_Site_Controller {
 
                         if (!$this->isValidEmail($email_dyned_pro)) {
                             $status_email_dyned_pro = 'DynEd Pro ID ' . $email_dyned_pro . ' has been used';
-                            
+
                         } else {
                             // checking token
                             $request_token = $this->input->post('token_amount');
-                            
+
                             // =======================
 
                             // check token student_partner
                             $get_user_token = $this->user_token_model->get_token($id,'user');
                             $user_token = $get_user_token[0]->token_amount;
-                            
-                           
+
+
 
                             // Inserting user profile data
                             //$user_id_to_partner_id = $this->identity_model->get_identity('profile')->select('partner_id')->where('user_id', $this-auth_manager->userid())->get();
-                            
+
                             $email_student = '';
 
                             $valid_email = $this->isValidEmail($email);
@@ -991,7 +992,7 @@ class adding extends MY_Site_Controller {
                                 $status_email = $email." has been used";
                             }
 
-                            
+
                             $profile = array(
                                 'profile_picture' => 'uploads/images/profile.jpg',
                                 'fullname' => $fullname,
@@ -1018,32 +1019,32 @@ class adding extends MY_Site_Controller {
 
 
                             // insert to table temp_multiple_students
-                        
-                            $this->db->insert('temp_multiple_students', $profile);                           
+
+                            $this->db->insert('temp_multiple_students', $profile);
                          }
 
                     }
-                } 
+                }
                 /*============
                   end process
                 ============*/
 
-            
-            }
-            
 
-        }   
-        
+            }
+
+
+        }
+
         // if($cekidot){
         //     $this->session->set_flashdata('my_super_array', $cekidot);
         //     redirect('student_partner/adding/statusPTScore/'.$subgroup_id);
         //     exit();
         // }
-            
+
 
         $this->session->set_flashdata('start','start');
         redirect('student_partner/adding/preview');
-        
+
     }
 
     function preview(){
@@ -1086,20 +1087,20 @@ class adding extends MY_Site_Controller {
         $this->db->delete('temp_multiple_students');
         redirect('student_partner/subgroup/list_student/'.$subgroup_id);
 
-        
+
     }
 
     function submit_multiple_sudents(){
         $creator_id = $this->auth_manager->userid();
 
 
-        $data = $this->db->select('*')->from('temp_multiple_students')->where('creator_id',$creator_id)->get()->result();        
-        
+        $data = $this->db->select('*')->from('temp_multiple_students')->where('creator_id',$creator_id)->get()->result();
+
 
         foreach ($data as $d) {
 
             $status_insert = '';
-            
+
             if($d->pt_score == '0'){
                 $status_insert = ",DynEd Pro ID can't be used";
                 $this->db->where('id',$d->id);
@@ -1114,15 +1115,15 @@ class adding extends MY_Site_Controller {
 
             // check apakah status setting region allow atau disallow
             $region_id = $this->auth_manager->region_id($id_partner);
-            
+
             $get_status_setting_region = $this->specific_settings_model->get_specific_settings($region_id,'region');
-            
+
             $max_token_for_student = '';
             $max_student_supplier = '';
             if($get_status_setting_region[0]->status_set_setting == 0){
                 $get_setting = $this->global_settings_model->get_partner_settings();
-                $max_token_for_student = $get_setting[0]->max_token_for_student; 
-                $max_student_supplier = $get_setting[0]->max_student_supplier; 
+                $max_token_for_student = $get_setting[0]->max_token_for_student;
+                $max_student_supplier = $get_setting[0]->max_student_supplier;
             } else {
                 $get_setting = $this->specific_settings_model->get_partner_settings($id_partner);
                 $max_token_for_student = $get_setting[0]->max_token_for_student;
@@ -1130,7 +1131,7 @@ class adding extends MY_Site_Controller {
             }
             // =======================
             $user_token = $d->my_token;
-            
+
             // check jika token user tidak mencukupi
             if($user_token < $request_token){
                 $status_insert .= ',Not enough token ';
@@ -1149,7 +1150,7 @@ class adding extends MY_Site_Controller {
                                        ->from('creator_members')
                                        ->where('creator_id', $this->auth_manager->userid())
                                        ->get();
-            
+
             if(@$student_member->num_rows() >= @$max_student_supplier){
                 $status_insert .= ',Maximun student exceeded';
                 $this->db->where('id',$d->id);
@@ -1186,7 +1187,7 @@ class adding extends MY_Site_Controller {
             // Inserting and checking to users table then storing insert_id into $insert_id
             $this->db->trans_begin();
             if($status_insert == 'insert'){
-                
+
                 $user_id = $this->user_model->insert($user);
                 if (!$user_id) {
                     $this->db->trans_rollback();
@@ -1231,7 +1232,7 @@ class adding extends MY_Site_Controller {
                     $status_insert .= ',<br > Insert to table creator failed';
                     $this->db->where('id',$d->id);
                     $this->db->update('temp_multiple_students',array('message' => $status_insert));
-                    
+
                 }
 
 
@@ -1243,10 +1244,10 @@ class adding extends MY_Site_Controller {
 
                     $script_total = count($scripts);
                     $datascript =array();
-                    $n = 1; 
+                    $n = 1;
 
-             
-                    for($i=0; $i < $script_total; $i++) 
+
+                    for($i=0; $i < $script_total; $i++)
                     {
                         $datascript[$i] = array(
                         'user_id'   => $user_id,
@@ -1256,7 +1257,7 @@ class adding extends MY_Site_Controller {
                         );
                         $n++;
                     }
-           
+
                     $this->db->insert_batch('coaching_scripts', $datascript);
                 // ======
 
@@ -1359,17 +1360,17 @@ class adding extends MY_Site_Controller {
                     'dcrea' => time(),
                     'dupd' => time(),
                 );
-           
+
                 $partners = $this->partner_model->select('*')->where('id', $this->auth_manager->partner_id())->get_all();
                 // echo "<pre>";
                 // print_r($partners);
                 $partnername = $partners[0]->name;
                 // echo $partnername;
-            
+
 
                  $this->db->trans_commit();
 
-              
+
 
                 // messaging inserting data notification
 
@@ -1383,9 +1384,9 @@ class adding extends MY_Site_Controller {
                 // email
                 $this->send_email->create_user($this->input->post('email'), $d->password,'created', $d->fullname, 'student', $partnername);
                 // $this->send_email->notif_admin($adminmail, $password,'created', $this->input->post('fullname'), 'student');
-                
-                $this->db->where('id',$d->id); 
-                $this->db->update('temp_multiple_students',array('message' => 'Succeded'));               
+
+                $this->db->where('id',$d->id);
+                $this->db->update('temp_multiple_students',array('message' => 'Succeded'));
 
             } else {
                 $this->db->where('id',$d->id);
@@ -1399,40 +1400,40 @@ class adding extends MY_Site_Controller {
 
             $this->session->set_flashdata('start','start');
             $this->session->set_flashdata('finish','finish');
-            redirect('student_partner/adding/preview');       
+            redirect('student_partner/adding/preview');
     }
 
 
     function cert_studying2($email,$server){
         $this->load->library('call2');
 
-    
+
         // $email = "antonio.rodriguez@moultonrodriguez.com";
         // $server = "am1";
-   
-       
+
+
         // $this->call2->init("site11", "sutomo@dyned.com");
         $this->call2->init($server, $email);
         $a = $this->call2->getDataJson();
         $b = json_decode($a);
 
-      
+
         if(@$b == ''){
             $cert_studying = 0;
         } else if(@$b->error == 'Invalid student email'){
                 $cert_studying = 0;
         } else {
-                $cert_studying = $b->cert_studying;    
+                $cert_studying = $b->cert_studying;
         }
-            
+
         $hasil = [$email,$cert_studying];
 
         return $hasil;
-        
+
     }
 
     function statusPTScore($subgroup_id){
-        
+
         $a = $this->session->flashdata('my_super_array');
         if(!$a){
             redirect('student_partner/adding/multiple_student/'.$subgroup_id);
@@ -1547,53 +1548,53 @@ class adding extends MY_Site_Controller {
         $this->load->library('call2');
         // $email = "antonio.rodriguez@moultonrodriguez.com";
         // $server = "am1";
-   
-       
+
+
         // $this->call2->init("site11", "sutomo@dyned.com");
         $this->call2->init($server, $email);
         $a = $this->call2->getDataJson();
         $b = json_decode($a);
 
-      
+
         if(@$b == ''){
             $cert_studying = 0;
         } else if(@$b->error == 'Invalid student email'){
                 $cert_studying = 0;
         } else {
-                $cert_studying = $b->cert_studying;    
+                $cert_studying = $b->cert_studying;
         }
-        
+
 
         return $cert_studying;
-        
+
     }
 
     public function cert_studying22($email='',$server=''){
         $this->load->library('call2');
 
-    
+
         // $email = "antonio.rodriguez@moultonrodriguez.com";
         // $email = "rendybustari@gmail.com";
         // $server = "id1";
-        
-       
+
+
         // $this->call2->init("site11", "sutomo@dyned.com");
         $this->call2->init($server, $email);
         $a = $this->call2->getDataJson();
         $b = json_decode($a);
 
-      
+
         if(@$b == ''){
             $cert_studying = 0;
         } else if(@$b->error == 'Invalid student email'){
                 $cert_studying = 0;
         } else {
-                $cert_studying = $b->cert_studying;    
+                $cert_studying = $b->cert_studying;
         }
-        
+
 
         return $cert_studying;
-        
+
     }
 
     function cert_studying(){
@@ -1602,32 +1603,42 @@ class adding extends MY_Site_Controller {
 
         $email = $this->input->post('email');
         $server = $this->input->post('server');
-    
-        // $email = "antonio.rodriguez@moultonrodriguez.com";
-        // $server = "am1";
-   
-       
-        // $this->call2->init("site11", "sutomo@dyned.com");
+
+        // $email = "hf23015864@njschool.com.cn";
+        // $server = "cn2";
+
+
+        // $this->call2->init("cn2", "hf23015864@njschool.com.cn");
         $this->call2->init($server, $email);
         $a = $this->call2->getDataJson();
         $b = json_decode($a);
 
-      
+        // echo "<pre>";print_r($b);exit();
+
         if(@$b == ''){
             $cert_studying = 0;
         } else if(@$b->error == 'Invalid student email'){
-                $cert_studying = 0;
+            $cert_studying = 0;
+            $pt_score = 0;
         } else {
-                $cert_studying = $b->cert_studying;    
+            $cert_studying = $b->cert_studying;
+            $pt_score = $b->last_pt_score;
         }
-        
 
-        echo $cert_studying;
-        
+        // echo "<pre>";print_r($b);exit();
+
+        $var[] = [
+          'cert_studying' => $cert_studying,
+          'pt_score' => $pt_score
+        ];
+
+        echo json_encode($var);
+        // echo $cert_studying;
+
     }
 
     function check_email_pro_id($email){
- 
+
         $sql = $this->db->select('dyned_pro_id,server_dyned_pro')->from('user_profiles')->where('dyned_pro_id',$email)->get()->result();
         if($sql){
             // $this->form_validation->set_message('check_email_pro_id', $email.' has been registered, use another DynEd Pro ID');
