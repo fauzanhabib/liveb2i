@@ -176,14 +176,14 @@
 </div>
 
 <script type="text/javascript">
-    // $(document).ready(function() {
-    //     if (navigator.appVersion.indexOf("Win")!=-1) 
-    //     {
-    //       $('.star-ratings-css').css('width','83px');
-    //     } else {
-    //       $('.star-ratings-css').css('width','100px'); // this will style body for other OS (Linux/Mac)
-    //     }
-    // });
+    $(document).ready(function() {
+        if (navigator.appVersion.indexOf("Win")!=-1) 
+        {
+          $('.star-ratings-css').css('width','83px');
+        } else {
+          $('.star-ratings-css').css('width','100px'); // this will style body for other OS (Linux/Mac)
+        }
+    });
 </script>
 
 <script type="text/javascript">
