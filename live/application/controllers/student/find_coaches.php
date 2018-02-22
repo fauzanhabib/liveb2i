@@ -542,24 +542,23 @@ class find_coaches extends MY_Site_Controller {
             $message = '';
             $date_ = strtotime("+".$value." day", $date_);
             // set defaul timezone
-            @date_default_timezone_set('Etc/GMT+0');
+           @date_default_timezone_set('Etc/GMT+0');
 
             $start_time_available = $start_time_;
             $end_time_available = $end_time_;
 
             $date_notif = date('l jS \of F Y', @$date_);
-
+		
             $convert = $this->schedule_function->convert_book_schedule(-($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes), $date_, $start_time_, $end_time_);
             $date = $convert['date'];
-
+	
             $dateconvert = date('Y-m-d', $date_);
             $dateconvertcoach = date('Y-m-d', $date);
             $start_time = $convert['start_time'];
             $end_time = $convert['end_time'];
-
             // timezone
             $id_student = $this->auth_manager->userid();
-
+	
             // student
             $gmt_student = $this->identity_model->new_get_gmt($id_student);
             // coach
@@ -605,8 +604,8 @@ class find_coaches extends MY_Site_Controller {
                     $this->messages->add('Invalid Appointment Or Coach is Having Day Off', 'warning');
                     $message = 'Invalid Appointment Or Coach is Having Day Off';
                 }
-
-                $dayoff = $this->is_day_off($coach_id, $dateconvertcoach);
+		
+               $dayoff = $this->is_day_off($coach_id, $dateconvertcoach,$start_time, $end_time);
 
                 // if dayoff 1, coach cuti
                 if($dayoff){
@@ -2580,8 +2579,18 @@ class find_coaches extends MY_Site_Controller {
         }
     }
 
-    private function is_day_off($coach_id = '', $date_ = '') {
+    private function is_day_off($coach_id = '', $date_ = '',$start_time = '', $end_time = '') {
+	
+	$date_ = strtotime($date_);
 
+	$convert = $this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($coach_id)[0]->minutes), $date_, $start_time, $end_time);
+            $date = $convert['date'];
+
+           
+            $date_ = date('Y-m-d', $date);
+            $start_time = $convert['start_time'];
+            $end_time = $convert['end_time'];
+//	echo $i; print_r($convert); exit;
         $gmt_coach = $this->db->select("minutes_val as minutes, gmt_val as gmt")
                              ->from('user_timezones')
                              // ->where('user_id', $this->auth_manager->userid())
@@ -2596,28 +2605,29 @@ class find_coaches extends MY_Site_Controller {
 
         $co = @$gmt_coach[0]->gmt*(1);
         $stu = $gmt_student[0]->gmt*(1);
-        $b = $co - $stu;
-
-        // echo $co."()".$stu;
-        // echo "<br >";
-        if($b == 0){
-            $a = 0;
-            //$date_ = $date_;
-        } else if($b < 0) {
+//	echo $date_." + ".$start_time." + ".$end_time; exit;
+  //      echo $co ." = ". $stu; echo "<br >";
+//echo $date_; exit;
+         
+     //  if ($b == 0){
+       //     $a = 0;
+           // $date_ = $date_;
+        //} else if($b < 0) {
             // $a = 1;
-            //$date_ = date('Y-m-d',date(strtotime("-1 day", strtotime("$date_"))));
-        } else {
+          // $date_ = date('Y-m-d',date(strtotime("-1 day", strtotime("$date_"))));
+       // } else {
             // $a = -1;
-          //  $date_ = date('Y-m-d',date(strtotime("+1 day", strtotime("$date_"))));
-        }
-
-
-        // echo $date_;
-        // exit();
-
-
-        //@date_default_timezone_set('Etc/GMT'.$gmt_coach[0]->gmt*($a));
-
+          // $date_ = date('Y-m-d',date(strtotime("+1 day", strtotime("$date_"))));
+       // }
+//	$d = strtotime($date_);
+//	echo $date_; exit;
+  //      $convert = $this->schedule_function->convert_book_schedule(-($this->identity_model->new_get_gmt($coach_id)[0]->minutes), $d, $start_time, $end_time);
+//	$e = $convert['date'];
+	
+//	$e = date('Y-m-d', $e);
+//	echo $e; exit; 
+       //@date_default_timezone_set('Etc/GMT'.$gmt_coach[0]->gmt*($a));
+	
         $chek_date = gmdate('Y-m-d', strtotime($date_) );
 
         $diff=date_diff(date_create($date_),date_create($chek_date));
