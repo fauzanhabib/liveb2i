@@ -519,7 +519,9 @@ class find_coaches extends MY_Site_Controller {
     public function book_single_coach($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '', $token = ''){
         $recuring = $this->session->userdata('recurring_booking_type');
 
-        
+        if(!$recuring){
+            $recuring = 1;
+        }
 
         if($recuring == 1) {
             $frequency = [0];
