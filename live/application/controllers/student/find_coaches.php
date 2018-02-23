@@ -519,6 +519,10 @@ class find_coaches extends MY_Site_Controller {
     public function book_single_coach($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '', $token = ''){
         $recuring = $this->session->userdata('recurring_booking_type');
 
+        if(!$recuring){
+            $recuring = 1;
+        }
+
         if($recuring == 1) {
             $frequency = [0];
         }
@@ -2244,18 +2248,7 @@ class find_coaches extends MY_Site_Controller {
             $isValid = $this->isAvailable($coach_id, $date, $start_time, $end_time);
             if ($isValid) {
                 $availability = $this->isOnAvailability($coach_id, date('Y-m-d', $date_));
-//                @date_default_timezone_set('Etc/GMT'.(7));
-//                print_r(date('Y-m-d', $convert['date']));
-//                    //$this->db->trans_rollback();
-//                    exit;
-//                echo('<pre>');
-//                echo($start_time. '   '. $end_time);
-//                echo('<pre>');
-//                echo(date('Y-m-d', $date));
-//                print_r($availability);
-//                print_r($start_time_available);
-//                print_r($end_time_available);
-//                exit;
+//                
                 if (in_array(array('start_time' => $start_time_available, 'end_time' => $end_time_available), $availability)) {
                     // go to next step
                     //exit;
@@ -2263,16 +2256,9 @@ class find_coaches extends MY_Site_Controller {
                     $this->messages->add('Invalid Time', 'warning');
                     redirect('student/find_coaches/search/name/');
                 }
-                // begin the transaction to ensure all data created or modified structural
-                //$token_cost = $this->coach_token_cost_model->select('token_for_student')->where('coach_id', $coach_id)->get();
-                // updating remaining token student
-                // $this->db->trans_begin();
-                // $remain_token = $this->update_token($token_cost->token_for_student);
+                
                  $token_cost = $token;
-                // echo "<pre>";
-                // print_r($token_cost);
-                // exit();
-                // updating remaining token student
+                
 
                 $remain_token = $this->update_token($token_cost);
                 //if ($this->db->trans_status() === true && $remain_token >= 0 && $this->isAvailable($coach_id, $date, $start_time, $end_time)) {
@@ -2584,76 +2570,11 @@ class find_coaches extends MY_Site_Controller {
 	$date_ = strtotime($date_);
 
 	$convert = $this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($coach_id)[0]->minutes), $date_, $start_time, $end_time);
-            $date = $convert['date'];
+    $date = $convert['date'];
 
-           
-            $date_ = date('Y-m-d', $date);
-            $start_time = $convert['start_time'];
-            $end_time = $convert['end_time'];
-//	echo $i; print_r($convert); exit;
-        $gmt_coach = $this->db->select("minutes_val as minutes, gmt_val as gmt")
-                             ->from('user_timezones')
-                             // ->where('user_id', $this->auth_manager->userid())
-                             ->where('user_id', $coach_id)
-                             ->get()->result();
+   
+    $date_ = date('Y-m-d', $date);
 
-        $gmt_student = $this->db->select("minutes_val as minutes, gmt_val as gmt")
-                             ->from('user_timezones')
-                             ->where('user_id', $this->auth_manager->userid())
-                             // ->where('user_id', $coach_id)
-                             ->get()->result();
-
-        $co = @$gmt_coach[0]->gmt*(1);
-        $stu = $gmt_student[0]->gmt*(1);
-//	echo $date_." + ".$start_time." + ".$end_time; exit;
-  //      echo $co ." = ". $stu; echo "<br >";
-//echo $date_; exit;
-         
-     //  if ($b == 0){
-       //     $a = 0;
-           // $date_ = $date_;
-        //} else if($b < 0) {
-            // $a = 1;
-          // $date_ = date('Y-m-d',date(strtotime("-1 day", strtotime("$date_"))));
-       // } else {
-            // $a = -1;
-          // $date_ = date('Y-m-d',date(strtotime("+1 day", strtotime("$date_"))));
-       // }
-//	$d = strtotime($date_);
-//	echo $date_; exit;
-  //      $convert = $this->schedule_function->convert_book_schedule(-($this->identity_model->new_get_gmt($coach_id)[0]->minutes), $d, $start_time, $end_time);
-//	$e = $convert['date'];
-	
-//	$e = date('Y-m-d', $e);
-//	echo $e; exit; 
-       //@date_default_timezone_set('Etc/GMT'.$gmt_coach[0]->gmt*($a));
-	
-        $chek_date = gmdate('Y-m-d', strtotime($date_) );
-
-        $diff=date_diff(date_create($date_),date_create($chek_date));
-        $get_sel = $diff->format("%R%a");
-
-        // exit('aa '.$a);
-
-        // if($get_sel < 0){
-
-        //     if($a == 1){
-        //         exit('a');
-        //         $date_ = date('Y-m-d',date(strtotime("-1 day", strtotime("$date_"))));
-        //     }
-        //     if($a == -1){
-        //         exit('b');
-        //         $date_ = date('Y-m-d',date(strtotime("+1 day", strtotime("$date_"))));
-        //         exit($date_);
-        //     }
-        // } else {
-        //     exit('c');
-        //     $date_ = $date_;
-        // }
-
-        // $date_ = $chek_date;
-
-        // exit();
         $day_off = $this->db->select('coach_id, start_date, end_date')
                         ->from('coach_dayoffs')
                         ->where('coach_id', $coach_id)
@@ -2661,9 +2582,6 @@ class find_coaches extends MY_Site_Controller {
                         ->where('start_date <=', $date_)
                         ->where('end_date >=', $date_)
                         ->get()->result();
-        // echo strtotime($date_)." - ". mktime(0, 0, 0, date("m"), date("d"), date("Y"));
-
-        // // $start_date = strtotime(@$day_off->start_date);
         $start_date = @$day_off->start_date;
         // $end_date = strtotime(@$day_off->end_date);
         $end_date = @$day_off->end_date;
