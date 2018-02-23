@@ -525,7 +525,7 @@ if(@$user_extract2){
             <input id="channel" type="text" value="1000" size="4"></input>
             <input id="video" type="checkbox" checked></input>
         </div>
-        <div class="video-conference width100perc" style="height:500px;">
+        <div class="video-conference width100perc">
           <div id="video" style="margin:0 auto;">
              <div id="agora_local" class="localAgora"></div>
           </div>
