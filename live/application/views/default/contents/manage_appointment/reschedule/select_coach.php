@@ -76,15 +76,7 @@
                             </div>
 
                             <h5>
-                                <?php 
-                                if($coaches[$i]->coach_type_id == 1){
-                                    echo $standard_coach_cost;
-                                } else if($coaches[$i]->coach_type_id == 2){
-                                    echo $elite_coach_cost; 
-                                }
-                                ?>
-
-                                Tokens
+                               
                             </h5>
                             <h5><?php echo($coaches[$i]->country); ?></h5>
                             <div class="more pure-u-1">
