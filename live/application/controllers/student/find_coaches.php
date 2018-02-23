@@ -519,9 +519,7 @@ class find_coaches extends MY_Site_Controller {
     public function book_single_coach($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '', $token = ''){
         $recuring = $this->session->userdata('recurring_booking_type');
 
-        if(!$recuring){
-            $recuring = 1;
-        }
+        
 
         if($recuring == 1) {
             $frequency = [0];
@@ -634,8 +632,16 @@ class find_coaches extends MY_Site_Controller {
 
 
                 if(($message == '') && ($remain_token >0)){
+                    // update token
+                    $s_t = $this->identity_model->get_identity('token')->select('id, token_amount')->where('user_id', $this->auth_manager->userid())->get();
+                    $r_t = $s_t->token_amount - $token;
+                    $data = array(
+                        'token_amount' => $r_t,
+                    );
+                    
+                    $u_t = $this->identity_model->get_identity('token')->update($s_t->id, $data);
 
-
+                    // =====
                     $appointment_id = $this->create_appointment($coach_id, $date, $start_time, $end_time, 'active');
 
                     $get_date_apd = $this->db->select('date, start_time, end_time')->from('appointments')->where('id',$appointment_id)->get()->result();
@@ -2050,10 +2056,6 @@ class find_coaches extends MY_Site_Controller {
             $status = false;
         } else if ($student_token->token_amount >= $cost) {
             $remain_token = $student_token->token_amount - $cost;
-            $data = array(
-                'token_amount' => $remain_token,
-            );
-            $this->identity_model->get_identity('token')->update($student_token->id, $data);
             $status = true;
         }
 
