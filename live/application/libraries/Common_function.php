@@ -425,7 +425,7 @@ class Common_function {
      * @param (int)$total_rows
      * @param (int)$per_page
      * @param (int)$uri_segment
-     * @return pagination link  
+     * @return pagination link
      */
     public function create_link_pagination($page = '', &$offset = '', $base_url = '', $total_rows = '', $per_page = '', $uri_segment = '') {
         $this->CI->load->library('pagination');
@@ -479,7 +479,7 @@ class Common_function {
             return TRUE;
         }
     }
-    
+
     public function get_partner_type($partner_id = ''){
         if($this->CI->user_profile_model->get_students($partner_id, 3, 'first_page') && @$this->CI->user_profile_model->get_coaches($partner_id, 3, 'first_page')){
             return 'Student and Coach Supplier';
@@ -491,7 +491,7 @@ class Common_function {
             return 'Coach Supplier';
         }
     }
-    
+
     public function server_code(){
         return(
             array(
@@ -499,6 +499,7 @@ class Common_function {
                 'us1'=>'Asia',
                 'cn1'=>'China-1',
                 'cn2'=>'China-2',
+                'cn3'=>'China-3',
                 'eu1'=>'Europe',
                 'id1'=>'Indonesia-1',
                 'id2'=>'Indonesia-2',
@@ -534,7 +535,7 @@ class Common_function {
                 ->where('user_id', $id)
                 ->get()->result();
 
-        
+
         $minutes = $tz[0]->minutes_val;
         return $minutes;
     }

@@ -177,8 +177,11 @@ class identity_model extends MY_Model {
             $partner_id = $this->auth_manager->partner_id();
         }
 
-            $cert_studying = $this->db->select('user_profiles.cert_studying as cert_studying')->from('user_profiles')->where('user_profiles.user_id',$this->auth_manager->userid())->get()->result();
-            $cert_studying = $cert_studying[0]->cert_studying;
+            $cert_studyingo = $this->db->select('user_profiles.cert_studying as cert_studying, user_profiles.pt_score as pt_score')->from('user_profiles')->where('user_profiles.user_id',$this->auth_manager->userid())->get()->result();
+            @$cert_studying = $cert_studyingo[0]->cert_studying;
+            @$pt_score = $cert_studyingo[0]->pt_score;
+            // echo $pt_score;
+            // exit();
 
             if($this->auth_manager->role() == 'STD'){
                 $user_subgroup = $this->db->select('user_profiles.subgroup_id as subgroup_id')->from('user_profiles')->where('user_profiles.user_id',$this->auth_manager->userid())->get()->result();
@@ -334,31 +337,63 @@ class identity_model extends MY_Model {
                              if(($this->uri->segment(1) == 'student') && ($this->uri->segment(2) == 'find_coaches')){
                              // echo $cert_studying;
                              // exit();
-                                 if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
-                                    $this->db->where('c.pt_score >=','2.5');
-                                 }else if (($cert_studying == 'B1') || ($cert_studying == 'B2')){
-                                    $this->db->where('c.pt_score >=','3');
-                                 } else if (($cert_studying == 'C1') || ($cert_studying == 'C2')){
-                                    $this->db->where('c.pt_score >=','3.5');
-                                 }
-                                 else if($cert_studying == 0){
-                                    $this->db->where('c.pt_score >','999999');
-                                 }
-                             }
+                                if($cert_studying != 'Unkno'){
+                                    // echo "a";
+                                    // exit();
+                                    if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
+                                       $this->db->where('c.pt_score >=','2.5');
+                                    }elseif(($cert_studying == 'B1') || ($cert_studying == 'B2')){
+                                       $this->db->where('c.pt_score >=','3');
+                                    }elseif(($cert_studying == 'C1') || ($cert_studying == 'C2')){
+                                       $this->db->where('c.pt_score >=','3.5');
+                                    }
+                                    elseif($cert_studying == 0){
+                                       $this->db->where('c.pt_score >','0');
+                                    }
+                                }else{
+                                    // echo "b";
+                                    // exit();
+                                    // echo $pt_score;
+                                    // exit();
+                                    if(($pt_score >= 2) && ($pt_score <= 2.5)){
+                                       $this->db->where('c.pt_score >=','3');
+                                    }elseif($pt_score > 2.5){
+                                       $this->db->where('c.pt_score >=','3.5');
+                                    }else{
+                                        $this->db->where('c.pt_score >','0');
+                                    }
+                                }
+                            }
                          }else{
                              if(($this->uri->segment(2) == 'student') && ($this->uri->segment(3) == 'find_coaches')){
                              // echo $cert_studying;
                              // exit();
-                                 if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
-                                    $this->db->where('c.pt_score >=','2.5');
-                                 } else if (($cert_studying == 'B1') || ($cert_studying == 'B2')){
-                                    $this->db->where('c.pt_score >=','3');
-                                 } else if (($cert_studying == 'C1') || ($cert_studying == 'C2')){
-                                    $this->db->where('c.pt_score >=','3.5');
-                                 }
-                                 else if($cert_studying == 0){
-                                    $this->db->where('c.pt_score >','999999');
-                                 }
+                                 if($cert_studying != 'Unkno'){
+                                    // echo "a";
+                                    // exit();
+                                    if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
+                                       $this->db->where('c.pt_score >=','2.5');
+                                    }elseif(($cert_studying == 'B1') || ($cert_studying == 'B2')){
+                                       $this->db->where('c.pt_score >=','3');
+                                    }elseif(($cert_studying == 'C1') || ($cert_studying == 'C2')){
+                                       $this->db->where('c.pt_score >=','3.5');
+                                    }
+                                    elseif($cert_studying == 0){
+                                       $this->db->where('c.pt_score >','0');
+                                    }
+                                }else{
+                                    // echo "b";
+                                    // exit();
+                                    // echo $pt_score;
+                                    // exit();
+                                    if(($pt_score >= 2) && ($pt_score <= 2.5)){
+                                       $this->db->where('c.pt_score >=','3');
+                                    }elseif($pt_score > 2.5){
+                                       $this->db->where('c.pt_score >=','3.5');
+                                    }else{
+                                        $this->db->where('c.pt_score >','0');
+                                    }
+                                }
                              }
                          }
                          $this->db->or_where_in('c.partner_id', $new_partner_array);
@@ -466,30 +501,63 @@ class identity_model extends MY_Model {
             if(($this->uri->segment(1) == 'student') && ($this->uri->segment(2) == 'find_coaches')){
                 // echo $cert_studying;
                 // exit();
-               if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
-                    $this->db->where('c.pt_score >=','2.5');
-                } else if (($cert_studying == 'B1') || ($cert_studying == 'B2')){
-                    $this->db->where('c.pt_score >=','3');
-                } else if (($cert_studying == 'C1') || ($cert_studying == 'C2')){
-                    $this->db->where('c.pt_score >=','3.5');
-                }
-                else if($cert_studying == 0){
-                    $this->db->where('c.pt_score >','999999');
+                // $cert_studying = 'A2';
+               if($cert_studying != 'Unkno'){
+                    // echo "a";
+                    // exit();
+                    if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
+                       $this->db->where('c.pt_score >=','2.5');
+                    }elseif(($cert_studying == 'B1') || ($cert_studying == 'B2')){
+                       $this->db->where('c.pt_score >=','3');
+                    }elseif(($cert_studying == 'C1') || ($cert_studying == 'C2')){
+                       $this->db->where('c.pt_score >=','3.5');
+                    }
+                    elseif($cert_studying == 0){
+                       $this->db->where('c.pt_score >','0');
+                    }
+                }else{
+                    // echo "b";
+                    // exit();
+                    // echo $pt_score;
+                    // exit();
+                    if(($pt_score >= 2) && ($pt_score <= 2.5)){
+                       $this->db->where('c.pt_score >=','3');
+                    }elseif($pt_score > 2.5){
+                       $this->db->where('c.pt_score >=','3.5');
+                    }else{
+                        $this->db->where('c.pt_score >','0');
+                    }
                 }
             }
         }else{
             if(($this->uri->segment(2) == 'student') && ($this->uri->segment(3) == 'find_coaches')){
                 // echo $cert_studying;
                 // exit();
-               if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
-                    $this->db->where('c.pt_score >=','2.5');
-                } else if (($cert_studying == 'B1') || ($cert_studying == 'B2')){
-                    $this->db->where('c.pt_score >=','3');
-                } else if (($cert_studying == 'C1') || ($cert_studying == 'C2')){
-                    $this->db->where('c.pt_score >=','3.5');
-                }
-                else if($cert_studying == 0){
-                    $this->db->where('c.pt_score >','999999');
+               if($cert_studying != 'Unkno'){
+                    // echo "a";
+                    // exit();
+                    if(($cert_studying == 'A1') || ($cert_studying == 'A2')){
+                       $this->db->where('c.pt_score >=','2.5');
+                    }elseif(($cert_studying == 'B1') || ($cert_studying == 'B2')){
+                       $this->db->where('c.pt_score >=','3');
+                    }elseif(($cert_studying == 'C1') || ($cert_studying == 'C2')){
+                       $this->db->where('c.pt_score >=','3.5');
+                    }
+                    elseif($cert_studying == 0){
+                       $this->db->where('c.pt_score >','0');
+                    }
+                }else{
+                    // echo "b";
+                    // exit();
+                    // echo $pt_score;
+                    // exit();
+                    if(($pt_score >= 2) && ($pt_score <= 2.5)){
+                       $this->db->where('c.pt_score >=','3');
+                    }elseif($pt_score > 2.5){
+                       $this->db->where('c.pt_score >=','3.5');
+                    }else{
+                        $this->db->where('c.pt_score >','0');
+                    }
                 }
             }
         }
