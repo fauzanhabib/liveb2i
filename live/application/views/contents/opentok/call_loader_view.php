@@ -825,7 +825,11 @@ $("#reloadajax4").click(function() {
         </div>
         <?php } else {}?>
     <?php } else{ ?>
-          <center>You have not done any study yet</center>
+          <?php if($student_vrm->cert_studying != "Unknown"){ ?>
+            <center>You have not done any study yet</center>
+          <?php }else{ ?>
+            <center>You are a non certification student</center>
+          <?php } ?>
         <?php } ?>
 
         </div>

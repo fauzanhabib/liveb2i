@@ -278,47 +278,47 @@ $(document).ready(function(){
 // console.log(extensionId);
 
 
-var isFirefox = typeof InstallTrigger !== 'undefined';
-
-var isChrome = !!window.chrome && !!window.chrome.webstore;
-
-if(isChrome == true && isFirefox == false){
-  $(document).ready(function(){
-    $("#sharescreenff").hide();
-    $("#sharescreenff").addClass("hidden");
-  });
-  // console.log('a');
-  setInterval(function(){
-    function IsExist(extensionId,callback){
-     chrome.runtime.sendMessage(extensionId, { message: "installed" },
-       function (reply) {
-        if (reply) {
-         callback(true);
-        }else{
-         callback(false);
-        }
-     });
-    }
-    //check online extension - chrome webstore
-    IsExist(extensionId,function(installed){
-     if(!installed){
-      $("#sharescreenavan").removeClass("hidden");
-      $("#sharescreenava").addClass("hidden");
-     }
-     else{
-      $("#sharescreenava").removeClass("hidden");
-      $("#sharescreenavan").addClass("hidden");
-     }
-    });
-    // check offline extension - .crx file
-
-  },1000);
-}else if(isChrome == false && isFirefox == true){
-  // console.log('as');
-  $("#sharescreenff").removeClass("hidden");
-  $("#sharescreenava").hide();
-  $("#sharescreenava").hide();
-}
+// var isFirefox = typeof InstallTrigger !== 'undefined';
+//
+// var isChrome = !!window.chrome && !!window.chrome.webstore;
+//
+// if(isChrome == true && isFirefox == false){
+//   $(document).ready(function(){
+//     $("#sharescreenff").hide();
+//     $("#sharescreenff").addClass("hidden");
+//   });
+//   // console.log('a');
+//   setInterval(function(){
+//     function IsExist(extensionId,callback){
+//      chrome.runtime.sendMessage(extensionId, { message: "installed" },
+//        function (reply) {
+//         if (reply) {
+//          callback(true);
+//         }else{
+//          callback(false);
+//         }
+//      });
+//     }
+//     //check online extension - chrome webstore
+//     IsExist(extensionId,function(installed){
+//      if(!installed){
+//       $("#sharescreenavan").removeClass("hidden");
+//       $("#sharescreenava").addClass("hidden");
+//      }
+//      else{
+//       $("#sharescreenava").removeClass("hidden");
+//       $("#sharescreenavan").addClass("hidden");
+//      }
+//     });
+//     // check offline extension - .crx file
+//
+//   },1000);
+// }else if(isChrome == false && isFirefox == true){
+//   // console.log('as');
+//   $("#sharescreenff").removeClass("hidden");
+//   $("#sharescreenava").hide();
+//   $("#sharescreenava").hide();
+// }
 </script>
 <!-- COACH SCRIPT ENDS -->
 

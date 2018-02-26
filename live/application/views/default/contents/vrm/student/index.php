@@ -62,7 +62,7 @@
                                 <div class="hexagonYellow stud-dash-hexa position-absolute"></div>
                                 <div class="hexagonRed stud-dash-hexa position-absolute"></div>
                             </div>
-                                            
+
 
                             <canvas id="bar" class="radar" style="width: 100%"></canvas>
 
@@ -176,13 +176,18 @@
                 $cert_level = @$student_vrm2->cert_level_completion;
                 // echo $cert_level->A1;
                 // exit();
-               
+
                 ?>
+
+                <!-- Check non certif user -->
+
                 <div class="pure-u-md-12-24" style="z-index:3">
 
                 <div class="box-capsule m-t-20 margin-auto font-14 width190">
                     <span>Certificate Plan</span>
                 </div>
+
+                <?php if($student_vrm2->cert_studying != "Unknown"){ ?>
                 <div class="tabs1 cert_plan padding-t-20 text-center">
                     <a href="#content-a1" id="A1" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">A1</h5>
@@ -226,13 +231,13 @@
                             <progress value="<?php echo @$cert_level->C2; ?>" max="100"></progress>
                         </div>
                     </a>
-                </div>            
+                </div>
 
                 <div id="content-a1">
                 <?php
                 $nde1 = @$allmodule1['nde1'];
                 $fe1  = @$allmodule1['fe1'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -276,7 +281,7 @@
                 <?php
                 $nde2 = @$allmodule2['nde2'];
                 $tls2  = @$allmodule2['tls2'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -322,7 +327,7 @@
                 $dbe3  = @$allmodule3['dbe3'];
                 $tls3  = @$allmodule3['tls3'];
                 $ebn3  = @$allmodule3['ebn3'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -352,7 +357,7 @@
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $dbe3['pcdbe1']; ?>%</font><br>
                                 <?php echo $dbe3['dbe1']; ?></h5>
-                            
+
                         </div>
                     </div>
                     <div id="tabs-tls3" class="tabs-c clearfix" style="display: none;">
@@ -403,7 +408,7 @@
                 $dbe4  = @$allmodule4['dbe4'];
                 $fib4  = @$allmodule4['fib4'];
                 $ebn4  = @$allmodule4['ebn4'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -473,7 +478,7 @@
                 $ebn5  = @$allmodule5['ebn5'];
                 $dlg5  = @$allmodule5['dlg5'];
                 $als5  = @$allmodule5['als5'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -588,7 +593,7 @@
                 $ebn6  = @$allmodule6['ebn6'];
                 $dlg6  = @$allmodule6['dlg6'];
                 $als6  = @$allmodule6['als6'];
-        
+
                 // echo "<pre>";
                 // print_r($fe1);
                 // exit();
@@ -669,6 +674,10 @@
 
             </div>
 
+          <?php }else{ ?>
+            <div style="text-align: center;margin-top: 20px;">You are a non certification student</div>
+          <?php } ?>
+          <!-- Check non certif user -->
 
                 <div class="padding-t-30 pure-u-1 visibility-hide">
                     <div class="box-capsule padding-tb-8 text-cl-tertiary margin-auto font-14 width190">
@@ -676,7 +685,7 @@
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>
     </div>
 
 </div>
@@ -689,7 +698,7 @@
                 $(".listTop > a").prepend($("<span/>"));
                 $(".listBottom > a").prepend($("<span/>"));
                 $(".listTop, .listBottom").click(function(event){
-                 event.stopPropagation(); 
+                 event.stopPropagation();
                  $(this).children("ul").slideToggle();
                });
             });
@@ -793,11 +802,11 @@ var data = {
             data: [wss, repeat, mic, headphone, sr, mt]
         }
     ]
-};    
+};
 
 if($(document).width() < 490){
     var bar = new Chart(canvas.getContext('2d')).Radar(data, {
-      
+
         tooltipTemplate : valueData,
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
         responsive: true,
@@ -824,7 +833,7 @@ if($(document).width() < 490){
 }
 else {
     var bar = new Chart(canvas.getContext('2d')).Radar(data, {
-      
+
         tooltipTemplate : valueData,
         legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>",
         responsive: true,

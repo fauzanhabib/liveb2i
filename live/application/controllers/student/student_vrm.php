@@ -10,11 +10,11 @@ if (!defined('BASEPATH')) {
 }
 
 class Student_vrm extends MY_Site_Controller {
-    
+
     // Constructor
     public function __construct() {
         parent::__construct();
-        
+
         // Loading models
         $this->load->model('appointment_model');
         $this->load->model('appointment_history_model');
@@ -22,19 +22,19 @@ class Student_vrm extends MY_Site_Controller {
         $this->load->model('identity_model');
         $this->load->library('call1');
         $this->load->library('call2');
-        
+
         // Checking user role and giving action
         if (!$this->auth_manager->role() || $this->auth_manager->role() != 'STD') {
             $this->messages->add('ERROR');
             redirect('account/identity/detail/profile');
         }
     }
-    
+
     public function index(){
         $this->template->title = 'Coach Session';
         $date_from = date("Y-m-d", strtotime(date("Y-m-d", strtotime(date("Y-m-d"))) . "-1 month"));
         $histories = $this->appointment_history_model->get_session_histories('coach_id', $date_from, date('Y-m-d'), 1);
-        
+
         $vars = array(
             'form_action' => 'search',
             'histories' => $histories,
@@ -42,19 +42,20 @@ class Student_vrm extends MY_Site_Controller {
             'user' => 'coach',
             'start_date' => date("Y-m-d", strtotime(date("Y-m-d", strtotime(date("Y-m-d"))) . "-2 month"))
         );
-        
+
         $this->template->content->view('default/contents/vrm/coach/index', $vars);
         $this->template->publish();
     }
     public function single_student(){
         $this->template->title = 'Student Progress Report';
         $data_dyned_pro = $this->identity_model->get_student_identity($this->auth_manager->userid());
-        
+
         if($data_dyned_pro[0]->dyned_pro_id && $data_dyned_pro[0]->server_dyned_pro){
                //TODO
                //Get id server and email from Database
                //getting dyned pro id and server id
                //$data_student = $this->identity_model->get_identity('profile')->where('user_id', $this->auth_manager->userid())->select('dyned_pro_id, server_dyned_pro')->get();
+               // echo "<pre>";print_r($data_dyned_pro[0]->dyned_pro_id);exit();
                $this->call2->init($data_dyned_pro[0]->server_dyned_pro, $data_dyned_pro[0]->dyned_pro_id);
                $this->call1->init($data_dyned_pro[0]->dyned_pro_id,'' , $data_dyned_pro[0]->server_dyned_pro);
                $callOneJson  = $this->call1->callOneJson();
@@ -131,38 +132,38 @@ class Student_vrm extends MY_Site_Controller {
                                 $nde7    = "Module 7";
                                 $lcnde7  = $lessonCode;
                                 $pcnde7  = $percent;
-                            } 
+                            }
                             if($lessonCode == '010-8M0'){
                                 $nde8    = "Module 8";
                                 $lcnde8  = $lessonCode;
                                 $pcnde8  = $percent;
-                            }        
+                            }
                         }
                     }
                     if(isset($nde1)){
                     $nde1;$pcnde1;
                     }else{$nde1 = 'Module 1';$pcnde1 = 0;}
-                    
+
                     if(isset($nde2)){
                     $nde2;$pcnde2;
                     }else{$nde2 = 'Module 2';$pcnde2 = 0;}
-                    
+
                     if(isset($nde3)){
                     $nde3;$pcnde3;
                     }else{$nde3 = 'Module 3';$pcnde3 = 0;}
-                    
+
                     if(isset($nde4)){
                     $nde4;$pcnde4;
                     }else{$nde4 = 'Module 4';$pcnde4 = 0;}
-                    
+
                     if(isset($nde5)){
                     $nde5;$pcnde5;
                     }else{$nde5 = 'Module 5';$pcnde5 = 0;}
-                    
+
                     if(isset($nde6)){
                     $nde6;$pcnde6;
                     }else{$nde6 = 'Module 6';$pcnde6 = 0;}
-                    
+
                     if(isset($nde7)){
                     $nde7;$pcnde7;
                     }else{$nde7 = 'Module 7';$pcnde7 = 0;}
@@ -171,9 +172,9 @@ class Student_vrm extends MY_Site_Controller {
                     $nde8;$pcnde8;
                     }else{$nde8 = 'Module 8';$pcnde8 = 0;}
 
-                    
+
                     $nde = array(
-                        'nde1' => $nde1, 'nde2' => $nde2, 'nde3' => $nde3, 'nde4' => $nde4, 
+                        'nde1' => $nde1, 'nde2' => $nde2, 'nde3' => $nde3, 'nde4' => $nde4,
                         'nde5' => $nde5, 'nde6' => $nde6, 'nde7' => $nde7, 'nde8' => $nde8,
                         'pcnde1' => $pcnde1, 'pcnde2' => $pcnde2, 'pcnde3' => $pcnde3, 'pcnde4' => $pcnde4,
                         'pcnde5' => $pcnde5, 'pcnde6' => $pcnde6, 'pcnde7' => $pcnde7, 'pcnde8' => $pcnde8,
@@ -213,25 +214,25 @@ class Student_vrm extends MY_Site_Controller {
                                 $fe4    = "Unit 4";
                                 $lcfe4  = $lessonCodeFe;
                                 $pcfe4  = $percentFe;
-                            }      
+                            }
                         }
                     }
                     if(isset($fe1)){
                     $fe1;$pcfe1;
                     }else{$fe1 = 'Unit 1';$pcfe1 = 0;}
-                    
+
                     if(isset($fe2)){
                     $fe2;$pcfe2;
                     }else{$fe2 = 'Unit 2';$pcfe2 = 0;}
-                    
+
                     if(isset($fe3)){
                     $fe3;$pcfe3;
                     }else{$fe3 = 'Unit 3';$pcfe3 = 0;}
-                    
+
                     if(isset($fe4)){
                     $fe4;$pcfe4;
                     }else{$fe4 = 'Unit 4';$pcfe4 = 0;}
-                    
+
                     $fe = array(
                         'fe1' => $fe1, 'fe2' => $fe2, 'fe3' => $fe3, 'fe4' => $fe4,
                         'pcfe1' => $pcfe1, 'pcfe2' => $pcfe2, 'pcfe3' => $pcfe3, 'pcfe4' => $pcfe4, 'titleFe' => @$titleFe
@@ -291,25 +292,25 @@ class Student_vrm extends MY_Site_Controller {
                                 $fib10    = "Episode 9";
                                 $lcfib10  = $lessonCodeFib;
                                 $pcfib10  = $percentFib;
-                            }     
+                            }
                         }
                     }
                     if(isset($fib1)){
                     $fib1;$pcfib1;
                     }else{$fib1 = 'Intro';$pcfib1 = 0;}
-                    
+
                     if(isset($fib2)){
                     $fib2;$pcfib2;
                     }else{$fib2 = 'Episode 1';$pcfib2 = 0;}
-                    
+
                     if(isset($fib3)){
                     $fib3;$pcfib3;
                     }else{$fib3 = 'Episode 2';$pcfib3 = 0;}
-                    
+
                     if(isset($fib4)){
                     $fib4;$pcfib4;
                     }else{$fib4 = 'Episode 3';$pcfib4 = 0;}
-                    
+
                     if(isset($fib5)){
                     $fib5;$pcfib5;
                     }else{$fib5 = 'Episode 4';$pcfib5 = 0;}
@@ -335,10 +336,10 @@ class Student_vrm extends MY_Site_Controller {
                     }else{$fib10 = 'Episode 9';$pcfib10 = 0;}
 
                     $fib = array(
-                        'fib1' => $fib1, 'fib2' => $fib2, 'fib3' => $fib3, 'fib4' => $fib4, 
+                        'fib1' => $fib1, 'fib2' => $fib2, 'fib3' => $fib3, 'fib4' => $fib4,
                         'fib5' => $fib5, 'fib6' => $fib6, 'fib7' => $fib7, 'fib8' => $fib8, 'fib9' => $fib9, 'fib10' => $fib10,
-                        'pcfib1' => $pcfib1, 'pcfib2' => $pcfib2, 'pcfib3' => $pcfib3, 'pcfib4' => $pcfib4, 
-                        'pcfib5' => $pcfib5, 'pcfib6' => $pcfib6, 'pcfib7' => $pcfib7, 'pcfib8' => $pcfib8, 
+                        'pcfib1' => $pcfib1, 'pcfib2' => $pcfib2, 'pcfib3' => $pcfib3, 'pcfib4' => $pcfib4,
+                        'pcfib5' => $pcfib5, 'pcfib6' => $pcfib6, 'pcfib7' => $pcfib7, 'pcfib8' => $pcfib8,
                         'pcfib9' => $pcfib9, 'pcfib10' => $pcfib10,
                         'titleFib' => @$titleFib
                     );
@@ -398,25 +399,25 @@ class Student_vrm extends MY_Site_Controller {
                                 $tls10    = "Episode 11";
                                 $lctls10  = $lessonCodeTls;
                                 $pctls10  = $percentTls;
-                            }     
+                            }
                         }
                     }
                     if(isset($tls1)){
                     $tls1;$pctls1;
                     }else{$tls1 = 'Episode 1&2';$pctls1 = 0;}
-                    
+
                     if(isset($tls2)){
                     $tls2;$pctls2;
                     }else{$tls2 = 'Episode 3';$pctls2 = 0;}
-                    
+
                     if(isset($tls3)){
                     $tls3;$pctls3;
                     }else{$tls3 = 'Episode 4';$pctls3 = 0;}
-                    
+
                     if(isset($tls4)){
                     $tls4;$pctls4;
                     }else{$tls4 = 'Episode 5';$pctls4 = 0;}
-                    
+
                     if(isset($tls5)){
                     $tls5;$pctls5;
                     }else{$tls5 = 'Episode 6';$pctls5 = 0;}
@@ -442,7 +443,7 @@ class Student_vrm extends MY_Site_Controller {
                     }else{$tls10 = 'Episode 11';$pctls10 = 0;}
 
                     $tls = array(
-                        'tls1' => $tls1, 'tls2' => $tls2, 'tls3' => $tls3, 'tls4' => $tls4, 'tls5' => $tls5, 
+                        'tls1' => $tls1, 'tls2' => $tls2, 'tls3' => $tls3, 'tls4' => $tls4, 'tls5' => $tls5,
                         'tls6' => $tls6, 'tls7' => $tls7, 'tls8' => $tls8, 'tls9' => $tls9, 'tls10' => $tls10,
                         'pctls1' => $pctls1, 'pctls2' => $pctls2, 'pctls3' => $pctls3, 'pctls4' => $pctls4, 'pctls5' => $pctls5,
                         'pctls6' => $pctls6, 'pctls7' => $pctls7, 'pctls8' => $pctls8, 'pctls9' => $pctls9, 'pctls10' => $pctls10,
@@ -452,7 +453,7 @@ class Student_vrm extends MY_Site_Controller {
                     // --------------------------------------------------------------
                     // The Lost Secret END ------------------------------------------
                     // --------------------------------------------------------------
-                    
+
 
                     // --------------------------------------------------------------
                     // Dialogue START -----------------------------------------------
@@ -476,23 +477,23 @@ class Student_vrm extends MY_Site_Controller {
                                 $dlg3    = "Unit 3";
                                 $lcdlg3  = $lessonCodeDlg;
                                 $pcdlg3  = $percentDlg;
-                            }     
+                            }
                         }
                     }
                     if(isset($dlg1)){
                     $dlg1;$pcdlg1;
                     }else{$dlg1 = 'Unit 1';$pcdlg1 = 0;}
-                    
+
                     if(isset($dlg2)){
                     $dlg;$pcdlg2;
                     }else{$dlg2 = 'Unit 2';$pcdlg2 = 0;}
-                    
+
                     if(isset($dlg3)){
                     $dlg3;$pcdlg3;
                     }else{$dlg3 = 'Unit 3';$pcdlg3 = 0;}
-                    
+
                     $dlg = array(
-                        'dlg1' => $dlg1, 'dlg2' => $dlg2, 'dlg3' => $dlg3,   
+                        'dlg1' => $dlg1, 'dlg2' => $dlg2, 'dlg3' => $dlg3,
                         'pcdlg1' => $pcdlg1, 'pcdlg2' => $pcdlg2, 'pcdlg3' => $pcdlg3,  'titleDlg' => @$titleDlg
                     );
 
@@ -534,17 +535,17 @@ class Student_vrm extends MY_Site_Controller {
                                 $dbe6    = "Unit 6";
                                 $lcdbe6  = $lessonCodeDbe;
                                 $pcdbe6  = $percentDbe;
-                            }     
+                            }
                         }
                     }
                     if(isset($dbe1)){
                     $dbe1;$pcdbe1;
                     }else{$dbe1 = 'Unit 1';$pcdbe1 = 0;}
-                    
+
                     if(isset($dbe2)){
                     $dbe2;$pcdbe2;
                     }else{$dbe2 = 'Unit 2';$pcdbe2 = 0;}
-                    
+
                     if(isset($dbe3)){
                     $dbe3;$pcdbe3;
                     }else{$dbe3 = 'Unit 3';$pcdbe3 = 0;}
@@ -560,11 +561,11 @@ class Student_vrm extends MY_Site_Controller {
                     if(isset($dbe6)){
                     $dbe6;$pcdbe6;
                     }else{$dbe6 = 'Unit 6';$pcdbe6 = 0;}
-                    
+
                     $dbe = array(
-                        'dbe1' => $dbe1, 'dbe2' => $dbe2, 'dbe3' => $dbe3, 'dbe4' => $dbe4, 'dbe5' => $dbe5, 'dbe6' => $dbe6,  
-                        'pcdbe1' => $pcdbe1, 'pcdbe2' => $pcdbe2, 'pcdbe3' => $pcdbe3, 'pcdbe4' => $pcdbe4, 'pcdbe5' => $pcdbe5, 
-                        'pcdbe6' => $pcdbe6,   
+                        'dbe1' => $dbe1, 'dbe2' => $dbe2, 'dbe3' => $dbe3, 'dbe4' => $dbe4, 'dbe5' => $dbe5, 'dbe6' => $dbe6,
+                        'pcdbe1' => $pcdbe1, 'pcdbe2' => $pcdbe2, 'pcdbe3' => $pcdbe3, 'pcdbe4' => $pcdbe4, 'pcdbe5' => $pcdbe5,
+                        'pcdbe6' => $pcdbe6,
                         'titleDbe' => @$titleDbe
                     );
 
@@ -620,7 +621,7 @@ class Student_vrm extends MY_Site_Controller {
                                 $als9    = "Unit 9";
                                 $lcals9  = $lessonCodeAls;
                                 $pcals9  = $percentAls;
-                            }     
+                            }
                         }
                     }
                     if(isset($als1)){
@@ -652,10 +653,10 @@ class Student_vrm extends MY_Site_Controller {
                     }else{$als9 = 'Unit 9';$pcals9 = 0;}
 
                     $als = array(
-                        'als1' => $als1, 'als2' => $als2, 'als3' => $als3, 'als4' => $als4, 'als5' => $als5, 'als6' => $als6, 
-                        'als7' => $als7, 'als8' => $als8, 'als9' => $als9,   
-                        'pcals1' => $pcals1, 'pcals2' => $pcals2, 'pcals3' => $pcals3, 'pcals4' => $pcals4, 'pcals5' => $pcals5, 
-                        'pcals6' => $pcals6, 'pcals7' => $pcals7, 'pcals8' => $pcals8, 'pcals9' => $pcals9, 
+                        'als1' => $als1, 'als2' => $als2, 'als3' => $als3, 'als4' => $als4, 'als5' => $als5, 'als6' => $als6,
+                        'als7' => $als7, 'als8' => $als8, 'als9' => $als9,
+                        'pcals1' => $pcals1, 'pcals2' => $pcals2, 'pcals3' => $pcals3, 'pcals4' => $pcals4, 'pcals5' => $pcals5,
+                        'pcals6' => $pcals6, 'pcals7' => $pcals7, 'pcals8' => $pcals8, 'pcals9' => $pcals9,
                         'titleAls' => @$titleAls
                     );
 
@@ -762,7 +763,7 @@ class Student_vrm extends MY_Site_Controller {
                                 $efs20    = "Unit 20";
                                 $lcefs20  = $lessonCodeEfs;
                                 $pcefs20  = $percentEfs;
-                            }     
+                            }
                         }
                     }
                     if(isset($efs1)){
@@ -834,12 +835,12 @@ class Student_vrm extends MY_Site_Controller {
 
                     $efs = array(
                         'efs1' => $efs1, 'efs2' => $efs2, 'efs3' => $efs3, 'efs4' => $efs4, 'efs5' => $efs5, 'efs6' => $efs6, 'efs7' => $efs7,
-                        'efs8' => $efs8, 'efs9' => $efs9, 'efs10' => $efs10, 'efs11' => $efs11, 'efs12' => $efs12, 'efs13' => $efs13, 
-                        'efs14' => $efs14, 'efs15' => $efs15, 'efs16' => $efs16, 'efs17' => $efs17, 'efs18' => $efs18, 'efs19' => $efs19, 
-                        'efs20' => $efs20, 'pcefs1' => $pcefs1, 'pcefs2' => $pcefs2, 'pcefs3' => $pcefs3, 'pcefs4' => $pcefs4, 'pcefs5' => $pcefs5, 
+                        'efs8' => $efs8, 'efs9' => $efs9, 'efs10' => $efs10, 'efs11' => $efs11, 'efs12' => $efs12, 'efs13' => $efs13,
+                        'efs14' => $efs14, 'efs15' => $efs15, 'efs16' => $efs16, 'efs17' => $efs17, 'efs18' => $efs18, 'efs19' => $efs19,
+                        'efs20' => $efs20, 'pcefs1' => $pcefs1, 'pcefs2' => $pcefs2, 'pcefs3' => $pcefs3, 'pcefs4' => $pcefs4, 'pcefs5' => $pcefs5,
                         'pcefs6' => $pcefs6, 'pcefs7' => $pcefs7, 'pcefs8' => $pcefs8, 'pcefs9' => $pcefs9, 'pcefs10' => $pcefs10,
                         'pcefs11' => $pcefs11, 'pcefs12' => $pcefs12, 'pcefs13' => $pcefs13, 'pcefs14' => $pcefs14, 'pcefs15' => $pcefs15,
-                        'pcefs16' => $pcefs16, 'pcefs17' => $pcefs17, 'pcefs18' => $pcefs18, 'pcefs19' => $pcefs19, 'pcefs20' => $pcefs20,   
+                        'pcefs16' => $pcefs16, 'pcefs17' => $pcefs17, 'pcefs18' => $pcefs18, 'pcefs19' => $pcefs19, 'pcefs20' => $pcefs20,
                         'titleEfs' => @$titleEfs
                     );
 
@@ -947,7 +948,7 @@ class Student_vrm extends MY_Site_Controller {
                                 $rfs20    = "Unit 20";
                                 $lcrfs20  = $lessonCodeRfs;
                                 $pcrfs20  = $percentRfs;
-                            }     
+                            }
                         }
                     }
                     if(isset($rfs1)){
@@ -1019,12 +1020,12 @@ class Student_vrm extends MY_Site_Controller {
 
                     $rfs = array(
                         'rfs1' => $rfs1, 'rfs2' => $rfs2, 'rfs3' => $rfs3, 'rfs4' => $rfs4, 'rfs5' => $rfs5, 'rfs6' => $rfs6, 'rfs7' => $rfs7,
-                        'rfs8' => $rfs8, 'rfs9' => $rfs9, 'rfs10' => $rfs10, 'rfs11' => $rfs11, 'rfs12' => $rfs12, 'rfs13' => $rfs13, 
-                        'rfs14' => $rfs14, 'rfs15' => $rfs15, 'rfs16' => $rfs16, 'rfs17' => $rfs17, 'rfs18' => $rfs18, 'rfs19' => $rfs19, 
-                        'rfs20' => $rfs20, 'pcrfs1' => $pcrfs1, 'pcrfs2' => $pcrfs2, 'pcrfs3' => $pcrfs3, 'pcrfs4' => $pcrfs4, 'pcrfs5' => $pcrfs5, 
+                        'rfs8' => $rfs8, 'rfs9' => $rfs9, 'rfs10' => $rfs10, 'rfs11' => $rfs11, 'rfs12' => $rfs12, 'rfs13' => $rfs13,
+                        'rfs14' => $rfs14, 'rfs15' => $rfs15, 'rfs16' => $rfs16, 'rfs17' => $rfs17, 'rfs18' => $rfs18, 'rfs19' => $rfs19,
+                        'rfs20' => $rfs20, 'pcrfs1' => $pcrfs1, 'pcrfs2' => $pcrfs2, 'pcrfs3' => $pcrfs3, 'pcrfs4' => $pcrfs4, 'pcrfs5' => $pcrfs5,
                         'pcrfs6' => $pcrfs6, 'pcrfs7' => $pcrfs7, 'pcrfs8' => $pcrfs8, 'pcrfs9' => $pcrfs9, 'pcrfs10' => $pcrfs10,
                         'pcrfs11' => $pcrfs11, 'pcrfs12' => $pcrfs12, 'pcrfs13' => $pcrfs13, 'pcrfs14' => $pcrfs14, 'pcrfs15' => $pcrfs15,
-                        'pcrfs16' => $pcrfs16, 'pcrfs17' => $pcrfs17, 'pcrfs18' => $pcrfs18, 'pcrfs19' => $pcrfs19, 'pcrfs20' => $pcrfs20,   
+                        'pcrfs16' => $pcrfs16, 'pcrfs17' => $pcrfs17, 'pcrfs18' => $pcrfs18, 'pcrfs19' => $pcrfs19, 'pcrfs20' => $pcrfs20,
                         'titleRfs' => @$titleRfs
                     );
 
@@ -1076,39 +1077,39 @@ class Student_vrm extends MY_Site_Controller {
                                 $ebn7    = "Unit 7";
                                 $lcebn7  = $lessonCodeEbn;
                                 $pcebn7  = $percentEbn;
-                            }       
+                            }
                         }
                     }
                     if(isset($ebn1)){
                     $ebn1;$pcebn1;
                     }else{$ebn1 = 'Unit 1';$pcebn1 = 0;}
-                    
+
                     if(isset($ebn2)){
                     $ebn2;$pcebn2;
                     }else{$ebn2 = 'Unit 2';$pcebn2 = 0;}
-                    
+
                     if(isset($ebn3)){
                     $ebn3;$pcebn3;
                     }else{$ebn3 = 'Unit 3';$pcebn3 = 0;}
-                    
+
                     if(isset($ebn4)){
                     $ebn4;$pcebn4;
                     }else{$ebn4 = 'Unit 4';$pcebn4 = 0;}
-                    
+
                     if(isset($ebn5)){
                     $ebn5;$pcebn5;
                     }else{$ebn5 = 'Unit 5';$pcebn5 = 0;}
-                    
+
                     if(isset($ebn6)){
                     $ebn6;$pcebn6;
                     }else{$ebn6 = 'Unit 6';$pcebn6 = 0;}
-                    
+
                     if(isset($ebn7)){
                     $ebn7;$pcebn7;
                     }else{$ebn7 = 'Unit 7';$pcebn7 = 0;}
-                    
+
                     $ebn = array(
-                        'ebn1' => $ebn1, 'ebn2' => $ebn2, 'ebn3' => $ebn3, 'ebn4' => $ebn4, 
+                        'ebn1' => $ebn1, 'ebn2' => $ebn2, 'ebn3' => $ebn3, 'ebn4' => $ebn4,
                         'ebn5' => $ebn5, 'ebn6' => $ebn6, 'ebn7' => $ebn7,
                         'pcebn1' => $pcebn1, 'pcebn2' => $pcebn2, 'pcebn3' => $pcebn3, 'pcebn4' => $pcebn4,
                         'pcebn5' => $pcebn5, 'pcebn6' => $pcebn6, 'pcebn7' => $pcebn7,
@@ -1118,7 +1119,7 @@ class Student_vrm extends MY_Site_Controller {
                     // --------------------------------------------------------------
                     // English By The Numbers START ---------------------------------
                     // --------------------------------------------------------------
-                    
+
                         $ndeu1 = array_slice($nde, 0, 1);
                         $ndep1 = array_slice($nde, 8, 1);
                         $ndet1 = array_slice($nde, 16);
@@ -1246,7 +1247,7 @@ class Student_vrm extends MY_Site_Controller {
                             'dlg6' => array_merge($dlgu6, $dlgp6, $dlgt6),
                             'ebn6' => array_merge($ebnu6, $ebnp6, $ebnt6),
                             'als6' => array_merge($alsu6, $alsp6, $alst6)
-                          );              
+                          );
                 }
 
 
@@ -1257,7 +1258,7 @@ class Student_vrm extends MY_Site_Controller {
                //            ->order_by('id','desc')
                //            ->get()->result();
 
-               
+
                $vars = array(
                     'student_fullname' => $data_dyned_pro[0]->fullname,
                     'student_id' => $data_dyned_pro[0]->id,
@@ -1276,8 +1277,8 @@ class Student_vrm extends MY_Site_Controller {
                // echo "<pre>";print_r($vars);exit();
 
                 $this->template->content->view('default/contents/vrm/student/index', $vars);
-                $this->template->publish();   
-            
+                $this->template->publish();
+
         }
         else{
             $vars = array(
@@ -1287,7 +1288,7 @@ class Student_vrm extends MY_Site_Controller {
             $this->template->publish();
         }
     }
-    
+
     public function login(){
         $vars = array(
             'server_code' => $this->common_function->server_code(),
@@ -1295,11 +1296,11 @@ class Student_vrm extends MY_Site_Controller {
         $this->template->content->view('default/contents/vrm/student/login_form', $vars);
         $this->template->publish();
     }
-    
+
     public function connect_dyned_pro(){
         if($this->input->post('__submit') && $this->input->post('dyned_pro_id') && $this->input->post('password') && $this->input->post('server_dyned_pro')){
            // print_r($this->input->post()); exit;
-            
+
             // checking if it can connect to call one
             // place the function in the first conditional
             // if($this->call1->init($this->input->post('dyned_pro_id'), $this->input->post('password'), $this->input->post('server_dyned_pro'))->is_valid()){
@@ -1308,11 +1309,11 @@ class Student_vrm extends MY_Site_Controller {
                     'dyned_pro_id' => $this->input->post('dyned_pro_id'),
                     'server_dyned_pro' => $this->input->post('server_dyned_pro'),
                 );
-                
+
                 $user_profile_id = $this->identity_model->get_identity('profile')->where('user_id', $this->auth_manager->userid())->select('id')->get();
                 //print_r($user_profile_id); exit;
                 $this->identity_model->get_identity('profile')->update($user_profile_id->id, $data, TRUE);
-                
+
                 $this->messages->add('Connect to your DynEd Pro Successful', 'success');
                 redirect('student/student_vrm/single_student');
             }

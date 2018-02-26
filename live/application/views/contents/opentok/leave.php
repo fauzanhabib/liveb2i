@@ -71,7 +71,7 @@ $(document).ready(function(){
        var star = $('input:radio[name=star]:checked').val();
        var coach_id = '<?php echo $user->coach_id; ?>';
        var appointment_id = '<?php echo $appointment_id ?>';
-        if ( !$('#star-1').is(':checked') && !$('#star-2').is(':checked') && !$('#star-3').is(':checked') && 
+        if ( !$('#star-1').is(':checked') && !$('#star-2').is(':checked') && !$('#star-3').is(':checked') &&
             !$('#star-4').is(':checked') && !$('#star-5').is(':checked') )
             {
             alert("Zero star? We don't have it.");
@@ -80,17 +80,17 @@ $(document).ready(function(){
         else{
             $.ajax({
               type:"POST",
-              url:"<?php echo site_url('opentok/leavesession/rate_coach');?>",    
+              url:"<?php echo site_url('opentok/leavesession/rate_coach');?>",
               data: {
-                'star' : star, 
-                'coach_id' : coach_id, 
+                'star' : star,
+                'coach_id' : coach_id,
                 'appointment_id': appointment_id
-                },        
+                },
               success: function(data){
-                window.onbeforeunload = null;    
+                window.onbeforeunload = null;
                 alert('Rating: ' + star + ' out of 5');
                 // window.location.href = "<?php echo site_url('student/dashboard');?>";
-              }  
+              }
              });
             }
       });
@@ -100,21 +100,21 @@ $(document).ready(function(){
       var appointment_id = '<?php echo $appointment_id ?>';
       $.ajax({
         type:"POST",
-        url:"<?php echo site_url('opentok/leavesession/check_rate');?>",    
+        url:"<?php echo site_url('opentok/leavesession/check_rate');?>",
         data: {
-          'coach_id' : coach_id, 
+          'coach_id' : coach_id,
           'appointment_id': appointment_id
-          },        
+          },
         success: function(data){
           if(data != "exit"){
             alert(data);
           }else if(data = "exit"){
             window.location.href = "<?php echo site_url('student/dashboard');?>";
           }
-        }  
+        }
       });
     });
-    
+
     $('.exitcch').click(function(){
       window.location.href = "<?php echo site_url('coach/dashboard');?>";
     });
@@ -123,7 +123,7 @@ $(document).ready(function(){
 </script>
 
 <!-- COACH NOTE STARTS -->
-<script>    
+<script>
 $(document).ready(function(){
 
     $('#save_note').click(function(){
@@ -137,13 +137,13 @@ $(document).ready(function(){
           // alert( appointment_id );
           $.ajax({
             type:"POST",
-            url:"<?php echo site_url('opentok/leavesession/save_cchnote');?>",    
+            url:"<?php echo site_url('opentok/leavesession/save_cchnote');?>",
             data: {
               'cch_note' : cch_note,
               'appointment_id' : appointment_id
-              },        
-              success: function(data){  
-                window.onbeforeunload = null;  
+              },
+              success: function(data){
+                window.onbeforeunload = null;
                 alert('Notes Updated');
                 // window.location.href = "<?php echo site_url('coach/dashboard');?>";
               }
@@ -163,9 +163,9 @@ $(document).ready(function(){
 <div class="box b-f3-1">
   <div class="content padding15">
     <div class="col-md-12">
-      <p>Your session with <b><?php echo $user->fullname;?></b> has ended.</p>
+      <p>Your session with <b><?php echo @$user->fullname;?></b> has ended.</p>
 
-            <table id="thetable" class="table-sessions" style="border-top:none"> 
+            <table id="thetable" class="table-sessions" style="border-top:none">
                 <thead>
                     <tr bgcolor="#144d80">
                         <th class="padding15 sm-12 tb-ses-up"><font color="white">DATE</font></th>
@@ -212,7 +212,7 @@ $(document).ready(function(){
                                   ->from('user_timezones')
                                   ->where('user_id', $id)
                                   ->get()->result();
-                          
+
                           $minutes = $tz[0]->minutes_val;
                           //User Hour
                           date_default_timezone_set('UTC');
@@ -234,7 +234,7 @@ $(document).ready(function(){
                             <?php echo @$user->fullname; ?>
                         </td>
                         <td class="padding-10-15 sm-12" align="center">
-                            <?php 
+                            <?php
                               if(@$user->cch_attend == NULL){
                                 @$cch_att_conv = "Coach didn't attend the session.";
                               }else{
@@ -258,10 +258,10 @@ $(document).ready(function(){
                               }else if($role=='STD'){
                                 echo @$std_att_conv;
                               }
-                            ?>                 
+                            ?>
                         </td>
                         <td class="padding-10-15 sm-12" align="center">
-                            <?php 
+                            <?php
                             // if(@$cch_att_conv == NULL){
                             //   @$cch_att_conv = "Coach didn't attend the session.";
                             // }else if(@$std_att_conv == NULL){
@@ -273,7 +273,7 @@ $(document).ready(function(){
                               }else if($role=='CCH'){
                                 echo @$std_att_conv;
                               }
-                            ?>             
+                            ?>
                         </td>
                     </tr>
                 </tbody>
@@ -282,9 +282,9 @@ $(document).ready(function(){
                 // echo "<pre>";
                 // print_r($role);
                 // exit();
-                if($role=='STD'){ 
+                if($role=='STD'){
             ?>
-            <table id="thetable" class="table-sessions" style="border-top:none"> 
+            <table id="thetable" class="table-sessions" style="border-top:none">
                 <thead>
                     <tr bgcolor="#2b89b9">
                         <th align="center" class="padding15 sm-12 tb-ses-up" style="width:30%" ><font color="white">Rate Your Coach</font></th>
@@ -318,7 +318,7 @@ $(document).ready(function(){
                 </tbody>
             </table>
             <?php } else if($role=='CCH'){ ?>
-            <table id="thetable" class="table-sessions" style="border-top:none; width: 600px;"> 
+            <table id="thetable" class="table-sessions" style="border-top:none; width: 600px;">
                 <thead>
                     <tr bgcolor="#2b89b9">
                      <th align="center" class="padding15 sm-12 tb-ses-up" style="width:30%" >
@@ -375,7 +375,7 @@ function timer() {
     var minutes     = Math.floor(minutesLeft/60);
     var remainingSeconds = seconds % 60;
     if (remainingSeconds < 11) {
-        remainingSeconds = "0" + remainingSeconds; 
+        remainingSeconds = "0" + remainingSeconds;
     }
     document.getElementById('countdown').innerHTML = minutes + ":" + remainingSeconds;
     if (seconds == 0) {
