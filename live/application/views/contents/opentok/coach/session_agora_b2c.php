@@ -622,6 +622,10 @@ div.panel.show {
       text-decoration: none;
       cursor: pointer;
   }
+
+  .agora_css :nth-child(3) {
+    display: none;
+  }
 </style>
 
 <style type="text/css">
@@ -1760,7 +1764,7 @@ var countdownTimer3 = setInterval('timer3()', 1000);
       var stream = evt.stream;
       console.log("Subscribe remote stream successfully: " + stream.getId());
       if ($('div#video #agora_remote'+stream.getId()).length === 0) {
-        $('div#video').append('<div id="agora_remote'+stream.getId()+'" style="width:100%;height:330px;"></div>');
+        $('div#video').append('<div class="agora_css" id="agora_remote'+stream.getId()+'" style="width:100%;height:330px;"></div>');
         // $('video#video'+stream.getId()).addClass('subscriber_video');
         $('video#video'+stream.getId()).hide();
         // var video = document.getElementsByTagName("video")[0];
