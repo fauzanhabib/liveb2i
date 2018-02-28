@@ -32,7 +32,7 @@
         <button class="btn-small border-none bg-green text-cl-white height-32">
             <img src="<?php echo base_url();?>assets/img/iconmonstr-download-12-16.png" class="padding-r-5 left"><span>Export Report To CSV</span>
         </button>
-    </div> 
+    </div>
  -->
 </div>
 
@@ -91,8 +91,8 @@
     </div>
 
     <div class="content padding-t-0">
-       <div class="box">   
-            <div class="select-all">                             
+       <div class="box">
+            <div class="select-all">
                 <div class="padding-r-5 m-t-2 left">
                     <input type="checkbox" id="checkbox-1-0" name="Region" value="Region-1" class="regular-checkbox checkAll" /><label class="" for="checkbox-1-0"></label>
                 </div>
@@ -107,13 +107,29 @@
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">No</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Group</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Type</th>
+                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Session Type</th>
                         </tr>
                 </thead>
                 <tbody>
-    <?php
-    $no = 2;
-                $a = 1;
-                foreach ($data as $p) {
+                    <?php
+                      $no = 2;
+                      $a = 1;
+
+                      foreach ($data as $p) {
+                        $check_sess_type = $this->db->select('session_type')
+                                                    ->from('user_profiles')
+                                                    ->where('subgroup_id', $p->id)
+                                                    ->get()->result();
+
+
+                        $temp = array();
+                        foreach($check_sess_type as $cs){
+                          if($cs->session_type == '0'){
+                            $temp[] = $cs->session_type;
+                          }
+                        }
+                        // echo "<pre>";print_r($temp);exit();
+                        $raw_array = count($check_sess_type);
                     ?>
                     <tr>
                         <td class="text-left">
@@ -122,7 +138,20 @@
                         <td><?php echo $a; ?></td>
                         <td><a href="<?php echo site_url('student_partner/subgroup/list_student/'. $p->id); ?>" class="text-cl-tertiary"><u><?php echo $p->name?><u></a></td>
                         <td><?php echo ucfirst($p->type); ?> Affiliate</td>
-                                </tr>
+                        <?php
+                        if(count($temp) == "0"){
+                        ?>
+                          <td><?php echo 'Agora'; ?></td>
+                        <?php
+                        }else if($raw_array == count($temp)){
+                        ?>
+                          <td><?php echo 'Opentok'; ?></td>
+                        <?php
+                        }else{
+                        ?>
+                          <td><?php echo 'Mixed'; ?><br />(Agora/Opentok)</td>
+                        <?php } ?>
+                    </tr>
                     <?php $no++; $a++; } ?>
                 </tbody>
             </table>

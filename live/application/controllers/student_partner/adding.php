@@ -110,6 +110,29 @@ class adding extends MY_Site_Controller {
 
     public function create_student ($subgroup_id = '') {
 
+        $check_sess_type = $this->db->select('session_type')
+                                    ->from('user_profiles')
+                                    ->where('subgroup_id', $subgroup_id)
+                                    ->get()->result();
+
+
+        $temp = array();
+        foreach($check_sess_type as $cs){
+          if($cs->session_type == '0'){
+            $temp[] = $cs->session_type;
+          }
+        }
+        $raw_array = count($check_sess_type);
+
+        if(count($temp) == "0"){
+          $std_sess_type = '1';
+        }else if($raw_array == count($temp)){
+          $std_sess_type = '0';
+        }else{
+          $std_sess_type = '0';
+        }
+        // echo "<pre>";print_r($check_sess_type);exit();
+
         $id = $this->auth_manager->userid();
         $id_partner = $this->auth_manager->partner_id($id);
 
@@ -177,6 +200,7 @@ class adding extends MY_Site_Controller {
             $max_student_supplier = $get_setting[0]->max_student_supplier;
             $max_student_class = $get_setting[0]->max_student_class;
         }
+
         // =======================
         $get_user_token = $this->user_token_model->get_token($id,'user');
         $user_token = $get_user_token[0]->token_amount;
@@ -306,7 +330,8 @@ class adding extends MY_Site_Controller {
             'cert_studying' => $this->input->post('cert_studying'),
             'pt_score' => $this->input->post('pt_score'),
             'dcrea' => time(),
-            'dupd' => time()
+            'dupd' => time(),
+            'session_type' => $std_sess_type
         );
 
         // inserting creator member
