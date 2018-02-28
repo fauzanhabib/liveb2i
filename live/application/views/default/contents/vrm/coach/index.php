@@ -176,6 +176,7 @@
                 <div class="box-capsule m-t-20 margin-auto font-14 width190">
                     <span>Certificate Plan</span>
                 </div>
+                <?php if($student_vrm2->cert_studying != "Unknown"){ ?>
                 <div class="tabs1 cert_plan padding-t-20 text-center">
                     <a href="#content-a1" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">A1</h5>
@@ -659,7 +660,10 @@
                         </div>
                     </div>
                 </div>
-
+              <?php }else{ ?>
+                <div style="text-align: center;margin-top: 20px;">You are a non certification student</div>
+              <?php } ?>
+              <!-- Check non certif user -->
             </div>
         </div>
     </div>

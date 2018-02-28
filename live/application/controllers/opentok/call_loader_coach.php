@@ -34,58 +34,124 @@ class Call_loader_coach extends MY_Site_Controller {
         $student_vrm_json = $this->call2->getDataJson();
 
         $callOneJson    = $this->call1->callOneJson();
-
         $checkCallOne   = @$callOneJson->studentName;
 
+        $student_cert   = @$student_vrm->cert_studying;
 
-        if(@$checkCallOne){
+        if($student_cert != "Unknown" ){
+          if(@$checkCallOne){
+              $script = $this->db->distinct()
+                      ->select('s.unit')
+                      ->from('coaching_scripts cs')
+                      ->join('script s', 's.id = cs.script_id')
+                      ->where('cs.user_id', $std_id_for_cert)
+                      ->where('s.certificate_plan', $student_cert)
+                      ->get()->result();
 
-            $student_cert   = @$student_vrm->cert_studying;
-
-            $script = $this->db->distinct()
-                    ->select('s.unit')
-                    ->from('coaching_scripts cs')
-                    ->join('script s', 's.id = cs.script_id')
-                    ->where('cs.user_id', $std_id_for_cert)
-                    ->where('s.certificate_plan', $student_cert)
+              if(!@$script){
+                  $scripts = $this->db->select('*')
+                    ->from('script')
+                    ->where('certificate_plan', $student_cert)
                     ->get()->result();
 
-            if(!@$script){
-                $scripts = $this->db->select('*')
-                  ->from('script')
-                  ->where('certificate_plan', $student_cert)
+                  $script_total = count($scripts);
+                  $data =array();
+                  $n = 0;
+
+                  // echo "<pre>";print_r($scripts);exit();
+
+                  for($i=0; $i < $script_total; $i++)
+                  {
+                      @$datascript[$i] = array(
+                      'user_id'   => $std_id_for_cert,
+                      'script_id' => $scripts[$n]->id,
+                      'cert_plan' => $student_cert,
+                      'status'    => '0'
+                      );
+                      $n++;
+                  }
+
+
+                  $this->db->insert_batch('coaching_scripts', @$datascript);
+
+
+              }
+
+              $bag = $this->db->select('*')
+                   ->from('bag_of_tricks')
+                   ->get()->result();
+              $content = $bag['0']->content;
+
+          }
+        }else{
+          // A1 = 0-0.5 PT
+          // A2 = 0.5 > PT <= 1.5
+          // B1 = 1.5 > PT <=2
+          // B2 = 2 > PT <=2.5
+          // C1 = 2.5 > PT <=3
+          // C2 = PT > 3
+          $student_pt = $student_vrm->last_pt_score;
+          // $student_pt = "1.8";
+
+          if($student_pt >= '0' && $student_pt <= "0.5"){
+            $student_cert = "A1";
+          }else if($student_pt > '0.5' && $student_pt <= "1.5"){
+            $student_cert = "A2";
+          }else if($student_pt > '1.5' && $student_pt <= "2"){
+            $student_cert = "B1";
+          }else if($student_pt > '2' && $student_pt <= "2.5"){
+            $student_cert = "B2";
+          }else if($student_pt > '2.5' && $student_pt <= "3"){
+            $student_cert = "C1";
+          }else if($student_pt > '3'){
+            $student_cert = "C2";
+          }
+
+          // echo "<pre>";print_r($student_cert);exit();
+
+          $script = $this->db->distinct()
+                  ->select('s.unit')
+                  ->from('coaching_scripts cs')
+                  ->join('script s', 's.id = cs.script_id')
+                  ->where('cs.user_id', $std_id_for_cert)
+                  ->where('s.certificate_plan', $student_cert)
                   ->get()->result();
 
-                $script_total = count($scripts);
-                $data =array();
-                $n = 0;
+          if(!@$script){
+              $scripts = $this->db->select('*')
+                ->from('script')
+                ->where('certificate_plan', $student_cert)
+                ->get()->result();
 
-                // echo "<pre>";print_r($scripts);exit();
+              $script_total = count($scripts);
+              $data =array();
+              $n = 0;
 
-                for($i=0; $i < $script_total; $i++)
-                {
-                    @$datascript[$i] = array(
-                    'user_id'   => $std_id_for_cert,
-                    'script_id' => $scripts[$n]->id,
-                    'cert_plan' => $student_cert,
-                    'status'    => '0'
-                    );
-                    $n++;
-                }
+              // echo "<pre>";print_r($scripts);exit();
 
-                
-                $this->db->insert_batch('coaching_scripts', @$datascript);
+              for($i=0; $i < $script_total; $i++)
+              {
+                  @$datascript[$i] = array(
+                  'user_id'   => $std_id_for_cert,
+                  'script_id' => $scripts[$n]->id,
+                  'cert_plan' => $student_cert,
+                  'status'    => '0'
+                  );
+                  $n++;
+              }
 
 
-            }
+              $this->db->insert_batch('coaching_scripts', @$datascript);
 
-            $bag = $this->db->select('*')
-                 ->from('bag_of_tricks')
-                 ->get()->result();
-            $content = $bag['0']->content;
+
+          }
+
+          $bag = $this->db->select('*')
+               ->from('bag_of_tricks')
+               ->get()->result();
+          $content = $bag['0']->content;
 
         }
-
 
         $data = array(
               'content'   => @$content,

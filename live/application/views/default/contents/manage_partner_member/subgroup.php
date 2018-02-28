@@ -281,7 +281,7 @@
                 </table>
             </div>
         </div>
-        
+
         <?php $uri_move = $this->uri->segment(3);
             if($uri_move == 'move_supplier') {
         ?>
