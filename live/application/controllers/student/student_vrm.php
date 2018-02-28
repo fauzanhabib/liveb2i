@@ -64,8 +64,9 @@ class Student_vrm extends MY_Site_Controller {
                // echo "<pre>";print_r($student_vrm2);exit();
 
                $checkCallOne   = @$callOneJson->studentName;
+               $module_extract = @$callOneJson->lessonCompletion;
                if($checkCallOne){
-                    $module_extract = @$callOneJson->lessonCompletion;
+                 if(@$module_extract){
                     // $placement_test = end(@$callOneJson->placementTestGENs);
                     // $pt_val         = @$placement_test->placementLevel;
                     $student_cert   = @$student_vrm2->cert_studying;
@@ -1249,7 +1250,7 @@ class Student_vrm extends MY_Site_Controller {
                             'als6' => array_merge($alsu6, $alsp6, $alst6)
                           );
                 }
-
+              }
 
                // $cchnote = $this->db->select('*')
                //            ->from('appointments')

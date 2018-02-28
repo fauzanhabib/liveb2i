@@ -63,6 +63,7 @@ class Vrm extends MY_Site_Controller {
 
                $checkCallOne   = @$callOneJson->studentName;
                if(@$checkCallOne){
+                 if(@$module_extract){
                     $module_extract = @$callOneJson->lessonCompletion;
                     $placement_test = end(@$callOneJson->placementTestGENs);
                     $pt_val         = @$placement_test->placementLevel;
@@ -1237,6 +1238,7 @@ class Vrm extends MY_Site_Controller {
                             'als6' => array_merge($alsu6, $alsp6, $alst6)
                           );
                 }
+              }
 
 
                // $cchnote = $this->db->select('*')
