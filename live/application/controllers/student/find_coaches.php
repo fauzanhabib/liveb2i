@@ -2573,7 +2573,7 @@ class find_coaches extends MY_Site_Controller {
 	
 	$date_ = strtotime($date_);
 
-	$convert = $this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($coach_id)[0]->minutes), $date_, $start_time, $end_time);
+	$convert = @$this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($coach_id)[0]->minutes), $date_, $start_time, $end_time);
     $date = $convert['date'];
 
    
