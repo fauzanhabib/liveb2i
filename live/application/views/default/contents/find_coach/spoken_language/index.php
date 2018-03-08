@@ -71,29 +71,47 @@
                         $partner_id = $this->auth_manager->partner_id($coaches[$i]->id);
                         $region_id = $this->auth_manager->region_id($partner_id);
 
-                        $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
-                        $region_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('user_id',$region_id)->get()->result();
-                        $global_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
-
-                        $standard_coach_cost = @$setting[0]->standard_coach_cost;
-                        if(!$standard_coach_cost || $standard_coach_cost == 0){
-                            $standard_coach_cost_region = @$region_setting[0]->standard_coach_cost;
-                            $standard_coach_cost = $standard_coach_cost_region;
-                            if(!$standard_coach_cost_region || $standard_coach_cost_region == 0){
-                                $standard_coach_cost_global = @$global_setting[0]->standard_coach_cost;
-                                $standard_coach_cost = $standard_coach_cost_global;
-                            }
+                        // check status setting region
+                        $setting_region = $this->db->select('status_set_setting')->from('specific_settings')->where('user_id',$region_id)->get()->result();
+                        
+                        // $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
+                        
+                        // jika 0 / disallow
+                        if($setting_region[0]->status_set_setting == 0){
+                            $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
+                            $standard_coach_cost = @$setting[0]->standard_coach_cost;
+                            $elite_coach_cost = @$setting[0]->elite_coach_cost;
+                        } else {
+                            $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+                            $standard_coach_cost = @$setting[0]->standard_coach_cost;
+                            $elite_coach_cost = @$setting[0]->elite_coach_cost;
                         }
+                        
+                        // $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+                        // $region_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('user_id',$region_id)->get()->result();
+                        // $global_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
 
-                        $elite_coach_cost = @$setting[0]->elite_coach_cost;
-                        if(!$elite_coach_cost || $elite_coach_cost == 0){
-                            $elite_coach_cost_region = @$region_setting[0]->elite_coach_cost;
-                            $elite_coach_cost = $elite_coach_cost_region;
-                            if(!$elite_coach_cost_region || $elite_coach_cost_region == 0){
-                                $elite_coach_cost_global = @$global_setting[0]->elite_coach_cost;
-                                $elite_coach_cost = $elite_coach_cost_global;
-                            }
-                        }
+
+
+                        // $standard_coach_cost = @$setting[0]->standard_coach_cost;
+                        // if(!$standard_coach_cost || $standard_coach_cost == 0){
+                        //     $standard_coach_cost_region = @$region_setting[0]->standard_coach_cost;
+                        //     $standard_coach_cost = $standard_coach_cost_region;
+                        //     if(!$standard_coach_cost_region || $standard_coach_cost_region == 0){
+                        //         $standard_coach_cost_global = @$global_setting[0]->standard_coach_cost;
+                        //         $standard_coach_cost = $standard_coach_cost_global;
+                        //     }
+                        // }
+
+                        // $elite_coach_cost = @$setting[0]->elite_coach_cost;
+                        // if(!$elite_coach_cost || $elite_coach_cost == 0){
+                        //     $elite_coach_cost_region = @$region_setting[0]->elite_coach_cost;
+                        //     $elite_coach_cost = $elite_coach_cost_region;
+                        //     if(!$elite_coach_cost_region || $elite_coach_cost_region == 0){
+                        //         $elite_coach_cost_global = @$global_setting[0]->elite_coach_cost;
+                        //         $elite_coach_cost = $elite_coach_cost_global;
+                        //     }
+                        // }
 
                         $session_duration = @$setting[0]->session_duration;
                         if(!$session_duration || $session_duration == 0){
