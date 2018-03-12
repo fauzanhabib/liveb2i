@@ -45,6 +45,25 @@
                     <td>Token Cost</td>
                     <td>
                         <?php
+                        $partner_id = $this->auth_manager->partner_id($data_coach[0]->id);
+                        $region_id = $this->auth_manager->region_id($partner_id);
+
+                        // check status setting region
+                        $setting_region = $this->db->select('status_set_setting')->from('specific_settings')->where('user_id',$region_id)->get()->result();
+                        
+                        // $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
+                        
+                        // jika 0 / disallow
+                        if($setting_region[0]->status_set_setting == 0){
+                            $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
+                            $standard_coach_cost = @$setting[0]->standard_coach_cost;
+                            $elite_coach_cost = @$setting[0]->elite_coach_cost;
+                        } else {
+                            $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+                            $standard_coach_cost = @$setting[0]->standard_coach_cost;
+                            $elite_coach_cost = @$setting[0]->elite_coach_cost;
+                        }
+
                                 $token = '';
                                 if($data_coach[0]->coach_type_id == 1){
                                     $token = $standard_coach_cost;
