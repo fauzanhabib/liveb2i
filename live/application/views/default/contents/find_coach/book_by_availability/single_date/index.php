@@ -111,9 +111,10 @@
                             </div>
                         <?php    
                         }
-
+                        
                     foreach($data as $d){
-                        $partner_id = $this->auth_manager->partner_id($coaches[$i]->id);
+
+                        $partner_id = $this->auth_manager->partner_id($d['coach_id']);
                         $region_id = $this->auth_manager->region_id($partner_id);
 
                         // check status setting region
