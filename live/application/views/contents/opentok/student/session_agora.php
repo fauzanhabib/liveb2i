@@ -400,6 +400,19 @@ if(@$user_extract2){
 .agora_css :nth-child(3) {
   display: none;
 }
+
+@media only screen and (max-width: 425px) {
+  .agora_css :nth-child(1) > video {
+    width: 100%!important;
+    left: 0!important;
+  }
+
+  .localAgora {
+    width: 100px;
+    height: 80px;
+  }
+}
+
 </style>
 
 <!-- modal -->
