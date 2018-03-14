@@ -867,8 +867,8 @@ div.panel.show {
                      <div id="agora_local" class="localAgora"></div>
                   </div>
                   <button id="sharescreen">Share your screen</button>
-                  <button id="videooff" class="pure-button btn-small btn-green w3-animate-opacity" onclick="javascript:toggleOff();" data-tooltip="Click to Turn Off Your Camera">Camera is On</button>
-                  <button id="videoon" class="pure-button btn-small btn-red w3-animate-opacity hidden" onclick="javascript:toggleOn();" data-tooltip="Click to Turn On Your Camera">Camera is Off</button>
+                  <!-- <button id="videooff" class="pure-button btn-small btn-green w3-animate-opacity" onclick="javascript:toggleOff();" data-tooltip="Click to Turn Off Your Camera">Camera is On</button>
+                  <button id="videoon" class="pure-button btn-small btn-red w3-animate-opacity hidden" onclick="javascript:toggleOn();" data-tooltip="Click to Turn On Your Camera">Camera is Off</button> -->
 
                   <form name ="leaving" action="<?php echo(site_url('opentok/leavesession/'));?>" method="post">
                       <?php $appoint_id = $appointment_id; ?>
