@@ -29,7 +29,7 @@
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
-<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.0.js"></script>
+<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script>
 
 <script>
     // Wait until the DOM has loaded before querying the document
@@ -641,30 +641,20 @@ div.panel.show {
     <div class="heading hidden" id="sessionalert" style="background: #ffe9e9;border-left: solid 5px #c87373;">
       <div style="color: #c36969;font-weight: 400;">
         Your session will end in 5 minutes</span></b>
-        <button style="float:right;color: #c87373; background:none;
-                       border:none;
-                       margin:0;
-                       padding:0;" id="closesessionalert">
-        X</button>
+        <button style="float:right;color: #c87373; background:none;border:none;margin:0;padding:0;" id="closesessionalert">X</button>
       </div>
     </div>
     <div class="heading hidden" id="coachnoteupdated" style="background: #d3ffe6;border-left: solid 5px #4fa574">
       <div style="color: #419c68;font-weight: 400;">
         Your notes have been saved</span></b>
-        <button style="float:right;color: #419c68; background:none;
-                       border:none;
-                       margin:0;
-                       padding:0;" id="closenotealert">
+        <button style="float:right;color: #419c68; background:none;border:none;margin:0;padding:0;" id="closenotealert">
         X</button>
       </div>
     </div>
     <div class="heading hidden" id="coachsciptupdated" style="background: #d3ffe6;border-left: solid 5px #4fa574">
       <div style="color: #419c68;font-weight: 400;">
         Scripts Updated</span></b>
-        <button style="float:right;color: #419c68; background:none;
-                       border:none;
-                       margin:0;
-                       padding:0;" id="closecoachscript">
+        <button style="float:right;color: #419c68; background:none;border:none;margin:0;padding:0;" id="closecoachscript">
         X</button>
       </div>
     </div>
