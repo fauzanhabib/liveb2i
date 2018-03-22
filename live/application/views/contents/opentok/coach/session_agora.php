@@ -1243,7 +1243,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
     var channel_name = "<?php echo $sessionId; ?>";
     // console.log("Ch Name = " + channel_name);
     // console.log("Init AgoraRTC client with vendor key: " + app_id);
-    client = AgoraRTC.createClient({mode: 'interop'});
+    client = AgoraRTC.createClient({mode: 'h264_interop'});
     client.init(app_id, function () {
       console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
