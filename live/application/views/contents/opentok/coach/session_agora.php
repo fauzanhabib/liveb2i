@@ -29,7 +29,8 @@
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
-<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script>
+<!-- <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script> -->
+<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.2.0.js"></script>
 
 <script>
     // Wait until the DOM has loaded before querying the document

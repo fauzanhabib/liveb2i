@@ -15,7 +15,8 @@ if(@$user_extract2){
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/main.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
-<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script>
+<!-- <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script> -->
+<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.2.0.js"></script>
 <script type="text/javascript">
   window.onbeforeunload = function() {
     var appointment_id = "<?php echo $appointment_id; ?>";
