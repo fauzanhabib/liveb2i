@@ -291,6 +291,7 @@ if(isChrome == true && isFirefox == false){
   // console.log('a');
   setInterval(function(){
     function IsExist(extensionId,callback){
+     console.log(extensionId+"-----top");
      chrome.runtime.sendMessage(extensionId, { message: "installed" },
        function (reply) {
         if (reply) {
@@ -305,11 +306,13 @@ if(isChrome == true && isFirefox == false){
     //check online extension - chrome webstore
     IsExist(extensionId,function(installed){
      if(!installed){
+       console.log(extensionId);
        console.log('not');
       $("#sharescreench_nava").removeClass("hidden");
       $("#sharescreench_ava").addClass("hidden");
      }
      else{
+       console.log(extensionId);
        console.log('ins')
       $("#sharescreench_ava").removeClass("hidden");
       $("#sharescreench_nava").addClass("hidden");
