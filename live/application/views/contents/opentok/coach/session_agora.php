@@ -294,8 +294,10 @@ if(isChrome == true && isFirefox == false){
      chrome.runtime.sendMessage(extensionId, { message: "installed" },
        function (reply) {
         if (reply) {
+          console.log(reply + 'aa');
          callback(true);
         }else{
+          console.log(reply + 'bb');
          callback(false);
         }
      });
@@ -303,10 +305,12 @@ if(isChrome == true && isFirefox == false){
     //check online extension - chrome webstore
     IsExist(extensionId,function(installed){
      if(!installed){
+       console.log('not');
       $("#sharescreench_nava").removeClass("hidden");
       $("#sharescreench_ava").addClass("hidden");
      }
      else{
+       console.log('ins')
       $("#sharescreench_ava").removeClass("hidden");
       $("#sharescreench_nava").addClass("hidden");
      }
