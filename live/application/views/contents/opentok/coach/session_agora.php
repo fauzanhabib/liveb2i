@@ -278,48 +278,48 @@ $(document).ready(function(){
 <script type="text/javascript">
 // console.log(extensionId);
 
+extensionId = "bgjblkhpjchbmfeipbclmfnpohcpjcpn";
+var isFirefox = typeof InstallTrigger !== 'undefined';
 
-// var isFirefox = typeof InstallTrigger !== 'undefined';
-//
-// var isChrome = !!window.chrome && !!window.chrome.webstore;
-//
-// if(isChrome == true && isFirefox == false){
-//   $(document).ready(function(){
-//     $("#sharescreenff").hide();
-//     $("#sharescreenff").addClass("hidden");
-//   });
-//   // console.log('a');
-//   setInterval(function(){
-//     function IsExist(extensionId,callback){
-//      chrome.runtime.sendMessage(extensionId, { message: "installed" },
-//        function (reply) {
-//         if (reply) {
-//          callback(true);
-//         }else{
-//          callback(false);
-//         }
-//      });
-//     }
-//     //check online extension - chrome webstore
-//     IsExist(extensionId,function(installed){
-//      if(!installed){
-//       $("#sharescreenavan").removeClass("hidden");
-//       $("#sharescreenava").addClass("hidden");
-//      }
-//      else{
-//       $("#sharescreenava").removeClass("hidden");
-//       $("#sharescreenavan").addClass("hidden");
-//      }
-//     });
-//     // check offline extension - .crx file
-//
-//   },1000);
-// }else if(isChrome == false && isFirefox == true){
-//   // console.log('as');
-//   $("#sharescreenff").removeClass("hidden");
-//   $("#sharescreenava").hide();
-//   $("#sharescreenava").hide();
-// }
+var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+if(isChrome == true && isFirefox == false){
+  $(document).ready(function(){
+    $("#sharescreenff").hide();
+    $("#sharescreenff").addClass("hidden");
+  });
+  // console.log('a');
+  setInterval(function(){
+    function IsExist(extensionId,callback){
+     chrome.runtime.sendMessage(extensionId, { message: "installed" },
+       function (reply) {
+        if (reply) {
+         callback(true);
+        }else{
+         callback(false);
+        }
+     });
+    }
+    //check online extension - chrome webstore
+    IsExist(extensionId,function(installed){
+     if(!installed){
+      $("#sharescreench_nava").removeClass("hidden");
+      $("#sharescreench_ava").addClass("hidden");
+     }
+     else{
+      $("#sharescreench_ava").removeClass("hidden");
+      $("#sharescreench_nava").addClass("hidden");
+     }
+    });
+    // check offline extension - .crx file
+
+  },1000);
+}else if(isChrome == false && isFirefox == true){
+  // console.log('as');
+  // $("#sharescreenff").removeClass("hidden");
+  $("#sharescreench_ava").hide();
+  $("#sharescreench_nava").hide();
+}
 </script>
 <!-- COACH SCRIPT ENDS -->
 
@@ -712,7 +712,8 @@ div.panel.show {
                   <div id="video" style="margin:0 auto;">
                      <div id="agora_local" class="localAgora"></div>
                   </div>
-                  <button id="sharescreen">Share your screen</button>
+                  <button id="sharescreench_ava">Share your screen</button>
+                  <a href="https://chrome.google.com/webstore/detail/agora-web-screensharing/bgjblkhpjchbmfeipbclmfnpohcpjcpn/" target="_blank" class="pure-button btn-small btn-tertiary w3-animate-opacity hidden" id="sharescreench_nava">Install Screen Sharing</a>
                   <!-- <button id="videooff" class="pure-button btn-small btn-green w3-animate-opacity" onclick="javascript:toggleOff();" data-tooltip="Click to Turn Off Your Camera">Camera is On</button>
                   <button id="videoon" class="pure-button btn-small btn-red w3-animate-opacity hidden" onclick="javascript:toggleOn();" data-tooltip="Click to Turn On Your Camera">Camera is Off</button> -->
 

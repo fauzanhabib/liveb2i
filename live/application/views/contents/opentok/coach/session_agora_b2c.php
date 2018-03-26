@@ -420,48 +420,50 @@ $(document).ready(function(){
 <script type="text/javascript">
   // console.log(extensionId);
 
+  extensionId = "bgjblkhpjchbmfeipbclmfnpohcpjcpn";
+  var isFirefox = typeof InstallTrigger !== 'undefined';
 
-  // var isFirefox = typeof InstallTrigger !== 'undefined';
-  //
-  // var isChrome = !!window.chrome && !!window.chrome.webstore;
-  //
-  // if(isChrome == true && isFirefox == false){
-  //   $(document).ready(function(){
-  //     $("#sharescreenff").hide();
-  //     $("#sharescreenff").addClass("hidden");
-  //   });
-  //   // console.log('a');
-  //   setInterval(function(){
-  //     function IsExist(extensionId,callback){
-  //      chrome.runtime.sendMessage(extensionId, { message: "installed" },
-  //        function (reply) {
-  //         if (reply) {
-  //          callback(true);
-  //         }else{
-  //          callback(false);
-  //         }
-  //      });
-  //     }
-  //     //check online extension - chrome webstore
-  //     IsExist(extensionId,function(installed){
-  //      if(!installed){
-  //       $("#sharescreenavan").removeClass("hidden");
-  //       $("#sharescreenava").addClass("hidden");
-  //      }
-  //      else{
-  //       $("#sharescreenava").removeClass("hidden");
-  //       $("#sharescreenavan").addClass("hidden");
-  //      }
-  //     });
-  //     // check offline extension - .crx file
-  //
-  //   },1000);
-  // }else if(isChrome == false && isFirefox == true){
-  //   // console.log('as');
-  //   $("#sharescreenff").removeClass("hidden");
-  //   $("#sharescreenava").hide();
-  //   $("#sharescreenava").hide();
-  // }
+  var isChrome = !!window.chrome && !!window.chrome.webstore;
+
+  if(isChrome == true && isFirefox == false){
+    $(document).ready(function(){
+      $("#sharescreenff").hide();
+      $("#sharescreenff").addClass("hidden");
+    });
+    // console.log('a');
+    setInterval(function(){
+      function IsExist(extensionId,callback){
+       chrome.runtime.sendMessage(extensionId, { message: "installed" },
+         function (reply) {
+          if (reply) {
+           callback(true);
+          }else{
+           callback(false);
+          }
+       });
+      }
+      //check online extension - chrome webstore
+      IsExist(extensionId,function(installed){
+       if(!installed){
+        $("#sharescreench_nava").removeClass("hidden");
+        $("#sharescreench_ava").addClass("hidden");
+       }
+       else{
+        $("#sharescreench_ava").removeClass("hidden");
+        $("#sharescreench_nava").addClass("hidden");
+       }
+      });
+      // check offline extension - .crx file
+
+    },1000);
+  }else if(isChrome == false && isFirefox == true){
+    console.log('as');
+    console.log('as');
+    // $("#sharescreenff").removeClass("hidden");
+    $("#sharescreench_ava").css("display","none !important");
+    $("#sharescreench_ava").addClass("hidden");
+    $("#sharescreench_nava").addClass("hidden");
+  }
 </script>
 <!-- COACH SCRIPT ENDS -->
 
@@ -786,30 +788,21 @@ div.panel.show {
     <div class="heading hidden" id="sessionalert" style="background: #ffe9e9;border-left: solid 5px #c87373;">
       <div style="color: #c36969;font-weight: 400;">
         Your session will end in 5 minutes</span></b>
-        <button style="float:right;color: #c87373; background:none;
-                       border:none;
-                       margin:0;
-                       padding:0;" id="closesessionalert">
+        <button style="float:right;color: #c87373; background:none;border:none;margin:0;padding:0;" id="closesessionalert">
         X</button>
       </div>
     </div>
     <div class="heading hidden" id="coachnoteupdated" style="background: #d3ffe6;border-left: solid 5px #4fa574">
       <div style="color: #419c68;font-weight: 400;">
         Your notes have been saved</span></b>
-        <button style="float:right;color: #419c68; background:none;
-                       border:none;
-                       margin:0;
-                       padding:0;" id="closenotealert">
+        <button style="float:right;color: #419c68; background:none;border:none;margin:0;padding:0;" id="closenotealert">
         X</button>
       </div>
     </div>
     <div class="heading hidden" id="coachsciptupdated" style="background: #d3ffe6;border-left: solid 5px #4fa574">
       <div style="color: #419c68;font-weight: 400;">
         Scripts Updated</span></b>
-        <button style="float:right;color: #419c68; background:none;
-                       border:none;
-                       margin:0;
-                       padding:0;" id="closecoachscript">
+        <button style="float:right;color: #419c68; background:none;border:none;margin:0;padding:0;" id="closecoachscript">
         X</button>
       </div>
     </div>
@@ -867,7 +860,8 @@ div.panel.show {
                   <div id="video" style="margin:0 auto;">
                      <div id="agora_local" class="localAgora"></div>
                   </div>
-                  <button id="sharescreen">Share your screen</button>
+                  <button id="sharescreench_ava">Share your screen</button>
+                  <a href="https://chrome.google.com/webstore/detail/agora-web-screensharing/bgjblkhpjchbmfeipbclmfnpohcpjcpn/" target="_blank" class="pure-button btn-small btn-tertiary w3-animate-opacity hidden" id="sharescreench_nava">Install Screen Sharing</a>
                   <!-- <button id="videooff" class="pure-button btn-small btn-green w3-animate-opacity" onclick="javascript:toggleOff();" data-tooltip="Click to Turn Off Your Camera">Camera is On</button>
                   <button id="videoon" class="pure-button btn-small btn-red w3-animate-opacity hidden" onclick="javascript:toggleOn();" data-tooltip="Click to Turn On Your Camera">Camera is Off</button> -->
 
@@ -1688,12 +1682,12 @@ var countdownTimer3 = setInterval('timer3()', 1000);
       console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
         // console.log("User " + channel_key + " join channel successfully");
-        console.log("=====================================");
-        console.log("Channel Key = " + channel_key);
-        console.log("Channel Value = " + channel.value);
-        console.log("UID = " + uid);
-        console.log("Ch Name = " + channel_name);
-        console.log("=====================================");
+        // console.log("=====================================");
+        // console.log("Channel Key = " + channel_key);
+        // console.log("Channel Value = " + channel.value);
+        // console.log("UID = " + uid);
+        // console.log("Ch Name = " + channel_name);
+        // console.log("=====================================");
 
         if (document.getElementById("video").checked) {
           camera = videoSource.value;
@@ -1837,20 +1831,20 @@ var countdownTimer3 = setInterval('timer3()', 1000);
     });
   }
 
-  $('#sharescreen').click(function(){
-    // unpublish();
+  $('#sharescreench_ava').click(function(){
+    unpublish();
 
     client = AgoraRTC.createClient({mode: 'interop'});
     client.init(app_id, function () {
       console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
         // console.log("User " + channel_key + " join channel successfully");
-        console.log("=====================================");
-        console.log("Channel Key = " + channel_key);
-        console.log("Channel Value = " + channel.value);
-        console.log("UID = " + uid);
-        console.log("Ch Name = " + channel_name);
-        console.log("=====================================");
+        // console.log("=====================================");
+        // console.log("Channel Key = " + channel_key);
+        // console.log("Channel Value = " + channel.value);
+        // console.log("UID = " + uid);
+        // console.log("Ch Name = " + channel_name);
+        // console.log("=====================================");
 
         if (document.getElementById("video").checked) {
           camera = videoSource.value;

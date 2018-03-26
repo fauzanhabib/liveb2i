@@ -90,8 +90,13 @@ class Call_script extends MY_Site_Controller {
                       ->where('certificate_plan', $get_gl_dsa[0]->cl_name)
                       ->get()->result();
 
-          $val_lesson = $def_lesson[0]->lesson;
+          $val_lesson = @$def_lesson[0]->lesson;
           $val_step   = 0;
+
+          if(!@$val_lesson){
+            echo 'We do not have the script for '.$get_gl_dsa[0]->cl_name.' yet';exit();
+          }
+          // echo "<pre>";print_r($val_lesson);exit();
         }
 
         // if(!@$val_lesson){
