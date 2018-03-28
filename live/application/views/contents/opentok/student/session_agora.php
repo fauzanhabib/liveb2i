@@ -460,8 +460,7 @@ if(@$user_extract2){
       </div>
   </div>
   <!-- modal -->
-    <div class="heading" id="heading1" style="background: #d3ffe6;border-bottom: solid 1px #a3f5c7;
-    border-top: solid 1px #a3f5c7;">
+    <div class="heading" id="heading1" style="background: #d3ffe6;border-bottom: solid 1px #a3f5c7;border-top: solid 1px #a3f5c7;">
       <div id="waiting" style="color: #419c68;font-weight: 400;">
         Waiting for <b><?php echo $student_name; ?></b> to join the session. Remain in the session until the end in order to receive a refund of your tokens.
         <?php  $appoint_id = $appointment_id; ?>
@@ -473,8 +472,7 @@ if(@$user_extract2){
 
       </div>
     </div>
-    <div class="heading hidden" id="heading2" style="background: #ffe9e9;border-bottom: solid 1px #ffbaba;
-    border-top: solid 1px #ffbaba;">
+    <div class="heading hidden" id="heading2" style="background: #ffe9e9;border-bottom: solid 1px #ffbaba;border-top: solid 1px #ffbaba;">
       <div id="disconnect" class="hidden" style="color: #c36969;font-weight: 400;">
         <b><?php echo $student_name; ?></b> is disconnected, wait for him/her to reconnect. <!-- <span id="countdown2" class="timer2"></span> -->
       </div>
@@ -482,10 +480,7 @@ if(@$user_extract2){
     <div class="heading hidden" id="sessionalert" style="background: #ffe9e9;border-left: solid 5px #c87373;">
       <div style="color: #c36969;font-weight: 400;">
         Your session will end in 5 minutes</span></b>
-        <button style="float:right;color: #c87373; background:none;
-                       border:none;
-                       margin:0;
-                       padding:0;" id="closesessionalert">
+        <button style="float:right;color: #c87373; background:none;border:none;margin:0;padding:0;" id="closesessionalert">
         X</button>
       </div>
     </div>
@@ -753,7 +748,7 @@ var countdownTimer = setInterval('timer()', 1000);
     var channel_name = "<?php echo $sessionId; ?>";
     // console.log("Ch Name = " + channel_name);
     // console.log("Init AgoraRTC client with vendor key: " + app_id);
-    client = AgoraRTC.createClient({mode: 'h264_interop'});
+    client = AgoraRTC.createClient({mode: 'interop'});
     client.init(app_id, function () {
       // console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
