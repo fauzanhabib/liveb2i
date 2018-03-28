@@ -1069,10 +1069,10 @@ div.panel.show {
                   <div class="graph__wrap">
                       <div class="bar__graph">
                          <?php
-                          $bar_now = ( @$gwp->data[0]->points_goal == 0 ? 0 : @$gwp->data[0]->points / @$gwp->data[0]->points_goal);
-                          $bar_w1  = ( @$gwp->data[1]->points_goal == 0 ? 0 : @$gwp->data[1]->points / @$gwp->data[1]->points_goal);
-                          $bar_w2  = ( @$gwp->data[2]->points_goal == 0 ? 0 : @$gwp->data[2]->points / @$gwp->data[2]->points_goal);
-                          $bar_w3  = ( @$gwp->data[3]->points_goal == 0 ? 0 : @$gwp->data[3]->points / @$gwp->data[3]->points_goal);
+                          $bar_now = ( @$gwp->data[0]->points_goal == 0 ? 0 : @$gwp->data[0]->points / @$gwp->data[0]->points_goal) * 100;
+                          $bar_w1  = ( @$gwp->data[1]->points_goal == 0 ? 0 : @$gwp->data[1]->points / @$gwp->data[1]->points_goal) * 100;
+                          $bar_w2  = ( @$gwp->data[2]->points_goal == 0 ? 0 : @$gwp->data[2]->points / @$gwp->data[2]->points_goal) * 100;
+                          $bar_w3  = ( @$gwp->data[3]->points_goal == 0 ? 0 : @$gwp->data[3]->points / @$gwp->data[3]->points_goal) * 100;
                           ?>
                           <ul class="graph b2">
                               <span class="graph__bar__cont">
@@ -1684,7 +1684,7 @@ var countdownTimer3 = setInterval('timer3()', 1000);
     var channel_name = "<?php echo $sessionId; ?>";
     // console.log("Ch Name = " + channel_name);
     // console.log("Init AgoraRTC client with vendor key: " + app_id);
-    client = AgoraRTC.createClient({mode: 'h264_interop'});
+    client = AgoraRTC.createClient({mode: 'interop'});
     client.init(app_id, function () {
       console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {

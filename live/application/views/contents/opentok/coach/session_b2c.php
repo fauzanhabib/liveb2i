@@ -774,30 +774,21 @@
     <div class="heading hidden" id="sessionalert" style="background: #ffe9e9;border-left: solid 5px #c87373;">
       <div style="color: #c36969;font-weight: 400;">
         Your session will end in 5 minutes</span></b>
-        <button style="float:right;color: #c87373; background:none;
-                       border:none;
-                       margin:0;
-                       padding:0;" id="closesessionalert">
+        <button style="float:right;color: #c87373; background:none;border:none;margin:0;padding:0;" id="closesessionalert">
         X</button>
       </div>
     </div>
     <div class="heading hidden" id="coachnoteupdated" style="background: #d3ffe6;border-left: solid 5px #4fa574">
       <div style="color: #419c68;font-weight: 400;">
         Your notes have been saved</span></b>
-        <button style="float:right;color: #419c68; background:none;
-                       border:none;
-                       margin:0;
-                       padding:0;" id="closenotealert">
+        <button style="float:right;color: #419c68; background:none;border:none;margin:0;padding:0;" id="closenotealert">
         X</button>
       </div>
     </div>
     <div class="heading hidden" id="coachsciptupdated" style="background: #d3ffe6;border-left: solid 5px #4fa574">
       <div style="color: #419c68;font-weight: 400;">
         Scripts Updated</span></b>
-        <button style="float:right;color: #419c68; background:none;
-                       border:none;
-                       margin:0;
-                       padding:0;" id="closecoachscript">
+        <button style="float:right;color: #419c68; background:none;border:none;margin:0;padding:0;" id="closecoachscript">
         X</button>
       </div>
     </div>
@@ -1052,10 +1043,10 @@
                   <div class="graph__wrap">
                       <div class="bar__graph">
                          <?php
-                          $bar_now = ( @$gwp->data[0]->points_goal == 0 ? 0 : @$gwp->data[0]->points / @$gwp->data[0]->points_goal);
-                          $bar_w1  = ( @$gwp->data[1]->points_goal == 0 ? 0 : @$gwp->data[1]->points / @$gwp->data[1]->points_goal);
-                          $bar_w2  = ( @$gwp->data[2]->points_goal == 0 ? 0 : @$gwp->data[2]->points / @$gwp->data[2]->points_goal);
-                          $bar_w3  = ( @$gwp->data[3]->points_goal == 0 ? 0 : @$gwp->data[3]->points / @$gwp->data[3]->points_goal);
+                          $bar_now = ( @$gwp->data[0]->points_goal == 0 ? 0 : @$gwp->data[0]->points / @$gwp->data[0]->points_goal) * 100;
+                          $bar_w1  = ( @$gwp->data[1]->points_goal == 0 ? 0 : @$gwp->data[1]->points / @$gwp->data[1]->points_goal) * 100;
+                          $bar_w2  = ( @$gwp->data[2]->points_goal == 0 ? 0 : @$gwp->data[2]->points / @$gwp->data[2]->points_goal) * 100;
+                          $bar_w3  = ( @$gwp->data[3]->points_goal == 0 ? 0 : @$gwp->data[3]->points / @$gwp->data[3]->points_goal) * 100;
                           ?>
                           <ul class="graph b2">
                               <span class="graph__bar__cont">
