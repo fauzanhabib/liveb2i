@@ -278,7 +278,7 @@ $(document).ready(function(){
 <script type="text/javascript">
 // console.log(extensionId);
 
-extensionId = "bgjblkhpjchbmfeipbclmfnpohcpjcpn";
+extensionId = "ibcbjjnaonefbmfgfodjhjoaehldmdej";
 var isFirefox = typeof InstallTrigger !== 'undefined';
 
 var isChrome = !!window.chrome && !!window.chrome.webstore;
@@ -720,7 +720,7 @@ div.panel.show {
                      <div id="agora_local" class="localAgora"></div>
                   </div>
                   <button id="sharescreench_ava">Share your screen</button>
-                  <a href="https://chrome.google.com/webstore/detail/agora-web-screensharing/bgjblkhpjchbmfeipbclmfnpohcpjcpn/" target="_blank" class="pure-button btn-small btn-tertiary w3-animate-opacity hidden" id="sharescreench_nava">Install Screen Sharing</a>
+                  <a href="https://chrome.google.com/webstore/detail/agora-web-screensharing/ibcbjjnaonefbmfgfodjhjoaehldmdej/" target="_blank" class="pure-button btn-small btn-tertiary w3-animate-opacity hidden" id="sharescreench_nava">Install Screen Sharing</a>
                   <!-- <button id="videooff" class="pure-button btn-small btn-green w3-animate-opacity" onclick="javascript:toggleOff();" data-tooltip="Click to Turn Off Your Camera">Camera is On</button>
                   <button id="videoon" class="pure-button btn-small btn-red w3-animate-opacity hidden" onclick="javascript:toggleOn();" data-tooltip="Click to Turn On Your Camera">Camera is Off</button> -->
 
@@ -1267,7 +1267,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
           camera = videoSource.value;
           microphone = audioSource.value;
           localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
-          // localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"bgjblkhpjchbmfeipbclmfnpohcpjcpn"});
+          // localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"ibcbjjnaonefbmfgfodjhjoaehldmdej"});
 
           //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
           if (document.getElementById("video").checked) {
@@ -1427,7 +1427,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
             console.log("Unpublish local stream failed" + err);
           });
           // localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
-          localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"bgjblkhpjchbmfeipbclmfnpohcpjcpn"});
+          localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"ibcbjjnaonefbmfgfodjhjoaehldmdej"});
 
           //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
           if (document.getElementById("video").checked) {
