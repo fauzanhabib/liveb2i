@@ -1841,7 +1841,7 @@ var countdownTimer3 = setInterval('timer3()', 1000);
   $('#sharescreench_ava').click(function(){
     unpublish();
 
-    client = AgoraRTC.createClient({mode: 'h264_interop'});
+    client = AgoraRTC.createClient({mode: 'interop'});
     client.init(app_id, function () {
       console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {

@@ -1408,17 +1408,17 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
   $('#sharescreen').click(function(){
     // unpublish();
 
-    client = AgoraRTC.createClient({mode: 'h264_interop'});
+    client = AgoraRTC.createClient({mode: 'interop'});
     client.init(app_id, function () {
       console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
         // console.log("User " + channel_key + " join channel successfully");
-        console.log("=====================================");
-        console.log("Channel Key = " + channel_key);
-        console.log("Channel Value = " + channel.value);
-        console.log("UID = " + uid);
-        console.log("Ch Name = " + channel_name);
-        console.log("=====================================");
+        // console.log("=====================================");
+        // console.log("Channel Key = " + channel_key);
+        // console.log("Channel Value = " + channel.value);
+        // console.log("UID = " + uid);
+        // console.log("Ch Name = " + channel_name);
+        // console.log("=====================================");
 
         if (document.getElementById("video").checked) {
           camera = videoSource.value;
