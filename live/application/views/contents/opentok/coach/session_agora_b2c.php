@@ -29,8 +29,8 @@
 </script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
-<!-- <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script> -->
 <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script>
+<!-- <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.2.0.js"></script> -->
 
 <script>
     // Wait until the DOM has loaded before querying the document
@@ -814,7 +814,7 @@ div.panel.show {
                      <div id="agora_local" class="localAgora"></div>
                   </div>
                   <button class="hidden" id="sharescreench_ava">Share your screen</button>
-                  <a href="https://chrome.google.com/webstore/detail/agora-web-screensharing/ibcbjjnaonefbmfgfodjhjoaehldmdej/" target="_blank" class="pure-button btn-small btn-tertiary w3-animate-opacity hidden" id="sharescreench_nava">Install Screen Sharing</a>
+                  <a href="https://chrome.google.com/webstore/detail/agora-web-screensharing/bgjblkhpjchbmfeipbclmfnpohcpjcpn/" target="_blank" class="pure-button btn-small btn-tertiary w3-animate-opacity hidden" id="sharescreench_nava">Install Screen Sharing</a>
                   <!-- <button id="videooff" class="pure-button btn-small btn-green w3-animate-opacity" onclick="javascript:toggleOff();" data-tooltip="Click to Turn Off Your Camera">Camera is On</button>
                   <button id="videoon" class="pure-button btn-small btn-red w3-animate-opacity hidden" onclick="javascript:toggleOn();" data-tooltip="Click to Turn On Your Camera">Camera is Off</button> -->
 
@@ -1609,7 +1609,7 @@ var countdownTimer3 = setInterval('timer3()', 1000);
   // AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.ERROR);
   // AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.WARNING);
   // AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.INFO);
-  // AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.DEBUG);
+  // console.log(AgoraRTC.Logger.setLogLevel(AgoraRTC.Logger.DEBUG)+"===============");
 
   /* simulated data to proof setLogLevel() */
   AgoraRTC.Logger.error('this is error');
@@ -1646,7 +1646,7 @@ var countdownTimer3 = setInterval('timer3()', 1000);
           camera = videoSource.value;
           microphone = audioSource.value;
           localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
-          // localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"ibcbjjnaonefbmfgfodjhjoaehldmdej"});
+          // localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"bgjblkhpjchbmfeipbclmfnpohcpjcpn"});
 
           //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
           if (document.getElementById("video").checked) {
@@ -1785,7 +1785,7 @@ var countdownTimer3 = setInterval('timer3()', 1000);
   }
 
   $('#sharescreench_ava').click(function(){
-    unpublish();
+    // unpublish();
 
     client = AgoraRTC.createClient({mode: 'interop'});
     client.init(app_id, function () {
@@ -1806,7 +1806,7 @@ var countdownTimer3 = setInterval('timer3()', 1000);
             console.log("Unpublish local stream failed" + err);
           });
           // localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
-          localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"ibcbjjnaonefbmfgfodjhjoaehldmdej"});
+          localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"bgjblkhpjchbmfeipbclmfnpohcpjcpn"});
 
           //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
           if (document.getElementById("video").checked) {
@@ -1855,16 +1855,16 @@ var countdownTimer3 = setInterval('timer3()', 1000);
 <script type="text/javascript">
   // console.log(extensionId);
 
-  extensionId = "ibcbjjnaonefbmfgfodjhjoaehldmdej";
+  extensionId = "bgjblkhpjchbmfeipbclmfnpohcpjcpn";
   var isFirefox = typeof InstallTrigger !== 'undefined';
 
   var isChrome = !!window.chrome && !!window.chrome.webstore;
 
   if(isChrome == true && isFirefox == false){
-    console.log('==============================');
-    console.log(isFirefox);
-    console.log(isChrome);
-    console.log('==============================');
+    // console.log('==============================');
+    // console.log(isFirefox);
+    // console.log(isChrome);
+    // console.log('==============================');
     $("#sharescreench_ava").removeClass("hidden");
     $("#sharescreench_nava").removeClass("hidden");
 
