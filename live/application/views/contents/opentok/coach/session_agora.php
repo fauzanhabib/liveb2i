@@ -1352,7 +1352,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
     });
   }
 
-  $('#sharescreen').click(function(){
+  $('#sharescreench_ava').click(function(){
     // unpublish();
 
     client = AgoraRTC.createClient({mode: 'interop'});
@@ -1428,10 +1428,10 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
   var isChrome = !!window.chrome && !!window.chrome.webstore;
 
   if(isChrome == true && isFirefox == false){
-    console.log('==============================');
-    console.log(isFirefox);
-    console.log(isChrome);
-    console.log('==============================');
+    // console.log('==============================');
+    // console.log(isFirefox);
+    // console.log(isChrome);
+    // console.log('==============================');
     $("#sharescreench_ava").removeClass("hidden");
     $("#sharescreench_nava").removeClass("hidden");
 
