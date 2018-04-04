@@ -372,24 +372,32 @@ class schedule extends MY_Site_Controller {
 
         $schedule_gmt0_1 = $this->schedule_model->select('day, start_time, end_time')->where('day', $day1)->where('user_id', $this->auth_manager->userid())->get();
         $schedule_gmt0_2 = $this->schedule_model->select('day, start_time, end_time')->where('day', $day2)->where('user_id', $this->auth_manager->userid())->get();
+        $schedule_gmt0_3 = $this->schedule_model->select('day, start_time, end_time')->where('day', $day3)->where('user_id', $this->auth_manager->userid())->get();
+        $schedule_gmt0_4 = $this->schedule_model->select('day, start_time, end_time')->where('day', $day4)->where('user_id', $this->auth_manager->userid())->get();
 
         $schedule_gmt0_1 = $this->block($this->auth_manager->userid(), $schedule_gmt0_1->day, $schedule_gmt0_1->start_time, $schedule_gmt0_1->end_time);
         $schedule_gmt0_2 = $this->block($this->auth_manager->userid(), $schedule_gmt0_2->day, $schedule_gmt0_2->start_time, $schedule_gmt0_2->end_time);
+        $schedule_gmt0_3 = $this->block($this->auth_manager->userid(), $schedule_gmt0_3->day, $schedule_gmt0_3->start_time, $schedule_gmt0_3->end_time);
+        $schedule_gmt0_4 = $this->block($this->auth_manager->userid(), $schedule_gmt0_4->day, $schedule_gmt0_4->start_time, $schedule_gmt0_4->end_time);
 
 //        echo('<pre>');
 //        print_r($schedule_gmt0_1);
 //        print_r($schedule_gmt0_2); exit;
         $schedule1 = array();
         $schedule2 = array();
-        
+        $schedule3 = array();
+        $schedule4 = array();
+            
+
         // divided schedule
         $schedule_block = $this->update_block($this->input->post());
         //echo('<pre>'); print_r($schedule_block);exit;
         if(!$this->isValidSchedule($schedule_block)){
             $this->messages->add('Invalid Schedule Order', 'warning');
             redirect('coach/schedule');
-        }
-        
+        }   
+
+                
         if($minutes == 0){
             $schedule_array1 = array();
             foreach ($schedule_block as $s) {
@@ -399,10 +407,17 @@ class schedule extends MY_Site_Controller {
                 );
             }
         }
+
         else if (-$minutes < 0) {
             foreach ($schedule_block as $s) {
+                
                 $schedule_temp = date("H:i:s", strtotime(-$minutes . 'minutes', strtotime($s['end_time'])));
                 $schedule_temp2 = date("H:i:s", strtotime(-$minutes . 'minutes', strtotime($s['start_time'])));
+                $schedule_temp3 = date("H:i:s", strtotime(-$minutes . 'minutes', strtotime($s['start_time'])));
+                $schedule_temp4 = date("H:i:s", strtotime(-$minutes . 'minutes', strtotime($s['start_time'])));
+
+               
+
                 if (strtotime($schedule_temp) > strtotime($s['end_time']) || $schedule_temp == '00:00:00') {
                     $schedule2[] = array(
                         'start_time' => $schedule_temp2,
@@ -425,10 +440,60 @@ class schedule extends MY_Site_Controller {
                         'end_time' => $schedule_temp,
                     );
                 }
+
+                if (strtotime($schedule_temp2) > strtotime($s['end_time']) || $schedule_temp2 == '00:00:00') {
+                    $schedule3[] = array(
+                        'start_time' => $schedule_temp3,
+                        'end_time' => ($schedule_temp2 == '00:00:00' ? '23:59:59' : $schedule_temp2)
+                    );
+                } else if (strtotime($schedule_temp3) > strtotime($s['start_time']) && strtotime($schedule_temp2) < strtotime($s['end_time'])) {
+
+                    $schedule3[] = array(
+                        'start_time' => $schedule_temp3,
+                        'end_time' => '23:59:59',
+                    );
+
+                    $schedule2[] = array(
+                        'start_time' => '00:00:00',
+                        'end_time' => $schedule_temp2,
+                    );
+                } else if (strtotime($schedule_temp3) < strtotime($s['start_time'])) {
+                    $schedule2[] = array(
+                        'start_time' => $schedule_temp3,
+                        'end_time' => $schedule_temp2,
+                    );
+                }
+                
+                if (strtotime($schedule_temp3) > strtotime($s['end_time']) || $schedule_temp3 == '00:00:00') {
+                    $schedule4[] = array(
+                        'start_time' => $schedule_temp4,
+                        'end_time' => ($schedule_temp3 == '00:00:00' ? '23:59:59' : $schedule_temp3)
+                    );
+                } else if (strtotime($schedule_temp4) > strtotime($s['start_time']) && strtotime($schedule_temp3) < strtotime($s['end_time'])) {
+
+                    $schedule3[] = array(
+                        'start_time' => $schedule_temp4,
+                        'end_time' => '23:59:59',
+                    );
+
+                    $schedule3[] = array(
+                        'start_time' => '00:00:00',
+                        'end_time' => $schedule_temp3,
+                    );
+                } else if (strtotime($schedule_temp4) < strtotime($s['start_time'])) {
+                    $schedule3[] = array(
+                        'start_time' => $schedule_temp4,
+                        'end_time' => $schedule_temp3,
+                    );
+                }
+
+                
             }
 
             $schedule_array1 = array();
             $schedule_array2 = array();
+            $schedule_array3 = array();
+            $schedule_array4 = array();
 
 
             $status1 = 0;
@@ -518,11 +583,94 @@ class schedule extends MY_Site_Controller {
                     }
                 }
             }
+
+            $status3 = 0;
+            for ($i = 0; $i < count($schedule_gmt0_3); $i++) {
+                if ($schedule3) {
+                    for ($j = 0; $j < count($schedule3); $j++) {
+                        if (strtotime($schedule3[$j]['start_time']) >= strtotime($schedule_gmt0_3[$i]['start_time']) && strtotime($schedule3[$j]['end_time']) <= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                            $schedule_array3[] = array(
+                                'start_time' => $schedule3[$j]['start_time'],
+                                'end_time' => $schedule3[$j]['end_time'],
+                            );
+                            break;
+                        } else if (strtotime($schedule3[$j]['start_time']) >= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                            $schedule_array3[] = array(
+                                'start_time' => $schedule3[$j]['start_time'],
+                                'end_time' => $schedule3[$j]['end_time'],
+                            );
+                        }
+                    }
+
+                    if (strtotime($schedule_gmt0_3[$i]['end_time']) <= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                        $schedule_array3[] = array(
+                            'start_time' => $schedule_gmt0_3[$i]['start_time'],
+                            'end_time' => $schedule_gmt0_3[$i]['end_time'],
+                        );
+                    }
+                } else {
+                    if (strtotime($schedule_gmt0_3[$i]['start_time']) < strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00')))) && strtotime($schedule_gmt0_3[$i]['end_time']) >= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                        $schedule_array3[] = array(
+                            'start_time' => $schedule_gmt0_3[$i]['start_time'],
+                            'end_time' => date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))),
+                        );
+                    } else if (strtotime($schedule_gmt0_3[$i]['end_time']) < strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                        $schedule_array3[] = array(
+                            'start_time' => $schedule_gmt0_3[$i]['start_time'],
+                            'end_time' => $schedule_gmt0_3[$i]['end_time'],
+                        );
+                    }
+                }
+            }
+
+            $status3 = 0;
+            for ($i = 0; $i < count($schedule_gmt0_3); $i++) {
+                if ($schedule3) {
+                    for ($j = 0; $j < count($schedule3); $j++) {
+                        if (strtotime($schedule3[$j]['start_time']) >= strtotime($schedule_gmt0_3[$i]['start_time']) && strtotime($schedule3[$j]['end_time']) <= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                            $schedule_array3[] = array(
+                                'start_time' => $schedule3[$j]['start_time'],
+                                'end_time' => $schedule3[$j]['end_time'],
+                            );
+                            break;
+                        } else if (strtotime($schedule3[$j]['start_time']) >= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                            $schedule_array3[] = array(
+                                'start_time' => $schedule3[$j]['start_time'],
+                                'end_time' => $schedule3[$j]['end_time'],
+                            );
+                        }
+                    }
+
+                    if (strtotime($schedule_gmt0_3[$i]['end_time']) <= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                        $schedule_array3[] = array(
+                            'start_time' => $schedule_gmt0_3[$i]['start_time'],
+                            'end_time' => $schedule_gmt0_3[$i]['end_time'],
+                        );
+                    }
+                } else {
+                    if (strtotime($schedule_gmt0_3[$i]['start_time']) < strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00')))) && strtotime($schedule_gmt0_3[$i]['end_time']) >= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                        $schedule_array3[] = array(
+                            'start_time' => $schedule_gmt0_3[$i]['start_time'],
+                            'end_time' => date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))),
+                        );
+                    } else if (strtotime($schedule_gmt0_3[$i]['end_time']) < strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                        $schedule_array3[] = array(
+                            'start_time' => $schedule_gmt0_3[$i]['start_time'],
+                            'end_time' => $schedule_gmt0_3[$i]['end_time'],
+                        );
+                    }
+                }
+            }
+
+
         }
         else {
             foreach ($schedule_block as $s) {
                 $schedule_temp = date("H:i:s", strtotime(-$minutes . 'minutes', strtotime($s['start_time'])));
                 $schedule_temp2 = date("H:i:s", strtotime(-$minutes . 'minutes', strtotime($s['end_time'])));
+                $schedule_temp3 = date("H:i:s", strtotime(-$minutes . 'minutes', strtotime($s['end_time'])));
+                $schedule_temp4 = date("H:i:s", strtotime(-$minutes . 'minutes', strtotime($s['end_time'])));
+                
                 if (strtotime($schedule_temp) < strtotime($s['start_time'])) {
                     $schedule2[] = array(
                         'start_time' => $schedule_temp,
@@ -544,9 +692,58 @@ class schedule extends MY_Site_Controller {
                         'end_time' => $schedule_temp2,
                     );
                 }
+
+                if (strtotime($schedule_temp2) < strtotime($s['start_time'])) {
+                    $schedule3[] = array(
+                        'start_time' => $schedule_temp2,
+                        'end_time' => $schedule_temp3,
+                    );
+                } else if (strtotime($schedule_temp3) > strtotime($s['end_time']) || $schedule_temp3 == '00:00:00') {
+
+                    $schedule2[] = array(
+                        'start_time' => $schedule_temp1,
+                        'end_time' => ($schedule_temp3 == '00:00:00' ? '23:59:59' : $schedule_temp3),
+                    );
+                } else if (strtotime($schedule_temp2) > strtotime($s['start_time']) && strtotime($schedule_temp2) < strtotime($s['end_time'])) {
+                    $schedule2[] = array(
+                        'start_time' => $schedule_temp1,
+                        'end_time' => '23:59:59',
+                    );
+                    $schedule3[] = array(
+                        'start_time' => '00:00:00',
+                        'end_time' => $schedule_temp3,
+                    );
+                }
+
+                if (strtotime($schedule_temp3) < strtotime($s['start_time'])) {
+                    $schedule4[] = array(
+                        'start_time' => $schedule_temp3,
+                        'end_time' => $schedule_temp4,
+                    );
+                } else if (strtotime($schedule_temp4) > strtotime($s['end_time']) || $schedule_temp4 == '00:00:00') {
+
+                    $schedule3[] = array(
+                        'start_time' => $schedule_temp2,
+                        'end_time' => ($schedule_temp4 == '00:00:00' ? '23:59:59' : $schedule_temp4),
+                    );
+                } else if (strtotime($schedule_temp3) > strtotime($s['start_time']) && strtotime($schedule_temp3) < strtotime($s['end_time'])) {
+                    $schedule3[] = array(
+                        'start_time' => $schedule_temp2,
+                        'end_time' => '23:59:59',
+                    );
+                    $schedule4[] = array(
+                        'start_time' => '00:00:00',
+                        'end_time' => $schedule_temp4,
+                    );
+                }
+
+
             }
             $schedule_array1 = array();
             $schedule_array2 = array();
+
+            $schedule_array3 = array();
+            $schedule_array4 = array();
 
 
             $status1 = 0;
@@ -653,6 +850,102 @@ class schedule extends MY_Site_Controller {
                 }
             }
 
+            $status3 = 0;
+            for ($i = 0; $i < count($schedule_gmt0_3); $i++) {
+                if ($schedule3) {
+                    for ($j = 0; $j < count($schedule3); $j++) {
+                        if (strtotime($schedule_gmt0_3[$i]['end_time']) <= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                            $schedule_array3[] = array(
+                                'start_time' => $schedule3[$j]['start_time'],
+                                'end_time' => $schedule3[$j]['end_time'],
+                            );
+                        } else if (strtotime($schedule_gmt0_3[$i]['start_time']) <= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00')))) && strtotime($schedule_gmt0_3[$i]['end_time']) > strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                            $schedule_array3[] = array(
+                                'start_time' => $schedule3[$j]['start_time'],
+                                'end_time' => $schedule3[$j]['end_time'],
+                            );
+
+                            $schedule_array3[] = array(
+                                'start_time' => date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))),
+                                'end_time' => $schedule_gmt0_3[$i]['end_time'],
+                            );
+                        } else if (strtotime($schedule_gmt0_3[$i]['start_time']) >= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                            $schedule_array3[] = array(
+                                'start_time' => $schedule3[$j]['start_time'],
+                                'end_time' => $schedule3[$j]['end_time'],
+                            );
+
+                            $schedule_array3[] = array(
+                                'start_time' => $schedule_gmt0_3[$i]['start_time'],
+                                'end_time' => $schedule_gmt0_3[$i]['end_time'],
+                            );
+                        }
+                    }
+                } else {
+                    if (strtotime($schedule_gmt0_3[$i]['start_time']) <= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                        if (strtotime($schedule_gmt0_3[$i]['end_time']) > strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00')))) || $schedule_gmt0_3[$i]['end_time'] == '00:00:00') {
+                            $schedule_array3[] = array(
+                                'start_time' => date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))),
+                                'end_time' => ($schedule_gmt0_3[$i]['end_time'] == '00:00:00' ? '23:59:59' : $schedule_gmt0_3[$i]['end_time']),
+                            );
+                        }
+                    } else if (strtotime($schedule_gmt0_3[$i]['start_time']) >= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                        $schedule_array3[] = array(
+                            'start_time' => $schedule_gmt0_3[$i]['start_time'],
+                            'end_time' => $schedule_gmt0_3[$i]['end_time'],
+                        );
+                    }
+                }
+            } 
+
+            $status4 = 0;
+            for ($i = 0; $i < count($schedule_gmt0_4); $i++) {
+                if ($schedule4) {
+                    for ($j = 0; $j < count($schedule4); $j++) {
+                        if (strtotime($schedule_gmt0_4[$i]['end_time']) <= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                            $schedule_array4[] = array(
+                                'start_time' => $schedule4[$j]['start_time'],
+                                'end_time' => $schedule4[$j]['end_time'],
+                            );
+                        } else if (strtotime($schedule_gmt0_4[$i]['start_time']) <= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00')))) && strtotime($schedule_gmt0_4[$i]['end_time']) > strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                            $schedule_array4[] = array(
+                                'start_time' => $schedule4[$j]['start_time'],
+                                'end_time' => $schedule4[$j]['end_time'],
+                            );
+
+                            $schedule_array4[] = array(
+                                'start_time' => date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))),
+                                'end_time' => $schedule_gmt0_4[$i]['end_time'],
+                            );
+                        } else if (strtotime($schedule_gmt0_4[$i]['start_time']) >= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                            $schedule_array4[] = array(
+                                'start_time' => $schedule4[$j]['start_time'],
+                                'end_time' => $schedule4[$j]['end_time'],
+                            );
+
+                            $schedule_array4[] = array(
+                                'start_time' => $schedule_gmt0_4[$i]['start_time'],
+                                'end_time' => $schedule_gmt0_4[$i]['end_time'],
+                            );
+                        }
+                    }
+                } else {
+                    if (strtotime($schedule_gmt0_4[$i]['start_time']) <= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                        if (strtotime($schedule_gmt0_4[$i]['end_time']) > strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00')))) || $schedule_gmt0_4[$i]['end_time'] == '00:00:00') {
+                            $schedule_array4[] = array(
+                                'start_time' => date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))),
+                                'end_time' => ($schedule_gmt0_4[$i]['end_time'] == '00:00:00' ? '23:59:59' : $schedule_gmt0_4[$i]['end_time']),
+                            );
+                        }
+                    } else if (strtotime($schedule_gmt0_4[$i]['start_time']) >= strtotime(date("H:i:s", strtotime(-$minutes . 'minutes', strtotime('00:00:00'))))) {
+                        $schedule_array4[] = array(
+                            'start_time' => $schedule_gmt0_4[$i]['start_time'],
+                            'end_time' => $schedule_gmt0_4[$i]['end_time'],
+                        );
+                    }
+                }
+            }
+
         }
         
         
@@ -678,6 +971,7 @@ class schedule extends MY_Site_Controller {
     }
 
     private function update_block($time) {
+        
         $schedule = array();
         for ($i = 0; $i < floor(count($time) / 2); $i++) {
             $schedule[] = array(
