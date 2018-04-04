@@ -112,7 +112,7 @@ $pt1_raw_value = @$student_vrm->initial_pt_score;
 
 <div id='tab1' class="pure-g clearfix w3-animate-opacity">
   <div class="refresh">
-      <img src="http://idbuild.id.dyned.com/live_v20/assets/images/reload-data.svg" id="reloadajax4">
+      <img src="<?php echo base_url();?>assets/images/reload-data.svg" id="reloadajax4">
   </div>
   <div class="box-capsule m-t-20 margin-auto font-14" style="background: #e1662b !important;">
       <span>Data Displayed Based On The Last 8 Weeks Period</span>
