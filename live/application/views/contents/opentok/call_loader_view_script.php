@@ -126,7 +126,7 @@ $(document).ready(function(){
             <span>Save</span>
         </button>
         <div class="refresh">
-            <img src="http://idbuild.id.dyned.com/live_v20/assets/images/reload-data.svg" id="reloadajax3">
+            <img src="<?php echo base_url();?>assets/images/reload-data.svg" id="reloadajax3">
         </div>
     </div> <br>
     <?php if(@$script){?>
@@ -155,18 +155,13 @@ $(document).ready(function(){
          ?>
          <table>
           <?php if($v->status == 0){ ?>
-            <td style="
-                width: 6%;
-                width: 6%;
-                border-bottom: 1px solid #eee;">
+            <td style="width: 6%;width: 6%;border-bottom: 1px solid #eee;">
 
             <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $v->id;?>" class="centang font-12" /><label for="checkbox-1-<?php echo $no;?>"></label>
             <input type="hidden" id="std_id" name="std_id" value="<?php echo $std_id_for_cert; ?>">
             <input type="hidden" id="status_script" name="status_script" value="<?php echo $status_script; ?>">
             </td>
-            <td style="
-                width: 90%;
-                border-bottom: 1px solid #eee;color:black;">
+            <td style="width: 90%;border-bottom: 1px solid #eee;color:black;">
             <p>
               <?php
                   echo $v->script;
@@ -174,17 +169,12 @@ $(document).ready(function(){
             </p>
             </td>
           <?php }else{ ?>
-            <td style="
-                width: 6%;
-                width: 6%;
-                border-bottom: 1px solid #eee;">
+            <td style="width: 6%;width: 6%;border-bottom: 1px solid #eee;">
             <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $v->id;?>" class="centang font-12" checked/><label for="checkbox-1-<?php echo $no;?>"></label>
             <input type="hidden" id="std_id" name="std_id" value="<?php echo $std_id_for_cert; ?>">
             <input type="hidden" id="status_script" name="status_script" value="<?php echo $status_script; ?>">
             </td>
-            <td style="
-                width: 90%;
-                border-bottom: 1px solid #eee;">
+            <td style="width: 90%;border-bottom: 1px solid #eee;">
             <p>
               <?php
                   echo $v->script;
