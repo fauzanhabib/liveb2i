@@ -622,7 +622,7 @@ class find_coaches extends MY_Site_Controller {
 
                 $remain_token = $this->update_token($token_cost);
 
-                if($remain_token < 1){
+                if($remain_token < 0){
                     $message = "Not Enough Token";
                     $this->messages->add('Not Enough Token', 'warning');
                 }
@@ -633,7 +633,7 @@ class find_coaches extends MY_Site_Controller {
                     // exit();                
 
 
-                if(($message == '') && ($remain_token >0)){
+                if(($message == '') && ($remain_token >= 0)){
                     // update token
                     $s_t = $this->identity_model->get_identity('token')->select('id, token_amount')->where('user_id', $this->auth_manager->userid())->get();
                     $r_t = $s_t->token_amount - $token;
