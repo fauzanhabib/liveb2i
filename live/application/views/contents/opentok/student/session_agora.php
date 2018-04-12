@@ -547,7 +547,7 @@ if(@$user_extract2){
         <div class="pure-u-md-12-24 pure-u-sm-1">
         <div id="reloading">
             <center>
-              <img src="http://idbuild.id.dyned.com/live_v20/assets/icon/spin.gif" width="50" class="small-preload2"><br>
+              <img src="<?php echo base_url();?>assets/icon/spin.gif" width="50" class="small-preload2"><br>
               If it takes more than 30 seconds, click<br>
               <a class="text-cl-secondary" id="reloadajax">Reload</a>
             </center>

@@ -690,7 +690,7 @@ div.panel.show {
             </ul>
             <div id="reloading">
                 <center>
-                  <img src="http://idbuild.id.dyned.com/live_v20/assets/icon/spin.gif" width="50" class="small-preload2"><br>
+                  <img src="<?php echo base_url();?>assets/icon/spin.gif" width="50" class="small-preload2"><br>
                   If it takes more than 30 seconds, click<br>
                   <a class="text-cl-secondary" id="reloadajax">Reload</a>
                 </center>
@@ -784,7 +784,7 @@ div.panel.show {
             </ul>
             <div id="reloading2">
                 <center>
-                  <img src="http://idbuild.id.dyned.com/live_v20/assets/icon/spin.gif" width="50" class="small-preload2"><br>
+                  <img src="<?php echo base_url();?>assets/icon/spin.gif" width="50" class="small-preload2"><br>
                   If it takes more than 30 seconds, click<br>
                   <a class="text-cl-secondary" id="reloadajax2">Reload</a>
                 </center>
