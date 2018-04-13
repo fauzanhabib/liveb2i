@@ -1355,7 +1355,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
   $('#sharescreench_ava').click(function(){
     // unpublish();
 
-    client = AgoraRTC.createClient({mode: 'interop'});
+    client = AgoraRTC.createClient({mode: 'h264_interop'});
     client.init(app_id, function () {
       console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
