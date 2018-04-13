@@ -1378,7 +1378,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
 
           //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
           if (document.getElementById("video").checked) {
-            localStream.setVideoProfile('720p_3');
+            localStream.setVideoProfile('480P_1');
 
           }
 
