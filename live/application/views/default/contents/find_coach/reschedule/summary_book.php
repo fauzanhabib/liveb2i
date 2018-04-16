@@ -41,7 +41,7 @@
                     <td>Call Method</td>
                     <td>Skype / Webex</td>
                 </tr>-->
-                <tr>
+                <!-- <tr>
                     <td>Token Cost</td>
                     <td>
                         <?php
@@ -53,7 +53,7 @@
                                 } ?>
                         <input type="text" name="token" value="<?php echo $token;?>" readonly>
                     </td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td style="border-top:1px solid #f3f3f3;display: table-cell;  width: auto !important;">
                         <a id="submit_summary" class="pure-button btn-small btn-secondary confirm-booking" onclick="confirmation('<?php echo $search_by == 'single_date' ? site_url('student/manage_appointments/book_single_coach/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time.'/' . $token) : site_url('student/manage_appointments/booking/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time.'/' . $token); ?>', 'single', 'Confirm Booking', '', 'confirm-booking');">
