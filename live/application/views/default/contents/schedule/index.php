@@ -263,7 +263,7 @@
                         //var et=$('#end_time_1', $dropdown).val();
 
 
-                        console.log(i);
+                        //console.log();
 
                         if (i > 1 ) {
                             parent.append(dvjQuery);
@@ -278,7 +278,7 @@
                         else {
 
                             if (z > 1) {
-                                $('.block-date.edited', $dropdown).last().remove();
+                                $('.block-date.edited', $dropdown).eq(1).remove();
                             }
 
                             $('#start_time_0', $dropdown).val(st);
@@ -300,28 +300,20 @@
                         return false;
                     });
 
-                    var max_field = 3;
+                    var max_field = 2;
                     var addmore = '.addmore';
 
                     $(addmore, $dropdown).click(function(e) {
                         var i = $('.block-date.edited', $dropdown).length;
-                        var ii = i+0;
-                        $wrapper = $(".date", $dropdown);
-                        
-                        if (i >= max_field) {
-                            $(addmore, $dropdown).hide();
+                        $(addmore, $dropdown).hide();
                         e.preventDefault();
+                        $wrapper = $(".date", $dropdown);
+                        if (i < max_field) {
                             i++;
-                            $($wrapper).append('<div class="block-date edited" style="width:100%;margin-top:10px;"><span>Schedule '+ii+' </span><div class="select-time frm-time">\n\
-                            <input type="text" name="start_time_'+ii+'" value="0:00" class="timepicker" onmousemove="timepicker_select()"  readonly id= start_time_1 />\n\
+                            $($wrapper).append('<div class="block-date edited" style="width:100%;margin-top:10px;"><span>Schedule 2 </span><div class="select-time frm-time">\n\
+                            <input type="text" name="start_time_1" value="0:00" class="timepicker" onmousemove="timepicker_select()"  readonly id= start_time_1 />\n\
                             <span class="icon icon-time"></span></div><span> to </span><div class="select-time frm-time">\n\
-                            <input type="text" name="end_time_'+ii+'" value="0:00" class="timepicker" onmousemove="timepicker_select()"  readonly id= end_time_1 />\n\
-                            <span class="icon icon-time"></span></div> <span class="remove-field" style="display:inline-block"> Remove</span></div>');
-                        } else {
-                            $($wrapper).append('<div class="block-date edited" style="width:100%;margin-top:10px;"><span>Schedule '+ii+' </span><div class="select-time frm-time">\n\
-                            <input type="text" name="start_time_'+ii+'" value="0:00" class="timepicker" onmousemove="timepicker_select()"  readonly id= start_time_1 />\n\
-                            <span class="icon icon-time"></span></div><span> to </span><div class="select-time frm-time">\n\
-                            <input type="text" name="end_time_'+ii+'" value="0:00" class="timepicker" onmousemove="timepicker_select()"  readonly id= end_time_1 />\n\
+                            <input type="text" name="end_time_1" value="0:00" class="timepicker" onmousemove="timepicker_select()"  readonly id= end_time_1 />\n\
                             <span class="icon icon-time"></span></div> <span class="remove-field" style="display:inline-block"> Remove</span></div>');
                         }
                         $(".block-date.edited", $dropdown).show();
@@ -340,8 +332,8 @@
 
                         
 
-                        // console.log(st);
-                        // console.log(et);
+                        console.log(st);
+                        console.log(et);
 
                         //dvjQuery = $('.vasd', _each).detach();
                         i--;
