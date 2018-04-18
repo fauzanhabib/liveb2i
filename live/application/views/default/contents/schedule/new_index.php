@@ -66,8 +66,8 @@
                 <span class="time"><?php echo $sc['s_start_time']?></span>
                 <span>to</span>
                 <span class="time"><?php echo $sc['s_end_time']?></span>
-                <span class="text edbt schedbt edrem_btn<?php echo ($d);?>" sel_parent="parent<?php echo ($d);?>" sel_edit="<?php echo $d;?>" s_val="<?php echo $sc['s_start_time']?>" id_val="<?php echo $sc['id']?>" b_val="<?php echo $sc['s_block']?>" csched="sched<?php echo ($d.$sc['s_block']);?>" style="display:none;">Edit</span>
-                <span class="text rembt schedbt edrem_btn<?php echo ($d);?>" style="display:none;">Remove</span>
+                <span class="text edbt schedbt edrem_btn<?php echo ($d);?>" sel_parent="parent<?php echo ($d);?>" sel_edit="<?php echo $d;?>" s_val="<?php echo $sc['s_start_time']?>" id_val="<?php echo $sc['id']?>" b_val="<?php echo $sc['s_block']; ?>" csched="sched<?php echo ($d.$sc['s_block']);?>" style="display:none;">Edit</span>
+                <span class="text rembt schedbt edrem_btn<?php echo ($d);?>" b_val="<?php echo $sc['s_block']; ?>" style="display:none;">Remove</span>
               </div>
             <?php } } ?>
               <span class="addmore add<?php echo ($d);?>" dayval="<?php echo ($d);?>" style="display: none;">Add more..</span>
@@ -102,7 +102,25 @@
   <input id="edit_id" name="edit_id" type="hidden">
 </form>
 
+<form id="del_sched" action="<?php echo(site_url('coach/new_schedule/delete_schedule'));?>" method="post">
+  <input id="del_block" name="del_block" type="hidden">
+</form>
+
 <script type="text/javascript">
+
+  // Functiod Remove Schedule Start ==============================================
+  $('.rembt').click(function(){
+    if (confirm('Are you sure you want to REMOVE this schedule?')) {
+      b_val = $(this).attr('b_val');
+      $('#del_block').val(b_val);
+      // return false;
+      $('#del_sched').submit();
+    } else {
+
+    }
+  });
+  // Functiod Remove Schedule End   ==============================================
+
 
   // Functiod Edit Schedule Start ==============================================
   $('.editbtn').click(function(){
@@ -164,7 +182,7 @@
 
       $(sel_parent).append('<div class="block-date" style="width:100%;margin-top:10px;"><span>End Time</span><div class="select-time frm-time">\n\
       <input type="text" value="'+st_val+'" class="timepicker end_t" onmousemove="timepicker_select()" id="start_time_1" />\n\
-      <span class="icon icon-time"></span></div><span></span><span class="remove-field cancel_sched" style="display:inline-block"> Cancel</span><span class="remove-field add_sched" style="display:inline-block"> Add Schedule</span>');
+      <span class="icon icon-time"></span></div><span></span><span class="remove-field cancel_sched" style="display:inline-block"> Cancel</span><span class="remove-field add_sched" style="display:inline-block"> Update Schedule</span>');
 
       $('.cancel_sched').click(function(){
         location.reload();

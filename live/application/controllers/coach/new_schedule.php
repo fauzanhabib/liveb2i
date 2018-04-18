@@ -352,30 +352,31 @@ class new_schedule extends MY_Site_Controller {
 
       // Check if schedule exists ===============
 
+      $array_upd = array('coach_id =' => $id, 's_block =' => $block);
+
+      $this->db->where($array_upd);
+      $this->db->delete('new_schedules');
+
       $vars1 = array(
-          's_day' => $day_st_db,
-          's_start_time' => $st_db
+        'coach_id' => $id,
+        's_day' => $day_st_db,
+        's_start_time' => $st_db,
+        's_end_time' => '23:59',
+        's_block' => $block
       );
       // echo "<pre>";print_r($vars1);exit();
 
-      // $this->db->insert('new_schedules', $vars1);
-      $array_upd = array('coach_id =' => $id, 'id =' => $getid);
-
-      $this->db->where($array_upd);
-      $this->db->update('new_schedules', $vars1);
+      $this->db->insert('new_schedules', $vars1);
 
       $vars2 = array(
+          'coach_id' => $id,
           's_day' => $day_et_db,
+          's_start_time' => '00:00',
           's_end_time' => $et_db,
+          's_block' => $block
       );
 
-      // $this->db->insert('new_schedules', $vars2);
-      $getid2 = $getid +1;
-      // echo "<pre>";print_r($getid2);exit();
-      $array_upd = array('coach_id =' => $id, 'id =' => $getid2);
-
-      $this->db->where($array_upd);
-      $this->db->update('new_schedules', $vars2);
+      $this->db->insert('new_schedules', $vars2);
 
       $this->messages->add('Successfully update schedule on '.$getday, 'success');
       redirect('coach/new_schedule');
@@ -397,25 +398,39 @@ class new_schedule extends MY_Site_Controller {
 
       // echo "<pre>";print_r($ch_exist);exit();
       // Check if schedule exists ===============
-
-      $vars = array(
-          's_start_time' => $st_db,
-          's_end_time' => $et_db,
-          's_day' => $day_et_db
-      );
-
-      // echo "<pre>";print_r($block);exit();
-
       $array_upd = array('coach_id =' => $id, 's_block =' => $block);
 
       $this->db->where($array_upd);
-      $this->db->update('new_schedules', $vars);
+      $this->db->delete('new_schedules');
 
-      // $this->db->insert('new_schedules', $vars);
+      $vars = array(
+          'coach_id' => $id,
+          's_day' => $day_et_db,
+          's_start_time' => $st_db,
+          's_end_time' => $et_db,
+          's_block' => $block
+      );
+
+      $this->db->insert('new_schedules', $vars);
 
       $this->messages->add('Successfully update schedule on '.$getday, 'success');
       redirect('coach/new_schedule');
     }
+
+  }
+
+  public function delete_schedule(){
+    $id    = $this->auth_manager->userid();
+    $block = $this->input->post("del_block");
+
+    $array_upd = array('coach_id =' => $id, 's_block =' => $block);
+    // echo "<pre>";print_r($array_upd);exit();
+
+    $this->db->where($array_upd);
+    $this->db->delete('new_schedules');
+
+    $this->messages->add('Successfully delete schedule', 'success');
+    redirect('coach/new_schedule');
 
   }
 
