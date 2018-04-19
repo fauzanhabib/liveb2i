@@ -552,17 +552,17 @@ class find_coaches extends MY_Site_Controller {
             $end_time_available = $end_time_;
 
             $date_notif = date('l jS \of F Y', @$date_);
-		
+
             $convert = $this->schedule_function->convert_book_schedule(-($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes), $date_, $start_time_, $end_time_);
             $date = $convert['date'];
-	
+
             $dateconvert = date('Y-m-d', $date_);
             $dateconvertcoach = date('Y-m-d', $date);
             $start_time = $convert['start_time'];
             $end_time = $convert['end_time'];
             // timezone
             $id_student = $this->auth_manager->userid();
-	
+
             // student
             $gmt_student = $this->identity_model->new_get_gmt($id_student);
             // coach
@@ -608,7 +608,7 @@ class find_coaches extends MY_Site_Controller {
                     $this->messages->add('Invalid Appointment Or Coach is Having Day Off', 'warning');
                     $message = 'Invalid Appointment Or Coach is Having Day Off';
                 }
-		
+
                $dayoff = $this->is_day_off($coach_id, $dateconvertcoach,$start_time, $end_time);
 
                 // if dayoff 1, coach cuti
@@ -630,7 +630,7 @@ class find_coaches extends MY_Site_Controller {
                 $data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($coach_id)[0]->minutes, strtotime($date), $start_time, $end_time);
                     // print_r($data_schedule);
                     // echo date('Y-m-d', 1523404800);
-                    // exit();                
+                    // exit();
 
 
                 if(($message == '') && ($remain_token >= 0)){
@@ -640,7 +640,7 @@ class find_coaches extends MY_Site_Controller {
                     $data = array(
                         'token_amount' => $r_t,
                     );
-                    
+
                     $u_t = $this->identity_model->get_identity('token')->update($s_t->id, $data);
 
                     // =====
@@ -714,7 +714,7 @@ class find_coaches extends MY_Site_Controller {
                     $arr_message[] = $message;
 
                 }
-                
+
                 $this->session->set_flashdata('booking_message',$arr_message);
                 //redirect('student/upcoming_session');
 
@@ -1650,6 +1650,99 @@ class find_coaches extends MY_Site_Controller {
 
                 $availability = $this->schedule_block($coach_id, $day, $schedule_data1->start_time, $schedule_data1->end_time, $schedule_data2->day, $schedule_data2->start_time, $schedule_data2->end_time);
 
+                //edited new schedules start ===================================
+                $pullsched1 = $this->db->distinct()->select('s_block')
+                    ->from('new_schedules')
+                    ->where('coach_id', $coach_id)
+                    ->where('s_day', $day)
+                    ->get()->result();
+
+                $pullsched2 = $this->db->distinct()->select('s_block')
+                    ->from('new_schedules')
+                    ->where('coach_id', $coach_id)
+                    ->where('s_day', $day2)
+                    ->get()->result();
+
+                $total_block = count($pullsched1);
+
+                $allscheds = array();
+
+                for($i=0;$i<$total_block;$i++){
+                  $pullsched = $this->db->select('*')
+                      ->from('new_schedules')
+                      ->where('coach_id', $coach_id)
+                      ->where('s_block', $i)
+                      ->get()->result();
+
+                  if(count($pullsched) > 1){
+                    $getblock  = $pullsched[0]->s_block;
+
+                    $getday0   = $pullsched[0]->s_day;
+                    $getstart0 = $pullsched[0]->s_start_time;
+
+                    $st_str0 = strtotime($getday0.', '.$getstart0);
+                    $st_cal0 = strtotime($minutes.'minutes', $st_str0);
+                    $st_print0 = date('H:i',$st_cal0);
+
+                    $getday1   = $pullsched[1]->s_day;
+                    $getstart1 = $pullsched[1]->s_end_time;
+
+                    $st_str1 = strtotime($getday1.', '.$getstart1);
+                    $st_cal1 = strtotime($minutes.'minutes', $st_str1);
+                    $st_print1 = date('H:i',$st_cal1);
+
+                    $push_day = date('l',$st_cal0);
+                    $getid = $pullsched[0]->id;
+
+                    $push_sched = array(
+                      'start_time' => $st_print0.':00',
+                      'end_time' => $st_print1.':00'
+                    );
+
+                    array_push($allscheds, $push_sched);
+
+                    // echo "<pre>";print_r($st_print0);exit();
+                  }else{
+                    $getblock  = $pullsched[0]->s_block;
+
+                    $getday0   = $pullsched[0]->s_day;
+                    $getstart0 = $pullsched[0]->s_start_time;
+                    $getend0 = $pullsched[0]->s_end_time;
+
+                    $st_str0 = strtotime($getday0.', '.$getstart0);
+                    $st_cal0 = strtotime($minutes.'minutes', $st_str0);
+                    $st_print0 = date('H:i',$st_cal0);
+
+                    $st_str1 = strtotime($getday0.', '.$getend0);
+                    $st_cal1 = strtotime($minutes.'minutes', $st_str1);
+                    $st_print1 = date('H:i',$st_cal1);
+
+                    $push_day = date('l',$st_cal0);
+                    $getid = $pullsched[0]->id;
+
+                    $push_sched = array(
+                      'start_time' => $st_print0.':00',
+                      'end_time' => $st_print1.':00'
+                    );
+
+                    array_push($allscheds, $push_sched);
+                  }
+
+                  // echo "<pre>";print_r($allscheds);exit();
+                }
+
+                $check_url = base_url();
+                // $check_url = "https://live.dyned.com";
+                if (strpos($check_url, 'live.dyned.com') !== false) {
+
+                } else {
+                  $availability = $allscheds;
+                }
+
+                // echo "<pre>";print_r($availability);exit();
+
+                //edited new schedules end =====================================
+
 
                 $date_parameter = strtotime($date_);
                 $availability_temp = array();
@@ -1699,10 +1792,8 @@ class find_coaches extends MY_Site_Controller {
             'search_by' => $search_by,
             'cost' => $this->coach_token_cost_model->select('token_for_student')->where('coach_id', $coach_id)->get()
         );
-        // echo "<pre>";
-        // print_r($availability_temp);
-        // exit();
-//        echo('<pre>');
+        echo "<pre>";print_r($availability);exit();
+//        echo('<pre$vars
 //        print_r(date('Y-m-d','1450962000')); exit;
         $this->template->content->view('default/contents/find_coach/availability', $vars);
 
@@ -2252,7 +2343,7 @@ class find_coaches extends MY_Site_Controller {
             $isValid = $this->isAvailable($coach_id, $date, $start_time, $end_time);
             if ($isValid) {
                 $availability = $this->isOnAvailability($coach_id, date('Y-m-d', $date_));
-//                
+//
                 if (in_array(array('start_time' => $start_time_available, 'end_time' => $end_time_available), $availability)) {
                     // go to next step
                     //exit;
@@ -2260,9 +2351,9 @@ class find_coaches extends MY_Site_Controller {
                     $this->messages->add('Invalid Time', 'warning');
                     redirect('student/find_coaches/search/name/');
                 }
-                
+
                  $token_cost = $token;
-                
+
 
                 $remain_token = $this->update_token($token_cost);
                 //if ($this->db->trans_status() === true && $remain_token >= 0 && $this->isAvailable($coach_id, $date, $start_time, $end_time)) {
@@ -2570,13 +2661,13 @@ class find_coaches extends MY_Site_Controller {
     }
 
     private function is_day_off($coach_id = '', $date_ = '',$start_time = '', $end_time = '') {
-	
+
 	$date_ = strtotime($date_);
 
 	$convert = @$this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($coach_id)[0]->minutes), $date_, $start_time, $end_time);
     $date = $convert['date'];
 
-   
+
     $date_ = date('Y-m-d', $date);
 
         $day_off = $this->db->select('coach_id, start_date, end_date')
