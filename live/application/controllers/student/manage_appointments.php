@@ -1390,10 +1390,10 @@ class manage_appointments extends MY_Site_Controller {
         $old_date = $appointment_data->date;
         $gmt_oldcoach = $this->identity_model->new_get_gmt($appointment_data->coach_id);
         $oldcoachgmt = $gmt_oldcoach[0]->gmt;
-        echo "<pre>";
-        print_r($email_coach);
-        exit();
-        die();
+        // echo "<pre>";
+        // print_r($email_coach);
+        // exit();
+        // die();
 
         // Retrieve post
         $booked = array(
