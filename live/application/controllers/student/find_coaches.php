@@ -1792,7 +1792,7 @@ class find_coaches extends MY_Site_Controller {
             'search_by' => $search_by,
             'cost' => $this->coach_token_cost_model->select('token_for_student')->where('coach_id', $coach_id)->get()
         );
-        echo "<pre>";print_r($availability);exit();
+        // echo "<pre>";print_r($availability);exit();
 //        echo('<pre$vars
 //        print_r(date('Y-m-d','1450962000')); exit;
         $this->template->content->view('default/contents/find_coach/availability', $vars);
