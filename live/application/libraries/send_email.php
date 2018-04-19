@@ -14582,7 +14582,7 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
     }
 
     //---------------------------------------------------------Notif Coach Reschedule---------------------------------------------------------------
-    function notif_coach_reschedule($studentmail = '', $coachmail = '', $studentname = '', $oldcoachname = '', $olddate ='', $oldstart = '', $oldend = '', $newcoachname = '', $newdate = '', $newstart = '', $newend = '', $gmt = ''){
+    function notif_coach_reschedule($coachmail = '', $studentname = '', $oldcoachname = '', $olddate ='', $oldstart = '', $oldend = '', $newdate = '', $newstart = '', $newend = '', $gmt = ''){
 
         $tz = '';
         if ($gmt > 0) {
@@ -14607,12 +14607,12 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
     <title>DynEd-Live Email Template</title>
 
     <style type="text/css">
-     
-        
+
+
         #outlook a {
             padding: 0;
         }
-        
+
         body {
             width: 100% !important;
             -webkit-text-size-adjust: 100%;
@@ -14620,12 +14620,12 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
             margin: 0;
             padding: 0;
         }
-        
+
         .ExternalClass {
             width: 100%;
         }
         /* Konfigurasi untuk Hotmail */
-        
+
         .ExternalClass,
         .ExternalClass p,
         .ExternalClass span,
@@ -14635,56 +14635,56 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
             line-height: 100%;
         }
         /* Konfigurasi Hotmail*/
-        
+
         #backgroundTable {
             margin: 0;
             padding: 0;
             width: 100% !important;
             line-height: 100% !important;
         }
-        
+
         img {
             outline: none;
             text-decoration: none;
             border: none;
             -ms-interpolation-mode: bicubic;
         }
-        
+
         a img {
             border: none;
         }
-        
+
         .image_fix {
             display: block;
         }
-        
+
         p {
             margin: 0px 0px !important;
         }
-        
+
         table td {
             border-collapse: collapse;
         }
-        
+
         table {
             border-collapse: collapse;
             mso-table-lspace: 0pt;
             mso-table-rspace: 0pt;
         }
-        
+
         a {
             color: #0a8cce;
             text-decoration: none;
             text-decoration: none!important;
         }
         /*STYLES*/
-        
+
         table[class=full] {
             width: 100%;
             clear: both;
         }
         /*IPAD STYLES*/
-        
+
         @media only screen and (max-width: 640px) {
             a[href^="tel"],
             a[href^="sms"] {
@@ -14718,7 +14718,7 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
             }
         }
         /*IPHONE STYLES*/
-        
+
         @media only screen and (max-width: 480px) {
             a[href^="tel"],
             a[href^="sms"] {
@@ -14761,7 +14761,7 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
 </head>
 
 <body>
-   
+
     <!-- Start of header -->
     <tr>
                                                 <td height="20" style="font-size:1px; line-height:1px; mso-line-height-rule: exactly;">&nbsp;</td>
@@ -14800,7 +14800,7 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
                                                     <!-- end of logo -->
                                                 </td>
                                             </tr>
-                                           
+
                                         </tbody>
                                     </table>
                                 </td>
@@ -14812,12 +14812,12 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
         </tbody>
     </table>
     <!-- End of Header -->
-   
+
     <table>
-        
+
     </table>
-   
-    
+
+
     <table width="600" align="center" cellpadding="0" border="0" class="devicewidthinner">
         <tbody>
             <tr style="background-color:#2b89b9;">
@@ -14833,7 +14833,7 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
                                                             <tr>
                                                                 <td style="font-family: Helvetica, arial, sans-serif; font-size: 28px; color: #919191; text-align:center; line-height: auto;" st-title="fulltext-heading" >
                                                                     <br>
-                                                                    Dear '.$oldcoachname.', Your Administrator has cancelled your session!
+                                                                    Hi '.$oldcoachname.', 
                                                                 </td>
                                                             </tr>
                                                             <!-- spacing -->
@@ -14843,13 +14843,13 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
                                                             <!-- End of spacing -->
         </tbody>
     </table>
-   
+
     <!-- Detail Account Start -->
-    
+
     <table width="560" align="center" cellpadding="0" cellspacing="0" border="0" class="devicewidthinner">
                                                         <tbody>
                                                             <!-- Title -->
-                                                            
+
                                                             <!-- End of Title -->
                                                             <!-- spacing -->
                                                             <tr>
@@ -14871,20 +14871,14 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
                                                             <!-- content -->
                                                             <tr>
                                                                 <td style="font-family: Helvetica, arial, sans-serif; font-size: 16px; color: #919191; text-align:center; line-height: 30px;" st-content="fulltext-content">
-                                                                 
-                                                                  
-                                                                    Student Name : '.$studentname.'
-                                                                   <br>
-                                                                    Date : '.$olddate.'
-                                                                   <br>
-                                                                    Time : From '.$oldstart.' to '.$oldend.' '.$tz.'
+                                                                    Your student '.$studentname.' has cancelled your session on '.$olddate.' from '.$oldstart.' to '.$oldend.' '.$tz.'
                                                                    <br>
                                                                    <br>
-                                                                   
+
                                                                    <p style="font-weight:400;font-size:14px;line-height:30px;">For more information, please contact <a href="mailto:livesupport@dyned.com">administrator</a>. Thank you!</p>
-                                                                   
+
                                                                 </td>
-                                                                
+
                                                             </tr>
                                                             <!-- End of content -->
                                                             <!-- spacing -->
@@ -14893,7 +14887,7 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
                                                             </tr>
                                                             <!-- End of spacing -->
                                                             <tr>
-                                                                   
+
                                                                     <td width="auto" align="center" valign="middle" height="36" style="background-color:#2b89b9; border-top-left-radius:4px; border-bottom-left-radius:4px;border-top-right-radius:4px; border-bottom-right-radius:4px; background-clip: padding-box;font-size:1.5em; font-family:Helvetica, arial, sans-serif; text-align:center;  color:#ffffff; font-weight: 300; padding-left:25px; padding-right:25px;padding-top:25px;padding-bottom:25px;">
 
                                                                         <span style="color: #ffffff; font-weight: 300;">
@@ -14903,10 +14897,10 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
                                                                 </tr>
                                                         </tbody>
                                                     </table>
-    
+
     <!-- Detail Account End -->
-     
-   
+
+
     <!-- Start of seperator -->
     <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="seperator">
         <tbody>
@@ -14931,9 +14925,9 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
     </table>
     <!-- End of seperator -->
     <!-- 2columns -->
-    
-    
-    
+
+
+
     <!-- Start of Postfooter -->
     <table width="100%" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" id="backgroundTable" st-sortable="postfooter">
         <tbody>
@@ -14977,15 +14971,15 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
         //     $this->CI->email->to($coachmail);
         //     $this->CI->email->bcc('test.soerbakti@gmail.com');
         //     $this->CI->email->set_mailtype('html');
-            
-  
+
+
         //         $data['subject'] = 'Session '.ucfirst($content).'';
         //         //$data['content'] = 'Your partner request has been approved by Super Admin. Email : ' . $email;
         //             $this->CI->email->subject($data['subject']);
         //             $this->CI->email->message($isi);
         //             if ($this->CI->email->send($id = '', $content = '')) {
-                    
-        //             } else { 
+
+        //             } else {
         //                 echo $this->CI->email->print_debugger();
         //             }
     }

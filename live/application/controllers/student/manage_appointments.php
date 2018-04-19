@@ -1360,9 +1360,40 @@ class manage_appointments extends MY_Site_Controller {
             $this->messages->add('Invalid Appointment', 'danger');
             redirect('student/upcoming_session');
         }
+        
 
         $appointment_data_student = $this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes), strtotime($appointment_data->date), $appointment_data->start_time, $appointment_data->end_time);
         $appointment_data_coach = $this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($coach_id)[0]->minutes), strtotime($appointment_data->date), $appointment_data->start_time, $appointment_data->end_time);
+
+        $get_oldname_coach = $this->db->select('fullname')->from('user_profiles')->where('user_id',$appointment_data->coach_id)->get()->result();
+        $get_oldemail_coach = $this->db->select('email')->from('users')->where('id',$appointment_data->coach_id)->get()->result();
+
+        $oldname_coach = $get_oldname_coach[0]->fullname;
+        $oldemail_coach = $get_oldemail_coach[0]->email;
+
+        $old_st = strtotime($appointment_data_coach['start_time']);
+        $old_usertime1 = $old_st;
+        $old_start_hour = date("H:i", $old_usertime1);
+
+        $old_et = strtotime($appointment_data_coach['end_time']);
+        $old_et_student = $old_et-(5*60);
+        $et_student = date("H:i", $old_et_student);
+
+        $old_st_coach = strtotime($appointment_data_student['start_time']);
+        $old_usertime1_coach = $old_st_coach;
+        $old_start_hour_coach = date("H:i", $old_usertime1_coach);
+
+        $old_et_coach = strtotime($appointment_data_student['end_time']);
+        $old_et_coach_convert = $old_et_coach-(5*60);
+        $et_coach = date("H:i", $old_et_coach_convert);
+
+        $old_date = $appointment_data->date;
+        $gmt_oldcoach = $this->identity_model->new_get_gmt($appointment_data->coach_id);
+        $oldcoachgmt = $gmt_oldcoach[0]->gmt;
+        echo "<pre>";
+        print_r($email_coach);
+        exit();
+        die();
 
         // Retrieve post
         $booked = array(
@@ -1581,14 +1612,6 @@ class manage_appointments extends MY_Site_Controller {
         $usertime2 = $et-(5*60);
         $end_hour = date("H:i", $usertime2);
 
-        $old_st = strtotime($appointment_data_coach['start_time']);
-        $old_usertime1 = $old_st;
-        $old_start_hour = date("H:i", $old_usertime1);
-
-        $old_et = strtotime($appointment_data_coach['end_time']);
-        $old_et_student = $old_et-(5*60);
-        $et_student = date("H:i", $old_et_student);
-
         // coach
 
         $gmt_coach = $this->identity_model->new_get_gmt($coach_id);
@@ -1600,19 +1623,12 @@ class manage_appointments extends MY_Site_Controller {
         $usertime2_coach = $et_coach-(5*60);
         $end_hour_coach = date("H:i", $usertime2_coach);
 
-        $old_st_coach = strtotime($appointment_data_student['start_time']);
-        $old_usertime1_coach = $old_st_coach;
-        $old_start_hour_coach = date("H:i", $old_usertime1_coach);
-
-        $old_et_coach = strtotime($appointment_data_student['end_time']);
-        $old_et_coach_convert = $old_et_coach-(5*60);
-        $et_coach = date("H:i", $old_et_coach_convert);
-
         $student_gmt = $gmt_student[0]->gmt;
         $coach_gmt = $gmt_coach[0]->gmt;
 
         $this->send_email->student_reschedule($email_coach, $name_student, $name_coach, date('Y-m-d', strtotime($appointment_data->date)), $appointment_data_coach['start_time'], $appointment_data_coach['end_time'], date('Y-m-d', $new_appointment_data_coach['date']), $start_hour, $end_hour, $coach_gmt);
         $this->send_email->notif_student_reschedule($email_student, $name_student, $name_coach, date('Y-m-d', strtotime($appointment_data->date)), $appointment_data_student['start_time'], $appointment_data_student['end_time'], date('Y-m-d', $new_appointment_data_student['date']), $start_hour_coach, $end_hour_coach, $student_gmt);
+        $this->send_email->notif_coach_reschedule($oldemail_coach, $name_student, $oldname_coach, $old_date, $old_start_hour, $et_student, date('Y-m-d', $new_appointment_data_coach['date']), $old_start_hour, $et_student, $oldcoachgmt);
              // messaging inserting data notification
             // $this->queue->push($database_tube, $data_student, 'database.insert');
             // $this->queue->push($database_tube, $data_coach, 'database.insert');
