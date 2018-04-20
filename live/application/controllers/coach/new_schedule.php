@@ -60,9 +60,13 @@ class new_schedule extends MY_Site_Controller {
 
     $total_block = count($get_sched);
 
-    $define_block = array_column($get_sched, 's_block');
+    // $define_block = array_column($get_sched, 's_block');
+    // $define_block = array();
+    foreach($get_sched as $gs){
+      $define_block[] = $gs->s_block;
+    }
 
-    // echo "<pre>";print_r($sched_block);exit();
+    // echo "<pre>";print_r($define_block);exit();
 
     $allscheds = array();
 
