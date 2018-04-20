@@ -1650,28 +1650,49 @@ class find_coaches extends MY_Site_Controller {
 
                 $availability = $this->schedule_block($coach_id, $day, $schedule_data1->start_time, $schedule_data1->end_time, $schedule_data2->day, $schedule_data2->start_time, $schedule_data2->end_time);
 
+                $minutes_definer = $minutes * -1;
+                $def_zero = strtotime('00:00:00');
+                $def_calc = strtotime($minutes_definer.'minutes', $def_zero);
+                $hour_definer = date('H:i',$def_calc);
+
                 //edited new schedules start ===================================
                 $pullsched1 = $this->db->distinct()->select('s_block')
                     ->from('new_schedules')
                     ->where('coach_id', $coach_id)
                     ->where('s_day', $day)
+                    ->where('s_start_time <=', $hour_definer)
                     ->get()->result();
 
                 $pullsched2 = $this->db->distinct()->select('s_block')
                     ->from('new_schedules')
                     ->where('coach_id', $coach_id)
                     ->where('s_day', $day2)
+                    ->where('s_start_time >=', $hour_definer)
                     ->get()->result();
 
-                $total_block = count($pullsched1);
+                $pullsched_merge = array_merge($pullsched1, $pullsched2);
+
+                $unique = array();
+                foreach ($pullsched_merge as $object) {
+                    if (isset($unique[$object->s_block])) {
+                        continue;
+                    }
+                    $unique[$object->s_block] = $object;
+                }
+
+                $total_block_f = count($unique);
+
+                $define_block = array_column($unique, 's_block');
+
+                // echo "<pre>";print_r($define_block);exit();
 
                 $allscheds = array();
 
-                for($i=0;$i<$total_block;$i++){
+                for($i=0;$i<$total_block_f;$i++){
                   $pullsched = $this->db->select('*')
                       ->from('new_schedules')
                       ->where('coach_id', $coach_id)
-                      ->where('s_block', $i)
+                      ->where('s_block', $define_block[$i])
                       ->get()->result();
 
                   if(count($pullsched) > 1){
@@ -1703,11 +1724,11 @@ class find_coaches extends MY_Site_Controller {
 
                     // echo "<pre>";print_r($st_print0);exit();
                   }else{
-                    $getblock  = $pullsched[0]->s_block;
+                    $getblock  = @$pullsched[0]->s_block;
 
-                    $getday0   = $pullsched[0]->s_day;
-                    $getstart0 = $pullsched[0]->s_start_time;
-                    $getend0 = $pullsched[0]->s_end_time;
+                    $getday0   = @$pullsched[0]->s_day;
+                    $getstart0 = @$pullsched[0]->s_start_time;
+                    $getend0 = @$pullsched[0]->s_end_time;
 
                     $st_str0 = strtotime($getday0.', '.$getstart0);
                     $st_cal0 = strtotime($minutes.'minutes', $st_str0);
@@ -1718,7 +1739,7 @@ class find_coaches extends MY_Site_Controller {
                     $st_print1 = date('H:i',$st_cal1);
 
                     $push_day = date('l',$st_cal0);
-                    $getid = $pullsched[0]->id;
+                    $getid = @$pullsched[0]->id;
 
                     $push_sched = array(
                       'start_time' => $st_print0.':00',
@@ -1734,12 +1755,13 @@ class find_coaches extends MY_Site_Controller {
                 $check_url = base_url();
                 // $check_url = "https://live.dyned.com";
                 if (strpos($check_url, 'live.dyned.com') !== false) {
-
+                  // exit('a');
                 } else {
                   $availability = $allscheds;
+                  // exit('aa');
                 }
 
-                // echo "<pre>";print_r($availability);exit();
+                // echo "<pre>";print_r($allscheds);exit();
 
                 //edited new schedules end =====================================
 
@@ -1792,7 +1814,7 @@ class find_coaches extends MY_Site_Controller {
             'search_by' => $search_by,
             'cost' => $this->coach_token_cost_model->select('token_for_student')->where('coach_id', $coach_id)->get()
         );
-        // echo "<pre>";print_r($availability);exit();
+        // echo "<pre>";print_r($allscheds);exit();
 //        echo('<pre$vars
 //        print_r(date('Y-m-d','1450962000')); exit;
         $this->template->content->view('default/contents/find_coach/availability', $vars);

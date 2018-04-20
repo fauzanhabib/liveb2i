@@ -49,6 +49,8 @@ class new_schedule extends MY_Site_Controller {
     $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
     $setting = $this->session_duration($partner_id);
 
+    $minutes = $this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes;
+
     $get_sched = $this->db->distinct()
         ->select('s_block')
         ->from('new_schedules')
@@ -58,74 +60,82 @@ class new_schedule extends MY_Site_Controller {
 
     $total_block = count($get_sched);
 
+    $define_block = array_column($get_sched, 's_block');
+
+    // echo "<pre>";print_r($sched_block);exit();
+
     $allscheds = array();
 
     for($i=0;$i<$total_block;$i++){
-      $pullsched = $this->db->select('*')
-          ->from('new_schedules')
-          ->where('coach_id', $id)
-          ->where('s_block', $i)
-          ->get()->result();
+      // if(@$i){
+        $pullsched = $this->db->select('*')
+            ->from('new_schedules')
+            ->where('coach_id', $id)
+            ->where('s_block', @$define_block[$i])
+            ->get()->result();
 
-      if(count($pullsched) > 1){
-        $getblock  = $pullsched[0]->s_block;
+        if(count($pullsched) > 1){
+          $getblock  = $pullsched[0]->s_block;
 
-        $getday0   = $pullsched[0]->s_day;
-        $getstart0 = $pullsched[0]->s_start_time;
+          $getday0   = $pullsched[0]->s_day;
+          $getstart0 = $pullsched[0]->s_start_time;
 
-        $st_str0 = strtotime($getday0.', '.$getstart0);
-        $st_cal0 = strtotime($gmt_val.'hours', $st_str0);
-        $st_print0 = date('H:i',$st_cal0);
+          $st_str0 = strtotime($getday0.', '.$getstart0);
+          $st_cal0 = strtotime($minutes.'minutes', $st_str0);
+          $st_print0 = date('H:i',$st_cal0);
 
-        $getday1   = $pullsched[1]->s_day;
-        $getstart1 = $pullsched[1]->s_end_time;
+          $getday1   = $pullsched[1]->s_day;
+          $getstart1 = $pullsched[1]->s_end_time;
 
-        $st_str1 = strtotime($getday1.', '.$getstart1);
-        $st_cal1 = strtotime($gmt_val.'hours', $st_str1);
-        $st_print1 = date('H:i',$st_cal1);
+          $st_str1 = strtotime($getday1.', '.$getstart1);
+          $st_cal1 = strtotime($minutes.'minutes', $st_str1);
+          $st_print1 = date('H:i',$st_cal1);
 
-        $push_day = date('l',$st_cal0);
-        $getid = $pullsched[0]->id;
+          $push_day = date('l',$st_cal0);
+          $getid = $pullsched[0]->id;
 
-        $push_sched = array(
-          's_start_time' => $st_print0,
-          's_end_time' => $st_print1,
-          's_day' => $push_day,
-          's_block' => $getblock,
-          'id' => $getid
-        );
+          $push_sched = array(
+            's_start_time' => $st_print0,
+            's_end_time' => $st_print1,
+            's_day' => $push_day,
+            's_block' => $getblock,
+            'id' => $getid
+          );
 
-        array_push($allscheds, $push_sched);
+          array_push($allscheds, $push_sched);
 
-        // echo "<pre>";print_r($st_print0);exit();
-      }else{
-        $getblock  = $pullsched[0]->s_block;
+          // echo "<pre>";print_r($st_print0);exit();
+        }else{
+          $getblock  = @$pullsched[0]->s_block;
 
-        $getday0   = $pullsched[0]->s_day;
-        $getstart0 = $pullsched[0]->s_start_time;
-        $getend0 = $pullsched[0]->s_end_time;
+          $getday0   = @$pullsched[0]->s_day;
+          $getstart0 = @$pullsched[0]->s_start_time;
+          $getend0 = @$pullsched[0]->s_end_time;
 
-        $st_str0 = strtotime($getday0.', '.$getstart0);
-        $st_cal0 = strtotime($gmt_val.'hours', $st_str0);
-        $st_print0 = date('H:i',$st_cal0);
+          $st_str0 = strtotime($getday0.', '.$getstart0);
+          $st_cal0 = strtotime($minutes.'minutes', $st_str0);
+          $st_print0 = date('H:i',$st_cal0);
 
-        $st_str1 = strtotime($getday0.', '.$getend0);
-        $st_cal1 = strtotime($gmt_val.'hours', $st_str1);
-        $st_print1 = date('H:i',$st_cal1);
+          $st_str1 = strtotime($getday0.', '.$getend0);
+          $st_cal1 = strtotime($minutes.'minutes', $st_str1);
+          $st_print1 = date('H:i',$st_cal1);
 
-        $push_day = date('l',$st_cal0);
-        $getid = $pullsched[0]->id;
+          $push_day = date('l',$st_cal0);
+          $getid = @$pullsched[0]->id;
 
-        $push_sched = array(
-          's_start_time' => $st_print0,
-          's_end_time' => $st_print1,
-          's_day' => $push_day,
-          's_block' => $getblock,
-          'id' => $getid
-        );
+          $push_sched = array(
+            's_start_time' => $st_print0,
+            's_end_time' => $st_print1,
+            's_day' => $push_day,
+            's_block' => $getblock,
+            'id' => $getid
+          );
 
-        array_push($allscheds, $push_sched);
-      }
+          array_push($allscheds, $push_sched);
+        }
+      // }else{
+
+      // }
 
       // echo "<pre>";print_r($allscheds);exit();
     }
@@ -166,6 +176,8 @@ class new_schedule extends MY_Site_Controller {
     }
 
     $gmt_final = $gmt_val * -1;
+    $minutes = $this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes;
+    $minutes = $minutes * -1;
     //add Irawan
 
     $getday   = $this->input->post("inp_day");
@@ -173,17 +185,17 @@ class new_schedule extends MY_Site_Controller {
     $getend   = $this->input->post("inp_end");
 
     $st_str = strtotime($getday.', '.$getstart);
-    $st_cal = strtotime($gmt_final.'hours', $st_str);
+    $st_cal = strtotime($minutes.'minutes', $st_str);
     $st_db = date('H:i',$st_cal);
 
     $et_str = strtotime($getday.', '.$getend);
-    $et_cal = strtotime($gmt_final.'hours', $et_str);
+    $et_cal = strtotime($minutes.'minutes', $et_str);
     $et_db = date('H:i',$et_cal);
 
     $day_st_db = date('l',$st_cal);
     $day_et_db = date('l',$et_cal);
 
-    // echo "<pre>";print_r($day_st_db);exit();
+    // echo "<pre>";print_r($et_db);exit();
     $check_sched = $this->db->distinct()
         ->select('s_block')
         ->from('new_schedules')
@@ -256,7 +268,7 @@ class new_schedule extends MY_Site_Controller {
         redirect('coach/new_schedule');
       }
 
-      // echo "<pre>";print_r($ch_exist);exit();
+
       // Check if schedule exists ===============
 
       $vars = array(
@@ -266,6 +278,7 @@ class new_schedule extends MY_Site_Controller {
           's_end_time' => $et_db,
           's_block' => $block
       );
+      // echo "<pre>";print_r($vars);exit();
 
       $this->db->insert('new_schedules', $vars);
 
@@ -303,6 +316,12 @@ class new_schedule extends MY_Site_Controller {
     }
 
     $gmt_final = $gmt_val * -1;
+    $minutes = $this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes;
+    $minutes = $minutes * -1;
+
+    $def_zero = strtotime('00:00:00');
+    $def_calc = strtotime($minutes.'minutes', $def_zero);
+    $hour_definer = date('H:i',$def_calc);
     //add Irawan
 
     $getday   = $this->input->post("edit_day");
@@ -311,17 +330,17 @@ class new_schedule extends MY_Site_Controller {
     $getid    = $this->input->post("edit_id");
 
     $st_str = strtotime($getday.', '.$getstart);
-    $st_cal = strtotime($gmt_final.'hours', $st_str);
+    $st_cal = strtotime($minutes.'minutes', $st_str);
     $st_db = date('H:i',$st_cal);
 
     $et_str = strtotime($getday.', '.$getend);
-    $et_cal = strtotime($gmt_final.'hours', $et_str);
+    $et_cal = strtotime($minutes.'minutes', $et_str);
     $et_db = date('H:i',$et_cal);
 
     $day_st_db = date('l',$st_cal);
     $day_et_db = date('l',$et_cal);
 
-    // echo "<pre>";print_r($day_st_db);exit();
+    // echo "<pre>";print_r($st_db);exit();
     $check_sched = $this->db->distinct()
         ->select('s_block')
         ->from('new_schedules')
@@ -339,11 +358,13 @@ class new_schedule extends MY_Site_Controller {
           ->from('new_schedules')
           ->where('coach_id', $id)
           ->where('s_day', $day_st_db)
-          ->where('s_start_time >=', $st_db)
+          // ->where('s_start_time >=', $st_db)
+          ->where('s_end_time >', $st_db)
+          ->where('s_start_time <=', $hour_definer)
           ->where('s_block !=', $block)
           ->get()->result();
 
-      // echo "<pre>";print_r($getid);exit();
+      // echo "<pre>";print_r($ch_exist);exit('a');
 
       if(@$ch_exist){
         $this->messages->add('Schedule already exists', 'warning');
@@ -387,9 +408,13 @@ class new_schedule extends MY_Site_Controller {
           ->from('new_schedules')
           ->where('coach_id', $id)
           ->where('s_day', $day_st_db)
-          ->where('s_start_time >=', $st_db)
+          // ->where('s_start_time >=', $st_db)
+          ->where('s_end_time >', $st_db)
+          ->where('s_start_time <=', $hour_definer)
           ->where('s_block !=', $block)
           ->get()->result();
+
+      // echo "<pre>";print_r($ch_exist);exit('b');
 
       if(@$ch_exist){
         $this->messages->add('Schedule already exists', 'warning');

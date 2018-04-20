@@ -280,6 +280,7 @@
       });
 
       $(".addmore").click(function() {
+        $('.schedbt').hide();
         var $dropdown = $(this).parent();
         var i = $('.block-date', $dropdown).length;
         var ii = i+1;
