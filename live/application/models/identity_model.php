@@ -242,6 +242,7 @@ class identity_model extends MY_Model {
                 // exit();
 
                 $partners_group = array();
+                $partners_only = array();
                 $pagu_c = 0;
                 $core_c = 0;
                 @$coach_supplier = $this->get_coach_supplier($partner_id);
@@ -259,6 +260,15 @@ class identity_model extends MY_Model {
                 foreach($corel_new as $cl){
                     @$coregro[] = $this->db->select('subgroup_id')->from('coach_group_relations')->where('class_matchmaking_id', $cl)->get()->result();
                 }
+
+                $partner_only = array();
+                foreach($coach_relation as $cr){
+                    @$partner_only[] = $this->db->select('csr.coach_supplier_id')->from('coach_supplier_relations csr')->join('student_supplier_relations ssr', 'csr.class_matchmaking_id = ssr.class_matchmaking_id')->join('student_group_relations sgr', 'sgr.class_matchmaking_id = csr.class_matchmaking_id', 'left outer')->where('csr.class_matchmaking_id', $cr[0]->class_matchmaking_id)->where('ssr.student_supplier_id', $partner_id)->where('sgr.class_matchmaking_id is NOT NULL', NULL, FALSE)->order_by('csr.coach_supplier_id', 'desc')->get()->result();
+                }
+                // echo "<pre>";
+                // print_r($partner_only);
+                // exit();
+
                 $partner_group2 = array();
                 foreach($coregro as $cgo){
                     foreach($cgo as $cgval){
@@ -274,12 +284,12 @@ class identity_model extends MY_Model {
                 // }
             }
             // echo "<pre>";
-            // print_r($corel_new);
+            // print_r($corel);
             // exit();
         
         @$coach_supplier = $this->get_coach_supplier($partner_id);
         // echo('<pre>');
-        // print_r($coach_supplier); exit;
+        // print_r($check_array_student); exit;
         
         $this->db->select("a.id, a.status, a.email, b.code as 'role', c.profile_picture, c.fullname, c.nickname, c.gender, c.date_of_birth, c.dial_code, c.phone, c.skype_id, c.partner_id, c.dyned_pro_id, c.spoken_language, c.user_timezone, c.pt_score, d.teaching_credential, d.dyned_certification_level, d.year_experience, d.special_english_skill, d.higher_education, d.undergraduate, d.masters, d.phd, e.city, e.state, e.zip, e.country, e.address, h.token_for_student, h.token_for_group, j.timezone, c.coach_type_id as coach_type_id");
         $this->db->from('users a');
@@ -560,32 +570,50 @@ class identity_model extends MY_Model {
                     }elseif(empty($coach_group) && ($check_array_student || $check_array_coach) && $coach_supplier){
                         // echo "b";
                         // exit();
-                        if(count($corel_new)==1){
-                            foreach($check_array_student as $ch){
-                                $ccc = $ch[$pagu_c]->subgroup_id;
-                                if($ccc == $user_subgroup){
-                                    $partner_array= array($partner_id);
-                                    foreach(@$coach_supplier as $cs){
-                                        if($cs->coach_supplier_id != $partner_id){
-                                                //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
-                                                $partner_array[] = $cs->coach_supplier_id;
+                        if($stu_rel){
+                            if(count($corel_new)==1){
+                                foreach($check_array_student as $ch){
+                                    $ccc = $ch[$pagu_c]->subgroup_id;
+                                    if($ccc == $user_subgroup){
+                                        $partner_array= array($partner_id);
+                                        foreach(@$coach_supplier as $cs){
+                                            if($cs->coach_supplier_id != $partner_id){
+                                                    //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
+                                                    $partner_array[] = $cs->coach_supplier_id;
+                                            }
                                         }
+                                        $new_partner_array= array_unique($partner_array);
+                                        $this->db->where_in('c.partner_id', $new_partner_array);
+                                    }else{
+                                        $this->db->where('c.partner_id', $partner_id);
                                     }
-                                    $new_partner_array= array_unique($partner_array);
-                                    $this->db->where_in('c.partner_id', $new_partner_array);
-                                }else{
-                                    $this->db->where('c.partner_id', $partner_id);
                                 }
+                            }else{
+                                $partner_array= array($partner_id);
+                                foreach(@$stu_rel as $sr){
+                                    if($sr->coach_supplier_id != $partner_id){
+                                            //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
+                                            $partner_array[] = $sr->coach_supplier_id;
+                                    }
+                                }
+                                $new_partner_array= array_unique($partner_array);
+                                $this->db->where_in('c.partner_id', $new_partner_array);
                             }
                         }else{
                             $partner_array= array($partner_id);
-                            foreach(@$stu_rel as $sr){
-                                if($sr->coach_supplier_id != $partner_id){
-                                        //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
-                                        $partner_array[] = $sr->coach_supplier_id;
+                            foreach(@$coach_supplier as $cs){
+                                if($cs->coach_supplier_id != $partner_id){
+                                    //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
+                                    $partner_array[] = $cs->coach_supplier_id;
                                 }
                             }
                             $new_partner_array= array_unique($partner_array);
+                            foreach(@$partner_only as $po){
+                                @$partners_only[] = $po[$pagu_c]->coach_supplier_id;
+                                if (($key = array_search(@$po[$pagu_c]->coach_supplier_id, $new_partner_array)) !== false) {
+                                        unset($new_partner_array[$key]);
+                                    }
+                            }
                             $this->db->where_in('c.partner_id', $new_partner_array);
                         }
                     }elseif(empty($coach_group) && empty($check_array_coach) && empty($check_array_student) && $coach_supplier && $coregro){
@@ -924,6 +952,7 @@ class identity_model extends MY_Model {
                 // exit();
 
                 $partners_group = array();
+                $partners_only = array();
                 $pagu_c = 0;
                 $core_c = 0;
                 @$coach_supplier = $this->get_coach_supplier($partner_id);
@@ -941,6 +970,12 @@ class identity_model extends MY_Model {
                 foreach($corel_new as $cl){
                     @$coregro[] = $this->db->select('subgroup_id')->from('coach_group_relations')->where('class_matchmaking_id', $cl)->get()->result();
                 }
+
+                $partner_only = array();
+                foreach($coach_relation as $cr){
+                    @$partner_only[] = $this->db->select('csr.coach_supplier_id')->from('coach_supplier_relations csr')->join('student_supplier_relations ssr', 'csr.class_matchmaking_id = ssr.class_matchmaking_id')->join('student_group_relations sgr', 'sgr.class_matchmaking_id = csr.class_matchmaking_id', 'left outer')->where('csr.class_matchmaking_id', $cr[0]->class_matchmaking_id)->where('ssr.student_supplier_id', $partner_id)->where('sgr.class_matchmaking_id is NOT NULL', NULL, FALSE)->order_by('csr.coach_supplier_id', 'desc')->get()->result();
+                }
+                
                 $partner_group2 = array();
                 foreach($coregro as $cgo){
                     foreach($cgo as $cgval){
@@ -1244,32 +1279,50 @@ class identity_model extends MY_Model {
                     }elseif(empty($coach_group) && ($check_array_student || $check_array_coach) && $coach_supplier){
                         // echo "b";
                         // exit();
-                        if(count($corel_new)==1){
-                            foreach($check_array_student as $ch){
-                                $ccc = $ch[$pagu_c]->subgroup_id;
-                                if($ccc == $user_subgroup){
-                                    $partner_array= array($partner_id);
-                                    foreach(@$coach_supplier as $cs){
-                                        if($cs->coach_supplier_id != $partner_id){
-                                                //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
-                                                $partner_array[] = $cs->coach_supplier_id;
+                        if($stu_rel){
+                            if(count($corel_new)==1){
+                                foreach($check_array_student as $ch){
+                                    $ccc = $ch[$pagu_c]->subgroup_id;
+                                    if($ccc == $user_subgroup){
+                                        $partner_array= array($partner_id);
+                                        foreach(@$coach_supplier as $cs){
+                                            if($cs->coach_supplier_id != $partner_id){
+                                                    //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
+                                                    $partner_array[] = $cs->coach_supplier_id;
+                                            }
                                         }
+                                        $new_partner_array= array_unique($partner_array);
+                                        $this->db->where_in('c.partner_id', $new_partner_array);
+                                    }else{
+                                        $this->db->where('c.partner_id', $partner_id);
                                     }
-                                    $new_partner_array= array_unique($partner_array);
-                                    $this->db->where_in('c.partner_id', $new_partner_array);
-                                }else{
-                                    $this->db->where('c.partner_id', $partner_id);
                                 }
+                            }else{
+                                $partner_array= array($partner_id);
+                                foreach(@$stu_rel as $sr){
+                                    if($sr->coach_supplier_id != $partner_id){
+                                            //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
+                                            $partner_array[] = $sr->coach_supplier_id;
+                                    }
+                                }
+                                $new_partner_array= array_unique($partner_array);
+                                $this->db->where_in('c.partner_id', $new_partner_array);
                             }
                         }else{
                             $partner_array= array($partner_id);
-                            foreach(@$stu_rel as $sr){
-                                if($sr->coach_supplier_id != $partner_id){
-                                        //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
-                                        $partner_array[] = $sr->coach_supplier_id;
+                            foreach(@$coach_supplier as $cs){
+                                if($cs->coach_supplier_id != $partner_id){
+                                    //$this->db->or_where('c.partner_id', $cs->coach_supplier_id);
+                                    $partner_array[] = $cs->coach_supplier_id;
                                 }
                             }
                             $new_partner_array= array_unique($partner_array);
+                            foreach(@$partner_only as $po){
+                                @$partners_only[] = $po[$pagu_c]->coach_supplier_id;
+                                if (($key = array_search(@$po[$pagu_c]->coach_supplier_id, $new_partner_array)) !== false) {
+                                        unset($new_partner_array[$key]);
+                                    }
+                            }
                             $this->db->where_in('c.partner_id', $new_partner_array);
                         }
                     }elseif(empty($coach_group) && empty($check_array_coach) && empty($check_array_student) && $coach_supplier && $coregro){
