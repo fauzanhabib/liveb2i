@@ -21,6 +21,8 @@ class manage_appointments extends MY_Site_Controller {
         $this->load->model('token_histories_model');
         $this->load->model('coach_day_off_model');
         $this->load->model('partner_model');
+        $this->load->model('settings_model');
+        $this->load->model('global_settings_model');
         $this->load->model('partner_setting_model');
         $this->load->model('specific_settings_model');
         $this->load->model('webex_host_model');
