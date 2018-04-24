@@ -1682,7 +1682,11 @@ class find_coaches extends MY_Site_Controller {
 
                 $total_block_f = count($unique);
 
-                $define_block = array_column($unique, 's_block');
+                // $define_block = array_column($unique, 's_block');
+                $define_block=array();
+                foreach($unique as $un){
+                  array_push($define_block,$un->s_block);
+                }
 
                 // echo "<pre>";print_r($define_block);exit();
 
