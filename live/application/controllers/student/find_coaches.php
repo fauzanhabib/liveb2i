@@ -603,6 +603,8 @@ class find_coaches extends MY_Site_Controller {
 
                 $isValid = $this->isAvailable($coach_id, $date, $start_time, $end_time);
 
+                // echo "<pre>";print_r($isValid);exit();
+
                 $message = '';
                 if(!$isValid){
                     $this->messages->add('Invalid Appointment Or Coach is Having Day Off', 'warning');
@@ -1661,6 +1663,7 @@ class find_coaches extends MY_Site_Controller {
                     ->where('coach_id', $coach_id)
                     ->where('s_day', $day)
                     ->where('s_start_time <=', $hour_definer)
+                    ->order_by('s_start_time', 'ASC')
                     ->get()->result();
 
                 $pullsched2 = $this->db->distinct()->select('s_block')
@@ -1668,6 +1671,7 @@ class find_coaches extends MY_Site_Controller {
                     ->where('coach_id', $coach_id)
                     ->where('s_day', $day2)
                     ->where('s_start_time >=', $hour_definer)
+                    ->order_by('s_start_time', 'ASC')
                     ->get()->result();
 
                 $pullsched_merge = array_merge($pullsched1, $pullsched2);
@@ -1818,7 +1822,7 @@ class find_coaches extends MY_Site_Controller {
             'search_by' => $search_by,
             'cost' => $this->coach_token_cost_model->select('token_for_student')->where('coach_id', $coach_id)->get()
         );
-        // echo "<pre>";print_r($allscheds);exit();
+        // echo "<pre>";print_r($availability_temp);exit();
 //        echo('<pre$vars
 //        print_r(date('Y-m-d','1450962000')); exit;
         $this->template->content->view('default/contents/find_coach/availability', $vars);
