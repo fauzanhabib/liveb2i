@@ -66,6 +66,8 @@ class Call_loader extends MY_Site_Controller {
                     $student_type = 'Professional (Legacy)';
                 }else if($certif_code == 6){
                     $student_type = 'Professional (Europe)';
+                }else if(!@$certif_code){
+                    $student_type = 'Professional';
                 }
 
 
