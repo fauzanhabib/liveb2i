@@ -395,7 +395,7 @@ class Common_function {
             'LAV' => 'Latvian', 'LIT' => 'Lithuanian', 'MAC' => 'Macedonian', 'MLG' => 'Malagasy', 'MAY' => 'Malay',
             'Malayalam' => 'Malayalam', 'Maltese' => 'Maltese', 'Maori' => 'Maori', 'Marathi' => 'Marathi', 'Mongolian' => 'Mongolian',
             'Myanmar' => 'Myanmar (Burmese)', 'Nepali' => 'Nepali', 'Norwegian' => 'Norwegian', 'Persian' => 'Persian', 'Polish' => 'Polish',
-            'Portugese' => 'Portugese', 'Punjabi' => 'Punjabi', 'Romanian' => 'Romanian', 'Russian' => 'Russian', 'Serbian' => 'Serbian',
+            'Portuguese' => 'Portuguese', 'Punjabi' => 'Punjabi', 'Romanian' => 'Romanian', 'Russian' => 'Russian', 'Serbian' => 'Serbian',
             'Sesotho' => 'Sesotho', 'Sinhala' => 'Sinhala', 'Slovak' => 'Slovak', 'Slovenian' => 'Slovenian', 'Somali' => 'Somali',
             'Spanish' => 'Spanish', 'Sundanese' => 'Sundanese', 'Swahili' => 'Swahili', 'Swedish' => 'Swedish', 'Tajik' => 'Tajik',
             'Thai' => 'Thai', 'Tamil' => 'Tamil', 'Telugu' => 'Telugu', 'Turkish' => 'Turkish', 'Ukrainian' => 'Ukrainian',
