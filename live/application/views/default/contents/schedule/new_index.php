@@ -47,7 +47,7 @@
           <div class="pure-u-5-24">Days</div>
           <div class="pure-u-8-24">Schedules</div>
           <div class="pure-u-3-24">Timezone</div>
-          <div class="pure-u-3-24">Action</div>
+          <div class="pure-u-6-24 text-center">Action</div>
       </div>
       <div class="box schedule-box">
         <?php foreach($day as $d => $value){ ?>
