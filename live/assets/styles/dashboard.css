@@ -4196,7 +4196,7 @@ figure:hover {
 .coaching-box-right {
   margin: 0;
   width: 29px;
-  height: 29px;
+  /*height: 29px;*/
   float: right;
   text-align: center;
 }

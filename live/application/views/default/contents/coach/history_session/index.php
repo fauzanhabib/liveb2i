@@ -217,7 +217,7 @@
                     </td>
                     <td><?php echo date('M j Y', strtotime($history->date)); ?></td>
                     <td class="padding0">
-                        <div class="rounded-box bg-green">
+                        <div class="rounded-box bg-green width100">
                             <span class="text-cl-white">
                                 <?php
                                     $defaultstart  = strtotime($history->start_time);
@@ -229,7 +229,7 @@
                                     $defaultend  = strtotime($history->end_time);
                                     $endsession = $defaultend-(5*60);
                                     $hourattend  = date("H:i", $endsession);
-                                    echo $hourattend . " (UTC " . $new_gmt .")"; 
+                                    echo $hourattend . "</br>(UTC " . $new_gmt .")"; 
                                 ?>
                             </span>
                         </div>

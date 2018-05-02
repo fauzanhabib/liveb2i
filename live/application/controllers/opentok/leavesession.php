@@ -309,7 +309,8 @@ class Leavesession extends MY_Site_Controller {
             'user' => $user_extract,
             'role' => $role,
             'cch_notes'    => $cch_notes,
-            'appointment_id' => $appoint_id
+            'appointment_id' => $appoint_id,
+            'usersss' => $usersss,
             // 'download' => $download
         );
 
