@@ -1657,121 +1657,123 @@ class find_coaches extends MY_Site_Controller {
                 $def_calc = strtotime($minutes_definer.'minutes', $def_zero);
                 $hour_definer = date('H:i',$def_calc);
 
-                //edited new schedules start ===================================
-                $pullsched1 = $this->db->distinct()->select('s_block')
-                    ->from('new_schedules')
-                    ->where('coach_id', $coach_id)
-                    ->where('s_day', $day)
-                    ->where('s_start_time <=', $hour_definer)
-                    ->order_by('s_start_time', 'ASC')
-                    ->get()->result();
-
-                $pullsched2 = $this->db->distinct()->select('s_block')
-                    ->from('new_schedules')
-                    ->where('coach_id', $coach_id)
-                    ->where('s_day', $day2)
-                    ->where('s_start_time >=', $hour_definer)
-                    ->order_by('s_start_time', 'ASC')
-                    ->get()->result();
-
-                $pullsched_merge = array_merge($pullsched1, $pullsched2);
-
-                $unique = array();
-                foreach ($pullsched_merge as $object) {
-                    if (isset($unique[$object->s_block])) {
-                        continue;
-                    }
-                    $unique[$object->s_block] = $object;
-                }
-
-                $total_block_f = count($unique);
-
-                // $define_block = array_column($unique, 's_block');
-                $define_block=array();
-                foreach($unique as $un){
-                  array_push($define_block,$un->s_block);
-                }
-
-                // echo "<pre>";print_r($define_block);exit();
-
-                $allscheds = array();
-
-                for($i=0;$i<$total_block_f;$i++){
-                  $pullsched = $this->db->select('*')
-                      ->from('new_schedules')
-                      ->where('coach_id', $coach_id)
-                      ->where('s_block', $define_block[$i])
-                      ->get()->result();
-
-                  if(count($pullsched) > 1){
-                    $getblock  = $pullsched[0]->s_block;
-
-                    $getday0   = $pullsched[0]->s_day;
-                    $getstart0 = $pullsched[0]->s_start_time;
-
-                    $st_str0 = strtotime($getday0.', '.$getstart0);
-                    $st_cal0 = strtotime($minutes.'minutes', $st_str0);
-                    $st_print0 = date('H:i',$st_cal0);
-
-                    $getday1   = $pullsched[1]->s_day;
-                    $getstart1 = $pullsched[1]->s_end_time;
-
-                    $st_str1 = strtotime($getday1.', '.$getstart1);
-                    $st_cal1 = strtotime($minutes.'minutes', $st_str1);
-                    $st_print1 = date('H:i',$st_cal1);
-
-                    $push_day = date('l',$st_cal0);
-                    $getid = $pullsched[0]->id;
-
-                    $push_sched = array(
-                      'start_time' => $st_print0.':00',
-                      'end_time' => $st_print1.':00'
-                    );
-
-                    array_push($allscheds, $push_sched);
-
-                    // echo "<pre>";print_r($st_print0);exit();
-                  }else{
-                    $getblock  = @$pullsched[0]->s_block;
-
-                    $getday0   = @$pullsched[0]->s_day;
-                    $getstart0 = @$pullsched[0]->s_start_time;
-                    $getend0 = @$pullsched[0]->s_end_time;
-
-                    $st_str0 = strtotime($getday0.', '.$getstart0);
-                    $st_cal0 = strtotime($minutes.'minutes', $st_str0);
-                    $st_print0 = date('H:i',$st_cal0);
-
-                    $st_str1 = strtotime($getday0.', '.$getend0);
-                    $st_cal1 = strtotime($minutes.'minutes', $st_str1);
-                    $st_print1 = date('H:i',$st_cal1);
-
-                    $push_day = date('l',$st_cal0);
-                    $getid = @$pullsched[0]->id;
-
-                    $push_sched = array(
-                      'start_time' => $st_print0.':00',
-                      'end_time' => $st_print1.':00'
-                    );
-
-                    array_push($allscheds, $push_sched);
-                  }
-
-                  // echo "<pre>";print_r($allscheds);exit();
-                }
-
                 $check_url = base_url();
                 // $check_url = "https://live.dyned.com";
                 if (strpos($check_url, 'live.dyned.com') !== false) {
                   // exit('a');
                 } else {
+                  //edited new schedules start ===================================
+                  $pullsched1 = $this->db->distinct()->select('s_block')
+                      ->from('new_schedules')
+                      ->where('coach_id', $coach_id)
+                      ->where('s_day', $day)
+                      ->where('s_start_time <=', $hour_definer)
+                      ->order_by('s_start_time', 'ASC')
+                      ->get()->result();
+
+                  $pullsched2 = $this->db->distinct()->select('s_block')
+                      ->from('new_schedules')
+                      ->where('coach_id', $coach_id)
+                      ->where('s_day', $day2)
+                      ->where('s_start_time >=', $hour_definer)
+                      ->order_by('s_start_time', 'ASC')
+                      ->get()->result();
+
+                  $pullsched_merge = array_merge($pullsched1, $pullsched2);
+
+                  $unique = array();
+                  foreach ($pullsched_merge as $object) {
+                      if (isset($unique[$object->s_block])) {
+                          continue;
+                      }
+                      $unique[$object->s_block] = $object;
+                  }
+
+                  $total_block_f = count($unique);
+
+                  // $define_block = array_column($unique, 's_block');
+                  $define_block=array();
+                  foreach($unique as $un){
+                    array_push($define_block,$un->s_block);
+                  }
+
+                  // echo "<pre>";print_r($define_block);exit();
+
+                  $allscheds = array();
+
+                  for($i=0;$i<$total_block_f;$i++){
+                    $pullsched = $this->db->select('*')
+                        ->from('new_schedules')
+                        ->where('coach_id', $coach_id)
+                        ->where('s_block', $define_block[$i])
+                        ->get()->result();
+
+                    if(count($pullsched) > 1){
+                      $getblock  = $pullsched[0]->s_block;
+
+                      $getday0   = $pullsched[0]->s_day;
+                      $getstart0 = $pullsched[0]->s_start_time;
+
+                      $st_str0 = strtotime($getday0.', '.$getstart0);
+                      $st_cal0 = strtotime($minutes.'minutes', $st_str0);
+                      $st_print0 = date('H:i',$st_cal0);
+
+                      $getday1   = $pullsched[1]->s_day;
+                      $getstart1 = $pullsched[1]->s_end_time;
+
+                      $st_str1 = strtotime($getday1.', '.$getstart1);
+                      $st_cal1 = strtotime($minutes.'minutes', $st_str1);
+                      $st_print1 = date('H:i',$st_cal1);
+
+                      $push_day = date('l',$st_cal0);
+                      $getid = $pullsched[0]->id;
+
+                      $push_sched = array(
+                        'start_time' => $st_print0.':00',
+                        'end_time' => $st_print1.':00'
+                      );
+
+                      array_push($allscheds, $push_sched);
+
+                      // echo "<pre>";print_r($st_print0);exit();
+                    }else{
+                      $getblock  = @$pullsched[0]->s_block;
+
+                      $getday0   = @$pullsched[0]->s_day;
+                      $getstart0 = @$pullsched[0]->s_start_time;
+                      $getend0 = @$pullsched[0]->s_end_time;
+
+                      $st_str0 = strtotime($getday0.', '.$getstart0);
+                      $st_cal0 = strtotime($minutes.'minutes', $st_str0);
+                      $st_print0 = date('H:i',$st_cal0);
+
+                      $st_str1 = strtotime($getday0.', '.$getend0);
+                      $st_cal1 = strtotime($minutes.'minutes', $st_str1);
+                      $st_print1 = date('H:i',$st_cal1);
+
+                      $push_day = date('l',$st_cal0);
+                      $getid = @$pullsched[0]->id;
+
+                      $push_sched = array(
+                        'start_time' => $st_print0.':00',
+                        'end_time' => $st_print1.':00'
+                      );
+
+                      array_push($allscheds, $push_sched);
+                    }
+
+                    // echo "<pre>";print_r($allscheds);exit();
+                  }
+
+                  //edited new schedules end =====================================
+                  
                   $availability = $allscheds;
                   // exit('aa');
                 }
 
                 // echo "<pre>";print_r($allscheds);exit();
 
-                //edited new schedules end =====================================
+
 
 
                 $date_parameter = strtotime($date_);
