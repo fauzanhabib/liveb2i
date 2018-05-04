@@ -13,6 +13,12 @@
 ?>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/main.js"></script>
 <script type="text/javascript">
+  $(document).ready(function() {
+    var appointment_id = "<?php echo $appointment_id; ?>";
+    // console.log('====================='+appointment_id);
+    $.post("<?php echo site_url('opentok/live/store_session');?>", { 'appointment_id': appointment_id },function(data) {
+    });
+  });
   window.onbeforeunload = function() {
     var appointment_id = "<?php echo $appointment_id; ?>";
 
