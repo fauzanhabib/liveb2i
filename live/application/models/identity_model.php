@@ -608,11 +608,12 @@ class identity_model extends MY_Model {
                                 }
                             }
                             $new_partner_array= array_unique($partner_array);
-                            foreach(@$partner_only as $po){
-                                @$partners_only[] = $po[$pagu_c]->coach_supplier_id;
-                                if (($key = array_search(@$po[$pagu_c]->coach_supplier_id, $new_partner_array)) !== false) {
+                            for($i=0; $i < count($partner_only); $i++){ 
+                                for($j=0; $j < count($partner_only[$i]); $j++){
+                                if (($key = array_search(@$partner_only[$i][$j]->coach_supplier_id, $new_partner_array)) !== false) {
                                         unset($new_partner_array[$key]);
                                     }
+                                }
                             }
                             $this->db->where_in('c.partner_id', $new_partner_array);
                         }
