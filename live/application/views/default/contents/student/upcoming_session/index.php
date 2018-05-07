@@ -25,11 +25,11 @@
             <?php echo form_open('student/upcoming_session/search', 'class="pure-form filter-form" role="form"'); ?>
             <div class="pure-u-1 text-center m-t-20">
                 <div class="frm-date" style="display:inline-block">
-                    <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">  
+                    <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">
                     <span class="icon dyned-icon-coach-schedules"></span>
                 </div>
                 <div class="frm-date" style="display:inline-block">
-                    <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">  
+                    <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">
                     <span class="icon dyned-icon-coach-schedules"></span>
                 </div>
                 <input type="submit" name="__submit" value="Go" class="pure-button btn-small btn-tertiary border-rounded height-32" style="margin:0px 10px;" />
@@ -39,17 +39,19 @@
             <div class="content-title padding-t-25">
                 One-To-One-Sessions
             </div>
-            
-            <div class="content-title padding-t-25">
-                <?php
-                $arr_mess = @$this->session->flashdata('booking_message');
-                if($arr_mess){
-                    foreach ($arr_mess as $key_mess) {
-                        echo "- ".$key_mess."<br />";
-                    }
-                }
-                ?>
-            </div>
+
+
+            <?php
+            $arr_mess = @$this->session->flashdata('booking_message');
+            if($arr_mess){ ?>
+              <div class="content-title padding-t-25">
+                <?php foreach ($arr_mess as $key_mess) {
+                    echo "- ".$key_mess."<br />";
+                } ?>
+              </div>
+            <?php }?>
+
+
             <script>
                 $(document).ready(function() {
                     $('#userTable').DataTable( {
@@ -75,7 +77,7 @@
                         <th class="text-cl-tertiary font-light font-16 border-none">SESSION DATE</th>
                         <th class="text-cl-tertiary font-light font-16 border-none">TIME</th>
                         <th class="text-cl-tertiary font-light font-16 border-none">ACTION</th>
-                        
+
                         <!-- <th class="text-cl-tertiary font-light font-16 border-none">SESSION RECORDED</th>                -->
                     </tr>
                 </thead>
@@ -87,7 +89,7 @@
                         if($gmt_user[0]->gmt > 0){
                             $new_gmt = '+'.$gmt_user[0]->gmt;
                         }else{
-                            $new_gmt = $gmt_user[0]->gmt;    
+                            $new_gmt = $gmt_user[0]->gmt;
                         }
                         ?>
                         <tr>
@@ -98,11 +100,11 @@
                                 $dt     = date('H:i:s',$d->dupd);
                                 $default_dt  = strtotime($dt);
                                 $usertime = $default_dt+(60*$minutes);
-                                $hour = date("H:i:s", $usertime); 
+                                $hour = date("H:i:s", $usertime);
 
 
                                 $date     = date('M j Y',$d->dupd);
-                                
+
                                 echo $date." ".$hour;
                                 ?>
                             </td>
@@ -113,7 +115,7 @@
                                 </td>
                                 <td><?php echo date('M j Y', strtotime($d->date)); ?></td>
                                 <td>
-                                  
+
                                     <div class="rounded-box bg-green">
                                         <?php
                                         $get_endtime = date('H:i',strtotime($d->end_time));
@@ -125,7 +127,7 @@
                                         ?>
                                         <span class="text-cl-white"><?php echo(date('H:i',strtotime($d->start_time)));?> - <?php echo($new_endtime);?> (UTC <?php echo $new_gmt;?>)</span>
                                     </div>
-                                    
+
                                 </td>
                                 <?php
                               // jam sekarang
@@ -133,8 +135,8 @@
                                 $hours     = date('H:i:s');
                                 $default_hours  = strtotime($hours);
                                 $usertime_hours = $default_hours+(60*$minutes);
-                                $hour_now = date("Y-m-d H:i:s", $usertime_hours); 
-                                
+                                $hour_now = date("Y-m-d H:i:s", $usertime_hours);
+
                                 $user_end_date = date('Y-m-d', strtotime($d->date));
                                 $user_end_time = date('H:i:s',strtotime($d->start_time));
                                 $user_time_final = $user_end_date." ".$user_end_time;
@@ -148,10 +150,10 @@
                                 $difference = $datetime1->diff($datetime2);
 
                                 $p1 = strtotime($hour_now);
-                                $p2 = strtotime($user_time_final); 
+                                $p2 = strtotime($user_time_final);
 
                                 $h = abs($p2-$p1)/(60*60);
-                                
+
                                       // if(($difference->days > 0) && ($hour_now > date('H:i',strtotime($d->start_time))) ){
                                 if($h > 24){
                                     ?>
@@ -172,12 +174,12 @@
 
                                                 ?>
                                                 <a class="pure-button btn-medium btn-white rescheduled" onclick="confirmation('<?php echo(site_url('student/manage_appointments/reschedule/'.$d->id.'/'.$d->coach_id));?>', 'single', 'Reschedule', '', 'rescheduled');">Reschedule</a>
-                                                <?php 
+                                                <?php
                                             } else {
                                                 ?>
                                                 <a class="reschedule-session text-cl-green">Already Rescheduled</a>
                                                 <?php } } ?>
-                                            </td> 
+                                            </td>
                                             <?php } else {  ?>
 
                                             <td><a class="pure-button btn-medium btn-grey rescheduled" style="cursor:not-allowed">Reschedule</a></td>
@@ -191,7 +193,7 @@
                                 <!-- <div class="content-title padding-t-25"> -->
                                     <!-- Class Sessions -->
                                     <!-- </div> -->
-                                    
+
                                     <?php
                                     if(!@$data_class) {
                     // echo "<div class='padding15'><div class='no-result'>No Data</div></div>";
@@ -205,7 +207,7 @@
                             <th class="text-cl-tertiary font-light font-16 border-none">CLASS NAME</th>
                             <th class="text-cl-tertiary font-light font-16 border-none">SESSION DATE</th>
                             <th class="text-cl-tertiary font-light font-16 border-none">TIME</th>
-                            <th class="text-cl-tertiary font-light font-16 border-none">SESSION RECORDED</th>               
+                            <th class="text-cl-tertiary font-light font-16 border-none">SESSION RECORDED</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -233,12 +235,9 @@
                 <?php } ?>
                 <!-- <div class="height-plus"></div> -->
             </div>
-        </div>  
+        </div>
     </div>
 </div>
-
-
-<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
 
 <script type="text/javascript">
 
