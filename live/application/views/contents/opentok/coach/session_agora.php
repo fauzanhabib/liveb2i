@@ -33,7 +33,7 @@
     return "If you close this page, you will not get a token from this session.";
   };
 </script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/b2c/lib/jQuery/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-2.2.3.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 <!-- <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script> -->
 <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.2.0.js"></script>
