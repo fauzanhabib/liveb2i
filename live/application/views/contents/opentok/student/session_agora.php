@@ -13,10 +13,10 @@ if(@$user_extract2){
 
 ?>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/main.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-2.2.3.min.js"></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 <!-- <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script> -->
-<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script>
+<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.2.0.js"></script>
 <script type="text/javascript">
   window.onbeforeunload = function() {
     var appointment_id = "<?php echo $appointment_id; ?>";
@@ -748,7 +748,7 @@ var countdownTimer = setInterval('timer()', 1000);
     var channel_name = "<?php echo $sessionId; ?>";
     // console.log("Ch Name = " + channel_name);
     // console.log("Init AgoraRTC client with vendor key: " + app_id);
-    client = AgoraRTC.createClient({mode: 'interop'});
+    client = AgoraRTC.createClient({mode: 'h264_interop'});
     client.init(app_id, function () {
       // console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
@@ -760,7 +760,7 @@ var countdownTimer = setInterval('timer()', 1000);
         // console.log("Ch Name = " + channel_name);
         // console.log("=====================================");
 
-        if (document.getElementById("video").checked) {
+        // if (document.getElementById("video").checked) {
           camera = videoSource.value;
           microphone = audioSource.value;
           localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
@@ -768,7 +768,7 @@ var countdownTimer = setInterval('timer()', 1000);
 
           //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
           if (document.getElementById("video").checked) {
-            localStream.setVideoProfile('240P');
+            localStream.setVideoProfile('480P_1');
 
           }
 
@@ -796,7 +796,7 @@ var countdownTimer = setInterval('timer()', 1000);
           }, function (err) {
             // console.log("getUserMedia failed", err);
           });
-        }
+        // }
       }, function(err) {
         // console.log("Join channel failed", err);
       });
