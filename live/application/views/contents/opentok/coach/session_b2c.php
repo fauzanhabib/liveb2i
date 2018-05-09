@@ -134,7 +134,7 @@
         session.connect(token, function(error) {
             var publisherproperties = {insertMode: 'append',
                                   width: '100%',
-                                  resolution: "320x240",
+                                  resolution: "640x480",
                                   frameRate:15,
                                   publishVideo: true,
                                   height: 150, name: "<?php echo $this->auth_manager->get_name();?>"};
