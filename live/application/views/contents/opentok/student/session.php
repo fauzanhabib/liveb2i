@@ -29,7 +29,7 @@ if(@$user_extract2){
   };
 </script>
 <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/efiofhlccdnkddnjdagljnhgoibifhki">
-<script src='//static.opentok.com/v2/js/opentok.min.js'></script>
+<script src='https://static.opentok.com/v2/js/opentok.min.js'></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 <script charset="utf-8">
     var apiKey = '<?php echo $apiKey ?>';
@@ -38,7 +38,10 @@ if(@$user_extract2){
     var session = OT.initSession(apiKey, sessionId);
     var publisher;
     var checkcamera;
+    initializeSession();
     //Self
+    function initializeSession() {
+
         session.connect(token, function(error) {
             var publisherproperties = {insertMode: 'append',
                                   width: '100%',
@@ -62,20 +65,20 @@ if(@$user_extract2){
         session.on('streamCreated', function(event) {
             var subscriberProperties = {insertMode: 'append',
                                         width: '100%',
-                                        resolution: "320x240",
-                                        frameRate:15,
-                                        height: '100%', name: "<?php echo $student_name;?>"};
-            var subscriber = session.subscribe(event.stream,
+                                        resolution: "640x480",
+                                        frameRate:15, name: "<?php echo $user_extract->fullname?>"};
+            subscriber = session.subscribe(event.stream,
             'subscriberContainer',
             subscriberProperties,
             function (error) {
               if (error) {
                 console.log(error);
               } else {
-                console.log('Subscriber added.');
+                // console.log('Subscriber added.');
               }
-              });
+            });
         });
+    }
 
     function toggleOff(){
       $("#videooff").hide();
@@ -300,6 +303,9 @@ if(@$user_extract2){
 <style>
    .OT_publisher .OT_video-element, .OT_subscriber .OT_video-element{
       position: relative;
+    }
+    .OT_subscriber{
+      height: 100% !important;
     }
     .OT_widget-container{
       position: relative;
@@ -723,7 +729,7 @@ window.onclick = function(event) {
 <script>
   var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
 
-  console.log(isSafari)
+  // console.log(isSafari)
 
   if (isSafari == true) {
     $('#ajaxcall').height('100vh');

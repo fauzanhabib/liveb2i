@@ -119,7 +119,7 @@
     });
 </script>
 
-<script src='//static.opentok.com/v2/js/opentok.min.js'></script>
+<script src='https://static.opentok.com/v2/js/opentok.min.js'></script>
 <script charset="utf-8">
     var apiKey = '<?php echo $apiKey ?>';
     var sessionId = '<?php echo $sessionId ?>';
@@ -130,44 +130,46 @@
     var extensionId2 = 'hkdnamkhchfoobjlmpfkpcchcpmhfiol';
     var publisher;
     var checkcamera;
+    initializeSession();
     //Self
-        session.connect(token, function(error) {
-            var publisherproperties = {insertMode: 'append',
-                                  width: '100%',
-                                  resolution: "640x480",
-                                  frameRate:15,
-                                  publishVideo: true,
-                                  height: 150, name: "<?php echo $this->auth_manager->get_name();?>"};
+        function initializeSession() {
+            session.connect(token, function(error) {
+                var publisherproperties = {insertMode: 'append',
+                                      width: '100%',
+                                      resolution: "640x480",
+                                      frameRate:15,
+                                      publishVideo: true,
+                                      height: 150, name: "<?php echo $this->auth_manager->get_name();?>"};
 
-            publisher = OT.initPublisher('myPublisherElementId',publisherproperties, function (error) {
-              if (error) {
-                // console.log(error);
-                $("#camerablocked").removeClass("hidden");
-              } else {
-                checkcamera = 0;
-              }
+                publisher = OT.initPublisher('myPublisherElementId',publisherproperties, function (error) {
+                  if (error) {
+                    // console.log(error);
+                    $("#camerablocked").removeClass("hidden");
+                  } else {
+                    checkcamera = 0;
+                  }
+                });
+                session.publish(publisher);
+
             });
-            session.publish(publisher);
-
-        });
-    //Other
-        session.on('streamCreated', function(event) {
-            var subscriberProperties = {insertMode: 'append',
-                                        width: '100%',
-                                        resolution: "320x240",
-                                        frameRate:15,
-                                        height: '100%', name: "<?php echo $student_name;?>"};
-            var subscriber = session.subscribe(event.stream,
-            'subscriberContainer',
-            subscriberProperties,
-            function (error) {
-              if (error) {
-                console.log(error);
-              } else {
-                console.log('Subscriber added.');
-              }
-              });
-        });
+        //Other
+            session.on('streamCreated', function(event) {
+                var subscriberProperties = {insertMode: 'append',
+                                            width: '100%',
+                                            resolution: "640x480",
+                                            frameRate:15, name: "b"};
+                subscriber = session.subscribe(event.stream,
+                'subscriberContainer',
+                subscriberProperties,
+                function (error) {
+                  if (error) {
+                    console.log(error);
+                  } else {
+                    // console.log('Subscriber added.');
+                  }
+                });
+            });
+        }
 
         function toggleOff(){
           $("#videooff").hide();
