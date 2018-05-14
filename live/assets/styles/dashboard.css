@@ -4186,7 +4186,7 @@ figure:hover {
   border: 1px solid #2b89b9;
 }
 .coaching-box-left {
-  width: 69%;
+  width: 75%;
   float: left;
   padding: 4px 0;
   color: #2b89b9!important;
@@ -4564,6 +4564,9 @@ figure:hover {
 }
 .tabs-two a {
   color: #2b89b9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .prog-bar {
   width: 50px;
@@ -9023,6 +9026,10 @@ label {
   .progress-value {
     width: 120px!important;
     margin-right: 3px!important;
+  }
+
+  .menu-drop {
+    display: flex;
   }
 }
 

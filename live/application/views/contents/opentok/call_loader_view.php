@@ -111,7 +111,7 @@ $("#reloadajax4").click(function() {
 <div id='tab2' class="w3-animate-opacity" style="height: 461.391px;">
 <?php if($module_extract){?>
     <div class="coaching-info">
-        <div class="coaching-info-box display-inline-block width100 clearfix">
+        <div class="coaching-info-box display-inline-block clearfix">
             <div class="coaching-box-left">
                 <span><b>WSS</b></span>
             </div>
@@ -184,52 +184,52 @@ $("#reloadajax4").click(function() {
         ?>
             <?php if($fecheck != NULL) {?>
             <a href='#tabs-content1' class="square-tabs">
-                <h5 class="m-t-20"><?php echo @$fe['titleFe']; ?></h5>
+                <h5 class=""><?php echo @$fe['titleFe']; ?></h5>
             </a>
             <?php } else{}
             if($ndecheck != NULL) {?>
             <a href='#tabs-content2' class="square-tabs">
-                <h5 class="m-t-13"><?php echo @$nde['titleNde']; ?></h5>
+                <h5 class=""><?php echo @$nde['titleNde']; ?></h5>
             </a>
             <?php } else{}
             if($efscheck != NULL) {?>
             <a href='#tabs-content3' class="square-tabs">
-                <h5 class="m-t-13"><?php echo @$efs['titleEfs']; ?></h5>
+                <h5 class=""><?php echo @$efs['titleEfs']; ?></h5>
             </a>
             <?php } else{}
             if($rfscheck != NULL) {?>
             <a href='#tabs-content4' class="square-tabs">
-                <h5 class="m-t-13"><?php echo @$rfs['titleRfs']; ?></h5>
+                <h5 class=""><?php echo @$rfs['titleRfs']; ?></h5>
             </a>
             <?php } else{}
             if($dbecheck != NULL) {?>
             <a href='#tabs-content5' class="square-tabs">
-                <h5 class="m-t-5"><?php echo @$dbe['titleDbe']; ?></h5>
+                <h5 class=""><?php echo @$dbe['titleDbe']; ?></h5>
             </a>
             <?php } else{}
             if($tlscheck != NULL) {?>
             <a href='#tabs-content6' class="square-tabs">
-                <h5 class="m-t-20"><?php echo @$tls['titleTls']; ?></h5>
+                <h5 class=""><?php echo @$tls['titleTls']; ?></h5>
             </a>
             <?php } else{}
             if($ebncheck != NULL) {?>
             <a href='#tabs-content7' class="square-tabs">
-                <h5 class="m-t-13"><?php echo @$ebn['titleEbn']; ?></h5>
+                <h5 class=""><?php echo @$ebn['titleEbn']; ?></h5>
             </a>
             <?php } else{}
             if($fibcheck != NULL) {?>
             <a href='#tabs-content8' class="square-tabs">
-                <h5 class="m-t-13"><?php echo @$fib['titleFib']; ?></h5>
+                <h5 class=""><?php echo @$fib['titleFib']; ?></h5>
             </a>
             <?php } else{}
             if($alscheck != NULL) {?>
             <a href='#tabs-content9' class="square-tabs">
-                <h5 class="m-t-20"><?php echo @$als['titleAls']; ?></h5>
+                <h5 class=""><?php echo @$als['titleAls']; ?></h5>
             </a>
             <?php } else{}
             if($dlgcheck != NULL) {?>
             <a href='#tabs-content10' class="square-tabs">
-                <h5 class="m-t-20"><?php echo @$dlg['titleDlg']; ?></h5>
+                <h5 class=""><?php echo @$dlg['titleDlg']; ?></h5>
             </a>
             <?php } else{}?>
         </div>

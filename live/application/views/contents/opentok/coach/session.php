@@ -504,6 +504,9 @@ if(isChrome == true && isFirefox == false){
     .OT_publisher .OT_video-element, .OT_subscriber .OT_video-element{
       position: relative;
     }
+    .OT_subscriber {
+      height: 100%!important;
+    }
     .OT_widget-container{
       position: relative;
     }
