@@ -56,9 +56,17 @@
                 <select name="spoken_lang" id="td_value_1_2" class="e-only multiple-select" multiple="multiple" style="width:100%" required required data-parsley-required-message="Please select at least 1 coach group">
                     <?php foreach($list_sp as $ls){ ?>
                         <optgroup id="asdf" label="<?php echo $ls->name; ?>">
-                        <?php foreach($list_sg as $ls){ ?>
-                            <option value="<?php echo $ls->id; ?>"><?php echo $ls->name; ?></option>
-                        <?php } ?>
+                          <?php
+                          $list_sg = $this->db->select('*')
+                                           ->from('subgroup')
+                                           ->where('partner_id',$ls->id)
+                                           ->where('type','coach')
+                                           ->get()->result();
+
+                            foreach($list_sg as $lsg){
+                          ?>
+                              <option value="<?php echo $lsg->id; ?>"><?php echo $lsg->name; ?></option>
+                          <?php } ?>
                     <?php } ?>
                 </select>
                 <input name="subgrouplist" type="hidden" id="subgrouplist" value="">
@@ -405,7 +413,7 @@
                         $tokencost = $elite_coach_cost;
                     }
 
-                    $sum3 = $totalrfd * $tokencost;
+                    $sum3 = $totalrfd * @$tokencost;
                     // echo "<pre>";
                     // print_r($getrating);exit();
 
