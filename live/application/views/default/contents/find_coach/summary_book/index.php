@@ -11,7 +11,7 @@
 
     <div class="content">
         <div class="box pure-g">
-            <table class="table-no-border2" style="border-collapse: separate;border-spacing: 0px 10px;padding:0">
+            <table class="table-no-border2" style="border-collapse: separate;border-spacing: 0px 10px;padding:10px">
                 <tr>
                     <td>Coach Name</td>
                     <td><?php echo($data_coach[0]->fullname); ?></td>
@@ -74,11 +74,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td style="border-top:1px solid #f3f3f3;display: table-cell;  width: auto !important;">
+                    <td style="display: table-cell;  width: auto !important;">
                         <a id="submit_summary" class="pure-button btn-small btn-secondary confirm-booking" onclick="confirmation('<?php echo $search_by == 'single_date' ? site_url('student/find_coaches/book_single_coach/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time.'/' . $token) : site_url('student/find_coaches/book_single_coach/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time.'/' . $token); ?>', 'single', 'Confirm Booking', '', 'confirm-booking');">
                         CONFIRM</a>
                     </td>
-                    <td style="border-top:1px solid #f3f3f3;border-bottom:0;display: table-cell;  width: auto !important;">
+                    <td style="border-bottom:0;display: table-cell;  width: auto !important; margin:0 5px;">
                         <button type="submit" id="cancel_summary" class="pure-button btn-red btn-small" style="margin:0">BACK</button>
                     </td>
                 </tr>
