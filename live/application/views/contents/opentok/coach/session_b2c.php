@@ -442,28 +442,44 @@
     });
     // console.log('a');
     setInterval(function(){
-      function IsExist(extensionId,callback){
-       chrome.runtime.sendMessage(extensionId, { message: "installed" },
-         function (reply) {
-          if (reply) {
-           callback(true);
-          }else{
-           callback(false);
-          }
-       });
-      }
-      //check online extension - chrome webstore
-      IsExist(extensionId,function(installed){
-       if(!installed){
-        $("#sharescreenavan").removeClass("hidden");
-        $("#sharescreenava").addClass("hidden");
-       }
-       else{
-        $("#sharescreenava").removeClass("hidden");
-        $("#sharescreenavan").addClass("hidden");
-       }
-      });
+      // function IsExist(extensionId,callback){
+      //  chrome.runtime.sendMessage(extensionId, { message: "installed" },
+      //    function (reply) {
+      //     if (reply) {
+      //      callback(true);
+      //     }else{
+      //      callback(false);
+      //     }
+      //  });
+      // }
+      // //check online extension - chrome webstore
+      // IsExist(extensionId,function(installed){
+      //  if(!installed){
+      //   $("#sharescreenavan").removeClass("hidden");
+      //   $("#sharescreenava").addClass("hidden");
+      //  }
+      //  else{
+      //   $("#sharescreenava").removeClass("hidden");
+      //   $("#sharescreenavan").addClass("hidden");
+      //  }
+      // });
       // check offline extension - .crx file
+      OT.checkScreenSharingCapability(function(response) {
+        ext_status = response.extensionInstalled;
+        // console.log(ext_status);
+
+        if(ext_status === false){
+          $("#sharescreenavan").removeClass("hidden");
+          $("#sharescreenava").addClass("hidden");
+
+          // console.log('====false');
+          // console.log(ext_status);
+        }else if(ext_status === true){
+           // console.log('====true');
+          $("#sharescreenava").removeClass("hidden");
+          $("#sharescreenavan").addClass("hidden");
+         }
+      });
 
     },1000);
   }else if(isChrome == false && isFirefox == true){

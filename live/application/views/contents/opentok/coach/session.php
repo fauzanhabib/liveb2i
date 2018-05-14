@@ -215,6 +215,7 @@
     OT.registerScreenSharingExtension('chrome', extensionId, 2);
 
     OT.checkScreenSharingCapability(function(response){
+      // console.log(response);
       if (response.extensionInstalled === false) {
         OT.registerScreenSharingExtension('chrome', extensionId2, 2);
         extensionId = extensionId2;
@@ -225,49 +226,48 @@
 
     function screenshare() {
       OT.checkScreenSharingCapability(function(response) {
-      // console.log(response.extensionInstalled);
-      // console.info(response);
-      if (!response.supported || response.extensionRegistered === false) {
-        alert('This browser does not support screen sharing.');
-      } else if (response.extensionInstalled === false
-        && (response.extensionRequired || !ffWhitelistVersion)) {
-        alert('Please install the screen-sharing extension and load this page over HTTPS.');
-      } else if (ffWhitelistVersion && navigator.userAgent.match(/Firefox/)
-        && navigator.userAgent.match(/Firefox\/(\d+)/)[1] < ffWhitelistVersion) {
-        alert('For screen sharing, please update your version of Firefox to '
-          + ffWhitelistVersion + '.');
-      } else {
+        // console.log(response.extensionInstalled);
+        // console.info(response);
+        if (!response.supported || response.extensionRegistered === false) {
+          alert('This browser does not support screen sharing.');
+        } else if (response.extensionInstalled === false
+          && (response.extensionRequired || !ffWhitelistVersion)) {
+          alert('Please install the screen-sharing extension and load this page over HTTPS.');
+        } else if (ffWhitelistVersion && navigator.userAgent.match(/Firefox/)
+          && navigator.userAgent.match(/Firefox\/(\d+)/)[1] < ffWhitelistVersion) {
+          alert('For screen sharing, please update your version of Firefox to '
+            + ffWhitelistVersion + '.');
+        } else {
 
-        // Screen sharing is available. Publish the screen.
-        // Create an element, but do not display it in the HTML DOM:
-        var screenContainerElement = document.createElement('div');
-        var screenSharingPublisher = OT.initPublisher(
-        screenContainerElement,
-        { videoSource : 'screen' },
-        function(error) {
-          if (error) {
-            // console.log(error);
-          alert('Something went wrong: ' + error.message);
-          } else {
-          session.publish(
-            screenSharingPublisher,
+          // Screen sharing is available. Publish the screen.
+          // Create an element, but do not display it in the HTML DOM:
+          var screenContainerElement = document.createElement('div');
+          var screenSharingPublisher = OT.initPublisher(
+            screenContainerElement,
+            { videoSource : 'screen' },
             function(error) {
-            if (error) {
+              if (error) {
+                // console.log(error);
               alert('Something went wrong: ' + error.message);
-            }
-            });
-          $("#sharescreenava").hide();
-          console.log("started");
+              } else {
+              session.publish(
+                screenSharingPublisher,
+                function(error) {
+                  if (error) {
+                    alert('Something went wrong: ' + error.message);
+                  }
+                });
+              $("#sharescreenava").hide();
+              // console.log("started");
+              }
+          });
+          screenSharingPublisher.on('mediaStopped', function(event) {
+            $("#sharescreenava").show();
+            // console.log("ended");
+          });
           }
-        });
-        screenSharingPublisher.on('mediaStopped', function(event) {
-          $("#sharescreenava").show();
-          // console.log("ended");
-        });
-        }
       });
     }
-
 
 </script>
 <script>
@@ -445,28 +445,45 @@ if(isChrome == true && isFirefox == false){
   });
   // console.log('a');
   setInterval(function(){
-    function IsExist(extensionId,callback){
-     chrome.runtime.sendMessage(extensionId, { message: "installed" },
-       function (reply) {
-        if (reply) {
-         callback(true);
-        }else{
-         callback(false);
-        }
-     });
-    }
-    //check online extension - chrome webstore
-    IsExist(extensionId,function(installed){
-     if(!installed){
-      $("#sharescreenavan").removeClass("hidden");
-      $("#sharescreenava").addClass("hidden");
-     }
-     else{
-      $("#sharescreenava").removeClass("hidden");
-      $("#sharescreenavan").addClass("hidden");
-     }
-    });
+    // function IsExist(extensionId,callback){
+    //  chrome.runtime.sendMessage(extensionId, { message: "installed" },
+    //    function (reply) {
+    //     if (reply) {
+    //      callback(true);
+    //     }else{
+    //      callback(false);
+    //     }
+    //  });
+    // }
+    // //check online extension - chrome webstore
+    // IsExist(extensionId,function(installed){
+    //  if(!installed){
+    //   $("#sharescreenavan").removeClass("hidden");
+    //   $("#sharescreenava").addClass("hidden");
+    //  }
+    //  else{
+    //   $("#sharescreenava").removeClass("hidden");
+    //   $("#sharescreenavan").addClass("hidden");
+    //  }
+    // });
     // check offline extension - .crx file
+
+    OT.checkScreenSharingCapability(function(response) {
+      ext_status = response.extensionInstalled;
+      // console.log(ext_status);
+
+      if(ext_status === false){
+        $("#sharescreenavan").removeClass("hidden");
+        $("#sharescreenava").addClass("hidden");
+
+        // console.log('====false');
+        // console.log(ext_status);
+      }else if(ext_status === true){
+         // console.log('====true');
+        $("#sharescreenava").removeClass("hidden");
+        $("#sharescreenavan").addClass("hidden");
+       }
+    });
 
   },1000);
 }else if(isChrome == false && isFirefox == true){
@@ -1225,7 +1242,7 @@ var countdownTimer3 = setInterval('timer3()', 1000);
 $('[data-tooltip]:after').css({'width':'115px'});
 
 // var student_vrm = {"cert_level_completion": {"A1": 24, "A2": 10, "B1": 25, "B2": 56, "C1": 60, "C2": 33}, "cert_plan": 2, "headphone": {"percent_to_goal": 45, "raw_value": 213}, "hours_per_week": {"percent_to_goal": null, "raw_value": 0.7}, "initial_pt_score": 2.0, "last_pt_score": 2.0, "mic": {"percent_to_goal": 80, "raw_value": 397}, "mt": {"percent_to_goal": 60, "raw_value": 48}, "repeats": {"percent_to_goal": 102, "raw_value": 486}, "sr": {"percent_to_goal": 98, "raw_value": 73}, "study_level": 2.2, "wss": {"percent_to_goal": 87, "raw_value": 1.9}};
-var student_vrm = <?php echo $student_vrm_json ?>;
+var student_vrm = "<?php echo $student_vrm_json ?>";
 
 
 function Value(value, metadata){
