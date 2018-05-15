@@ -156,7 +156,10 @@
 
 
                     <div class="btn-noborder btn-normal bg-white left"><a href="<?php echo site_url($role_link.'/manage_partner/add_partner/'.$data_admin[0]->id);?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Affiliate</em></a></div>
-                    <button type="submit" name="_submit" class="btn-noborder btn-normal bg-white" onclick="return confirm('Are you sure you want to delete?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Delete Affiliate</em></a></button>
+                    <button type="submit" name="_submit" value="delete" class="btn-noborder btn-normal bg-white" onclick="return confirm('Are you sure you want to delete?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Delete Affiliate</em></a></button>
+                    <?php if($this->auth_manager->role() == 'RAD'){ ?>
+                    <button type="submit" name="_submit" value="move" class="btn-noborder btn-normal bg-white" onclick="return confirm('Are you sure you want to move?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Move Affiliate</em></a></button>
+                    <?php } ?>
                 </div>
 
                 <div class="padding-t-20">

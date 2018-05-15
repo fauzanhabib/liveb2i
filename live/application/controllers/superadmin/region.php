@@ -507,29 +507,81 @@ class region extends MY_Site_Controller {
     }
 
     function delete_partner($region_id = ''){
-        if(!empty($_POST['check_list'])) {
+        if(!empty($_POST['check_list'])){
             $check_list = $_POST['check_list'];
             $type_submit = $_POST['_submit'];
+            // echo $type_submit;
+            // exit();
+            if($type_submit == "delete"){
 
-            // check apakah partner mempunyai supplier
-            $check = $this->db->select('*')->from('user_profiles')->where_in('partner_id',$check_list)->get();
-            if($check->num_rows() == 0){
+                // check apakah partner mempunyai supplier
+                $check = $this->db->select('*')->from('user_profiles')->where_in('partner_id',$check_list)->get();
+                if($check->num_rows() == 0){
 
-                $this->db->trans_begin();
-                $this->db->where_in('id',$check_list);
-                $this->db->delete('partners');
+                    $this->db->trans_begin();
+                    $this->db->where_in('id',$check_list);
+                    $this->db->delete('partners');
 
-                $this->db->trans_commit();
-                $this->messages->add('Delete Successful', 'success');
-            } else {
-                $this->messages->add('Please Move your affiliate', 'danger');
+                    $this->db->trans_commit();
+                    $this->messages->add('Delete Successful', 'success');
+                }else{
+                    $this->messages->add('Please Move your affiliate', 'danger');
 
+                }
+
+            }elseif($type_submit == "move"){
+                if($check_list[0] == "Region-1"){
+                    unset($check_list[0]);
+                }
+                $this->session->set_userdata('region_id',$region_id);
+                $this->session->set_userdata('ceklis',$check_list);
+                // echo "<pre>";
+                // print_r($check_all);
+                // exit();
+                redirect('superadmin/region/move');
             }
-        } else {
+        }else{
             $this->messages->add('Please select affiliate', 'danger');
         }
 
         redirect('superadmin/region/detail/'.$region_id);
+    }
+
+    public function move(){
+        $region =   $this->db->select("u.id, up.region_id")
+                            ->from('users u')
+                            ->join('user_profiles up', 'up.user_id = u.id')
+                            ->where('u.role_id', 4)
+                            ->get()->result();
+
+        $vars = array(
+            'region' => $region,
+        );
+
+        $this->template->content->view('default/contents/superadmin/region/move_region', $vars);
+        $this->template->publish();
+        
+    }
+
+    function move_partner($cur_region_id = ''){
+           $type_submit = $_POST['__submit'];
+                if($type_submit == "Save"){
+                    $region_id = $this->input->post('region');
+                    $partner_id = $_POST['id'];
+                    $this->db->trans_begin();
+
+                        $this->db->where('admin_regional_id', $cur_region_id);
+                        $this->db->where_in('id', $partner_id);
+                        $this->db->update('partners',array('admin_regional_id' => $region_id));
+
+                    $this->db->trans_commit();
+                    // echo "<pre>";
+                    // print_r($partner_id);
+                    // exit();
+                    }
+                $this->messages->add('Partner Moved', 'success');
+                redirect('superadmin/region/detail/'.$cur_region_id);
+
     }
 
     function region_active(){
