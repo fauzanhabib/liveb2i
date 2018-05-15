@@ -4473,6 +4473,14 @@ figure:hover {
 /*rating baru*/
 
 /***********b2c tabs**********/
+.content ul.tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+}
 .tabs li {
   width: 25%;
   float: left;
@@ -4481,6 +4489,7 @@ figure:hover {
 
 .tabs a {
   width: 86%;
+  height: 100%;
   color: #2b89b9;
   font-size: 16px;
   font-weight: 600;
@@ -4489,6 +4498,15 @@ figure:hover {
   background: #fafafa;
   display: inline-block;
   text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+          align-items: center;
 }
 
 .tabs a.active {
@@ -4541,6 +4559,15 @@ figure:hover {
   text-align: center;
   border: 1px solid #2b89b9;
   float: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+          align-items: center;
 }
 .square-tabs h5 {
     font-weight: 600;
@@ -4636,6 +4663,15 @@ figure:hover {
     top: 31px;
     left: -28px;
     width: 11.31px;
+}
+
+.live--chat {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 /**********end b2c coach**********/
 
