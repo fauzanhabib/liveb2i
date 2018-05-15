@@ -1657,10 +1657,11 @@ class find_coaches extends MY_Site_Controller {
                 $def_calc = strtotime($minutes_definer.'minutes', $def_zero);
                 $hour_definer = date('H:i',$def_calc);
 
-                $check_url = base_url();
-                // $check_url = "https://live.dyned.com";
+                // $check_url = base_url();
+                $check_url = "https://live.dyned.com";
                 if (strpos($check_url, 'live.dyned.com') !== false) {
                   // exit('a');
+                  $availability = $availability;
                 } else {
                   //edited new schedules start ===================================
                   $pullsched1 = $this->db->distinct()->select('s_block')
@@ -1766,7 +1767,7 @@ class find_coaches extends MY_Site_Controller {
                   }
 
                   //edited new schedules end =====================================
-                  
+
                   $availability = $allscheds;
                   // exit('aa');
                 }

@@ -157,7 +157,7 @@
                 var subscriberProperties = {insertMode: 'append',
                                             width: '100%',
                                             resolution: "640x480",
-                                            frameRate:15, name: "b"};
+                                            frameRate:15, name: "<?php echo $student_name;?>"};
                 subscriber = session.subscribe(event.stream,
                 'subscriberContainer',
                 subscriberProperties,
@@ -470,18 +470,18 @@ if(isChrome == true && isFirefox == false){
 
     OT.checkScreenSharingCapability(function(response) {
       ext_status = response.extensionInstalled;
-      console.log(ext_status);
-      console.log('outer');
+      // console.log(ext_status);
+      // console.log('outer');
 
       if(ext_status === false){
         $("#sharescreenavan").removeClass("hidden");
         $("#sharescreenava").addClass("hidden");
 
-        console.log('====false');
-        console.log(ext_status);
+        // console.log('====false');
+        // console.log(ext_status);
       }else if(ext_status === true){
-         console.log('====true');
-         console.log(ext_status);
+         // console.log('====true');
+         // console.log(ext_status);
         $("#sharescreenava").removeClass("hidden");
         $("#sharescreenavan").addClass("hidden");
        }
