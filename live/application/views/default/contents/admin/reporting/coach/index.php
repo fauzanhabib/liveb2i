@@ -14,23 +14,31 @@
                 <select name="spoken_lang" id="td_value_1_2" class="e-only multiple-select" multiple="multiple" style="width:100%" required required data-parsley-required-message="Please select at least 1 coach group">
                     <?php foreach($list_sp as $ls){ ?>
                         <optgroup id="asdf" label="<?php echo $ls->name; ?>">
-                        <?php foreach($list_sg as $ls){ ?>
-                            <option value="<?php echo $ls->id; ?>"><?php echo $ls->name; ?></option>
+                        <?php
+                        $list_sg = $this->db->select('*')
+                                         ->from('subgroup')
+                                         ->where('partner_id',$ls->id)
+                                         ->where('type','coach')
+                                         ->get()->result();
+
+                          foreach($list_sg as $lsg){
+                        ?>
+                            <option value="<?php echo $lsg->id; ?>"><?php echo $lsg->name; ?></option>
                         <?php } ?>
                     <?php } ?>
-                </select>                                    
+                </select>
                 <input name="subgrouplist" type="hidden" id="subgrouplist" value="">
                 <input name="partnerlistid" type="hidden" value="<?php echo $partnerlistid; ?>">
 
                 <div class="pure-g">
                     <div class="pure-u-1 text-center m-t-20" style="text-align: left !important;">
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">  
+                            <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">
                             <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
-                        <span style="font-size: 16px;margin:0px 10px;">to</span>  
+                        <span style="font-size: 16px;margin:0px 10px;">to</span>
                         <div class="frm-date" style="display:inline-block">
-                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">  
+                            <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">
                             <span class="icon dyned-icon-coach-schedules"></span>
                         </div>
                     </div>
@@ -39,13 +47,13 @@
                 <input class="pure-button btn-small btn-tertiary height-32" type="submit" name="submit" value="Rating Summary">
                 <input class="pure-button btn-small btn-green height-32" type="submit" name="submit" value="Session Report">
 
-        </div>   
-    </div>   
- 
+        </div>
+    </div>
+
 </div>
 
 
-                       
+
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/__jquery.tablesorter.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/remodal.min.js"></script>
