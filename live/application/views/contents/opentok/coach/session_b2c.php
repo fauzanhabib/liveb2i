@@ -14,6 +14,7 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/main.js"></script>
 <script type="text/javascript">
   $(document).ready(function() {
+    glo_checker = '0';
     var appointment_id = "<?php echo $appointment_id; ?>";
     // console.log('====================='+appointment_id);
     $.post("<?php echo site_url('opentok/live/store_session');?>", { 'appointment_id': appointment_id },function(data) {
@@ -202,13 +203,14 @@
           }
         });
         function check_subs(){
-          if(connectionCount == null){
+          if(connectionCount == null || isNaN(connectionCount) === true){
+            glo_checker = '1';
             location.reload();
           }
         };
         setInterval(function(){
           check_subs();
-        }, 10000);
+        }, 30000);
 
 
     OT.registerScreenSharingExtension('chrome', extensionId, 2);
@@ -1363,13 +1365,15 @@
   var stat_check;
 
   var checksess = setInterval(function() {
-    $.post("<?php echo site_url('opentok/live/check_sess');?>", { 'appointment_id': appointment_id },function(data) {
-      stat_check = data;
-      // console.log(stat_check);
-      if (stat_check == 0 || stat_check == '') {
-        closetab();
-      }
-    });
+    if(glo_checker == '0'){
+      $.post("<?php echo site_url('opentok/live/check_sess');?>", { 'appointment_id': appointment_id },function(data) {
+        stat_check = data;
+        // console.log(stat_check);
+        if (stat_check == 0 || stat_check == '') {
+          closetab();
+        }
+      });
+    }
   }, 5000);
 
   function closetab() {

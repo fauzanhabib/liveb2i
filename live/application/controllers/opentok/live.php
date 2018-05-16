@@ -822,7 +822,7 @@ class Live extends MY_Site_Controller {
         if($this->auth_manager->role() == 'STD'){
 
             $updstd = array(
-               'status' => 0
+               'status' => 1
             );
 
             $this->db->where('user_id', $id);
@@ -833,7 +833,7 @@ class Live extends MY_Site_Controller {
         } else if($this->auth_manager->role() == 'CCH'){
 
             $updcch = array(
-               'status' => 0
+               'status' => 1
             );
 
             $this->db->where('user_id', $id);
