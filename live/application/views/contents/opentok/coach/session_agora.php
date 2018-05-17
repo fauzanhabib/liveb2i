@@ -583,7 +583,7 @@ div.panel.show {
       </div>
   </div>
   <!-- modal -->
-
+    <label for="videoSource">Video source: </label><select id="videoSource">
     <div class="heading" id="heading1" style="background: #d3ffe6;border-left: solid 5px #4fa574">
       <div id="waiting" style="color: #419c68;font-weight: 400;">
         Waiting for <b><?php echo $student_name; ?></b> to join the session. Remain in the session until the end to receive your tokens.
@@ -1192,6 +1192,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
   AgoraRTC.Logger.debug('this is debug');
 
   var client, localStream, camera, microphone;
+  var global_uid, uid;
 
   var audioSelect = document.querySelector('select#audioSource');
   var videoSelect = document.querySelector('select#videoSource');
@@ -1216,7 +1217,9 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
         // console.log("Ch Name = " + channel_name);
         // console.log("=====================================");
 
-        if (document.getElementById("video").checked) {
+        // if (document.getElementById("video").checked) {
+        initagora();
+        function initagora() {
           camera = videoSource.value;
           microphone = audioSource.value;
           localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
@@ -1225,8 +1228,9 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
           //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
           if (document.getElementById("video").checked) {
             localStream.setVideoProfile('480P_1');
-
           }
+
+          global_uid = uid;
 
           // The user has granted access to the camera and mic.
           localStream.on("accessAllowed", function() {
@@ -1373,7 +1377,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
         // console.log("Ch Name = " + channel_name);
         // console.log("=====================================");
 
-        if (document.getElementById("video").checked) {
+        // if (document.getElementById("video").checked) {
           camera = videoSource.value;
           microphone = audioSource.value;
           client.unpublish(localStream, function (err) {
@@ -1383,10 +1387,10 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
           localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"bgjblkhpjchbmfeipbclmfnpohcpjcpn"});
 
           //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
-          if (document.getElementById("video").checked) {
-            localStream.setVideoProfile('720p_3');
+          // if (document.getElementById("video").checked) {
+            localStream.setVideoProfile('480_P1');
 
-          }
+          // }
 
           // The user has granted access to the camera and mic.
           localStream.on("accessAllowed", function() {
@@ -1412,7 +1416,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
           }, function (err) {
             console.log("getUserMedia failed", err);
           });
-        }
+        // }
       }, function(err) {
         console.log("Join channel failed", err);
       });
@@ -1424,6 +1428,86 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
   //audioSelect.onchange = getDevices;
   //videoSelect.onchange = getDevices;
   getDevices();
+
+  $(document).on('change','#videoSource',function(){
+    leave();
+
+
+    // console.log("============");
+    // console.log(global_uid);
+    // console.log("============");
+    $('#player_'+global_uid).hide();
+    $('#player_'+global_uid).html('');
+
+    // localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
+    //
+    // client.publish(localStream, function (err) {
+    //   // console.log("Publish local stream error: " + err);
+    // });
+
+    // client.init(app_id, function () {
+      // console.log("AgoraRTC client initialized");
+      client.join(channel_key, channel_name, null, function(uid) {
+        // console.log("User " + channel_key + " join channel successfully");
+        // console.log("=====================================");
+        // console.log("Channel Key = " + channel_key);
+        // console.log("Channel Value = " + channel.value);
+        // console.log("UID = " + uid);
+        // console.log("Ch Name = " + channel_name);
+        // console.log("=====================================");
+
+        // if (document.getElementById("video").checked) {
+        initagora();
+        function initagora() {
+          camera = this.value;
+          // console.log('===================');
+          // console.log(camera);
+          // console.log('===================');
+          microphone = audioSource.value;
+          localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
+          //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
+          if (document.getElementById("video").checked) {
+            localStream.setVideoProfile('480P_1');
+
+          }
+
+          global_uid = uid;
+
+          // The user has granted access to the camera and mic.
+          localStream.on("accessAllowed", function() {
+            // console.log("accessAllowed");
+          });
+
+          // The user has denied access to the camera and mic.
+          localStream.on("accessDenied", function() {
+            // console.log("accessDenied");
+          });
+
+          localStream.init(function() {
+            // console.log("getUserMedia successfully");
+            localStream.play('agora_local');
+
+            client.publish(localStream, function (err) {
+              // console.log("Publish local stream error: " + err);
+            });
+
+            client.on('stream-published', function (evt) {
+              // console.log("Publish local stream successfully");
+            });
+          }, function (err) {
+            // console.log("getUserMedia failed", err);
+          });
+        }
+        // }
+      }, function(err) {
+        // console.log("Join channel failed", err);
+      });
+    // }, function (err) {
+    //   // console.log("AgoraRTC client init failed", err);
+    // });
+
+
+  });
 </script>
 <script type="text/javascript">
   // console.log(extensionId);
