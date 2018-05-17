@@ -2738,7 +2738,7 @@ a.btn-primary-border:hover{
 
 .btn-noborder {
   border: none;
-  box-shadow: 1px 1px 1px #eee;
+  /*box-shadow: 1px 1px 1px #eee;*/
 }
 
 /********** end add delete button *********/
@@ -6093,15 +6093,6 @@ textarea.rating{
     /*width: 33.3333%;*/
     position: relative;
     font-size: 12px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-            align-items: flex-start;
 }
 
 .list-people .box-info {
@@ -6180,6 +6171,17 @@ textarea.rating{
 /*new list view*/
 .box-info-list-checkbox:after {
   clear: both;
+}
+.box-info-list-checkbox {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+          align-items: flex-start;
 }
 .box-info-list-checkbox input {
   margin-left: -30px;
