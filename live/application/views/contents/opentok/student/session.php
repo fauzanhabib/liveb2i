@@ -209,96 +209,96 @@ if(@$user_extract2){
 
 
     <!-- ======= -->
-            <script>
-            // Wait until the DOM has loaded before querying the document
-            $(document).ready(function(){
-                $('div.tabs2').each(function(){
-                    // For each set of tabs, we want to keep track of
-                    // which tab is active and its associated content
-                    var $active, $content, $links = $(this).find('a');
+    <script>
+      // Wait until the DOM has loaded before querying the document
+      $(document).ready(function(){
+          $('div.tabs2').each(function(){
+              // For each set of tabs, we want to keep track of
+              // which tab is active and its associated content
+              var $active, $content, $links = $(this).find('a');
 
-                    // If the location.hash matches one of the links, use that as the active tab.
-                    // If no match is found, use the first link as the initial active tab.
-                    $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+              // If the location.hash matches one of the links, use that as the active tab.
+              // If no match is found, use the first link as the initial active tab.
+              $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+              $active.addClass('active');
+
+              $content = $($active[0].hash);
+
+              // Hide the remaining content
+              $links.not($active).each(function () {
+                  $(this.hash).hide();
+              });
+
+              // Bind the click event handler
+              $(this).on('click', 'a', function(e){
+                  // Make the old tab inactive.
+                  $active.removeClass('active');
+                  $content.hide();
+
+                  // Update the variables with the new link and content
+                  $active = $(this);
+                  $content = $(this.hash);
+
+                  // Make the tab active.
+                  $active.addClass('active');
+                  $content.show();
+
+                  // Prevent the anchor's default click action
+                  e.preventDefault();
+              });
+          });
+      });
+    </script>
+    <script>
+        // Wait until the DOM has loaded before querying the document
+        $(document).ready(function(){
+            $('ul.tabs').each(function(){
+                // For each set of tabs, we want to keep track of
+                // which tab is active and its associated content
+                var $active, $content, $links = $(this).find('a');
+
+                // If the location.hash matches one of the links, use that as the active tab.
+                // If no match is found, use the first link as the initial active tab.
+                $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+                $active.addClass('active');
+
+                $content = $($active[0].hash);
+
+                // Hide the remaining content
+                $links.not($active).each(function () {
+                    $(this.hash).hide();
+                });
+
+                // Bind the click event handler
+                $(this).on('click', 'a', function(e){
+                    // Make the old tab inactive.
+                    $active.removeClass('active');
+                    $content.hide();
+
+                    // Update the variables with the new link and content
+                    $active = $(this);
+                    $content = $(this.hash);
+
+                    // Make the tab active.
                     $active.addClass('active');
+                    $('.checkB').show();
+                    $('#tabs-content1').show();
+                    $('.tabs2').show();
+                    $content.show();
 
-                    $content = $($active[0].hash);
-
-                    // Hide the remaining content
-                    $links.not($active).each(function () {
-                        $(this.hash).hide();
-                    });
-
-                    // Bind the click event handler
-                    $(this).on('click', 'a', function(e){
-                        // Make the old tab inactive.
-                        $active.removeClass('active');
-                        $content.hide();
-
-                        // Update the variables with the new link and content
-                        $active = $(this);
-                        $content = $(this.hash);
-
-                        // Make the tab active.
-                        $active.addClass('active');
-                        $content.show();
-
-                        // Prevent the anchor's default click action
-                        e.preventDefault();
-                    });
+                    // Prevent the anchor's default click action
+                    e.preventDefault();
                 });
             });
-        </script>
-        <script>
-            // Wait until the DOM has loaded before querying the document
-            $(document).ready(function(){
-                $('ul.tabs').each(function(){
-                    // For each set of tabs, we want to keep track of
-                    // which tab is active and its associated content
-                    var $active, $content, $links = $(this).find('a');
-
-                    // If the location.hash matches one of the links, use that as the active tab.
-                    // If no match is found, use the first link as the initial active tab.
-                    $active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
-                    $active.addClass('active');
-
-                    $content = $($active[0].hash);
-
-                    // Hide the remaining content
-                    $links.not($active).each(function () {
-                        $(this.hash).hide();
-                    });
-
-                    // Bind the click event handler
-                    $(this).on('click', 'a', function(e){
-                        // Make the old tab inactive.
-                        $active.removeClass('active');
-                        $content.hide();
-
-                        // Update the variables with the new link and content
-                        $active = $(this);
-                        $content = $(this.hash);
-
-                        // Make the tab active.
-                        $active.addClass('active');
-                        $('.checkB').show();
-                        $('#tabs-content1').show();
-                        $('.tabs2').show();
-                        $content.show();
-
-                        // Prevent the anchor's default click action
-                        e.preventDefault();
-                    });
-                });
-            });
-        </script>
+        });
+    </script>
     <!-- ======= -->
 
-    <style>
-    #isi_chat{
-    height: 125px;
-    overflow-y: scroll;}
-    </style>
+<style>
+  #isi_chat{
+  height: 125px;
+  overflow-y: scroll;}
+</style>
 
 <style>
    .OT_publisher .OT_video-element, .OT_subscriber .OT_video-element{

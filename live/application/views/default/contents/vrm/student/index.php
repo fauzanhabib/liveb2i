@@ -244,10 +244,10 @@
                 ?>
                     <div class="tabs-two tabs2 padding-t-20 padding-b-5 clearfix w3-animate-opacity">
                         <a href="#tabs-content1" class="square-tabs w3-animate-opacity active">
-                            <h5 class="m-t-20">First English</h5>
+                            <h5>First English</h5>
                         </a>
                         <a href="#tabs-content2" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">New Dynamic English</h5>
+                            <h5>New Dynamic English</h5>
                         </a>
                     </div>
 
@@ -288,10 +288,10 @@
                 ?>
                     <div class="tabs-two tabs2 padding-t-20 padding-b-5 clearfix w3-animate-opacity">
                         <a href="#content-b1-lia" class="square-tabs w3-animate-opacity active">
-                            <h5 class="m-t-13">New Dynamic English</h5>
+                            <h5>New Dynamic English</h5>
                         </a>
                         <a href="#content-b1-fe" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">The Lost<br>Secret</h5>
+                            <h5>The Lost<br>Secret</h5>
                         </a>
                     </div>
 
@@ -334,16 +334,16 @@
                 ?>
                     <div class="tabs-two tabs2 padding-t-20 padding-b-5 clearfix w3-animate-opacity">
                         <a href="#tabs-nde3" class="square-tabs w3-animate-opacity active">
-                            <h5 class="m-t-13">New Dynamic English</h5>
+                            <h5>New Dynamic English</h5>
                         </a>
                         <a href="#tabs-dbe3" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-5">Dynamic Business English</h5>
+                            <h5>Dynamic Business English</h5>
                         </a>
                         <a href="#tabs-tls3" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">The Lost<br>Secret</h5>
+                            <h5>The Lost<br>Secret</h5>
                         </a>
                         <a href="#tabs-ebn3" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">English By The Numbers</h5>
+                            <h5>English By The Numbers</h5>
                         </a>
                     </div>
 
@@ -415,16 +415,16 @@
                 ?>
                     <div class="tabs-two tabs2 padding-t-20 padding-b-5 clearfix w3-animate-opacity">
                         <a href="#content-nde4" class="square-tabs w3-animate-opacity active">
-                            <h5 class="m-t-13">New Dynamic English</h5>
+                            <h5>New Dynamic English</h5>
                         </a>
                         <a href="#content-dbe4" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-5">Dynamic Business English</h5>
+                            <h5>Dynamic Business English</h5>
                         </a>
                         <a href="#content-fib4" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">Functioning In Business</h5>
+                            <h5>Functioning In Business</h5>
                         </a>
                         <a href="#content-ebn4" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">English By The Numbers</h5>
+                            <h5>English By The Numbers</h5>
                         </a>
                     </div>
 
@@ -485,22 +485,22 @@
                 ?>
                     <div class="tabs-two tabs2 padding-t-20 padding-b-5 clearfix w3-animate-opacity">
                         <a href="#tabs-nde5" class="square-tabs w3-animate-opacity active">
-                            <h5 class="m-t-13">New Dynamic English</h5>
+                            <h5>New Dynamic English</h5>
                         </a>
                         <a href="#tabs-dbe5" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-5">Dynamic Business English</h5>
+                            <h5>Dynamic Business English</h5>
                         </a>
                         <a href="#tabs-fib5" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">Functioning In Business</h5>
+                            <h5>Functioning In Business</h5>
                         </a>
                         <a href="#tabs-ebn5" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">English By The Numbers</h5>
+                            <h5>English By The Numbers</h5>
                         </a>
                         <a href="#tabs-dlg5" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-20">Dialogue</h5>
+                            <h5>Dialogue</h5>
                         </a>
                         <a href="#tabs-als5" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">Advanced Listening</h5>
+                            <h5>Advanced Listening</h5>
                         </a>
                     </div>
 
@@ -600,19 +600,19 @@
                 ?>
                     <div class="tabs-two tabs2 padding-t-20 padding-b-5 clearfix w3-animate-opacity">
                         <a href="#content-nde6" class="square-tabs w3-animate-opacity active">
-                            <h5 class="m-t-13">New Dynamic English</h5>
+                            <h5>New Dynamic English</h5>
                         </a>
                         <a href="#content-dbe6" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-5">Dynamic Business English</h5>
+                            <h5>Dynamic Business English</h5>
                         </a>
                         <a href="#content-dlg6" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-20">Dialogue</h5>
+                            <h5>Dialogue</h5>
                         </a>
                         <a href="#content-ebn6" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">English By The Numbers</h5>
+                            <h5>English By The Numbers</h5>
                         </a>
                         <a href="#content-als6" class="square-tabs w3-animate-opacity">
-                            <h5 class="m-t-13">Advanced Listening</h5>
+                            <h5>Advanced Listening</h5>
                         </a>
                     </div>
 
@@ -813,7 +813,7 @@ if($(document).width() < 490){
         pointLabelFontFamily : '"webFont"',
         pointLabelFontSize : 18,
         pointLabelFontColor : '#666',
-        pointotRadius : 3,
+        pointDotRadius : 3,
         pointDotStrokeWidth : 1,
         pointHitDetectionRadius : 25,
         datasetStroke : true,

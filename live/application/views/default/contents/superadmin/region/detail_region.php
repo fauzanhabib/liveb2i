@@ -49,7 +49,7 @@
         <?php if($status_set_setting == 1){ ?>
         <a href="<?php echo site_url('superadmin/region/setting/'.$data_admin[0]->id);?>">
             <button class="btn-small border-1-grey bg-white-fff">
-                <span>Region Settings <i class="icon dyned-icon-setting"></i></span>
+                <span>Region Settings</span>
             </button>
         </a>
     <?php } ?>
@@ -143,7 +143,7 @@
             </ul>
         </div> -->
         <form action="<?php echo site_url('superadmin/region/delete_partner/'.$this->uri->segment(4));?>" method="POST">
-            <div class="box bg-white padding-l-20">
+            <div class="box bg-white">
 
                 <div class="delete-add-btn right">
                 <?php if($this->auth_manager->role() == 'RAD') {
@@ -158,13 +158,13 @@
                     <div class="btn-noborder btn-normal bg-white left"><a href="<?php echo site_url($role_link.'/manage_partner/add_partner/'.$data_admin[0]->id);?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Affiliate</em></a></div>
                     <button type="submit" name="_submit" value="delete" class="btn-noborder btn-normal bg-white" onclick="return confirm('Are you sure you want to delete?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Delete Affiliate</em></a></button>
                     <?php if($this->auth_manager->role() == 'RAD'){ ?>
-                    <button type="submit" name="_submit" value="move" class="btn-noborder btn-normal bg-white" onclick="return confirm('Are you sure you want to move?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Move Affiliate</em></a></button>
+                    <button type="submit" name="_submit" value="move" class="btn-noborder btn-normal bg-white" onclick="return confirm('Are you sure you want to move?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-arrow-62-24.png" width="16" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-green">Move Affiliate</em></a></button>
                     <?php } ?>
                 </div>
 
                 <div class="padding-t-20">
                     <div class="checkbox-selectAll padding-b-20 padding-t-5">
-                        <input type="checkbox" id="checkbox-1-1" name="check_list[]" value="Region-1" class="regular-checkbox checkAll" /><label class="m-l-min35" for="checkbox-1-1"></label><em>&nbsp;&nbsp;Select All</em>
+                        <input type="checkbox" id="checkbox-1-1" name="check_list[]" value="Region-1" class="regular-checkbox checkAll" /><label for="checkbox-1-1"></label><em>&nbsp;&nbsp;Select All</em>
                     </div>
                     <div class="box-lists pure-g">
                         <?php
@@ -173,7 +173,7 @@
                             
                         ?>
                         <div class="box-info-list-checkbox grids list-people pure-u-1 pure-u-sm-12-24 pure-u-md-12-24 pure-u-lg-8-24 padding-b-20">
-                            <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $p->id;?>" class="regular-checkbox" /><label class="left m-l-min35" for="checkbox-1-<?php echo $no;?>"></label>
+                            <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $p->id;?>" class="regular-checkbox" /><label for="checkbox-1-<?php echo $no;?>"></label>
                             <div class="box-info-list">
                                 <div class="list-profile-pic left">
                                     <a href="<?php echo site_url('superadmin/manage_partner/detail/'.$p->id);?>" class="list-profile-pic-pic">

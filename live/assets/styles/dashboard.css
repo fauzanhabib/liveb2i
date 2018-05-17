@@ -548,7 +548,8 @@ label {
 }
 
 .border-1-grey {
-  border: 1px solid #939393;
+  border: 1px solid #f2f2f2;
+  box-shadow: 1px 1px 1px #eee;
 }
 
 .border-1-ccc {
@@ -2696,6 +2697,27 @@ a.btn-primary-border:hover{
   color: #3baae3!important;
   fill: #3baae3;
   stroke: #3baae3;
+  font-size: 0.8em;
+  font-weight: bold;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+          align-items: center;
+}
+
+.btn-goBack button div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+          align-items: center;
+}
+
+.btn-goBack button div svg {
+  width: 16px;
 }
 
 .btn-setting button {
@@ -2710,8 +2732,13 @@ a.btn-primary-border:hover{
 
 }
 
+.delete-add-btn .btn-noborder {
+  margin: 0 5px;
+}
+
 .btn-noborder {
   border: none;
+  box-shadow: 1px 1px 1px #eee;
 }
 
 /********** end add delete button *********/
@@ -4588,6 +4615,7 @@ figure:hover {
 }
 .tabs-c > .square-tabs {
   width: 15.55%!important;
+  border-radius: 3px;
 }
 .tabs-two a {
   color: #2b89b9;
@@ -5079,6 +5107,16 @@ figure:hover {
 .divider-right {
   margin: auto 23px auto -25px;
   /*border-right: 1px solid #f3f3f3;*/
+}
+
+.title__backBtn {
+  padding: 0 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 /******************table*********************/
@@ -6055,6 +6093,15 @@ textarea.rating{
     /*width: 33.3333%;*/
     position: relative;
     font-size: 12px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+            align-items: flex-start;
 }
 
 .list-people .box-info {
@@ -6142,6 +6189,7 @@ textarea.rating{
   width: 290px;
   border: 1px solid #eeefef;
   background-color: #fff;
+  margin: 0 0 0 10px;
 }
 .box-info-list:after {
   clear: both;
@@ -6500,6 +6548,7 @@ div.panel.show {
 
 .checkbox-selectAll {
   position: relative;
+  margin: 0 0 0 17px;
 }
 
 .checkbox-selectAll em {
@@ -8464,6 +8513,12 @@ label {
   .delete-add-btn {
     float: none!important;
     clear: both;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+            justify-content: space-between;
   }
 
   .padding-l-240 {
@@ -9075,6 +9130,24 @@ label {
   }
 }
 
+@media screen and (max-width: 425px) {
+  .content-center .heading {
+    color: #10395c;
+    padding: 10px 10px!important;
+  }
+  .delete-add-btn {
+    flex-direction: column;
+  }
+  .delete-add-btn button {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .delete-add-btn .btn-noborder {
+    margin: 5px 0;
+  }
+}
+
 @media screen and (max-width: 414px){
 
   .heading > .padding-l-10 {
@@ -9284,7 +9357,7 @@ label {
 
 @media screen and (max-width: 320px){ 
   .box .content {
-    padding: 0;
+    padding: 0 10px;
   }
   .tag > .padding-l-18 {
     padding-left: 0!important;
