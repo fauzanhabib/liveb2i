@@ -46,8 +46,8 @@
     <div class="left-tabs pure-menu pure-menu-horizontal padding-t-17 padding-l-170">
         <ul class="pure-menu-list padding-t-18 right">
             <li class="pure-menu-item padding-tb-9 no-hover">
-                <button class="btn-small border-1-blue bg-white-fff height38">
 				<a href="<?php echo site_url('student_partner/subgroup') ?>" class="text-cl-tertiary">
+                <button class="btn-small border-1-blue bg-white-fff height38">
                 <div class="left padding-r-5">
                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                     viewBox="0 0 40 40" style="enable-background:new 0 0 40 40;" xml:space="preserve" class="width15">
