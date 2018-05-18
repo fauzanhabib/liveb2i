@@ -460,7 +460,7 @@ if(@$user_extract2){
       </div>
   </div>
   <!-- modal -->
-    <label for="videoSource">Video source: </label><select id="videoSource">
+  <label for="videoSource">Video source: </label><select id="videoSource"></select>
     <div class="heading" id="heading1" style="background: #d3ffe6;border-bottom: solid 1px #a3f5c7;border-top: solid 1px #a3f5c7;">
       <div id="waiting" style="color: #419c68;font-weight: 400;">
         Waiting for <b><?php echo $student_name; ?></b> to join the session. Remain in the session until the end in order to receive a refund of your tokens.

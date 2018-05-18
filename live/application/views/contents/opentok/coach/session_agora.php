@@ -583,7 +583,7 @@ div.panel.show {
       </div>
   </div>
   <!-- modal -->
-    <label for="videoSource">Video source: </label><select id="videoSource">
+    <label for="videoSource">Video source: </label><select id="videoSource"></select>
     <div class="heading" id="heading1" style="background: #d3ffe6;border-left: solid 5px #4fa574">
       <div id="waiting" style="color: #419c68;font-weight: 400;">
         Waiting for <b><?php echo $student_name; ?></b> to join the session. Remain in the session until the end to receive your tokens.
@@ -662,7 +662,7 @@ div.panel.show {
                 <label for="audioSource">Audio source: </label><select id="audioSource"></select>
                 </div>
                 <div class="select">
-                <label for="videoSource">Video source: </label><select id="videoSource"></select>
+                <!-- <label for="videoSource">Video source: </label><select id="videoSource"></select> -->
                 </div>
                 <input id="channel" type="text" value="1000" size="4"></input>
                 <input id="video" type="checkbox" checked></input>
@@ -1048,7 +1048,7 @@ var countdownTimer3 = setInterval('timer3()', 1000);
 $('[data-tooltip]:after').css({'width':'115px'});
 
 // var student_vrm = {"cert_level_completion": {"A1": 24, "A2": 10, "B1": 25, "B2": 56, "C1": 60, "C2": 33}, "cert_plan": 2, "headphone": {"percent_to_goal": 45, "raw_value": 213}, "hours_per_week": {"percent_to_goal": null, "raw_value": 0.7}, "initial_pt_score": 2.0, "last_pt_score": 2.0, "mic": {"percent_to_goal": 80, "raw_value": 397}, "mt": {"percent_to_goal": 60, "raw_value": 48}, "repeats": {"percent_to_goal": 102, "raw_value": 486}, "sr": {"percent_to_goal": 98, "raw_value": 73}, "study_level": 2.2, "wss": {"percent_to_goal": 87, "raw_value": 1.9}};
-var student_vrm = <?php echo $student_vrm_json ?>;
+var student_vrm = "<?php echo $student_vrm_json; ?>";
 
 
 function Value(value, metadata){
