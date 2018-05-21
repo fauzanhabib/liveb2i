@@ -211,9 +211,9 @@
             location.reload();
           }
         };
-        setInterval(function(){
-          check_subs();
-        }, 30000);
+        // setInterval(function(){
+        //   check_subs();
+        // }, 30000);
 
     OT.registerScreenSharingExtension('chrome', extensionId, 2);
 
