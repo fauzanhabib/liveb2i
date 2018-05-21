@@ -155,14 +155,16 @@
                                     $tooltip   = 0;
                                 }
 
-                                // echo "<pre>";
-                                // print_r($tooltip);
-                                // exit();
+    
                             ?>
                             <div data-tooltip="<?php echo number_format($classrate);?>% (<?php echo(round($tooltip,1));?> of 5 Stars)">
                                 <div class="star-rating">
                                     <span style="width:<?php echo $classrate; ?>%"></span>
                                 </div>
+                            </div>
+                            <div class="star-ratings-css" data-tooltip="<?php echo number_format($classrate);?>% (<?php echo(round($tooltip,1));?> of 5 Stars)">
+                              <div class="star-ratings-css-top" style="width: <?php echo $classrate; ?>%"><label>★</label><label>★</label><label>★</label><label>★</label><label>★</label></div>
+                              <div class="star-ratings-css-bottom"><label>★</label><label>★</label><label>★</label><label>★</label><label>★</label></div>
                             </div>
                             <h5>
                                 <?php 
