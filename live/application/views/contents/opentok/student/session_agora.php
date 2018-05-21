@@ -13,7 +13,8 @@ if(@$user_extract2){
 
 ?>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/main.js"></script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-2.2.3.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-2.2.3.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 <!-- <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script> -->
 <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.2.0.js"></script>
