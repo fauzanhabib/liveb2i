@@ -202,15 +202,15 @@
             console.log('A client disconnected.');
           }
         });
-        function check_subs(){
-          if(connectionCount == null || isNaN(connectionCount) === true){
-            glo_checker = '1';
-            location.reload();
-          }
-        };
-        setInterval(function(){
-          check_subs();
-        }, 30000);
+        // function check_subs(){
+        //   if(connectionCount == null || isNaN(connectionCount) === true){
+        //     glo_checker = '1';
+        //     location.reload();
+        //   }
+        // };
+        // setInterval(function(){
+        //   check_subs();
+        // }, 30000);
 
 
     OT.registerScreenSharingExtension('chrome', extensionId, 2);

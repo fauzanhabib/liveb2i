@@ -204,13 +204,13 @@
             // console.log('A client disconnected.');
           }
         });
-        function check_subs(){
-          console.log(isNaN(connectionCount));
-          if(connectionCount == null || isNaN(connectionCount) === true){
-            glo_checker = '1';
-            location.reload();
-          }
-        };
+        // function check_subs(){
+        //   console.log(isNaN(connectionCount));
+        //   if(connectionCount == null || isNaN(connectionCount) === true){
+        //     glo_checker = '1';
+        //     location.reload();
+        //   }
+        // };
         // setInterval(function(){
         //   check_subs();
         // }, 30000);
