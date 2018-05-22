@@ -34,7 +34,8 @@
     return "If you close this page, you will not get a token from this session.";
   };
 </script>
-<script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-2.2.3.min.js"></script>
+<!-- <script type="text/javascript" src="<?php echo base_url();?>assets/js/jquery-2.2.3.min.js"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 
 <script>
@@ -136,6 +137,7 @@
         function initializeSession() {
             session.connect(token, function(error) {
                 var publisherproperties = {insertMode: 'append',
+                                      facingMode: 'user',
                                       width: '100%',
                                       resolution: "640x480",
                                       frameRate:15,
@@ -161,7 +163,7 @@
                                             frameRate:15, name: "<?php echo $student_name;?>"};
                 subscriber = session.subscribe(event.stream,
                 'subscriberContainer',
-                subscriberProperties,
+                subscriberProperties,{testNetwork: true},
                 function (error) {
                   if (error) {
                     console.log(error);
