@@ -9281,7 +9281,7 @@ label {
     filter: grayscale(0);
   }
   .rdr-2 > .radar-ainner {
-    margin-left: -100px;
+    margin-left: auto;
   }
   .content > .box-lists {
     padding-left: 0!important;
@@ -9353,7 +9353,7 @@ label {
     padding-left: 50px!important;
   }
   .rdr-2 > .radar-ainner {
-    margin-left: -124px;
+    /*margin-left: -124px;*/
   }
 }
 
