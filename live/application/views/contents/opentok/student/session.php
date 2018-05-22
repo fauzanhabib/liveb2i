@@ -44,6 +44,7 @@ if(@$user_extract2){
 
         session.connect(token, function(error) {
             var publisherproperties = {insertMode: 'append',
+                                  facingMode: 'user',
                                   width: '100%',
                                   resolution: "640x480",
                                   frameRate:15,
@@ -69,7 +70,7 @@ if(@$user_extract2){
                                         frameRate:15, name: "<?php echo $user_extract->fullname?>"};
             subscriber = session.subscribe(event.stream,
             'subscriberContainer',
-            subscriberProperties,
+            subscriberProperties,{testNetwork: true},
             function (error) {
               if (error) {
                 console.log(error);

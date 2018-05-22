@@ -137,6 +137,7 @@
         function initializeSession() {
             session.connect(token, function(error) {
                 var publisherproperties = {insertMode: 'append',
+                                      facingMode: 'user',
                                       width: '100%',
                                       resolution: "640x480",
                                       frameRate:15,
@@ -162,7 +163,7 @@
                                             frameRate:15, name: "<?php echo $student_name;?>"};
                 subscriber = session.subscribe(event.stream,
                 'subscriberContainer',
-                subscriberProperties,
+                subscriberProperties,{testNetwork: true},
                 function (error) {
                   if (error) {
                     console.log(error);
