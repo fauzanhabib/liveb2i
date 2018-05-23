@@ -73,7 +73,7 @@
                     <div class="box-capsule m-t-20 margin-auto font-14 width190">
                         <span>Spider Graph For Last 8 Weeks</span>
                     </div>
-                    <div class="margin-auto" style="display:flex;">
+                    <div class="margin-auto studashboard--spdr" style="display:flex;">
                         <div class="spdr-graph rdr-2 spdr-resp">
                             <div id="chart-area" class="radar-ainner font-12">
                                 <div class="hexagonal height-0 prelative">

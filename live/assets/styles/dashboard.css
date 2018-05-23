@@ -7300,9 +7300,9 @@ label {
 /********coach********/
 /*******student*******/
 .rdr-2 > .radar-ainner {
-  top: 305px;
-  left: 208px;
-  /*position: absolute;*/
+  /*top: 305px;
+  left: 208px;*/
+  position: absolute;
 }
 /*******student*******/
 
@@ -9268,7 +9268,7 @@ label {
     padding-bottom: 25px;
   }
   .margin-auto .spdr-graph {
-    margin-left: -100px;
+    margin-left: 0;
   }
   .block-rm-data .block {
     height: 0px;
@@ -9281,7 +9281,9 @@ label {
     filter: grayscale(0);
   }
   .rdr-2 > .radar-ainner {
-    margin-left: auto;
+    width: 100%;
+    height: 100%;
+    margin-left: 0;
   }
   .content > .box-lists {
     padding-left: 0!important;
@@ -9339,6 +9341,19 @@ label {
   }
   .view-session-details .session-details-view {
     padding: 10px 10px!important;
+  }
+
+  .spdr-graph {
+    width: 100%;
+    height: 70%;
+  }
+  .studashboard--spdr {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  }
+  .studashboard--spdr > .rdr-2 > .radar-ainner {
+    position: relative;
   }
 }
 
