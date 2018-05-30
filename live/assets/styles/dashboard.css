@@ -9282,7 +9282,7 @@ label {
   }
   .rdr-2 > .radar-ainner {
     width: 100%;
-    height: 100%;
+    /*height: 100%;*/
     margin-left: 0;
   }
   .content > .box-lists {
