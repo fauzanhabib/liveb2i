@@ -14,7 +14,7 @@
         <div class="box">
 
             <?php
-                echo form_open('student_partner/adding/create_multiple_student2/'.$subgroup_id, 'role="form" class="pure-form pure-form-aligned" name="import" method="post" enctype="multipart/form-data"');
+                echo form_open('student_partner/adding/create_multiple_student3/'.$subgroup_id, 'role="form" class="pure-form pure-form-aligned" name="import" method="post" enctype="multipart/form-data"');
             ?>
                 <fieldset>
                     <div class="pure-control-group">
@@ -34,13 +34,13 @@
 
 
                             <!-- <a href="<?php echo site_url('student_partner/subgroup/list_student/'.$subgroup_id); ?>" class="pure-button btnpure-button btn-red btn-small">CANCEL</a>                  -->
-                        </div>    
+                        </div>
                     </div>
                 </fieldset>
             <?php echo form_close(); ?>
         </div>
     </div>
-</div>				
+</div>
 
 
 <!-- Modal -->
@@ -74,7 +74,7 @@
         var day = ("0" + (now.getDate())).slice(-2);
         var month = ("0" + (now.getMonth() + 1)).slice(-2);
         var resultDate = now.getFullYear() + "-" + (month) + "-" + (day);
-        
+
         $('.datepicker').datepicker({
             endDate: resultDate,
             format: 'yyyy-mm-dd',
@@ -95,4 +95,3 @@
     cursor: pointer;
 }
 </style>
-

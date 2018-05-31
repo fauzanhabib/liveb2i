@@ -13,6 +13,8 @@
         "twig/twig": "^1.24",
         "guzzlehttp/guzzle": "~6.0",
         "psr/log": "^1.0",
-        "guzzle/guzzle": "^3.9"
+        "guzzle/guzzle": "^3.9",
+        "phpoffice/phpspreadsheet": "^1.2",
+        "phpzip/phpzip": "^2.0"
     }
 }
