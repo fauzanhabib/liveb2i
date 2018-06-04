@@ -1,4 +1,8 @@
 <?php
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
@@ -37,6 +41,7 @@ class adding extends MY_Site_Controller {
         $this->load->library('send_email');
         $this->load->library('send_sms');
         $this->load->library('common_function');
+        $this->load->library('excel_reader');
 
         //checking user role and giving action
         if (!$this->auth_manager->role() || $this->auth_manager->role() != 'SPR') {
@@ -876,9 +881,11 @@ class adding extends MY_Site_Controller {
             redirect('student_partner/adding/multiple_student/'.@$subgroup_id);
         }
 
+        // phpinfo();exit;
+
 
         $this->load->library('excel');
-
+        // echo "<pre>";print_r($file);exit();
         $objPHPExcel = PHPExcel_IOFactory::load($file);
         $cell_collection = $objPHPExcel->getActiveSheet()->getCellCollection();
         $data_student = '';
@@ -1072,6 +1079,229 @@ class adding extends MY_Site_Controller {
 
     }
 
+    public function create_multiple_student3($subgroup_id = '') {
+        $id = $this->auth_manager->userid();
+        $id_partner = $this->auth_manager->partner_id($id);
+
+        if ((!isset($_POST["submit"])) && (!isset($_POST["preview"]))) {
+            $this->messages->add('invalid Action', 'warning');
+            redirect('student_partner/adding/multiple_student/'.@$subgroup_id);
+        }
+        $file = $_FILES['file']['tmp_name'];
+        $file_type = $_FILES['file']['type'];
+        if($file_type != 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){
+            $this->messages->add('invalid type file', 'warning');
+            redirect('student_partner/adding/multiple_student/'.@$subgroup_id);
+        }
+        if (!$file) {
+            $this->messages->add('invalid Action', 'warning');
+            redirect('student_partner/adding/multiple_student/'.@$subgroup_id);
+        }
+        // $zip = new ZipArchive();
+        // phpinfo();exit;
+        $reader = \PhpOffice\PhpSpreadsheet\IOFactory::createReader('Xlsx');
+        // $reader2 = \PhpOffice\PhpSpreadsheet::getCoordinates('Xlsx');
+        // $spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
+        // $reader = new Xlsx();
+        $spreadsheet = $reader->load($file);
+        // $excelread = $this->excel_reader->read($file);
+
+        // echo "<pre>";print_r($spreadsheet);exit();
+        // $this->load->library('excel');
+
+        // $objPHPExcel = PHPExcel_IOFactory::load($file);
+        $cell_collection = $spreadsheet->getActiveSheet()->getCoordinates();
+        $data_student = array();
+        $count_temp = 0;
+        foreach ($cell_collection as $cell) {
+         $column = $spreadsheet->getActiveSheet()->getCell($cell)->getColumn();
+         $row = $spreadsheet->getActiveSheet()->getCell($cell)->getRow();
+         $data_value = $spreadsheet->getActiveSheet()->getCell($cell)->getValue();
+         // echo $data_value;exit();
+             if ($row == 1) {
+                 $data_student[$row][$column] = $data_value;
+                 $count_temp++;
+             } else {
+                 $data_student[$row][$column] = $data_value;
+             }
+
+        }
+        // echo "<pre>";print_r($data_student);exit();
+
+        $region_id = $this->auth_manager->region_id($id_partner);
+
+        $get_status_setting_region = $this->specific_settings_model->get_specific_settings($region_id,'region');
+
+        $max_student_supplier = '';
+        $max_token_for_student = '';
+
+        if($get_status_setting_region[0]->status_set_setting == 0){
+            $get_setting = $this->global_settings_model->get_partner_settings();
+            $max_student_supplier = $get_setting[0]->max_student_supplier;
+            $max_token_for_student = $get_setting[0]->max_token_for_student;
+        } else {
+            $get_setting = $this->specific_settings_model->get_partner_settings($id_partner);
+            $max_student_supplier = $get_setting[0]->max_student_supplier;
+            $max_token_for_student = $get_setting[0]->max_token_for_student;
+        }
+
+        $get_user_token = $this->user_token_model->get_token($id,'user');
+        $user_token = $get_user_token[0]->token_amount;
+
+        $student_member = $this->db->select('member_id')
+                                   ->from('creator_members')
+                                   ->where('creator_id', $this->auth_manager->userid())
+                                   ->get();
+
+
+        $max_student = $max_student_supplier - $student_member->num_rows();
+
+
+
+        $cekidot = [];
+        foreach ($data_student as $key => $value) {
+          // echo "<pre>";print_r($key);exit('c');
+            if($key > 1){
+                $fullname = @$value['B'];
+                $email = @$value['C'];
+                $email_dyned_pro = @$value['D'];
+                $server = @$value['E'];
+                $birthdate = @$value['F'];
+                // $gender = @$value['G'];
+                $phone = @$value['G'];
+                $tokent_amount_request = @$value['H'];
+                // $timezone = @$value['J'];
+                $password = $this->generateRandomString();
+
+                // echo "<pre>";print_r($email);exit('c');
+                $date_of_birth = date('Y-m-d', strtotime($birthdate));
+                // $date_of_birth = date('Y-m-d',(strtotime($birthdate) - 25569) * 86400);
+
+
+                if (isset($_POST["preview"])) {
+
+
+                    $status_email_dyned_pro = 'Enable';
+
+                    if(empty($email_dyned_pro)){
+                       $status_email_dyned_pro = 'Email '.$email_dyned_pro.' Not Found';
+
+                    }
+
+                    // check jika token user tidak mencukupi
+                    if($user_token < $tokent_amount_request){
+                        $status_token = 'Your token not enough ';
+                    }
+
+                     // check token student
+                    $get_token = $this->user_token_model->get_token($id,'user');
+                    $student_token = $get_token[0]->token_amount;
+                    // =================
+
+                    if($tokent_amount_request > $max_token_for_student){
+                        $status_token_max = 'Exceeded Maximum Token';
+
+                    }
+
+                    // update token
+                    $update_token = $user_token - $tokent_amount_request;
+                    // echo "<pre>";print_r($update_token);exit('c');
+                    /* ==============
+                        proses insert
+                    ================*/
+                    if (!$this->isValidDynedProID($email_dyned_pro)) {
+                            $status_email_dyned_pro = 'DynEd Pro ID ' . $email_dyned_pro . ' has been used';
+
+                    }
+
+                    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        $this->messages->add('Invalid Email ' . $email, 'warning');
+                    } else {
+
+                        if (!$this->isValidEmail($email_dyned_pro)) {
+                            $status_email_dyned_pro = 'DynEd Pro ID ' . $email_dyned_pro . ' has been used';
+
+                        } else {
+                            // checking token
+                            $request_token = $this->input->post('token_amount');
+
+                            // =======================
+
+                            // check token student_partner
+                            $get_user_token = $this->user_token_model->get_token($id,'user');
+                            $user_token = $get_user_token[0]->token_amount;
+
+
+
+                            // Inserting user profile data
+                            //$user_id_to_partner_id = $this->identity_model->get_identity('profile')->select('partner_id')->where('user_id', $this-auth_manager->userid())->get();
+
+                            $email_student = '';
+
+                            $valid_email = $this->isValidEmail($email);
+
+                            $status_email = '';
+                            if($valid_email == 1){
+                                $status_email = 'Enable';
+                            } else if($valid_email == 0){
+                                $status_email = $email." has been used";
+                            }
+
+
+                            $profile = array(
+                                'profile_picture' => 'uploads/images/profile.jpg',
+                                'fullname' => $fullname,
+                                // 'gender' => $gender,
+                                'date_of_birth' => $date_of_birth,
+                                'phone' => $phone,
+                                'dyned_pro_id' => $email_dyned_pro,
+                                'server_dyned_pro' => $server,
+                                'pt_score' => '2.5',
+                                // 'pt_score' => $this->cert_studying22($email_dyned_pro,$server),
+                                'partner_id' => $this->auth_manager->partner_id(),
+                                'subgroup_id' => $subgroup_id,
+                                'creator_id' => $this->auth_manager->userid(),
+                                'email' => $email,
+                                'password' => $this->phpass->hash($password),
+                                'role_id' => 1,
+                                'status' => 'disable',
+                                'status_email' => $status_email,
+                                'status_email_dyned_pro' => $status_email_dyned_pro,
+                                'token_for_student' => $tokent_amount_request,
+                                'my_token' => $user_token,
+                                'max_upload_student' => $max_student,
+                                // 'timezone' => $timezone
+                            );
+
+                            // echo "<pre>";print_r($profile);exit();
+                            // insert to table temp_multiple_students
+
+                            $this->db->insert('temp_multiple_students', $profile);
+                         }
+
+                    }
+                }
+                /*============
+                  end process
+                ============*/
+
+
+            }
+
+
+        }
+
+        // if($cekidot){
+        //     $this->session->set_flashdata('my_super_array', $cekidot);
+        //     redirect('student_partner/adding/statusPTScore/'.$subgroup_id);
+        //     exit();
+        // }
+        // echo "<pre>";print_r($data_student);exit('b');
+        $this->session->set_flashdata('start','start');
+        redirect('student_partner/adding/preview');
+
+    }
+
     function preview(){
 
         $this->template->title = 'Preview Add Multiple Students';
@@ -1115,16 +1345,17 @@ class adding extends MY_Site_Controller {
 
     }
 
-    function submit_multiple_sudents(){
+    public function submit_multiple_sudents(){
+      // exit('a');
         $creator_id = $this->auth_manager->userid();
 
 
         $data = $this->db->select('*')->from('temp_multiple_students')->where('creator_id',$creator_id)->get()->result();
 
-
+        // echo "<pre>";print_r($data);exit;
         foreach ($data as $d) {
 
-            $status_insert = '';
+            $status_insert = 'insert';
 
             if($d->pt_score == '0'){
                 $status_insert = ",DynEd Pro ID can't be used";
@@ -1182,7 +1413,7 @@ class adding extends MY_Site_Controller {
                 $this->db->update('temp_multiple_students',array('message' => $status_insert));
             }
 
-            if($d->status_email_dyned_pro != 'enable'){
+            if($d->status_email_dyned_pro != 'Enable'){
                 $status_insert .= ',DynEd Pro id already registered';
                 $this->db->where('id',$d->id);
                 $this->db->update('temp_multiple_students',array('message' => $status_insert));
@@ -1283,7 +1514,7 @@ class adding extends MY_Site_Controller {
                         $n++;
                     }
 
-                    $this->db->insert_batch('coaching_scripts', $datascript);
+                    // $this->db->insert_batch('coaching_scripts', $datascript);
                 // ======
 
                 // Inserting and checking to profile table then storing it into users_profile table
@@ -1412,8 +1643,9 @@ class adding extends MY_Site_Controller {
 
                 $this->db->where('id',$d->id);
                 $this->db->update('temp_multiple_students',array('message' => 'Succeded'));
-
+                // exit('a');
             } else {
+              // echo $status_insert;exit('b');
                 $this->db->where('id',$d->id);
                 $this->db->update('temp_multiple_students',array('message' => $status_insert));
                 // update status gagal insert
@@ -1608,13 +1840,13 @@ class adding extends MY_Site_Controller {
         $a = $this->call2->getDataJson();
         $b = json_decode($a);
 
-
+        // echo "<pre>";print_r($a);exit();
         if(@$b == ''){
             $cert_studying = 0;
         } else if(@$b->error == 'Invalid student email'){
                 $cert_studying = 0;
         } else {
-                $cert_studying = $b->cert_studying;
+                $cert_studying = @$b->cert_studying;
         }
 
 

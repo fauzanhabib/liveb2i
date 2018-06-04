@@ -14,6 +14,10 @@ class ComposerStaticInit05f659faee187b7cc78e4563aea316b7
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'ZipMerge\\' => 9,
+        ),
         'T' => 
         array (
             'Twig\\' => 5,
@@ -26,9 +30,12 @@ class ComposerStaticInit05f659faee187b7cc78e4563aea316b7
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
+            'PhpOffice\\PhpSpreadsheet\\' => 25,
+            'PHPZip\\Zip\\' => 11,
         ),
         'O' => 
         array (
@@ -56,6 +63,10 @@ class ComposerStaticInit05f659faee187b7cc78e4563aea316b7
     );
 
     public static $prefixDirsPsr4 = array (
+        'ZipMerge\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/grandt/phpzipmerge/src/ZipMerge',
+        ),
         'Twig\\' => 
         array (
             0 => __DIR__ . '/..' . '/twig/twig/src',
@@ -72,6 +83,10 @@ class ComposerStaticInit05f659faee187b7cc78e4563aea316b7
         array (
             0 => __DIR__ . '/..' . '/slim/slim/Slim',
         ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
@@ -83,6 +98,14 @@ class ComposerStaticInit05f659faee187b7cc78e4563aea316b7
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'PhpOffice\\PhpSpreadsheet\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpspreadsheet/src/PhpSpreadsheet',
+        ),
+        'PHPZip\\Zip\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpzip/phpzip/src/Zip',
         ),
         'OpenTok\\' => 
         array (
@@ -146,12 +169,19 @@ class ComposerStaticInit05f659faee187b7cc78e4563aea316b7
         ),
     );
 
+    public static $classMap = array (
+        'RelativePath' => __DIR__ . '/..' . '/grandt/relativepath/RelativePath.php',
+        'com\\grandt\\BinString' => __DIR__ . '/..' . '/grandt/binstring/BinString.php',
+        'com\\grandt\\BinStringStatic' => __DIR__ . '/..' . '/grandt/binstring/BinStringStatic.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit05f659faee187b7cc78e4563aea316b7::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit05f659faee187b7cc78e4563aea316b7::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit05f659faee187b7cc78e4563aea316b7::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit05f659faee187b7cc78e4563aea316b7::$classMap;
 
         }, null, ClassLoader::class);
     }
