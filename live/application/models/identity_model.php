@@ -274,7 +274,7 @@ class identity_model extends MY_Model {
                     @$subgroup_only[] = $this->db->select('cgr.subgroup_id')->from('coach_group_relations cgr')->join('student_supplier_relations ssr', 'cgr.class_matchmaking_id = ssr.class_matchmaking_id')->join('coach_supplier_relations csr', 'cgr.class_matchmaking_id = csr.class_matchmaking_id', 'left outer')->join('student_group_relations sgr', 'sgr.class_matchmaking_id = cgr.class_matchmaking_id', 'left outer')->where('cgr.class_matchmaking_id', $cr[0]->class_matchmaking_id)->where('ssr.student_supplier_id', $partner_id)->where('cgr.class_matchmaking_id is NOT NULL', NULL, FALSE)->where('sgr.class_matchmaking_id is NULL', NULL, FALSE)->order_by('csr.coach_supplier_id', 'desc')->get()->result();
                 }
                 // echo "<pre>";
-                // print_r($partner_only);
+                // print_r($subgroup_only);
                 // exit();
 
                 $partner_group2 = array();
@@ -638,7 +638,7 @@ class identity_model extends MY_Model {
                             $count_parto = count($partner_only);
                             $count_parta = count($partner_array);
                             
-                            // echo "<pre>";print_r($partner_only);exit();
+                            // echo "<pre>";print_r($new_partner_array);exit();
 
                             $temp = $new_partner_array;
                             $temp2 = $new_partner_array;
@@ -777,14 +777,17 @@ class identity_model extends MY_Model {
                                         }
                                      }
                                  }
-                                if($count_group > $count_check){
-                                    foreach($check_array_coach as $cac){
-                                        if (($key = array_search(@$cac[$pagu_c]->subgroup_id, $new_group_array)) !== true) {
-                                            unset($new_group_array[$key]);
+                                 // echo "<pre>";print_r($group_array);exit();
+                                if($subgroup_only){
+                                    $sgonly_array=array();
+                                    foreach($subgroup_only as $sgo){
+                                        foreach($sgo as $sgval){
+                                            $sgonly_array[] = $sgval->subgroup_id;
                                         }
                                     }
-                                    if($new_group_array){
-                                    $this->db->or_where_in('c.subgroup_id', $new_group_array);
+                                    $new_sgonly_array= array_unique($sgonly_array);
+                                    if($new_sgonly_array){
+                                    $this->db->or_where_in('c.subgroup_id', $new_sgonly_array);
                                     }
                                 }
                                 
