@@ -1273,7 +1273,7 @@ class adding extends MY_Site_Controller {
                                 // 'timezone' => $timezone
                             );
 
-                            // echo "<pre>";print_r($profile);exit('a');
+                            // echo "<pre>";print_r($profile);exit();
                             // insert to table temp_multiple_students
 
                             $this->db->insert('temp_multiple_students', $profile);
@@ -1345,16 +1345,17 @@ class adding extends MY_Site_Controller {
 
     }
 
-    function submit_multiple_sudents(){
+    public function submit_multiple_sudents(){
+      // exit('a');
         $creator_id = $this->auth_manager->userid();
 
 
         $data = $this->db->select('*')->from('temp_multiple_students')->where('creator_id',$creator_id)->get()->result();
 
-
+        // echo "<pre>";print_r($data);exit;
         foreach ($data as $d) {
 
-            $status_insert = '';
+            $status_insert = 'insert';
 
             if($d->pt_score == '0'){
                 $status_insert = ",DynEd Pro ID can't be used";
@@ -1412,7 +1413,7 @@ class adding extends MY_Site_Controller {
                 $this->db->update('temp_multiple_students',array('message' => $status_insert));
             }
 
-            if($d->status_email_dyned_pro != 'enable'){
+            if($d->status_email_dyned_pro != 'Enable'){
                 $status_insert .= ',DynEd Pro id already registered';
                 $this->db->where('id',$d->id);
                 $this->db->update('temp_multiple_students',array('message' => $status_insert));
@@ -1513,7 +1514,7 @@ class adding extends MY_Site_Controller {
                         $n++;
                     }
 
-                    $this->db->insert_batch('coaching_scripts', $datascript);
+                    // $this->db->insert_batch('coaching_scripts', $datascript);
                 // ======
 
                 // Inserting and checking to profile table then storing it into users_profile table
@@ -1642,8 +1643,9 @@ class adding extends MY_Site_Controller {
 
                 $this->db->where('id',$d->id);
                 $this->db->update('temp_multiple_students',array('message' => 'Succeded'));
-
+                // exit('a');
             } else {
+              // echo $status_insert;exit('b');
                 $this->db->where('id',$d->id);
                 $this->db->update('temp_multiple_students',array('message' => $status_insert));
                 // update status gagal insert

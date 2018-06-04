@@ -1,4 +1,6 @@
-<div class="heading text-cl-primary padding-l-20">
+<?php
+// echo "<pre>";print_r($data);exit;
+?><div class="heading text-cl-primary padding-l-20">
 
 
     <div class="heading text-cl-primary padding-l-20">
@@ -65,7 +67,7 @@
             </thead>
             <tbody>
 			<?php
-			$total_token = '';
+			$total_token;
 			$i =1;
 
             foreach(@$data as $d){
@@ -108,7 +110,7 @@
                     <th style="text-align:center !important;"><?php echo $d->token_for_student;?></th>
                     <!-- <th><?php echo $d->timezone;?></th> -->
 
-                    <?php //$total_token += $d->token_for_student; ?>
+                    <?php (int)@$total_token += (int)$d->token_for_student; ?>
 
 
                 </tr>
@@ -134,8 +136,8 @@
         		</ul>
         </div>
         <div>
-    		<th><a href="<?php echo base_url(); ?>student_partner/adding/submit_multiple_sudents" class="pure-button btn-small btn-blue">SUBMIT</a></th>
-    		<th><a href="<?php echo base_url(); ?>student_partner/adding/cancel/<?php echo @$data[0]->subgroup_id;?>" class="pure-button btn-small btn-red text-cl-white">CANCEL</a></th>
+    		<th><a href="<?php echo base_url(); ?>index.php/student_partner/adding/submit_multiple_sudents" class="pure-button btn-small btn-blue">SUBMIT</a></th>
+    		<th><a href="<?php echo base_url(); ?>index.php/student_partner/adding/cancel/<?php echo @$data[0]->subgroup_id;?>" class="pure-button btn-small btn-red text-cl-white">CANCEL</a></th>
     	</div>
         <?php } else { ?>
         <div>
