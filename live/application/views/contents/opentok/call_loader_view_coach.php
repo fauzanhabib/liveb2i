@@ -259,17 +259,17 @@ $pt1_raw_value = @$student_vrm->initial_pt_score;
         <?php } else{}
         if($ndecheck != NULL) {?>
         <a href='#tabs-content2' class="square-tabs w3-animate-opacity">
-            <h5"><?php echo @$nde['titleNde']; ?></h5>
+            <h5><?php echo @$nde['titleNde']; ?></h5>
         </a>
         <?php } else{}
         if($efscheck != NULL) {?>
         <a href='#tabs-content3' class="square-tabs w3-animate-opacity">
-            <h5"><?php echo @$efs['titleEfs']; ?></h5>
+            <h5><?php echo @$efs['titleEfs']; ?></h5>
         </a>
         <?php } else{}
         if($rfscheck != NULL) {?>
         <a href='#tabs-content4' class="square-tabs w3-animate-opacity">
-            <h5"><?php echo @$rfs['titleRfs']; ?></h5>
+            <h5><?php echo @$rfs['titleRfs']; ?></h5>
         </a>
         <?php } else{}
         if($dbecheck != NULL) {?>
@@ -284,12 +284,12 @@ $pt1_raw_value = @$student_vrm->initial_pt_score;
         <?php } else{}
         if($ebncheck != NULL) {?>
         <a href='#tabs-content7' class="square-tabs w3-animate-opacity">
-            <h5"><?php echo @$ebn['titleEbn']; ?></h5>
+            <h5><?php echo @$ebn['titleEbn']; ?></h5>
         </a>
         <?php } else{}
         if($fibcheck != NULL) {?>
         <a href='#tabs-content8' class="square-tabs w3-animate-opacity">
-            <h5"><?php echo @$fib['titleFib']; ?></h5>
+            <h5><?php echo @$fib['titleFib']; ?></h5>
         </a>
         <?php } else{}
         if($alscheck != NULL) {?>
@@ -894,7 +894,7 @@ $pt1_raw_value = @$student_vrm->initial_pt_score;
        <?php }else{ } ?>
     </div>
     <?php } else {}?>
-<?php } else{ if($student_vrm->cert_studying != "Unknown"){ ?>
+<?php } else{ if(@$student_vrm->cert_studying != "Unknown"){ ?>
   <center>Student has not done any study yet</center>
 <?php  }else{ ?>
   <center>Student is a non certification student</center>
