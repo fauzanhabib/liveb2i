@@ -4101,7 +4101,7 @@ figure:hover {
 }
 
 .view-session {
-  font-family: 'calibri', sans-serif;
+  font-family: 'proxima-nova', sans-serif;
 }
 .session-title {
   width: 435px;
@@ -4170,7 +4170,7 @@ figure:hover {
   width: 350px;
   height: 128px;
   background-color: #fff;
-  font-family: 'calibri', sans-serif;
+  font-family: 'proxima-nova', sans-serif;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -9302,6 +9302,9 @@ label {
   .content-bottom > div {
     width: 100%;
     margin: 80px 5px 0;
+  }
+  .coach-comment {
+    z-index: 3;
   }
   .comment-message {
     width: auto;
