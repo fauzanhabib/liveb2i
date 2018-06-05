@@ -1,5 +1,9 @@
 <div class="heading text-cl-primary padding15">
-    <h1 class="margin0"><small>Booking Summary</small></h1>
+    <?php if($recuring > 1){ ?>
+        <h1 class="margin0"><small>Multiple Booking Summary</small></h1>
+    <?php }else{ ?>
+        <h1 class="margin0"><small>Booking Summary</small></h1>
+    <?php } ?>
 </div>
 
 <div class="box">
@@ -22,7 +26,17 @@
                 </tr> -->
                 <tr>
                     <td>Date</td>
-                    <td><?php echo(date('l jS \of F Y', @$date)); ?></td>
+                    <?php if($recuring > 1){ ?>
+                        <td><?php foreach($frequency as $f){
+                            $temp = $date;
+                            $temp = strtotime("+".$f." day", $temp);
+                            echo(date('l jS \of F Y', @$temp)).'<br> '; }?> 
+                        </td>
+                    <?php }else{ ?>
+                        <td>
+                            <?php echo(date('l jS \of F Y', @$date)); ?>
+                        </td>
+                    <?php } ?>
                 </tr>
                 <tr>
                     <td>Start Time</td>
@@ -54,23 +68,25 @@
                         // $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
                         
                         // jika 0 / disallow
-                        if($setting_region[0]->status_set_setting == 0){
-                            $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
-                            $standard_coach_cost = @$setting[0]->standard_coach_cost;
-                            $elite_coach_cost = @$setting[0]->elite_coach_cost;
-                        } else {
-                            $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
-                            $standard_coach_cost = @$setting[0]->standard_coach_cost;
-                            $elite_coach_cost = @$setting[0]->elite_coach_cost;
-                        }
+                        // if($setting_region[0]->status_set_setting == 0){
+                        //     $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
+                        //     $standard_coach_cost = @$setting[0]->standard_coach_cost;
+                        //     $elite_coach_cost = @$setting[0]->elite_coach_cost;
+                        // } else {
+                        //     $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+                        //     $standard_coach_cost = @$setting[0]->standard_coach_cost;
+                        //     $elite_coach_cost = @$setting[0]->elite_coach_cost;
+                        // }
 
                                 $token = '';
                                 if($data_coach[0]->coach_type_id == 1){
                                     $token = $standard_coach_cost;
+                                    $show = $token * $recuring;
                                 } else if($data_coach[0]->coach_type_id == 2){
                                     $token = $elite_coach_cost; 
+                                    $show = $token * $recuring;
                                 } ?>
-                        <input type="text" name="token" value="<?php echo $token;?>" readonly>
+                        <input type="text" name="token" value="<?php echo $show;?>" readonly>
                     </td>
                 </tr>
                 <tr>
