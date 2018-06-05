@@ -26,9 +26,9 @@
                 </tr> -->
                 <tr>
                     <td>Date</td>
-                    <?php if($recuring > 1){ ?>
+                    <?php if($recuring > 1){ 
+                        $temp = $date; ?>
                         <td><?php foreach($frequency as $f){
-                            $temp = $date;
                             $temp = strtotime("+".$f." day", $temp);
                             echo(date('l jS \of F Y', @$temp)).'<br> '; }?> 
                         </td>
