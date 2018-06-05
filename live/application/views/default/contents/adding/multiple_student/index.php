@@ -25,7 +25,7 @@
                             <input type="submit" name="preview" value="PREVIEW" class="pure-button btn-small btn-primary" target="_blank"/>
                             <!-- <input type="submit" name="preview" value="PREVIEW" class="pure-button btn-small btn-primary" formtarget="_blank"/> -->
 
-                            <p>Follow excel file template given by the Admin of DynEd Live. <a href="<?php echo base_url();?>uploads/template_multiple_student.xlsx">Download here</a></p>
+                            <p>Follow excel file template given by the Admin of DynEd Live. <a href="<?php echo base_url();?>Add_Multiple_Students_Template.xlsx">Download here</a></p>
                         </div>
                     </div>
                     <div class="pure-control-group" style="border-top:1px solid #f3f3f3;padding: 15px 0px;">
