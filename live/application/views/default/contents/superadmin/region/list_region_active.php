@@ -19,6 +19,7 @@
                 <li><a href="<?php echo base_url();?>index.php/superadmin/region/index">Regions</a></li>
                 <li>
                     <form action="" autocomplete="on" class="search-box" method="post">
+                        Search..
                       <input id="search" name="search_region" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
                     </form>
                 </li>

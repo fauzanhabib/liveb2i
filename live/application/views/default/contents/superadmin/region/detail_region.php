@@ -21,6 +21,7 @@
                 <li><a href="#"><?php echo $data_admin[0]->region_id;?></a></li>
                 <li>
                     <form action="<?php echo site_url('superadmin/region/detail/'.$id_regional);?>" autocomplete="on" class="search-box" method="post">
+                        Search..
                       <input id="search" name="search_region" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
                     </form>
                 </li>

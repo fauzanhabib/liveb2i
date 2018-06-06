@@ -30,6 +30,7 @@
                 <li><a href="#">Couch Group List</a></li>
                 <li>
                     <form action="" autocomplete="on" class="search-box">
+                        Search..
                       <input id="search" name="search" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
                     </form>
                 </li>

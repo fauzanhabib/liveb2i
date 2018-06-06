@@ -3891,7 +3891,7 @@ ul.nav-dropdown-top,
   content: none;
 }
 
-.breadcrumb li:last-child .search-box         { background:        hsla(200, 62%, 45%, 1); }
+.breadcrumb li:last-child .search-box         { background:        hsla(200, 62%, 45%, 1); display: flex; }
 .breadcrumb li:last-child .search-box:after   { border-left-color: hsla(200, 62%, 45%, 1); } /*blue*/
 
 .breadcrumb li a:hover { background: hsla(0, 0%, 100%, 1); color: #39aae2; stroke: #39aae2!important; }
