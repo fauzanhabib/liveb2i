@@ -1262,7 +1262,7 @@ class adding extends MY_Site_Controller {
                                 'subgroup_id' => $subgroup_id,
                                 'creator_id' => $this->auth_manager->userid(),
                                 'email' => $email,
-                                'password' => $this->phpass->hash($password),
+                                'password' => $password,
                                 'role_id' => 1,
                                 'status' => 'disable',
                                 'status_email' => $status_email,
@@ -1434,7 +1434,7 @@ class adding extends MY_Site_Controller {
             // inserting user data
             $user = array(
                 'email' => $d->email,
-                'password' => $d->password,
+                'password' => $this->phpass->hash($d->password),
                 'role_id' => $d->role_id,
                 'status' => 'active',
             );
