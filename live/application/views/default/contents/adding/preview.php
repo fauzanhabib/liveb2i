@@ -141,7 +141,7 @@
     	</div>
         <?php } else { ?>
         <div>
-            <th><a href="<?php echo base_url(); ?>student_partner/adding/cancel/<?php echo @$data[0]->subgroup_id;?>" class="pure-button btn-small btn-red text-cl-white">BACK</a></th>
+            <th><a href="<?php echo base_url(); ?>index.php/student_partner/adding/cancel/<?php echo @$data[0]->subgroup_id;?>" class="pure-button btn-small btn-red text-cl-white">BACK</a></th>
         </div>
         <?php } ?>
     </div>

@@ -463,7 +463,9 @@ class find_coaches extends MY_Site_Controller {
 
         $this->session->set_userdata("recurring_booking_type",$recurring_booking_type);
 
-
+        // echo $booking_type .'-'. $recurring_booking_type;
+        // exit();
+        // die();
 
         $this->template->title = 'Detail Schedule';
 
@@ -500,7 +502,7 @@ class find_coaches extends MY_Site_Controller {
             // 'elite_coach_cost' => $elite_coach_cost,
             'rating' => $this->coach_rating_model->get_average_rate(),
             'pagination' => @$pagination,
-            'cert_studying' => $cert_studying[0]->cert_studying
+            'cert_studying' => $cert_studying[0]->cert_studying,
         );
 
         // echo "<pre>";
@@ -538,6 +540,7 @@ class find_coaches extends MY_Site_Controller {
         if($recuring == 4) {
             $frequency = [0,7,7,7];
         }
+
 
 
         // book otomatis 4x
@@ -2821,6 +2824,27 @@ class find_coaches extends MY_Site_Controller {
     public function summary_book($search_by = '', $coach_id = '', $date = '', $start_time = '', $end_time = '') {
         $this->template->title = 'Booking Summary';
 
+        $recuring = $this->session->userdata('recurring_booking_type');
+        if(!$recuring){
+            $recuring = 1;
+        }
+
+        if($recuring == 1) {
+            $frequency = [0];
+        }
+
+        if($recuring == 2) {
+            $frequency = [0,7];
+        }
+
+        if($recuring == 3) {
+            $frequency = [0,7,7];
+        }
+
+        if($recuring == 4) {
+            $frequency = [0,7,7,7];
+        }
+
         $partner_id = $this->auth_manager->partner_id($coach_id);
         $region_id = $this->auth_manager->region_id($partner_id);
 
@@ -2855,7 +2879,9 @@ class find_coaches extends MY_Site_Controller {
             'end_time' => $end_time,
             'search_by' => $search_by,
             'standard_coach_cost' => $standard_coach_cost,
-            'elite_coach_cost' => $elite_coach_cost
+            'elite_coach_cost' => $elite_coach_cost,
+            'recuring' => $recuring,
+            'frequency' => $frequency
         );
 
         // echo '<pre>';print_r($vars);exit();

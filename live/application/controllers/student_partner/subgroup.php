@@ -642,11 +642,23 @@ class subgroup extends MY_Site_Controller {
             $status = array(
                     'status' => 'disable',
                     );
+            $dpi = array(
+                    'dyned_pro_id' => '',
+                    );
+
+                    $this->db->trans_begin();
+
                     $this->db->where('role_id',1);
                     $this->db->where_in('id',$check_list);
                     $this->db->update('users', $status);
 
-                //     $this->db->trans_begin();
+                    $this->db->flush_cache();
+
+                    $this->db->where_in('user_id',$check_list);
+                    $this->db->update('user_profiles', $dpi);
+
+                    $this->db->trans_commit();
+                    
                 //     $this->db->where('role_id', 1);
                 //     $this->db->where_in('id',$check_list);
                 //     $this->db->delete('users');
@@ -665,7 +677,7 @@ class subgroup extends MY_Site_Controller {
 
                 //     $this->db->where_in('id_student',$check_list);
                 //     $this->db->delete('student_supplier_to_student');
-                // $this->db->trans_commit();
+                // 
                 $this->messages->add('Delete Successful', 'success');
             }
         } else {

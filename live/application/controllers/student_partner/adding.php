@@ -1436,7 +1436,7 @@ class adding extends MY_Site_Controller {
                 'email' => $d->email,
                 'password' => $d->password,
                 'role_id' => $d->role_id,
-                'status' => 'disable',
+                'status' => 'active',
             );
 
 

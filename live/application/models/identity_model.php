@@ -113,7 +113,7 @@ class identity_model extends MY_Model {
                 $this->db->where('a.status', 'disable');
             }else
             {
-                // $this->db->where('a.status', 'active');
+                $this->db->where('a.status', 'active');
             }
         }
 
