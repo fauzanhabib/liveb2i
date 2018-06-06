@@ -187,7 +187,7 @@
                     <span>Certificate Plan</span>
                 </div>
 
-                <?php if($student_vrm2->cert_studying != "Unknown"){ ?>
+                <?php if($student_vrm2->cert_studying != "Unknown" && $f_completion == 'yes'){ ?>
                 <div class="tabs1 cert_plan padding-t-20 text-center">
                     <a href="#content-a1" id="A1" class="block-rm-data progress-value square-tabs-2 bg-white-fff">
                         <h5 class="m-b-5 m-t-0 font-semi-bold">A1</h5>

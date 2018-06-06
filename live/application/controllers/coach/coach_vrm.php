@@ -76,6 +76,7 @@ class Coach_vrm extends MY_Site_Controller {
                  $checkCallOne   = @$callOneJson->studentName;
                  $module_extract = @$callOneJson->lessonCompletion;
                  if($checkCallOne && @$module_extract){
+                   $f_completion = 'yes';
                       // $module_extract = @$callOneJson->lessonCompletion;
                       // $placement_test = end(@$callOneJson->placementTestGENs);
                       // $pt_val         = @$placement_test->placementLevel;
@@ -1249,6 +1250,8 @@ class Coach_vrm extends MY_Site_Controller {
                               'ebn6' => array_merge($ebnu6, $ebnp6, $ebnt6),
                               'als6' => array_merge($alsu6, $alsp6, $alst6)
                             );
+                  }else{
+                    $f_completion = 'no';
                   }
 
 
@@ -1265,16 +1268,17 @@ class Coach_vrm extends MY_Site_Controller {
 
                  $vars = array(
                       'student_fullname' => $data_dyned_pro[0]->fullname,
-                      'student_id' => $data_dyned_pro[0]->id,
-                      'student_vrm' => $this->call2->getDataJson(),
-                      'student_vrm2'     => $student_vrm2,
-                      'cchnote'     => @$cchnote,
+                      'student_id'   => $data_dyned_pro[0]->id,
+                      'student_vrm'  => $this->call2->getDataJson(),
+                      'student_vrm2' => $student_vrm2,
+                      'cchnote'      => @$cchnote,
                       'allmodule1'   => @$allmodule1,
                       'allmodule2'   => @$allmodule2,
                       'allmodule3'   => @$allmodule3,
                       'allmodule4'   => @$allmodule4,
                       'allmodule5'   => @$allmodule5,
-                      'allmodule6'   => @$allmodule6
+                      'allmodule6'   => @$allmodule6,
+                      'f_completion' => @$f_completion
                   );
 
                 //  echo "<pre>";print_r($cchnote);exit();
