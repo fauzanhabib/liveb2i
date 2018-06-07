@@ -1456,6 +1456,9 @@ class adding extends MY_Site_Controller {
                 // inserting student supplier to student
                 $ssts = $this->db->insert('student_supplier_to_student', array('id_student_supplier' => $this->auth_manager->userid(), 'id_student' => $user_id, 'dcrea' => time(),'dupd' => time()));
 
+                // inserting user_geography
+                $ssts = $this->db->insert('user_geography', array('user_id' => $user_id, 'dcrea' => time(),'dupd' => time()));
+
 
             // Inserting user profile data
                 $user_id_to_partner_id = $this->identity_model->get_identity('profile')->dropdown('user_id', 'partner_id');
