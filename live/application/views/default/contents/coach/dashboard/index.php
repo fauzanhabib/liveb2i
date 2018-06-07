@@ -193,12 +193,12 @@
                                                     <span class="namecoach"> </span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="padding4 width30perc font-light">Email Address</td>
                                                 <td class="padding4 border-none">
                                                     <span class="emailcoach"></span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td class="padding4 width30perc font-light">Birthdate</td>
                                                 <td class="padding4 border-none">
@@ -267,7 +267,7 @@
               success: function(data) {
                   // console.log(data);
                   var name = data[0].name;
-                  var email = data[0].email;
+                  // var email = data[0].email;
                   var birthdate = data[0].birthdate;
                   var spoken_language = data[0].spoken_language;
                   var gender = data[0].gender;
@@ -275,7 +275,7 @@
                   var profile_picture = data[0].profile_picture;
 
                   $('.namecoach').text(': '+name);
-                  $('.emailcoach').text(': '+email);
+                  // $('.emailcoach').text(': '+email);
                   $('.birthdatecoach').text(': '+birthdate);
                   $('.gendercoach').text(': '+gender);
                   $('.timezonecoach').text(': '+timezone);

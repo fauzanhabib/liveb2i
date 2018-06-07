@@ -61,14 +61,14 @@ class Student_vrm extends MY_Site_Controller {
                $callOneJson  = $this->call1->callOneJson();
                $student_vrm2 = $this->call2->getdataObj();
 
-               // echo "<pre>";print_r($student_vrm2);exit();
+               // echo "<pre>";print_r($callOneJson);exit();
 
                $checkCallOne   = @$callOneJson->studentName;
                $module_extract = @$callOneJson->lessonCompletion;
                if($checkCallOne){
+
                  if(@$module_extract){
-                    // $placement_test = end(@$callOneJson->placementTestGENs);
-                    // $pt_val         = @$placement_test->placementLevel;
+                    $f_completion = 'yes';
                     $student_cert   = @$student_vrm2->cert_studying;
                     $certif_code = @$callOneJson->groupCertPlan;
                     if($certif_code == 1){
@@ -85,9 +85,7 @@ class Student_vrm extends MY_Site_Controller {
                         $student_type = 'Professional (Europe)';
                     }
 
-                    // echo "<pre>";
-                    // print_r($student_vrm2);
-                    // exit();
+                    // echo "<pre>";print_r($student_vrm2);exit();
 
                     // --------------------------------------------------------------
                     // NDE ----------------------------------------------------------
@@ -1249,9 +1247,10 @@ class Student_vrm extends MY_Site_Controller {
                             'ebn6' => array_merge($ebnu6, $ebnp6, $ebnt6),
                             'als6' => array_merge($alsu6, $alsp6, $alst6)
                           );
+                    }else{
+                      $f_completion = 'no';
+                    }
                 }
-              }
-
                // $cchnote = $this->db->select('*')
                //            ->from('appointments')
                //            ->where('student_id', $student_id)
@@ -1262,17 +1261,18 @@ class Student_vrm extends MY_Site_Controller {
 
                $vars = array(
                     'student_fullname' => $data_dyned_pro[0]->fullname,
-                    'student_id' => $data_dyned_pro[0]->id,
-                    'student_vrm' => $this->call2->getDataJson(),
-                    'student_vrm2'     => $student_vrm2,
-                    'cchnote'     => @$cchnote,
+                    'student_id'   => $data_dyned_pro[0]->id,
+                    'student_vrm'  => $this->call2->getDataJson(),
+                    'student_vrm2' => $student_vrm2,
+                    'cchnote'      => @$cchnote,
                     'student_cert' => @$student_cert,
                     'allmodule1'   => @$allmodule1,
                     'allmodule2'   => @$allmodule2,
                     'allmodule3'   => @$allmodule3,
                     'allmodule4'   => @$allmodule4,
                     'allmodule5'   => @$allmodule5,
-                    'allmodule6'   => @$allmodule6
+                    'allmodule6'   => @$allmodule6,
+                    'f_completion' => @$f_completion
                 );
 
                // echo "<pre>";print_r($vars);exit();

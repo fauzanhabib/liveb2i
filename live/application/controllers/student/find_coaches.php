@@ -619,7 +619,7 @@ class find_coaches extends MY_Site_Controller {
                 // if dayoff 1, coach cuti
                 if($dayoff){
                     $message = "Coach is Having Day Off";
-                    $this->messages->add('Coach is Having Day Off', 'warning');
+                    $this->messages->add('Coach is Having Day Off on '.$dateconvert, 'warning');
 
                 }
 

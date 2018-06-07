@@ -185,8 +185,9 @@
         var connectionCount;
         session.on({
           connectionCreated: function (event) {
-            connectionCount = 1;
+            connectionCount++;
             if (event.connection.connectionId != session.connection.connectionId) {
+              $("#rejoined").show();
               $("#waiting").hide();
               $("#heading1").hide();
               $("#heading2").hide();
@@ -195,12 +196,13 @@
             }
           },
           connectionDestroyed: function connectionDestroyedHandler(event) {
-            connectionCount = 2;
+            connectionCount--;
+              $("#rejoined").hide();
               $("#heading2").show();
               $("#connecting").show();
               $("#disconnect").removeClass("hidden");
               $("#heading2").removeClass("hidden");
-            console.log('A client disconnected.');
+            // console.log('A client disconnected.');
           }
         });
         // function check_subs(){
@@ -780,7 +782,13 @@
       </div>
   </div>
   <!-- modal -->
-
+    <div class="heading" id="rejoined" style="background: #d3ffe6;border-left: solid 5px #4fa574; display:none;">
+      <div style="color: #419c68;font-weight: 400;">
+        <b><?php echo $student_name; ?></b> has joined the session, do you see him?
+        <a id='j_y'>Yes /</a>
+        <a id='j_n'> No (page will be refreshed)</a>
+      </div>
+    </div>
     <div class="heading" id="heading1" style="background: #d3ffe6;border-left: solid 5px #4fa574">
       <div id="waiting" style="color: #419c68;font-weight: 400;">
         Waiting for <b><?php echo $student_name; ?></b> to join the session. Remain in the session until the end to receive your tokens. (This page will keep refreshing until Student joined the session)
@@ -1335,7 +1343,15 @@
 </div>
 
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/remodal.min.js"></script>
+<script>
+  $('#j_y').click(function(){
+    $("#rejoined").hide();
+  });
 
+  $('#j_n').click(function(){
+    location.reload();
+  });
+</script>
 <script>
     $(function(){
         var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
