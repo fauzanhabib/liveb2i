@@ -48,7 +48,7 @@
             <div class="text-center">
                 <ul class="coaching-info-big m-tb-0 padding-l-0 padding-t-25">
                     <li class="coaching-info-box-big margin-auto clearfix">
-                        <div class="coaching-box-left-big">
+                        <div class="coaching-box-left-big" style="width:auto;">
                             <span>Undistributed Tokens</span>
                         </div>
                         <div class="coaching-box-right-big">

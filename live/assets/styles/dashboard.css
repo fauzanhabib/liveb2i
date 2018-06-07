@@ -3950,7 +3950,7 @@ ul.nav-dropdown-top,
   width: 160px;
 }
 #search[type="text"] {
-  height: 20px;
+  height: 55%;
   font-size: 14px;
   display: inline-block;
   font-weight: 100;
@@ -3974,7 +3974,7 @@ ul.nav-dropdown-top,
 }
 
 #search[type="text"]:focus {
-  width: 120px;
+  width: 55%;
   z-index: 1;
   border-bottom: 1px solid #ebebeb!important;
   background: #fff;
