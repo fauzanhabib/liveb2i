@@ -1215,7 +1215,7 @@ class adding extends MY_Site_Controller {
                     }
 
                     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                        $this->messages->add('Invalid Email ' . $email, 'warning');
+                        // $this->messages->add('Invalid Email ' . $email, 'warning');
                     } else {
 
                         if (!$this->isValidEmail($email_dyned_pro)) {
