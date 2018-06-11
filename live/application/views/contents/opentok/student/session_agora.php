@@ -531,7 +531,7 @@ if(@$user_extract2){
             <label for="audioSource">Audio source: </label><select id="audioSource"></select>
             </div>
             <div class="select">
-            <label for="videoSource">Video source: </label><select id="videoSource"></select>
+            <!-- <label for="videoSource">Video source: </label><select id="videoSource"></select> -->
             </div>
             <input id="channel" type="text" value="1000" size="4"></input>
             <input id="video" type="checkbox" checked></input>
@@ -770,9 +770,9 @@ var countdownTimer = setInterval('timer()', 1000);
           microphone = audioSource.value;
           localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
           // localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"bgjblkhpjchbmfeipbclmfnpohcpjcpn"});
-          if (document.getElementById("video").checked) {
+          // if (document.getElementById("video").checked) {
             localStream.setVideoProfile('480P_1');
-          }
+          // }
           global_uid = uid;
 
           // The user has granted access to the camera and mic.
