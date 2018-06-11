@@ -755,7 +755,7 @@ var countdownTimer = setInterval('timer()', 1000);
     client.init(app_id, function () {
       // console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
-        console.log("User " + channel_key + " join channel successfully");
+        // console.log("User " + channel_key + " join channel successfully");
         // console.log("=====================================");
         // console.log("Channel Key = " + channel_key);
         // console.log("Channel Value = " + channel.value);
@@ -770,12 +770,10 @@ var countdownTimer = setInterval('timer()', 1000);
           microphone = audioSource.value;
           localStream = AgoraRTC.createStream({streamID: uid, audio: true, cameraId: camera, microphoneId: microphone, video: document.getElementById("video").checked, screen: false});
           // localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"bgjblkhpjchbmfeipbclmfnpohcpjcpn"});
-
-          //localStream = AgoraRTC.createStream({streamID: uid, audio: false, cameraId: camera, microphoneId: microphone, video: false, screen: true, extensionId: 'minllpmhdgpndnkomcoccfekfegnlikg'});
           if (document.getElementById("video").checked) {
             localStream.setVideoProfile('480P_1');
-
           }
+          global_uid = uid;
 
           // The user has granted access to the camera and mic.
           localStream.on("accessAllowed", function() {
@@ -838,7 +836,7 @@ var countdownTimer = setInterval('timer()', 1000);
         $('div#video').append('<div class="agora_css" id="agora_remote'+stream.getId()+'" style="width:100%;height:500px;"></div>');
         // $('video#video'+stream.getId()).addClass('subscriber_video');
         // var video = document.getElementsByTagName("video")[0];
-        console.log($('video#video'+stream.getId()));
+        // console.log($('video#video'+stream.getId()));
       }
       $('video#video'+stream.getId()).css('display','none !important');
       $("#heading1").hide();
