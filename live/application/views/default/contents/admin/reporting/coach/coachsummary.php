@@ -224,7 +224,14 @@
                 $a = 1;
                 $no = 1;
                 foreach ($cch_sum as $d) {
+                    $pullbalance = $this->db->select('token_amount')
+                                    ->from('user_tokens')
+                                    ->where('user_id',$d->user_id)
+                                    ->get()->result();
+
                     if(!@$date_from){
+                        $currbal = @$pullbalance[0]->token_amount;
+
                         $start_balance = "";
 
                         $nowdate  = date("Y-m-d");
@@ -267,6 +274,8 @@
                                         ->get()->result();
 
                     }else if(@$date_from && !@$date_to){
+                        $currbal = @$pullbalance[0]->token_amount;
+
                         $start_balance = $this->db->select('token_amount')
                                             ->from('token_histories_coach')
                                             ->where('coach_id',$d->user_id)
@@ -341,6 +350,19 @@
                                             ->where('date >=',$date_from)
                                             ->where('date <=',$date_to)
                                             ->get()->result();
+
+                        $curr_pull = $this->db->select('upd_token')
+                                            ->from('token_histories_coach')
+                                            ->where('coach_id',$d->user_id)
+                                            ->where('date <=',$date_to)
+                                            ->get()->result();
+
+
+                        $lastEl = array_values(array_slice($curr_pull, -1))[0];
+
+                        $currbal = @$lastEl->upd_token;
+
+                        // echo "<pre>";print_r($curr_pull);exit;
 
                         $total_ses = $this->db->select('id')
                                     ->from('appointments')
@@ -433,13 +455,6 @@
                     }else{
                         $rateaverage = 0;
                     }
-
-                    $pullbalance = $this->db->select('token_amount')
-                                    ->from('user_tokens')
-                                    ->where('user_id',$d->user_id)
-                                    ->get()->result();
-
-                    $currbal = @$pullbalance[0]->token_amount;
 
                     // echo $rateaverage;
                     // echo "<pre>";
