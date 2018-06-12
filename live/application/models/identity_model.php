@@ -270,6 +270,8 @@ class identity_model extends MY_Model {
                 foreach($coach_relation as $cr){
                     @$supplier_only[] = $this->db->select('csr.coach_supplier_id')->from('coach_supplier_relations csr')->join('student_supplier_relations ssr', 'csr.class_matchmaking_id = ssr.class_matchmaking_id')->join('student_group_relations sgr', 'sgr.class_matchmaking_id = csr.class_matchmaking_id', 'left outer')->where('csr.class_matchmaking_id', $cr[0]->class_matchmaking_id)->where('ssr.student_supplier_id', $partner_id)->where('sgr.class_matchmaking_id is NULL', NULL, FALSE)->order_by('csr.coach_supplier_id', 'desc')->get()->result();
                 }
+                
+                $subgroup_only = array();
                 foreach($coach_relation as $cr){
                     @$subgroup_only[] = $this->db->select('cgr.subgroup_id')->from('coach_group_relations cgr')->join('student_supplier_relations ssr', 'cgr.class_matchmaking_id = ssr.class_matchmaking_id')->join('coach_supplier_relations csr', 'cgr.class_matchmaking_id = csr.class_matchmaking_id', 'left outer')->join('student_group_relations sgr', 'sgr.class_matchmaking_id = cgr.class_matchmaking_id', 'left outer')->where('cgr.class_matchmaking_id', $cr[0]->class_matchmaking_id)->where('ssr.student_supplier_id', $partner_id)->where('cgr.class_matchmaking_id is NOT NULL', NULL, FALSE)->where('sgr.class_matchmaking_id is NULL', NULL, FALSE)->order_by('csr.coach_supplier_id', 'desc')->get()->result();
                 }
