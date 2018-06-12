@@ -358,9 +358,13 @@
                                             ->where('date <=',$date_to)
                                             ->get()->result();
 
-                        $selector_curr = count($curr_pull) - 1;
+                        if(@$curr_pull){
+                          $selector_curr = end($curr_pull);
 
-                        $currbal = $curr_pull[$selector_curr]->upd_token;
+                          $currbal = $curr_pull[$selector_curr]->upd_token;
+                        }else{
+                          $currbal = 0;
+                        }
 
                         // echo "<pre>";print_r($selector_curr);exit;
 
