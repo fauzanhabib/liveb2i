@@ -155,7 +155,7 @@
                             $( api.column( 8 ).footer() ).html(balanc);
                             $( api.column( 9 ).footer() ).html(comses);
                             $( api.column( 10 ).footer() ).html(latses);
-                            $( api.column( 11 ).footer() ).html(rating);
+                            // $( api.column( 11 ).footer() ).html(rating);
 
                             // console.log(api.column( 8 ).data());
                         },
@@ -208,6 +208,7 @@
                     <tr>
                         <th class="thfoot"></th>
                         <th class="thfoot">Total</th>
+                        <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
@@ -280,7 +281,7 @@
                                             ->from('token_histories_coach')
                                             ->where('coach_id',$d->user_id)
                                             ->where('flag',1)
-                                            ->where('date <=',@$date_from)
+                                            ->where('date <',@$date_from)
                                             ->get()->result();
 
                         $nowdate  = date("Y-m-d");
@@ -332,7 +333,7 @@
                                             ->from('token_histories_coach')
                                             ->where('coach_id',$d->user_id)
                                             ->where('flag',1)
-                                            ->where('date <=',@$date_from)
+                                            ->where('date <',@$date_from)
                                             ->get()->result();
 
                         $earned_tokens = $this->db->select('token_amount')
