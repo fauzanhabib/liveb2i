@@ -359,7 +359,7 @@
                                             ->get()->result();
 
 
-                        $lastEl = array_values(array_slice($curr_pull, -1))[0];
+                        $lastEl = array_values(array_slice(@$curr_pull, -1))[0];
 
                         $currbal = @$lastEl->upd_token;
 
