@@ -358,15 +358,16 @@
                                             ->where('date <=',$date_to)
                                             ->get()->result();
 
+                        // $curr_pull ='';
                         if(@$curr_pull){
                           $selector_curr = end($curr_pull);
 
-                          $currbal = $curr_pull[$selector_curr]->upd_token;
+                          $currbal = $selector_curr->upd_token;
                         }else{
                           $currbal = 0;
                         }
 
-                        // echo "<pre>";print_r($selector_curr);exit;
+                        // echo "<pre>";print_r($currbal);exit;
 
                         $total_ses = $this->db->select('id')
                                     ->from('appointments')
