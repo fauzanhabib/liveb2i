@@ -36,8 +36,8 @@
             <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Goal Level</th>
             <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Session Date</th>
             <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Session Time</th>
-            <!-- <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Student Attendance</th>
-            <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Coach Attendance</th> -->
+            <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Student Attendance</th>
+            <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Coach Attendance</th>
             <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Length of Session</th>
         </tr>
     </thead>
@@ -137,7 +137,7 @@
                 // echo $d->start_time." - ".$end_time."<br>";
                 echo $start_conv_real." - ".$endmin_real;
             ?></td>
-            <!-- <td><?php
+            <td><?php
                 if(!@$std_attend){
                     echo '<span class="labels tooltip-bottom" data-tooltip="Student did not attend" style="color:#000 !important;font-size:14px;">-</span>';
                 }else{
@@ -154,7 +154,7 @@
                     $cch_conv_real = date("H:i:s", $cch_conv);
                     echo $cch_conv_real;
                 }
-            ?></td> -->
+            ?></td>
             <td><?php echo @$length; ?></td>
         </tr>
         <?php $no++; $a++; } ?>

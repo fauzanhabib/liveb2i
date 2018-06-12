@@ -358,10 +358,9 @@
                                             ->where('date <=',$date_to)
                                             ->get()->result();
 
+                        $selector_curr = count($curr_pull);
 
-                        $lastEl = array_values(array_slice(@$curr_pull, -1))[0];
-
-                        $currbal = @$lastEl->upd_token;
+                        $currbal = $curr_pull[$selector_curr-1]->upd_token;
 
                         // echo "<pre>";print_r($curr_pull);exit;
 
