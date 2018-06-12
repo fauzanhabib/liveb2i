@@ -191,15 +191,15 @@ class identity_model extends MY_Model {
                 // echo $partner_id;
                 // exit();
 
-                $partner_subgroup = $this->db->select('id')->from('subgroup')->where('partner_id', $partner_id)->where('status', 'active')->where('type', 'student')->get()->result();
+                @$partner_subgroup = $this->db->select('id')->from('subgroup')->where('partner_id', $partner_id)->where('status', 'active')->where('type', 'student')->get()->result();
 
                 $partner_subgroup_group = array();
-                foreach($partner_subgroup as $psg){
+                foreach(@$partner_subgroup as $psg){
                     $partner_subgroup_group[] = $this->get_coach_group($psg->id);
                 }
 
                 $partner_subgroup_student = array();
-                foreach($partner_subgroup as $psg){
+                foreach(@$partner_subgroup as $psg){
                     $partner_subgroup_student[] = $this->get_student_group($psg->id);
                 }
 
@@ -234,7 +234,7 @@ class identity_model extends MY_Model {
                 // exit();
 
                 $partner_group = array();
-                foreach($coach_group as $cogu){
+                foreach(@$coach_group as $cogu){
                     $partner_group[] = $this->get_partner_group($cogu->subgroup_id);
                 }
                 // echo "<pre>";
@@ -278,13 +278,13 @@ class identity_model extends MY_Model {
                 // exit();
 
                 $partner_group2 = array();
-                foreach($coregro as $cgo){
+                foreach(@$coregro as $cgo){
                     foreach($cgo as $cgval){
                         $partner_group2[] = $this->get_partner_group($cgval->subgroup_id);
                     }
                 }
                 $spe_sub = array();
-                foreach($subgroup_only as $sgo){
+                foreach(@$subgroup_only as $sgo){
                     foreach($sgo as $sgval){
                         $spe_sub[] = $this->db->select('partner_id')->from('subgroup')->where('id', $sgval->subgroup_id)->get()->result();
                     }
