@@ -94,6 +94,7 @@
               <!-- <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a href="<?php echo site_url('coach/ongoing_session');?>" class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey">Current Sessions</a></li> -->
               <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a href="<?php echo site_url('coach/coach_material');?>" class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue">B2I Scripts</a></li>
               <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a href="<?php echo site_url('coach/coach_material/bc');?>" class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey">B2C Scripts</a></li>
+              <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a href="<?php echo site_url('coach/coach_material/neo_dashboard');?>" class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey">Neo Study Dashboard</a></li>
               <!-- <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a href="<?php echo site_url('coach/histories/class_session');?>" class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey">Class Session History</a></li> -->
           </ul>
       </div>
