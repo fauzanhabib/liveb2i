@@ -28,7 +28,7 @@ class Call2 {
         curl_setopt(
             $conn,
             CURLOPT_USERPWD,
-            "no9o78ghk24do87:3CF9A167-3D3C-4445-B86B-9C70F6EF8093"
+            getenv("CALL2_BASIC_AUTH_USER") . ":" . getenv("CALL2_BASIC_AUTH_PASSWORD")
         );
         curl_setopt($conn, CURLOPT_RETURNTRANSFER, true);
         $this->dataJson = curl_exec($conn);

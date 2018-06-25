@@ -1173,8 +1173,8 @@ class adding extends MY_Site_Controller {
                 // $timezone = @$value['J'];
                 $password = $this->generateRandomString();
 
-                // echo "<pre>";print_r($email);exit('c');
-                $date_of_birth = date('Y-m-d', strtotime($birthdate));
+                // echo "<pre>";print_r($birthdate);exit('c');
+                // $date_of_birth = date('Y-m-d', strtotime($birthdate));
                 // $date_of_birth = date('Y-m-d',(strtotime($birthdate) - 25569) * 86400);
 
 
@@ -1231,8 +1231,6 @@ class adding extends MY_Site_Controller {
                             $get_user_token = $this->user_token_model->get_token($id,'user');
                             $user_token = $get_user_token[0]->token_amount;
 
-
-
                             // Inserting user profile data
                             //$user_id_to_partner_id = $this->identity_model->get_identity('profile')->select('partner_id')->where('user_id', $this-auth_manager->userid())->get();
 
@@ -1247,16 +1245,26 @@ class adding extends MY_Site_Controller {
                                 $status_email = $email." has been used";
                             }
 
+                            $check_pro = $this->cert_studying2($email_dyned_pro,$server);
+                            if($check_pro[0] == 'used'){
+                              $status_email_pro = $check_pro[1];
+                              $cert_display = '-';
+                            }else{
+                              $status_email_pro = $check_pro[0];
+                              $cert_display = $check_pro[1];
+                            }
+                            // echo "<pre>";print_r($testing);exit();
 
+                            // echo "<pre>";print_r($birthdate);exit('c');
                             $profile = array(
                                 'profile_picture' => 'uploads/images/profile.jpg',
                                 'fullname' => $fullname,
                                 // 'gender' => $gender,
-                                'date_of_birth' => $date_of_birth,
+                                // 'date_of_birth' => $birthdate,
                                 'phone' => $phone,
                                 'dyned_pro_id' => $email_dyned_pro,
                                 'server_dyned_pro' => $server,
-                                'pt_score' => '2.5',
+                                'pt_score' => $cert_display,
                                 // 'pt_score' => $this->cert_studying22($email_dyned_pro,$server),
                                 'partner_id' => $this->auth_manager->partner_id(),
                                 'subgroup_id' => $subgroup_id,
@@ -1266,7 +1274,7 @@ class adding extends MY_Site_Controller {
                                 'role_id' => 1,
                                 'status' => 'disable',
                                 'status_email' => $status_email,
-                                'status_email_dyned_pro' => $status_email_dyned_pro,
+                                'status_email_dyned_pro' => $status_email_pro,
                                 'token_for_student' => $tokent_amount_request,
                                 'my_token' => $user_token,
                                 'max_upload_student' => $max_student,
@@ -1299,6 +1307,52 @@ class adding extends MY_Site_Controller {
         // echo "<pre>";print_r($data_student);exit('b');
         $this->session->set_flashdata('start','start');
         redirect('student_partner/adding/preview');
+
+    }
+
+    function cert_studying2($email,$server){
+        $this->load->library('call2');
+
+
+        // $email = "antonio.rodriguez@moultonrodriguez.com";
+        // $server = "am1";
+        $check_pro_ext = $this->db->select('*')
+                        ->from('user_profiles')
+                        ->where('dyned_pro_id', $email)
+                        ->get()->result();
+
+
+        // $this->call2->init("site11", "sutomo@dyned.com");
+        if(@$check_pro_ext){
+          $hasil = ['used', 'Email has been used'];
+        }else{
+          $this->call2->init($server, $email);
+          $a = $this->call2->getDataJson();
+          $b = json_decode($a);
+
+          // echo "<pre>";print_r($b);exit();
+
+          if(@$b->error){
+            $pro_status = $b->error;
+            $cert_pro   = '0';
+          }else{
+            $pro_status = 'Enable';
+            $cert_pro   = $b->cert_studying;
+            // echo "<pre>";print_r($b);exit();
+          }
+          // if(@$b == ''){
+          //     $cert_studying = 0;
+          // } else if(@$b->error == 'Invalid account credentials'){
+          //         $cert_studying = 0;
+          // } else {
+          //         $cert_studying = $b->cert_studying;
+          // }
+
+          // $hasil = [$email,$cert_studying,];
+          $hasil = [$pro_status, $cert_pro];
+        }
+
+        return $hasil;
 
     }
 
@@ -1663,34 +1717,6 @@ class adding extends MY_Site_Controller {
             redirect('student_partner/adding/preview');
     }
 
-
-    function cert_studying2($email,$server){
-        $this->load->library('call2');
-
-
-        // $email = "antonio.rodriguez@moultonrodriguez.com";
-        // $server = "am1";
-
-
-        // $this->call2->init("site11", "sutomo@dyned.com");
-        $this->call2->init($server, $email);
-        $a = $this->call2->getDataJson();
-        $b = json_decode($a);
-
-
-        if(@$b == ''){
-            $cert_studying = 0;
-        } else if(@$b->error == 'Invalid student email'){
-                $cert_studying = 0;
-        } else {
-                $cert_studying = $b->cert_studying;
-        }
-
-        $hasil = [$email,$cert_studying];
-
-        return $hasil;
-
-    }
 
     function statusPTScore($subgroup_id){
 
