@@ -155,7 +155,7 @@
                             $( api.column( 8 ).footer() ).html(balanc);
                             $( api.column( 9 ).footer() ).html(comses);
                             $( api.column( 10 ).footer() ).html(latses);
-                            $( api.column( 11 ).footer() ).html(rating);
+                            // $( api.column( 11 ).footer() ).html(rating);
 
                             // console.log(api.column( 8 ).data());
                         },
@@ -217,6 +217,7 @@
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
+                        <th class="thfoot"></th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -224,7 +225,14 @@
                 $a = 1;
                 $no = 1;
                 foreach ($cch_sum as $d) {
+                    $pullbalance = $this->db->select('token_amount')
+                                    ->from('user_tokens')
+                                    ->where('user_id',$d->user_id)
+                                    ->get()->result();
+
                     if(!@$date_from){
+                        $currbal = @$pullbalance[0]->token_amount;
+
                         $start_balance = "";
 
                         $nowdate  = date("Y-m-d");
@@ -267,11 +275,13 @@
                                         ->get()->result();
 
                     }else if(@$date_from && !@$date_to){
+                        $currbal = @$pullbalance[0]->token_amount;
+
                         $start_balance = $this->db->select('token_amount')
                                             ->from('token_histories_coach')
                                             ->where('coach_id',$d->user_id)
                                             ->where('flag',1)
-                                            ->where('date <=',@$date_from)
+                                            ->where('date <',@$date_from)
                                             ->get()->result();
 
                         $nowdate  = date("Y-m-d");
@@ -323,7 +333,7 @@
                                             ->from('token_histories_coach')
                                             ->where('coach_id',$d->user_id)
                                             ->where('flag',1)
-                                            ->where('date <=',@$date_from)
+                                            ->where('date <',@$date_from)
                                             ->get()->result();
 
                         $earned_tokens = $this->db->select('token_amount')
@@ -341,6 +351,23 @@
                                             ->where('date >=',$date_from)
                                             ->where('date <=',$date_to)
                                             ->get()->result();
+
+                        $curr_pull = $this->db->select('upd_token')
+                                            ->from('token_histories_coach')
+                                            ->where('coach_id',$d->user_id)
+                                            ->where('date <=',$date_to)
+                                            ->get()->result();
+
+                        // $curr_pull ='';
+                        if(@$curr_pull){
+                          $selector_curr = end($curr_pull);
+
+                          $currbal = $selector_curr->upd_token;
+                        }else{
+                          $currbal = 0;
+                        }
+
+                        // echo "<pre>";print_r($currbal);exit;
 
                         $total_ses = $this->db->select('id')
                                     ->from('appointments')
@@ -434,13 +461,6 @@
                         $rateaverage = 0;
                     }
 
-                    $pullbalance = $this->db->select('token_amount')
-                                    ->from('user_tokens')
-                                    ->where('user_id',$d->user_id)
-                                    ->get()->result();
-
-                    $currbal = @$pullbalance[0]->token_amount;
-
                     // echo $rateaverage;
                     // echo "<pre>";
                     // print_r($pullcoachprof[0]->coach_type_id);
@@ -493,7 +513,7 @@
                             if(@$rateaverage == 0){
                                 echo '';
                             }else{
-                                echo $rateaverage;
+                                echo round($rateaverage, 2);
                             }
                         ?></td>
                     </tr>

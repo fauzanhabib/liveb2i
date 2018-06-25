@@ -57,7 +57,7 @@
                     <th class="bg-secondary text-cl-white no-sort">Status DynEd Pro ID</th>
                     <th class="bg-secondary text-cl-white no-sort">Server</th>
                     <th class="bg-secondary text-cl-white no-sort">PT Score</th>
-          					<th class="bg-secondary text-cl-white no-sort">Birthdate</th>
+          					<!-- <th class="bg-secondary text-cl-white no-sort">Birthdate</th> -->
           					<!-- <th class="bg-secondary text-cl-white no-sort">Gender</th> -->
           					<th class="bg-secondary text-cl-white no-sort">Phone</th>
           					<th class="bg-secondary text-cl-white no-sort">Token</th>
@@ -104,7 +104,7 @@
 
                     <th style="text-align:center !important;"><?php echo $d->server_dyned_pro;?></th>
                     <th style="text-align:center !important;"><?php echo $d->pt_score;?></th>
-                    <th><?php echo $d->date_of_birth;?></th>
+                    <!-- <th><?php echo $d->date_of_birth;?></th> -->
                     <!-- <th><?php echo $d->gender;?></th> -->
                     <th style="text-align:right !important;"><?php echo $d->phone;?></th>
                     <th style="text-align:center !important;"><?php echo $d->token_for_student;?></th>

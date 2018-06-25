@@ -130,4 +130,10 @@ class Coach_material extends MY_Site_Controller {
         $this->template->publish();
     }
 
+    public function neo_dashboard(){
+
+      $this->template->content->view('default/contents/coach/coach_material/neo_dashboard');
+      $this->template->publish();
+    }
+
 }
