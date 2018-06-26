@@ -37,7 +37,7 @@ class send_sms {
         $message = "hai $name you get token $token";
 
  
-$curl = curl_init();
+        $curl = curl_init();
         
         curl_setopt_array($curl, array(
           CURLOPT_URL => "http://api.infobip.com/sms/1/text/single",
@@ -71,6 +71,82 @@ $curl = curl_init();
           // exit();
         }
 
+    }
+
+    function session_reminder_student($student_phone = '', $start_hour = ''){
+      $message = 'Your neo LIVE session will begin at '.$start_hour.'. Please don’t be late';
+      $from = 'neo';
+      $curl = curl_init();
+        
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "http://api.infobip.com/sms/1/text/single",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_POSTFIELDS => "{ \"from\":\"$from\", \"to\":\"$student_phone\", \"text\":\"$message\" }",
+          CURLOPT_HTTPHEADER => array(
+                    "accept: application/json",
+                    "authorization: App b6f2eb70d347a8ea437631f5defc77cc-760008e6-c2b7-4019-b43d-590c24d38905",
+                    "content-type: application/json"
+                  ),
+                ));
+        
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        
+        curl_close($curl);
+        
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            //echo $response;
+          // $a = json_decode($response, true);
+          // //$b = $a['results'][0]['status']['name'];
+          // echo "<pre>";
+          // print_r($a);
+          // exit();
+        }
+    }
+
+    function session_reminder_coach($coach_phone = '', $start_hour_coach = ''){
+      $message = 'Your neo LIVE session will begin at '.$start_hour_coach.'. Please don’t be late';
+      $from = 'neo';
+      $curl = curl_init();
+        
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => "http://api.infobip.com/sms/1/text/single",
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => "",
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 30,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => "POST",
+          CURLOPT_POSTFIELDS => "{ \"from\":\"$from\", \"to\":\"$coach_phone\", \"text\":\"$message\" }",
+          CURLOPT_HTTPHEADER => array(
+                    "accept: application/json",
+                    "authorization: App b6f2eb70d347a8ea437631f5defc77cc-760008e6-c2b7-4019-b43d-590c24d38905",
+                    "content-type: application/json"
+                  ),
+                ));
+        
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        
+        curl_close($curl);
+        
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            //echo $response;
+          // $a = json_decode($response, true);
+          // //$b = $a['results'][0]['status']['name'];
+          // echo "<pre>";
+          // print_r($a);
+          // exit();
+        }
     }
 
     function student_reminder($phone = '', $fullname = '', $coach = '', $date = '', $start = '', $end = ''){
