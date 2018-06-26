@@ -771,6 +771,13 @@
             if (isFirefox) {
                 $('.breadcrumb li a').css('padding-top', '13px')
             }
+
+            $('#search').focus(function() {
+                $('#src__sign').hide();
+            })
+            $('#search').focusout(function() {
+                $('#src__sign').show();
+            })
         </script>
         <script>
             // $('body').html($('body').html().replace('/*',' '));
