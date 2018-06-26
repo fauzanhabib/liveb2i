@@ -1316,6 +1316,12 @@ label {
   display: flex;
 }
 
+.justify__content--sb {
+  -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+        justify-content: space-between;
+}
+
 .font-semi-bold {
   font-weight: 600 !important
 }
