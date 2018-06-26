@@ -8,23 +8,23 @@ class Cron extends MY_Controller
 public function __construct()
     {
    parent::__construct();
-   	$this->load->library('email');
+    $this->load->library('email');
     $this->load->library('queue');
     $this->load->library('email_structure');
     $this->load->library('send_email');
     $this->load->library('send_sms');
     $this->load->library('schedule_function');
-   	$this->load->model('CronRunner_Model');
+    $this->load->model('CronRunner_Model');
     $this->load->model('coach_day_off_model');
     }
 
 public function run()
     {
-     	if (!$this->input->is_cli_request()) {
-       	show_error('Direct access is not allowed');
+        if (!$this->input->is_cli_request()) {
+        show_error('Direct access is not allowed');
         }
 
-   	$date = date("Y-m-d H:i:s");
+    $date = date("Y-m-d H:i:s");
     $str = strtotime($date);
 
     $appointment_student = $this->CronRunner_Model->get_days_appointments_student();
@@ -34,8 +34,8 @@ public function run()
             $date_student = $q->date;
             $time_student = $q->start_time;
             $combine_student = $date_student.' '.$time_student;
-            $str_student = strtotime($combine_student);
-            $convert_student = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($q->student_id)[0]->minutes, strtotime($q->date), $q->start_time, $q->end_time);
+            $str_student = strtotime($combine_student);  
+            $convert_student = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($q->student_id)[0]->minutes, strtotime($q->date), $q->start_time, $q->end_time); 
             $date_convert_student = date("Y-m-d", $convert_student['date']);
             $st_convert_student = $convert_student['start_time'];
             $et_convert_student = $convert_student['end_time'];
@@ -64,18 +64,31 @@ public function run()
                         $this->db->update('appointments', $data);
 
                         //$this->send_sms->student_reminder($student_phone, $q->student_name, $q->coach_name, $date_convert_student, $start_hour, $end_hour);
-                        $this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);
-                }
+                        $this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);                        
+                }  
+            }
+            if($q->flag_sms == 0){
+                if ($diff >= 79200 && $diff <= 86400) {
+                        $data = array(
+                        'flag_sms' => 1
+                        );
+
+                        $this->db->where('id', $q->id);
+                        $this->db->update('appointments', $data);
+
+                        $this->send_sms->session_reminder_student($student_phone, $start_hour);
+                        // $this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);                        
+                }  
             }
         }
 
-  	$appointment_coach = $this->CronRunner_Model->get_days_appointments_coach();
+    $appointment_coach = $this->CronRunner_Model->get_days_appointments_coach();
     foreach ($appointment_coach as $qc) {
             $date_coach = $qc->date;
             $time_coach = $qc->start_time;
             $combine_coach = $date_coach.' '.$time_coach;
-            $str_coach = strtotime($combine_coach);
-            $convert_coach = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($qc->coach_id)[0]->minutes, strtotime($qc->date), $qc->start_time, $qc->end_time);
+            $str_coach = strtotime($combine_coach);  
+            $convert_coach = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($qc->coach_id)[0]->minutes, strtotime($qc->date), $qc->start_time, $qc->end_time); 
             $date_convert_coach = date("Y-m-d", $convert_coach['date']);
             $st_convert_coach = $convert_coach['start_time'];
             $et_convert_coach = $convert_coach['end_time'];
@@ -99,13 +112,26 @@ public function run()
                         $data = array(
                         'flag_email' => 2
                         );
-
+                     
                         $this->db->where('id', $qc->id);
                         $this->db->update('appointments', $data);
 
                         //$this->send_sms->coach_reminder($coach_phone, $qc->student_name, $qc->coach_name, $date_convert_coach, $start_hour_coach, $end_hour_coach);
-                        $this->send_email->coach_reminder($qc->coach_email, $qc->coach_name, $qc->student_name, $date_convert_coach, $start_hour_coach, $end_hour_coach, $qc->coach_gmt);
-                }
+                        $this->send_email->coach_reminder($qc->coach_email, $qc->coach_name, $qc->student_name, $date_convert_coach, $start_hour_coach, $end_hour_coach, $qc->coach_gmt);        
+                }  
+            }
+            if($qc->flag_sms == 1){
+                if ($diff >= 79200 && $diff <= 86400) {
+                        $data = array(
+                        'flag_sms' => 2
+                        );
+
+                        $this->db->where('id', $qc->id);
+                        $this->db->update('appointments', $data);
+
+                        $this->send_sms->session_reminder_coach($coach_phone, $start_hour_coach);
+                        // $this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);                        
+                }  
             }
         }
     }
@@ -127,7 +153,7 @@ public function done()
             if($d->status == 'active'){
                 if($diff >= 172800){
                         $data = array(
-                        'status' => 'done'
+                        'status' => 'done' 
                         );
                         $this->db->where('id', $d->id);
                         $this->db->update('coach_dayoffs', $data);
@@ -135,7 +161,7 @@ public function done()
             }elseif($d->status == 'pending'){
                 if($diff >= 172800){
                         $data = array(
-                        'status' => 'expired'
+                        'status' => 'expired' 
                         );
                         $this->db->where('id', $d->id);
                         $this->db->update('coach_dayoffs', $data);
