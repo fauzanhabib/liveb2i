@@ -1,5 +1,5 @@
-<html>
-<body>
+<!-- <html>
+<body> -->
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
@@ -240,5 +240,5 @@ for (i = 0; i < acc.length; i++) {
     } );
 
 </script>
-</body>
-</html>
+<!-- </body>
+</html> -->

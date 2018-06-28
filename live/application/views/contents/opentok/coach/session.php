@@ -1023,65 +1023,23 @@ div.panel.show {
     location.reload();
   });
 </script>
-<script>
-  var appointment_id = "<?php echo $appointment_id; ?>";
-  var stat_check;
-
-  var checksess = setInterval(function() {
-    if(glo_checker == '0'){
-      $.post("<?php echo site_url('opentok/live/check_sess');?>", { 'appointment_id': appointment_id },function(data) {
-        stat_check = data;
-        // console.log(stat_check);
-        if (stat_check == 0 || stat_check == '') {
-          closetab();
-        }
-      });
-    }
-  }, 5000);
-
-  function closetab() {
-      clearInterval(checksess);
-      window.onbeforeunload = null;
-      alert("You're trying to open Live Session in multiple tabs/windows. This page will be closed.");
-      window.location.href = "<?php echo site_url('opentok/multiple'); ?>";
-    }
-</script>
-
-<script>
-var modal = document.getElementById('myModal');
-var btn   = document.getElementById("myBtn");
-var span  = document.getElementsByClassName("close")[0];
-
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-
-
 <script type="text/javascript">
   var std_id = "<?php echo $std_id; ?>";
+  var loader_coach = '0';
   // console.log(std_id);
   $( function() {
 
     $.post("<?php echo site_url('opentok/call_loader/call_ajax');?>", { 'std_id': std_id },function(data) {
      $("#reloading").hide();
      $("#ajaxcall").html(data);
+     loader_coach = '1';
      // alert(data);
      });
 
     $.post("<?php echo site_url('opentok/call_loader_coach/call_ajax');?>", { 'std_id': std_id },function(data) {
      $("#reloading2").hide();
      $("#ajaxscript").html(data);
+     loader_coach = '1';
      // alert(data);
      });
 
@@ -1116,6 +1074,49 @@ window.onclick = function(event) {
 
   } );
 
+</script>
+<script>
+  var appointment_id = "<?php echo $appointment_id; ?>";
+  var stat_check;
+
+  var checksess = setInterval(function() {
+    if(glo_checker == '0' && loader_coach != '1'){
+      $.post("<?php echo site_url('opentok/live/check_sess');?>", { 'appointment_id': appointment_id },function(data) {
+        stat_check = data;
+        console.log(stat_check);
+        if (stat_check == 0 || stat_check == '') {
+          closetab();
+        }
+      });
+    }
+  }, 5000);
+
+  function closetab() {
+      clearInterval(checksess);
+      window.onbeforeunload = null;
+      alert("You're trying to open Live Session in multiple tabs/windows. This page will be closed.");
+      window.location.href = "<?php echo site_url('opentok/multiple'); ?>";
+    }
+</script>
+
+<script>
+var modal = document.getElementById('myModal');
+var btn   = document.getElementById("myBtn");
+var span  = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 </script>
 
 <script>
