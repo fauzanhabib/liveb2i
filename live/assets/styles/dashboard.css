@@ -3956,7 +3956,7 @@ ul.nav-dropdown-top,
   width: 160px;
 }
 #search[type="text"] {
-  height: 55%;
+  min-height: 1.5em;
   font-size: 14px;
   display: inline-block;
   font-weight: 100;
