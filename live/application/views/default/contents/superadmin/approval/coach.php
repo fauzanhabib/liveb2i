@@ -21,7 +21,7 @@
                 </li>
                 <li>
                     <form action="" autocomplete="on" class="search-box">
-                        Search..
+                        <div id="src__sign">Search..</div>
                       <input id="search" name="search" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
                     </form>
                 </li>

@@ -20,7 +20,7 @@
                 <li><a href="#">Group</a></li>
 				<li>
                     <form action="<?php echo site_url('student_partner_neo/subgroup');?>" method="POST" autocomplete="on" class="search-box">
-                        Search..
+                        <div id="src__sign">Search..</div>
                       <input id="search" name="search_subgroup" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
                     </form>
                 </li>
