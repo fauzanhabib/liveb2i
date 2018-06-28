@@ -81,6 +81,7 @@ class manage_appointments extends MY_Site_Controller {
         $student_id_ = $appointment_data->student_id;
         $old_coach_id = $appointment_data->coach_id;  
         $date = $appointment_data->date;  
+        $date = date('Y-m-d', strtotime($date . ' +1 day'));
         $get_start_time = $appointment_data->start_time;
 
         $gmt_student = $this->identity_model->new_get_gmt($student_id_);

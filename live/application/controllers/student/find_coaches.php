@@ -2886,6 +2886,7 @@ class find_coaches extends MY_Site_Controller {
 
         // echo '<pre>';print_r($vars);exit();
         $this->template->content->view('default/contents/find_coach/summary_book/index', $vars);
+        $this->session->unset_userdata('recurring_booking_type');
         //publish template
         $this->template->publish();
     }
