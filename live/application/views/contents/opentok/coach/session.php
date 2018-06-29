@@ -1083,7 +1083,7 @@ div.panel.show {
     if(glo_checker == '0' && loader_coach != '1'){
       $.post("<?php echo site_url('opentok/live/check_sess');?>", { 'appointment_id': appointment_id },function(data) {
         stat_check = data;
-        console.log(stat_check);
+        // console.log(stat_check);
         if (stat_check == 0 || stat_check == '') {
           closetab();
         }
