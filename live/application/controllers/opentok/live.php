@@ -538,13 +538,13 @@ class Live extends MY_Site_Controller {
           $b2c_id = $b2c_checkpull[0]->login_type;
           // echo "<pre>";print_r($livesession);exit();
           //check if student is b2c or b2i
-          if($b2c_id == 0){
-            $this->template->content->view('contents/opentok/coach/session_agora', $livesession);
-            $this->template->publish();
-          }else{
-            $this->template->content->view('contents/opentok/coach/session_agora_b2c', $livesession);
-            $this->template->publish();
-          }
+            if($b2c_id == 0){
+              $this->template->content->view('contents/opentok/coach/session_agora', $livesession);
+              $this->template->publish();
+            }else{
+              $this->template->content->view('contents/opentok/coach/session_agora_b2c', $livesession);
+              $this->template->publish();
+            }
 
           }else{
             if(@$appoint_id){
@@ -553,7 +553,7 @@ class Live extends MY_Site_Controller {
                     $checktoken = array(
                        'token' => $gentoken
                     );
-
+                    // echo "<pre>";print_r($gentoken);exit();
                     $this->db->where('id', $appoint_id);
                     $this->db->update('appointments', $checktoken);
 
@@ -632,7 +632,7 @@ class Live extends MY_Site_Controller {
 
                     $livesession = array(
                     'sessionId'  => @$sessionId,
-                    'token'      => @$token,
+                    'token'      => @$tokenn,
                     'apiKey'     => @$apiKey,
                     'sentence'   => $sentence,
                     'different'  => $different,
@@ -734,7 +734,7 @@ class Live extends MY_Site_Controller {
 
                     $livesession = array(
                     'sessionId'  => @$sessionId,
-                    'token'      => @$token,
+                    'token'      => @$tokene,
                     'apiKey'     => @$apiKey,
                     'sentence'   => $sentence,
                     'different'  => $different,
