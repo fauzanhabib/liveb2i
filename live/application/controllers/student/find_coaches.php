@@ -2115,6 +2115,18 @@ class find_coaches extends MY_Site_Controller {
             $this->messages->add($message, 'success');
             redirect('student/find_coaches/single_date');
         }
+
+        //Inserting cl, cp, and cs =============================================
+        $pull_c_id = $this->db->select('cl_id, cp_id, cs_id')
+                    ->from('users')
+                    ->where('id',$id)
+                    ->get()->result();
+
+        $u_cl_id = @$pull_c_id[0]->cl_id;
+        $u_cp_id = @$pull_c_id[0]->cp_id;
+        $u_cs_id = @$pull_c_id[0]->cs_id;
+        //Inserting cl, cp, and cs =============================================
+
         $booked = array(
             'student_id' => $this->auth_manager->userid(),
             'coach_id' => $coach_id,
@@ -2124,7 +2136,10 @@ class find_coaches extends MY_Site_Controller {
             'end_time' => $end_time,
             'status' => $appointment_status,
             'session' => $session,
-            'app_type' => $app_type
+            'app_type' => $app_type,
+            'cl_id' => $u_cl_id,
+            'cp_id' => $u_cp_id,
+            'cs_id' => $u_cs_id
         );
         //  echo "<pre>";
         // print_r($booked);
