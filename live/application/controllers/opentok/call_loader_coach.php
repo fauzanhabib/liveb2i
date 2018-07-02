@@ -54,6 +54,10 @@ class Call_loader_coach extends MY_Site_Controller {
                     ->where('certificate_plan', $student_cert)
                     ->get()->result();
 
+                  if(!@$scripts){
+                    echo "Currently we haven't had the scripts for ".$student_cert." yet";exit();
+                  }
+
                   $script_total = count($scripts);
                   $data =array();
                   $n = 0;
@@ -71,7 +75,7 @@ class Call_loader_coach extends MY_Site_Controller {
                       $n++;
                   }
 
-
+                  // echo "<pre>";print_r($student_cert);exit();
                   $this->db->insert_batch('coaching_scripts', @$datascript);
 
 

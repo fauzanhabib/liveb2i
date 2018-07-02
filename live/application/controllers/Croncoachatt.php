@@ -107,6 +107,10 @@ class Croncoachatt extends MY_Controller {
                       $cch_att_dif = strtotime($cch_attend) - strtotime($start_time);
                       $cch_att_val = date("i:s", $cch_att_dif);
 
+                      if($cch_att_dif < '0'){
+                        $cch_att_val = '00:00';
+                      }
+
                       //Coach Attend but checking if late or not---------------------------------------------
                       if(@$cch_attend != NULL){
                           if(@$cch_attend != '00:00:00'){
