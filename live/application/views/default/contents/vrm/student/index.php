@@ -1,3 +1,17 @@
+    <style>
+        @media screen and (max-width: 414px) {
+            .radar {
+                background-size: 33.5% auto!important;
+            }            
+        }
+
+        @media screen and (max-width: 375px) {
+            .radar {
+                background-size: 33% auto!important;
+            }            
+        }
+    </style>
+
     <div class="heading text-cl-primary border-b-1 padding15">
 
         <h2 class="margin0">Student Progress Report</h2>
@@ -76,13 +90,19 @@
                     <div class="margin-auto studashboard--spdr" style="display:flex;">
                         <div class="spdr-graph rdr-2 spdr-resp">
                             <div id="chart-area" class="radar-ainner font-12">
-                                <div class="hexagonal height-0 prelative">
+                                <!-- <div class="hexagonal height-0 prelative">
                                     <div class="hexagonBlue stud-dash-hexa position-absolute"></div>
                                     <div class="hexagonGreen stud-dash-hexa position-absolute"></div>
                                     <div class="hexagonYellow stud-dash-hexa position-absolute"></div>
                                     <div class="hexagonRed stud-dash-hexa position-absolute"></div>
-                                </div>
-                                <canvas id="bar" class="radar" style="width: 200%;"></canvas>
+                                </div> -->
+                                <canvas id="bar" class="radar" style="width: 480px;
+                                background-image: url(<?php echo base_url(); ?>assets/img/diagonal_chart.png);
+                                height: 240px;
+                                background-repeat: no-repeat, repeat;
+                                background-size: 35% auto;
+                                background-position: center;">
+                                </canvas>
                             </div>
                         </div>
                         <?php

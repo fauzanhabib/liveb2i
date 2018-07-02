@@ -103,6 +103,19 @@ $("#reloadajax4").click(function() {
             });
         </script>
 
+        <style>
+        @media screen and (max-width: 414px) {
+            .radar {
+                background-size: 33.5% auto!important;
+            }            
+        }
+        @media screen and (max-width: 375px) {
+            .radar {
+                background-size: 33% auto!important;
+            }            
+          }
+        </style>
+
 <ul class='tabs padding-l-0 clearfix'>
     <li><a href='#tab1'>Study Data</a></li>
     <li><a href='#tab2'>Academic Plan</a></li>
@@ -888,13 +901,19 @@ $("#reloadajax4").click(function() {
       </ul>
         <div class="spdr-graph rdr-2 spdr-resp">
           <div id="chart-area" class="radar-ainner font-12">
-              <div class="hexagonal height-0 prelative">
+              <!-- <div class="hexagonal height-0 prelative">
                   <div class="hexagonBlue position-absolute"></div>
                   <div class="hexagonGreen position-absolute"></div>
                   <div class="hexagonYellow position-absolute"></div>
                   <div class="hexagonRed position-absolute"></div>
-              </div>
-              <canvas id="bar" class="radar" style="width: 200%;"></canvas>
+              </div> -->
+              <canvas id="bar" class="radar" style="width: 480px;
+                background-image: url(<?php echo base_url(); ?>assets/img/diagonal_chart.png);
+                height: 240px;
+                background-repeat: no-repeat, repeat;
+                background-size: 36.5% auto;
+                background-position: center;">
+                </canvas>
           </div>
         </div>
         <?php
