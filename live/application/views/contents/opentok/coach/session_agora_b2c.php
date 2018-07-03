@@ -368,7 +368,7 @@ $(document).ready(function(){
        var appointment_id = '<?php echo $appointment_id ?>';
         if ( !cch_note )
         {
-          alert(appointment_id);
+          // alert(appointment_id);
           return false;
         }else{
           // alert( appointment_id );
