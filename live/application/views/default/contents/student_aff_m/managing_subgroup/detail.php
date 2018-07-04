@@ -150,14 +150,6 @@
     <div class="content padding-t-10">
        <div class="box">
             <div class="flex justify_content-sb padding-b-5">
-                <div class="select-all flex">
-                    <div class="padding-r-5 m-t-2">
-                        <input type="checkbox" id="checkbox-1-0" name="Region" value="Region-1" class="regular-checkbox checkAll" /><label class="" for="checkbox-1-0"></label>
-                    </div>
-                    <div class="">
-                        <label class="font-12">Select All</label>
-                    </div>
-                </div>
                 <input type="text" id="myInput" class="font-12" onkeyup="myFunction()" placeholder="Search for names..">
             </div>
             <style type="text/css">

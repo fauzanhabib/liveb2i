@@ -19,7 +19,7 @@ class Vrm extends MY_Site_Controller {
         $this->load->library('call2');
 
         // Checking user role and giving action
-        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'SPR') {
+        if (!$this->auth_manager->role()) {
             $this->messages->add('ERROR');
             redirect('home');
         }

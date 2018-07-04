@@ -151,11 +151,8 @@
 
 </div>
 
-<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/__jquery.tablesorter.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/remodal.min.js"></script>
 
 <script type="text/javascript">
     function isNumber(evt) {

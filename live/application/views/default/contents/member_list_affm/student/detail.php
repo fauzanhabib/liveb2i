@@ -18,11 +18,11 @@
         <div class="content-title m-lr-20 clear-both">
             <span class="left">Basic Info</span>
 
-            <div class="edit action-icon">
+            <!-- <div class="edit action-icon">
                 <button id="btn_save_info" name="__submit" value="SUBMIT" type="submit" class="pure-button btn-tiny btn-white-tertinary m-b-15 save_click asd">SAVE</button>
                 <i class="icon icon-close close_click" title="Cancel"></i>
                 <i class="icon icon-edit edit_click" title="Edit"></i>
-            </div>
+            </div> -->
         </div>
         <div class="pure-g padding-t-20">
 
@@ -30,7 +30,9 @@
                 <div class="thumb-small">
                     <img src="<?php echo base_url(@$student[0]->profile_picture);?>" class="pure-img fit-cover img-circle-big preview-image m-b-10">
                     <span class="text-cl-secondary font-14">Student</span><br>
-                    <span class="font-12"><?php echo @$student[0]->city .', '. @$student[0]->country ?></span>
+                    <?php if(@$student[0]->city != '' || @$student[0]->country !=''){?>
+                      <span class="font-12"><?php echo @$student[0]->city .', '. @$student[0]->country ?></span>
+                    <?php } ?>
                 </div>
                 <div class="padding-t-10 m-b-15 text-center">
                     <div class="padding10" style="width:85%;margin:0 auto">
