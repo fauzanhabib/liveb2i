@@ -14,7 +14,7 @@ public function __construct()
     $this->load->library('send_email');
     $this->load->library('send_sms');
     $this->load->library('schedule_function');
-    $this->load->model('CronRunner_Model');
+    $this->load->model('cronrunner_model');
     $this->load->model('coach_day_off_model');
     }
 
@@ -27,7 +27,7 @@ public function run()
     $date = date("Y-m-d H:i:s");
     $str = strtotime($date);
 
-    $appointment_student = $this->CronRunner_Model->get_days_appointments_student();
+    $appointment_student = $this->cronrunner_model->get_days_appointments_student();
     foreach ($appointment_student as $q) {
             $gmt_student = $this->identity_model->new_get_gmt($q->student_id);
             $minutes_student = $gmt_student[0]->minutes;
@@ -82,7 +82,7 @@ public function run()
             }
         }
 
-    $appointment_coach = $this->CronRunner_Model->get_days_appointments_coach();
+    $appointment_coach = $this->cronrunner_model->get_days_appointments_coach();
     foreach ($appointment_coach as $qc) {
             $date_coach = $qc->date;
             $time_coach = $qc->start_time;
@@ -138,9 +138,9 @@ public function run()
 
 public function done()
     {
-        if (!$this->input->is_cli_request()) {
-        show_error('Direct access is not allowed');
-        }
+        // if (!$this->input->is_cli_request()) {
+        // show_error('Direct access is not allowed');
+        // }
 
         $datenow = date("Y-m-d");
         $strdatenow = strtotime($datenow);

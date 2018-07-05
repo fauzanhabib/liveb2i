@@ -74,7 +74,7 @@ class send_sms {
     }
 
     function session_reminder_student($student_phone = '', $start_hour = ''){
-      $message = 'Your neo LIVE session will begin at '.$start_hour.'. Please don’t be late';
+      $message = 'Your neo LIVE session will begin at '.$start_hour.'. Please do not be late';
       $from = 'neo';
       $curl = curl_init();
         
@@ -112,7 +112,7 @@ class send_sms {
     }
 
     function session_reminder_coach($coach_phone = '', $start_hour_coach = ''){
-      $message = 'Your neo LIVE session will begin at '.$start_hour_coach.'. Please don’t be late';
+      $message = 'Your neo LIVE session will begin at '.$start_hour_coach.'. Please do not be late';
       $from = 'neo';
       $curl = curl_init();
         
