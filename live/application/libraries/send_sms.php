@@ -73,9 +73,15 @@ class send_sms {
 
     }
 
-    function session_reminder_student($student_phone = '', $start_hour = ''){
-      $message = 'Your neo LIVE session will begin at '.$start_hour.'. Please do not be late';
-      $from = 'neo';
+    function session_reminder_student($student_phone = '', $start_hour = '', $type = ''){
+      $flag = '';
+      if($type == 0){
+        $flag = 'DynEd';
+      }else{
+        $flag = 'neo';
+      }
+      $message = 'Your '.$flag.' LIVE session will begin at '.$start_hour.'. Please do not be late';
+      $from = $flag;
       $curl = curl_init();
         
         curl_setopt_array($curl, array(
@@ -111,9 +117,15 @@ class send_sms {
         }
     }
 
-    function session_reminder_coach($coach_phone = '', $start_hour_coach = ''){
-      $message = 'Your neo LIVE session will begin at '.$start_hour_coach.'. Please do not be late';
-      $from = 'neo';
+    function session_reminder_coach($coach_phone = '', $start_hour_coach = '', $type = ''){
+      $flag = '';
+      if($type == 0){
+        $flag = 'DynEd';
+      }else{
+        $flag = 'neo';
+      }
+      $message = 'Your '.$flag.' LIVE session will begin at '.$start_hour_coach.'. Please do not be late';
+      $from = $flag;
       $curl = curl_init();
         
         curl_setopt_array($curl, array(

@@ -68,7 +68,7 @@ public function run()
                 }  
             }
             if($q->flag_sms == 0){
-                if ($diff >= 79200 && $diff <= 86400) {
+                if ($diff >= 0 && $diff <= 7200) {
                         $data = array(
                         'flag_sms' => 1
                         );
@@ -76,8 +76,12 @@ public function run()
                         $this->db->where('id', $q->id);
                         $this->db->update('appointments', $data);
 
-                        $this->send_sms->session_reminder_student($student_phone, $start_hour);
-                        // $this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);                        
+                        if($q->student_login == 0){
+                            $this->send_sms->session_reminder_student($student_phone, $start_hour, 0);
+                            //$this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);
+                        }else{
+                            $this->send_sms->session_reminder_student($student_phone, $start_hour, 1);
+                        }                        
                 }  
             }
         }
@@ -121,7 +125,7 @@ public function run()
                 }  
             }
             if($qc->flag_sms == 1){
-                if ($diff >= 79200 && $diff <= 86400) {
+                if ($diff >= 0 && $diff <= 7200) {
                         $data = array(
                         'flag_sms' => 2
                         );
@@ -129,8 +133,12 @@ public function run()
                         $this->db->where('id', $qc->id);
                         $this->db->update('appointments', $data);
 
-                        $this->send_sms->session_reminder_coach($coach_phone, $start_hour_coach);
-                        // $this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);                        
+                        if($qc->student_login == 0){
+                            $this->send_sms->session_reminder_coach($coach_phone, $start_hour_coach, 0);
+                            //$this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);
+                        }else{
+                            $this->send_sms->session_reminder_coach($coach_phone, $start_hour_coach, 1);
+                        }                        
                 }  
             }
         }
