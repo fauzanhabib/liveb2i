@@ -10,6 +10,8 @@ class Dashboard extends MY_Site_Controller {
         parent::__construct();
         $this->load->model('appointment_model');
         $this->load->model('class_member_model');
+        $this->load->library('call1');
+        $this->load->library('call2');
 
         //checking user role and giving action
         if (!$this->auth_manager->role() || $this->auth_manager->role() != 'STD') {
@@ -27,6 +29,62 @@ class Dashboard extends MY_Site_Controller {
 
         //------------wm
         $id    = $this->auth_manager->userid();
+
+        //------------Checking cl_id, cp_id, cs_id
+        $check_c_id = $this->db->select('cl_id, cp_id, cs_id')
+            ->from('users')
+            ->where('id', $id)
+            ->get()->result();
+
+
+        if(!@$check_c_id[0]->cl_id || !@$check_c_id[0]->cl_id || !@$check_c_id[0]->cl_id){
+          $data_dyned_pro = $this->identity_model->get_student_identity($this->auth_manager->userid());
+          $this->call2->init($data_dyned_pro[0]->server_dyned_pro, $data_dyned_pro[0]->dyned_pro_id);
+          $student_vrm2 = $this->call2->getdataObj();
+
+          $std_cert = $student_vrm2->cert_studying;
+
+          if($std_cert == "Unknown" || @$std_cert){
+            $student_pt = $student_vrm2->last_pt_score;
+
+            if($student_pt >= '0' && $student_pt <= "0.5"){
+              $student_cert = "A1";
+            }else if($student_pt > '0.5' && $student_pt <= "1.5"){
+              $student_cert = "A2";
+            }else if($student_pt > '1.5' && $student_pt <= "2"){
+              $student_cert = "B1";
+            }else if($student_pt > '2' && $student_pt <= "2.5"){
+              $student_cert = "B2";
+            }else if($student_pt > '2.5' && $student_pt <= "3"){
+              $student_cert = "C1";
+            }else if($student_pt > '3'){
+              $student_cert = "C2";
+            }
+          }
+
+          $std_cert = $student_cert;
+          // echo "<pre>";print_r($student_cert);exit();
+
+          $pull_cl_id = $this->db->select('cl_id, cp_id, cs_id')
+                      ->from('dsa_cert_levels')
+                      ->where('cl_name', $std_cert)
+                      ->get()->result();
+
+          $cl_id_std = $pull_cl_id[0]->cl_id;
+          $cp_id_std = $pull_cl_id[0]->cp_id;
+          $cs_id_std = $pull_cl_id[0]->cs_id;
+
+          $ins_c_id = array(
+             'cl_id' => $cl_id_std,
+             'cp_id' => $cp_id_std,
+             'cs_id' => $cs_id_std
+          );
+
+          $this->db->where('id', $id);
+          $this->db->update('users', $ins_c_id);
+        }
+        // echo "<pre>";print_r($id);exit();
+
         // date_default_timezone_set('Asia/Jakarta');
         // $pulltime = date('H:i:s');
         // $def_server  = strtotime($pulltime);
@@ -64,9 +122,7 @@ class Dashboard extends MY_Site_Controller {
         // $nowd  = "2016-08-21";
         $hour_start_db  = date('H:i:s');
         // $hour_start_db  = "02:40:01";
-        // echo "<pre>";
-        // print_r($tz);
-        // exit();
+        // echo "<pre>";print_r($tz);exit();
         $pull_appoint = $this->db->select('*')
                       ->from('appointments')
                       ->where($tipe, $id)
