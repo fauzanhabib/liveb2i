@@ -57,6 +57,11 @@
                     <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('student/upcoming_session');?>">Upcoming Sessions</a></li>
                     <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue" href="<?php echo site_url('student/histories');?>">Session History</a></li>
                     <!-- <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('coach/histories/class_session');?>" class="active">Class Session History</a></li> -->
+                <?php }elseif ($this->auth_manager->role() == 'SPR' || $this->auth_manager->role() == 'SAM' || $this->auth_manager->role() == 'SPN') {?>
+                    <!-- <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('coach/ongoing_session');?>">Current Session</a></li> -->
+                    <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('student_partner/student_upcoming_session/one_to_one_session/'.$student_id);?>">Upcoming Sessions</a></li>
+                    <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue">Session History</a></li>
+                    <!-- <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('coach/histories/class_session');?>" class="active">Class Session History</a></li> -->
                 <?php } ?>
             </ul>
         </div>

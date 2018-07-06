@@ -16,15 +16,15 @@
                 <!-- rendy book a coach baru -->
                 <div class="box">
                     <?php
-                            echo form_open('student/find_coaches/book_by_single_date', 'id="date_value" role="form" class="pure-g pure-form"');        
+                            echo form_open('student/find_coaches/book_by_single_date', 'id="date_value" role="form" class="pure-g pure-form"');
                         ?>
                     <div class="width100perc" style="padding: 0 15px;">
                         <div class='border-2-primary border-rounded-5'>
                             <span class='custom-dropdown'>
                                 <select class="width100perc" name="selector" id="selector">
                                     <option disabled selected>Booking Type</option>
-                                    <option value="single-book">Single Book</option>
-                                    <option value="multiple-book">Recurring Book</option>
+                                    <option value="single-book">Single Booking</option>
+                                    <option value="multiple-book">Recurring Booking</option>
                                 </select>
                             </span>
                         </div>
@@ -70,22 +70,22 @@
                     </ul>
                 </div>
                 <!-- end rendy book a coach baru -->
-            </div>  
+            </div>
         </div>
-     
+
     </div>
 
 </div>
 
 <script>
             $(function(){
-                $('#multi-book2').hide(); 
+                $('#multi-book2').hide();
                 $('#selector').change(function(){
                     if($('#selector').val() == 'multiple-book') {
-                        $('#multi-book2').show(); 
+                        $('#multi-book2').show();
                     } else {
-                        $('#multi-book2').hide(); 
-                    } 
+                        $('#multi-book2').hide();
+                    }
                 });
             });
         </script>
@@ -98,7 +98,7 @@
                 $select2Elm.select2({
                     placeholder: 'Country',
                     width: 'resolve'
-                    
+
                 });
                 $('.select2-selection__arrow').hide();
                 $('.select2-container--default .select2-selection--single').css({'border':'0','border-radius':'0','background':'none'});
@@ -114,7 +114,7 @@
                 $select2Elm.select2({
                     placeholder: 'Spoken Language',
                     width: 'resolve'
-                    
+
                 });
                 $('.select2-selection__arrow').hide();
                 $('.select2-container--default .select2-selection--single').css({'border':'0','border-radius':'0','background':'none'});
@@ -137,11 +137,10 @@
             $('.dateavailable').parsley().reset();
         });
     });
-    
+
     document.getElementById("date").onchange = function() {
         var newurl = "<?php echo site_url('student/find_coaches/book_by_single_date'); ?>"+"/"+this.value;
         $('#date_value').attr('action', newurl);
     };
 
 </script>
-

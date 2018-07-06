@@ -339,7 +339,7 @@
                                         ->order_by('transaction_date','DESC')
                                         ->get()->result();
 
-                        $tokenbal = $token_balance2[0]->balance;
+                        $tokenbal = @$token_balance2[0]->balance;
 
                         $token_added = $this->db->select('token_amount')
                                         ->from('token_histories')
