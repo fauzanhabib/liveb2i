@@ -34,7 +34,7 @@
                 </div>
                 <div class="padding-t-10 m-b-15 text-center">
                     <div class="padding10" style="width:85%;margin:0 auto">
-                        <a href="<?php echo site_url('student_partner/vrm/single_student/'.@$student[0]->id);?>" class="pure-button btn-small btn-white m-t-10">VIEW REPORT</a>
+                        <a href="<?php echo site_url('coach/coach_vrm/single_student/'.@$student[0]->id);?>" class="pure-button btn-small btn-white m-t-10">VIEW REPORT</a>
                         <a href="<?php echo site_url('student_partner/student_upcoming_session/one_to_one_session/'.@$student[0]->id);?>" class="pure-button btn-small btn-white m-t-10">SESSIONS</a>
                     </div>
                 </div>
