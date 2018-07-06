@@ -30,7 +30,6 @@
           <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Group Name</th>
           <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Name</th>
           <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Email</th>
-          <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">PT Result</th>
           <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Join Date</th>
         </tr>
     </thead>
@@ -56,7 +55,6 @@
           <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->name; ?></td>
           <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->fullname; ?></td>
           <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->email; ?></td>
-          <td style="text-align: center;padding-left: 5px !important;"><?php echo $pt_name[0]->cl_name; ?></td>
           <td style="text-align: left;padding-left: 5px !important;"><?php echo $join_date; ?></td>
         </tr>
         <?php $no++; $a++; } ?>
