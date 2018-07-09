@@ -16,18 +16,18 @@
 
     <div class="margin0 padding15">
         <a href="#" class="link-filter">Please select date to filter <i class="icon icon-arrow-down"></i></a>
-        <?php 
-        echo form_open('student_partner/student_upcoming_session/search/one_to_one/'.@$student_id, 'class="pure-form filter-form" style="border:none"'); 
+        <?php
+        echo form_open('student_partner/student_upcoming_session/search/one_to_one/'.@$student_id, 'class="pure-form filter-form" style="border:none"');
         ?>
         <div class="pure-g">
             <div class="pure-u-1 text-center m-t-20">
                 <div class="frm-date" style="display:inline-block">
-                    <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">    
+                    <input name="date_from" class="datepicker frm-date margin0" type="text" readonly="" placeholder="Start Date">
                         <span class="icon dyned-icon-coach-schedules"></span>
                 </div>
-                <span style="font-size: 16px;margin:0px 10px;">to</span>  
+                <span style="font-size: 16px;margin:0px 10px;">to</span>
                 <div class="frm-date" style="display:inline-block">
-                    <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">  
+                    <input name="date_to" class="datepicker2 frm-date margin0" type="text" readonly="" placeholder="End Date">
             <span class="icon dyned-icon-coach-schedules"></span>
                 </div>
                 <?php echo form_submit('__submit', 'Go','class="pure-button btn-small btn-tertiary border-rounded height-32" style="margin:0px 10px;"'); ?>
@@ -46,12 +46,12 @@
                     });
                 } );
             </script>
-            <?php 
+            <?php
             $i = 1;
             if (@$data) {
             ?>
             <div class="b-pad">
-            <table id="userTable" class="display" style="border-top:1px solid #f3f3f3"> 
+            <table id="userTable" class="display" style="border-top:1px solid #f3f3f3">
                 <thead>
                     <tr>
                         <th class="text-cl-tertiary font-light font-16 border-none">DATE</th>
@@ -69,13 +69,13 @@
                     //             if($gmt_user[0]->gmt > 0){
                     //                 $new_gmt = '+'.$gmt_user[0]->gmt;
                     //             }else{
-                    //                 $new_gmt = $gmt_user[0]->gmt;    
+                    //                 $new_gmt = $gmt_user[0]->gmt;
                     //             }
                     if(@!$gmt_student){
                         if($gmt_user[0]->gmt > 0){
                         $new_gmt = '+'.$gmt_user[0]->gmt;
                         }else{
-                        $new_gmt = $gmt_user[0]->gmt;    
+                        $new_gmt = $gmt_user[0]->gmt;
                         }
                     }else if($gmt_student[0]->gmt > 0){
                         $new_gmt = '+'.$gmt_student[0]->gmt;
@@ -162,10 +162,10 @@
             startDate: getDate(dates),
             autoclose: true
         });
-    });    
+    });
 
     $('.height-plus').css({'height':'50px'});
-    
+
     $(function() {
         $('#thetable').tableScroll({height:200});
         $('#thetable2').tableScroll({height:200})

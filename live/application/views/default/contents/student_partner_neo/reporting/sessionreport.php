@@ -143,7 +143,6 @@
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Student</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Group Name</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Email</th>
-                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Pro ID</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Goal</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Coach</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Coach Affiliate</th>
@@ -203,8 +202,8 @@
                     $partner_id = $this->auth_manager->partner_id($d->coach_id);
 
                     $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
-                    $standard_coach_cost = $setting[0]->standard_coach_cost;
-                    $elite_coach_cost = $setting[0]->elite_coach_cost;
+                    $standard_coach_cost = @$setting[0]->standard_coach_cost;
+                    $elite_coach_cost = @$setting[0]->elite_coach_cost;
 
                     $cost = '';
                     if($type_id == 1){
@@ -235,11 +234,18 @@
                         $stdattenddiff_raw = strtotime($std_attend) - strtotime($d->start_time);
                         $stdattenddiff = date("i:s", $stdattenddiff_raw);
 
+                        if($cchattenddiff > '30:00'){
+                          $cchattenddiff = '00:00';
+                        }
+
                         if($cchattenddiff > "05:00"){
                             $status = 'C. late';
                             $tokstat = 1;
-                        }else if ($cchattenddiff < "05:00"){
+                        }else if ($cchattenddiff < "05:00" && @$std_attend != ""){
                             $status = 'Success';
+                            $tokstat = 0;
+                        }else if ($cchattenddiff < "05:00" && @!$std_attend){
+                            $status = 'Success but S. No Show';
                             $tokstat = 0;
                         }
                         // $status = 'C. late';
@@ -293,7 +299,6 @@
                         <td style="text-align: left;padding-left: 5px !important;"><a href="<?php echo site_url('student_partner_neo/member_list/student_detail/'.$d->user_id);?>" class="text-cl-tertiary" target="_blank"><?php echo $d->fullname; ?></a></td>
                         <td><?php echo $d->name; ?></td>
                         <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->email; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->dyned_pro_id; ?></td>
                         <td><?php echo $d->cert_studying; ?></td>
                         <td style="text-align: left;padding-left: 10px !important;"><?php echo $cch_name[0]->fullname; ?></td>
                         <td style="text-align: left;padding-left: 10px !important;"><?php echo $cchaffname; ?></td>

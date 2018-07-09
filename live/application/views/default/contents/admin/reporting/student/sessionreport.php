@@ -245,11 +245,18 @@
                         $stdattenddiff_raw = strtotime($std_attend) - strtotime($d->start_time);
                         $stdattenddiff = date("i:s", $stdattenddiff_raw);
 
+                        if($cchattenddiff > '30:00'){
+                          $cchattenddiff = '00:00';
+                        }
+
                         if($cchattenddiff > "05:00"){
                             $status = 'C. late';
                             $tokstat = 1;
-                        }else if ($cchattenddiff < "05:00"){
+                        }else if ($cchattenddiff < "05:00" && @$std_attend != ""){
                             $status = 'Success';
+                            $tokstat = 0;
+                        }else if ($cchattenddiff < "05:00" && @!$std_attend){
+                            $status = 'Success but S. No Show';
                             $tokstat = 0;
                         }
                         // $status = 'C. late';

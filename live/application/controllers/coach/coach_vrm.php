@@ -25,7 +25,7 @@ class Coach_vrm extends MY_Site_Controller {
         $this->load->library('Study_progress');
 
         // Checking user role and giving action
-        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'CCH') {
+        if (!$this->auth_manager->role()) {
             $this->messages->add('ERROR');
             redirect('home');
         }

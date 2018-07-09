@@ -1083,28 +1083,28 @@
                           ?>
                           <ul class="graph b2">
                               <span class="graph__bar__cont">
-                                  <li class="graph__bar__each" data-value="<?php echo $bar_now; ?>">
+                                  <li class="graph__bar__each" data-value="<?php if($bar_now > 125){echo "125";}else{ echo $bar_now;} ?>">
                                   <span class="graph__legend">Now</span>
                                   <label><?php echo @$gwp->data[0]->points;?></label>
                                   </li>
                               </span>
 
                               <span class="graph__bar__cont">
-                                  <li class="graph__bar__each" data-value="<?php echo $bar_w1; ?>">
+                                  <li class="graph__bar__each" data-value="<?php if($bar_w1 > 125){echo "125";}else{ echo $bar_w1;} ?>">
                                   <span class="graph__legend">w -1</span>
                                   <label><?php echo @$gwp->data[1]->points;?></label>
                                   </li>
                               </span>
 
                               <span class="graph__bar__cont">
-                                  <li class="graph__bar__each" data-value="<?php echo $bar_w2; ?>">
+                                  <li class="graph__bar__each" data-value="<?php if($bar_w2 > 125){echo "125";}else{ echo $bar_w2;} ?>">
                                   <span class="graph__legend">w -2</span>
                                   <label><?php echo @$gwp->data[2]->points;?></label>
                                   </li>
                               </span>
 
                               <span class="graph__bar__cont">
-                                  <li class="graph__bar__each" data-value="<?php echo $bar_w3; ?>">
+                                  <li class="graph__bar__each" data-value="<?php if($bar_w3 > 125){echo "125";}else{ echo $bar_w3;} ?>">
                                   <span class="graph__legend">w -3</span>
                                   <label><?php echo @$gwp->data[3]->points;?></label>
                                   </li>

@@ -7,6 +7,7 @@
         'SPR' => 'Student Affiliate',
         'RAD' => 'Super Admin',
         'SPN' => 'Student Affiliate Neo',
+        'SAM' => 'Student Affiliate Monitor',
     );
 ?>
 <!DOCTYPE html>
@@ -167,12 +168,22 @@
                                 <li class="pure-menu-item prt-reporting">
                                     <a href="<?php echo site_url('student_partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
                                 </li>
+                                <li class="pure-menu-item prt-reporting">
+                                    <a href="<?php echo site_url('student_partner/monitor/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Monitor Accounts</a>
+                                </li>
 
                             <?php } else if ($this->auth_manager->role() == 'SPN') { ?>
                                 <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
                                 <li class="pure-menu-item spr-sgroup"><a href="<?php echo site_url('student_partner_neo/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Student Groups</a></li>
                                 <li class="pure-menu-item prt-reporting">
                                     <a href="<?php echo site_url('student_partner_neo/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
+                                </li>
+
+                            <?php } else if ($this->auth_manager->role() == 'SAM') { ?>
+                                <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
+                                <li class="pure-menu-item spr-sgroup"><a href="<?php echo site_url('student_aff_m/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Student Groups</a></li>
+                                <li class="pure-menu-item prt-reporting">
+                                    <a href="<?php echo site_url('student_aff_m/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
                                 </li>
 
                             <?php } else if ($this->auth_manager->role() == 'ADM') { ?>
@@ -476,11 +487,22 @@
                                         <li class="pure-menu-item spr-sgroup"><a href="<?php echo site_url('student_partner/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Student Groups</a></li>
                                         <li class="pure-menu-item spr-addtoken"><a href="<?php echo site_url('student_partner/add_token');?>" class="pure-menu-link menu-create-session icon dyned-icon-add">Add Tokens</a></li>
                                         <li class="pure-menu-item prt-reporting"><a href="<?php echo site_url('student_partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a></li>
+                                        <li class="pure-menu-item prt-reporting">
+                                            <a href="<?php echo site_url('student_partner/monitor/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Monitor Accounts</a>
+                                        </li>
                                     <?php } else if ($this->auth_manager->role() == 'SPN') { ?>
                                         <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
                                         <li class="pure-menu-item spr-sgroup"><a href="<?php echo site_url('student_partner_neo/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Student Groups</a></li>
                                         <li class="pure-menu-item prt-reporting">
                                             <a href="<?php echo site_url('student_partner_neo/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
+                                        </li>
+
+
+                                    <?php } else if ($this->auth_manager->role() == 'SAM') { ?>
+                                        <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
+                                        <li class="pure-menu-item spr-sgroup"><a href="<?php echo site_url('student_aff_m/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Student Groups</a></li>
+                                        <li class="pure-menu-item prt-reporting">
+                                            <a href="<?php echo site_url('student_aff_m/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
                                         </li>
                                     <?php } else if ($this->auth_manager->role() == 'ADM') { ?>
                                        <!--  <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon icon-user"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>

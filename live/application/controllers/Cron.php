@@ -14,7 +14,7 @@ public function __construct()
     $this->load->library('send_email');
     $this->load->library('send_sms');
     $this->load->library('schedule_function');
-    $this->load->model('CronRunner_Model');
+    $this->load->model('cronrunner_model');
     $this->load->model('coach_day_off_model');
     }
 
@@ -27,7 +27,7 @@ public function run()
     $date = date("Y-m-d H:i:s");
     $str = strtotime($date);
 
-    $appointment_student = $this->CronRunner_Model->get_days_appointments_student();
+    $appointment_student = $this->cronrunner_model->get_days_appointments_student();
     foreach ($appointment_student as $q) {
             $gmt_student = $this->identity_model->new_get_gmt($q->student_id);
             $minutes_student = $gmt_student[0]->minutes;
@@ -68,7 +68,7 @@ public function run()
                 }  
             }
             if($q->flag_sms == 0){
-                if ($diff >= 79200 && $diff <= 86400) {
+                if ($diff >= 0 && $diff <= 7200) {
                         $data = array(
                         'flag_sms' => 1
                         );
@@ -76,13 +76,17 @@ public function run()
                         $this->db->where('id', $q->id);
                         $this->db->update('appointments', $data);
 
-                        $this->send_sms->session_reminder_student($student_phone, $start_hour);
-                        // $this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);                        
+                        if($q->student_login == 0){
+                            $this->send_sms->session_reminder_student($student_phone, $start_hour, 0);
+                            //$this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);
+                        }else{
+                            $this->send_sms->session_reminder_student($student_phone, $start_hour, 1);
+                        }                        
                 }  
             }
         }
 
-    $appointment_coach = $this->CronRunner_Model->get_days_appointments_coach();
+    $appointment_coach = $this->cronrunner_model->get_days_appointments_coach();
     foreach ($appointment_coach as $qc) {
             $date_coach = $qc->date;
             $time_coach = $qc->start_time;
@@ -121,7 +125,7 @@ public function run()
                 }  
             }
             if($qc->flag_sms == 1){
-                if ($diff >= 79200 && $diff <= 86400) {
+                if ($diff >= 0 && $diff <= 7200) {
                         $data = array(
                         'flag_sms' => 2
                         );
@@ -129,8 +133,12 @@ public function run()
                         $this->db->where('id', $qc->id);
                         $this->db->update('appointments', $data);
 
-                        $this->send_sms->session_reminder_coach($coach_phone, $start_hour_coach);
-                        // $this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);                        
+                        if($qc->student_login == 0){
+                            $this->send_sms->session_reminder_coach($coach_phone, $start_hour_coach, 0);
+                            //$this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);
+                        }else{
+                            $this->send_sms->session_reminder_coach($coach_phone, $start_hour_coach, 1);
+                        }                        
                 }  
             }
         }
@@ -138,9 +146,9 @@ public function run()
 
 public function done()
     {
-        if (!$this->input->is_cli_request()) {
-        show_error('Direct access is not allowed');
-        }
+        // if (!$this->input->is_cli_request()) {
+        // show_error('Direct access is not allowed');
+        // }
 
         $datenow = date("Y-m-d");
         $strdatenow = strtotime($datenow);

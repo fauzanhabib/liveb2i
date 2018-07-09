@@ -1,7 +1,7 @@
 <html>
 <head>
  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/datatables.min.css"/>
- 
+
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-2.2.4/jszip-3.1.3/pdfmake-0.1.27/dt-1.10.15/b-1.3.1/b-colvis-1.3.1/b-flash-1.3.1/b-html5-1.3.1/b-print-1.3.1/datatables.min.js"></script>
 
 <style>
@@ -37,9 +37,9 @@
             <th>Added Tokens</th>
             <th>Used Tokens</th>
             <th>Token Balance</th>
-            <th>Completed Sessions</th>               
-            <th>Last Session</th>               
-            <th>Next Session</th>               
+            <th>Completed Sessions</th>
+            <th>Last Session</th>
+            <th>Next Session</th>
             <th>Avg. Coach Rating</th>
         </tr>
     </thead>
@@ -176,7 +176,7 @@
                             ->order_by('transaction_date','DESC')
                             ->get()->result();
 
-            $tokenbal = $token_balance2[0]->balance;
+            $tokenbal = @$token_balance2[0]->balance;
 
             $token_added = $this->db->select('token_amount')
                             ->from('token_histories')
@@ -216,7 +216,7 @@
                                 ->get()->result();
         }
 
-        
+
 
         $sum = 0;
         foreach($token_usage as $key=>$value){
@@ -229,7 +229,7 @@
         foreach($appid as $ap){
             $app_id.= $ap->id.",";
         }
-        $appidlist=rtrim($app_id,", ");    
+        $appidlist=rtrim($app_id,", ");
         $idforquery=explode(",", $appidlist);
 
         $getrating = $this->db->select('rate')
@@ -298,20 +298,20 @@
                     <?php echo $total_ses->num_rows(); ?>
                 <?php }else{ echo $total_ses->num_rows(); }?>
             </td>
-            <td><?php 
+            <td><?php
                 if(!@$last_ses){
                     echo '<span class="labels tooltip-bottom" data-tooltip="No Session" style="color:#000 !important;font-size:14px;">-</span>';
                 }
-                echo @$last_ses[0]->date; 
+                echo @$last_ses[0]->date;
             ?></td>
-            <td><?php 
+            <td><?php
                 if(!@$next_ses){
                     echo '<span class="labels tooltip-bottom" data-tooltip="No Session" style="color:#000 !important;font-size:14px;">-</span>';
                 }else{
                     echo @$next_ses[0]->date;
                 }
             ?></td>
-            <td><?php 
+            <td><?php
                 if(@$rateaverage == 0){
                     echo '';
                 }else{
@@ -358,7 +358,7 @@
         t.on( 'order.dt search.dt', function () {
            t.column(0, {search:'applied', order:'applied'}).nodes().each( function (cell, i) {
               cell.innerHTML = i + 1;
-              t.cell(cell).invalidate('dom'); 
+              t.cell(cell).invalidate('dom');
            } );
         } ).draw();
 
