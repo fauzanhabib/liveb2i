@@ -19,16 +19,6 @@
     <div class="heading pure-g">
 
         <div class="left-list-tabs pure-menu pure-menu-horizontal">
-            <ul class="pure-menu-list margin-left70">
-                <?php if($role_link == "superadmin") { ?>
-                <li class="pure-menu-item pure-menu-selected no-hover"><a href="<?php echo site_url('superadmin/'.$this->uri->segment(2).'/setting/'.@$this->uri->segment(4).'/student');?>" class="pure-menu-link padding-t-b-5 font-semi-bold font-14 padding-lr-5 ">Student Affiliate</a></li>
-                <li class="pure-menu-item pure-menu-selected no-hover"><a href="<?php echo site_url('superadmin/'.$this->uri->segment(2).'/setting/'.@$this->uri->segment(4).'/coach');?>" class="pure-menu-link padding-t-b-5 font-semi-bold font-14 padding-lr-5 active-tabs-blue">Coach Affiliate</a></li>
-                <?php } else { ?>
-                <li class="pure-menu-item pure-menu-selected no-hover"><a href="<?php echo site_url('admin/manage_partner/setting/'.$id.'/student');?>" class="pure-menu-link padding-t-b-5 font-semi-bold font-14 padding-lr-5 ">Student Affiliate</a></li>
-                <li class="pure-menu-item pure-menu-selected no-hover"><a href="<?php echo site_url('admin/manage_partner/setting/'.$id.'/coach');?>" class="pure-menu-link padding-t-b-5 font-semi-bold font-14 padding-lr-5 active-tabs-blue">Coach Affiliate</a></li>
-                <?php } ?>
-            </ul>
-
             <ul class="pure-menu-list m-r-10 right">
                 <li class="pure-menu-item pure-menu-selected no-hover">
                     <a href="<?php echo $back;?>">
@@ -72,6 +62,16 @@
                         </button>
                     </a>
                 </li>
+            </ul>
+            
+            <ul class="pure-menu-list margin-left70">
+                <?php if($role_link == "superadmin") { ?>
+                <li class="pure-menu-item pure-menu-selected no-hover"><a href="<?php echo site_url('superadmin/'.$this->uri->segment(2).'/setting/'.@$this->uri->segment(4).'/student');?>" class="pure-menu-link padding-t-b-5 font-semi-bold font-14 padding-lr-5 ">Student Affiliate</a></li>
+                <li class="pure-menu-item pure-menu-selected no-hover"><a href="<?php echo site_url('superadmin/'.$this->uri->segment(2).'/setting/'.@$this->uri->segment(4).'/coach');?>" class="pure-menu-link padding-t-b-5 font-semi-bold font-14 padding-lr-5 active-tabs-blue">Coach Affiliate</a></li>
+                <?php } else { ?>
+                <li class="pure-menu-item pure-menu-selected no-hover"><a href="<?php echo site_url('admin/manage_partner/setting/'.$id.'/student');?>" class="pure-menu-link padding-t-b-5 font-semi-bold font-14 padding-lr-5 ">Student Affiliate</a></li>
+                <li class="pure-menu-item pure-menu-selected no-hover"><a href="<?php echo site_url('admin/manage_partner/setting/'.$id.'/coach');?>" class="pure-menu-link padding-t-b-5 font-semi-bold font-14 padding-lr-5 active-tabs-blue">Coach Affiliate</a></li>
+                <?php } ?>
             </ul>
         </div>
 

@@ -29,6 +29,18 @@
         overflow: auto;
         padding-bottom: 25px;
     }
+
+    @media screen and (max-width: 425px) {
+        .dataTables_wrapper .dataTables_filter {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                    justify-content: flex-end;
+            padding-right: 0!important;
+        }
+    }
 </style>
 <style type="text/css" src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></style>
 <style type="text/css" src="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css"></style>
@@ -291,7 +303,7 @@
                     ?>
                     <tr>
                         <td></td>
-                        <td style="text-align: left;padding-left: 10px !important;"><?php
+                        <td><?php
                             $minutes_to_add = $spr_tz;
 
                             $time = new DateTime($d->date." ".$d->start_time);
@@ -302,18 +314,18 @@
                             echo $stamp;
                             // echo $d->date;
                         ?></td>
-                        <td style="text-align: center;padding-left: 0px !important;"><?php
+                        <td><?php
                             // echo $d->start_time." - ".$end_time."<br>";
                             echo $start_conv_real." - ".$endmin_real;
                         ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><a href="<?php echo site_url('student_partner/member_list/student_detail/'.$d->user_id);?>" class="text-cl-tertiary" target="_blank"><?php echo $d->fullname; ?></a></td>
+                        <td><a href="<?php echo site_url('student_partner/member_list/student_detail/'.$d->user_id);?>" class="text-cl-tertiary" target="_blank"><?php echo $d->fullname; ?></a></td>
                         <td><?php echo $partname; ?></td>
                         <td><?php echo $d->name; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->email; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->dyned_pro_id; ?></td>
+                        <td><?php echo $d->email; ?></td>
+                        <td><?php echo $d->dyned_pro_id; ?></td>
                         <td><?php echo $d->cert_studying; ?></td>
-                        <td style="text-align: left;padding-left: 10px !important;"><?php echo $cch_name[0]->fullname; ?></td>
-                        <td style="text-align: left;padding-left: 10px !important;"><?php echo $cchaffname; ?></td>
+                        <td><?php echo $cch_name[0]->fullname; ?></td>
+                        <td><?php echo $cchaffname; ?></td>
                         <td><?php echo $ratingsess; ?></td>
                         <!-- td><?php
                             if(!@$std_attend){

@@ -60,7 +60,7 @@ if($this->auth_manager->role() == 'RAD'){
                     ?>
                         <tr class="list-match">
                             <td class="padding15" data-label="NO"><?php echo($i++);?></td>
-                            <td class="padding15" data-label="STUDENT PARTNER">
+                            <td class="padding15" data-label="Student Affiliate">
                                 <span class="text-cl-secondary">
                                     <?php 
                                     $temp1 = array();
@@ -101,7 +101,7 @@ if($this->auth_manager->role() == 'RAD'){
                                 </span>)
                                 <?php } ?>
                             </td>
-                            <td class="padding15" data-label="COACH PARTNER">
+                            <td class="padding15" data-label="Coach Affiliate">
                                 <span class="text-cl-green">
                                     <?php 
                                     $temp2 = array();

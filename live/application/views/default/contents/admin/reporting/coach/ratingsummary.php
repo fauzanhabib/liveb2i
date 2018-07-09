@@ -29,6 +29,18 @@
         overflow: auto;
         padding-bottom: 25px;
     }
+
+    @media screen and (max-width: 425px) {
+        .dataTables_wrapper .dataTables_filter {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                    justify-content: flex-end;
+            padding-right: 0!important;
+        }
+    }
 </style>
 <style type="text/css" src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></style>
 <style type="text/css" src="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css"></style>
@@ -474,10 +486,10 @@
                 ?>
                     <tr>
                         <td></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $partname; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->name; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->fullname; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->email; ?></td>
+                        <td><?php echo $partname; ?></td>
+                        <td><?php echo $d->name; ?></td>
+                        <td><?php echo $d->fullname; ?></td>
+                        <td><?php echo $d->email; ?></td>
                         <td><?php echo $rateaverage8; ?></td>
                         <td><?php echo $rateaverage7; ?></td>
                         <td><?php echo $rateaverage6; ?></td>

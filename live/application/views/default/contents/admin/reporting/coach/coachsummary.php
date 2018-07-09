@@ -35,6 +35,18 @@
         overflow: auto;
         padding-bottom: 25px;
     }
+
+    @media screen and (max-width: 425px) {
+        .dataTables_wrapper .dataTables_filter {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                    justify-content: flex-end;
+            padding-right: 0!important;
+        }
+    }
 </style>
 <script type="text/javascript" src="<https://code.jquery.com/jquery-1.12.4.js"></script>
 <style type="text/css" src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></style>
@@ -206,8 +218,10 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th class="thfoot"></th>
+                        <th class="thfoot resp__hide"></th>
                         <th class="thfoot">Total</th>
+                        <th class="thfoot resp__hide"></th>
+                        <th class="thfoot resp__hide"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
@@ -215,9 +229,7 @@
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
-                        <th class="thfoot"></th>
-                        <th class="thfoot"></th>
-                        <th class="thfoot"></th>
+                        <th class="thfoot resp__hide"></th>
                     </tr>
                 </tfoot>
                 <tbody>
@@ -485,10 +497,10 @@
                     ?>
                     <tr>
                         <td></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $partname; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->name; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><a href="<?php echo site_url('partner/reporting/detail/'.$d->user_id);?>" class="text-cl-tertiary" target="_blank"><?php echo $d->fullname; ?></a></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->email; ?></td>
+                        <td><?php echo $partname; ?></td>
+                        <td><?php echo $d->name; ?></td>
+                        <td><a href="<?php echo site_url('partner/reporting/detail/'.$d->user_id);?>" class="text-cl-tertiary" target="_blank"><?php echo $d->fullname; ?></a></td>
+                        <td><?php echo $d->email; ?></td>
                         <td><?php echo $sum; ?></td>
                         <td>
                             <?php if($sum2 != 0){ ?>

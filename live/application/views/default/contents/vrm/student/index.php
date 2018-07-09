@@ -1,4 +1,11 @@
     <style>
+        @media screen and (max-width: 425px) {
+            #bar {
+                width: auto!important;
+                height: 195px!important;
+            }
+        }
+
         @media screen and (max-width: 414px) {
             .radar {
                 background-size: 33.5% auto!important;
@@ -29,43 +36,40 @@
                         <span>Study Level</span>
                     </div>
                     <div class="text-center">
-                        <ul class="coaching-info-big m-tb-0 padding-l-0 padding-t-25">
-                            <li class="coaching-info-box-big margin-auto clearfix">
+                        <div class="coaching-info-big m-tb-0 padding-l-0 padding-t-25">
+                            <div class="coaching-info-box-big margin-auto ">
                                 <div class="coaching-box-left-big">
                                     <span>Last PT</span>
                                 </div>
                                 <div class="coaching-box-right-big">
                                     <div class="last-pt"></div>
                                 </div>
-                            </li>
-                            <li class="coaching-info-box-big margin-auto clearfix">
+                            </div>
+                            <div class="coaching-info-box-big margin-auto ">
                                 <div class="coaching-box-left-big">
                                     <span>Hours/Week</span>
                                 </div>
                                 <div class="coaching-box-right-big">
                                     <div class="hw"></div>
                                 </div>
-                            </li>
-                        </ul>
-
-                        <ul class="coaching-info-big m-tb-0 padding-l-0">
-                            <li class="coaching-info-box-big margin-auto clearfix">
+                            </div>
+                            <div class="coaching-info-box-big margin-auto ">
                                 <div class="coaching-box-left-big">
                                     <span>WSS</span>
                                 </div>
                                 <div class="coaching-box-right-big">
                                     <div class="sl"></div>
                                 </div>
-                            </li>
-                            <li class="coaching-info-box-big margin-auto clearfix">
-                                <div class="coaching-box-left-big" style="padding: 5px 0 !important;">
+                            </div>
+                            <div class="coaching-info-box-big margin-auto ">
+                                <div class="coaching-box-left-big">
                                     <span>Initial Placement Level</span>
                                 </div>
                                 <div class="coaching-box-right-big">
                                     <div class="pt"></div>
                                 </div>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- <div class="spdr-graph rdr-2">
@@ -201,7 +205,7 @@
 
                 <!-- Check non certif user -->
 
-                <div class="pure-u-md-12-24" style="z-index:3">
+                <div class="cert__plan pure-u-md-12-24" style="z-index:3">
 
                 <div class="box-capsule m-t-20 margin-auto font-14 width190">
                     <span>Certificate Plan</span>

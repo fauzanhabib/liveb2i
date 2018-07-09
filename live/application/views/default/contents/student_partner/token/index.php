@@ -78,57 +78,59 @@
     </div>
 
     <div class="content">
-        <div class="box width50perc margin-l-0">
-        <script>
-            $(document).ready(function() {
-                $('#userTable').DataTable( {
-                  "bLengthChange": false,
-                  "searching": false,
-                  "userTable": false,
-                  "bPaginate"   :false,
-                  "bInfo" : false
-                });
-            } );
-        </script>
+        <div class="box margin-l-0">
+            <script>
+                $(document).ready(function() {
+                    $('#userTable').DataTable( {
+                      "bLengthChange": false,
+                      "searching": false,
+                      "userTable": false,
+                      "bPaginate"   :false,
+                      "bInfo" : false
+                    });
+                } );
+            </script>
 
-        <table id="userTable" class="display" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th class="bg-secondary text-cl-white border-none">Balance</th>
-					<th class="bg-secondary text-cl-white border-none">Request</th>
-					<?php if ($data) { ?>
-                    <th class="bg-secondary text-cl-white border-none">Action</th>   <?php
-                        } ?>            
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><?php 
+            <div class="request__token">
+                <table id="userTable" class="display" cellspacing="0" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="bg-secondary text-cl-white border-none">Balance</th>
+                            <th class="bg-secondary text-cl-white border-none">Request</th>
+                            <?php if ($data) { ?>
+                            <th class="bg-secondary text-cl-white border-none">Action</th>   <?php
+                                } ?>            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><?php 
 
-                        if(@$remain_token->token_amount == 0){
-                            echo 0;
-                        } else if (@$remain_token->token_amount > 0){
-                            echo $remain_token->token_amount;
-                          }  ?>  </td>
-						   <?php echo ($data ? '<td class="token-balance padding15">' . $data->token_amount . '</td>' : ''); ?>
-                        <?php if ($data) { ?>
-                            <td class="padding15">
-							<div class="pure-button btn-red btn-small"><a href="#modal2">Cancel</a></div>
-                                
-                            </td>
-                            <?php
-                        } else {
-                            ?>
-								<td>
-									<div class="pure-button btn-green btn-small"><a href="#modal1">Request Token</a></div>
-								</td>
-                            <?php
-                        }
-                        ?>
-                    
-                </tr>
-            </tbody>
-        </table>
+                                if(@$remain_token->token_amount == 0){
+                                    echo 0;
+                                } else if (@$remain_token->token_amount > 0){
+                                    echo $remain_token->token_amount;
+                                  }  ?>  </td>
+                                   <?php echo ($data ? '<td class="token-balance padding15">' . $data->token_amount . '</td>' : ''); ?>
+                                <?php if ($data) { ?>
+                                    <td class="padding15">
+                                    <div class="pure-button btn-red btn-small"><a href="#modal2">Cancel</a></div>
+                                        
+                                    </td>
+                                    <?php
+                                } else {
+                                    ?>
+                                        <td>
+                                            <div class="pure-button btn-green btn-small"><a href="#modal1">Request Token</a></div>
+                                        </td>
+                                    <?php
+                                }
+                                ?>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         
         <!-- Modal -->

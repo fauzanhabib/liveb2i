@@ -6,9 +6,9 @@
     <div class="heading pure-g padding-t-30">
         <div class="left-list-tabs pure-menu pure-menu-horizontal text-center margin0">
             <ul class="pure-menu-list">
-                <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue" href="<?php echo site_url('student_partner/student_upcoming_session/one_to_one_session/'.@$student_id);?>">Upcoming Session</a></li>
+                <li class="pure-menu-item pure-menu-selected text-center no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue" href="<?php echo site_url('student_partner/student_upcoming_session/one_to_one_session/'.@$student_id);?>">Upcoming Session</a></li>
                 <!-- <li><a href="<?php echo site_url('student_partner/student_upcoming_session/class_session/'.@$student_id);?>" >Class Session</a></li> -->
-                <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('student_partner/student_histories/index/'.@$student_id);?>" >Session Histories</a></li>
+                <li class="pure-menu-item pure-menu-selected text-center no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('student_partner/student_histories/index/'.@$student_id);?>" >Session Histories</a></li>
                 <!-- <li><a href="<?php echo site_url('student_partner/student_histories/class_session/'.@$student_id);?>" >Class Session Histories</a></li> -->
             </ul>
         </div>

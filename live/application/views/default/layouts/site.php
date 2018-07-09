@@ -381,13 +381,13 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li class="faq">
+                                <!-- <li class="faq">
                                     <a>
                                         <div class="prelative tooltip-bottom" data-tooltip="FAQs coming soon">
                                             <img src="<?php echo base_url(); ?>assets/img/faq.svg">
                                         </div>
                                     </a>
-                                </li>
+                                </li> -->
                                 <!-- end notification -->
 
                             </ul>

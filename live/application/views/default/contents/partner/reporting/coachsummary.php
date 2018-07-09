@@ -195,10 +195,10 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th class="thfoot"></th>
+                        <th class="thfoot resp__hide"></th>
                         <th class="thfoot">Total</th>
-                        <th class="thfoot"></th>
-                        <th class="thfoot"></th>
+                        <th class="thfoot resp__hide"></th>
+                        <th class="thfoot resp__hide"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
@@ -432,9 +432,9 @@
                     ?>
                     <tr>
                         <td></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->name; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><a href="<?php echo site_url('partner/reporting/detail/'.$d->user_id);?>" class="text-cl-tertiary" target="_blank"><?php echo $d->fullname; ?></a></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->email; ?></td>
+                        <td><?php echo $d->name; ?></td>
+                        <td><a href="<?php echo site_url('partner/reporting/detail/'.$d->user_id);?>" class="text-cl-tertiary" target="_blank"><?php echo $d->fullname; ?></a></td>
+                        <td><?php echo $d->email; ?></td>
                         <td><?php echo $sum; ?></td>
                         <td>
                             <?php if($sum2 != 0){ ?>

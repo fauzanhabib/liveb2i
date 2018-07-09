@@ -137,7 +137,7 @@
             </div>
         <?php } ?>
 
-            <div class="pure-u-lg-13-24">
+            <div class="todays__session__list pure-u-lg-13-24">
                 <div class="view-session">
                     <div class="session-title padding-l-0 margin0">
                         <div class="session-title-left">Today's Sessions</div>

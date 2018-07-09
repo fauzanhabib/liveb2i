@@ -75,8 +75,8 @@
             <li class="pure-menu-item padding-tb-9 bg-primary font-semi-bold"><a href="<?php echo site_url($role_link.'/manage_partner/detail/'.$partner_id);?>" class="pure-menu-link font-14">Affiliate Profile</a></li>
             <li class="pure-menu-item padding-tb-9 bg-tertiary font-semi-bold"><a href="<?php echo site_url($role_link.'/manage_partner/partner/student/'.$partner_id.'/'.$region_id);?>" class="pure-menu-link font-14">Student Affiliate</a></li>
             <li class="pure-menu-item padding-tb-9 bg-tertiary font-semi-bold"><a href="<?php echo site_url($role_link.'/manage_partner/partner/coach/'.$partner_id.'/'.$region_id);?>" class="pure-menu-link font-14">Coach Affiliate</a></li>
+            <?php if($role_link == 'superadmin'){ ?>
             <li class="pure-menu-item padding-tb-9 no-hover">
-                <?php if($role_link == 'superadmin'){ ?>
                 <a href="<?php echo site_url($role_link.'/region/detail/'.$region_id);?>">
                     <button class="btn-small border-1-blue bg-white-fff text-cl-tertiary height38" >
                     <div class="left padding-r-5">
@@ -118,8 +118,8 @@
                     Go Back One Page
                     </button>
                 </a>
-                <?php } ?>
             </li>
+            <?php } ?>
             <?php if($status_set_setting == 1){ ?>
             <!-- <li class="pure-menu-item padding-tb-9 no-hover left-200">
                 <a href="<?php echo site_url($role_link.'/manage_partner/setting/'.$partner_id);?>">
