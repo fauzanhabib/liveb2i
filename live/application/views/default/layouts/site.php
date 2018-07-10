@@ -8,6 +8,7 @@
         'RAD' => 'Super Admin',
         'SPN' => 'Student Affiliate Neo',
         'SAM' => 'Student Affiliate Monitor',
+        'CAM' => 'Coach Affiliate Monitor'
     );
 ?>
 <!DOCTYPE html>
@@ -157,6 +158,15 @@
                                 <li class="pure-menu-item prt-reporting">
                                     <a href="<?php echo site_url('partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
                                 </li>
+                                <li class="pure-menu-item prt-reporting">
+                                    <a href="<?php echo site_url('partner/monitor/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Monitor Accounts</a>
+                                </li>
+                              <?php } else if ($this->auth_manager->role() == 'CAM') { ?>
+                                 <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link menu-profile icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
+                                 <li class="pure-menu-item prt-cgroup"><a href="<?php echo site_url('partner/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Coach Groups</a></li>
+                                 <li class="pure-menu-item prt-reporting">
+                                     <a href="<?php echo site_url('partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
+                                 </li>
                             <?php } else if ($this->auth_manager->role() == 'SPR') { ?>
                                 <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
                                 <!-- <li class="pure-menu-item spr-ses"><a href="<?php echo site_url('student_partner/schedule/subgroup');?>" class="pure-menu-link menu-create-session icon icon-create-session">Manage Sessions</a></li> -->
@@ -474,6 +484,15 @@
                                         <!-- <li class="pure-menu-item prt-mem"><a href="<?php echo site_url('partner/member_list/subgroup');?>" class="pure-menu-link menu-profile icon icon-member">Coaches</a></li> -->
                                         <li class="pure-menu-item prt-doff"><a href="<?php echo site_url('partner/approve_coach_day_off');?>" class="pure-menu-link menu-create-session icon dyned-icon-day-off">Day-off Approvals</a></li>
                                         <!-- <li class="pure-menu-item prt-webex"><a href="<?php echo site_url('partner/webex/login');?>" class="pure-menu-link menu-create-session icon icon-webex">WebEx</a></li> -->
+                                        <li class="pure-menu-item prt-cgroup"><a href="<?php echo site_url('partner/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Coach Groups</a></li>
+                                        <li class="pure-menu-item prt-reporting">
+                                            <a href="<?php echo site_url('partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
+                                        </li>
+                                        <li class="pure-menu-item prt-reporting">
+                                            <a href="<?php echo site_url('partner/monitor/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Monitor Accounts</a>
+                                        </li>
+                                    <?php } else if ($this->auth_manager->role() == 'PRT') { ?>
+                                        <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link menu-profile icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
                                         <li class="pure-menu-item prt-cgroup"><a href="<?php echo site_url('partner/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Coach Groups</a></li>
                                         <li class="pure-menu-item prt-reporting">
                                             <a href="<?php echo site_url('partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
