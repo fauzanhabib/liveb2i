@@ -163,9 +163,9 @@
                                 </li>
                               <?php } else if ($this->auth_manager->role() == 'CAM') { ?>
                                  <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link menu-profile icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
-                                 <li class="pure-menu-item prt-cgroup"><a href="<?php echo site_url('partner/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Coach Groups</a></li>
+                                 <li class="pure-menu-item prt-cgroup"><a href="<?php echo site_url('partner_monitor/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Coach Groups</a></li>
                                  <li class="pure-menu-item prt-reporting">
-                                     <a href="<?php echo site_url('partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
+                                     <a href="<?php echo site_url('partner_monitor/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
                                  </li>
                             <?php } else if ($this->auth_manager->role() == 'SPR') { ?>
                                 <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
@@ -491,11 +491,11 @@
                                         <li class="pure-menu-item prt-reporting">
                                             <a href="<?php echo site_url('partner/monitor/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Monitor Accounts</a>
                                         </li>
-                                    <?php } else if ($this->auth_manager->role() == 'PRT') { ?>
+                                    <?php } else if ($this->auth_manager->role() == 'CAM') { ?>
                                         <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link menu-profile icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
-                                        <li class="pure-menu-item prt-cgroup"><a href="<?php echo site_url('partner/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Coach Groups</a></li>
+                                        <li class="pure-menu-item prt-cgroup"><a href="<?php echo site_url('partner_monitor/subgroup');?>" class="pure-menu-link menu-create-session icon dyned-icon-subgroup">Coach Groups</a></li>
                                         <li class="pure-menu-item prt-reporting">
-                                            <a href="<?php echo site_url('partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
+                                            <a href="<?php echo site_url('partner_monitor/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
                                         </li>
                                     <?php } else if ($this->auth_manager->role() == 'SPR') { ?>
                                         <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
