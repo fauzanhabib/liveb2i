@@ -118,11 +118,16 @@
 
                                     <div class="rounded-box bg-green">
                                         <?php
+                                        if($d->end_time == '23:59:59'){
+                                          $mins = 4;
+                                        }else{
+                                          $mins = 5;
+                                        }
                                         $get_endtime = date('H:i',strtotime($d->end_time));
 
                                         // $date = date("Y-m-d H:i:s");
                                         $time = strtotime($get_endtime);
-                                        $time = $time - (5 * 60);
+                                        $time = $time - ($mins * 60);
                                         $new_endtime = date("H:i", $time);
                                         ?>
                                         <span class="text-cl-white"><?php echo(date('H:i',strtotime($d->start_time)));?> - <?php echo($new_endtime);?> (UTC <?php echo $new_gmt;?>)</span>
