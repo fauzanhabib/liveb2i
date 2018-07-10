@@ -86,11 +86,10 @@
             </div>
             <form action="#" method="POST" class="text-right text-cl-grey">
             <div class="sess-duration pure-g border-b-1 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Duration per Session
                 </div>
-                <div class="grids pure-u-md-8-24 padding-t-12">
+                <div class="grids box__setting">
                     <span class="r-only"><?php echo(@$data[0]->session_duration); ?> Minutes</span>
                     <div class="pure-g e-only margin-t-min7">
                         <div class="m-b-5 padding-r-10 left">
@@ -109,18 +108,16 @@
                         </div>
                     </div>    
                 </div>
-                <div class="grids pure-u-md-5-24"></div>
             </div>
             <div class="margin-auto width90perc font-semi-bold padding-tb-10 font-18 text-cl-tertiary">
                 <!-- <div class="grids pure-u-md-1-24"></div> -->
                 Token Cost : 
             </div>
             <div class="sess-duration pure-g margin0 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Coach Cost 
                 </div>
-                <div class="grids pure-u-md-11-24 padding-t-12">
+                <div class="grids box__setting">
                     <?php if($this->auth_manager->role() == 'ADM' || $this->uri->segment(2) == 'manage_partner') { ?>
                     <span class="r-only"><?php echo(@$data[0]->standard_coach_cost); ?> Tokens</span><span class="right">&nbsp;(Max : <?php echo($standard_coach_cost); ?>)</span>
                     <?php }else{ ?>
@@ -132,11 +129,10 @@
                 <!-- <div class="grids pure-u-md-5-24"></div> -->
             </div>
             <div class="sess-duration pure-g margin0 border-b-1 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Elite Coach Cost 
                 </div>
-                <div class="grids pure-u-md-11-24 padding-t-12">
+                <div class="grids box__setting">
                     <?php if($this->auth_manager->role() == 'ADM' || $this->uri->segment(2) == 'manage_partner') { ?>
                     <span class="r-only"><?php echo(@$data[0]->elite_coach_cost); ?> Tokens</span><span class="right">&nbsp;(Max : <?php echo($elite_coach_cost); ?>)</span>
                     <?php }else{ ?>

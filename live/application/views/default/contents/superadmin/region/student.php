@@ -85,12 +85,11 @@
             </div>
             <form action="#" method="POST" class="text-right text-cl-grey">
             <div class="sess-duration pure-g width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Maximum Tokens for Student Affiliate
                 </div>
                 <!-- <div class="grids pure-u-md-9-24"></div> -->
-                <div class="grids pure-u-md-11-24 padding-t-12">
+                <div class="grids box__setting">
                     <?php if($this->auth_manager->role() == 'ADM') { ?>
                     <span class="r-only"><?php echo(@$data[0]->max_token); ?></span><span class="right">&nbsp;(Max : <?php echo($max_token); ?>)</span>
                     <?php }else{ ?>
@@ -101,12 +100,11 @@
             </div>
 
             <div class="sess-duration pure-g margin0 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Set Maximum Token Per Student in Student Affiliate 
                 </div>
                 <!-- <div class="grids pure-u-md-9-24"></div> -->
-                <div class="grids pure-u-md-11-24 padding-t-12">
+                <div class="grids box__setting">
                     <?php if($this->auth_manager->role() == 'ADM') { ?>
                     <span class="r-only"><?php echo(@$data[0]->max_token_for_student); ?></span><span class="right">&nbsp;(Max : <?php echo($max_token_for_student); ?>)</span>
                     <?php }else{ ?>
@@ -118,12 +116,11 @@
             </div>
 
             <div class="sess-duration pure-g margin0 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Maximum Student Per Class 
                 </div>
                 <!-- <div class="grids pure-u-md-9-24"></div> -->
-                <div class="grids pure-u-md-11-24 padding-t-12">
+                <div class="grids box__setting">
                     <?php if($this->auth_manager->role() == 'ADM') { ?>
                     <span class="r-only"><?php echo(@$data[0]->max_student_class); ?></span><span class="right">&nbsp;(Max : <?php echo($max_student_class); ?>)</span>
                     <?php }else{ ?>
@@ -134,12 +131,11 @@
             </div>
 
             <div class="sess-duration pure-g margin0 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Maximum Student for Student Affiliate
                 </div>
                 <!-- <div class="grids pure-u-md-9-24"></div> -->
-                <div class="grids pure-u-md-11-24 padding-t-12">
+                <div class="grids box__setting">
                     <?php if($this->auth_manager->role() == 'ADM') { ?>
                     <span class="r-only"><?php echo(@$data[0]->max_student_supplier); ?></span><span class="right">&nbsp;(Max : <?php echo($max_student_supplier); ?>)</span>
                     <?php }else{ ?>
@@ -166,12 +162,11 @@
             </div> -->
 
             <div class="sess-duration pure-g margin0 width90perc margin-auto border-b-1">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Maximum Sessions Per Day 
                 </div>
                 <!-- <div class="grids pure-u-md-9-24"></div> -->
-                <div class="grids pure-u-md-11-24 padding-t-12">
+                <div class="grids box__setting">
                     <?php if($this->auth_manager->role() == 'ADM') { ?>
                     <span class="r-only"><?php echo(@$data[0]->max_session_per_day); ?></span><span class="right">&nbsp;(Max : <?php echo($max_session_per_day); ?>)</span>
                     <?php }else{ ?>
@@ -187,11 +182,10 @@
             </div>
 
             <div class="sess-duration pure-g border-b-1 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Set Maximum Sessions for Student
                 </div>
-                <div class="grids pure-u-md-8-24 padding-t-12">
+                <div class="grids box__setting">
                     <span class="r-only"><?php echo(@$data[0]->set_max_session); ?></span>
                     <div class="pure-g e-only margin-t-min7">
                         <!-- <div class="m-b-5 padding-r-10 left">
@@ -210,7 +204,6 @@
                         </div>
                     </div>    
                 </div>
-                <div class="grids pure-u-md-5-24"></div>
             </div>
 
             <!-- <div class="sess-duration pure-g margin0 width90perc margin-auto border-b-1 xday">
@@ -246,12 +239,11 @@
             </div> -->
 
             <div class="sess-duration pure-g margin0 width90perc margin-auto border-b-1 week">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Maximum Day Per Week 
                 </div>
                 <!-- <div class="grids pure-u-md-9-24"></div> -->
-                <div class="grids pure-u-md-11-24 padding-t-12">
+                <div class="grids box__setting">
                     <?php if($this->auth_manager->role() == 'ADM') { ?>
                     <span class="r-only"><?php echo(@$data[0]->max_day_per_week); ?></span><span class="right">&nbsp;(Max : <?php echo($max_day_per_week); ?>)</span>
                     <?php }else{ ?>

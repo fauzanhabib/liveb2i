@@ -34,18 +34,17 @@ if($this->auth_manager->role() == 'RAD'){
                 });
             } );
         </script>
-
-        <table id="userTable" class="display table-session" cellspacing="0" width="100%">
-            <thead>
-                <tr>
-                    <th class="bg-secondary bg-none text-cl-white border-none" style="width:30px;">
-                       No.
-                    </th>
-                    <th class="bg-secondary text-cl-white border-none">Student Affiliate<br>(Student Groups)</th>
-                    <th class="bg-secondary text-cl-white border-none">Coach Affiliate<br>(Coach Groups)</th>
-                    <th class="bg-secondary text-cl-white border-none width20perc">Action</th>               
-                </tr>
-            </thead>
+            <table id="userTable" class="display table-session" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th class="bg-secondary bg-none text-cl-white border-none" style="width:30px;">
+                           No.
+                        </th>
+                        <th class="bg-secondary text-cl-white border-none">Student Affiliate<br>(Student Groups)</th>
+                        <th class="bg-secondary text-cl-white border-none">Coach Affiliate<br>(Coach Groups)</th>
+                        <th class="bg-secondary text-cl-white border-none width20perc">Action</th>               
+                    </tr>
+                </thead>
                     <?php 
                     $i = 1;
 
@@ -59,8 +58,8 @@ if($this->auth_manager->role() == 'RAD'){
 
                     ?>
                         <tr class="list-match">
-                            <td class="padding15" data-label="NO"><?php echo($i++);?></td>
-                            <td class="padding15" data-label="Student Affiliate">
+                            <td><?php echo($i++);?></td>
+                            <td>
                                 <span class="text-cl-secondary">
                                     <?php 
                                     $temp1 = array();
@@ -101,7 +100,7 @@ if($this->auth_manager->role() == 'RAD'){
                                 </span>)
                                 <?php } ?>
                             </td>
-                            <td class="padding15" data-label="Coach Affiliate">
+                            <td>
                                 <span class="text-cl-green">
                                     <?php 
                                     $temp2 = array();
@@ -156,9 +155,9 @@ if($this->auth_manager->role() == 'RAD'){
 
                 </tbody>
             </table>
-            </div>
         </div>
     </div>
+</div>
 <script type="text/javascript" src="js/main.js"></script>
 <script src="js/jquery.dataTables.js"></script>
 <script type="text/javascript">

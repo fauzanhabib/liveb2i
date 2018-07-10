@@ -24,52 +24,44 @@
             </div>
             <form action="#" method="POST" class="text-right text-cl-grey">
             <div class="sess-duration pure-g width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Maximum Tokens for Student Affiliate
                 </div>
-                <div class="grids pure-u-md-8-24 padding-t-12">
+                <div class="grids box__setting">
                     <span class="r-only"><?php echo(@$data[0]->max_token); ?></span>
                     <input name="max_token" type="text" class="pure-input-1-2 e-only" value="<?php echo(@$data[0]->max_token); ?>" data-parsley-type="digits" required data-parsley-required-message="This field can’t be blank" data-parsley-type-message="Please input numbers only">
                 </div>
-                <div class="grids pure-u-md-5-24"></div>
             </div>
 
             <div class="sess-duration pure-g margin0 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Set Maximum Token Per Student in Student Affiliate 
                 </div>
-                <div class="grids pure-u-md-8-24 padding-t-12">
+                <div class="grids box__setting">
                     <span class="r-only"><?php echo(@$data[0]->max_token_for_student); ?></span>
                     <input name="max_token_for_student" type="text" class="pure-input-1-2 e-only" value="<?php echo(@$data[0]->max_token_for_student); ?>" data-parsley-type="digits" required data-parsley-required-message="This field can’t be blank" data-parsley-type-message="Please input numbers only">
                            
                 </div>
-                <div class="grids pure-u-md-5-24"></div>
             </div>
 
             <div class="sess-duration pure-g margin0 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Maximum Student Per Class 
                 </div>
-                <div class="grids pure-u-md-8-24 padding-t-12">
+                <div class="grids box__setting">
                         <span class="r-only"><?php echo(@$data[0]->max_student_class); ?></span>
                         <input name="max_student_class" type="text" class="pure-input-1-2 e-only" value="<?php echo(@$data[0]->max_student_class); ?>" data-parsley-type="digits" required data-parsley-required-message="This field can’t be blank" data-parsley-type-message="Please input numbers only">
                 </div>
-                <div class="grids pure-u-md-5-24"></div>
             </div>
 
             <div class="sess-duration pure-g margin0 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Maximum Student for Student Affiliate
                 </div>
-                <div class="grids pure-u-md-8-24 padding-t-12">
+                <div class="grids box__setting">
                     <span class="r-only"><?php echo(@$data[0]->max_student_supplier); ?></span>
                     <input name="max_student_supplier" type="text" class="pure-input-1-2 e-only" value="<?php echo(@$data[0]->max_student_supplier); ?>" data-parsley-type="digits" required data-parsley-required-message="This field can’t be blank" data-parsley-type-message="Please input numbers only">
                 </div>
-                <div class="grids pure-u-md-5-24"></div>
             </div>
 
             <!-- <div class="sess-duration pure-g margin0 width90perc margin-auto">
@@ -85,15 +77,13 @@
             </div> -->
 
             <div class="sess-duration pure-g margin0 width90perc margin-auto border-b-1">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Maximum Sessions Per Day 
                 </div>
-                <div class="grids pure-u-md-8-24 padding-t-12">
+                <div class="grids box__setting">
                     <span class="r-only"><?php echo(@$data[0]->max_session_per_day); ?></span>
                     <input name="max_session_per_day" type="text" class="pure-input-1-2 e-only" value="<?php echo(@$data[0]->max_session_per_day); ?>" data-parsley-type="digits" required data-parsley-required-message="This field can’t be blank" data-parsley-type-message="Please input numbers only">
                 </div>
-                <div class="grids pure-u-md-5-24"></div>
             </div>
             
             <div class="margin-auto width90perc font-semi-bold padding-tb-10 font-18 text-cl-tertiary">
@@ -101,11 +91,10 @@
                 Maximum Sessions for Student : 
             </div>
             <div class="sess-duration pure-g border-b-1 width90perc margin-auto">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Set Maximum Sessions for Student
                 </div>
-                <div class="grids pure-u-md-8-24 padding-t-12">
+                <div class="grids box__setting">
                     <span class="r-only"><?php echo(@$data[0]->set_max_session); ?></span>
                     <div class="pure-g e-only margin-t-min7">
                         <!-- <div class="m-b-5 padding-r-10 left">
@@ -124,7 +113,6 @@
                         </div>
                     </div>    
                 </div>
-                <div class="grids pure-u-md-5-24"></div>
             </div>
             <!-- <div class="sess-duration pure-g margin0 width90perc margin-auto border-b-1 xday">
                 <div class="grids pure-u-md-1-24"></div>
@@ -151,15 +139,13 @@
             </div> -->
 
             <div class="sess-duration pure-g margin0 width90perc margin-auto border-b-1 week">
-                <div class="grids pure-u-md-1-24"></div>
-                <div class="grids pure-u-md-10-24 padding-t-12 font-semi-bold">
+                <div class="grids box__setting font-semi-bold">
                     Maximum Day Per Week 
                 </div>
-                <div class="grids pure-u-md-8-24 padding-t-12">
+                <div class="grids box__setting">
                        <span class="r-only"><?php echo(@$data[0]->max_day_per_week); ?></span>
                         <input name="max_day_per_week" type="text" class="pure-input-1-2 e-only" value="<?php echo(@$data[0]->max_day_per_week); ?>" data-parsley-type="digits" required data-parsley-required-message="This field can’t be blank" data-parsley-type-message="Please input numbers only">
                 </div>
-                <div class="grids pure-u-md-5-24"></div>
             </div>
         </div>
         <div class="save-cancel-btn text-right padding-t-20 padding-r-53">
