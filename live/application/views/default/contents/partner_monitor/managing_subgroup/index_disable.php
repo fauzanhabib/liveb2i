@@ -18,7 +18,7 @@
                 </a></li>
                 <li><a href="#">Group</a></li>
 				<li>
-                    <form action="<?php echo site_url('student_aff_m/subgroup');?>" method="POST" autocomplete="on" class="search-box">
+                    <form action="<?php echo site_url('partner_monitor/subgroup');?>" method="POST" autocomplete="on" class="search-box">
                         <div id="src__sign">Search..</div>
                       <input id="search" name="search_subgroup" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
                     </form>
@@ -27,27 +27,27 @@
         </div>
     </div>
 
-    <h1 class="margin0 left">Group</h1>
+    <h1 class="margin0 left">Coach Affiliate Group</h1>
 
-   <!--  <div class="padding-l-10 padding-t-5 left">
-        <button class="btn-small border-none bg-green text-cl-white height-32">
-            <img src="<?php echo base_url();?>assets/img/iconmonstr-download-12-16.png" class="padding-r-5 left"><span>Export Report To CSV</span>
-        </button>
-    </div>
- -->
 </div>
 
 <div class="box clear-both">
 
     <div class="heading heading-total-session pure-g prelative">
-        <form action="<?php echo site_url('student_aff_m/subgroup/enable_subgroup');?>" method="POST" class="pure-g pure-u-md-24-24 pure-u-sm-24-24 pure-u-lg-24-24">
-        <div class="delete-add-btn padding-l-10 padding-t-65 pure-u-md-8-24 pure-u-lg-8-24">
-            <!-- <div class="btn-noborder btn-normal bg-white-fff left"><a href="<?php echo site_url('student_aff_m/subgroup/add_subgroup');?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Group</em></a></div> -->
-            <!-- <button class="btn-noborder btn-normal bg-white-fff" type="submit" name="__submit" value="enable_subgroup" onclick="return confirm('Are you sure you want to enable group?')"><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Enable Group</em></button> -->
-        </div>
+        <form class="pure-g pure-u-md-24-24 pure-u-sm-24-24 pure-u-lg-24-24" action="<?php echo site_url('partner_monitor/subgroup/enable_subgroup');?>" method="POST">
 
-        <div class="pure-menu-horizontal pure-u-md-10-24 pure-u-lg-10-24 padding-r-10 right">
+        <div class="pure-menu-horizontal pure-u-md-12-24 pure-u-lg-10-24 padding-r-10 right">
             <ul class="text-cl-grey">
+                <li class="pure-menu-item no-hover">
+                    <div class="total-box border-1-ccc width125 height70">
+                        <div class="heading-total text-center border-b-1-ccc">
+                            <span class="font-12">Total Coaches</span>
+                        </div>
+                        <div class="content-total text-center padding-t-10">
+                            <span class="font-semi-bold font-26"><?php echo $total_coach; ?></span>
+                        </div>
+                    </div>
+                </li>
                 <li class="pure-menu-item no-hover no-hover">
                     <div class="total-box border-1-ccc width125 height70">
                         <div class="heading-total text-center border-b-1-ccc">
@@ -61,20 +61,10 @@
                 <li class="pure-menu-item no-hover">
                     <div class="total-box border-1-ccc width125 height70">
                         <div class="heading-total text-center border-b-1-ccc">
-                            <span class="font-12">Student Total</span>
+                            <span class="font-12">Total Tokens Earned</span>
                         </div>
                         <div class="content-total text-center padding-t-10">
-                            <span class="font-semi-bold font-26"><?php echo count($data2); ?></span>
-                        </div>
-                    </div>
-                </li>
-                <li class="pure-menu-item no-hover">
-                    <div class="total-box border-1-ccc width125 height70">
-                        <div class="heading-total text-center border-b-1-ccc">
-                            <span class="font-12">Token Total</span>
-                        </div>
-                        <div class="content-total text-center padding-t-10">
-                            <span class="font-semi-bold font-26"><?php $sum=0; foreach ($data2 as $d) { $sum += $d->token_amount; } ?><?php echo $sum; ?></span>
+                            <span class="font-semi-bold font-26"><?php $sum=0; foreach ($all_coach as $d) { $sum += $d->token_amount; } ?><?php echo $sum; ?></span>
                         </div>
                     </div>
                 </li>
@@ -85,46 +75,33 @@
     <div class="heading pure-g padding-t-30">
         <div class="left-list-tabs pure-menu pure-menu-horizontal text-center margin0">
             <ul class="pure-menu-list">
-                <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('student_aff_m/subgroup/');?>">Active Groups</a></li>
-                <li class="pure-menu-item pure-menu-selected text-center width250 no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue" href="<?php echo site_url('student_aff_m/subgroup/index_disable/');?>" >Disabled Groups</a></li>
+                <li class="pure-menu-item pure-menu-selected text-center no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey" href="<?php echo site_url('partner_monitor/subgroup/');?>">Active Groups</a></li>
+                <li class="pure-menu-item pure-menu-selected text-center no-hover"><a class="pure-menu-link padding-t-b-5 font-16 padding-lr-0 font-light text-cl-lightGrey active-tabs-blue" href="<?php echo site_url('partner_monitor/subgroup/index_disable/');?>" >Disabled Groups</a></li>
             </ul>
         </div>
     </div>
 
-    <div class="content padding-t-0">
+   <div class="content padding-t-0">
        <div class="box">
-            <div class="select-all">
-                <div class="padding-r-5 m-t-2 left">
-                    <input type="checkbox" id="checkbox-1-0" name="Region" value="Region-1" class="regular-checkbox checkAll" /><label class="" for="checkbox-1-0"></label>
-                </div>
-                <div class="">
-                    <label class="font-14">Select All</label>
-                </div>
-            </div>
             <table id="large" class="display table-session tablesorter" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th class="bg-secondary bg-none text-cl-white border-none" style=""></th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">No</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Group</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Type</th>
-                        </tr>
+                    </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $no = 2;
-                    $a = 1;
-                    // echo "<pre>";print_r($data);exit();
-                    foreach ($data as $p) {
+                <?php
+                $no = 2;
+                $a = $number_page;
+                foreach ($data as $p) {
                     ?>
                     <tr>
-                        <td class="text-left">
-                    <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $p->id;?>" class="regular-checkbox" /><label for="checkbox-1-<?php echo $no;?>"></label>
-                        </td>
                         <td><?php echo $a; ?></td>
-                        <td><a href="<?php echo site_url('student_aff_m/subgroup/list_disable_student/'. $p->id); ?>" class="text-cl-tertiary"><u><?php echo $p->name?><u></a></td>
+                        <td><a href="<?php echo site_url('partner_monitor/subgroup/list_disable_coach/'. $p->id); ?>" class="text-cl-tertiary"><u><?php echo $p->name?></u></a></td>
                         <td><?php echo ucfirst($p->type); ?> Affiliate</td>
-                                </tr>
+                    </tr>
                     <?php $no++; $a++; } ?>
                 </tbody>
             </table>
@@ -133,8 +110,6 @@
     <?php echo $pagination;?>
 </div>
             </form>
-
-
 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/__jquery.tablesorter.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery.dataTables.js"></script>

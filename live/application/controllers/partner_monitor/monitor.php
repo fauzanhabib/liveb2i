@@ -18,7 +18,7 @@ class monitor extends MY_Site_Controller {
         $this->load->library('send_email');
 
         //checking user role and giving action
-        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'PRT') {
+        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'CAM') {
             $this->messages->add('Access Denied');
             redirect('account/identity/detail/profile');
         }
@@ -42,7 +42,7 @@ class monitor extends MY_Site_Controller {
             'monitor_list' => $pull_monitor
         );
 
-        $this->template->content->view('default/contents/partner/monitor/index', $vars);
+        $this->template->content->view('default/contents/partner_monitor/monitor/index', $vars);
         $this->template->publish();
 
     }
@@ -63,7 +63,7 @@ class monitor extends MY_Site_Controller {
 
       if (!$this->isValidEmail($this->input->post('email'))) {
           $this->messages->add('Email has been used', 'danger');
-          redirect('partner/monitor');
+          redirect('partner_monitor/monitor');
       }
 
       $user_id = $this->user_model->insert($user);
@@ -85,7 +85,7 @@ class monitor extends MY_Site_Controller {
       $this->send_email->create_user($mon_email, $password,'created', $mon_name, 'Coach Affiliate Monitor', $partnername);
 
       $this->messages->add('Monitor Account Added Successfully', 'success');
-      redirect('partner/monitor');
+      redirect('partner_monitor/monitor');
 
     }
 
