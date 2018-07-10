@@ -67,8 +67,8 @@ class schedule extends MY_Site_Controller {
 //        $today = date("F j, Y H:i:s");
 //        echo($today.'<br>');
 //        echo('Etc/GMT'.(-$this->identity_model->get_gmt($this->auth_manager->userid())[0]->minutes/60 >= 0 ? '+'.-$this->identity_model->get_gmt($this->auth_manager->userid())[0]->minutes/60 : -$this->identity_model->get_gmt($this->auth_manager->userid())[0]->minutes/60));
-//        
-//        
+//
+//
 //        exit;
         $this->template->title = 'Schedules';
 
@@ -100,7 +100,7 @@ class schedule extends MY_Site_Controller {
         if (!$schedule_data) {
             redirect('account/identity/detail/profile');
         }
-           
+
         $schedule = array();
         //foreach($schedule_data as $s){
         for ($i = 0; $i < count($schedule_data); $i++) {
@@ -110,10 +110,10 @@ class schedule extends MY_Site_Controller {
                     array(
                         'start_time' => '00:00:00',
                         'end_time' => '00:00:00',
-                    )   
+                    )
                 );
             }
-            
+
         }
 
         // $setting = $this->partner_setting_model->get();
@@ -134,7 +134,7 @@ class schedule extends MY_Site_Controller {
         //publish template
         $this->template->publish();
     }
-    
+
     private function session_duration($partner_id = ''){
 //        $data =  ($this->partner_model->select('id, session_per_block_by_partner, session_per_block_by_admin')->where('id', $partner_id)->get());
 //        if(!$data->session_per_block_by_admin){
@@ -250,17 +250,17 @@ class schedule extends MY_Site_Controller {
         //return $schedule;
         return $this->joinTime($schedule);
     }
-    
+
     private function convertTime($time = ''){
         if(date("H:i", strtotime(1 . 'minutes', strtotime($time))) != '00:00' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '01' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '11' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '21' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '31' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '41' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '51' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '06' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '16' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '26' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '36' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '46' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '56'){
             return date("H:i", strtotime(1 . 'minutes', strtotime($time)));
-        
+
         }
         else{
             return $time;
         }
     }
-    
+
     private function joinTime($schedule = ''){
         //foreach($schedule as $s){
         $schedule_temp = array();
@@ -291,7 +291,7 @@ class schedule extends MY_Site_Controller {
                 );
             }
         }
-        
+
         return $schedule_temp;
     }
 
@@ -335,10 +335,13 @@ class schedule extends MY_Site_Controller {
             return (($index + 1) <= 6 ? ($index + 1) : 0);
         }
     }
-    
+
     private function isValidSchedule($schedule){
         $status  = false;
         for($i=0;$i<count($schedule);$i++){
+            if($schedule[$i]['end_time'] = '0:00'){
+              $schedule[$i]['end_time'] = '23:59';
+            }
             if(strtotime($schedule[$i]['end_time']) > strtotime($schedule[$i]['start_time'])){
                 if(!$i==0){
                     if(strtotime($schedule[$i]['start_time']) > strtotime($schedule[$i-1]['end_time'])){
@@ -358,13 +361,13 @@ class schedule extends MY_Site_Controller {
             else{
                 $status = false;
             }
-            
+
         }
         return $status;
     }
 
     public function update($day = '') {
-        
+
         $minutes = $this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes;
 
         $day1 = $day;
@@ -381,15 +384,25 @@ class schedule extends MY_Site_Controller {
 //        print_r($schedule_gmt0_2); exit;
         $schedule1 = array();
         $schedule2 = array();
-        
+
         // divided schedule
-        $schedule_block = $this->update_block($this->input->post());
-        //echo('<pre>'); print_r($schedule_block);exit;
+        $schedule_block_o = $this->update_block($this->input->post());
+        $schedule_block = array();
+        foreach ($schedule_block_o as $key => $field) {
+            $end_checker = $field['end_time'];
+            $start_checker = $field['start_time'];
+            if($end_checker == '0:00' && $start_checker > $end_checker){
+              $end_checker = '23:59';
+            }
+            $schedule_block[$key]['start_time'] = $field['start_time'];
+            $schedule_block[$key]['end_time'] = $end_checker;
+        }
+        // echo('<pre>');print_r($schedule_block);exit;
         if(!$this->isValidSchedule($schedule_block)){
             $this->messages->add('Invalid Schedule Order', 'warning');
             redirect('coach/schedule');
         }
-        
+
         if($minutes == 0){
             $schedule_array1 = array();
             foreach ($schedule_block as $s) {
@@ -654,10 +667,10 @@ class schedule extends MY_Site_Controller {
             }
 
         }
-        
-        
+
+
         //echo('<pre>');
-        
+
 
 
         if($minutes == 0){
@@ -673,7 +686,7 @@ class schedule extends MY_Site_Controller {
                 $this->messages->add('Update failed', 'warning');
             }
         }
-        
+
         redirect('coach/schedule');
     }
 
@@ -689,7 +702,7 @@ class schedule extends MY_Site_Controller {
     }
 
     private function update_schedule_block() {
-        
+
     }
 
     public function delete($day = '', $id = '') {
@@ -776,7 +789,7 @@ class schedule extends MY_Site_Controller {
                 return;
             }
         }
-        
+
         return true;
     }
 

@@ -471,7 +471,7 @@ class manage_appointments extends MY_Site_Controller {
                     $start_hour = date("H:i", $usertime1);
 
                     $et  = strtotime($end_time);
-                    $usertime2 = $et+(60*$minutes)-(5*60);
+                    $usertime2 = $et+(60*$minutes);
                     $end_hour = date("H:i", $usertime2);
 
                     // coach
@@ -481,7 +481,7 @@ class manage_appointments extends MY_Site_Controller {
                     $start_hour_coach = date("H:i", $usertime1_coach);
 
                     $et_coach  = strtotime($end_time);
-                    $usertime2_coach = $et_coach+(60*$minutes_coach)-(5*60);
+                    $usertime2_coach = $et_coach+(60*$minutes_coach);
                     $end_hour_coach = date("H:i", $usertime2_coach);
 
 

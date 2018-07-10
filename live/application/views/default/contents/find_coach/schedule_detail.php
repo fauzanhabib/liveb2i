@@ -7,7 +7,7 @@
     </tr>
     </thead>
     <tbody>
-        <?php 
+        <?php
             for($i=0; $i<count(@$schedule['monday']); $i++){
                 $get_endtime = date('H:i',strtotime(@$schedule['monday'][$i]['end_time']));
                 $time = strtotime($get_endtime);
@@ -16,7 +16,7 @@
         ?>
         <tr>
             <?php
-            if($i == 0){ 
+            if($i == 0){
                 ?>
             <td rowspan=<?php echo (count(@$schedule['monday']))?>>Monday</td>
             <?php
@@ -38,7 +38,7 @@
         <?php
             }
         ?>
-        <?php 
+        <?php
             for($i=0; $i<count(@$schedule['tuesday']); $i++){
                 $get_endtime = date('H:i',strtotime(@$schedule['tuesday'][$i]['end_time']));
                 $time = strtotime($get_endtime);
@@ -66,7 +66,7 @@
         <?php
             }
         ?>
-        <?php 
+        <?php
             for($i=0; $i<count(@$schedule['wednesday']); $i++){
                 $get_endtime = date('H:i',strtotime(@$schedule['wednesday'][$i]['end_time']));
                 $time = strtotime($get_endtime);
@@ -94,7 +94,7 @@
         <?php
             }
         ?>
-        <?php 
+        <?php
             for($i=0; $i<count(@$schedule['thursday']); $i++){
                 $get_endtime = date('H:i',strtotime(@$schedule['thursday'][$i]['end_time']));
                 $time = strtotime($get_endtime);
@@ -123,7 +123,7 @@
         <?php
             }
         ?>
-        <?php 
+        <?php
             for($i=0; $i<count(@$schedule['friday']); $i++){
                 $get_endtime = date('H:i',strtotime(@$schedule['friday'][$i]['end_time']));
                 $time = strtotime($get_endtime);
@@ -152,7 +152,7 @@
         <?php
             }
         ?>
-        <?php 
+        <?php
             for($i=0; $i<count(@$schedule['saturday']); $i++){
                 $get_endtime = date('H:i',strtotime(@$schedule['saturday'][$i]['end_time']));
                 $time = strtotime($get_endtime);
@@ -182,7 +182,7 @@
         <?php
             }
         ?>
-        <?php 
+        <?php
             for($i=0; $i<count(@$schedule['sunday']); $i++){
                 $get_endtime = date('H:i',strtotime(@$schedule['sunday'][$i]['end_time']));
                 $time = strtotime($get_endtime);
@@ -212,6 +212,6 @@
         <?php
             }
         ?>
-     </tbody>   
+     </tbody>
 </table>
 <?php exit;?>

@@ -472,17 +472,15 @@ class subgroup extends MY_Site_Controller {
             'total_coach' => $total_coach,
             'number_page' => $number_page
         );
-        // echo "<pre>";
-        // print_r($vars);
-        // exit();
+        // echo "<pre>";print_r($vars);exit();
 
 
         $this->template->content->view('default/contents/student_aff_m/managing_subgroup/detail', $vars);
         $this->template->publish();
     }
 
-    public function list_disable_student($partner_id = '', $page='') {
-
+    public function list_disable_student($subgroup_id = '', $partner_id = '', $page='') {
+        // echo "<pre>";print_r($subgroup_id);exit();
         $this->template->title = 'Detail Subgroup';
         $offset = 0;
         $per_page = 10;
@@ -514,7 +512,7 @@ class subgroup extends MY_Site_Controller {
                                 ->join('user_tokens','users.id = user_tokens.user_id')
                                 ->where('users.status','disable')
                                 ->where('users.role_id','1')
-                                ->where('user_profiles.subgroup_id',$subgroup_id)
+                                ->where('user_profiles.subgroup_id',@$subgroup_id)
                                 ->get()->result();
 
         $date_limit = date("Y-m-d");
@@ -550,8 +548,8 @@ class subgroup extends MY_Site_Controller {
         $vars = array(
             'data' => $data,
             'form_action' => 'update_subgroup',
-            'data2' => $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', '', $offset, $subgroup_id),
-            'subgroup_id' => $subgroup_id,
+            'data2' => $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', '', @$offset, @$subgroup_id),
+            'subgroup_id' => @$subgroup_id,
             'pagination' => $pagination,
             'total_sess_val' => $total_sess_val,
             'total_coach' => $total_coach,

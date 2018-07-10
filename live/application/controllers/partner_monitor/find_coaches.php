@@ -51,7 +51,7 @@ class find_coaches extends MY_Site_Controller {
         @date_default_timezone_set('Etc/GMT+0');
 
         //checking user role and giving action
-        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'STD'){
+        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'CAM'){
             $this->messages->add('Access Denied');
             redirect('account/identity/detail/profile');
         }
@@ -100,51 +100,21 @@ class find_coaches extends MY_Site_Controller {
             redirect('account/identity/detail/profile');
         }
 
-        // $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
-        // $region_id = $this->auth_manager->region_id($partner_id);
+        $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
 
-        // $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
-        // $region_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('user_id',$region_id)->get()->result();
-        // $global_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
-
-        // $standard_coach_cost = @$setting[0]->standard_coach_cost;
-        // if(!$standard_coach_cost || $standard_coach_cost == 0){
-        //     $standard_coach_cost_region = @$region_setting[0]->standard_coach_cost;
-        //     $standard_coach_cost = $standard_coach_cost_region;
-        //     if(!$standard_coach_cost_region || $standard_coach_cost_region == 0){
-        //         $standard_coach_cost_global = @$global_setting[0]->standard_coach_cost;
-        //         $standard_coach_cost = $standard_coach_cost_global;
-        //     }
-        // }
-
-        // $elite_coach_cost = @$setting[0]->elite_coach_cost;
-        // if(!$elite_coach_cost || $elite_coach_cost == 0){
-        //     $elite_coach_cost_region = @$region_setting[0]->elite_coach_cost;
-        //     $elite_coach_cost = $elite_coach_cost_region;
-        //     if(!$elite_coach_cost_region || $elite_coach_cost_region == 0){
-        //         $elite_coach_cost_global = @$global_setting[0]->elite_coach_cost;
-        //         $elite_coach_cost = $elite_coach_cost_global;
-        //     }
-        // }
-
-        // $session_duration = @$setting[0]->session_duration;
-        // if(!$session_duration || $session_duration == 0){
-        //     $session_duration_region = @$region_setting[0]->session_duration;
-        //     $session_duration = $session_duration_region;
-        //     if(!$session_duration_region || $session_duration_region == 0){
-        //         $session_duration_global = @$global_setting[0]->session_duration;
-        //         $session_duration = $session_duration_global;
-        //     }
-        // }
+        $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+        $standard_coach_cost = $setting[0]->standard_coach_cost;
+        $elite_coach_cost = $setting[0]->elite_coach_cost;
+        $session_duration = $setting[0]->session_duration;
 
         $vars = array(
             'coaches' => $coaches,
             'selected' => $category,
             'rating' => $this->coach_rating_model->get_average_rate(),
             'pagination' => @$pagination,
-            // 'standard_coach_cost' => @$standard_coach_cost,
-            // 'elite_coach_cost' => @$elite_coach_cost,
-            'session_duration' => @$session_duration
+            'standard_coach_cost' => $standard_coach_cost,
+            'elite_coach_cost' => $elite_coach_cost,
+            'session_duration' => $session_duration
         );
        // echo('<pre>');
        // print_r($vars); exit;
@@ -183,10 +153,10 @@ class find_coaches extends MY_Site_Controller {
 
 
         // update student pt score
-        if($cert_studying != 0){
-            $this->db->where('user_id',$this->auth_manager->userid());
-            $this->db->update('user_profiles',array('cert_studying' => $cert_studying, 'dcrea' => time(), 'dupd' => time()));
-        }
+
+        $this->db->where('user_id',$this->auth_manager->userid());
+        $this->db->update('user_profiles',array('cert_studying' => $cert_studying, 'dcrea' => time(), 'dupd' => time()));
+
         $this->template->content->view('default/contents/find_coach/availability/single_date/index');
         $this->template->publish();
     }
@@ -425,54 +395,12 @@ class find_coaches extends MY_Site_Controller {
     }
 
     public function book_by_single_date($date = '', $page='') {
-        /*$booking_type =  $this->input->post('selector');
-
-        if(!$booking_type){
-            $this->messages->add('Invalid Booking Type', 'warning');
-            redirect('student/find_coaches/single_date/');
-        }
-
-        $recurring_booking_type = '';
-        if($booking_type == 'single-book'){
-            $recurring_booking_type = 1;
-        } else if($booking_type = 'multiple-book'){
-            $recurring_booking_type = $this->input->post('type_booking');
-        } */
-
-        $booking_type =  $this->input->post('selector');
-
-        if(!$booking_type){
-            $booking_type = $this->session->userdata("selector_booking_type");
-            if(!$booking_type){
-                $this->messages->add('Invalid Booking Type', 'warning');
-                redirect('student/find_coaches/single_date/');
-            }
-        }
-
-        $this->session->set_userdata('selector_booking_type',$booking_type);
-
-        $recurring_booking_type = '';
-        if($booking_type == 'single-book'){
-            $recurring_booking_type = 1;
-        } else if($booking_type = 'multiple-book'){
-            $recurring_booking_type = $this->input->post('type_booking');
-            if(!$recurring_booking_type){
-                $recurring_booking_type = $this->session->userdata("recurring_booking_type");
-            }
-        }
-
-        $this->session->set_userdata("recurring_booking_type",$recurring_booking_type);
-
-        // echo $booking_type .'-'. $recurring_booking_type;
-        // exit();
-        // die();
-
         $this->template->title = 'Detail Schedule';
 
-        if ($date <= date('Y-m-d')) {
-            $this->messages->add('Invalid Date', 'warning');
-            redirect('student/find_coaches/single_date/');
-        }
+        // if ($date <= date('Y-m-d')) {
+        //     $this->messages->add('Invalid Date', 'warning');
+        //     redirect('student/find_coaches/single_date/');
+        // }
 
         $offset = 0;
         $per_page = 6;
@@ -480,7 +408,6 @@ class find_coaches extends MY_Site_Controller {
         $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student/find_coaches/book_by_single_date/'.$date), count($this->get_available_coach($date)), $per_page, $uri_segment);
 
         $cert_studying = $this->db->select('cert_studying')->from('user_profiles')->where('user_id',$this->auth_manager->userid())->get()->result();
-
 
         $data = $this->get_available_coach($date, $per_page, $offset);
 
@@ -498,239 +425,22 @@ class find_coaches extends MY_Site_Controller {
             'gmt_val_user' => $gmt_student[0]->gmt,
             'data' => $data,
             'date' => $date,
-            // 'standard_coach_cost' => $standard_coach_cost,
-            // 'elite_coach_cost' => $elite_coach_cost,
+            'standard_coach_cost' => $standard_coach_cost,
+            'elite_coach_cost' => $elite_coach_cost,
             'rating' => $this->coach_rating_model->get_average_rate(),
             'pagination' => @$pagination,
-            'cert_studying' => $cert_studying[0]->cert_studying,
+            'cert_studying' => $cert_studying[0]->cert_studying
         );
 
         // echo "<pre>";
         // print_r($data);
         // exit();
-        if(!$data){
-
-            $this->messages->add('Coach not found', 'warning');
-            redirect('student/find_coaches/single_date/');
-        }
 
         $this->template->content->view('default/contents/find_coach/book_by_availability/single_date/index', $vars);
         $this->template->publish();
     }
 
-    public function book_single_coach($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '', $token = ''){
-        $recuring = $this->session->userdata('recurring_booking_type');
-
-        if(!$recuring){
-            $recuring = 1;
-        }
-
-        if($recuring == 1) {
-            $frequency = [0];
-        }
-
-        if($recuring == 2) {
-            $frequency = [0,7];
-        }
-
-        if($recuring == 3) {
-            $frequency = [0,7,7];
-        }
-
-        if($recuring == 4) {
-            $frequency = [0,7,7,7];
-        }
-
-
-
-        // book otomatis 4x
-        $arr_message = [];
-        foreach ($frequency as $value) {
-            $message = '';
-            $date_ = strtotime("+".$value." day", $date_);
-            // set defaul timezone
-           @date_default_timezone_set('Etc/GMT+0');
-
-            $start_time_available = $start_time_;
-            $end_time_available = $end_time_;
-
-            $date_notif = date('l jS \of F Y', @$date_);
-
-            $convert = $this->schedule_function->convert_book_schedule(-($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes), $date_, $start_time_, $end_time_);
-            $date = $convert['date'];
-
-            $dateconvert = date('Y-m-d', $date_);
-            $dateconvertcoach = date('Y-m-d', $date);
-            $start_time = $convert['start_time'];
-            $end_time = $convert['end_time'];
-            // timezone
-            $id_student = $this->auth_manager->userid();
-
-            // student
-            $gmt_student = $this->identity_model->new_get_gmt($id_student);
-            // coach
-            $gmt_coach = $this->identity_model->new_get_gmt($coach_id);
-
-
-            // student
-            $minutes = $gmt_student[0]->minutes;
-            // coach
-            $minutes_coach = $gmt_coach[0]->minutes;
-
-            @date_default_timezone_set('UTC');
-            // student
-            $st  = strtotime($start_time);
-            $usertime1 = $st+(60*$minutes);
-            $start_hour = date("H:i", $usertime1);
-
-            $et  = strtotime($end_time);
-            $usertime2 = $et+(60*$minutes)-(5*60);
-            $end_hour = date("H:i", $usertime2);
-
-            // coach
-
-            $st_coach  = strtotime($start_time);
-            $usertime1_coach = $st_coach+(60*$minutes_coach);
-            $start_hour_coach = date("H:i", $usertime1_coach);
-
-            $et_coach  = strtotime($end_time);
-            $usertime2_coach = $et_coach+(60*$minutes_coach)-(5*60);
-            $end_hour_coach = date("H:i", $usertime2_coach);
-
-            // $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
-            // if(!$check_max_book_coach_per_day){
-            //     $this->messages->add('This coach has exceeded maximum booked today', 'warning');
-            //     redirect('student/find_coaches/search/name/');
-            // }
-
-
-                $isValid = $this->isAvailable($coach_id, $date, $start_time, $end_time);
-
-                // echo "<pre>";print_r($isValid);exit();
-
-                $message = '';
-                if(!$isValid){
-                    $this->messages->add('Invalid Appointment Or Coach is Having Day Off', 'warning');
-                    $message = 'Invalid Appointment Or Coach is Having Day Off';
-                }
-
-               $dayoff = $this->is_day_off($coach_id, $dateconvertcoach,$start_time, $end_time);
-
-                // if dayoff 1, coach cuti
-                if($dayoff){
-                    $message = "Coach is Having Day Off";
-                    $this->messages->add('Coach is Having Day Off on '.$dateconvert, 'warning');
-
-                }
-
-                $token_cost = $token;
-
-                $remain_token = $this->update_token($token_cost);
-
-                if($remain_token < 0){
-                    $message = "Not Enough Token";
-                    $this->messages->add('Not Enough Token', 'warning');
-                }
-
-                $data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($coach_id)[0]->minutes, strtotime($date), $start_time, $end_time);
-                    // print_r($data_schedule);
-                    // echo date('Y-m-d', 1523404800);
-                    // exit();
-
-
-                if(($message == '') && ($remain_token >= 0)){
-                    // update token
-                    $s_t = $this->identity_model->get_identity('token')->select('id, token_amount')->where('user_id', $this->auth_manager->userid())->get();
-                    $r_t = $s_t->token_amount - $token;
-                    $data = array(
-                        'token_amount' => $r_t,
-                    );
-
-                    $u_t = $this->identity_model->get_identity('token')->update($s_t->id, $data);
-
-                    // =====
-                    $appointment_id = $this->create_appointment($coach_id, $date, $start_time, $end_time, 'active');
-
-                    $get_date_apd = $this->db->select('date, start_time, end_time')->from('appointments')->where('id',$appointment_id)->get()->result();
-                    $new_date_apd_coach = strtotime($get_date_apd[0]->date);
-                    $new_start_time_coach = $get_date_apd[0]->start_time;
-                    $new_end_time_coach = $get_date_apd[0]->end_time;
-
-                    $convert_coach_plus = $this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($coach_id)[0]->minutes), $new_date_apd_coach, $new_start_time_coach, $new_end_time_coach);
-
-                    $new_date_for_coach = date('Y-m-d', $convert_coach_plus['date']);
-
-                    $valid_appointment = count($this->appointment_model->where('coach_id', $coach_id)->where('date', date('Y-m-d', $date))->where('start_time', $start_time)->where('end_time', $end_time)->where('status', 'active')->get_all());
-
-                    $emailcoach = $this->user_model->select('id, email')->where('id', $coach_id)->get_all();
-
-                    $namecoach = $this->user_profile_model->select('user_id, fullname')->where('user_id', $coach_id)->get_all();
-
-                    $namestudent = $this->user_profile_model->select('user_id, fullname')->where('user_id', $this->auth_manager->userid())->get_all();
-
-                    $emailstudent = $this->user_model->select('id, email')->where('id', $this->auth_manager->userid())->get_all();
-
-                    $message = 'Booking successful';
-
-                    if(($this->db->trans_status() == 1) && ($appointment_id) && ($valid_appointment == 1)) {
-
-                        $this->create_token_history($appointment_id, $token_cost, $remain_token, 1);
-                        // messaging to send email and creating notification based on appointment
-                        // $this->email_notification_appointment($appointment_id);
-                        $message = 'Booking successful';
-
-                        $coach_notification = array(
-                            'user_id' => $coach_id,
-                            'description' => $namestudent[0]->fullname.' has session booked with you',
-                            'status' => 2,
-                            'dcrea' => time(),
-                            'dupd' => time(),
-                        );
-
-                        $student_notification = array(
-                            'user_id' => $this->auth_manager->userid(),
-                            'description' => 'New session booked with '.$namecoach[0]->fullname,
-                            'status' => 2,
-                            'dcrea' => time(),
-                            'dupd' => time(),
-                        );
-
-                        $this->user_notification_model->insert($coach_notification);
-                        $this->user_notification_model->insert($student_notification);
-
-                        $student_gmt = $gmt_student[0]->gmt;
-                        $coach_gmt = $gmt_coach[0]->gmt;
-
-                        $this->send_email->student_book_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour, $end_hour, $dateconvert, 'booked', $student_gmt);
-                        $this->send_email->notif_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour_coach, $end_hour_coach, $new_date_for_coach, 'booked', $coach_gmt);
-
-
-                    } else {
-
-                        $this->rollback_appointment($coach_id, date("Y-m-d", $date), $start_time, $end_time, ($remain_token + $token_cost));
-                        $messages = 'Fail to book appointment, please try again.';
-
-                    }
-
-                }
-
-
-                if($message != 'Booking successful'){
-                    $arr_message[] = $message;
-
-                }
-
-                $this->session->set_flashdata('booking_message',$arr_message);
-                //redirect('student/upcoming_session');
-
-        }
-
-            $this->session->set_flashdata('booking_message',$arr_message);
-            redirect('student/upcoming_session');
-
-    }
-
-    public function old_book_single_coach($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '',$token) {
+    public function book_single_coach($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '',$token) {
         // for isOnAvailability
         // convert date student
 
@@ -815,11 +525,11 @@ class find_coaches extends MY_Site_Controller {
                     $usertime2_coach = $et_coach+(60*$minutes_coach)-(5*60);
                     $end_hour_coach = date("H:i", $usertime2_coach);
 
-        $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
-        if(!$check_max_book_coach_per_day){
-            $this->messages->add('This coach has exceeded maximum booked today', 'warning');
-            redirect('student/find_coaches/single_date/');
-        }
+        // $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
+        // if(!$check_max_book_coach_per_day){
+        //     $this->messages->add('This coach has exceeded maximum booked today', 'warning');
+        //     redirect('student/find_coaches/single_date/');
+        // }
 
         try {
             // First of all, let's begin a transaction
@@ -916,8 +626,8 @@ class find_coaches extends MY_Site_Controller {
                         $student_gmt = $gmt_student[0]->gmt;
                         $coach_gmt = $gmt_coach[0]->gmt;
 
-                        // $this->send_email->student_book_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour, $end_hour, $dateconvert, 'booked', $student_gmt);
-                        // $this->send_email->notif_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour_coach, $end_hour_coach, $new_date_for_coach, 'booked', $coach_gmt);
+                        $this->send_email->student_book_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour, $end_hour, $dateconvert, 'booked', $student_gmt);
+                        $this->send_email->notif_coach($emailstudent[0]->email, $emailcoach[0]->email, $namestudent[0]->fullname, $namecoach[0]->fullname, $start_hour_coach, $end_hour_coach, $new_date_for_coach, 'booked', $coach_gmt);
 
                         $this->messages->add($message, 'success');
 
@@ -1026,11 +736,11 @@ class find_coaches extends MY_Site_Controller {
         $start_time = $convert['start_time'];
         $end_time = $convert['end_time'];
 
-        // $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
-        // if(!$check_max_book_coach_per_day){
-        //     $this->messages->add('This coach has exceeded maximum booked today', 'warning');
-        //     redirect('student/find_coaches/book_by_multiple_date_index/' . $index);
-        // }
+        $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
+        if(!$check_max_book_coach_per_day){
+            $this->messages->add('This coach has exceeded maximum booked today', 'warning');
+            redirect('student/find_coaches/book_by_multiple_date_index/' . $index);
+        }
 
         //echo('<pre>');print_r($convert);
         //echo(date('Y-m-d', $convert['date'])); exit;
@@ -1438,9 +1148,7 @@ class find_coaches extends MY_Site_Controller {
 
     private function convertTime($time = ''){
         // if(date("H:i", strtotime(1 . 'minutes', strtotime($time))) != '00:00' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '01' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '21' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '31'){
-        if(date("H:i", strtotime(1 . 'minutes', strtotime($time))) != '00:00' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '01' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '11' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '21' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '31' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '41' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '51' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '06' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '16' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '26' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '36' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '46' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '54' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '56'){
-
-        // if(date("H:i", strtotime(1 . 'minutes', strtotime($time))) != '00:00' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '01' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '11' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '21' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '31' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '41' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '51' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '06' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '16' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '26' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '36' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '46'){
+        if(date("H:i", strtotime(1 . 'minutes', strtotime($time))) != '00:00' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '01' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '11' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '21' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '31' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '41' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '51' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '06' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '16' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '26' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '36' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '46' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '56'){
             return date("H:i", strtotime(1 . 'minutes', strtotime($time)));
         }
         else{
@@ -1655,130 +1363,6 @@ class find_coaches extends MY_Site_Controller {
 
                 $availability = $this->schedule_block($coach_id, $day, $schedule_data1->start_time, $schedule_data1->end_time, $schedule_data2->day, $schedule_data2->start_time, $schedule_data2->end_time);
 
-                $minutes_definer = $minutes * -1;
-                $def_zero = strtotime('00:00:00');
-                $def_calc = strtotime($minutes_definer.'minutes', $def_zero);
-                $hour_definer = date('H:i',$def_calc);
-
-                // $check_url = base_url();
-                $check_url = "https://live.dyned.com";
-                if (strpos($check_url, 'live.dyned.com') !== false) {
-                  // exit('a');
-                  $availability = $availability;
-                } else {
-                  //edited new schedules start ===================================
-                  $pullsched1 = $this->db->distinct()->select('s_block')
-                      ->from('new_schedules')
-                      ->where('coach_id', $coach_id)
-                      ->where('s_day', $day)
-                      ->where('s_start_time <=', $hour_definer)
-                      ->order_by('s_start_time', 'ASC')
-                      ->get()->result();
-
-                  $pullsched2 = $this->db->distinct()->select('s_block')
-                      ->from('new_schedules')
-                      ->where('coach_id', $coach_id)
-                      ->where('s_day', $day2)
-                      ->where('s_start_time >=', $hour_definer)
-                      ->order_by('s_start_time', 'ASC')
-                      ->get()->result();
-
-                  $pullsched_merge = array_merge($pullsched1, $pullsched2);
-
-                  $unique = array();
-                  foreach ($pullsched_merge as $object) {
-                      if (isset($unique[$object->s_block])) {
-                          continue;
-                      }
-                      $unique[$object->s_block] = $object;
-                  }
-
-                  $total_block_f = count($unique);
-
-                  // $define_block = array_column($unique, 's_block');
-                  $define_block=array();
-                  foreach($unique as $un){
-                    array_push($define_block,$un->s_block);
-                  }
-
-                  // echo "<pre>";print_r($define_block);exit();
-
-                  $allscheds = array();
-
-                  for($i=0;$i<$total_block_f;$i++){
-                    $pullsched = $this->db->select('*')
-                        ->from('new_schedules')
-                        ->where('coach_id', $coach_id)
-                        ->where('s_block', $define_block[$i])
-                        ->get()->result();
-
-                    if(count($pullsched) > 1){
-                      $getblock  = $pullsched[0]->s_block;
-
-                      $getday0   = $pullsched[0]->s_day;
-                      $getstart0 = $pullsched[0]->s_start_time;
-
-                      $st_str0 = strtotime($getday0.', '.$getstart0);
-                      $st_cal0 = strtotime($minutes.'minutes', $st_str0);
-                      $st_print0 = date('H:i',$st_cal0);
-
-                      $getday1   = $pullsched[1]->s_day;
-                      $getstart1 = $pullsched[1]->s_end_time;
-
-                      $st_str1 = strtotime($getday1.', '.$getstart1);
-                      $st_cal1 = strtotime($minutes.'minutes', $st_str1);
-                      $st_print1 = date('H:i',$st_cal1);
-
-                      $push_day = date('l',$st_cal0);
-                      $getid = $pullsched[0]->id;
-
-                      $push_sched = array(
-                        'start_time' => $st_print0.':00',
-                        'end_time' => $st_print1.':00'
-                      );
-
-                      array_push($allscheds, $push_sched);
-
-                      // echo "<pre>";print_r($st_print0);exit();
-                    }else{
-                      $getblock  = @$pullsched[0]->s_block;
-
-                      $getday0   = @$pullsched[0]->s_day;
-                      $getstart0 = @$pullsched[0]->s_start_time;
-                      $getend0 = @$pullsched[0]->s_end_time;
-
-                      $st_str0 = strtotime($getday0.', '.$getstart0);
-                      $st_cal0 = strtotime($minutes.'minutes', $st_str0);
-                      $st_print0 = date('H:i',$st_cal0);
-
-                      $st_str1 = strtotime($getday0.', '.$getend0);
-                      $st_cal1 = strtotime($minutes.'minutes', $st_str1);
-                      $st_print1 = date('H:i',$st_cal1);
-
-                      $push_day = date('l',$st_cal0);
-                      $getid = @$pullsched[0]->id;
-
-                      $push_sched = array(
-                        'start_time' => $st_print0.':00',
-                        'end_time' => $st_print1.':00'
-                      );
-
-                      array_push($allscheds, $push_sched);
-                    }
-
-                    // echo "<pre>";print_r($allscheds);exit();
-                  }
-
-                  //edited new schedules end =====================================
-
-                  $availability = $allscheds;
-                  // exit('aa');
-                }
-
-                // echo "<pre>";print_r($allscheds);exit();
-
-
-
 
                 $date_parameter = strtotime($date_);
                 $availability_temp = array();
@@ -1828,8 +1412,10 @@ class find_coaches extends MY_Site_Controller {
             'search_by' => $search_by,
             'cost' => $this->coach_token_cost_model->select('token_for_student')->where('coach_id', $coach_id)->get()
         );
-        // echo "<pre>";print_r($availability_temp);exit();
-//        echo('<pre$vars
+        // echo "<pre>";
+        // print_r($availability_temp);
+        // exit();
+//        echo('<pre>');
 //        print_r(date('Y-m-d','1450962000')); exit;
         $this->template->content->view('default/contents/find_coach/availability', $vars);
 
@@ -2076,32 +1662,17 @@ class find_coaches extends MY_Site_Controller {
 //        exit;
         //$status = false;
         // getting the day of $date
-        $id    = $this->auth_manager->userid();
-        $check_sess = $this->db->select('session_type')
-                    ->from('user_profiles')
-                    ->where('user_id',$id)
-                    ->get()->result();
-
         $day = strtolower(date('l', $date));
         $schedule_data = $this->schedule_model->select('id, start_time, end_time')->where('user_id', $coach_id)->where('day', $day)->get();
         // Retrieve post
         // edit dari sini
-        if($check_sess[0]->session_type == '0'){
-          // exit('a');
-          $opentok = new OpenTok($this->config->item('opentok_key'), $this->config->item('opentok_secret'));
-          $sessionOptions = array(
-              'archiveMode' => ArchiveMode::ALWAYS,
-              'mediaMode' => MediaMode::ROUTED
-          );
-          $gensession = $opentok->createSession($sessionOptions);
-          $session    = $gensession->getSessionId();
-          $app_type = '0';
-        }else if($check_sess[0]->session_type == '1'){
-          $session = date("Y-m-d", $date)."".$id."".$coach_id."".$start_time."".$end_time;
-          // echo "<pre>";print_r($session);exit();
-          // exit('b');
-          $app_type = '1';
-        }
+        $opentok = new OpenTok($this->config->item('opentok_key'), $this->config->item('opentok_secret'));
+        $sessionOptions = array(
+            'archiveMode' => ArchiveMode::ALWAYS,
+            'mediaMode' => MediaMode::ROUTED
+        );
+        $gensession = $opentok->createSession($sessionOptions);
+        $session    = $gensession->getSessionId();
 
         // $token = $opentok->generateToken($session, array(
         //                                  'expireTime' => time()+(7 * 24 * 60 * 60)
@@ -2115,18 +1686,6 @@ class find_coaches extends MY_Site_Controller {
             $this->messages->add($message, 'success');
             redirect('student/find_coaches/single_date');
         }
-
-        //Inserting cl, cp, and cs =============================================
-        $pull_c_id = $this->db->select('cl_id, cp_id, cs_id')
-                    ->from('users')
-                    ->where('id',$id)
-                    ->get()->result();
-
-        $u_cl_id = @$pull_c_id[0]->cl_id;
-        $u_cp_id = @$pull_c_id[0]->cp_id;
-        $u_cs_id = @$pull_c_id[0]->cs_id;
-        //Inserting cl, cp, and cs =============================================
-
         $booked = array(
             'student_id' => $this->auth_manager->userid(),
             'coach_id' => $coach_id,
@@ -2135,11 +1694,7 @@ class find_coaches extends MY_Site_Controller {
             'start_time' => $start_time,
             'end_time' => $end_time,
             'status' => $appointment_status,
-            'session' => $session,
-            'app_type' => $app_type,
-            'cl_id' => $u_cl_id,
-            'cp_id' => $u_cp_id,
-            'cs_id' => $u_cs_id
+            'session' => $session
         );
         //  echo "<pre>";
         // print_r($booked);
@@ -2200,6 +1755,10 @@ class find_coaches extends MY_Site_Controller {
             $status = false;
         } else if ($student_token->token_amount >= $cost) {
             $remain_token = $student_token->token_amount - $cost;
+            $data = array(
+                'token_amount' => $remain_token,
+            );
+            $this->identity_model->get_identity('token')->update($student_token->id, $data);
             $status = true;
         }
 
@@ -2219,7 +1778,6 @@ class find_coaches extends MY_Site_Controller {
         }
         $token_history = array(
             'user_id' => $this->auth_manager->userid(),
-            'appointment_id' => $appointment_id,
             // 'transaction_date' => strtotime(date('d-m-Y')),
             'transaction_date' => time(),
             'description' => 'Session with '.$appointment[0]->coach_fullname .' on '. $appointment[0]->date .' from '. $appointment[0]->start_time . ' to ' . $appointment[0]->end_time,
@@ -2380,11 +1938,11 @@ class find_coaches extends MY_Site_Controller {
                     $usertime2_coach = $et_coach+(60*$minutes_coach)-(5*60);
                     $end_hour_coach = date("H:i", $usertime2_coach);
 
-        // $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
-        // if(!$check_max_book_coach_per_day){
-        //     $this->messages->add('This coach has exceeded maximum booked today', 'warning');
-        //     redirect('student/find_coaches/search/name/');
-        // }
+        $check_max_book_coach_per_day = $this->max_book_coach_per_day($coach_id,$date);
+        if(!$check_max_book_coach_per_day){
+            $this->messages->add('This coach has exceeded maximum booked today', 'warning');
+            redirect('student/find_coaches/search/name/');
+        }
 
         //print_r(date('Y-m-d', $date)); exit;
 
@@ -2394,7 +1952,18 @@ class find_coaches extends MY_Site_Controller {
             $isValid = $this->isAvailable($coach_id, $date, $start_time, $end_time);
             if ($isValid) {
                 $availability = $this->isOnAvailability($coach_id, date('Y-m-d', $date_));
-//
+//                @date_default_timezone_set('Etc/GMT'.(7));
+//                print_r(date('Y-m-d', $convert['date']));
+//                    //$this->db->trans_rollback();
+//                    exit;
+//                echo('<pre>');
+//                echo($start_time. '   '. $end_time);
+//                echo('<pre>');
+//                echo(date('Y-m-d', $date));
+//                print_r($availability);
+//                print_r($start_time_available);
+//                print_r($end_time_available);
+//                exit;
                 if (in_array(array('start_time' => $start_time_available, 'end_time' => $end_time_available), $availability)) {
                     // go to next step
                     //exit;
@@ -2402,9 +1971,16 @@ class find_coaches extends MY_Site_Controller {
                     $this->messages->add('Invalid Time', 'warning');
                     redirect('student/find_coaches/search/name/');
                 }
-
+                // begin the transaction to ensure all data created or modified structural
+                //$token_cost = $this->coach_token_cost_model->select('token_for_student')->where('coach_id', $coach_id)->get();
+                // updating remaining token student
+                // $this->db->trans_begin();
+                // $remain_token = $this->update_token($token_cost->token_for_student);
                  $token_cost = $token;
-
+                // echo "<pre>";
+                // print_r($token_cost);
+                // exit();
+                // updating remaining token student
 
                 $remain_token = $this->update_token($token_cost);
                 //if ($this->db->trans_status() === true && $remain_token >= 0 && $this->isAvailable($coach_id, $date, $start_time, $end_time)) {
@@ -2553,7 +2129,6 @@ class find_coaches extends MY_Site_Controller {
         // get setting partner
         // $coach_id = '187';
         // $date = '2016-07-28';
-        $student_id = $this->auth_manager->userid();
         $partner_id = $this->auth_manager->partner_id($coach_id);
 
         // check apakah status setting region allow atau disallow
@@ -2566,7 +2141,7 @@ class find_coaches extends MY_Site_Controller {
             $get_setting = $this->global_settings_model->get_partner_settings();
             $max_per_day = $get_setting[0]->max_session_per_day;
         } else {
-            $get_setting = $this->specific_settings_model->get_partner_settings($partner_id);
+            $get_setting = $this->specific_settings_model->get_partner_settings($id_partner);
             $max_per_day = $get_setting[0]->max_session_per_day;
         }
 
@@ -2597,8 +2172,7 @@ class find_coaches extends MY_Site_Controller {
 
         // partner setting about student appointment
         // $setting = $this->partner_setting_model->get();
-        $student_id = $this->auth_manager->userid();
-        $partner_id = $this->auth_manager->partner_id($student_id);
+        $partner_id = $this->auth_manager->partner_id($coach_id);
 
         // check apakah status setting region allow atau disallow
         $region_id = $this->auth_manager->region_id($partner_id);
@@ -2620,7 +2194,7 @@ class find_coaches extends MY_Site_Controller {
 
 
       // $appointment_count = count($this->appointment_model->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', date("Y-m-d", $date))->get_all());
-
+        $student_id = $this->auth_manager->userid();
         $appointment_count = count($this->appointment_model->where('student_id', $student_id)->where('date', date("Y-m-d", $date))->get_all());
 
         // print_r($this->get_date_week($date)); exit;
@@ -2646,24 +2220,17 @@ class find_coaches extends MY_Site_Controller {
 //        print_r($start_time);
 //        print_r($end_time);
 //        print_r($schedule); exit;
-
-
         $status1 = 0;
         if ($appointment || $appointment_student || $appointment_class) {
             return false;
         } else if (!$appointment) {
             if($appointment_count < $max_session_per_day && $appointment_count_week < $max_day_per_week){
                 foreach($schedule as $s){
-                    $end_time_changer = $s['end_time'];
-                    if($end_time_changer == '16:59:00'){
-                      $end_time_changer = '17:00:00';
-                    }
-                    if(strtotime($start_time) >= strtotime($s['start_time']) && strtotime($end_time) <= strtotime($end_time_changer)){
+                    if(strtotime($start_time) >= strtotime($s['start_time']) && strtotime($end_time) <= strtotime($s['end_time'])){
                         $status1 = 1;
                         break;
                     }
                 }
-                // echo "<pre>";print_r($status1);exit();
                 if($status1 == 1){
                     return true;
                 }
@@ -2675,9 +2242,6 @@ class find_coaches extends MY_Site_Controller {
             else{
                 $this->messages->add('Exceeded Max Session Per Day or Week', 'warning');
                 return false;
-                // diganti tanggal 23 maret 2017
-
-                // return true;
             }
         }
     }
@@ -2716,23 +2280,37 @@ class find_coaches extends MY_Site_Controller {
         }
     }
 
-    private function is_day_off($coach_id = '', $date_ = '',$start_time = '', $end_time = '') {
+    private function is_day_off($coach_id = '', $date_ = '') {
 
-	$date_ = strtotime($date_);
+        $gmt_coach = $this->db->select("minutes_val as minutes, gmt_val as gmt")
+                             ->from('user_timezones')
+                             ->where('user_id', $this->auth_manager->userid())
+                             ->get()->result();
 
-	$convert = @$this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($coach_id)[0]->minutes), $date_, $start_time, $end_time);
-    $date = $convert['date'];
+        @date_default_timezone_set('Etc/GMT'.$gmt_coach[0]->gmt*(1));
 
 
-    $date_ = date('Y-m-d', $date);
+        $chek_date = gmdate('Y-m-d', strtotime($date_) );
+        if($chek_date < $date_){
+            $date_ = date('Y-m-d',date(strtotime("+1 day", strtotime("$date_"))));
+        } else if($chek_date > $date_){
+            $date_ = date('Y-m-d',date(strtotime("-1 day", strtotime("$date_"))));
+        } else {
+            $date_ = $date_;
+        }
 
-        $day_off = $this->db->select('coach_id, start_date, end_date')
-                        ->from('coach_dayoffs')
+
+        $day_off = $this->coach_day_off_model->select('coach_id, start_date, end_date')
                         ->where('coach_id', $coach_id)
-                        ->where('status', 'approved')
+                        ->where('status', 'active')
                         ->where('start_date <=', $date_)
                         ->where('end_date >=', $date_)
-                        ->get()->result();
+                        ->get_All();
+        // echo strtotime($date_)." - ". mktime(0, 0, 0, date("m"), date("d"), date("Y"));
+        // echo "<pre>";
+        // print_r($day_off);
+        // exit();
+        // // $start_date = strtotime(@$day_off->start_date);
         $start_date = @$day_off->start_date;
         // $end_date = strtotime(@$day_off->end_date);
         $end_date = @$day_off->end_date;
@@ -2748,18 +2326,14 @@ class find_coaches extends MY_Site_Controller {
 
             if ($date >= $start_date && $date <= $end_date){
                 // echo $coach_id." tanggal ". $date. " start date ". $start_date." end date ". $end_date." cuti";
-                // exit();
                 return true;
             } else if (!$day_off) {
                 // echo $coach_id. " start date ". $start_date." end date ". $end_date." gak cuti";
-                // exit();
                 return false;
             } else {
                 // echo $coach_id." tanggal ". $date. " start date ". $start_date." end date ". $end_date." gak cuti juga";
-                // exit();
                 return false;
             }
-
 
         }
 
@@ -2844,53 +2418,11 @@ class find_coaches extends MY_Site_Controller {
     public function summary_book($search_by = '', $coach_id = '', $date = '', $start_time = '', $end_time = '') {
         $this->template->title = 'Booking Summary';
 
-        $recuring = $this->session->userdata('recurring_booking_type');
-        if(!$recuring){
-            $recuring = 1;
-        }
+        $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
 
-        if($recuring == 1) {
-            $frequency = [0];
-        }
-
-        if($recuring == 2) {
-            $frequency = [0,7];
-        }
-
-        if($recuring == 3) {
-            $frequency = [0,7,7];
-        }
-
-        if($recuring == 4) {
-            $frequency = [0,7,7,7];
-        }
-
-        $partner_id = $this->auth_manager->partner_id($coach_id);
-        $region_id = $this->auth_manager->region_id($partner_id);
-
-        $setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
-        $region_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('specific_settings')->where('user_id',$region_id)->get()->result();
-        $global_setting = $this->db->select('standard_coach_cost,elite_coach_cost, session_duration')->from('global_settings')->where('type','partner')->get()->result();
-
-        $standard_coach_cost = @$setting[0]->standard_coach_cost;
-        if(!$standard_coach_cost || $standard_coach_cost == 0){
-            $standard_coach_cost_region = @$region_setting[0]->standard_coach_cost;
-            $standard_coach_cost = $standard_coach_cost_region;
-            if(!$standard_coach_cost_region || $standard_coach_cost_region == 0){
-                $standard_coach_cost_global = @$global_setting[0]->standard_coach_cost;
-                $standard_coach_cost = $standard_coach_cost_global;
-            }
-        }
-
-        $elite_coach_cost = @$setting[0]->elite_coach_cost;
-        if(!$elite_coach_cost || $elite_coach_cost == 0){
-            $elite_coach_cost_region = @$region_setting[0]->elite_coach_cost;
-            $elite_coach_cost = $elite_coach_cost_region;
-            if(!$elite_coach_cost_region || $elite_coach_cost_region == 0){
-                $elite_coach_cost_global = @$global_setting[0]->elite_coach_cost;
-                $elite_coach_cost = $elite_coach_cost_global;
-            }
-        }
+        $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+        $standard_coach_cost = $setting[0]->standard_coach_cost;
+        $elite_coach_cost = $setting[0]->elite_coach_cost;
 
         $vars = array(
             'data_coach' => $this->identity_model->get_coach_identity($coach_id),
@@ -2899,14 +2431,11 @@ class find_coaches extends MY_Site_Controller {
             'end_time' => $end_time,
             'search_by' => $search_by,
             'standard_coach_cost' => $standard_coach_cost,
-            'elite_coach_cost' => $elite_coach_cost,
-            'recuring' => $recuring,
-            'frequency' => $frequency
+            'elite_coach_cost' => $elite_coach_cost
         );
 
-        // echo '<pre>';print_r($vars);exit();
+
         $this->template->content->view('default/contents/find_coach/summary_book/index', $vars);
-        $this->session->unset_userdata('recurring_booking_type');
         //publish template
         $this->template->publish();
     }

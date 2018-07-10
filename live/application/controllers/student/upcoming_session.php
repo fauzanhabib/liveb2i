@@ -22,7 +22,7 @@ class upcoming_session extends MY_Site_Controller {
 
     // Index
     public function index($page = '') {
-    
+
         $this->template->title = "Upcoming Session";
         $offset = 0;
         $per_page = 5;
@@ -30,23 +30,23 @@ class upcoming_session extends MY_Site_Controller {
         $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student/upcoming_session/index/'), count($this->appointment_model->get_appointment_for_upcoming_session('student_id', '', '', $this->auth_manager->userid())), $per_page, $uri_segment);
         $data = $this->appointment_model->get_appointment_for_upcoming_session('student_id','','', $this->auth_manager->userid(), $per_page, $offset);
         $data_class = $this->class_member_model->get_appointment_for_upcoming_session('student_id', '', '', $this->auth_manager->userid(), $per_page, $offset);
-        
-        
+
+
         if ($data) {
             foreach ($data as $d) {
                 $data_schedule = $this->convertBookSchedule($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);
                 $d->date = date('Y-m-d', $data_schedule['date']);
                 $d->start_time = $data_schedule['start_time'];
                 $d->end_time = $data_schedule['end_time'];
-                
+
             }
         }
-        
+
         if ($data_class) {
             foreach ($data_class as $d) {
                 // echo date('H:i:s');
                 // exit();
-                $data_schedule = $this->convertBookSchedule($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);                                
+                $data_schedule = $this->convertBookSchedule($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes, strtotime($d->date), $d->start_time, $d->end_time);
                 // print_r($data_schedule);
                 // echo date('H:i:s');
                 // exit();
@@ -74,7 +74,7 @@ class upcoming_session extends MY_Site_Controller {
         $this->template->content->view('default/contents/student/upcoming_session/index', $vars);
         $this->template->publish();
     }
-    
+
     private function convertBookSchedule($minutes = '', $date = '', $start_time = '', $end_time = ''){
         // variable to get schedule out of date
         if($minutes > 0){
@@ -88,7 +88,7 @@ class upcoming_session extends MY_Site_Controller {
                 //$tomorrow = date('m-d-Y',strtotime($date . "+1 days"));
                 $start_time = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
                 $end_time = date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time)));
-                
+
 //                $date2 = strtotime('+ 1days'.date('Y-m-d',$date));
 //                //$tomorrow = date('m-d-Y',strtotime($date . "+1 days"));
 //                $start_time2 = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
@@ -105,13 +105,13 @@ class upcoming_session extends MY_Site_Controller {
                 $date = strtotime('- 1days'.date('Y-m-d',$date));
                 $start_time = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
                 $end_time = (date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))) == '00:00:00' ? '23:59:59' : date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))));
-                
+
 //                $date2 = strtotime('- 1days'.date('Y-m-d',$date));
 //                $start_time2 = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
 //                $end_time2 = (date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))) == '00:00:00' ? '23:59:59' : date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))));
             }
         }
-        
+
         return array(
             'date' => $date,
             'start_time' => $start_time,
@@ -124,12 +124,12 @@ class upcoming_session extends MY_Site_Controller {
 
     public function search($page = '') {
         $this->template->title = "Upcoming Session";
-        
+
         if($this->input->post('date_from') && $this->input->post('date_to')){
             $this->session->set_userdata('date_from', $this->input->post('date_from'));
             $this->session->set_userdata('date_to', $this->input->post('date_to'));
         }
-        
+
         $rules = array(
             array('field'=>'date_from', 'label' => 'Start Date', 'rules'=>'trim|required|xss_clean'),
             array('field'=>'date_to', 'label' => 'End Date', 'rules'=>'trim|required|xss_clean')
@@ -140,10 +140,10 @@ class upcoming_session extends MY_Site_Controller {
                     redirect('student/upcoming_session');
             }
         }
-        
+
         $date_from = ($this->input->post('date_from') ? $this->input->post('date_from') : $this->session->userdata('date_from'));
         $date_to = ($this->input->post('date_to') ? $this->input->post('date_to') : $this->session->userdata('date_to'));
-        
+
         $offset = 0;
         $per_page = 5;
         $uri_segment = 4;
