@@ -71,7 +71,7 @@ class manage_appointments extends MY_Site_Controller {
 
         // checking if appointment has already rescheduled
         $appointment_reschedule_data = $this->appointment_reschedule_model->select('id')->where('appointment_id', $appointment_id)->get();
-        
+
         if ($appointment_reschedule_data) {
             $this->messages->add('apppointment has already rescheduled', 'warning');
             redirect('student/upcoming_session');
@@ -79,13 +79,13 @@ class manage_appointments extends MY_Site_Controller {
 
         $appointment_data = $this->appointment_model->select('id, student_id, coach_id, date, start_time, end_time, status')->where('id', $appointment_id)->get();
         $student_id_ = $appointment_data->student_id;
-        $old_coach_id = $appointment_data->coach_id;  
-        $date = $appointment_data->date;  
+        $old_coach_id = $appointment_data->coach_id;
+        $date = $appointment_data->date;
         $date = date('Y-m-d', strtotime($date . ' +1 day'));
         $get_start_time = $appointment_data->start_time;
 
         $gmt_student = $this->identity_model->new_get_gmt($student_id_);
-            
+
         // student
         $minutes = $gmt_student[0]->minutes;
         // coach
@@ -97,7 +97,7 @@ class manage_appointments extends MY_Site_Controller {
         $start_time = date("H:i", $usertime1);
 
         $week_date = $this->x_week_range($date);
- 
+
        // get other coach
         $offset = 0;
         $per_page = 6;
@@ -106,10 +106,10 @@ class manage_appointments extends MY_Site_Controller {
         $coach_type = $this->db->select('coach_type_id')->from('user_profiles')->where('user_id',$old_coach_id)->get()->result();
         $coach_type = $coach_type[0]->coach_type_id;
 
-        
+
         $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student/manage_appointments/reschedule/'.$appointment_id."/".$coach_id."/"), count($this->identity_model->get_coach_identity_reschedule(null, null, null, null, null, null, null,$coach_type)), $per_page, $uri_segment);
         $coaches = $this->identity_model->get_coach_identity_reschedule(null, null, null, null, null, null, null, $coach_type, $per_page, $offset);
-        
+
         // echo "<pre>";
         // print_r($coaches);
         // exit();
@@ -131,7 +131,7 @@ class manage_appointments extends MY_Site_Controller {
             'session_duration' => $session_duration,
             'old_coach_id' => $old_coach_id,
             'end_date' => $week_date[1],
-            'start_date' => $date, 
+            'start_date' => $date,
             'start_time' => $start_time,
             'coach_type' => $coach_type,
         );
@@ -145,16 +145,16 @@ class manage_appointments extends MY_Site_Controller {
 
     public function availability($search_by = '', $coach_id = '', $date_ = '', $start_hour_ = '') {
         $this->template->title = 'Availability';
-        
+
         if (!$date_ || !$coach_id) {
-            
+
             $vars = array();
             $this->template->content->view('default/contents/find_coach/availability', $vars);
 
             //publish template
             $this->template->publish();
         }
-        
+
         // checking if the date is valid
         if (!$this->is_date_available(trim($date_), 0)) {
             $vars = array();
@@ -180,13 +180,13 @@ class manage_appointments extends MY_Site_Controller {
         // appointment data specify by coach, date and status
         // appointment with status cancel considered available for other student
         $appointment = $this->appointment_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', date("Y-m-d", $date))->get_all();
-        // appointment with status temporary considered available for other student but not for student who is in the appointment and 
+        // appointment with status temporary considered available for other student but not for student who is in the appointment and
         // appointment where the student has make an appoinment on the specific date, so there will be no the same start time and end time to be shown to the student from other coach
         $appointment_student = $this->appointment_model->select('id, date, start_time, end_time')->where('student_id', $this->auth_manager->userid())->where('status not like', 'cancel')->where('date', date("Y-m-d", $date))->get_all();
         // appointment coach in class
         $appointment_class = $this->class_meeting_day_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('date', date("Y-m-d", $date))->get_all();
 
-        
+
         // storing appointment to an array so can easily on searching / no object value inside
                 $appointment_start_time_temp = array();
                 $appointment_end_time_temp = array();
@@ -252,7 +252,7 @@ class manage_appointments extends MY_Site_Controller {
 
                 if($minutes > 0){
                     $date2 = date("Y-m-d", strtotime('-1 day'.date("Y-m-d",$date)));
-                  
+
                     $appointment2 = $this->appointment_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', $date2)->get_all();
                     $appointment_student2 = $this->appointment_model->select('id, date, start_time, end_time')->where('student_id', $this->auth_manager->userid())->where('status not like', 'cancel')->where('date', $date2)->get_all();
                     $appointment_class2 = $this->class_meeting_day_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('date', $date2)->get_all();
@@ -350,7 +350,7 @@ class manage_appointments extends MY_Site_Controller {
                         }
                     }
                 }
-        
+
         $vars = array(
             'availability' => $availability_temp,
             'coach_id' => $coach_id,
@@ -386,10 +386,10 @@ class manage_appointments extends MY_Site_Controller {
                     array(
                         'start_time' => '00:00:00',
                         'end_time' => '00:00:00',
-                    )   
+                    )
                 );
             }
-            
+
         }
         $vars = array(
             'coach_id' => $id,
@@ -402,11 +402,11 @@ class manage_appointments extends MY_Site_Controller {
     }
 
     public function summary_book($search_by = '', $coach_id = '', $date = '', $start_time = '', $end_time = '') {
-        
+
         $this->template->title = 'Reschedule Booking Summary';
 
         $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
-        
+
         $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
         $standard_coach_cost = $setting[0]->standard_coach_cost;
         $elite_coach_cost = $setting[0]->elite_coach_cost;
@@ -433,13 +433,13 @@ class manage_appointments extends MY_Site_Controller {
         // get_old_coach
         $old_coach = $this->db->select('coach_id')->from('appointments')->where('id',$appointment_id_old)->get()->result();
         $old_coach = $old_coach[0]->coach_id;
-       
+
         // exit($appointment_id_old);
-        
+
 
         $start_time_available = $start_time_;
         $end_time_available = $end_time_;
-        
+
         $convert = $this->schedule_function->convert_book_schedule(-($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes), $date_, $start_time_, $end_time_);
         $date = $convert['date'];
         $dateconvert = date('Y-m-d', $date_);
@@ -451,14 +451,14 @@ class manage_appointments extends MY_Site_Controller {
 
         // timezone
                     $id_student = $this->auth_manager->userid();
-                    
-   
+
+
                     // student
                     $gmt_student = $this->identity_model->new_get_gmt($id_student);
                     // coach
                     $gmt_coach = $this->identity_model->new_get_gmt($coach_id);
-              
-        
+
+
                     // student
                     $minutes = $gmt_student[0]->minutes;
                     // coach
@@ -489,11 +489,11 @@ class manage_appointments extends MY_Site_Controller {
         // if(!$check_max_book_coach_per_day){
         //     $this->messages->add('This coach has exceeded maximum booked today', 'warning');
         //     redirect('student/manage_appointments/reschedule/'.$appointment_id_old.'/'.$old_coach);
-            
+
         // }
 
         //print_r(date('Y-m-d', $date)); exit;
-        
+
         try {
             // First of all, let's begin a transaction
             // A set of queries; if one fails, an exception should be thrown
@@ -503,21 +503,21 @@ class manage_appointments extends MY_Site_Controller {
                 $availability = $this->isOnAvailability($coach_id, date('Y-m-d', $date_));
 
                 if (in_array(array('start_time' => $start_time_available, 'end_time' => $end_time_available), $availability)) {
-                    // go to next step 
+                    // go to next step
                     //exit;
                 } else {
                     $this->messages->add('Invalid Time', 'warning');
                     redirect('student/manage_appointments/reschedule/'.$appointment_id_old.'/'.$old_coach);
                 }
                 // begin the transaction to ensure all data created or modified structural
- 
+
                  // $token_cost = $token;
 
 
                 // $remain_token = $this->update_token($token_cost);
-                
+
                 if ($this->db->trans_status() === true){
-                    
+
                     redirect('student/manage_appointments/reschedule_booking/'.$appointment_id_old."/".$coach_id."/". $dateconvert."/". $start_hour."/". $end_hour);
                 } else {
                     $this->db->trans_rollback();
@@ -553,28 +553,28 @@ class manage_appointments extends MY_Site_Controller {
         // appointment data specify by coach, date and status
         // appointment with status cancel considered available for other student
         $appointment = $this->appointment_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', date("Y-m-d", $date))->where('start_time', $start_time)->where('end_time', $end_time)->get();
-        // appointment with status temporary considered available for other student but not for student who is in the appointment and 
+        // appointment with status temporary considered available for other student but not for student who is in the appointment and
         // appointment where the student has make an appoinment on the specific date, so there will be no the same start time and end time to be shown to the student from other coach
         $appointment_student = $this->appointment_model->select('id, date, start_time, end_time')->where('student_id', $this->auth_manager->userid())->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', date("Y-m-d", $date))->where('start_time', $start_time)->where('end_time', $end_time)->get();
         // appointment coach in class
         $appointment_class = $this->class_meeting_day_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('date', date("Y-m-d", $date))->where('start_time', $start_time)->where('end_time', $end_time)->get();
-        
+
         // partner setting about student appointment
         // $setting = $this->partner_setting_model->get();
         $student_id = $this->auth_manager->userid();
         $partner_id = $this->auth_manager->partner_id($student_id);
-        
+
         // check apakah status setting region allow atau disallow
         $region_id = $this->auth_manager->region_id($partner_id);
-        
+
         $get_status_setting_region = $this->specific_settings_model->get_specific_settings($region_id,'region');
-        
+
         $max_session_per_day = '';
         $max_day_per_week = '';
         if($get_status_setting_region[0]->status_set_setting == 0){
             $get_setting = $this->global_settings_model->get_partner_settings();
-            $max_session_per_day = $get_setting[0]->max_session_per_day; 
-            $max_day_per_week = $get_setting[0]->max_day_per_week; 
+            $max_session_per_day = $get_setting[0]->max_session_per_day;
+            $max_day_per_week = $get_setting[0]->max_day_per_week;
         } else {
             $get_setting = $this->specific_settings_model->get_partner_settings($partner_id);
             $max_session_per_day = $get_setting[0]->max_session_per_day;
@@ -584,23 +584,23 @@ class manage_appointments extends MY_Site_Controller {
 
 
       // $appointment_count = count($this->appointment_model->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', date("Y-m-d", $date))->get_all());
-        
+
         $appointment_count = count($this->appointment_model->where('student_id', $student_id)->where('date', date("Y-m-d", $date))->get_all());
-     
+
         // print_r($this->get_date_week($date)); exit;
         $appointment_count_week = 0;
         foreach($this->get_date_week($date) as $s){
             $appointment_count_week = $appointment_count_week + count($this->appointment_model->where('student_id', $student_id)->where('date', $s)->get_all());
             // $appointment_count_week = $appointment_count_week + count($this->appointment_model->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', $s)->get_all());
         }
-     
+
        //  echo $partner_id." - ".$coach_id." - ".date('Y-m-d',$date);
        //  echo "<br />";
-       // print_r($appointment_count); 
+       // print_r($appointment_count);
        // echo "<br >";
-       // print_r($appointment_count_week); 
+       // print_r($appointment_count_week);
        // echo "<br >";
-       // print_r($setting[0]->max_session_per_day); 
+       // print_r($setting[0]->max_session_per_day);
        // echo "<br >";
        // print_r($setting[0]->max_day_per_week);
        // exit;
@@ -617,12 +617,16 @@ class manage_appointments extends MY_Site_Controller {
             return false;
         } else if (!$appointment) {
             if($appointment_count < $max_session_per_day && $appointment_count_week < $max_day_per_week){
-                foreach($schedule as $s){
-                    if(strtotime($start_time) >= strtotime($s['start_time']) && strtotime($end_time) <= strtotime($s['end_time'])){
-                        $status1 = 1;
-                        break;
-                    }
-                }
+              foreach($schedule as $s){
+                  $end_time_changer = $s['end_time'];
+                  if($end_time_changer == '16:59:00'){
+                    $end_time_changer = '17:00:00';
+                  }
+                  if(strtotime($start_time) >= strtotime($s['start_time']) && strtotime($end_time) <= strtotime($end_time_changer)){
+                      $status1 = 1;
+                      break;
+                  }
+              }
                 if($status1 == 1){
                     return true;
                 }
@@ -633,10 +637,10 @@ class manage_appointments extends MY_Site_Controller {
             }
             else{
                 // $this->messages->add('Exceeded Max Session Per Day or Week', 'warning');
-                // return false; 
+                // return false;
                 // diganti tanggal 23 maret 2017
 
-                return true; 
+                return true;
             }
         }
     }
@@ -650,20 +654,20 @@ class manage_appointments extends MY_Site_Controller {
             //publish template
             $this->template->publish();
         }
-        
+
         // checking if the date is valid
         // if (!$this->is_date_available(trim($date_), 0)) {
         if (!$this->is_date_available(trim($date_), -1)) {
             $vars = array();
             $this->template->content->view('default/contents/find_coach/availability', $vars);
         }
-        
+
         // checking if the date is in day off
         if ($this->is_day_off($coach_id, $date_) == true) {
             $vars = array();
             $this->template->content->view('default/contents/find_coach/availability', $vars);
         }
-        
+
         // getting the day of $date
         // getting gmt minutes
         $minutes = $this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes;
@@ -675,7 +679,7 @@ class manage_appointments extends MY_Site_Controller {
         // appointment data specify by coach, date and status
         // appointment with status cancel considered available for other student
         $appointment = $this->appointment_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', date("Y-m-d", $date))->get_all();
-        // appointment with status temporary considered available for other student but not for student who is in the appointment and 
+        // appointment with status temporary considered available for other student but not for student who is in the appointment and
         // appointment where the student has make an appoinment on the specific date, so there will be no the same start time and end time to be shown to the student from other coach
         $appointment_student = $this->appointment_model->select('id, date, start_time, end_time')->where('student_id', $this->auth_manager->userid())->where('status not like', 'cancel')->where('date', date("Y-m-d", $date))->get_all();
         // appointment coach in class
@@ -684,7 +688,7 @@ class manage_appointments extends MY_Site_Controller {
         // storing appointment to an array so can easily on searching / no object value inside
         $appointment_start_time_temp = array();
         $appointment_end_time_temp = array();
-        
+
         // getting all unavailable schedule to be not shown on coach availability
         foreach ($appointment as $a) {
             if($minutes > 0){
@@ -723,7 +727,7 @@ class manage_appointments extends MY_Site_Controller {
                 $appointment_end_time_temp[] = $a->end_time;
             }
         }
-        
+
         foreach ($appointment_student as $a) {
             if($minutes > 0){
                 if(strtotime(date("H:i:s", strtotime($minutes . 'minutes', strtotime($a->end_time)))) > strtotime($a->end_time) || date("H:i:s", strtotime($minutes . 'minutes', strtotime($a->end_time))) == '00:00:00'){
@@ -742,13 +746,13 @@ class manage_appointments extends MY_Site_Controller {
                 $appointment_end_time_temp[] = $a->end_time;
             }
         }
-        
+
         if($minutes > 0){
             $date2 = date("Y-m-d", strtotime('-1 day'.date("Y-m-d",$date)));
             $appointment2 = $this->appointment_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', $date2)->get_all();
             $appointment_student2 = $this->appointment_model->select('id, date, start_time, end_time')->where('student_id', $this->auth_manager->userid())->where('status not like', 'cancel')->where('date', $date2)->get_all();
             $appointment_class2 = $this->class_meeting_day_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('date', $date2)->get_all();
-            
+
             foreach($appointment2 as $a){
                 if(strtotime(date("H:i:s", strtotime($minutes . 'minutes', strtotime($a->start_time)))) < strtotime($a->start_time)){
                     $appointment_start_time_temp[] = date("H:i:s", strtotime($minutes . 'minutes', strtotime($a->start_time)));
@@ -767,7 +771,7 @@ class manage_appointments extends MY_Site_Controller {
                     $appointment_end_time_temp[] = date("H:i:s", strtotime($minutes . 'minutes', strtotime($a->end_time)));
                 }
             }
-            
+
         }
         else if($minutes < 0){
             $date2 = date("Y-m-d", strtotime('+1 day'.date("Y-m-d",$date)));
@@ -793,13 +797,13 @@ class manage_appointments extends MY_Site_Controller {
                 }
             }
         }
-        
 
-        
+
+
         //getting all data
         $schedule_data1 = $this->schedule_model->select('id, user_id, day, start_time, end_time')->where('user_id', $coach_id)->where('day', $day)->get();
         $schedule_data2 = $this->schedule_model->select('id, user_id, day, start_time, end_time')->where('user_id', $coach_id)->where('day', $day2)->get();
-        
+
         $availability = $this->schedule_block($coach_id, $day, $schedule_data1->start_time, $schedule_data1->end_time, $schedule_data2->day, $schedule_data2->start_time, $schedule_data2->end_time);
 
 
@@ -815,7 +819,7 @@ class manage_appointments extends MY_Site_Controller {
                         'start_time' => date('H:i:s', strtotime($a['start_time']) + (($this->session_duration($this->auth_manager->partner_id()) * 60) * ($i))),
                         'end_time' => date('H:i:s', strtotime($a['start_time']) + (($this->session_duration($this->auth_manager->partner_id()) * 60) * ($i + 1))),
                     );
-                    
+
                     // checking if the time is not out of coach schedule
                     if(strtotime($availability_exist['end_time']) <= strtotime($a['end_time'])){
                         // checking if availability is existed in the appointment
@@ -834,7 +838,7 @@ class manage_appointments extends MY_Site_Controller {
                                         // } else {
                                             $availability_temp[] = $availability_exist;
                                         // }
-                                        
+
                                         // mengatasi tanggal yang tidak sesuai
                                         if($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes <= 0){
                                             @date_default_timezone_set('Etc/GMT'.($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes/60 >= 0 ? '+'.$this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes/60 : $this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes/60));
@@ -857,20 +861,20 @@ class manage_appointments extends MY_Site_Controller {
 
         // check apakah status setting region allow atau disallow
         $region_id = $this->auth_manager->region_id($partner_id);
-        
+
         $get_status_setting_region = $this->specific_settings_model->get_specific_settings($region_id,'region');
-        
+
         $max_per_day = '';
         if($get_status_setting_region[0]->status_set_setting == 0){
             $get_setting = $this->global_settings_model->get_partner_settings();
-            $max_per_day = $get_setting[0]->max_session_per_day; 
+            $max_per_day = $get_setting[0]->max_session_per_day;
         } else {
             $get_setting = $this->specific_settings_model->get_partner_settings($id_partner);
             $max_per_day = $get_setting[0]->max_session_per_day;
         }
 
         $max_coach = count($this->appointment_model->select('id')->where('coach_id',$coach_id)->where('date',$date)->get_All());
-   
+
         if($max_coach > $max_per_day){
             return false;
         } else {
@@ -988,7 +992,7 @@ class manage_appointments extends MY_Site_Controller {
         // appointment data specify by coach, date and status
         // appointment with status cancel considered available for other student
         $appointment = $this->appointment_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', date("Y-m-d", $date))->get_all();
-        // appointment with status temporary considered available for other student but not for student who is in the appointment and 
+        // appointment with status temporary considered available for other student but not for student who is in the appointment and
         // appointment where the student has make an appoinment on the specific date, so there will be no the same start time and end time to be shown to the student from other coach
         $appointment_student = $this->appointment_model->select('id, date, start_time, end_time')->where('student_id', $this->auth_manager->userid())->where('status not like', 'cancel')->where('date', date("Y-m-d", $date))->get_all();
         // appointment coach in class
@@ -1035,7 +1039,7 @@ class manage_appointments extends MY_Site_Controller {
                 $appointment_end_time_temp[] = $a->end_time;
             }
         }
-        
+
         foreach ($appointment_student as $a) {
             if($minutes > 0){
                 if(strtotime(date("H:i:s", strtotime($minutes . 'minutes', strtotime($a->end_time)))) > strtotime($a->end_time) || date("H:i:s", strtotime($minutes . 'minutes', strtotime($a->end_time))) == '00:00:00'){
@@ -1054,13 +1058,13 @@ class manage_appointments extends MY_Site_Controller {
                 $appointment_end_time_temp[] = $a->end_time;
             }
         }
-        
+
         if($minutes > 0){
             $date2 = date("Y-m-d", strtotime('-1 day'.date("Y-m-d",$date)));
             $appointment2 = $this->appointment_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('status not like', 'cancel')->where('status not like', 'temporary')->where('date', $date2)->get_all();
             $appointment_student2 = $this->appointment_model->select('id, date, start_time, end_time')->where('student_id', $this->auth_manager->userid())->where('status not like', 'cancel')->where('date', $date2)->get_all();
             $appointment_class2 = $this->class_meeting_day_model->select('id, date, start_time, end_time')->where('coach_id', $coach_id)->where('date', $date2)->get_all();
-            
+
             foreach($appointment2 as $a){
                 if(strtotime(date("H:i:s", strtotime($minutes . 'minutes', strtotime($a->start_time)))) < strtotime($a->start_time)){
                     $appointment_start_time_temp[] = date("H:i:s", strtotime($minutes . 'minutes', strtotime($a->start_time)));
@@ -1079,7 +1083,7 @@ class manage_appointments extends MY_Site_Controller {
                     $appointment_end_time_temp[] = date("H:i:s", strtotime($minutes . 'minutes', strtotime($a->end_time)));
                 }
             }
-            
+
         }
         else if($minutes < 0){
             $date2 = date("Y-m-d", strtotime('+1 day'.date("Y-m-d",$date)));
@@ -1105,7 +1109,7 @@ class manage_appointments extends MY_Site_Controller {
                 }
             }
         }
-        
+
         //getting all data
         $schedule_data1 = $this->schedule_model->select('id, user_id, day, start_time, end_time')->where('user_id', $coach_id)->where('day', $day)->get();
         $schedule_data2 = $this->schedule_model->select('id, user_id, day, start_time, end_time')->where('user_id', $coach_id)->where('day', $day2)->get();
@@ -1152,7 +1156,7 @@ class manage_appointments extends MY_Site_Controller {
         //publish template
         $this->template->publish();
     }
-    
+
     private function convert_gmt($index = '', $minutes = '') {
         if ($minutes > 0) {
             return (($index - 1) >= 0 ? ($index - 1) : 6);
@@ -1160,7 +1164,7 @@ class manage_appointments extends MY_Site_Controller {
             return (($index + 1) <= 6 ? ($index + 1) : 0);
         }
     }
-    
+
     private function schedule_block($coach_id = '', $day1 = '', $start_time1 = '', $end_time1 = '', $day2 = '', $start_time2 = '', $end_time2 = '') {
         $schedule1 = $this->block($coach_id, $day1, $start_time1, $end_time1);
         $schedule2 = $this->block($coach_id, $day2, $start_time2, $end_time2);
@@ -1171,7 +1175,7 @@ class manage_appointments extends MY_Site_Controller {
         $time = strtotime('00:00:00');
         $startTime = date("H:i:s", strtotime((-$minutes) . 'minutes', $time));
         $endTime = date("H:i:s", strtotime('+30 minutes', $time));
-        
+
         if ($minutes == 0) {
             $schedule = $schedule1;
         } else if ($minutes > 0) {
@@ -1250,7 +1254,7 @@ class manage_appointments extends MY_Site_Controller {
         }
         return $this->joinTime($schedule);
     }
-    
+
     private function block($coach_id = '', $day = '', $start_time = '', $end_time = '') {
         $offwork = $this->offwork_model->get_offwork($coach_id, $day);
         $schedule_temp = array();
@@ -1282,7 +1286,7 @@ class manage_appointments extends MY_Site_Controller {
 
         return $schedule_temp;
     }
-    
+
     private function convertTime($time = ''){
         // if(date("H:i", strtotime(1 . 'minutes', strtotime($time))) != '00:00' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '01'){
         if(date("H:i", strtotime(1 . 'minutes', strtotime($time))) != '00:00' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '01' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '11' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '21' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '31' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '41' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '51' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '06' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '16' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '26' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '36' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '46' && date("i", strtotime(1 . 'minutes', strtotime($time))) != '56'){
@@ -1292,7 +1296,7 @@ class manage_appointments extends MY_Site_Controller {
             return $time;
         }
     }
-    
+
     private function joinTime($schedule = ''){
         $schedule_temp = array();
         if(count($schedule) > 1){
@@ -1324,7 +1328,7 @@ class manage_appointments extends MY_Site_Controller {
         }
         return $schedule_temp;
     }
-    
+
     private function session_duration($partner_id = ''){
 //        $data =  ($this->partner_model->select('id, session_per_block_by_partner, session_per_block_by_admin')->where('id', $partner_id)->get());
 //        if(!$data->session_per_block_by_admin){
@@ -1357,13 +1361,13 @@ class manage_appointments extends MY_Site_Controller {
         $date = $convert['date'];
         $start_time = $convert['start_time'];
         $end_time = $convert['end_time'];
-        
+
         $appointment_data = $this->appointment_model->select('id, student_id, coach_id, date, start_time, end_time')->where('id', $appointment_id)->where('student_id', $this->auth_manager->userid())->get();
         if (!$appointment_data) {
             $this->messages->add('Invalid Appointment', 'danger');
             redirect('student/upcoming_session');
         }
-        
+
 
         $appointment_data_student = $this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes), strtotime($appointment_data->date), $appointment_data->start_time, $appointment_data->end_time);
         $appointment_data_coach = $this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($coach_id)[0]->minutes), strtotime($appointment_data->date), $appointment_data->start_time, $appointment_data->end_time);
@@ -1448,7 +1452,7 @@ class manage_appointments extends MY_Site_Controller {
         ///////////////////////////////////////////////////////////////////////////////////
         // $webex_host = $this->webex_host_model->get_host($appointment_id);
         // $webex = $this->webex_model->select('id')->where('appointment_id', $appointment_id)->get();
-        
+
         // if($webex_host && $webex){
             // delete session in webex
             // delete session from table webex
@@ -1458,7 +1462,7 @@ class manage_appointments extends MY_Site_Controller {
             //     redirect('student/upcoming_session');
             // }
         // }
-        
+
         // update table appointment
         // $appointment_id = (int)$appointment_id;
         // echo $appointment_id;
@@ -1468,7 +1472,7 @@ class manage_appointments extends MY_Site_Controller {
         // exit();
         // if (!$update_appointment) {
             // $this->db->trans_rollback();
-            
+
             // $this->messages->add('Invalid Action', 'danger');
             // redirect('student/upcoming_session');
         // } else {
@@ -1599,11 +1603,11 @@ class manage_appointments extends MY_Site_Controller {
             $this->user_notification_model->insert($student_notification);
             $this->user_notification_model->insert($coach_notification);
 
-            
+
         $new_appointment_data = $this->appointment_model->select('id, student_id, coach_id, date, start_time, end_time')->where('id', $appointment_id)->where('student_id', $this->auth_manager->userid())->get();
         $new_appointment_data_student = $this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($this->auth_manager->userid())[0]->minutes), strtotime($new_appointment_data->date), $new_appointment_data->start_time, $new_appointment_data->end_time);
         $new_appointment_data_coach = $this->schedule_function->convert_book_schedule(($this->identity_model->new_get_gmt($coach_id)[0]->minutes), strtotime($new_appointment_data->date), $new_appointment_data->start_time, $new_appointment_data->end_time);
-        
+
         // student
 
         $gmt_student = $this->identity_model->new_get_gmt($this->auth_manager->userid());
@@ -1663,13 +1667,13 @@ class manage_appointments extends MY_Site_Controller {
         $appointment = array(
             'status' => 'cancel',
         );
-        
+
         ////////////////////////////////////////////////////////////////////////
         // WEBEX
         ////////////////////////////////////////////////////////////////////////
         $webex_host = $this->webex_host_model->get_host($appointment_id);
         $webex = $this->webex_model->select('id')->where('appointment_id', $appointment_id)->get();
-        
+
         $this->db->trans_begin();
         if($webex_host && $webex){
             // delete session in webex
@@ -1720,7 +1724,7 @@ class manage_appointments extends MY_Site_Controller {
                 return;
             }
         }
-        
+
         // after student cancelled an appointment, send email to coach
         // tube name for messaging action
         $tube = 'com.live.email';
@@ -1817,7 +1821,7 @@ class manage_appointments extends MY_Site_Controller {
             return false;
         }
     }
-    
+
     private function isValidAppointment($start_time = '', $end_time = '', $start_time_temp = '', $end_time_temp = ''){
         $status = true;
         for($i=0;$i<count($start_time_temp);$i++){
@@ -1833,7 +1837,7 @@ class manage_appointments extends MY_Site_Controller {
         }
         return $status;
     }
-    
+
     private function convertBookSchedule($minutes = '', $date = '', $start_time = '', $end_time = ''){
         // variable to get schedule out of date
         if($minutes > 0){
@@ -1847,7 +1851,7 @@ class manage_appointments extends MY_Site_Controller {
                 //$tomorrow = date('m-d-Y',strtotime($date . "+1 days"));
                 $start_time = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
                 $end_time = date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time)));
-                
+
 //                $date2 = strtotime('+ 1days'.date('Y-m-d',$date));
 //                //$tomorrow = date('m-d-Y',strtotime($date . "+1 days"));
 //                $start_time2 = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
@@ -1864,13 +1868,13 @@ class manage_appointments extends MY_Site_Controller {
                 $date = strtotime('- 1days'.date('Y-m-d',$date));
                 $start_time = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
                 $end_time = (date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))) == '00:00:00' ? '23:59:59' : date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))));
-                
+
 //                $date2 = strtotime('- 1days'.date('Y-m-d',$date));
 //                $start_time2 = date("H:i:s", strtotime($minutes . 'minutes', strtotime($start_time)));
 //                $end_time2 = (date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))) == '00:00:00' ? '23:59:59' : date("H:i:s", strtotime($minutes . 'minutes', strtotime($end_time))));
             }
         }
-        
+
         return array(
             'date' => $date,
             'start_time' => $start_time,
@@ -1880,7 +1884,7 @@ class manage_appointments extends MY_Site_Controller {
 //            'end_time2' => @$end_time2,
         );
     }
-    
+
     public function delete_session($host_id = '', $meeting_identifier = '') {
         if (!$host_id || !$meeting_identifier) {
             $this->messages->add('Invalid Host ID or Meeting Identifier', 'error');
@@ -1931,7 +1935,7 @@ class manage_appointments extends MY_Site_Controller {
 
         $URL = "http://{$XML_SITE}/WBXService/XMLService";
         $result = $this->webex_function->post_it($d, $URL, $XML_PORT);
- 
+
         // Clean xml
         $clean_result = htmlspecialchars_decode(strstr(htmlspecialchars($result), htmlspecialchars("<?xml version")));
         $simple_xml = simplexml_load_string($clean_result);
@@ -1946,7 +1950,7 @@ class manage_appointments extends MY_Site_Controller {
         }
         return FALSE;
     }
-    
+
     public function create_session($host_id = '', $meeting_identifier = '') {
         $webex_host = $this->webex_host_model->select('subdomain_webex, partner_id, webex_id, timezones, password')->where('id', $host_id)->get();
 
@@ -2010,7 +2014,7 @@ class manage_appointments extends MY_Site_Controller {
                 </header>
                 <body>
                 <bodyContent xsi:type=\"java:com.webex.service.binding.meeting.CreateMeeting\"
-                    xmlns:meet=\"http://www.webex.com/schemas/2002/06/service/meeting\">    
+                    xmlns:meet=\"http://www.webex.com/schemas/2002/06/service/meeting\">
                     <accessControl>
                         <meetingPassword>{$password}</meetingPassword>
                     </accessControl>
