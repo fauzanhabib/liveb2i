@@ -310,7 +310,7 @@ class manage_appointments extends MY_Site_Controller {
 
                 $availability = $this->schedule_block($coach_id, $day, $schedule_data1->start_time, $schedule_data1->end_time, $schedule_data2->day, $schedule_data2->start_time, $schedule_data2->end_time);
 
-
+                // echo "<pre>";print_r($availability);exit();
                 $date_parameter = strtotime($date_);
                 $availability_temp = array();
                 $availability_exist;
@@ -360,10 +360,7 @@ class manage_appointments extends MY_Site_Controller {
             'start_hour_' => $start_hour_,
             'cost' => $this->coach_token_cost_model->select('token_for_student')->where('coach_id', $coach_id)->get()
         );
-        // echo "<pre>";
-        // print_r($availability_temp);
-        // exit();
-
+        // echo "<pre>";print_r($vars);exit('a');
         $this->template->content->view('default/contents/find_coach/reschedule/availability', $vars);
 
         //publish template
@@ -1252,7 +1249,12 @@ class manage_appointments extends MY_Site_Controller {
                 }
             }
         }
-        return $this->joinTime($schedule);
+        // echo "<pre>";print_r($schedule2);exit();
+        if(!$schedule){
+          return $this->joinTime($schedule2);
+        }else{
+          return $this->joinTime($schedule);
+        }
     }
 
     private function block($coach_id = '', $day = '', $start_time = '', $end_time = '') {

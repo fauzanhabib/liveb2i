@@ -2,12 +2,13 @@
 <script src="<?php echo base_url(); ?>assets/vendor/raty/jquery.raty.js"></script>
 
     <div class="box pure-g clear-both">
-        
+
         <!-- ====== -->
         <div class="pure-u-1 pure-u-sm-24-24 pure-u-md-18-24 pure-u-lg-18-24">
             <div class="sort-right">
                 <div class="content-title padding-t-25">
                     <?php
+                    // echo "<pre>";print_r($vars);exit('a');
                     $arr_mess = @$this->session->flashdata('booking_message');
                     if($arr_mess){
                         foreach ($arr_mess as $key_mess) {
@@ -16,7 +17,7 @@
                     }
                     ?>
                 </div>
-                
+
                 <div class="pure-g border-b-1-fa">
                     <h3 class="font-semi-bold padding-l-20">Meet your coaches</h3>
                 </div>
@@ -27,7 +28,7 @@
                             <div class="no-result">
                                 No coaches available
                             </div>
-                        <?php    
+                        <?php
                         }
 
                     for($i=0;$i<count($coaches);$i++){
@@ -42,7 +43,7 @@
                                 <img src="<?php echo base_url().$coaches[$i]->profile_picture;?>" class="img-circle-medium-big">
                             </div>
                             <h5><a class="text-cl-tertiary font-18" href="<?php echo site_url('student/session/coach_detail/'.$coaches[$i]->id); ?>"><?php echo($coaches[$i]->fullname); ?></a></h5>
-                            <?php 
+                            <?php
                                 $id = $coaches[$i]->id;
 
                                 $allrate = $this->db->select('rate')
@@ -67,7 +68,7 @@
                                     $tooltip   = 0;
                                 }
 
-    
+
                             ?>
                             <div data-tooltip="<?php echo number_format($classrate);?>% (<?php echo(round($tooltip,1));?> of 5 Stars)">
                                 <div class="star-rating">
@@ -76,7 +77,7 @@
                             </div>
 
                             <h5>
-                               
+
                             </h5>
                             <h5><?php echo($coaches[$i]->country); ?></h5>
                             <div class="more pure-u-1">
@@ -98,21 +99,21 @@
                                         <button class="weekly_schedule pure-button btn-green" value="<?php echo($coaches[$i]->id);?>">WEEKLY</button>
                                     </div>
                                 </div>
-                                
+
                                 <form class="pure-form">
                                     <div class="list-schedule">
                                         <p class="txt text-cl-primary">Click on the green button to see if your coach is available</p>
                                         <div id="result_<?php echo($coaches[$i]->id);?>">
                                             <img src='<?php echo base_url(); ?>images/small-loading.gif' alt='loading...' style="display:none;" id="schedule-loading"/>
                                         </div>
-                                    </div>          
+                                    </div>
                                 </form>
                             </div>
                         </div>
                         <!-- ======== -->
                     </div>
                     <?php }
-                    } 
+                    }
                 // }
                 ?>
                     <div class="height-200"></div>
@@ -175,8 +176,9 @@
 
 
         $(".date_available").on('change', function() {
-            //alert(this.name);
-            var loadUrl = "<?php echo site_url('student/manage_appointments/availability/name'); ?>"+ "/" +this.name+ "/" +$(this).val()+"/<?php echo $start_time;?>";
+            var st_time = '<?php echo $start_time;?>';
+            // alert(st_time);
+            var loadUrl = "<?php echo site_url('student/manage_appointments/availability/name'); ?>"+ "/" +this.name+ "/" +$(this).val()+"/"+st_time;
             var m = $('[id^=result_]').html($('[id^=result_]').val());
             // alert(loadUrl);
             if($(this).val() != ''){
@@ -186,13 +188,13 @@
                     for(i=0; i<m.length; i++){
                         $('#'+m[i].id).html($('#'+m[i].id).html().replace('/*',' '));
                         $('#'+m[i].id).html($('#'+m[i].id).html().replace('*/',' '));
-                    }   
+                    }
                     $("#schedule-loading").hide();
                 });
             }
-            
+
         });
-        
+
         $(".weekly_schedule").click(function () {
             //alert(this.name);
             var loadUrl = "<?php echo site_url('student/manage_appointments/schedule_detail'); ?>"+ "/" +this.value;
@@ -205,13 +207,13 @@
                     for(i=0; i<m.length; i++){
                         $('#'+m[i].id).html($('#'+m[i].id).html().replace('/*',' '));
                         $('#'+m[i].id).html($('#'+m[i].id).html().replace('*/',' '));
-                    }   
+                    }
                     $("#schedule-loading").hide();
                 });
             }
-            
+
         });
-        
+
         // creating date picker starter date
         var now = new Date();
         var day = ("0" + (now.getDate() + 1)).slice(-2);
