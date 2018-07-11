@@ -36,6 +36,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/styles/jquery.navgoco.css">
         <link rel="stylesheet" href="<?php echo base_url();?>assets/styles/icon-font/dashboard/styles.css">
         <link rel="stylesheet" href="<?php echo base_url();?>assets/styles/dyned-live-icons/styles.css">
+        <link rel="stylesheet" href="<?php echo base_url();?>assets/styles/icomoon/style.css">
 
         <script src="<?php echo base_url();?>assets/js/jquery.js"></script>
         <script type="text/javascript" src="<?php echo base_url();?>assets/js/bootstrap-datepicker.js"></script>
@@ -159,7 +160,7 @@
                                     <a href="<?php echo site_url('partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
                                 </li>
                                 <li class="pure-menu-item prt-reporting">
-                                    <a href="<?php echo site_url('partner/monitor/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Monitor Accounts</a>
+                                    <a href="<?php echo site_url('partner/monitor/'); ?>" class="pure-menu-link icon icon-iconmonstr-monitoring-6">Monitor Accounts</a>
                                 </li>
                               <?php } else if ($this->auth_manager->role() == 'CAM') { ?>
                                  <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link menu-profile icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
@@ -179,7 +180,7 @@
                                     <a href="<?php echo site_url('student_partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
                                 </li>
                                 <li class="pure-menu-item prt-reporting">
-                                    <a href="<?php echo site_url('student_partner/monitor/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Monitor Accounts</a>
+                                    <a href="<?php echo site_url('student_partner/monitor/'); ?>" class="pure-menu-link icon icon-iconmonstr-monitoring-6">Monitor Accounts</a>
                                 </li>
 
                             <?php } else if ($this->auth_manager->role() == 'SPN') { ?>
@@ -489,7 +490,7 @@
                                             <a href="<?php echo site_url('partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a>
                                         </li>
                                         <li class="pure-menu-item prt-reporting">
-                                            <a href="<?php echo site_url('partner/monitor/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Monitor Accounts</a>
+                                            <a href="<?php echo site_url('partner/monitor/'); ?>" class="pure-menu-link icon icon-iconmonstr-monitoring-6">Monitor Accounts</a>
                                         </li>
                                     <?php } else if ($this->auth_manager->role() == 'CAM') { ?>
                                         <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link menu-profile icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
@@ -507,7 +508,7 @@
                                         <li class="pure-menu-item spr-addtoken"><a href="<?php echo site_url('student_partner/add_token');?>" class="pure-menu-link menu-create-session icon dyned-icon-add">Add Tokens</a></li>
                                         <li class="pure-menu-item prt-reporting"><a href="<?php echo site_url('student_partner/reporting/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Reporting</a></li>
                                         <li class="pure-menu-item prt-reporting">
-                                            <a href="<?php echo site_url('student_partner/monitor/'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Monitor Accounts</a>
+                                            <a href="<?php echo site_url('student_partner/monitor/'); ?>" class="pure-menu-link icon icon-iconmonstr-monitoring-6">Monitor Accounts</a>
                                         </li>
                                     <?php } else if ($this->auth_manager->role() == 'SPN') { ?>
                                         <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile');?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>

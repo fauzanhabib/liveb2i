@@ -2189,7 +2189,8 @@ input:focus:-ms-input-placeholder {
 .pure-menu-link.icon.dyned-icon-token:before,
 .pure-menu-link.icon.dyned-icon-token-approval:before,
 .pure-menu-link.icon.dyned-icon-token-request:before,
-.pure-menu-link.icon.dyned-icon-coach-approval:before {
+.pure-menu-link.icon.dyned-icon-coach-approval:before,
+.pure-menu-link.icon.icon-iconmonstr-monitoring-6:before {
     display: block;
     width: 18px;
     height: 18px;
@@ -2230,7 +2231,8 @@ ul.menu-dropdown .pure-menu-item .pure-menu-link.icon.dyned-icon-supplier-approv
 ul.menu-dropdown .pure-menu-item .pure-menu-link.icon.dyned-icon-token:before,
 ul.menu-dropdown .pure-menu-item .pure-menu-link.icon.dyned-icon-token-approval:before,
 ul.menu-dropdown .pure-menu-item .pure-menu-link.icon.dyned-icon-token-request:before,
-ul.menu-dropdown .pure-menu-item .pure-menu-link.icon.dyned-icon-coach-approval:before {
+ul.menu-dropdown .pure-menu-item .pure-menu-link.icon.dyned-icon-coach-approval:before,
+ul.menu-dropdown .pure-menu-item .pure-menu-link.icon.icon-iconmonstr-monitoring-6:before {
     display: block;
     width: 14px;
     height: 14px;
