@@ -38,6 +38,6 @@ if (!@$availability) {
 
     </tbody>
 </table>
-<?php 
+<?php
 }
 exit; ?>
