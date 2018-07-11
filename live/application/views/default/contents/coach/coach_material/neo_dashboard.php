@@ -117,13 +117,12 @@
   <div class="heading pure-g padding-t-50">
       <div class="left-list-tabs pure-menu pure-menu-horizontal text-center margin0">
         <h3 style="padding-bottom: 15px;">This document is a guideline for neo Study Dashboard</h3>
-        <a target="_blank" href="<?php echo base_url();?>neo_dashboard.pdf" class="dl_neo icon icon-study-dashboard"> Download here (PDF)</a>
       </div>
   </div>
 
     <div class="content">
         <div class="box" style="text-align:center;">
-          <img class="img_neo" src="<?php echo base_url();?>assets/images/neo_dashboard.png" />
+          <embed src="https://liveb2itest.id.dyned.com/neo_dashboard.pdf#toolbar=0" width="800px" height="1030px" />
         </div>
     </div>
 

@@ -287,7 +287,7 @@
                     ?>
                     <tr>
                         <td></td>
-                        <td style="text-align: left;padding-left: 10px !important;"><?php
+                        <td><?php
                             $minutes_to_add = $spr_tz;
 
                             $time = new DateTime($d->date." ".$d->start_time);
