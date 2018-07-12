@@ -54,7 +54,7 @@
             // print_r(strtotime($compare));
             // exit();
             if($wm != NULL && strtotime($countdown) <= strtotime($nowc) && $nowh <= $hourend && $nowh >= $hourstart){
-            
+
         ?>
             <?php if(@$statuscheck == 0){ ?>
                 <div class="pure-u-lg-10-24">
@@ -88,7 +88,7 @@
                     </div>
                 </div>
                 <?php } ?>
-            
+
         <?php } else if($wm == NULL){?>
             <div class="pure-u-lg-10-24">
                 <span class="session-title-left float-none">No Session</span>
@@ -104,7 +104,7 @@
         <?php } else{?>
             <div class="pure-u-lg-10-24">
                 <span class="session-title-left float-none">Next Session</span>
-                
+
                 <div class="start-session m-t-20" id="nosess">
                     <div class="icon-left">
                         <img src="<?php echo base_url();?>assets/img/Play-Before.svg">
@@ -164,10 +164,10 @@
                             <div class="pure-g">
                                 <div class="thumb-large height-170 padding15" style="border: none">
                                     <img src="" width="200" height="200" class="pure-img img-circle-big fit-cover profile_picturecoach" />
-                                </div>            
+                                </div>
                                 <div class="profile-detail text-left prelative width75perc">
                                     <h4 class="border-b-1 font-semi-bold text-cl-grey">Contact Information</h4>
-                                    <table class="table-no-border2"> 
+                                    <table class="table-no-border2">
                                         <tbody>
                                             <tr>
                                                 <td class="padding4 width30perc font-light">Name</td>
@@ -175,12 +175,12 @@
                                                     <span class="namecoach"> </span>
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <td class="padding4 width30perc font-light">Email Address</td>
                                                 <td class="padding4 border-none">
                                                     <span class="emailcoach"></span>
                                                 </td>
-                                            </tr>
+                                            </tr> -->
                                             <tr>
                                                 <td class="padding4 width30perc font-light">Birthdate</td>
                                                 <td class="padding4 border-none">
@@ -207,7 +207,7 @@
                                                     <span class="timezonecoach"></span>
                                                 </td>
                                             </tr>
-                                        </tbody>    
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -218,8 +218,8 @@
             </div>
 
         </div>
-              
-    
+
+
 </div>
 
 
@@ -240,7 +240,7 @@
 
 $("ul li#viewcoach").click(function() {
     var coach_id = $(this).attr('idcoach');
-   
+
     $.ajax({
         url: "<?php echo site_url('student/dashboard/coach_detail');?>",
             type: 'POST',
@@ -256,21 +256,21 @@ $("ul li#viewcoach").click(function() {
                 var profile_picture = data[0].profile_picture;
 
                 $('.namecoach').text(': '+name);
-                $('.emailcoach').text(': '+email);
+                // $('.emailcoach').text(': '+email);
                 $('.birthdatecoach').text(': '+birthdate);
                 $('.spoken_languagecoach').text(': '+spoken_language);
                 $('.gendercoach').text(': '+gender);
                 $('.timezonecoach').text(': '+timezone);
                 $('.profile_picturecoach').attr('src','<?php echo base_url();?>'+profile_picture);
 
-            }                
+            }
     });
 });
 
 </script>
 
 <script>
-    $(function(){ 
+    $(function(){
         var inst = $.remodal.lookup[$('[data-remodal-id=modal]').data('remodal')];
     });
 </script>
@@ -280,7 +280,7 @@ $("ul li#viewcoach").click(function() {
         $(".hover-this").hover(
       function () {
          $('.session-info-hover').fadeIn('medium');
-      }, 
+      },
       function () {
          $('.session-info-hover').fadeOut('medium');
       }
@@ -335,7 +335,7 @@ $("ul li#viewcoach").click(function() {
     }
     function run_clock(id,endtime){
         var clock = document.getElementById(id);
-        
+
         // get spans where our clock numbers are held
         var hours_span = clock.querySelector('.hours');
         var minutes_span = clock.querySelector('.minutes');
@@ -365,17 +365,17 @@ $("ul li#viewcoach").click(function() {
             var now = trig_h+':'+trig_m+':'+trig_s;
 
             var t = time_remaining(endtime);
-            
+
             // update the numbers in each part of the clock
             hours_span.innerHTML = ('0' + t.hours).slice(-2);
             minutes_span.innerHTML = ('0' + t.minutes).slice(-2);
             seconds_span.innerHTML = ('0' + t.seconds).slice(-2);
-            
+
             // console.log(now);
             // console.log(end);
-            if(t.total<=0){ 
+            if(t.total<=0){
                 if (now < end){
-                    clearInterval(timeinterval); 
+                    clearInterval(timeinterval);
                     $("#clockdiv").hide();
                     $("#nosess").hide();
                     $("#sess").removeClass("hide");
@@ -406,7 +406,7 @@ $("ul li#viewcoach").click(function() {
 
 <script>
     var isFirefox = typeof InstallTrigger !== 'undefined';
-        
+
     if (isFirefox) {
         $('.box-lists').css('text-align', 'center');
         $('.box-list-icon2').css('padding', '0 20px')
