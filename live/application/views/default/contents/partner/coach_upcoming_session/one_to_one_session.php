@@ -56,7 +56,7 @@
             if (@$data) {
             ?>
             <div class="b-pad">
-            <table id="userTable" class="display" cellspacing="0" width="100%">
+            <table id="userTable" class="display table-session" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th class="text-cl-tertiary font-light font-16 border-none">DATE</th>

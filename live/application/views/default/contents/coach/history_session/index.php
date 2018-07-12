@@ -217,7 +217,7 @@
                     </td>
                     <td><?php echo date('M j Y', strtotime($history->date)); ?></td>
                     <td class="padding0">
-                        <div class="rounded-box bg-green width100">
+                        <div class="rounded-box bg-green">
                             <span class="text-cl-white">
                                 <?php
                                     $defaultstart  = strtotime($history->start_time);
