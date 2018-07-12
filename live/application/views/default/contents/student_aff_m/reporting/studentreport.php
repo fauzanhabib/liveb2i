@@ -28,6 +28,17 @@
     #large_wrapper{
         overflow: auto;
     }
+    @media screen and (max-width: 425px) {
+        .dataTables_wrapper .dataTables_filter {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                    justify-content: flex-end;
+            padding-right: 0!important;
+        }
+    }
 </style>
 <style type="text/css" src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></style>
 <style type="text/css" src="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css"></style>
@@ -425,10 +436,10 @@
                     ?>
                     <tr>
                         <td></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->name; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><a href="<?php echo site_url('student_aff_m/reporting/tokenhist/'.$d->user_id);?>" class="text-cl-tertiary" target="_blank"><?php echo $d->fullname; ?></a></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->email; ?></td>
-                        <td style="padding: 0px 10px !important;"><?php echo $d->dyned_pro_id; ?></td>
+                        <td><?php echo $d->name; ?></td>
+                        <td><a href="<?php echo site_url('student_aff_m/reporting/tokenhist/'.$d->user_id);?>" class="text-cl-tertiary" target="_blank"><?php echo $d->fullname; ?></a></td>
+                        <td><?php echo $d->email; ?></td>
+                        <td><?php echo $d->dyned_pro_id; ?></td>
                         <td><?php echo $d->cert_studying; ?></td>
                         <td><?php if(@$start_b){echo @$start_b;}else{echo '0';} ?></td>
                         <td><?php if(@$addeds){echo @$addeds;}else{echo '0';} ?></td>

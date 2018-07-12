@@ -31,6 +31,17 @@
     .thfoot{
         border-top: solid 3px #f3f3f3 !important
     }
+    @media screen and (max-width: 425px) {
+        .dataTables_wrapper .dataTables_filter {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                    justify-content: flex-end;
+            padding-right: 0!important;
+        }
+    }
 </style>
 <script type="text/javascript" src="<https://code.jquery.com/jquery-1.12.4.js"></script>
 <style type="text/css" src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></style>
@@ -196,7 +207,7 @@
                 <tfoot>
                     <tr>
                         <th class="thfoot resp__hide"></th>
-                        <th class="thfoot">Total</th>
+                        <th class="thfoot resp__hide">Total</th>
                         <th class="thfoot resp__hide"></th>
                         <th class="thfoot resp__hide"></th>
                         <th class="thfoot"></th>
