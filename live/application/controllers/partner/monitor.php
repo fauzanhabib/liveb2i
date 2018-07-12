@@ -33,7 +33,7 @@ class monitor extends MY_Site_Controller {
         $pull_monitor = $this->db->select('u.id, us.fullname, u.email, u.status')
                       ->from('users u')
                       ->join('user_profiles us', 'us.user_id = u.id' )
-                      ->where('u.role_id', '9')
+                      ->where('u.role_id', '10')
                       ->where('us.partner_id', $partner_id)
                       ->get()->result();
 
