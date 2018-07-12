@@ -103,7 +103,7 @@ input[type=number]::-webkit-outer-spin-button {
                                     <input name="nickname" type="text" value="<?php echo @$data[0]->nickname; ?>" id="td_value_1_0" class="e-only" >
                                 </td>
                             </tr> -->
-                            <?php if($this->auth_manager->role() != 'PRT' && $this->auth_manager->role() != 'SPR'){ ?>
+                            <?php if($this->auth_manager->role() != 'PRT' && $this->auth_manager->role() != 'SPR' && $this->auth_manager->role() != 'SAM' && $this->auth_manager->role() != 'CAM' && $this->auth_manager->role() != 'SPN'){ ?>
                             <tr>
                                 <td>Date of Birth</td>
                                 <td>
@@ -112,6 +112,7 @@ input[type=number]::-webkit-outer-spin-button {
                                 </td>
                             </tr>
                             <?php } ?>
+                           <?php if($this->auth_manager->role() != 'PRT' && $this->auth_manager->role() != 'SPR' && $this->auth_manager->role() != 'SAM' && $this->auth_manager->role() != 'CAM' && $this->auth_manager->role() != 'SPN'){ ?>
                             <tr>
                                 <td><?php echo ($this->auth_manager->role() == 'STD') ? 'Home Language':'Spoken Languages';?></td>
                                 <td>
@@ -121,7 +122,6 @@ input[type=number]::-webkit-outer-spin-button {
                                     <input name="spoken_language" type="hidden" id="spoken_language" value="<?php echo str_replace('#', ',', @$data[0]->spoken_language, $multiplier) ; ?>">
                                 </td>
                             </tr>
-
                             <tr>
                                 <td>Gender</td>
                                 <td>
@@ -129,6 +129,7 @@ input[type=number]::-webkit-outer-spin-button {
                                     <?php echo form_dropdown('gender', $this->auth_manager->gender(), trim(@$data[0]->gender), 'id="td_value_1_4" class="e-only" required required data-parsley-required-message="Please select your gender"') ?>
                                 </td>
                             </tr>
+                            <?php } ?>
 
                             <?php if ($this->auth_manager->role() == 'STD' || $this->auth_manager->role() == 'CCH') { ?>
                             <tr id="active-1-3" class="no-inline">
@@ -234,7 +235,7 @@ input[type=number]::-webkit-outer-spin-button {
                         </tr>
                         <?php } ?>
 
-                        <?php if($this->auth_manager->role() == 'PRT' || $this->auth_manager->role() == 'SPR'){ ?>
+                        <?php if($this->auth_manager->role() == 'PRT' || $this->auth_manager->role() == 'SPR' || $this->auth_manager->role() == 'SPN' || $this->auth_manager->role() == 'SAM' || $this->auth_manager->role() == 'CAM'){ ?>
                         <tr id="active-2-8" class="no-inline">
                             <td class="pad15">Timezone</td>
                                     <!-- <td>
