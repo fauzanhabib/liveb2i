@@ -26,6 +26,17 @@
     #large_wrapper{
         overflow-x: auto !important;
     }
+    @media screen and (max-width: 425px) {
+        .dataTables_wrapper .dataTables_filter {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                    justify-content: flex-end;
+            padding-right: 0!important;
+        }
+    }
 </style>
 
 <div class="box clear-both">
@@ -56,36 +67,32 @@
     <div class="box">
         <div class="content">
             <div class="box pure-g">
-              <form name ="leaving" action="<?php echo(site_url('partner/monitor/add_monitor_acc/'));?>" method="post">
-                 <div class="pure-u-18-24 profile-detail prelative">
-                    <table class="table-no-border2">
+              <div class="pure-u-24-24 profile-detail prelative">
+                <form name ="leaving" action="<?php echo(site_url('partner/monitor/add_monitor_acc/'));?>" method="post">
+                  <table class="table-no-border2">
                       <tbody>
-                         <div class="pure-control-group">
-                            <div class="label">
-                                <label for="name">Email</label>
-                            </div>
-                            <div class="input">
-                                <input type="name" name="email" required>
-                            </div>
-                          </div>
-                          <div class="pure-control-group">
-                             <div class="label">
-                                 <label for="name">Name</label>
-                             </div>
-                             <div class="input">
-                                 <input type="name" name="name" required>
-                             </div>
-                           </div>
+                          <tr>
+                              <td class="pad15">Email</td>
+                              <td>
+                                  <input type="name" name="email" class="border-none" required>
+                              </td>
+                          </tr>
+                          <tr>
+                              <td class="pad15">Name</td>
+                              <td>
+                                  <input type="name" name="name" class="border-none" required>
+                              </td>
+                          </tr>
                       </tbody>
-                    </table>
-                  </div>
+                  </table>
 
-                  <div class="pure-u-1" style="border-top:1px solid #f3f3f3;padding: 15px 0px;margin-top:15px;">
+                  <div class="pure-u-1" style="padding: 15px 0px;margin-top:15px;display:flex;justify-content:flex-end;">
                       <div class="label">
                           <input type="submit" value="Submit" class="pure-button btn-small btn-tertiary">
                       </div>
                   </div>
-              </form>
+                </form>
+              </div>
             </div>
         </div>
     </div>
@@ -220,4 +227,24 @@ function myFunction(x) {
             $(function() {
                 $("table").tablesorter({debug: true});
             });
+</script>
+
+<script>
+  $('tr').each(function(e){
+      var inputs = $(this);
+
+      $('input',inputs).on('blur', function () {
+          $('td',inputs).removeClass('inline').addClass('no-inline');
+      }).on('focus', function () {
+          $('td',inputs).removeClass('no-inline').addClass('inline');
+      });
+
+      $('textarea',inputs).on('blur', function () {
+          $('td',inputs).removeClass('inline').addClass('no-inline');
+      }).on('focus', function () {
+          $('td',inputs).removeClass('no-inline').addClass('inline');
+      });
+
+      $('td',inputs).css({'position':'relative'});
+  })
 </script>

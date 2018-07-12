@@ -25,6 +25,17 @@
     td{
         font-weight: 400 !important;
     }
+    @media screen and (max-width: 425px) {
+        .dataTables_wrapper .dataTables_filter {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                    justify-content: flex-end;
+            padding-right: 0!important;
+        }
+    }
 </style>
 <style type="text/css" src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></style>
 <style type="text/css" src="https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css"></style>
@@ -206,12 +217,12 @@
                     <tr>
                         <td></td>
                         <td><?php echo $d->name; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $d->fullname; ?></td>
+                        <td><?php echo $d->fullname; ?></td>
                         <td><?php echo $ratingsess; ?></td>
-                        <td style="text-align: left;padding-left: 10px !important;"><?php echo $std_name[0]->fullname; ?></td>
-                        <td style="text-align: left;padding-left: 5px !important;"><?php echo $std_name[0]->email; ?></td>
+                        <td><?php echo $std_name[0]->fullname; ?></td>
+                        <td><?php echo $std_name[0]->email; ?></td>
                         <td><?php echo $std_name[0]->cert_studying; ?></td>
-                        <td style="text-align: left;padding-left: 10px !important;"><?php 
+                        <td><?php 
                             $minutes_to_add = $spr_tz;
 
                             $time = new DateTime($d->date." ".$d->start_time);
@@ -222,7 +233,7 @@
                             echo $stamp;
                             // echo $d->date; 
                         ?></td>
-                        <td style="text-align: center;padding-left: 0px !important;"><?php 
+                        <td><?php 
                             // echo $d->start_time." - ".$end_time."<br>"; 
                             echo $start_conv_real." - ".$endmin_real; 
                         ?></td>
