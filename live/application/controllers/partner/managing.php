@@ -868,13 +868,17 @@ class managing extends MY_Site_Controller {
         //$data = $this->get_available_coach($appointment_data->date, $appointment_data->coach_id);
         //echo('<pre>');print_r($data);exit;
         // $coach_list = $this->identity_model->get_coach_identity(null, null, null, $this->auth_manager->partner_id());
-        $coach_list = $this->identity_model->get_new_coach_identity_rescedule($this->auth_manager->partner_id(), $cert_studying);
 
         $coach_type_id = $this->db->select('coach_type_id')->from('user_profiles')->where('user_id',$coach_id_)->get()->result();
         $coach_type_id = $coach_type_id[0]->coach_type_id;
 
         $type_coach = $this->db->query('SELECT standard_coach_cost, elite_coach_cost FROM (specific_settings) WHERE partner_id = '.$this->auth_manager->partner_id())->result();                        
 
+        $coach_list = $this->identity_model->get_new_coach_identity_rescedule($this->auth_manager->partner_id(), '', $cert_studying, $coach_type_id);
+
+        // echo "<pre>";
+        // print_r($coach_list);
+        // exit();
 
         $temp = array();
         foreach($coach_list as $c){
@@ -1196,7 +1200,7 @@ class managing extends MY_Site_Controller {
         // messaging
         // inserting notification
         // if ($new_appointment_id) {
-            $database_tube = 'com.live.database';
+            // $database_tube = 'com.live.database';
            // student notification data
 
             $student_notification = array(
@@ -1253,13 +1257,11 @@ class managing extends MY_Site_Controller {
 
         // email
         $this->send_email->partner_reschedule($email_student, $name_student, $name_coach, date("l jS \of F Y", $convert_data_student1['date']), $convert_data_student1['start_time'], $et_student, $new_name_coach, date('l jS \of F Y', $convert_data_student2['date']), $start_hour, $end_hour, $student_gmt);
-        $this->send_email->notif_partner_reschedule($email_student, $new_email_coach, $name_student, $name_coach, date("l jS \of F Y", $convert_data_student1['date']), $convert_data_student1['start_time'], $convert_data_student1['end_time'], $new_name_coach, date('l jS \of F Y', $convert_data_coach2['date']), $start_hour_coach, $end_hour_coach, $coach_gmt);
-        $this->send_email->notif_coach_reschedule($email_student, $email_coach, $name_student, $name_coach, date("l jS \of F Y", $convert_data_coach1['date']), $st_coach, $et_coach, $new_name_coach, date('l jS \of F Y', $convert_data_student2['date']), $convert_data_student2['start_time'], $convert_data_student2['end_time'], $coach_old_gmt);
+        $this->send_email->notif_partner_reschedule($new_email_coach, $name_student, $name_coach, date("l jS \of F Y", $convert_data_student1['date']), $convert_data_student1['start_time'], $convert_data_student1['end_time'], $new_name_coach, date('l jS \of F Y', $convert_data_coach2['date']), $start_hour_coach, $end_hour_coach, $coach_gmt);
+        $this->send_email->notif_coach_reschedule($email_coach, $name_student, $name_coach, date("l jS \of F Y", $convert_data_coach1['date']), $st_coach, $et_coach, date('l jS \of F Y', $convert_data_student2['date']), $convert_data_student2['start_time'], $convert_data_student2['end_time'], $coach_old_gmt);
         // ==========
         $message = "Session Rescheduled";
         $this->messages->add($message, 'success');
-        $subgroup_id = $this->db->select('subgroup_id')->from('user_profiles')->where('user_id',$coach_id)->get()->result();
-        $subgroup_id = $subgroup_id[0]->subgroup_id;
         redirect('partner/coach_upcoming_session/one_to_one_session/'.$coach_id);
     }
     

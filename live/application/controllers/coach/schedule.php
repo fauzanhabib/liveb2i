@@ -338,8 +338,9 @@ class schedule extends MY_Site_Controller {
 
     private function isValidSchedule($schedule){
         $status  = false;
+
         for($i=0;$i<count($schedule);$i++){
-            if($schedule[$i]['end_time'] = '0:00'){
+            if($schedule[$i]['end_time'] == '0:00'){
               $schedule[$i]['end_time'] = '23:59';
             }
             if(strtotime($schedule[$i]['end_time']) > strtotime($schedule[$i]['start_time'])){
@@ -361,8 +362,8 @@ class schedule extends MY_Site_Controller {
             else{
                 $status = false;
             }
-
         }
+        // echo('<pre>');print_r($status);exit('la');
         return $status;
     }
 
@@ -399,6 +400,7 @@ class schedule extends MY_Site_Controller {
         }
         // echo('<pre>');print_r($schedule_block);exit;
         if(!$this->isValidSchedule($schedule_block)){
+          echo('<pre>');print_r($this->isValidSchedule($schedule_block));exit;
             $this->messages->add('Invalid Schedule Order', 'warning');
             redirect('coach/schedule');
         }

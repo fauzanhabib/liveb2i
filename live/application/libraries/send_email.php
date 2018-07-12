@@ -13357,7 +13357,7 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
     }
 
     //---------------------------------------------------------Notif Coach Partner Reschedule---------------------------------------------------------------
-    function notif_partner_reschedule($studentmail = '', $coachmail = '', $studentname = '', $oldcoachname = '', $olddate ='', $oldstart = '', $oldend = '', $newcoachname = '', $newdate = '', $newstart = '', $newend = '', $gmt = ''){
+    function notif_partner_reschedule($coachmail = '', $studentname = '', $oldcoachname = '', $olddate ='', $oldstart = '', $oldend = '', $newcoachname = '', $newdate = '', $newstart = '', $newend = '', $gmt = ''){
 
         $tz = '';
         if ($gmt > 0) {
