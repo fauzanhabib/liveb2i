@@ -1752,7 +1752,7 @@ class identity_model extends MY_Model {
         return $this->db->get()->result();
     }
 
-    public function get_new_coach_identity_rescedule($partner_id = '', $coach_id='', $cert_studying = ''){
+    public function get_new_coach_identity_rescedule($partner_id = '', $coach_id='', $cert_studying = '', $coach_type = ''){
 
         if(($this->uri->segment(1) == 'partner') && ($this->uri->segment(3) == 'reschedule')){
             $subgroup_id = '';
@@ -1798,6 +1798,7 @@ class identity_model extends MY_Model {
         $this->db->order_by('c.fullname', 'asc');
         $this->db->where('a.id !=', $coach_id);
         $this->db->where('a.status', 'active');
+        $this->db->where('c.coach_type_id', $coach_type);
 
         if($partner_id){
 
