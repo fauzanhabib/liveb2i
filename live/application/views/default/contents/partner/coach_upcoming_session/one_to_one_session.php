@@ -91,7 +91,7 @@
                     $link = site_url('webex/available_host/' . @$d->id);
                     ?>
                     <tr class="list-session">
-                        <td class="padding15" data-label="DATE">
+                        <td class="padding15">
                             <?php echo(date('F d, Y', strtotime(@$d->date))); ?>
                         </td>
                     <td>
@@ -110,7 +110,7 @@
                             </span>
                         </div>
                     </td>
-                        <td class="padding15" data-label="STUDENT">
+                        <td class="padding15">
                            <span class="text-cl-secondary"><?php echo @$d->student_name; ?></span>
                         </td>
                         <td class="padding15">

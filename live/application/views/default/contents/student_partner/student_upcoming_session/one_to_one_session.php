@@ -51,7 +51,7 @@
             if (@$data) {
             ?>
             <div class="b-pad">
-            <table id="userTable" class="display" style="border-top:1px solid #f3f3f3">
+            <table id="userTable" class="display table-session" style="border-top:1px solid #f3f3f3">
                 <thead>
                     <tr>
                         <th class="text-cl-tertiary font-light font-16 border-none">DATE</th>
@@ -88,11 +88,11 @@
                     $endsession = $defaultend-(5*60);
                     ?>
                     <tr class="list-session">
-                        <td class="padding-10-15" data-label="DATE">
+                        <td class="padding-10-15">
                             <?php echo(date('F d, Y', strtotime(@$d->date))); ?>
                         </td>
-                        <td data-label="TIME"><div class="status-disable bg-green"><span class="text-cl-white"><?php echo(date('H:i',strtotime(@$d->start_time)));?> - <?php echo(date('H:i', $endsession));?> (UTC <?php echo $new_gmt; ?>)</span></div></td>
-                        <td class="padding-10-15" data-label="COACH">
+                        <td><div class="status-disable bg-green"><span class="text-cl-white"><?php echo(date('H:i',strtotime(@$d->start_time)));?> - <?php echo(date('H:i', $endsession));?> (UTC <?php echo $new_gmt; ?>)</span></div></td>
+                        <td class="padding-10-15">
                             <span class="text-cl-secondary">
                             <?php echo @$d->coach_fullname; ?>
                         </span>
