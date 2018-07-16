@@ -16,7 +16,7 @@
 
     <div class="content">
         <div class="content-title m-lr-20 clear-both">
-            <span class="left">Basic Info</span>
+            <span>Basic Info</span>
 
             <!-- <div class="edit action-icon">
                 <button id="btn_save_info" name="__submit" value="SUBMIT" type="submit" class="pure-button btn-tiny btn-white-tertinary m-b-15 save_click asd">SAVE</button>
