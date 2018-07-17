@@ -201,20 +201,20 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th class="thfoot"></th>
+                        <th class="thfoot resp__hide"></th>
                         <th class="thfoot">Total</th>
+                        <th class="thfoot resp__hide"></th>
+                        <th class="thfoot resp__hide"></th>
+                        <th class="thfoot resp__hide"></th>
+                        <th class="thfoot resp__hide"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
-                        <th class="thfoot"></th>
-                        <th class="thfoot"></th>
-                        <th class="thfoot"></th>
-                        <th class="thfoot"></th>
-                        <th class="thfoot"></th>
-                        <th class="thfoot"></th>
-                        <th class="thfoot"></th>
+                        <th class="thfoot resp__hide"></th>
+                        <th class="thfoot resp__hide"></th>
+                        <th class="thfoot resp__hide"></th>
                     </tr>
                 </tfoot>
                 <tbody>

@@ -42,6 +42,15 @@
             padding-right: 0!important;
         }
     }
+    @media screen and (max-width: 320px) {
+        tfoot tr {
+            display: -webkit-box!important;
+            display: -ms-flexbox!important;
+            display: flex!important;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+        }
+    } 
 </style>
 <script type="text/javascript" src="<https://code.jquery.com/jquery-1.12.4.js"></script>
 <style type="text/css" src="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></style>
