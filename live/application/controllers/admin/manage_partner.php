@@ -21,6 +21,7 @@ class manage_partner extends MY_Site_Controller {
         $this->load->model('history_request_model');
         $this->load->model('user_token_model');
         $this->load->model('user_geography_model');
+        $this->load->model('user_profile_model');
         $this->load->model('subgroup_model');
         $this->load->model('specific_settings_model');
         $this->load->model('user_token_model');
@@ -146,6 +147,14 @@ class manage_partner extends MY_Site_Controller {
             'country' => $this->input->post('country'),
         );
 
+        $admin_profile = $this->user_profile_model->select('fullname, region_id')->where('user_id', $this->auth_manager->userid())->get_all();
+        $admin_name = $admin_profile[0]->fullname;
+        $admin_region = $admin_profile[0]->region_id;
+
+        $superadmin_profile = $this->user_model->select('id, email')->where('role_id', 7)->get_all();
+        $superadmin_id = $superadmin_profile[0]->id;
+        $superadmin_email = $superadmin_profile[0]->email;
+
         // Inserting and checking to partner table
         $this->db->trans_begin();
         $user_id = $this->partner_model->insert($partner);
@@ -177,8 +186,6 @@ class manage_partner extends MY_Site_Controller {
             'type' => $region_setting[0]->type
         ];
 
-
-
         // insert into table specific setting
         $this->region_model->insert_specific_setting($specific_settings);
 
@@ -186,6 +193,8 @@ class manage_partner extends MY_Site_Controller {
         $this->db->insert('user_tokens', array('partner_id' => $user_id, 'token_amount' => $region_setting[0]->max_token));
 
         $this->db->trans_commit();
+
+        $this->send_email->admin_create_affiliate($this->input->post('name'), $admin_name, $admin_region, $superadmin_email);
 
         $this->messages->add('Inserting Affiliate Successful', 'success');
         redirect('admin/manage_partner');
