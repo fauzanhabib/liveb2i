@@ -135,8 +135,8 @@
                         }else{
                             $new_gmt = $gmt_student[0]->gmt;
                         }
-                        $status = ['approved' => 'Book', 'cancelled' => 'Resc', 'declined' => 'Deli', 'requested' => 'Deli', 'added' => 'added', 'cancelled' => 'Resc', 'given' => 'added']; //ditambah
-                        $tooltip = ['approved' => 'Token Request has been approved', 'cancelled' => 'Token Requests has been cancelled', 'declined' => 'Token Request has been declined', 'requested' => 'Token has been requested', 'added' => 'Token has been added', 'given' => 'Token has been given']; //ditambah
+                        $status = ['approved' => 'Book', 'cancelled' => 'Resc', 'declined' => 'Deli', 'requested' => 'Deli', 'added' => 'added', 'cancelled' => 'Resc', 'given' => 'added', 'refund' => 'Book']; //ditambah
+                        $tooltip = ['approved' => 'Token Request has been approved', 'cancelled' => 'Token Requests has been cancelled', 'declined' => 'Token Request has been declined', 'requested' => 'Token has been requested', 'added' => 'Token has been added', 'given' => 'Token has been given', 'refund' => 'Token has been refunded']; //ditambah
                         $dcrea     = date('H:i:s',$d->date_created);
                         $default_dcrea  = strtotime($dcrea);
                         $usertime_dcrea = $default_dcrea+(60*$new_minutes);
