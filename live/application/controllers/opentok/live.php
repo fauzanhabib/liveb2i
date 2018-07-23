@@ -115,8 +115,7 @@ class Live extends MY_Site_Controller {
                     ->where('coach_id', $id)
                     ->where('id', $appoint_id)
                     ->get()->result();
-            // echo "<pre>";
-            // print_r($checkcch);exit();
+            // echo "<pre>";print_r($checkcch);exit();
         }
 
         //Appointment Hour
@@ -133,11 +132,12 @@ class Live extends MY_Site_Controller {
         }else{
           $opentok    = new OpenTok($this->config->item('opentok_key2'), $this->config->item('opentok_secret2'));
         }
+        // echo "<pre>";print_r($opentok);exit();
 
         //@$starthour_conv = date("H:i:s", $usertime1);
         //@$endhour_conv   = date("H:i:s", $usertime1);
 
-        $opentok    = new OpenTok($this->config->item('opentok_key'), $this->config->item('opentok_secret'));
+        // $opentok    = new OpenTok($this->config->item('opentok_key'), $this->config->item('opentok_secret'));
         @$sessionId = $sess[0]->session;
         @$token     = $sess[0]->token;
 
