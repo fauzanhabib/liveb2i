@@ -128,6 +128,12 @@ class Live extends MY_Site_Controller {
         $default1  = strtotime($appoint);
         $usertime1 = $default1+(60*$minutes);
 
+        if($sess[0]->key == '1'){
+          $opentok    = new OpenTok($this->config->item('opentok_key'), $this->config->item('opentok_secret'));
+        }else{
+          $opentok    = new OpenTok($this->config->item('opentok_key2'), $this->config->item('opentok_secret2'));
+        }
+
         //@$starthour_conv = date("H:i:s", $usertime1);
         //@$endhour_conv   = date("H:i:s", $usertime1);
 
@@ -295,7 +301,12 @@ class Live extends MY_Site_Controller {
 
                     @$sessionIdn  = $sessioning[0]->session;
                     @$tokenn      = $sessioning[0]->token;
-                    $apiKey       = $this->config->item('opentok_key');
+
+                    if($sessioning[0]->key == '1'){
+                      $apiKey       = $this->config->item('opentok_key');
+                    }else{
+                      $apiKey       = $this->config->item('opentok_key2');
+                    }
 
                     $livesession = array(
                     'sessionId'  => @$sessionId,
@@ -325,7 +336,12 @@ class Live extends MY_Site_Controller {
 
                     @$sessionIde  = $sessioninge[0]->session;
                     @$tokene      = $sessioninge[0]->token;
-                    $apiKey       = $this->config->item('opentok_key');
+
+                    if($sessioninge[0]->key == '1'){
+                      $apiKey       = $this->config->item('opentok_key');
+                    }else{
+                      $apiKey       = $this->config->item('opentok_key2');
+                    }
 
                     $livesession = array(
                     'sessionId'  => @$sessionId,

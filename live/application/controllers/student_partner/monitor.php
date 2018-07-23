@@ -18,7 +18,7 @@ class monitor extends MY_Site_Controller {
         $this->load->library('send_email');
 
         //checking user role and giving action
-        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'SPR') {
+        if (!$this->auth_manager->role()) {
             $this->messages->add('Access Denied');
             redirect('account/identity/detail/profile');
         }
@@ -53,7 +53,7 @@ class monitor extends MY_Site_Controller {
 
       $partner_id = $this->auth_manager->partner_id();
       $password = $this->generateRandomString();
-
+      // echo "<pre>";print_r($mon_email);exit();
       $user = array(
           'email' => $mon_email,
           'password' => $this->phpass->hash($password),

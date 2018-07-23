@@ -24,7 +24,7 @@ class Croncoachatt extends MY_Controller {
             ->from('appointments')
             ->where('date <=', $nowdate)
             ->where('end_time <', $hour_start_db)
-            ->where('status', 'active')
+            ->where('status !=', 'completed')
             ->order_by('id', 'DESC')
             ->get()->result();
 

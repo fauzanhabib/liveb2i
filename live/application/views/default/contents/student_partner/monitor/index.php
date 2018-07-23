@@ -69,7 +69,7 @@
         <div class="content">
             <div class="box pure-g">
               <div class="pure-u-24-24 profile-detail prelative">
-                <form name ="leaving" action="<?php echo(site_url('partner/monitor/add_monitor_acc/'));?>" method="post">
+                <form action="<?php echo(site_url('student_partner/monitor/add_monitor_acc/'));?>" method="post">
                   <table class="table-no-border2">
                       <tbody>
                           <tr>

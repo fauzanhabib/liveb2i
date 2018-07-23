@@ -95,18 +95,9 @@
 
     <div class="content padding-t-0">
        <div class="box">
-            <div class="select-all">
-                <div class="padding-r-5 m-t-2 left">
-                    <input type="checkbox" id="checkbox-1-0" name="Region" value="Region-1" class="regular-checkbox checkAll" /><label class="" for="checkbox-1-0"></label>
-                </div>
-                <div class="">
-                    <label class="font-14">Select All</label>
-                </div>
-            </div>
             <table id="large" class="display table-session tablesorter" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th class="bg-secondary bg-none text-cl-white border-none" style=""></th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">No</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Group</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Type</th>
@@ -119,9 +110,6 @@
                 foreach ($data as $p) {
                     ?>
                     <tr>
-                        <td class="text-left">
-                    <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $p->id;?>" class="regular-checkbox" /><label for="checkbox-1-<?php echo $no;?>"></label>
-                        </td>
                         <td><?php echo $a; ?></td>
                         <td><a href="<?php echo site_url('student_aff_m/subgroup/list_student/'. $p->id); ?>" class="text-cl-tertiary"><u><?php echo $p->name?><u></a></td>
                         <td><?php echo ucfirst($p->type); ?> Affiliate</td>

@@ -400,7 +400,7 @@ class schedule extends MY_Site_Controller {
         }
         // echo('<pre>');print_r($schedule_block);exit;
         if(!$this->isValidSchedule($schedule_block)){
-          echo('<pre>');print_r($this->isValidSchedule($schedule_block));exit;
+          // echo('<pre>');print_r($this->isValidSchedule($schedule_block));exit;
             $this->messages->add('Invalid Schedule Order', 'warning');
             redirect('coach/schedule');
         }
