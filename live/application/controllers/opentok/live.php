@@ -384,7 +384,7 @@ class Live extends MY_Site_Controller {
                   $this->db->update('appointments', $data2s);
                 }
 
-                // echo "<pre>";print_r($livesession);exit();
+
                 $this->template->content->view('contents/opentok/student/session', $livesession);
                 $this->template->publish();
             }else{
@@ -411,7 +411,12 @@ class Live extends MY_Site_Controller {
 
             @$sessionIde  = $sessioninge[0]->session;
             @$tokene      = $sessioninge[0]->token;
-            $apiKey       = $this->config->item('opentok_key');
+            if($sessioninge[0]->key == '1'){
+              $apiKey       = $this->config->item('opentok_key');
+            }else{
+              $apiKey       = $this->config->item('opentok_key2');
+            }
+            // $apiKey       = $this->config->item('opentok_key');
             @$std_id   = $user_extract->student_id;
             @$std_cert = $user_extract->cert_plan;
 
@@ -582,7 +587,11 @@ class Live extends MY_Site_Controller {
 
                     @$sessionIdn  = $sessioning[0]->session;
                     @$tokenn      = $sessioning[0]->token;
-                    $apiKey       = $this->config->item('opentok_key');
+                    if($sessioning[0]->key == '1'){
+                      $apiKey       = $this->config->item('opentok_key');
+                    }else{
+                      $apiKey       = $this->config->item('opentok_key2');
+                    }
                     // $script = $this->coaching_script_model->get_student_script();
                     @$std_id   = $user_extract->student_id;
                     @$std_cert = $user_extract->cert_plan;
@@ -684,7 +693,11 @@ class Live extends MY_Site_Controller {
 
                     @$sessionIde  = $sessioninge[0]->session;
                     @$tokene      = $sessioninge[0]->token;
-                    $apiKey       = $this->config->item('opentok_key');
+                    if($sessioninge[0]->key == '1'){
+                      $apiKey       = $this->config->item('opentok_key');
+                    }else{
+                      $apiKey       = $this->config->item('opentok_key2');
+                    }
                     @$std_id   = $user_extract->student_id;
                     @$std_cert = $user_extract->cert_plan;
 
