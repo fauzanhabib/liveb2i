@@ -383,7 +383,7 @@ class Live extends MY_Site_Controller {
                   $this->db->where('id', $id_appoint);
                   $this->db->update('appointments', $data2s);
                 }
-
+                // echo "<pre>";print_r($livesession);exit();
 
                 $this->template->content->view('contents/opentok/student/session', $livesession);
                 $this->template->publish();

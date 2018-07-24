@@ -9,7 +9,7 @@ if(@$user_extract2){
 
   // echo "<pre>";print_r($apiKey);
   // echo "<pre>";print_r($sessionId);
-  // echo "<pre>";print_r($student_name);exit();
+  // echo "<pre>";print_r($apiKey);exit();
 
 ?>
 <script type="text/javascript" src="<?php echo base_url();?>assets/js/main.js"></script>

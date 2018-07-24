@@ -15,6 +15,7 @@
         "psr/log": "^1.0",
         "guzzle/guzzle": "^3.9",
         "phpoffice/phpspreadsheet": "^1.2",
-        "phpzip/phpzip": "^2.0"
+        "phpzip/phpzip": "^2.0",
+        "mobiledetect/mobiledetectlib": "^2.8"
     }
 }

@@ -167,9 +167,17 @@ class ComposerStaticInit05f659faee187b7cc78e4563aea316b7
                 0 => __DIR__ . '/..' . '/guzzle/guzzle/src',
             ),
         ),
+        'D' => 
+        array (
+            'Detection' => 
+            array (
+                0 => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/namespaced',
+            ),
+        ),
     );
 
     public static $classMap = array (
+        'Mobile_Detect' => __DIR__ . '/..' . '/mobiledetect/mobiledetectlib/Mobile_Detect.php',
         'RelativePath' => __DIR__ . '/..' . '/grandt/relativepath/RelativePath.php',
         'com\\grandt\\BinString' => __DIR__ . '/..' . '/grandt/binstring/BinString.php',
         'com\\grandt\\BinStringStatic' => __DIR__ . '/..' . '/grandt/binstring/BinStringStatic.php',

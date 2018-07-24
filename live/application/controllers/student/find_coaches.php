@@ -519,7 +519,7 @@ class find_coaches extends MY_Site_Controller {
         $this->template->publish();
     }
 
-    public function book_single_coach($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '', $token = ''){
+    public function book_single_coach($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '', $token = '', $browser_type, $device_type, $device_os){
         $recuring = $this->session->userdata('recurring_booking_type');
 
         if(!$recuring){
@@ -634,9 +634,7 @@ class find_coaches extends MY_Site_Controller {
                 }
 
                 $data_schedule = $this->schedule_function->convert_book_schedule($this->identity_model->new_get_gmt($coach_id)[0]->minutes, strtotime($date), $start_time, $end_time);
-                    // print_r($data_schedule);
-                    // echo date('Y-m-d', 1523404800);
-                    // exit();
+                    // print_r($data_schedule);echo date('Y-m-d', 1523404800);exit();
 
 
                 if(($message == '') && ($remain_token >= 0)){
@@ -650,7 +648,8 @@ class find_coaches extends MY_Site_Controller {
                     $u_t = $this->identity_model->get_identity('token')->update($s_t->id, $data);
 
                     // =====
-                    $appointment_id = $this->create_appointment($coach_id, $date, $start_time, $end_time, 'active');
+                    $appointment_id = $this->create_appointment($coach_id, $date, $start_time, $end_time, 'active', $browser_type, $device_type, $device_os);
+                    // print_r($appointment_id);exit();
 
                     $get_date_apd = $this->db->select('date, start_time, end_time')->from('appointments')->where('id',$appointment_id)->get()->result();
                     $new_date_apd_coach = strtotime($get_date_apd[0]->date);
@@ -2067,7 +2066,20 @@ class find_coaches extends MY_Site_Controller {
 
     } */
 
-     private function create_appointment($coach_id = '', $date = '', $start_time = '', $end_time = '', $appointment_status = '') {
+     private function create_appointment($coach_id = '', $date = '', $start_time = '', $end_time = '', $appointment_status = '', $browser_type, $device_type, $device_os) {
+       if($browser_type == 'Chrome' && @$device_os == 'Android'){
+         $opentok_key    = $this->config->item('opentok_key');
+         $opentok_secret = $this->config->item('opentok_secret');
+         $key = 1;
+         // print_r();
+         // exit('a');
+       }else{
+         $opentok_key    = $this->config->item('opentok_key2');
+         $opentok_secret = $this->config->item('opentok_secret2');
+         $key = 2;
+         // exit('b');
+       }
+       // print_r($key);exit();
 //        print_r(date('Y-m-d', $date));
 //        print_r($start_time);
 //        print_r($end_time);
@@ -2089,7 +2101,7 @@ class find_coaches extends MY_Site_Controller {
         // edit dari sini
         if($check_sess[0]->session_type == '0'){
           // exit('a');
-          $opentok = new OpenTok($this->config->item('opentok_key'), $this->config->item('opentok_secret'));
+          $opentok = new OpenTok($opentok_key, $opentok_secret);
           $sessionOptions = array(
               'archiveMode' => ArchiveMode::ALWAYS,
               'mediaMode' => MediaMode::ROUTED
@@ -2140,7 +2152,8 @@ class find_coaches extends MY_Site_Controller {
             'app_type' => $app_type,
             'cl_id' => $u_cl_id,
             'cp_id' => $u_cp_id,
-            'cs_id' => $u_cs_id
+            'cs_id' => $u_cs_id,
+            'key' => $key
         );
         //  echo "<pre>";
         // print_r($booked);
@@ -2866,6 +2879,29 @@ class find_coaches extends MY_Site_Controller {
             $frequency = [0,7,7,7];
         }
 
+        // Detect browser and device ==========================
+        $detect = new Mobile_Detect;
+
+        if ( $detect->isMobile() ) {
+          $user_device = 'Mobile';
+          if( $detect->isiOS() ){
+            $user_d_type = 'iOS';
+          }
+          if( $detect->isAndroidOS() ){
+            $user_d_type = 'Android';
+          }
+        }else {
+          $user_device = 'Desktop';
+          $user_d_type = '';
+        }
+
+        if(!@$user_d_type){
+          $user_d_type = 'none';
+        }
+
+        // echo "<pre>";print_r($user_device);exit();
+        // Detect browser and device ==========================
+
         $partner_id = $this->auth_manager->partner_id($coach_id);
         $region_id = $this->auth_manager->region_id($partner_id);
 
@@ -2902,12 +2938,14 @@ class find_coaches extends MY_Site_Controller {
             'standard_coach_cost' => $standard_coach_cost,
             'elite_coach_cost' => $elite_coach_cost,
             'recuring' => $recuring,
-            'frequency' => $frequency
+            'frequency' => $frequency,
+            'user_device' => $user_device,
+            'user_d_type' => @$user_d_type
         );
 
         // echo '<pre>';print_r($vars);exit();
         $this->template->content->view('default/contents/find_coach/summary_book/index', $vars);
-        
+
         //publish template
         $this->template->publish();
     }
