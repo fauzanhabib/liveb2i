@@ -339,13 +339,21 @@ class identity extends MY_Site_Controller {
                     }
                 }
             }
-
-            $rules = array(
-                array('field'=>'fullname', 'label' => 'Name', 'rules'=>'trim|required|xss_clean|max_length[50]'),
-                // array('field'=>'date_of_birth', 'label' => 'Birthday', 'rules'=>'trim|required|xss_clean'),
-                // array('field'=>'spoken_language', 'label' => 'Spoken Language', 'rules'=>'trim|required|xss_clean|max_length[150]'),
-                array('field'=>'gender', 'label' => 'Gender', 'rules'=>'trim|required|xss_clean')
-            );
+            if($this->auth_manager->role() == 'PRT' || $this->auth_manager->role() == 'SPR'){
+                $rules = array(
+                    array('field'=>'fullname', 'label' => 'Name', 'rules'=>'trim|required|xss_clean|max_length[50]'),
+                    // array('field'=>'date_of_birth', 'label' => 'Birthday', 'rules'=>'trim|required|xss_clean'),
+                    // array('field'=>'spoken_language', 'label' => 'Spoken Language', 'rules'=>'trim|required|xss_clean|max_length[150]'),
+                    // array('field'=>'gender', 'label' => 'Gender', 'rules'=>'trim|required|xss_clean')
+                );
+            }else{
+                $rules = array(
+                    array('field'=>'fullname', 'label' => 'Name', 'rules'=>'trim|required|xss_clean|max_length[50]'),
+                    // array('field'=>'date_of_birth', 'label' => 'Birthday', 'rules'=>'trim|required|xss_clean'),
+                    // array('field'=>'spoken_language', 'label' => 'Spoken Language', 'rules'=>'trim|required|xss_clean|max_length[150]'),
+                    array('field'=>'gender', 'label' => 'Gender', 'rules'=>'trim|required|xss_clean')
+                );
+            }
 
             if($this->input->post('date_of_birth') > date('Y-m-d', now())){
                 $this->messages->add('Invalid Date', 'warning');
