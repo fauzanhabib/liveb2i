@@ -339,7 +339,7 @@ class identity extends MY_Site_Controller {
                     }
                 }
             }
-            if($this->auth_manager->role() == 'PRT' || $this->auth_manager->role() == 'SPR'){
+            if($this->auth_manager->role() == 'PRT' || $this->auth_manager->role() == 'SPR' || $this->auth_manager->role() == 'SAM' || $this->auth_manager->role() == 'CAM'){
                 $rules = array(
                     array('field'=>'fullname', 'label' => 'Name', 'rules'=>'trim|required|xss_clean|max_length[50]'),
                     // array('field'=>'date_of_birth', 'label' => 'Birthday', 'rules'=>'trim|required|xss_clean'),
