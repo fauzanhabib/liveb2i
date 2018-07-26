@@ -2079,6 +2079,12 @@ class find_coaches extends MY_Site_Controller {
          $key = 2;
          // exit('b');
        }
+       if(@$device_os){
+         $device_info = $device_type.''.($device_os).' / '.$browser_type;
+       }else{
+         $device_info = $device_type.' / '.$browser_type;
+       }
+
        // print_r($key);exit();
 //        print_r(date('Y-m-d', $date));
 //        print_r($start_time);
@@ -2153,7 +2159,8 @@ class find_coaches extends MY_Site_Controller {
             'cl_id' => $u_cl_id,
             'cp_id' => $u_cp_id,
             'cs_id' => $u_cs_id,
-            'key' => $key
+            'key' => $key,
+            'device_info' => $device_info
         );
         //  echo "<pre>";
         // print_r($booked);

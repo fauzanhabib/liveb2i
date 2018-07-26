@@ -189,8 +189,9 @@ class Dashboard extends MY_Site_Controller {
 
         // echo "<pre>";print_r($n);exit();
 
-        $wm   = @$pull_appoint[$n];
+        $wm    = @$pull_appoint[$n];
         $wm_id = @$wm->id;
+        $device_info = @$wm->device_info;
         //User Hour
         date_default_timezone_set('UTC');
         $hourstart  = @$wm->start_time;
@@ -266,6 +267,7 @@ class Dashboard extends MY_Site_Controller {
             'hourstart'  => $hourstart,
             'data_class' => $data_class,
             'countdown'  => $countdown,
+            'device_info'  => $device_info,
             'id_to_name' => $this->identity_model->get_identity('profile')->dropdown('user_id', 'fullname'),
         );
 

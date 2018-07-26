@@ -8,6 +8,27 @@
         cursor: pointer;
         color: #144d80;
     }
+
+
+    .notice_simulator_box{
+      height: 30px !important;
+    }
+    .notice_simulator_text{
+      font-size: 14px !important;
+    }
+
+    .notice_device_box{
+      height: auto !important;
+      background: none;
+      margin-top: 5px;
+      margin-bottom: 10px;
+      flex-direction: column;
+    }
+    .notice_device_text{
+      font-size: 12px !important;
+      cursor: default;
+      color: #b3b3b3;
+    }
 </style>
 <div class="box">
         <div class="content bg-white-fff">
@@ -72,6 +93,22 @@
                             </div>
                         </div>
                     </div>
+                    <div class="start-session m-t-10 notice_simulator_box">
+                      <a href="<?php echo(site_url('student/simulator/'));?>" target="_
+                        " class="info-right text-cl-tertiary notice_simulator_text">
+                        Run session simulator before join the session
+                      </a>
+                    </div>
+                    <?php if(@$device_info){?>
+                      <div class="start-session m-t-10 notice_device_box">
+                        <a class="info-right notice_device_text">
+                          Session was booked with <b style="margin-left: 3px;"><?php echo @$device_info; ?></b>
+                        </a>
+                        <a class="info-right notice_device_text">
+                          It's recommended that you're using the same device and browser
+                        </a>
+                      </div>
+                    <?php } ?>
                 </div>
                 <?php } else if(@$statuscheck == 1){?>
                 <div class="pure-u-lg-10-24">
@@ -133,6 +170,22 @@
                         </div>
                     </div>
                 </div>
+                <div class="start-session m-t-10 notice_simulator_box">
+                  <a href="<?php echo(site_url('student/simulator/'));?>" target="_
+                    " class="info-right text-cl-tertiary notice_simulator_text">
+                    Run session simulator before join the session
+                  </a>
+                </div>
+                <?php if(@$device_info){?>
+                  <div class="start-session m-t-10 notice_device_box">
+                    <a class="info-right notice_device_text">
+                      Session was booked with <b style="margin-left: 3px;"><?php echo @$device_info; ?></b>
+                    </a>
+                    <a class="info-right notice_device_text">
+                      It's recommended that you're using the same device and browser
+                    </a>
+                  </div>
+                <?php } ?>
 
             </div>
         <?php } ?>
