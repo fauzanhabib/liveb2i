@@ -105,11 +105,11 @@
                 </tr>
                 <tr>
                     <td style="display: table-cell;  width: auto !important;">
-                        <a id="submit_summary" class="pure-button btn-small btn-secondary confirm-booking">
+                        <a id="submit_summary" class="pure-button btn-small btn-secondary confirm-booking" style="cursor: pointer;">
                         CONFIRM</a>
                     </td>
                     <td style="border-bottom:0;display: table-cell;  width: auto !important; margin:0 5px;">
-                        <button type="submit" id="cancel_summary" class="pure-button btn-red btn-small" style="margin:0">BACK</button>
+                        <button type="submit" id="cancel_summary" class="pure-button btn-red btn-small" style="cursor: pointer;margin:0">BACK</button>
                     </td>
                 </tr>
             </table>
@@ -166,37 +166,35 @@
       // console.log(detect_browser)
     }
 
-    document.getElementById("textBrowser").innerHTML += ' / '+detect_browser;
-    $("#d_browser").val(detect_browser);
 
-    $(function(){
-        $('a#submit_summary').click(function(){
-            browser_type = $("#d_browser").val();
-            device_type  = $("#d_type").val();
-            device_os    = $("#d_os").val();
+    $(document).on('click touchstart', 'a#submit_summary', function () {
+        browser_type = $("#d_browser").val();
+        device_type  = $("#d_type").val();
+        device_os    = $("#d_os").val();
 
-            if(!device_os){
-              device_os = "none"
-            }
-            if(!device_type){
-              device_type = "none"
-            }
-            if(!browser_type){
-              browser_type = "none"
-            }
+        if(!device_os){
+          device_os = "none"
+        }
+        if(!device_type){
+          device_type = "none"
+        }
+        if(!browser_type){
+          browser_type = "none"
+        }
 
-            href = "<?php echo site_url('student/find_coaches/book_single_coach/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time.'/' . $token) ?>";
-            // return true;
+        href = "<?php echo site_url('student/find_coaches/book_single_coach/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time.'/' . $token) ?>";
+        // return true;
 
-            href += '/'+browser_type+'/'+device_type+'/'+device_os;
+        href += '/'+browser_type+'/'+device_type+'/'+device_os;
 
-            // console.log(href);
+        // console.log(href);
 
-            location.href = href;
-        });
-        $('#cancel_summary').click(function() {
-            location.href = "<?php echo $search_by == 'single_date' ? site_url('student/find_coaches/book_by_single_date/'.date('Y-m-d', @$date)) : site_url('student/find_coaches/search/' . $search_by); ?>";
-        })
+        location.href = href;
+    });
+    $(document).on('touchstart click', '#cancel_summary', function () {
+        location.href = "<?php echo $search_by == 'single_date' ? site_url('student/find_coaches/book_by_single_date/'.date('Y-m-d', @$date)) : site_url('student/find_coaches/search/' . $search_by); ?>";
     });
 
+    document.getElementById("textBrowser").innerHTML += ' / '+detect_browser;
+    $("#d_browser").val(detect_browser);
 </script>
