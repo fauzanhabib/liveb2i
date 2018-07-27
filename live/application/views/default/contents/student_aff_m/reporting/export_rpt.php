@@ -296,7 +296,7 @@
                 if(@$rateaverage == 0){
                     echo '<span class="labels tooltip-bottom" data-tooltip="Never rated a coach" style="color:#000 !important;font-size:14px;">-</span>';
                 }else{
-                    echo $rateaverage;
+                    echo round($rateaverage, 2);
                 }
             ?></td>
         </tr>

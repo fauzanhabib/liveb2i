@@ -479,7 +479,7 @@
                             if(@$rateaverage == 0){
                                 echo '';
                             }else{
-                                echo $rateaverage;
+                                echo round($rateaverage, 2);
                             }
                         ?></td>
                     </tr>
