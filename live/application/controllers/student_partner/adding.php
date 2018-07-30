@@ -1928,8 +1928,8 @@ class adding extends MY_Site_Controller {
           'pt_score' => $pt_score
         ];
 
-        echo json_encode($var);
-        // echo $cert_studying;
+        // echo json_encode($cert_studying.','.$pt_score);
+        echo $cert_studying.','.$pt_score;
 
     }
 

@@ -204,14 +204,14 @@
                   $('#cert_studying').removeClass('loadinggif');
                   $('#pt_score').removeClass('loadinggif');
 
-                   var compile_rsp = response.split("\n");
-                   var json_rsp    = JSON.parse(compile_rsp[3]);
-
-                   var data_cert_studying = json_rsp[0].cert_studying;
-                   var data_pt_score      = json_rsp[0].pt_score;
-                   // console.log(json_rsp[0].cert_studying);
-                   $('input[name=cert_studying]').val(data_cert_studying);
-                   $('input[name=pt_score]').val(data_pt_score);
+                  var compile_rsp = response.split(',');
+                  // var json_rsp    = JSON.parse(compile_rsp[3]);
+                  // console.log(compile_rsp[0]);
+                  var data_cert_studying = compile_rsp[0];
+                  var data_pt_score      = compile_rsp[1];
+                  // console.log(json_rsp[0].cert_studying);
+                  $('input[name=cert_studying]').val(data_cert_studying);
+                  $('input[name=pt_score]').val(data_pt_score);
                 },
             });
         }
@@ -232,14 +232,14 @@
                 data: { email : email, server: server },
                 dataType: "html",
                 success: function (response) {
-                  $('#cert_studying').removeClass('loadinggif');
-                  $('#pt_score').removeClass('loadinggif');
+                   $('#cert_studying').removeClass('loadinggif');
+                   $('#pt_score').removeClass('loadinggif');
 
-                   var compile_rsp = response.split("\n");
-                   var json_rsp    = JSON.parse(compile_rsp[3]);
-
-                   var data_cert_studying = json_rsp[0].cert_studying;
-                   var data_pt_score      = json_rsp[0].pt_score;
+                   var compile_rsp = response.split(',');
+                   // var json_rsp    = JSON.parse(compile_rsp[3]);
+                   // console.log(compile_rsp[0]);
+                   var data_cert_studying = compile_rsp[0];
+                   var data_pt_score      = compile_rsp[1];
                    // console.log(json_rsp[0].cert_studying);
                    $('input[name=cert_studying]').val(data_cert_studying);
                    $('input[name=pt_score]').val(data_pt_score);
