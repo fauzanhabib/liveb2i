@@ -59,9 +59,12 @@ class Vrm extends MY_Site_Controller {
                $callOneJson  = $this->call1->callOneJson();
                $student_vrm2 = $this->call2->getdataObj();
 
+               // echo "<pre>";print_r($callOneJson);exit();
+
                $checkCallOne   = @$callOneJson->studentName;
                $module_extract = @$callOneJson->lessonCompletion;
                if($checkCallOne && @$module_extract){
+                    $f_completion = 'yes';
                     // $module_extract = $callOneJson->lessonCompletion;
                     @$placement_test = end(@$callOneJson->placementTestGENs);
                     $pt_val         = @$placement_test->placementLevel;
@@ -81,9 +84,7 @@ class Vrm extends MY_Site_Controller {
                         $student_type = 'Professional (Europe)';
                     }
 
-                    // echo "<pre>";
-                    // print_r($std_id_for_cert);
-                    // exit();
+                    // echo "<pre>";print_r($checkCallOne);exit();
 
                     // --------------------------------------------------------------
                     // NDE ----------------------------------------------------------
@@ -1252,12 +1253,14 @@ class Vrm extends MY_Site_Controller {
                     'student_vrm' => $this->call2->getDataJson(),
                     'student_vrm2'     => $student_vrm2,
                     'cchnote'     => @$cchnote,
+                    'student_cert' => @$student_cert,
                     'allmodule1'   => @$allmodule1,
                     'allmodule2'   => @$allmodule2,
                     'allmodule3'   => @$allmodule3,
                     'allmodule4'   => @$allmodule4,
                     'allmodule5'   => @$allmodule5,
-                    'allmodule6'   => @$allmodule6
+                    'allmodule6'   => @$allmodule6,
+                    'f_completion' => @$f_completion
                 );
 
                // echo "<pre>";
