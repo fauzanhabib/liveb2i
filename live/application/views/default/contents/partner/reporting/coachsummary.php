@@ -157,6 +157,9 @@
                             comses = api.column( 8 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             latses = api.column( 9 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             rating = api.column( 10 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
+
+                            newrating = rating / data.length;
+                            newrating = Math.round(newrating * 100) / 100;
                  
                             // Update footer
                             $( api.column( 4 ).footer() ).html(startb);
@@ -165,7 +168,7 @@
                             $( api.column( 7 ).footer() ).html(balanc);
                             $( api.column( 8 ).footer() ).html(comses);
                             $( api.column( 9 ).footer() ).html(latses);
-                            $( api.column( 10 ).footer() ).html(rating);
+                            // $( api.column( 10 ).footer() ).html(newrating);
 
                             // console.log(api.column( 8 ).data());
                         },
