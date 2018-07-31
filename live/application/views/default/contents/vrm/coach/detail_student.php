@@ -512,7 +512,7 @@ else {
 <?php
 }
 else{
-    echo(@$student_fullname. ' does not connect to DynEd Pro yet.');
+    echo(@$student_fullname. ' has not connected to DynEd Pro yet.');
 }
 exit;
 ?>

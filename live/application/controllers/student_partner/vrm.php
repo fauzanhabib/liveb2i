@@ -1275,7 +1275,7 @@ class Vrm extends MY_Site_Controller {
 
         }
         else{
-            $this->messages->add($data_dyned_pro[0]->fullname. ' does not connect to DynEd Pro yet', 'warning');
+            $this->messages->add($data_dyned_pro[0]->fullname. ' has not connected to DynEd Pro yet', 'warning');
             redirect('student_partner/member_list/student_detail/'.$student_id);
         }
     }
