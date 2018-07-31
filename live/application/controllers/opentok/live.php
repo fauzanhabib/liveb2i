@@ -309,7 +309,7 @@ class Live extends MY_Site_Controller {
                     }
 
                     $livesession = array(
-                    'sessionId'  => @$sessionId,
+                    'sessionId'  => @$sessionIdn,
                     'token'      => @$tokenn,
                     'apiKey'     => @$apiKey,
                     'sentence'   => $sentence,
@@ -344,7 +344,7 @@ class Live extends MY_Site_Controller {
                     }
 
                     $livesession = array(
-                    'sessionId'  => @$sessionId,
+                    'sessionId'  => @$sessionIde,
                     'token'      => @$token,
                     'apiKey'     => @$apiKey,
                     'sentence'   => $sentence,
@@ -656,7 +656,7 @@ class Live extends MY_Site_Controller {
 
 
                     $livesession = array(
-                    'sessionId'  => @$sessionId,
+                    'sessionId'  => @$sessionIdn,
                     'token'      => @$tokenn,
                     'apiKey'     => @$apiKey,
                     'sentence'   => $sentence,
@@ -762,7 +762,7 @@ class Live extends MY_Site_Controller {
 
 
                     $livesession = array(
-                    'sessionId'  => @$sessionId,
+                    'sessionId'  => @$sessionIde,
                     'token'      => @$tokene,
                     'apiKey'     => @$apiKey,
                     'sentence'   => $sentence,

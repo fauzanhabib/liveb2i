@@ -386,7 +386,7 @@
                 $( api.column( 7 ).footer() ).html(balanc);
                 $( api.column( 8 ).footer() ).html(comses);
                 $( api.column( 9 ).footer() ).html(latses);
-                $( api.column( 10 ).footer() ).html(rating);
+                // $( api.column( 10 ).footer() ).html(rating);
 
                 // console.log(api.column( 8 ).data());
             },

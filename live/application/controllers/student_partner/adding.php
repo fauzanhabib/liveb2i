@@ -106,14 +106,26 @@ class adding extends MY_Site_Controller {
             'dial_code' => $dial_code
         );
 
-        // echo "<pre>";
-        // print_r($vars);
-        // exit();
+        // echo "<pre>";print_r($vars);exit();
         $this->template->content->view('default/contents/adding/student/form', $vars);
         $this->template->publish();
     }
 
     public function create_student ($subgroup_id = '') {
+
+        $cert_std = $this->input->post('cert_studying');
+        $pt_score = $this->input->post('pt_score');
+
+        // echo "<pre>";print_r($cert_std);exit();
+
+        if($pt_score == '0' || $cert_std == '0'){
+          $this->messages->add('Invalid DynEd Pro ID', 'warning');
+          redirect('student_partner/subgroup/student/'.@$subgroup_id);
+
+          return;
+        }
+
+        // echo "<pre>";print_r($pt_score);exit();
 
         $check_sess_type = $this->db->select('session_type')
                                     ->from('user_profiles')
@@ -1918,8 +1930,8 @@ class adding extends MY_Site_Controller {
           'pt_score' => $pt_score
         ];
 
-        echo json_encode($var);
-        // echo $cert_studying;
+        // echo json_encode($cert_studying.','.$pt_score);
+        echo $cert_studying.','.$pt_score;
 
     }
 
