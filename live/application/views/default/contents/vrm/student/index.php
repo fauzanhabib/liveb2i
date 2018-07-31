@@ -28,7 +28,7 @@
     <div class="box clearfix">
         <div class="content">
 <!--             <div class="box-capsule m-t-20 margin-auto font-14" style="background: #e1662b !important;">
-                <span>Data Displayed Based On The Last 8 Weeks Period</span>
+                <span>Data Displayed Based on The Last 8 Weeks of Study</span>
             </div> -->
             <div class="box pure-g">
                 <div class="pure-u-1 pure-u-sm-24-24 pure-u-md-12-24">
