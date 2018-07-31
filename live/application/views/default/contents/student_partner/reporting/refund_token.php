@@ -155,7 +155,7 @@
                             }
                             ?> 
                         </td>
-                        <td> <button class="pure-button btn-red btn-small" id="buttonadd<?php echo $no;?>">Can't refund tokens</button> </td>
+                        <td> <span class="labels danger" id="buttonadd<?php echo $no;?>" style="width: 120px;">Can't refund tokens</span> </td>
                         <?php } ?>
                         <td><?php echo $get_subgroup[0]->name?></td>
                     </tr>

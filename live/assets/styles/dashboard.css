@@ -260,9 +260,9 @@ label {
   position: relative;
   top: -1px;
   width: 92px;
-   border-radius: 10px;
-  -moz-border-radius:10px;
-  -webkit-border-radius:10px;
+   border-radius: 3px;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
 }
 
 .alert.success,
