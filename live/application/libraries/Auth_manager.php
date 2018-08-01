@@ -80,7 +80,7 @@ class Auth_Manager {
         // IMPORTANT used for later after adding function for admin to approve user 
         // Checking user status
         if ($user->status == 'disable') {
-            $this->CI->messages->add('User does not actived yet', 'danger');
+            $this->CI->messages->add('User is not active yet', 'danger');
             return FALSE;
         }
         
