@@ -95,7 +95,7 @@ class Student extends MY_Site_Controller {
 
     $list_gr = $this->db->select('*')
              ->from('subgroup')
-             ->where_in('partner_id',$partnerlistid)
+             ->where('partner_id',$partnerlistid)
              ->where('type','student')
              ->get()->result();
 
