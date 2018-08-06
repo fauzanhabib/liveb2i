@@ -247,15 +247,26 @@
                                   $temp[] = $cs->session_type;
                                 }
                               }
+                              $temp2 = array();
+                              foreach($check_sess_type as $cst){
+                                if($cst->session_type == '1'){
+                                  $temp2[] = $cst->session_type;
+                                }
+                              }
 
                               // $raw_array = '3';
                               $raw_array = count($check_sess_type);
-                              if(count($temp) == "0"){
+                              if((count($temp) == "0") && (count($temp2) > "0")){
                               ?>
                                 <td><?php echo 'Agora'; ?></td>
                                 <td><a class="pure-button btn-blue btn-small text-cl-white" href="<?php echo site_url('superadmin/manage_partner/sw_opentok/'.$s->id.'/'.$partner_id.'/'.$region_id); ?>">Switch to Opentok</a></td>
                               <?php
-                              }else if($raw_array == count($temp)){
+                              }else if((count($temp) > "0") && (count($temp2) == "0")){
+                              ?>
+                                <td><?php echo 'Opentok'; ?></td>
+                                <td><a class="pure-button btn-green btn-small text-cl-white" href="<?php echo site_url('superadmin/manage_partner/sw_agora/'.$s->id.'/'.$partner_id.'/'.$region_id); ?>">Switch to Agora</a></td>
+                              <?php
+                              }else if((count($temp) == "0") && (count($temp2) == "0")){
                               ?>
                                 <td><?php echo 'Opentok'; ?></td>
                                 <td><a class="pure-button btn-green btn-small text-cl-white" href="<?php echo site_url('superadmin/manage_partner/sw_agora/'.$s->id.'/'.$partner_id.'/'.$region_id); ?>">Switch to Agora</a></td>
