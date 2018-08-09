@@ -52,9 +52,13 @@
                 </a></li>
 
                 <li>
-                    <form action="" autocomplete="on" class="search-box">
+                    <?php if($role_link == 'superadmin'){ ?>
+                        <form action="<?php echo site_url('superadmin/manage_partner/member_of_coach/active/'.$subgroup_id.'/'.$partner_id);?>" autocomplete="on" class="search-box" method="post">
+                    <?php }else{ ?>
+                        <form action="<?php echo site_url('admin/manage_partner/member_of_coach/active/'.$subgroup_id.'/'.$partner_id);?>" autocomplete="on" class="search-box" method="post">
+                    <?php } ?>
                         <div id="src__sign">Search..</div>
-                      <input id="search" name="search" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
+                      <input id="search" name="search_coach" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
                     </form>
                 </li>
             </ul>

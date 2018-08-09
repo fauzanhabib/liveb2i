@@ -1273,7 +1273,40 @@ function update_setting($id) {
         $offset = 0;
         $per_page = 6;
         $uri_segment = 7;
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/manage_partner/member_of_student/active/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_students($partner_id,$subgroup_id,$status)), $per_page, $uri_segment);
+
+        $search_student = $this->input->post('search_student');
+        
+        if($search_student != ''){
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/manage_partner/member_of_student/active/'.$subgroup_id.'/'.$partner_id.'/'), count($this->db->select('u.status as status, u.email as email, up.user_id as id, up.fullname, up.subgroup_id as subgroup_id, up.dial_code, up.phone')
+            ->from('user_profiles' . ' up')
+            ->join('users u', 'u.id = up.user_id')
+            ->join('subgroup s','up.subgroup_id = s.id')
+            ->where(array('u.status' => $status, 'u.role_id' => '1', 's.partner_id' => $partner_id, 'up.subgroup_id' => $subgroup_id))
+            ->like('up.fullname',$search_student)
+            ->order_by('up.fullname', 'asc')->get()->result()), 9999, $uri_segment);
+
+            $student = $this->db->select('u.status as status, u.email as email, up.user_id as id, up.fullname, up.subgroup_id as subgroup_id, up.dial_code, up.phone')
+            ->from('user_profiles' . ' up')
+            ->join('users u', 'u.id = up.user_id')
+            ->join('subgroup s','up.subgroup_id = s.id')
+            ->where(array('u.status' => $status, 'u.role_id' => '1', 's.partner_id' => $partner_id, 'up.subgroup_id' => $subgroup_id))
+            ->like('up.fullname',$search_student)
+            ->order_by('up.fullname', 'asc')->limit(9999)->offset($offset)->get()->result();
+        } else {
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/manage_partner/member_of_student/active/'.$subgroup_id.'/'.$partner_id.'/'), count($this->db->select('u.status as status, u.email as email, up.user_id as id, up.fullname, up.subgroup_id as subgroup_id, up.dial_code, up.phone')
+            ->from('user_profiles' . ' up')
+            ->join('users u', 'u.id = up.user_id')
+            ->join('subgroup s','up.subgroup_id = s.id')
+            ->where(array('u.status' => $status, 'u.role_id' => '1', 's.partner_id' => $partner_id, 'up.subgroup_id' => $subgroup_id))
+            ->order_by('up.fullname', 'asc')->get()->result()), $per_page, $uri_segment);
+
+            $student = $this->db->select('u.status as status, u.email as email, up.user_id as id, up.fullname, up.subgroup_id as subgroup_id, up.dial_code, up.phone')
+            ->from('user_profiles' . ' up')
+            ->join('users u', 'u.id = up.user_id')
+            ->join('subgroup s','up.subgroup_id = s.id')
+            ->where(array('u.status' => $status, 'u.role_id' => '1', 's.partner_id' => $partner_id, 'up.subgroup_id' => $subgroup_id))
+            ->order_by('up.fullname', 'asc')->limit($per_page)->offset($offset)->get()->result();
+        }
 
         $number_page = 0;
         if($page == ''){
@@ -1289,7 +1322,7 @@ function update_setting($id) {
             'partner' => $partner,
             'partner_id' => $partner_id,
             'title' => 'Student Member',
-            'students' => $this->user_profile_model->get_students($partner_id, $subgroup_id, $status, $per_page, $offset),
+            'students' => @$student,
             'pagination' => @$pagination,
             'status' => $status,
             'type' => 'student',
@@ -1326,7 +1359,40 @@ function update_setting($id) {
         }else{
             $subgroup = $this->subgroup_model->select('*')->where('subgroup.partner_id',$partner_id)->where('subgroup.type','coach')->where('subgroup.id', $subgroup_id)->get_all();
         }
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/manage_partner/member_of_coach/'.$status.'/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_coaches($partner_id,$subgroup_id,$status)), $per_page, $uri_segment);
+
+        $search_coach = $this->input->post('search_coach');
+        
+        if($search_coach != ''){
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/manage_partner/member_of_coach/active/'.$subgroup_id.'/'.$partner_id.'/'), count($this->db->select('u.status as status, u.email as email, up.user_id as id, up.fullname, up.subgroup_id as subgroup_id, up.dial_code, up.phone')
+            ->from('user_profiles' . ' up')
+            ->join('users u', 'u.id = up.user_id')
+            ->join('subgroup s','up.subgroup_id = s.id')
+            ->where(array('u.status' => $status, 'u.role_id' => '2', 's.partner_id' => $partner_id, 'up.subgroup_id' => $subgroup_id))
+            ->like('up.fullname',$search_coach)
+            ->order_by('up.fullname', 'asc')->get()->result()), 9999, $uri_segment);
+
+            $coach = $this->db->select('u.status as status, u.email as email, up.user_id as id, up.fullname, up.subgroup_id as subgroup_id, up.dial_code, up.phone')
+            ->from('user_profiles' . ' up')
+            ->join('users u', 'u.id = up.user_id')
+            ->join('subgroup s','up.subgroup_id = s.id')
+            ->where(array('u.status' => $status, 'u.role_id' => '2', 's.partner_id' => $partner_id, 'up.subgroup_id' => $subgroup_id))
+            ->like('up.fullname',$search_coach)
+            ->order_by('up.fullname', 'asc')->limit(9999)->offset($offset)->get()->result();
+        } else {
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/manage_partner/member_of_coach/active/'.$subgroup_id.'/'.$partner_id.'/'), count($this->db->select('u.status as status, u.email as email, up.user_id as id, up.fullname, up.subgroup_id as subgroup_id, up.dial_code, up.phone')
+            ->from('user_profiles' . ' up')
+            ->join('users u', 'u.id = up.user_id')
+            ->join('subgroup s','up.subgroup_id = s.id')
+            ->where(array('u.status' => $status, 'u.role_id' => '2', 's.partner_id' => $partner_id, 'up.subgroup_id' => $subgroup_id))
+            ->order_by('up.fullname', 'asc')->get()->result()), $per_page, $uri_segment);
+
+            $coach = $this->db->select('u.status as status, u.email as email, up.user_id as id, up.fullname, up.subgroup_id as subgroup_id, up.dial_code, up.phone')
+            ->from('user_profiles' . ' up')
+            ->join('users u', 'u.id = up.user_id')
+            ->join('subgroup s','up.subgroup_id = s.id')
+            ->where(array('u.status' => $status, 'u.role_id' => '2', 's.partner_id' => $partner_id, 'up.subgroup_id' => $subgroup_id))
+            ->order_by('up.fullname', 'asc')->limit($per_page)->offset($offset)->get()->result();
+        }
 
         $region_id = $this->auth_manager->region_id($partner_id);
 
@@ -1345,7 +1411,7 @@ function update_setting($id) {
             'partner' => $partner,
             'partner_id' => $partner_id,
             'title' => 'Coach Member',
-            'coaches' => $this->user_profile_model->get_coaches($partner_id,$subgroup_id,$status, $per_page, $offset),
+            'coaches' => @$coach,
             'pagination' => @$pagination,
             'status' => $status,
             'type' => 'coach',

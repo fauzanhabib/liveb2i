@@ -69,8 +69,8 @@ class region extends MY_Site_Controller {
             $status = 'active'; 
 
             if($search_region != ''){
-                $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/region/index/active/'), count($this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL,$status, $search_region)), $per_page, $uri_segment);
-                $data = $this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL, $status, $search_region,$per_page,$offset);
+                $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/region/index/active/'), count($this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL,$status, $search_region)), 9999, $uri_segment);
+                $data = $this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL, $status, $search_region,9999,$offset);
             } else {
                 $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/region/index/active/'), count($this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL, $status)), $per_page, $uri_segment);
                 $data = $this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL,$status, NULL, $per_page,$offset);
@@ -79,8 +79,8 @@ class region extends MY_Site_Controller {
             $status = 'disable';
 
              if($search_region != ''){
-                $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/region/index/deactivate/'), count($this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL, $status, $search_region)), $per_page, $uri_segment);
-                $data = $this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL, $status, $search_region,$per_page,$offset);
+                $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/region/index/deactivate/'), count($this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL, $status, $search_region)), 9999, $uri_segment);
+                $data = $this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL, $status, $search_region,9999,$offset);
             } else {
                 $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/region/index/deactivate/'), count($this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL, $status)), $per_page, $uri_segment);
                 $data = $this->identity_model->get_region_admin_identity(NULL, NULL, NULL, NULL, NULL,$status, NULL, $per_page,$offset);
@@ -388,8 +388,8 @@ class region extends MY_Site_Controller {
         // search
         $search_region = $this->input->post('search_region');
         if($search_region != ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/region/detail/'.$id.'/'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->like('name',$search_region)->where('admin_regional_id',$id)->order_by('name', 'asc')->get_all()), $per_page, $uri_segment);           
-            $partner = $this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('admin_regional_id', $id_regional)->where('admin_regional_id',$id)->like('name',$search_region)->order_by('name', 'asc')->limit($per_page)->offset($offset)->get_all();
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/region/detail/'.$id.'/'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->like('name',$search_region)->where('admin_regional_id',$id)->order_by('name', 'asc')->get_all()), 9999, $uri_segment);           
+            $partner = $this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('admin_regional_id', $id_regional)->where('admin_regional_id',$id)->like('name',$search_region)->order_by('name', 'asc')->limit(9999)->offset($offset)->get_all();
         } else {
             $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('superadmin/region/detail/'.$id.'/'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->where('admin_regional_id',$id)->order_by('name', 'asc')->get_all()), $per_page, $uri_segment);
             $partner = $this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('admin_regional_id', $id_regional)->where('admin_regional_id',$id)->order_by('name', 'asc')->limit($per_page)->offset($offset)->get_all();
