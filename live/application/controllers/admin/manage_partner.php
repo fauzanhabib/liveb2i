@@ -63,14 +63,10 @@ class manage_partner extends MY_Site_Controller {
 
         // search
         $search_region = $this->input->post('search_partner');
+
         if($search_region != ''){
-<<<<<<< HEAD
             $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/index'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->like('name',$search_region)->where('admin_regional_id',$id)->order_by('name', 'asc')->get_all()), 9999, $uri_segment);           
             $partner = $this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('admin_regional_id', $id)->where('admin_regional_id',$id)->like('name',$search_region)->order_by('name', 'asc')->limit(9999)->offset($offset)->get_all();
-=======
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/index'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->like('name',$search_region)->where('admin_regional_id',$id)->order_by('name', 'asc')->get_all()), $per_page, $uri_segment);
-            $partner = $this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('admin_regional_id', $id)->where('admin_regional_id',$id)->like('name',$search_region)->order_by('name', 'asc')->limit($per_page)->offset($offset)->get_all();
->>>>>>> 615125fb5154ec4fc1811867cea92a964d2c00c8
         } else {
             $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/index'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->where('admin_regional_id',$id)->order_by('name', 'asc')->get_all()), $per_page, $uri_segment);
             $partner = $this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('admin_regional_id', $id)->where('admin_regional_id',$id)->order_by('name', 'asc')->limit($per_page)->offset($offset)->get_all();
