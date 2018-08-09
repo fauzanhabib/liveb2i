@@ -18,7 +18,7 @@
                 </a></li>
                 <li><a href="#">Affiliates</a></li>
                 <li>
-                    <form action="<?php echo site_url('admin/manage_partner');?>" autocomplete="on" class="search-box" method="POST">
+                    <form action="<?php echo site_url('admin_m/manage_partner');?>" autocomplete="on" class="search-box" method="POST">
                       <input id="search" name="search_partner" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
                       <div id="src__sign">Search..</div>
                     </form>
@@ -28,10 +28,10 @@
     </div>
 
     <h1 class="margin0">Affiliates</h1>
-    <form action="<?php echo site_url('admin/manage_partner/delete_partner');?>" method="POST">
+    <form action="<?php echo site_url('admin_m/manage_partner/delete_partner');?>" method="POST">
     <div class="">
         <div class="delete-add-btn right">
-            <div class="btn-noborder btn-normal bg-white-fff left"><a href="<?php echo site_url('admin/manage_partner/add_partner');?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Affiliates</em></a></div>
+            <div class="btn-noborder btn-normal bg-white-fff left"><a href="<?php echo site_url('admin_m/manage_partner/add_partner');?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Affiliates</em></a></div>
             <button class="btn-noborder btn-normal bg-white-fff" type="submit" name="_submit" onclick="return confirm('Are you sure you want to delete?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Delete Affiliates</em></a></button>
         </div>
     </div>
@@ -57,14 +57,14 @@
                         <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $p->id;?>" class="regular-checkbox" /><label class="left m-l-min35" for="checkbox-1-<?php echo $no;?>"></label>
                         <div class="box-info-list">
                             <div class="list-profile-pic left">
-                                <a href="<?php echo site_url('admin/manage_partner/detail/'.$p->id);?>" class="list-profile-pic-pic">
+                                <a href="<?php echo site_url('admin_m/manage_partner/detail/'.$p->id);?>" class="list-profile-pic-pic">
                                     <img src="<?php echo base_url()."/".$p->profile_picture;?>" class="img-circle">
                                 </a>
                             </div>
 
                             <div class="list-name-details margin-left70 width206 text-center">
                                 <br>
-                                <a href="<?php echo site_url('admin/manage_partner/detail/'.$p->id);?>" class="text-grey-nodecoration">
+                                <a href="<?php echo site_url('admin_m/manage_partner/detail/'.$p->id);?>" class="text-grey-nodecoration">
                                     <span class="font-semi-bold font-18"><?php echo $p->name;?></span>
                                     <h5 class="margin0"><?php echo @$this->common_function->get_partner_type($p->id); ?></h5>
                                 </a>

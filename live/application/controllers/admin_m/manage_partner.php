@@ -44,7 +44,7 @@ class manage_partner extends MY_Site_Controller {
         date_default_timezone_set('Etc/GMT+0');
 
         //checking user role and giving action
-        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'ADM') {
+        if (!$this->auth_manager->role() || $this->auth_manager->role() != 'RAM') {
             $this->messages->add('Access Denied');
             redirect('account/identity/detail/profile');
         }
@@ -54,20 +54,38 @@ class manage_partner extends MY_Site_Controller {
     public function index($page='') {
         $this->template->title = 'Affiliates';
 
-        $id = $this->auth->userid();
+        $id_user = $this->auth->userid();
+
+        $pull_reg_id = $this->db->select('region_id')
+                     ->from('user_profiles')
+                     ->where('user_id', $id_user)
+                     ->get()->result();
+
+        $reg_id = $pull_reg_id[0]->region_id;
+
+        $pull_m_id = $this->db->select('u.id')
+                      ->from('users u')
+                      ->join('user_profiles us', 'us.user_id = u.id' )
+                      ->where('u.role_id', '4')
+                      ->where('us.region_id', $reg_id)
+                      ->get()->result();
+
+        $id = $pull_m_id[0]->id;
+
+        // echo "<pre>";print_r($id);exit();
 
         $offset = 0;
         $per_page = 6;
         $uri_segment = 4;
-        // $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/index'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->where('admin_regional_id',$id_region)->order_by('name', 'asc')->get_all()), $per_page, $uri_segment);
+        // $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/index'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->where('admin_regional_id',$id_region)->order_by('name', 'asc')->get_all()), $per_page, $uri_segment);
 
         // search
         $search_region = $this->input->post('search_partner');
         if($search_region != ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/index'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->like('name',$search_region)->where('admin_regional_id',$id)->order_by('name', 'asc')->get_all()), $per_page, $uri_segment);
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/index'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->like('name',$search_region)->where('admin_regional_id',$id)->order_by('name', 'asc')->get_all()), $per_page, $uri_segment);
             $partner = $this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('admin_regional_id', $id)->where('admin_regional_id',$id)->like('name',$search_region)->order_by('name', 'asc')->limit($per_page)->offset($offset)->get_all();
         } else {
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/index'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->where('admin_regional_id',$id)->order_by('name', 'asc')->get_all()), $per_page, $uri_segment);
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/index'), count($this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('name not like', 'No Partner')->where('admin_regional_id',$id)->order_by('name', 'asc')->get_all()), $per_page, $uri_segment);
             $partner = $this->partner_model->select('id, profile_picture, name, address, country, state, city, zip')->where('admin_regional_id', $id)->where('admin_regional_id',$id)->order_by('name', 'asc')->limit($per_page)->offset($offset)->get_all();
         }
 
@@ -79,7 +97,7 @@ class manage_partner extends MY_Site_Controller {
         );
 
 
-        $this->template->content->view('default/contents/manage_partner/index', $vars);
+        $this->template->content->view('default/contents/manage_partner_m/index', $vars);
 
         //publish template
         $this->template->publish();
@@ -92,7 +110,7 @@ class manage_partner extends MY_Site_Controller {
             'form_action' => 'create_partner'
         );
 
-        $this->template->content->view('default/contents/manage_partner/add_partner/form', $vars);
+        $this->template->content->view('default/contents/manage_partner_m/add_partner/form', $vars);
         $this->template->publish();
     }
 
@@ -107,18 +125,18 @@ class manage_partner extends MY_Site_Controller {
         $partner = $this->partner_model->select('id')->where('id', $id)->get();
         if (!$this->partner_model->update($partner->id, $data_profile_picture, TRUE)) {
             $this->messages->add('Update Affiliate`s Profile Picture Failed', 'success');
-            redirect('admin/manage_partner/edit_partner/'.$id);
+            redirect('admin_m/manage_partner_m/edit_partner/'.$id);
         }
 
         $this->messages->add('Affiliate`s Profile Picture has been Updated Successfully', 'success');
-        redirect('admin/manage_partner/edit_partner/'.$id);
+        redirect('admin_m/manage_partner_m/edit_partner/'.$id);
     }
 
     public function create_partner() {
         // Creating a partner
         if (!$this->input->post('__submit')) {
             $this->messages->add('Invalid action', 'danger');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
 
         $rules = array(
@@ -132,7 +150,7 @@ class manage_partner extends MY_Site_Controller {
 
             if (!$this->common_function->run_validation($rules)) {
                 $this->messages->add(validation_errors(), 'warning');
-                redirect('admin/manage_partner/add_partner');
+                redirect('admin_m/manage_partner_m/add_partner');
             }
 
         // inserting user data
@@ -197,7 +215,7 @@ class manage_partner extends MY_Site_Controller {
         $this->send_email->admin_create_affiliate($this->input->post('name'), $admin_name, $admin_region, $superadmin_email);
 
         $this->messages->add('Inserting Affiliate Successful', 'success');
-        redirect('admin/manage_partner');
+        redirect('admin_m/manage_partner');
     }
 
     public function edit_partner($id = '') {
@@ -208,7 +226,7 @@ class manage_partner extends MY_Site_Controller {
             'form_action' => 'update_partner',
             'partner' => $this->partner_model->select('profile_picture')->where('id', $id)->get()
         );
-        $this->template->content->view('default/contents/manage_partner/add_partner/form', $vars);
+        $this->template->content->view('default/contents/manage_partner_m/add_partner/form', $vars);
         $this->template->publish();
     }
 
@@ -250,14 +268,14 @@ class manage_partner extends MY_Site_Controller {
         $this->db->trans_commit();
 
         $this->messages->add('Updating Affiliate Successful', 'success');
-        redirect('admin/manage_partner/detail/'.$id);
+        redirect('admin_m/manage_partner_m/detail/'.$id);
     }
 
     // Delete
     // public function delete_partner($id = '') {
     //     $this->partner_model->delete($id);
     //     $this->messages->add('Delete Succeeded', 'success');
-    //     redirect('admin/manage_partner');
+    //     redirect('admin_m/manage_partner');
     // }
 
     function delete_partner(){
@@ -283,13 +301,29 @@ class manage_partner extends MY_Site_Controller {
         } else {
             $this->messages->add('Please select region', 'error');
         }
-        redirect('admin/manage_partner');
+        redirect('admin_m/manage_partner');
     }
 
     public function add_partner_member($partner = '',$role_id = '') {
 
         $this->template->title = 'Add Affiliate Member';
-        $id = $this->auth_manager->userid();
+        $id_user = $this->auth->userid();
+
+$pull_reg_id = $this->db->select('region_id')
+             ->from('user_profiles')
+             ->where('user_id', $id_user)
+             ->get()->result();
+
+$reg_id = $pull_reg_id[0]->region_id;
+
+$pull_m_id = $this->db->select('u.id')
+              ->from('users u')
+              ->join('user_profiles us', 'us.user_id = u.id' )
+              ->where('u.role_id', '4')
+              ->where('us.region_id', $reg_id)
+              ->get()->result();
+
+$id = $pull_m_id[0]->id;
 
         $partner = $this->partner_model->select('name, address, country, state, city, zip')->where('id',$partner)->get_all();
         $partner_country = $partner[0]->country;
@@ -310,7 +344,7 @@ class manage_partner extends MY_Site_Controller {
         );
 
 
-        $this->template->content->view('default/contents/manage_partner/add_partner_member/form', $vars);
+        $this->template->content->view('default/contents/manage_partner_m/add_partner_member/form', $vars);
         $this->template->publish();
     }
 
@@ -318,7 +352,7 @@ class manage_partner extends MY_Site_Controller {
         // Creating a member user as role partner
         if (!$this->input->post('__submit')) {
             $this->messages->add('Invalid action', 'danger');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
 
         $partner = $this->partner_model->select('name, address, country, state, city, zip')->where('id',$this->input->post('partner_id'))->get_all();
@@ -336,7 +370,7 @@ class manage_partner extends MY_Site_Controller {
         // inserting user data
         if($this->input->post('role_id') != 3 && $this->input->post('role_id') != 5){
             $this->messages->add('Invalid affiliate type', 'danger');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
 
         if(!filter_var($this->input->post('email'), FILTER_VALIDATE_EMAIL)){
@@ -391,13 +425,13 @@ class manage_partner extends MY_Site_Controller {
             // check jika token user tidak mencukupi
             if($user_token < $request_token){
                 $this->messages->add('Your token not enough ', 'warning');
-                redirect('admin/manage_partner/add_partner_member/'.$partner_id.'/'.$this->input->post('partner_id').'/student/');
+                redirect('admin_m/manage_partner_m/add_partner_member/'.$partner_id.'/'.$this->input->post('partner_id').'/student/');
             }
 
             // check jika request melebihi maksimal
             if($request_token > $max_token_student_supplier){
                 $this->messages->add('Token Request exceeds the maximum, maximum token for student affiliate = '.$max_student_supplier, 'warning');
-                redirect('admin/manage_partner/add_partner_member/'.$partner_id.'/'.$this->input->post('partner_id').'/student');
+                redirect('admin_m/manage_partner_m/add_partner_member/'.$partner_id.'/'.$this->input->post('partner_id').'/student');
             }
 
             $total_token_region = $user_token-$request_token;
@@ -543,9 +577,9 @@ class manage_partner extends MY_Site_Controller {
 
         $this->messages->add('Inserting Affiliate Member Successful', 'success');
         if($this->input->post('role_id') == 3){
-            redirect('admin/manage_partner/partner/coach/'.$this->input->post('partner_id'));
+            redirect('admin_m/manage_partner_m/partner/coach/'.$this->input->post('partner_id'));
         }elseif($this->input->post('role_id') == 5){
-            redirect('admin/manage_partner/partner/student/'.$this->input->post('partner_id'));
+            redirect('admin_m/manage_partner_m/partner/student/'.$this->input->post('partner_id'));
         }
     }
 
@@ -581,7 +615,7 @@ class manage_partner extends MY_Site_Controller {
 
         if(!$partner_id){
             $this->messages->add('Invalid ID Affiliate', 'error');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
 
         $users = $this->user_model->get_partner_members($partner_id);
@@ -590,7 +624,7 @@ class manage_partner extends MY_Site_Controller {
             'users' => $users,
             'partner' => $partner
         );
-        $this->template->content->view('default/contents/manage_partner_member/index', $vars);
+        $this->template->content->view('default/contents/manage_partner_member_m/index', $vars);
 
         //publish template
         $this->template->publish();
@@ -599,14 +633,14 @@ class manage_partner extends MY_Site_Controller {
     public function supplier($type='',$partner_id='',$region_id=''){
         if(!$partner_id){
             $this->messages->add('Invalid ID Affiliate', 'error');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
 
         $this->template->title = 'Affiliate';
 
         $users = $this->user_model->get_partner_members($type,$partner_id);
         $partner = $this->partner_model->select('*')->where('id', $partner_id)->get();
-        $back = site_url('admin/manage_partner');
+        $back = site_url('admin_m/manage_partner');
 
         $vars = array(
             'region_id' => $region_id,
@@ -616,7 +650,7 @@ class manage_partner extends MY_Site_Controller {
             'type' => $type
         );
 
-        $this->template->content->view('default/contents/manage_partner_member/supplier', $vars);
+        $this->template->content->view('default/contents/manage_partner_member_m/supplier', $vars);
 
         $this->template->publish();
 
@@ -628,7 +662,7 @@ class manage_partner extends MY_Site_Controller {
 
         if(!$partner_id){
             $this->messages->add('Invalid ID Affiliate', 'error');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
 
         $users = $this->user_model->get_partner_members($type,$partner_id);
@@ -640,11 +674,11 @@ class manage_partner extends MY_Site_Controller {
             'partner' => $partner,
             'partner_id' => $partner_id,
             'type' => $type,
-            'back' => site_url('admin/manage_partner'),
+            'back' => site_url('admin_m/manage_partner'),
             'option_country' => $this->common_function->country_code
         );
 
-        $this->template->content->view('default/contents/manage_partner_member/supplier', $vars);
+        $this->template->content->view('default/contents/manage_partner_member_m/supplier', $vars);
 
         $this->template->publish();
 
@@ -659,7 +693,7 @@ class manage_partner extends MY_Site_Controller {
 
         if(!$partner_id){
             $this->messages->add('Invalid ID Affiliate', 'error');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
 
         $offset = 0;
@@ -669,7 +703,7 @@ class manage_partner extends MY_Site_Controller {
 
         $partner = $this->partner_model->select('*')->where('id', $partner_id)->get();
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/list_supplier/'.$type.'/'.$partner_id.'/'), count($this->subgroup_model->select('*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->group_by('subgroup.id')->get_all()), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/list_supplier/'.$type.'/'.$partner_id.'/'), count($this->subgroup_model->select('*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->group_by('subgroup.id')->get_all()), $per_page, $uri_segment);
         $subgroup = $this->subgroup_model->select('*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->limit($per_page)->offset($offset)->group_by('subgroup.id')->get_all();
 
         $vars = array(
@@ -684,8 +718,8 @@ class manage_partner extends MY_Site_Controller {
         // print_r($vars);
         // exit();
 
-        // $this->template->content->view('default/contents/manage_partner_member/index', $vars);
-        $this->template->content->view('default/contents/manage_partner_member/subgroup', $vars);
+        // $this->template->content->view('default/contents/manage_partner_member_m/index', $vars);
+        $this->template->content->view('default/contents/manage_partner_member_m/subgroup', $vars);
 
         //publish template
         $this->template->publish();
@@ -700,7 +734,7 @@ class manage_partner extends MY_Site_Controller {
 
         if(!$partner_id){
             $this->messages->add('Invalid ID Affiliate', 'error');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
 
         $offset = 0;
@@ -720,9 +754,9 @@ class manage_partner extends MY_Site_Controller {
         // echo $partner_id;
         // exit();
 
-        // $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/list_partner/'.$type.'/'.$partner_id.'/'), count($this->subgroup_model->select('*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->get_all()), $per_page, $uri_segment);
+        // $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/list_partner/'.$type.'/'.$partner_id.'/'), count($this->subgroup_model->select('*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->get_all()), $per_page, $uri_segment);
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/list_partner/'.$type.'/'.$partner_id.'/'), count($this->subgroup_model->select('*')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->get_all()), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/list_partner/'.$type.'/'.$partner_id.'/'), count($this->subgroup_model->select('*')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->get_all()), $per_page, $uri_segment);
 
         // $subgroup = $this->subgroup_model->select('subgroup.*')->join('user_profiles','user_profiles.partner_id = subgroup.partner_id','left')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->limit($per_page)->offset($offset)->group_by('subgroup.id')->get_all();
 
@@ -735,15 +769,15 @@ class manage_partner extends MY_Site_Controller {
             'partner' => $partner,
             'type' => $type,
             'pagination' => @$pagination,
-            'back' => site_url('admin/manage_partner/detail/'.$partner_id),
+            'back' => site_url('admin_m/manage_partner_m/detail/'.$partner_id),
             'number_page' => $number_page
         );
         // echo "<pre>";
         // print_r($vars);
         // exit();
 
-        // $this->template->content->view('default/contents/manage_partner_member/index', $vars);
-        $this->template->content->view('default/contents/manage_partner_member/subgroup', $vars);
+        // $this->template->content->view('default/contents/manage_partner_member_m/index', $vars);
+        $this->template->content->view('default/contents/manage_partner_member_m/subgroup', $vars);
 
         //publish template
         $this->template->publish();
@@ -757,7 +791,7 @@ class manage_partner extends MY_Site_Controller {
 
         if(!$partner_id){
             $this->messages->add('Invalid ID Affiliate', 'error');
-            redirect('superadmin/manage_partner');
+            redirect('superadmin_m/manage_partner');
         }
 
 
@@ -781,8 +815,8 @@ class manage_partner extends MY_Site_Controller {
         // print_r($vars);
         // exit();
 
-        // $this->template->content->view('default/contents/manage_partner_member/index', $vars);
-        $this->template->content->view('default/contents/manage_partner_member/subgroup', $vars);
+        // $this->template->content->view('default/contents/manage_partner_member_m/index', $vars);
+        $this->template->content->view('default/contents/manage_partner_member_m/subgroup', $vars);
 
         //publish template
         $this->template->publish();
@@ -841,7 +875,7 @@ class manage_partner extends MY_Site_Controller {
 
         }
 
-            redirect('admin/manage_partner/list_supplier/'.$type.'/'.$partner_id);
+            redirect('admin_m/manage_partner_m/list_supplier/'.$type.'/'.$partner_id);
     }
 
     public function delete_partner_member($user_id = ''){
@@ -849,7 +883,7 @@ class manage_partner extends MY_Site_Controller {
         if($this->identity_model->get_partner_identity($user_id, '', '', '')){
             if($this->user_model->delete($user_id)){
                 $this->messages->add('Delete Affiliate Member Successful', 'success');
-                redirect('admin/manage_partner/list_partner_member/'.$partner->partner_id);
+                redirect('admin_m/manage_partner_m/list_partner_member/'.$partner->partner_id);
             }
             else{
                 $this->messages->add('Invalid Action', 'danger');
@@ -884,7 +918,7 @@ class manage_partner extends MY_Site_Controller {
             if (!$profile_picture) {
                 $this->messages->add('Failed to upload image', 'warning');
                 // return $this->detail('profile');
-                redirect('admin/manage_partner/detail/'.$partner_id);
+                redirect('admin_m/manage_partner_m/detail/'.$partner_id);
             }
             // $data_profile_picture['profile_picture'] = $this->upload_path . $profile_picture['file_name'];
             $data_profile_picture = array('profile_picture' => $this->upload_path . $profile_picture['file_name']);
@@ -895,12 +929,12 @@ class manage_partner extends MY_Site_Controller {
 
             if (!$this->db->where('id',$partner_id)->update('partners',$data_profile_picture)) {
                 $this->messages->add(validation_errors(), 'warning');
-                redirect('admin/manage_partner/detail/'.$partner_id);
+                redirect('admin_m/manage_partner_m/detail/'.$partner_id);
             }
 
 
             $this->messages->add('Update Successful', 'success');
-            redirect('admin/manage_partner/detail/'.$partner_id);
+            redirect('admin_m/manage_partner_m/detail/'.$partner_id);
     }
 
     private function do_upload($name) {
@@ -968,13 +1002,13 @@ class manage_partner extends MY_Site_Controller {
         $this->template->title = 'Affiliate Detail';
         if(!$partner_id){
             $this->messages->add('Invalid Action', 'warning');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
         $partner = $this->partner_model->select('*')->where('id', $partner_id)->get();
 
         if(!$partner){
             $this->messages->add('Affiliate is not valid', 'warning');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
 
         // get status set setting
@@ -986,7 +1020,7 @@ class manage_partner extends MY_Site_Controller {
 
         $vars = array(
             'region_id' => '',
-            'status_set_setting' => $status_set_setting[0]->status_set_setting,
+            'status_set_setting' => @$status_set_setting[0]->status_set_setting,
             'partner_id' => $partner_id,
             'partner' => @$partner,
             'students' => @$this->user_profile_model->get_students($partner_id, 1, 'first_page'),
@@ -996,7 +1030,7 @@ class manage_partner extends MY_Site_Controller {
             'option_country' => $this->common_function->country_code,
         );
 
-        $this->template->content->view('default/contents/manage_partner/detail', $vars);
+        $this->template->content->view('default/contents/manage_partner_m/detail', $vars);
         $this->template->publish();
     }
 
@@ -1004,14 +1038,14 @@ class manage_partner extends MY_Site_Controller {
         $this->template->title = 'Coach Detail';
         if(!$coach_id || !$partner_id){
             $this->messages->add('Invalid Action', 'warning');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
         $this->session->set_userdata('coach_id', $coach_id);
         $data = $this->identity_model->get_coach_identity($coach_id, '', '', $partner_id);
         $partner = $this->partner_model->select('*')->where('id', $partner_id)->get();
         if(!$data){
             $this->messages->add('Invalid ID', 'warning');
-            redirect('admin/manage_partner/'.$partner_id);
+            redirect('admin_m/manage_partner_m/'.$partner_id);
         }
 
         $get_user_timezone = $this->db->select('minutes_val')->from('user_timezones')->where('user_id',$coach_id)->get()->result();
@@ -1032,7 +1066,7 @@ class manage_partner extends MY_Site_Controller {
             'partner_id' => $partner_id,
             'user_tz' => $user_tz
         );
-        $this->template->content->view('default/contents/admin/coach/detail', $vars);
+        $this->template->content->view('default/contents/admin_m/coach/detail', $vars);
         $this->template->publish();
     }
 
@@ -1040,14 +1074,14 @@ class manage_partner extends MY_Site_Controller {
     //     $this->template->title = 'Student Detail';
     //     if(!$student_id || !$partner_id){
     //         $this->messages->add('Invalid Action', 'warning');
-    //         redirect('admin/manage_partner');
+    //         redirect('admin_m/manage_partner');
     //     }
     //     $this->session->set_userdata('student_id', $student_id);
     //     $data = $this->identity_model->get_student_identity($student_id, '', '');
 
     //     if(!$data){
     //         $this->messages->add('Invalid ID', 'warning');
-    //         redirect('admin/manage_partner/member_of_student/'.$partner_id);
+    //         redirect('admin_m/manage_partner_m/member_of_student/'.$partner_id);
     //     }
     //     $vars = array(
     //         'partner_id' => $partner_id,
@@ -1055,7 +1089,7 @@ class manage_partner extends MY_Site_Controller {
     //     );
 
 
-    //     $this->template->content->view('default/contents/admin/student/detail', $vars);
+    //     $this->template->content->view('default/contents/admin_m/student/detail', $vars);
     //     $this->template->publish();
     // }
 
@@ -1063,7 +1097,7 @@ class manage_partner extends MY_Site_Controller {
         $this->template->title = 'Student Detail';
         if(!$student_id || !$partner_id){
             $this->messages->add('Invalid Action', 'warning');
-            redirect('admin/manage_partner');
+            redirect('admin_m/manage_partner');
         }
 
         $partner = $this->partner_model->select('*')->where('id', $partner_id)->get();
@@ -1073,7 +1107,7 @@ class manage_partner extends MY_Site_Controller {
 
         if(!$data){
             $this->messages->add('Invalid ID', 'warning');
-            redirect('admin/manage_partner/member_of_student/'.$partner_id);
+            redirect('admin_m/manage_partner_m/member_of_student/'.$partner_id);
         }
         $vars = array(
             'partner_id' => $partner_id,
@@ -1085,7 +1119,7 @@ class manage_partner extends MY_Site_Controller {
         // echo "<pre>";
         // print_r($vars);
         // exit();
-        $this->template->content->view('default/contents/admin/student/detail', $vars);
+        $this->template->content->view('default/contents/admin_m/student/detail', $vars);
         $this->template->publish();
     }
 
@@ -1115,7 +1149,7 @@ class manage_partner extends MY_Site_Controller {
 
     //     if(!$partner_id){
     //         $this->messages->add('Invalid ID', 'warning');
-    //         redirect('admin/manage_partner');
+    //         redirect('admin_m/manage_partner');
     //     }
 
     //     $new_status = '';
@@ -1131,7 +1165,7 @@ class manage_partner extends MY_Site_Controller {
     //     $offset = 0;
     //     $per_page = 6;
     //     $uri_segment = 6;
-    //     $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/member_of_student/'.$status.'/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_students($partner_id,$subgroup_id,$new_status)), $per_page, $uri_segment);
+    //     $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/member_of_student/'.$status.'/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_students($partner_id,$subgroup_id,$new_status)), $per_page, $uri_segment);
     //     $vars = array(
     //         'subgroup_id' => $subgroup_id,
     //         'partner' => $partner,
@@ -1143,9 +1177,9 @@ class manage_partner extends MY_Site_Controller {
     //     );
 
     //     if($status == 'active'){
-    //         $this->template->content->view('default/contents/admin/student/index', $vars);
+    //         $this->template->content->view('default/contents/admin_m/student/index', $vars);
     //     } elseif($status == 'deactive'){
-    //         $this->template->content->view('default/contents/admin/student/index_deactive', $vars);
+    //         $this->template->content->view('default/contents/admin_m/student/index_deactive', $vars);
     //     }
     //     $this->template->publish();
     // }
@@ -1155,7 +1189,7 @@ class manage_partner extends MY_Site_Controller {
 
         if(!$partner_id){
             $this->messages->add('Invalid ID', 'warning');
-            redirect('superadmin/manage_partner');
+            redirect('superadmin_m/manage_partner');
         }
 
         $partner = $this->partner_model->select('*')->where('id',$partner_id)->get();
@@ -1167,7 +1201,7 @@ class manage_partner extends MY_Site_Controller {
         $offset = 0;
         $per_page = 6;
         $uri_segment = 7;
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/member_of_student/active/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_students($partner_id,$subgroup_id,$status)), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/member_of_student/active/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_students($partner_id,$subgroup_id,$status)), $per_page, $uri_segment);
 
         $number_page = 0;
         if($page == ''){
@@ -1188,7 +1222,7 @@ class manage_partner extends MY_Site_Controller {
             'status' => $status,
             'type' => 'student',
             'status_set_setting' => $status_set_setting[0]->status_set_setting,
-            'back' => site_url('admin/manage_partner/detail/'.$partner_id),
+            'back' => site_url('admin_m/manage_partner_m/detail/'.$partner_id),
             'number_page' => $number_page
 
         );
@@ -1197,7 +1231,7 @@ class manage_partner extends MY_Site_Controller {
         // print_r($subgroup);
         // exit();
 
-        $this->template->content->view('default/contents/admin/student/index', $vars);
+        $this->template->content->view('default/contents/admin_m/student/index', $vars);
         $this->template->publish();
     }
 
@@ -1206,7 +1240,7 @@ class manage_partner extends MY_Site_Controller {
 
     //     if(!$partner_id){
     //         $this->messages->add('Invalid ID', 'warning');
-    //         redirect('admin/manage_partner');
+    //         redirect('admin_m/manage_partner');
     //     }
 
     //     $new_status = '';
@@ -1223,7 +1257,7 @@ class manage_partner extends MY_Site_Controller {
 
     //     $partner = $this->partner_model->select('*')->where('id',$partner_id)->get();
 
-    //     $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/member_of_coach/'.$status.'/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_coaches($partner_id,$subgroup_id,$new_status)), $per_page, $uri_segment);
+    //     $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/member_of_coach/'.$status.'/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_coaches($partner_id,$subgroup_id,$new_status)), $per_page, $uri_segment);
     //     $vars = array(
     //         'subgroup_id' => $subgroup_id,
     //         'partner' => $partner,
@@ -1238,9 +1272,9 @@ class manage_partner extends MY_Site_Controller {
     //     // print_r($vars);
     //     // exit();
     //     if($status == 'active'){
-    //         $this->template->content->view('default/contents/admin/coach/index', $vars);
+    //         $this->template->content->view('default/contents/admin_m/coach/index', $vars);
     //     } elseif($status == 'deactive'){
-    //         $this->template->content->view('default/contents/admin/coach/index_deactive', $vars);
+    //         $this->template->content->view('default/contents/admin_m/coach/index_deactive', $vars);
     //     }
     //     $this->template->publish();
     // }
@@ -1275,7 +1309,7 @@ class manage_partner extends MY_Site_Controller {
         } else {
             $this->messages->add('Please choose student', 'error');
         }
-            redirect('admin/manage_partner/list_partner/student/'.$partner_id );
+            redirect('admin_m/manage_partner_m/list_partner/student/'.$partner_id );
     }
 
     function delete_coach($subgroup_id = '',$partner_id = ''){
@@ -1308,7 +1342,7 @@ class manage_partner extends MY_Site_Controller {
         } else {
             $this->messages->add('Please choose coach', 'error');
         }
-            redirect('admin/manage_partner/member_of_coach/active/'.$subgroup_id.'/'.$partner_id );
+            redirect('admin_m/manage_partner_m/member_of_coach/active/'.$subgroup_id.'/'.$partner_id );
     }
 
     public function member_of_coach($status='active',$subgroup_id='', $partner_id='', $page=''){
@@ -1316,7 +1350,7 @@ class manage_partner extends MY_Site_Controller {
 
         if(!$partner_id){
             $this->messages->add('Invalid ID', 'warning');
-            redirect('superadmin/manage_partner');
+            redirect('superadmin_m/manage_partner');
         }
 
         $offset = 0;
@@ -1336,7 +1370,7 @@ class manage_partner extends MY_Site_Controller {
         }
 
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin/manage_partner/member_of_coach/'.$status.'/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_coaches($partner_id,$subgroup_id,$status)), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/member_of_coach/'.$status.'/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_coaches($partner_id,$subgroup_id,$status)), $per_page, $uri_segment);
         $vars = array(
             'subgroup_id' => $subgroup_id,
             'subgroup' => $subgroup,
@@ -1347,7 +1381,7 @@ class manage_partner extends MY_Site_Controller {
             'pagination' => @$pagination,
             'status' => $status,
             'type' => 'coach',
-            'back' => site_url('admin/manage_partner/detail/'.$partner_id),
+            'back' => site_url('admin_m/manage_partner_m/detail/'.$partner_id),
             'number_page' => $number_page
         );
 
@@ -1355,7 +1389,7 @@ class manage_partner extends MY_Site_Controller {
         // print_r($vars);
         // exit();
 
-        $this->template->content->view('default/contents/admin/coach/index', $vars);
+        $this->template->content->view('default/contents/admin_m/coach/index', $vars);
         $this->template->publish();
     }
 
@@ -1399,7 +1433,7 @@ class manage_partner extends MY_Site_Controller {
                 $this->messages->add('Active Successful', 'success');
             }
 
-            redirect('admin/manage_partner/member_of_coach/'.$type.'/'.$subgroup_id.'/'.$partner_id);
+            redirect('admin_m/manage_partner_m/member_of_coach/'.$type.'/'.$subgroup_id.'/'.$partner_id);
 
         }
     }
@@ -1444,7 +1478,7 @@ class manage_partner extends MY_Site_Controller {
                 $this->messages->add('Active Successful', 'success');
             }
 
-            redirect('admin/manage_partner/member_of_student/'.$type.'/'.$subgroup_id.'/'.$partner_id);
+            redirect('admin_m/manage_partner_m/member_of_student/'.$type.'/'.$subgroup_id.'/'.$partner_id);
 
         }
     }
@@ -1469,7 +1503,7 @@ class manage_partner extends MY_Site_Controller {
 
         // echo "<pre>";
         // print_r($vars); exit;
-        $this->template->content->view('default/contents/admin/request_token/index', $vars);
+        $this->template->content->view('default/contents/admin_m/request_token/index', $vars);
 
         //publish template
         $this->template->publish();
@@ -1524,7 +1558,7 @@ class manage_partner extends MY_Site_Controller {
         );
 
 
-        $this->template->content->view('default/contents/admin/request_token/history_token', $vars);
+        $this->template->content->view('default/contents/admin_m/request_token/history_token', $vars);
 
         //publish template
         $this->template->publish();
@@ -1552,7 +1586,7 @@ class manage_partner extends MY_Site_Controller {
 
             if($get_token_region->token_amount < $token_request->token_amount){
                 $this->messages->add('Not enough token', 'danger');
-                redirect('admin/manage_partner/token');
+                redirect('admin_m/manage_partner_m/token');
             }
 
 
@@ -1636,11 +1670,11 @@ class manage_partner extends MY_Site_Controller {
             // $this->messaging_admin($token_request_id, 'approved');
 
             $this->messages->add('Approve Token Request Succeded', 'success');
-            redirect('admin/manage_partner/token');
+            redirect('admin_m/manage_partner_m/token');
         }
         else{
             $this->messages->add('Token Might be Cancelled by Student Affiliate', 'error');
-            redirect('admin/manage_partner/token');
+            redirect('admin_m/manage_partner_m/token');
         }
     }
 
@@ -1676,12 +1710,12 @@ class manage_partner extends MY_Site_Controller {
             // $this->messaging_admin($token_request_id, 'declined');
 
             $this->messages->add('Decline Token Request Succeded', 'success');
-            redirect('admin/manage_partner/token');
+            redirect('admin_m/manage_partner_m/token');
         }
         else{
 
             $this->messages->add('Token Might be Cancelled by Student Affiliate', 'error');
-            redirect('admin/manage_partner/token');
+            redirect('admin_m/manage_partner_m/token');
         }
     }
 
@@ -1702,7 +1736,7 @@ class manage_partner extends MY_Site_Controller {
         $standard_coach_cost = $region_setting[0]->standard_coach_cost;
         $elite_coach_cost = $region_setting[0]->elite_coach_cost;
 
-        $back = site_url('admin/manage_partner/detail/'.$id);
+        $back = site_url('admin_m/manage_partner_m/detail/'.$id);
 
         $vars = ['data' => $setting,
                 'id' => $id,
@@ -1721,16 +1755,16 @@ class manage_partner extends MY_Site_Controller {
                 'elite_coach_cost' => $elite_coach_cost];
 
         if(($type == "coach") || ($type == "")){
-            $this->template->content->view('default/contents/superadmin/region/coach', $vars);
+            $this->template->content->view('default/contents/superadmin_m/region/coach', $vars);
             //publish template
             // $this->template->publish();
         } else if($type == 'student'){
-            $this->template->content->view('default/contents/superadmin/region/student', $vars);
+            $this->template->content->view('default/contents/superadmin_m/region/student', $vars);
             //publish template
             // $this->template->publish();
         }
 
-        // $this->template->content->view('default/contents/superadmin/region/setting', $vars);
+        // $this->template->content->view('default/contents/superadmin_m/region/setting', $vars);
         $this->template->publish();
     }
 
@@ -1779,61 +1813,61 @@ class manage_partner extends MY_Site_Controller {
 
             if (!$this->common_function->run_validation($rules)) {
                 $this->messages->add(validation_errors(), 'warning');
-                redirect('admin/manage_partner/setting/'.$id.'/student');
+                redirect('admin_m/manage_partner_m/setting/'.$id.'/student');
             }
 
             if($update_max_student_class > $max_student_class){
                 $message_setting = 'Max Student Class '.$max_student_class;
                 $this->messages->add($message_setting, 'warning');
-                redirect('admin/manage_partner/setting/'.$id.'/student');
+                redirect('admin_m/manage_partner_m/setting/'.$id.'/student');
             }
 
             if($update_max_student_supplier > $max_student_supplier){
                 $message_setting = 'Max Student Affiliate '.$max_student_supplier;
                 $this->messages->add($message_setting, 'warning');
-                redirect('admin/manage_partner/setting/'.$id.'/student');
+                redirect('admin_m/manage_partner_m/setting/'.$id.'/student');
             }
 
             if($update_max_day_per_week > $max_day_per_week){
                 $message_setting = 'Max Day Per Week '.$max_day_per_week;
                 $this->messages->add($message_setting, 'warning');
-                redirect('admin/manage_partner/setting/'.$id.'/student');
+                redirect('admin_m/manage_partner_m/setting/'.$id.'/student');
             }
 
             if($update_max_session_per_day > $max_session_per_day){
                 $message_setting = 'Max Session Per Day '.$max_session_per_day;
                 $this->messages->add($message_setting, 'warning');
-                redirect('admin/manage_partner/setting/'.$id.'/student');
+                redirect('admin_m/manage_partner_m/setting/'.$id.'/student');
             }
 
             if($update_max_token > $max_token){
                 $message_setting = 'Max Token '.$max_token;
                 $this->messages->add($message_setting, 'warning');
-                redirect('admin/manage_partner/setting/'.$id.'/student');
+                redirect('admin_m/manage_partner_m/setting/'.$id.'/student');
             }
 
             if($update_max_token_for_student > $max_token_for_student){
                 $message_setting = 'Max Token For Student '.$max_token_for_student;
                 $this->messages->add($message_setting, 'warning');
-                redirect('admin/manage_partner/setting/'.$id.'/student');
+                redirect('admin_m/manage_partner_m/setting/'.$id.'/student');
             }
 
             // if($update_max_session_per_x_day > $max_session_per_x_day){
             //     $message_setting = 'Max Session Per X Day '.$max_session_per_x_day;
             //     $this->messages->add($message_setting, 'warning');
-            //     redirect('admin/manage_partner/setting/'.$id.'/student');
+            //     redirect('admin_m/manage_partner_m/setting/'.$id.'/student');
             // }
 
             // if($update_x_day > $x_day){
             //     $message_setting = 'Max X Day '.$x_day;
             //     $this->messages->add($message_setting, 'warning');
-            //     redirect('admin/manage_partner/setting/'.$id.'/student');
+            //     redirect('admin_m/manage_partner_m/setting/'.$id.'/student');
             // }
 
             // if($update_set_max_session > $set_max_session){
             //     $message_setting = 'Max Session for Student is Set to '.$set_max_session;
             //     $this->messages->add($message_setting, 'warning');
-            //     redirect('admin/manage_partner/setting/'.$id.'/student');
+            //     redirect('admin_m/manage_partner_m/setting/'.$id.'/student');
             // }
 
            $setting = array(
@@ -1858,18 +1892,18 @@ class manage_partner extends MY_Site_Controller {
             if($update_elite_coach_cost > $elite_coach_cost){
                 $message_setting = 'Max Elite Coach Cost '.$elite_coach_cost;
                 $this->messages->add($message_setting, 'warning');
-                redirect('admin/manage_partner/setting/'.$id.'/coach');
+                redirect('admin_m/manage_partner_m/setting/'.$id.'/coach');
             }
 
             if($update_standard_coach_cost > $standard_coach_cost){
                 $message_setting = 'Max Coach Cost '.$standard_coach_cost;
                 $this->messages->add($message_setting, 'warning');
-                redirect('admin/manage_partner/setting/'.$id.'/coach');
+                redirect('admin_m/manage_partner_m/setting/'.$id.'/coach');
             }
 
             if(($this->input->post('standard_coach_cost') < 1) || ($this->input->post('elite_coach_cost') < 1)){
                 $this->messages->add('Standard Coach cost or Elite Coach cost minimum 1', 'warning');
-                redirect('admin/manage_partner/setting/'.$id.'/coach');
+                redirect('admin_m/manage_partner_m/setting/'.$id.'/coach');
 
             }
 
@@ -1884,7 +1918,7 @@ class manage_partner extends MY_Site_Controller {
 
        $this->messages->add('Update Setting Successful', 'success');
 
-       redirect('admin/manage_partner/setting/'.$id.'/'.$type);
+       redirect('admin_m/manage_partner_m/setting/'.$id.'/'.$type);
     }
 
     function add_token($student_supplier_id='',$partner_id=''){
@@ -1899,8 +1933,8 @@ class manage_partner extends MY_Site_Controller {
 
 
 
-        $link = base_url().'index.php/admin/manage_partner/action_add_token/'.$student_supplier_id.'/'.$partner_id;
-        $cancel = base_url().'index.php/admin/manage_partner/partner/student/'.$partner_id;
+        $link = base_url().'index.php/admin_m/manage_partner_m/action_add_token/'.$student_supplier_id.'/'.$partner_id;
+        $cancel = base_url().'index.php/admin_m/manage_partner_m/partner/student/'.$partner_id;
         $vars = array(
                 'link' => $link,
                 'cancel' => $cancel,
@@ -1918,7 +1952,7 @@ class manage_partner extends MY_Site_Controller {
 
         if (!$this->input->post('token') || $this->input->post('token') <=0) {
             $this->messages->add('Token Request Value Must be More than Zero', 'warning');
-            redirect('admin/manage_partner/add_token/'.$student_supplier_id.'/'.$partner_id);
+            redirect('admin_m/manage_partner_m/add_token/'.$student_supplier_id.'/'.$partner_id);
         }
 
         $request_token = $this->input->post('token');
@@ -1946,7 +1980,7 @@ class manage_partner extends MY_Site_Controller {
         // check jika token user tidak mencukupi
         if($user_token < $request_token){
             $this->messages->add('Your token not enough ', 'warning');
-            redirect('admin/manage_partner/add_token/'.$student_supplier_id.'/'.$partner_id);
+            redirect('admin_m/manage_partner_m/add_token/'.$student_supplier_id.'/'.$partner_id);
         }
 
         // check token student
@@ -1972,7 +2006,7 @@ class manage_partner extends MY_Site_Controller {
 
         if($total_request_token > $max_student_supplier){
             $this->messages->add('Token Request exceeds the maximum, maximum token for student affiliate = '.$max_student_supplier, 'warning');
-            redirect('admin/manage_partner/add_token/'.$student_supplier_id.'/'.$partner_id);
+            redirect('admin_m/manage_partner_m/add_token/'.$student_supplier_id.'/'.$partner_id);
         }
 
 
@@ -2057,7 +2091,7 @@ class manage_partner extends MY_Site_Controller {
 
 
         $this->messages->add('Your token success added ', 'success');
-        redirect('admin/manage_partner/partner/student/'.$partner_id);
+        redirect('admin_m/manage_partner_m/partner/student/'.$partner_id);
 
     }
 
@@ -2093,8 +2127,8 @@ class manage_partner extends MY_Site_Controller {
             $status = 3;
         }
 
-        $link = base_url().'index.php/admin/manage_partner/action_refund_token'.'/'.$student_partner_id."/".$partner_id;
-        $cancel = base_url().'index.php/admin/manage_partner/partner/student/'.$partner_id;
+        $link = base_url().'index.php/admin_m/manage_partner_m/action_refund_token'.'/'.$student_partner_id."/".$partner_id;
+        $cancel = base_url().'index.php/admin_m/manage_partner_m/partner/student/'.$partner_id;
 
         $vars = array('region_id' => $student_partner_id,
                      'status' => $status,
@@ -2127,7 +2161,7 @@ class manage_partner extends MY_Site_Controller {
 
         if($token_student_partner != $balance) {
             $this->messages->add('Your token failed refund ', 'warning');
-            redirect('admin/manage_partner/partner/student/'.$partner_id);
+            redirect('admin_m/manage_partner_m/partner/student/'.$partner_id);
         }
 
 
@@ -2195,7 +2229,7 @@ class manage_partner extends MY_Site_Controller {
         $this->user_notification_model->insert($partner_notification);
 
         $this->messages->add('Your token success refund ', 'success');
-        redirect('admin/manage_partner/partner/student/'.$partner_id);
+        redirect('admin_m/manage_partner_m/partner/student/'.$partner_id);
 
     }
 
