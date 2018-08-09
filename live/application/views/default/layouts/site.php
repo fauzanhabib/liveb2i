@@ -8,7 +8,8 @@
         'RAD' => 'Super Admin',
         'SPN' => 'Student Affiliate Neo',
         'SAM' => 'Student Affiliate Monitor',
-        'CAM' => 'Coach Affiliate Monitor'
+        'CAM' => 'Coach Affiliate Monitor',
+        'RAM' => 'Region Affiliate Monitor'
     );
 ?>
 <!DOCTYPE html>
@@ -224,6 +225,50 @@
                                        </li>
                                         <li class="pure-menu-item adm-tapproval">
                                             <a href="<?php echo site_url('admin/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-request">Token Approval</a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li id="dropdown" class="pure-menu-item dropdown">
+                                    <a class="pure-menu-link icon icon-study-dashboard" data-toggle="dropdown">Reporting
+                                        <span></span>
+                                    </a>
+                                    <ul class="menu-dropdown">
+                                        <li class="pure-menu-item adm-rtoken">
+                                            <a href="<?php echo site_url('admin/reporting/coach'); ?>" class="pure-menu-link icon icon-study-dashboard">Coach</a>
+                                       </li>
+                                        <li class="pure-menu-item adm-tapproval">
+                                            <a href="<?php echo site_url('admin/reporting/student'); ?>" class="pure-menu-link icon icon-study-dashboard">Student</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            <?php } else if ($this->auth_manager->role() == 'RAM') { ?>
+                                <li class="pure-menu-item std-profile">
+                                    <a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon dyned-icon-profile">Profile</a>
+                                </li>
+
+                                <li class="pure-menu-item adm-partner">
+                                    <a href="<?php echo site_url('admin_m/manage_partner'); ?>" class="pure-menu-link icon dyned-icon-partner">Affiliate</a>
+                                </li>
+
+                                <li class="pure-menu-item adm-pmatches">
+                                    <a href="<?php echo site_url('admin_m/match_partner'); ?>" class="pure-menu-link icon dyned-icon-partners-matching">Affiliate Matches</a>
+                                </li>
+
+                                <li class="pure-menu-item adm-capproval">
+                                    <a href="<?php echo site_url('admin_m/approve_user/index/coach'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Coach Approvals</a>
+                                </li>
+
+                                <li id="dropdown" class="pure-menu-item dropdown">
+                                    <a class="pure-menu-link icon dyned-icon-token" data-toggle="dropdown">Token
+                                        <span></span>
+                                    </a>
+                                    <ul class="menu-dropdown">
+                                        <li class="pure-menu-item adm-rtoken">
+                                            <a href="<?php echo site_url('admin_m/token'); ?>" class="pure-menu-link icon dyned-icon-token-approval">Request Token</a>
+                                       </li>
+                                        <li class="pure-menu-item adm-tapproval">
+                                            <a href="<?php echo site_url('admin_m/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-request">Token Approval</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -572,7 +617,46 @@
                                                 </li>
                                             </ul>
                                         </li>
+                                  <?php } else if ($this->auth_manager->role() == 'RAM') { ?>
+                                      <li class="pure-menu-item std-profile">
+                                          <a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon dyned-icon-profile">Profile</a>
+                                      </li>
 
+                                      <li class="pure-menu-item adm-partner">
+                                          <a href="<?php echo site_url('admin_m/manage_partner'); ?>" class="pure-menu-link icon dyned-icon-partner">Affiliate</a>
+                                      </li>
+
+                                      <li class="pure-menu-item adm-pmatches">
+                                          <a href="<?php echo site_url('admin_m/match_partner'); ?>" class="pure-menu-link icon dyned-icon-partners-matching">Affiliate Matches</a>
+                                      </li>
+
+                                      <li class="pure-menu-item adm-capproval">
+                                          <a href="<?php echo site_url('admin_m/approve_user/index/coach'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Coach Approvals</a>
+                                      </li>
+
+                                      <li id="dropdown" class="pure-menu-item adm-token dropdown">
+                                          <a class="pure-menu-link icon dyned-icon-token" data-toggle="dropdown">Token
+                                              <span></span>
+                                          </a>
+                                          <ul class="menu-dropdown">
+                                              <li class="pure-menu-item adm-rtoken"><a href="<?php echo site_url('admin_m/token'); ?>" class="pure-menu-link icon dyned-icon-token-approval">Request Token</a></li>
+                                              <li class="pure-menu-item adm-tapproval"><a href="<?php echo site_url('admin_m/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-request">Token Approval</a></li>
+                                          </ul>
+                                      </li>
+
+                                      <li id="dropdown" class="pure-menu-item dropdown">
+                                          <a class="pure-menu-link icon icon-study-dashboard" data-toggle="dropdown">Reporting
+                                              <span></span>
+                                          </a>
+                                          <ul class="menu-dropdown">
+                                              <li class="pure-menu-item adm-rtoken">
+                                                  <a href="<?php echo site_url('admin_m/reporting/coach'); ?>" class="pure-menu-link icon icon-study-dashboard">Coach</a>
+                                             </li>
+                                              <li class="pure-menu-item adm-tapproval">
+                                                  <a href="<?php echo site_url('admin_m/reporting/student'); ?>" class="pure-menu-link icon icon-study-dashboard">Student</a>
+                                              </li>
+                                          </ul>
+                                      </li>
                                     <?php } else if ($this->auth_manager->role() == 'RAD') { ?>
                                         <li class="pure-menu-item std-profile"><a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon dyned-icon-profile"><?php echo $this->auth_manager->lang('lbl_profile');?></a></li>
                                         <li class="pure-menu-item rad-region"><a href="<?php echo site_url('superadmin/region/index/active'); ?>" class="pure-menu-link icon dyned-icon-region">Region</a></li>

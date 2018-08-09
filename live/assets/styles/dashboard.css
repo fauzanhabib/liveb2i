@@ -3969,7 +3969,7 @@ ul.nav-dropdown-top,
   width: 160px;
 }
 #search[type="text"] {
-  min-height: 1.5em;
+  height: 21px;
   font-size: 14px;
   display: inline-block;
   font-weight: 100;
@@ -3993,7 +3993,7 @@ ul.nav-dropdown-top,
 }
 
 #search[type="text"]:focus {
-  width: 55%;
+  width: 120px;
   z-index: 1;
   border-bottom: 1px solid #ebebeb!important;
   background: #fff;
@@ -7377,7 +7377,7 @@ label {
 .rdr-2 > .radar-ainner {
   /*top: 305px;
   left: 208px;*/
-  position: absolute;
+  /*position: absolute;*/
 }
 /*******student*******/
 

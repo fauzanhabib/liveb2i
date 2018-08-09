@@ -33,7 +33,8 @@ class identity extends MY_Site_Controller {
         'RAD' => array('profile'),
         'SPN' => array('profile'),
         'CAM' => array('profile'),
-        'SAM' => array('profile')
+        'SAM' => array('profile'),
+        'RAM' => array('profile')
     );
 
     /**
@@ -145,6 +146,9 @@ class identity extends MY_Site_Controller {
             $data = $this->identity_model->get_identity('user')->select('users.id as id, users.email as email, users.password as password, users.status as status, users.status_set_setting as status_set_setting, users.last_login as last_login, users.role_id as role_id, user_profiles.profile_picture as profile_picture, user_profiles.fullname as fullname, user_profiles.region_id as region_id, user_profiles.user_timezone as user_timezone')->join('user_profiles','user_profiles.user_id = users.id')->where('users.id', $this->auth_manager->userid())->get_all();
             $data_timezone_admin = $this->identity_model->get_identity('profile')->select('user_timezone')->where('user_id', $this->auth_manager->userid())->get();
         }else if ($this->auth_manager->role() == 'CAM') {
+            $data = $this->identity_model->get_identity('user')->select('users.id as id, users.email as email, users.password as password, users.status as status, users.status_set_setting as status_set_setting, users.last_login as last_login, users.role_id as role_id, user_profiles.profile_picture as profile_picture, user_profiles.fullname as fullname, user_profiles.region_id as region_id, user_profiles.user_timezone as user_timezone')->join('user_profiles','user_profiles.user_id = users.id')->where('users.id', $this->auth_manager->userid())->get_all();
+            $data_timezone_admin = $this->identity_model->get_identity('profile')->select('user_timezone')->where('user_id', $this->auth_manager->userid())->get();
+        }else if ($this->auth_manager->role() == 'RAM') {
             $data = $this->identity_model->get_identity('user')->select('users.id as id, users.email as email, users.password as password, users.status as status, users.status_set_setting as status_set_setting, users.last_login as last_login, users.role_id as role_id, user_profiles.profile_picture as profile_picture, user_profiles.fullname as fullname, user_profiles.region_id as region_id, user_profiles.user_timezone as user_timezone')->join('user_profiles','user_profiles.user_id = users.id')->where('users.id', $this->auth_manager->userid())->get_all();
             $data_timezone_admin = $this->identity_model->get_identity('profile')->select('user_timezone')->where('user_id', $this->auth_manager->userid())->get();
         }// else if ($this->auth_manager->role() == 'RAD') {

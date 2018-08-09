@@ -1610,14 +1610,17 @@ var countdownTimer3 = setInterval('timer3()', 1000);
     });
 
     // daily step progress
+    var step = $('.step--circle.circle');
     var stepVal = '<?php echo @$gsp->data->percentage_points;?>';
-
     var titikVal = '<?php echo @$gsp->data->percentage_days;?>';
-
     var newstepVal = stepVal/100;
     var newtitikVal = titikVal/100;
-    var step = $('.step--circle.circle');
-    var stepVal = 0.6 // circle step value
+
+    if (titikVal >= 100) {
+      titikVal = 100;   //To prevent the dial to overlap
+    }
+
+    
     step.circleProgress({
         startAngle: -Math.PI / 2,
         value: newstepVal,
