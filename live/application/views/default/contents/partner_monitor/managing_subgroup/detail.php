@@ -26,6 +26,12 @@
                         echo $ds->name;
                     }
                 } ?></a></li>
+                <li>
+                    <form action="<?php echo site_url('partner_monitor/subgroup/list_coach/'.$subgroup_id);?>" method="POST" autocomplete="on" class="search-box">
+                        <div id="src__sign">Search..</div>
+                      <input id="search" name="search_coach" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
@@ -167,7 +173,7 @@
                 }
             </style>
 
-            <table id="large" class="display table-session tablesorter paginated" cellspacing="0" width="100%">
+            <table id="large" class="display table-session tablesorter" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">No</th>
@@ -194,7 +200,7 @@
             </table>
         </div>
     </div>
-
+<?php echo $pagination;?>
 </div>
 </form>
 

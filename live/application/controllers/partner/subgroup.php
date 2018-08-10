@@ -421,7 +421,6 @@ class subgroup extends MY_Site_Controller {
             $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/subgroup/list_coach/'.$subgroup_id), count($this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(),null,null,null)), $per_page, $uri_segment,$subgroup_id);
             $data2 = $this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(), '', '', '', $per_page, $offset, $subgroup_id);
         }
-		$pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/subgroup/list_coach/'.$subgroup_id), count($this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(),null,null,null)), $per_page, $uri_segment,$subgroup_id);
         
         $data = $this->identity_model->get_subgroup_identity($id,'coach','active','','');
         $partner_id = $this->auth_manager->partner_id($id);

@@ -18,7 +18,7 @@
                 </a></li>
                 <li><a href="#">Group</a></li>
 				<li>
-                    <form action="<?php echo site_url('partner_monitor/subgroup');?>" method="POST" autocomplete="on" class="search-box">
+                    <form action="<?php echo site_url('partner_monitor/subgroup/index_disable');?>" method="POST" autocomplete="on" class="search-box">
                         <div id="src__sign">Search..</div>
                       <input id="search" name="search_subgroup" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
                     </form>

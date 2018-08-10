@@ -75,9 +75,9 @@ class subgroup extends MY_Site_Controller {
         $search_subgroup = $this->input->post('search_subgroup');
 
         if($search_subgroup != ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner_monitor/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'coach',null,$search_subgroup)), $per_page, $uri_segment);
-            $data = $this->identity_model->get_subgroup_identity(null,'coach','active',null,$search_subgroup,$per_page, $offset);
-            $data2 = $this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner_monitor/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'coach',null,$search_subgroup)), 9999, $uri_segment);
+            $data = $this->identity_model->get_subgroup_identity(null,'coach','active',null,$search_subgroup,9999, $offset);
+            $data2 = $this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(), '', 9999, $offset, '');
         } else if($search_subgroup == ''){
             $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner_monitor/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'coach',null,null)), $per_page, $uri_segment);
             $data = $this->identity_model->get_subgroup_identity(null,'coach','active',null,null,$per_page, $offset);
@@ -173,11 +173,11 @@ class subgroup extends MY_Site_Controller {
         $search_subgroup = $this->input->post('search_subgroup');
 
         if($search_subgroup != ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner_monitor/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'coach',null,$search_subgroup)), $per_page, $uri_segment);
-            $data = $this->identity_model->get_subgroup_identity(null,'coach','disable',null,$search_subgroup,$per_page, $offset);
-            $data2 = $this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner_monitor/subgroup/index_disable'), count($this->identity_model->get_subgroup_identity(null,'coach',null,$search_subgroup)), 9999, $uri_segment);
+            $data = $this->identity_model->get_subgroup_identity(null,'coach','disable',null,$search_subgroup,9999, $offset);
+            $data2 = $this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(), '', 9999, $offset, '');
         } else if($search_subgroup == ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner_monitor/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'coach',null,null)), $per_page, $uri_segment);
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner_monitor/subgroup/index_disable'), count($this->identity_model->get_subgroup_identity(null,'coach',null,null)), $per_page, $uri_segment);
             $data = $this->identity_model->get_subgroup_identity(null,'coach','disable',null,null,$per_page, $offset);
             $data2 = $this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
         }
@@ -411,7 +411,15 @@ class subgroup extends MY_Site_Controller {
 		$offset = 0;
         $per_page = 10;
         $uri_segment = 5;
-		$pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner_monitor/subgroup/list_coach/'.$subgroup_id), count($this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(),null,null,null)), $per_page, $uri_segment,$subgroup_id);
+		$search_coach = $this->input->post('search_coach');
+
+        if($search_coach != ''){
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner_monitor/subgroup/list_coach/'.$subgroup_id), count($this->identity_model->get_coach_identity('',$search_coach,'',$this->auth_manager->partner_id(),null,null,null)), 9999, $uri_segment,$subgroup_id);
+            $data2 = $this->identity_model->get_coach_identity('',$search_coach,'',$this->auth_manager->partner_id(), '', '', '', 9999, $offset, $subgroup_id);
+        } else if($search_coach == ''){
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner_monitor/subgroup/list_coach/'.$subgroup_id), count($this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(),null,null,null)), $per_page, $uri_segment,$subgroup_id);
+            $data2 = $this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(), '', '', '', $per_page, $offset, $subgroup_id);
+        }
         
         $data = $this->identity_model->get_subgroup_identity($id,'coach','active','','');
         $partner_id = $this->auth_manager->partner_id($id);
@@ -455,7 +463,7 @@ class subgroup extends MY_Site_Controller {
         $vars = array(
             'data' => $data,
             'form_action' => 'update_subgroup',
-			'data2' => $this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(), '', '', '', '', $offset, $subgroup_id),
+			'data2' => @$data2,
             'all_coachs' => $all_coachs,
             'total_coach' => $this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id()),
             'subgroup_id' => $subgroup_id,
