@@ -250,6 +250,24 @@ class token_requests extends MY_Site_Controller {
             $users = $this->user_model->select('email')->where('id', $this->auth_manager->userid())->get();
             $useremail = $users->email;
 
+            if($idsp){
+                $partner_notification = array(
+                    'user_id' => $idsp,
+                    'description' => $userfullname.' cancel request for additional token.',
+                    'status' => 2,
+                    'dcrea' => time(),
+                    'dupd' => time(),
+                );
+                // coach's data for reminder messaging
+                // IMPORTANT : array index in content must be in mutual with table field in database
+                $data_partner = array(
+                    'table' => 'user_notifications',
+                    'content' => $partner_notification,
+                );
+            }
+
+            $this->user_notification_model->insert($partner_notification);
+
             $this->send_email->student_request($emailpartner, $get_token->token_amount, $userfullname, 'cancelled', $name_partner);
             $this->send_email->add_token_student($useremail, $get_token->token_amount, 'cancelled');
             
