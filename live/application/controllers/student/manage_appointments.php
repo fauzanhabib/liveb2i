@@ -408,6 +408,15 @@ class manage_appointments extends MY_Site_Controller {
         $standard_coach_cost = $setting[0]->standard_coach_cost;
         $elite_coach_cost = $setting[0]->elite_coach_cost;
 
+        $appointment_id = $this->session->userdata('appointment_id');
+
+        $pull_dv_info = $this->db->select('device_info')
+                      ->from('appointments')
+                      ->where('id', $appointment_id)
+                      ->get()->result();
+
+        $device_info = $pull_dv_info[0]->device_info;
+
         $vars = array(
             'data_coach' => $this->identity_model->get_coach_identity($coach_id),
             'date' => $date,
@@ -415,7 +424,8 @@ class manage_appointments extends MY_Site_Controller {
             'end_time' => $end_time,
             'search_by' => $search_by,
             'standard_coach_cost' => $standard_coach_cost,
-            'elite_coach_cost' => $elite_coach_cost
+            'elite_coach_cost' => $elite_coach_cost,
+            'device_info' => @$device_info
         );
 
 

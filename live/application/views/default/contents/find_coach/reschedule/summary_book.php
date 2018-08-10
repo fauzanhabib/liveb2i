@@ -30,12 +30,16 @@
                 </tr>
                 <tr>
                     <td>End Time</td>
-                    <td><?php 
+                    <td><?php
                     $currentDate = strtotime($end_time);
                     $futureDate = $currentDate-(60*5);
                     $endtime = date("H:i:s", $futureDate);
 
                     echo($endtime); ?></td>
+                </tr>
+                <tr>
+                    <td>Booking Device</td>
+                    <td><?php echo($device_info); ?></td>
                 </tr>
 <!--                <tr>
                     <td>Call Method</td>
@@ -49,7 +53,7 @@
                                 if($data_coach[0]->coach_type_id == 1){
                                     $token = $standard_coach_cost;
                                 } else if($data_coach[0]->coach_type_id == 2){
-                                    $token = $elite_coach_cost; 
+                                    $token = $elite_coach_cost;
                                 } ?>
                         <input type="text" name="token" value="<?php echo $token;?>" readonly>
                     </td>
