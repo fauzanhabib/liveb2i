@@ -45,9 +45,9 @@ class subgroup extends MY_Site_Controller {
         $search_subgroup = $this->input->post('search_subgroup');
 
         if($search_subgroup != ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null, $search_subgroup)), $per_page, $uri_segment);
-            $data = $this->identity_model->get_subgroup_identity(null,'student','active',null,$search_subgroup,$per_page, $offset);
-            $data2 = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null, $search_subgroup)), 9999, $uri_segment);
+            $data = $this->identity_model->get_subgroup_identity(null,'student','active',null,$search_subgroup,9999, $offset);
+            $data2 = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', 9999, $offset, '');
         } else if($search_subgroup == ''){
             $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null,null)), $per_page, $uri_segment);
             $data = $this->identity_model->get_subgroup_identity(null,'student','active',null,null,$per_page, $offset);
@@ -142,11 +142,11 @@ class subgroup extends MY_Site_Controller {
         $search_subgroup = $this->input->post('search_subgroup');
 
         if($search_subgroup != ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null, $search_subgroup)), $per_page, $uri_segment);
-            $data = $this->identity_model->get_subgroup_identity(null,'student','disable',null,$search_subgroup,$per_page, $offset);
-            $data2 = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index_disable'), count($this->identity_model->get_subgroup_identity(null,'student',null, $search_subgroup)), 9999, $uri_segment);
+            $data = $this->identity_model->get_subgroup_identity(null,'student','disable',null,$search_subgroup,9999, $offset);
+            $data2 = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', 9999, $offset, '');
         } else if($search_subgroup == ''){
-            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index'), count($this->identity_model->get_subgroup_identity(null,'student',null,null)), $per_page, $uri_segment);
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/index_disable'), count($this->identity_model->get_subgroup_identity(null,'student',null,null)), $per_page, $uri_segment);
             $data = $this->identity_model->get_subgroup_identity(null,'student','disable',null,null,$per_page, $offset);
             $data2 = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, '');
         }
@@ -403,7 +403,15 @@ class subgroup extends MY_Site_Controller {
         $per_page = 10;
         $uri_segment = 5;
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/list_student/'.$subgroup_id), count($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(),'')), $per_page, $uri_segment);
+        $search_student = $this->input->post('search_student');
+
+        if($search_student != ''){
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/list_student/'.$subgroup_id), count($this->identity_model->get_student_identity('',$search_student,$this->auth_manager->partner_id(),'', '', '', $subgroup_id)), 9999, $uri_segment);
+            $data2 = $this->identity_model->get_student_identity('',$search_student,$this->auth_manager->partner_id(), '', 9999, $offset, $subgroup_id);
+        } else if($search_student == ''){
+            $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('student_partner/subgroup/list_student/'.$subgroup_id), count($this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(),'', '', '', $subgroup_id)), $per_page, $uri_segment);
+            $data2 = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, $subgroup_id);
+        }
         // echo $subgroup_id." - ".$id." -". $page." = ".$per_page;exit();
         // echo "id ".$id;
         $data = $this->identity_model->get_subgroup_identity('','student','active','',null);
@@ -420,6 +428,20 @@ class subgroup extends MY_Site_Controller {
                                 ->where('subgroup.partner_id',$partner_id)
                                 ->get()->result();
         $total_coach = $total_coach[0]->id;
+
+        $total_student = $this->db->select('count(users.id) as id')
+                                ->from('user_profiles')
+                                ->join('users','users.id = user_profiles.user_id')
+                                ->join('subgroup','user_profiles.subgroup_id = subgroup.id')
+                                ->join('user_tokens','users.id = user_tokens.user_id')
+                                ->where('users.role_id','1')
+                                ->where('users.status','active')
+                                ->where('subgroup.partner_id',$partner_id)
+                                ->where('subgroup.id',$subgroup_id)
+                                ->get()->result();
+        $total_student = $total_student[0]->id;
+
+        $token_student = $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', '', $offset, $subgroup_id);
 
 
         // Total Sessions ---------------------------------------------------------
@@ -465,15 +487,17 @@ class subgroup extends MY_Site_Controller {
         $vars = array(
             'data' => $data,
             'form_action' => 'update_subgroup',
-            'data2' => $this->identity_model->get_student_identity('','',$this->auth_manager->partner_id(), '', '', $offset, $subgroup_id),
+            'data2' => @$data2,
             'subgroup_id' => $subgroup_id,
             'pagination' => $pagination,
             'total_sess_val' => $total_sess_val,
             'total_coach' => $total_coach,
+            'total_student' => $total_student,
+            'token_student' => $token_student,
             'number_page' => $number_page
         );
         // echo "<pre>";
-        // print_r($vars);
+        // print_r($pagination);
         // exit();
 
 

@@ -22,6 +22,12 @@
                         echo $ds->name;
                     }
                 } ?></a></li>
+                <li>
+                    <form action="<?php echo site_url('student_partner/subgroup/list_student/'.$subgroup_id);?>" method="POST" autocomplete="on" class="search-box">
+                        <div id="src__sign">Search..</div>
+                      <input id="search" name="search_student" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
@@ -122,7 +128,7 @@
                             <span class="font-12">Total Students</span>
                         </div>
                         <div class="content-total text-center padding-t-10">
-                            <span class="font-semi-bold font-26"><?php echo count($data2); ?></span>
+                            <span class="font-semi-bold font-26"><?php echo $total_student; ?></span>
                         </div>
                     </div>
                 </li>
@@ -132,7 +138,7 @@
                             <span class="font-12">Total Tokens</span>
                         </div>
                         <div class="content-total text-center padding-t-10">
-                            <span class="font-semi-bold font-26"><?php $sum=0; foreach ($data2 as $d) { $sum += $d->token_amount; } ?><?php echo $sum; ?></span>
+                            <span class="font-semi-bold font-26"><?php $sum=0; foreach ($token_student as $ts) { $sum += $ts->token_amount; } ?><?php echo $sum; ?></span>
                         </div>
                     </div>
                 </li>
@@ -152,9 +158,9 @@
                         <label class="font-12">Select All</label>
                     </div>
                 </div>
-                <div class="search__box">
+                <!-- <div class="search__box">
                     <input type="text" id="myInput" class="search-b" onkeyup="myFunction()" placeholder="Search for names..">
-                </div>
+                </div> -->
             </div>
             <style type="text/css">
                 div.pager {
@@ -181,7 +187,7 @@
                 }
             </style>
 
-            <table id="large" class="display table-session tablesorter paginated" cellspacing="0" width="100%">
+            <table id="large" class="display table-session tablesorter" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th class="bg-secondary bg-none text-cl-white border-none" style="width:30px;"></th>
@@ -212,7 +218,7 @@
             </table>
         </div>
     </div>
-
+<?php echo $pagination;?>
 </div>
 </form>
 
@@ -270,7 +276,7 @@ $('td', 'table').each(function(i) {
 
 $('table.paginated').each(function() {
     var currentPage = 0;
-    var numPerPage = 10;
+    var numPerPage = 5;
     var $table = $(this);
     $table.bind('repaginate', function() {
         $table.find('tbody tr').hide().slice(currentPage * numPerPage, (currentPage + 1) * numPerPage).show();

@@ -26,6 +26,12 @@
                         echo $ds->name;
                     } 
                 } ?></a></li>
+                <li>
+                    <form action="<?php echo site_url('partner/subgroup/list_coach/'.$subgroup_id);?>" method="POST" autocomplete="on" class="search-box">
+                        <div id="src__sign">Search..</div>
+                      <input id="search" name="search_coach" type="text" placeholder="Type here.."><input id="search_submit" value="Rechercher" type="submit">
+                    </form>
+                </li>
             </ul>
         </div>
     </div>
@@ -155,7 +161,7 @@
                         <label class="font-12">Select All</label>
                     </div>
                 </div>
-                <input type="text" id="myInput" class="font-12" onkeyup="myFunction()" placeholder="Search for names..">
+                <!-- <input type="text" id="myInput" class="font-12" onkeyup="myFunction()" placeholder="Search for names.."> -->
             </div>
             <style type="text/css">
                 div.pager {
@@ -182,7 +188,7 @@
                 }
             </style>
 
-            <table id="large" class="display table-session tablesorter paginated" cellspacing="0" width="100%">
+            <table id="large" class="display table-session tablesorter" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th class="bg-secondary bg-none text-cl-white border-none" style="width:30px;"></th>
@@ -213,7 +219,7 @@
             </table>
         </div>
     </div>
-    
+<?php echo $pagination;?>  
 </div>
 </form>
 
