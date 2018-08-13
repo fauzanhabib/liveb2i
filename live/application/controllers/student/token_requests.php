@@ -253,7 +253,7 @@ class token_requests extends MY_Site_Controller {
             if($idsp){
                 $partner_notification = array(
                     'user_id' => $idsp,
-                    'description' => $userfullname.' cancel request for additional token.',
+                    'description' => $userfullname.' has cancelled the token request.',
                     'status' => 2,
                     'dcrea' => time(),
                     'dupd' => time(),
