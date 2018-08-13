@@ -237,9 +237,11 @@ class Live extends MY_Site_Controller {
             @$sessionIde  = $sessioninge[0]->session;
             @$tokene      = $sessioninge[0]->token;
 
+            $gentoken   = $opentok->generateToken($sessionId);
+
             $livesession = array(
                 'sessionId'  => @$sessionId,
-                'token'      => @$token,
+                'token'      => @$gentoken,
                 'apiKey'     => @$apiKey,
                 'sentence'   => $sentence,
                 'different'  => $different,
@@ -310,7 +312,7 @@ class Live extends MY_Site_Controller {
 
                     $livesession = array(
                     'sessionId'  => @$sessionIdn,
-                    'token'      => @$tokenn,
+                    'token'      => @$gentoken,
                     'apiKey'     => @$apiKey,
                     'sentence'   => $sentence,
                     'different'  => $different,
@@ -343,9 +345,11 @@ class Live extends MY_Site_Controller {
                       $apiKey       = $this->config->item('opentok_key2');
                     }
 
+                    $gentoken   = $opentok->generateToken($sessionId);
+
                     $livesession = array(
                     'sessionId'  => @$sessionIde,
-                    'token'      => @$tokene,
+                    'token'      => @$gentoken,
                     'apiKey'     => @$apiKey,
                     'sentence'   => $sentence,
                     'different'  => $different,
@@ -477,9 +481,11 @@ class Live extends MY_Site_Controller {
             }
             // ===============
 
+            $gentoken   = $opentok->generateToken($sessionId);
+
             $livesession = array(
               'sessionId'  => @$sessionIde,
-              'token'      => @$tokene,
+              'token'      => @$gentoken,
               'apiKey'     => @$apiKey,
               'sentence'   => $sentence,
               'different'  => $different,
@@ -653,11 +659,11 @@ class Live extends MY_Site_Controller {
                     }
                     // ===============
 
-
+                    $gentoken   = $opentok->generateToken($sessionId);
 
                     $livesession = array(
                     'sessionId'  => @$sessionIdn,
-                    'token'      => @$tokenn,
+                    'token'      => @$gentoken,
                     'apiKey'     => @$apiKey,
                     'sentence'   => $sentence,
                     'different'  => $different,
@@ -759,11 +765,11 @@ class Live extends MY_Site_Controller {
                     }
                     // ===============
 
-
+                    $gentoken   = $opentok->generateToken($sessionId);
 
                     $livesession = array(
                     'sessionId'  => @$sessionIde,
-                    'token'      => @$tokene,
+                    'token'      => @$gentoken,
                     'apiKey'     => @$apiKey,
                     'sentence'   => $sentence,
                     'different'  => $different,
