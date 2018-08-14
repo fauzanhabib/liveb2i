@@ -109,14 +109,14 @@
                                 ?>
                             </td>
                             <td>
-                                <div class="rounded-box bg-tertiary">
-                                    <span><a href="<?php echo site_url('student/session/coach_detail/' . $d->coach_id); ?>" class="text-cl-white"><?php echo $d->coach_fullname ?></span>
+                                <div class="">
+                                    <span><a href="<?php echo site_url('student/session/coach_detail/' . $d->coach_id); ?>" class="text-cl-tertiary"><?php echo $d->coach_fullname ?></span>
                                     </div>
                                 </td>
                                 <td><?php echo date('M j Y', strtotime($d->date)); ?></td>
                                 <td>
 
-                                    <div class="rounded-box bg-green">
+                                    <div class="">
                                         <?php
                                         if($d->end_time == '23:59:59'){
                                           $mins = 4;
@@ -130,7 +130,7 @@
                                         $time = $time - ($mins * 60);
                                         $new_endtime = date("H:i", $time);
                                         ?>
-                                        <span class="text-cl-white"><?php echo(date('H:i',strtotime($d->start_time)));?> - <?php echo($new_endtime);?> (UTC <?php echo $new_gmt;?>)</span>
+                                        <span class=""><?php echo(date('H:i',strtotime($d->start_time)));?> - <?php echo($new_endtime);?> (UTC <?php echo $new_gmt;?>)</span>
                                     </div>
 
                                 </td>

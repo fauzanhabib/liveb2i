@@ -98,8 +98,8 @@
                             </span>
                         </td>
                         <td>
-                            <div class="rounded-box bg-green">
-                                <span class="text-cl-white">
+                            <div class="">
+                                <span class="">
                                 <?php
                                     $defaultstart  = strtotime($d->start_time);
                                     echo date("H:i", $defaultstart); 
@@ -114,9 +114,9 @@
                             </div>
                         </td>
                         <td class="padding-10-15 md-none">
-                            <div class="rounded-box bg-tertiary">
+                            <div class="">
                                 <span>
-                            <a href="<?php echo site_url('coach/upcoming_session/student_detail/' . $d->student_id); ?>"class="text-cl-white"> 
+                            <a href="<?php echo site_url('coach/upcoming_session/student_detail/' . $d->student_id); ?>"class="text-cl-tertiary"> 
                                 <?php echo @$d->student_name; ?>
                             </a>
                                 </span>

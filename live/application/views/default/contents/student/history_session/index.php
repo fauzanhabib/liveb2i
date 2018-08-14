@@ -198,8 +198,8 @@
                                     ?>
                                 </td>
                                 <td>
-                                    <div class="rounded-box bg-tertiary">
-                                        <span class="text-cl-white">
+                                    <div class="">
+                                        <span class="">
                                             <?php echo($history->coach_name); ?></a>
                                         </span>
                                     </div>
@@ -234,8 +234,8 @@
 
                                 <td><?php echo date('M j Y', strtotime($history->date)); ?></td>
                                 <td>
-                                    <div class="rounded-box bg-green">
-                                        <span class="text-cl-white">
+                                    <div class="">
+                                        <span class="">
                                             <?php
                                                 $defaultstart  = strtotime($history->start_time);
                                                 $hourattstart  = date("H:i", $defaultstart);

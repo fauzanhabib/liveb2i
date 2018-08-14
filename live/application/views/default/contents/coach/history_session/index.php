@@ -201,14 +201,14 @@
                         ?>
                     </td>
                     <td>
-                        <div class="rounded-box bg-tertiary">
-                            <span class="text-cl-white">                                   
+                        <div class="">
+                            <span class="">                                   
                         <?php if(($this->auth_manager->role()=='ADM') ||(($this->auth_manager->role()=='RAD'))){?>
                             <!-- <a href="<?php echo site_url('admin/manage_partner/student_detail/3/'.$history->student_id)?>"> -->
                                 <?php echo($history->student_name); ?>
                             <!-- </a> -->
                         <?php }elseif($this->auth_manager->role()=='SPR'){ ?>
-                            <a href="<?php echo site_url('student_partner/member_list/student_detail/'.$history->student_id)?>"><?php echo($history->student_name); ?></a>
+                            <a class="text-cl-tertiary" href="<?php echo site_url('student_partner/member_list/student_detail/'.$history->student_id)?>"><?php echo($history->student_name); ?></a>
                         <?php } else{
                             echo($history->student_name);
                         } ?>
@@ -217,8 +217,8 @@
                     </td>
                     <td><?php echo date('M j Y', strtotime($history->date)); ?></td>
                     <td class="padding0">
-                        <div class="rounded-box bg-green">
-                            <span class="text-cl-white">
+                        <div class="">
+                            <span class="">
                                 <?php
                                     $defaultstart  = strtotime($history->start_time);
                                     $hourattstart  = date("H:i", $defaultstart);
