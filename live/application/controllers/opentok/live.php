@@ -237,7 +237,7 @@ class Live extends MY_Site_Controller {
             @$sessionIde  = $sessioninge[0]->session;
             @$tokene      = $sessioninge[0]->token;
 
-            $gentoken   = $opentok->generateToken($sessionId);
+            // $gentoken   = $opentok->generateToken($sessionId);
 
             $livesession = array(
                 'sessionId'  => @$sessionId,
@@ -291,8 +291,8 @@ class Live extends MY_Site_Controller {
                        'token' => $gentoken
                     );
 
-                    $this->db->where('id', $appoint_id);
-                    $this->db->update('appointments', $checktoken);
+                    // $this->db->where('id', $appoint_id);
+                    // $this->db->update('appointments', $checktoken);
 
                     $sessioning = $this->db->select('*')
                                 ->from('appointments')
@@ -481,7 +481,7 @@ class Live extends MY_Site_Controller {
             }
             // ===============
 
-            $gentoken   = $opentok->generateToken($sessionId);
+            // $gentoken   = $opentok->generateToken($sessionId);
 
             $livesession = array(
               'sessionId'  => @$sessionIde,
@@ -581,8 +581,8 @@ class Live extends MY_Site_Controller {
                        'token' => $gentoken
                     );
                     // echo "<pre>";print_r($gentoken);exit();
-                    $this->db->where('id', $appoint_id);
-                    $this->db->update('appointments', $checktoken);
+                    // $this->db->where('id', $appoint_id);
+                    // $this->db->update('appointments', $checktoken);
 
                     $sessioning = $this->db->select('*')
                                 ->from('appointments')
