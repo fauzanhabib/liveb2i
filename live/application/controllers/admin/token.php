@@ -164,6 +164,24 @@ class token extends MY_Site_Controller {
             $id_superadmin = $superadmin[0]->id;
             $email_superadmin = $superadmin[0]->email;
 
+            if($id_superadmin){
+                $partner_notification = array(
+                    'user_id' => $id_superadmin,
+                    'description' => $fullname.' has cancelled the token request.',
+                    'status' => 2,
+                    'dcrea' => time(),
+                    'dupd' => time(),
+                );
+                // coach's data for reminder messaging
+                // IMPORTANT : array index in content must be in mutual with table field in database
+                $data_partner = array(
+                    'table' => 'user_notifications',
+                    'content' => $partner_notification,
+                );
+            }
+
+            $this->user_notification_model->insert($partner_notification);
+
             // send email
             $this->send_email->send_admin_request_token($get_token->email,$get_token->token_amount,'cancelled');
             $this->send_email->add_token_region($email_superadmin,$fullname,$get_token->token_amount,'cancelled');

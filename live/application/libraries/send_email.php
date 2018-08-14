@@ -5581,7 +5581,7 @@ var $tube = 'com.live.email';
         <tbody>
             <tr style="background-color:#2b89b9;">
                                                                 <td style="color: #fff;font-family: Helvetica, arial, sans-serif; font-size: 30px; padding:15px; text-align:center; line-height: 35px; font-weight:600;" st-title="fulltext-heading">
-                                                                    Region Created
+                                                                    Affiliate Created
                                                                 </td>
                                                             </tr>
                                                             <!-- spacing -->
