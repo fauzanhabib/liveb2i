@@ -17,7 +17,7 @@ if(@$user_extract2){
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 <!-- <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script> -->
-<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.2.0.js"></script>
+<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.3.1.js"></script>
 <!-- <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.3.1.js"></script> -->
 <script type="text/javascript">
   window.onbeforeunload = function() {
@@ -611,7 +611,7 @@ if(@$user_extract2){
     var channel_name = "<?php echo $sessionId; ?>";
     // console.log("Ch Name = " + channel_name);
     // console.log("Init AgoraRTC client with vendor key: " + app_id);
-    client = AgoraRTC.createClient({mode: 'h264_interop'});
+    client = AgoraRTC.createClient({mode: "rtc", codec: "h264"});
     client.init(app_id, function () {
       // console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
@@ -632,7 +632,7 @@ if(@$user_extract2){
           // localStream = AgoraRTC.createStream({streamID: uid, audio:false, video:false, screen:true, extensionId:"bgjblkhpjchbmfeipbclmfnpohcpjcpn"});
           if (document.getElementById("video").checked) {
             localStream.setVideoProfile('480P_1');
-            console.log('aaaaaaaaaaaaaaa');
+            // console.log('aaaaaaaaaaaaaaa');
           }
           global_uid = uid;
 
