@@ -113,44 +113,41 @@
                     <span>Study Data Average</span>
                 </div>
                 <div class="text-center">
-                        <ul class="coaching-info-big m-tb-0 padding-l-0 padding-t-25">
-                            <li class="coaching-info-box-big margin-auto clearfix">
-                                <div class="coaching-box-left-big">
-                                    <span>Last PT</span>
-                                </div>
-                                <div class="coaching-box-right-big">
-                                    <div class="last-pt"></div>
-                                </div>
-                            </li>
-                            <li class="coaching-info-box-big margin-auto clearfix">
-                                <div class="coaching-box-left-big">
-                                    <span>Hours/Week</span>
-                                </div>
-                                <div class="coaching-box-right-big">
-                                    <div class="hw"></div>
-                                </div>
-                            </li>
-                        </ul>
-
-                        <ul class="coaching-info-big m-tb-0 padding-l-0">
-                            <li class="coaching-info-box-big margin-auto clearfix">
-                                <div class="coaching-box-left-big">
-                                    <span>WSS</span>
-                                </div>
-                                <div class="coaching-box-right-big">
-                                    <div class="sl"></div>
-                                </div>
-                            </li>
-                            <li class="coaching-info-box-big margin-auto clearfix">
-                                <div class="coaching-box-left-big" style="padding: 5px 0 !important;">
-                                    <span>Initial Placement Level</span>
-                                </div>
-                                <div class="coaching-box-right-big">
-                                    <div class="pt"></div>
-                                </div>
-                            </li>
-                        </ul>
+                    <div class="coaching-info-big m-tb-0 padding-l-0 padding-t-25">
+                        <div class="coaching-info-box-big margin-auto ">
+                            <div class="coaching-box-left-big">
+                                <span>Last PT</span>
+                            </div>
+                            <div class="coaching-box-right-big">
+                                <div class="last-pt"></div>
+                            </div>
+                        </div>
+                        <div class="coaching-info-box-big margin-auto ">
+                            <div class="coaching-box-left-big">
+                                <span>Hours/Week</span>
+                            </div>
+                            <div class="coaching-box-right-big">
+                                <div class="hw"></div>
+                            </div>
+                        </div>
+                        <div class="coaching-info-box-big margin-auto ">
+                            <div class="coaching-box-left-big">
+                                <span>WSS</span>
+                            </div>
+                            <div class="coaching-box-right-big">
+                                <div class="sl"></div>
+                            </div>
+                        </div>
+                        <div class="coaching-info-box-big margin-auto ">
+                            <div class="coaching-box-left-big">
+                                <span>Initial Placement Level</span>
+                            </div>
+                            <div class="coaching-box-right-big">
+                                <div class="pt"></div>
+                            </div>
+                        </div>
                     </div>
+                </div>
 
                 <div class="box-capsule m-t-20 margin-auto width190 font-14">
                     <span>Previous Notes</span>
@@ -240,28 +237,28 @@
                         </a>
                     </div>
 
-                    <div id="tabs-content1" class="tabs-c clearfix square-tabs" style="display: block;">
+                    <div id="tabs-content1" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fe1['pcfe1']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fe1['fe1']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fe1['pcfe1']; ?>%</font><br>
+                                <?php echo $fe1['fe1']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fe1['pcfe2']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fe1['fe2']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fe1['pcfe2']; ?>%</font><br>
+                                <?php echo $fe1['fe2']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fe1['pcfe3']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fe1['fe3']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fe1['pcfe3']; ?>%</font><br>
+                                <?php echo $fe1['fe3']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fe1['pcfe4']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fe1['fe4']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fe1['pcfe4']; ?>%</font><br>
+                                <?php echo $fe1['fe4']; ?></h5>
                         </div>
                     </div>
                     <div id="tabs-content2" class="tabs-c clearfix" style="display: none;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $nde1['pcnde1']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $nde1['nde1']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $nde1['pcnde1']; ?>%</font><br>
+                                <?php echo $nde1['nde1']; ?></h5>
                         </div>
                     </div>
                 </div>
@@ -286,26 +283,26 @@
 
                     <div id="content-b1-lia" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $nde2['pcnde2']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $nde2['nde2']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $nde2['pcnde2']; ?>%</font><br>
+                                <?php echo $nde2['nde2']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $nde2['pcnde3']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $nde2['nde3']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $nde2['pcnde3']; ?>%</font><br>
+                                <?php echo $nde2['nde3']; ?></h5>
                         </div>
                     </div>
                     <div id="content-b1-fe" class="tabs-c clearfix" style="display: none;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $tls2['pctls1']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $tls2['tls1']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $tls2['pctls1']; ?>%</font><br>
+                                <?php echo $tls2['tls1']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $tls2['pctls2']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $tls2['tls2']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $tls2['pctls2']; ?>%</font><br>
+                                <?php echo $tls2['tls2']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $tls2['pctls3']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $tls2['tls3']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $tls2['pctls3']; ?>%</font><br>
+                                <?php echo $tls2['tls3']; ?></h5>
                         </div>
                     </div>
                 </div>
@@ -338,55 +335,55 @@
 
                     <div id="tabs-nde3" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $nde3['pcnde4']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $nde3['nde4']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $nde3['pcnde4']; ?>%</font><br>
+                                <?php echo $nde3['nde4']; ?></h5>
                         </div>
                     </div>
                     <div id="tabs-dbe3" class="tabs-c clearfix" style="display: none;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $dbe3['pcdbe1']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $dbe3['dbe1']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $dbe3['pcdbe1']; ?>%</font><br>
+                                <?php echo $dbe3['dbe1']; ?></h5>
 
                         </div>
                     </div>
                     <div id="tabs-tls3" class="tabs-c clearfix" style="display: none;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $tls3['pctls4']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $tls3['tls4']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $tls3['pctls4']; ?>%</font><br>
+                                <?php echo $tls3['tls4']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $tls3['pctls5']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $tls3['tls5']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $tls3['pctls5']; ?>%</font><br>
+                                <?php echo $tls3['tls5']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $tls3['pctls6']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $tls3['tls6']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $tls3['pctls6']; ?>%</font><br>
+                                <?php echo $tls3['tls6']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $tls3['pctls7']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $tls3['tls7']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $tls3['pctls7']; ?>%</font><br>
+                                <?php echo $tls3['tls7']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $tls3['pctls8']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $tls3['tls8']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $tls3['pctls8']; ?>%</font><br>
+                                <?php echo $tls3['tls8']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $tls3['pctls9']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $tls3['tls9']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $tls3['pctls9']; ?>%</font><br>
+                                <?php echo $tls3['tls9']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $tls3['pctls10']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $tls3['tls10']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $tls3['pctls10']; ?>%</font><br>
+                                <?php echo $tls3['tls10']; ?></h5>
                         </div>
                     </div>
                     <div id="tabs-ebn3" class="tabs-c clearfix" style="display: none;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $ebn3['pcebn1']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $ebn3['ebn1']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $ebn3['pcebn1']; ?>%</font><br>
+                                <?php echo $ebn3['ebn1']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $ebn3['pcebn2']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $ebn3['ebn2']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $ebn3['pcebn2']; ?>%</font><br>
+                                <?php echo $ebn3['ebn2']; ?></h5>
                         </div>
                     </div>
                 </div>
@@ -419,42 +416,42 @@
 
                     <div id="content-nde4" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $nde4['pcnde5']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $nde4['nde5']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $nde4['pcnde5']; ?>%</font><br>
+                                <?php echo $nde4['nde5']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $nde4['pcnde6']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $nde4['nde6']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $nde4['pcnde6']; ?>%</font><br>
+                                <?php echo $nde4['nde6']; ?></h5>
                         </div>
                     </div>
                     <div id="content-dbe4" class="tabs-c clearfix" style="display: none;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $dbe4['pcdbe2']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $dbe4['dbe2']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $dbe4['pcdbe2']; ?>%</font><br>
+                                <?php echo $dbe4['dbe2']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $dbe4['pcdbe3']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $dbe4['dbe3']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $dbe4['pcdbe3']; ?>%</font><br>
+                                <?php echo $dbe4['dbe3']; ?></h5>
                         </div>
                     </div>
                     <div id="content-fib4" class="tabs-c clearfix" style="display: none;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fib4['pcfib1']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fib4['fib1']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fib4['pcfib1']; ?>%</font><br>
+                                <?php echo $fib4['fib1']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fib4['pcfib2']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fib4['fib2']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fib4['pcfib2']; ?>%</font><br>
+                                <?php echo $fib4['fib2']; ?></h5>
                         </div>
                     </div>
                     <div id="content-ebn4" class="tabs-c clearfix" style="display: none;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $ebn4['pcebn3']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $ebn4['ebn3']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $ebn4['pcebn3']; ?>%</font><br>
+                                <?php echo $ebn4['ebn3']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $ebn4['pcebn4']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $ebn4['ebn4']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $ebn4['pcebn4']; ?>%</font><br>
+                                <?php echo $ebn4['ebn4']; ?></h5>
                         </div>
                     </div>
                 </div>
@@ -493,84 +490,84 @@
                         </a>
                     </div>
 
-                    <div id="tabs-nde5" class="tabs-c clearfix square-tabs" style="display: block;">
+                    <div id="tabs-nde5" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $nde5['pcnde7']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $nde5['nde7']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $nde5['pcnde7']; ?>%</font><br>
+                                <?php echo $nde5['nde7']; ?></h5>
                         </div>
                     </div>
                     <div id="tabs-dbe5" class="tabs-c clearfix" style="display: none;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $dbe5['pcdbe4']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $dbe5['dbe4']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $dbe5['pcdbe4']; ?>%</font><br>
+                                <?php echo $dbe5['dbe4']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $dbe5['pcdbe5']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $dbe5['dbe5']; ?></h5>
-                        </div>
-                    </div>
-                    <div id="tabs-fib5" class="tabs-c clearfix square-tabs" style="display: block;">
-                        <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fib5['pcfib3']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fib5['fib3']; ?></h5>
-                        </div>
-                        <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fib5['pcfib4']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fib5['fib4']; ?></h5>
-                        </div>
-                        <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fib5['pcfib5']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fib5['fib5']; ?></h5>
-                        </div>
-                        <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fib5['pcfib6']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fib5['fib6']; ?></h5>
-                        </div>
-                        <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fib5['pcfib7']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fib5['fib7']; ?></h5>
-                        </div>
-                        <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fib5['pcfib8']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fib5['fib8']; ?></h5>
-                        </div>
-                        <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fib5['pcfib9']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fib5['fib9']; ?></h5>
-                        </div>
-                        <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $fib5['pcfib10']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $fib5['fib10']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $dbe5['pcdbe5']; ?>%</font><br>
+                                <?php echo $dbe5['dbe5']; ?></h5>
                         </div>
                     </div>
-                    <div id="tabs-ebn5" class="tabs-c clearfix square-tabs" style="display: block;">
+                    <div id="tabs-fib5" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $ebn5['pcebn5']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $ebn5['ebn5']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fib5['pcfib3']; ?>%</font><br>
+                                <?php echo $fib5['fib3']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $ebn5['pcebn6']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $ebn5['ebn6']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fib5['pcfib4']; ?>%</font><br>
+                                <?php echo $fib5['fib4']; ?></h5>
+                        </div>
+                        <div class="square-tabs w3-animate-opacity bg-forthblue">
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fib5['pcfib5']; ?>%</font><br>
+                                <?php echo $fib5['fib5']; ?></h5>
+                        </div>
+                        <div class="square-tabs w3-animate-opacity bg-forthblue">
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fib5['pcfib6']; ?>%</font><br>
+                                <?php echo $fib5['fib6']; ?></h5>
+                        </div>
+                        <div class="square-tabs w3-animate-opacity bg-forthblue">
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fib5['pcfib7']; ?>%</font><br>
+                                <?php echo $fib5['fib7']; ?></h5>
+                        </div>
+                        <div class="square-tabs w3-animate-opacity bg-forthblue">
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fib5['pcfib8']; ?>%</font><br>
+                                <?php echo $fib5['fib8']; ?></h5>
+                        </div>
+                        <div class="square-tabs w3-animate-opacity bg-forthblue">
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fib5['pcfib9']; ?>%</font><br>
+                                <?php echo $fib5['fib9']; ?></h5>
+                        </div>
+                        <div class="square-tabs w3-animate-opacity bg-forthblue">
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $fib5['pcfib10']; ?>%</font><br>
+                                <?php echo $fib5['fib10']; ?></h5>
                         </div>
                     </div>
-                    <div id="tabs-dlg5" class="tabs-c clearfix square-tabs" style="display: block;">
+                    <div id="tabs-ebn5" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $dlg5['pcdlg1']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $dlg5['dlg1']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $ebn5['pcebn5']; ?>%</font><br>
+                                <?php echo $ebn5['ebn5']; ?></h5>
+                        </div>
+                        <div class="square-tabs w3-animate-opacity bg-forthblue">
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $ebn5['pcebn6']; ?>%</font><br>
+                                <?php echo $ebn5['ebn6']; ?></h5>
                         </div>
                     </div>
-                    <div id="tabs-als5" class="tabs-c clearfix square-tabs" style="display: block;">
+                    <div id="tabs-dlg5" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $als5['pcals1']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $als5['als1']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $dlg5['pcdlg1']; ?>%</font><br>
+                                <?php echo $dlg5['dlg1']; ?></h5>
+                        </div>
+                    </div>
+                    <div id="tabs-als5" class="tabs-c clearfix" style="display: block;">
+                        <div class="square-tabs w3-animate-opacity bg-forthblue">
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $als5['pcals1']; ?>%</font><br>
+                                <?php echo $als5['als1']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $als5['pcals2']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $als5['als2']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $als5['pcals2']; ?>%</font><br>
+                                <?php echo $als5['als2']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                            <h5 class="m-b-5 font-20 text-cl-white"><?php echo $als5['pcals3']; ?>%</h5>
-                            <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $als5['als3']; ?></h5>
+                            <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $als5['pcals3']; ?>%</font><br>
+                                <?php echo $als5['als3']; ?></h5>
                         </div>
                     </div>
                 </div>
@@ -605,58 +602,58 @@
                         </a>
                     </div>
 
-                    <div id="content-nde6" class="tabs-c clearfix square-tabs" style="display: block;">
+                    <div id="content-nde6" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $nde6['pcnde8']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $als5['als3']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $nde6['pcnde8']; ?>%</font><br>
+                                <?php echo $nde6['nde8']; ?></h5>
                         </div>
                     </div>
-                    <div id="content-dbe6" class="tabs-c clearfix square-tabs" style="display: block;">
+                    <div id="content-dbe6" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $dbe6['pcdbe6']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $dbe6['dbe6']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $dbe6['pcdbe6']; ?>%</font><br>
+                                <?php echo $dbe6['dbe6']; ?></h5>
                         </div>
                     </div>
-                    <div id="content-dlg6" class="tabs-c clearfix square-tabs" style="display: block;">
+                    <div id="content-dlg6" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $dlg6['pcdlg2']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $dlg6['dlg2']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $dlg6['pcdlg2']; ?>%</font><br>
+                                <?php echo $dlg6['dlg2']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $dlg6['pcdlg3']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $dlg6['dlg3']; ?></h5>
-                        </div>
-                    </div>
-                    <div id="content-ebn6" class="tabs-c clearfix square-tabs" style="display: block;">
-                        <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $ebn6['pcebn7']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $ebn6['ebn7']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $dlg6['pcdlg3']; ?>%</font><br>
+                                <?php echo $dlg6['dlg3']; ?></h5>
                         </div>
                     </div>
-                    <div id="content-als6" class="tabs-c clearfix square-tabs" style="display: block;">
+                    <div id="content-ebn6" class="tabs-c clearfix" style="display: block;">
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $als6['pcals4']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $als6['als4']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $ebn6['pcebn7']; ?>%</font><br>
+                                <?php echo $ebn6['ebn7']; ?></h5>
+                        </div>
+                    </div>
+                    <div id="content-als6" class="tabs-c clearfix" style="display: block;">
+                        <div class="square-tabs w3-animate-opacity bg-forthblue">
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $als6['pcals4']; ?>%</font><br>
+                                <?php echo $als6['als4']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $als6['pcals5']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $als6['als5']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $als6['pcals5']; ?>%</font><br>
+                                <?php echo $als6['als5']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $als6['pcals6']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $als6['als6']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $als6['pcals6']; ?>%</font><br>
+                                <?php echo $als6['als6']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $als6['pcals7']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $als6['als7']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $als6['pcals7']; ?>%</font><br>
+                                <?php echo $als6['als7']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $als6['pcals8']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $als6['als8']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $als6['pcals8']; ?>%</font><br>
+                                <?php echo $als6['als8']; ?></h5>
                         </div>
                         <div class="square-tabs w3-animate-opacity bg-forthblue">
-                             <h5 class="m-b-5 font-20 text-cl-white"><?php echo $als6['pcals9']; ?>%</h5>
-                             <h5 class="margin0 padding-b-5 font-12 text-cl-white"><?php echo $als6['als9']; ?></h5>
+                             <h5 class="m-b-5 text-cl-white"><font size="4.5"><?php echo $als6['pcals9']; ?>%</font><br>
+                                <?php echo $als6['als9']; ?></h5>
                         </div>
                     </div>
                 </div>
