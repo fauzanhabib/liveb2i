@@ -127,7 +127,7 @@ class Live extends MY_Site_Controller {
         $default1  = strtotime($appoint);
         $usertime1 = $default1+(60*$minutes);
 
-        if($sess[0]->key == '1'){
+        if(@$sess[0]->key == '1'){
           $opentok    = new OpenTok($this->config->item('opentok_key'), $this->config->item('opentok_secret'));
         }else{
           $opentok    = new OpenTok($this->config->item('opentok_key2'), $this->config->item('opentok_secret2'));

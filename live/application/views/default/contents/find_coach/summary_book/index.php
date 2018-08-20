@@ -103,6 +103,15 @@
                     <input type="hidden" id="d_type" value="<?php echo $user_device; ?>"/>
                     <input type="hidden" id="d_browser" value=""/>
                 </tr>
+                <tr id="ch_browser">
+                    <td>Choose Browser:</td>
+                    <td><select class="choose_browser" id="sel_browser">
+                      <option value="1">Choose Your Browser</option>
+                      <option value="Chrome">Chrome</option>
+                      <option value="Firefox">Firefox</option>
+                      <option value="Safari">Safari</option>
+                    </select></td>
+                </tr>
                 <tr>
                     <td style="display: table-cell;  width: auto !important;">
                         <a id="submit_summary" class="pure-button btn-small btn-secondary confirm-booking" style="cursor: pointer;">
@@ -166,6 +175,42 @@
       // console.log(detect_browser)
     }
 
+    if(detect_browser == null){
+      detect_browser = '';
+      // console.log(detect_browser)
+    }
+
+    // detect_browser = '';
+    // console.log(navigator.sayswho);
+
+    if(!detect_browser){
+      $('#ch_browser').show();
+
+      $('#sel_browser').change(function(){
+        detect_browser = $(this).val();
+        textContent = '<?php
+            echo $user_device;
+            if ($user_device == "Mobile"){
+              echo " (".@$user_d_type.")";
+            }
+          ?>';
+
+        // $('#textBrowser').html(new_content);
+        $("#d_browser").val(detect_browser);
+
+        if(detect_browser == '1'){
+          detect_browser = '';
+        }
+
+        new_content = textContent+' / '+detect_browser
+
+        document.getElementById("textBrowser").innerHTML = new_content;
+      })
+    }else{
+      document.getElementById("textBrowser").innerHTML += ' / '+detect_browser;
+      $("#d_browser").val(detect_browser);
+    }
+
 
     $(document).on('click touchstart', 'a#submit_summary', function () {
         browser_type = $("#d_browser").val();
@@ -180,6 +225,11 @@
         }
         if(!browser_type){
           browser_type = "none"
+        }
+
+        if(browser_type == '1' || browser_type == 'none'){
+          alert("Please choose your browser");
+          return false;
         }
 
         href = "<?php echo site_url('student/find_coaches/book_single_coach/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time.'/' . $token) ?>";
