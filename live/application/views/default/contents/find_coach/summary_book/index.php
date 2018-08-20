@@ -103,7 +103,7 @@
                     <input type="hidden" id="d_type" value="<?php echo $user_device; ?>"/>
                     <input type="hidden" id="d_browser" value=""/>
                 </tr>
-                <tr id="ch_browser">
+                <tr id="ch_browser" style="display:none;">
                     <td>Choose Browser:</td>
                     <td><select class="choose_browser" id="sel_browser">
                       <option value="1">Choose Your Browser</option>
@@ -182,8 +182,9 @@
 
     // detect_browser = '';
     // console.log(navigator.sayswho);
-
+    console.log(detect_browser);
     if(!detect_browser){
+      // console.log('detect_browser');
       $('#ch_browser').show();
 
       $('#sel_browser').change(function(){
@@ -245,6 +246,6 @@
         location.href = "<?php echo $search_by == 'single_date' ? site_url('student/find_coaches/book_by_single_date/'.date('Y-m-d', @$date)) : site_url('student/find_coaches/search/' . $search_by); ?>";
     });
 
-    document.getElementById("textBrowser").innerHTML += ' / '+detect_browser;
-    $("#d_browser").val(detect_browser);
+    // document.getElementById("textBrowser").innerHTML += ' / '+detect_browser;
+    // $("#d_browser").val(detect_browser);
 </script>
