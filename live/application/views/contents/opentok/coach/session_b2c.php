@@ -1141,7 +1141,7 @@
                           </div>
                       </div>
                   </div>
-                  <h4><font><?php echo (@$gsp->data->total_points_to_pass - @$gsp->data->total_points_until_today);?></font> points left</h4>
+                  <h4><font><?php echo (@$gsp->data->total_points_to_pass - @$gsp->data->total_points_until_today);?></font> Points to Goal</h4>
               </div>
               <!-- end daily progress donut graph -->
           </div>
