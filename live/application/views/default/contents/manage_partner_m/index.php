@@ -31,8 +31,8 @@
     <form action="<?php echo site_url('admin_m/manage_partner/delete_partner');?>" method="POST">
     <div class="">
         <div class="delete-add-btn right">
-            <div class="btn-noborder btn-normal bg-white-fff left"><a href="<?php echo site_url('admin_m/manage_partner/add_partner');?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Affiliates</em></a></div>
-            <button class="btn-noborder btn-normal bg-white-fff" type="submit" name="_submit" onclick="return confirm('Are you sure you want to delete?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Delete Affiliates</em></a></button>
+            <!-- <div class="btn-noborder btn-normal bg-white-fff left"><a href="<?php echo site_url('admin_m/manage_partner/add_partner');?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Affiliates</em></a></div>
+            <button class="btn-noborder btn-normal bg-white-fff" type="submit" name="_submit" onclick="return confirm('Are you sure you want to delete?')"><a><img src="<?php echo base_url();?>assets/img/iconmonstr-x-mark-7-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Delete Affiliates</em></a></button> -->
         </div>
     </div>
 
@@ -43,9 +43,9 @@
     <div class="content padding-t-0">
         <div class="box bg-white">
             <div class="padding-l-70 padding-t-10">
-                <div class="checkbox-selectAll padding-b-20 padding-t-5">
+                <!-- <div class="checkbox-selectAll padding-b-20 padding-t-5">
                     <input type="checkbox" id="checkbox-1-1" name="Region" value="Region-1" class="regular-checkbox checkAll" /><label class="m-l-min35" for="checkbox-1-1"></label><em>&nbsp;&nbsp;Select All</em>
-                </div>
+                </div> -->
                 <div class="box-lists pure-g">
 
                 <?php
@@ -54,7 +54,8 @@
                 ?>
 
                     <div class="box-info-list-checkbox grids list-people pure-u-1 pure-u-sm-12-24 pure-u-md-12-24 pure-u-lg-8-24 padding-b-20">
-                        <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $p->id;?>" class="regular-checkbox" /><label class="left m-l-min35" for="checkbox-1-<?php echo $no;?>"></label>
+                        <!-- <input type="checkbox" id="checkbox-1-<?php echo $no;?>" name="check_list[]" value="<?php echo $p->id;?>" class="regular-checkbox" /> -->
+                        <label class="left m-l-min35" for="checkbox-1-<?php echo $no;?>"></label>
                         <div class="box-info-list">
                             <div class="list-profile-pic left">
                                 <a href="<?php echo site_url('admin_m/manage_partner/detail/'.$p->id);?>" class="list-profile-pic-pic">

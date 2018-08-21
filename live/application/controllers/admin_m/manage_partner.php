@@ -1221,7 +1221,7 @@ $id = $pull_m_id[0]->id;
             'pagination' => @$pagination,
             'status' => $status,
             'type' => 'student',
-            'status_set_setting' => $status_set_setting[0]->status_set_setting,
+            'status_set_setting' => @$status_set_setting[0]->status_set_setting,
             'back' => site_url('admin_m/manage_partner_m/detail/'.$partner_id),
             'number_page' => $number_page
 

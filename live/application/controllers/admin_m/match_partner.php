@@ -78,7 +78,7 @@ $id = $pull_m_id[0]->id;
        // print_r($vars);
        // exit;
 
-        $this->template->content->view('default/contents/match_partner/index', $vars);
+        $this->template->content->view('default/contents/match_partner_m/index', $vars);
 
         //publish template
         $this->template->publish();
@@ -124,7 +124,7 @@ $id = $pull_m_id[0]->id;
             'data_student_group' => $data_student_group,
             'data_coach_group' => $data_coach_group,
         );
-        $this->template->content->view('default/contents/match_partner/form', $vars);
+        $this->template->content->view('default/contents/match_partner_m/form', $vars);
 
         //publish template
         $this->template->publish();
@@ -289,7 +289,7 @@ $id = $pull_m_id[0]->id;
 
 //        echo('<pre>');
 //        print_r($vars); exit;
-        $this->template->content->view('default/contents/match_partner/form', $vars);
+        $this->template->content->view('default/contents/match_partner_m/form', $vars);
 
         //publish template
         $this->template->publish();

@@ -195,7 +195,7 @@
         </div>
 
         <div class="delete-add-btn right">
-            <div class="btn-noborder btn-normal bg-white-fff left"><a href="<?php echo site_url($role_link.'/manage_partner/add_partner_member/'. @$partner->id.'/'.@$type); ?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Affiliate's Admin</em></a></div>
+            <!-- <div class="btn-noborder btn-normal bg-white-fff left"><a href="<?php echo site_url($role_link.'/manage_partner/add_partner_member/'. @$partner->id.'/'.@$type); ?>"><img src="<?php echo base_url();?>assets/img/iconmonstr-plus-6-16.png" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-tertiary">Add Affiliate's Admin</em></a></div> -->
         </div>
 
         <div class="box clear-both">
@@ -246,13 +246,13 @@
                                     <div class="pure-u-12-24">
                                         <h3 class="h3 font-normal text-cl-secondary">BASIC INFO</h3>
                                     </div>
-                                    <div class="pure-u-12-24" style="width:48%">
+                                    <!-- <div class="pure-u-12-24" style="width:48%">
                                         <div class="edit action-icon margin0">
                                             <button id="btn_save_info" name="__submit" type="submit" class="pure-button btn-tiny btn-white-tertinary m-b-15 save_click asd">SAVE</button>
                                             <i class="icon icon-close close_click" title="Cancel"></i>
                                             <i class="icon icon-edit edit_click" title="Edit"></i>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <table class="table-no-border2">

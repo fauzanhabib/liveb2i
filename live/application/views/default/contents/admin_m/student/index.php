@@ -1,7 +1,7 @@
 <?php if($this->auth_manager->role() == 'RAD') {
     $role_link = "superadmin";
 } else {
-    $role_link = "admin";
+    $role_link = "admin_m";
 }
 
 ?>
@@ -37,18 +37,18 @@
                     <li><a href="<?php echo site_url('admin_m/manage_partner');?>">Affiliate</a></li>
                 <?php } ?>
                 <li><a href="<?php echo site_url($role_link.'/manage_partner/detail/'.$partner_id);?>"><?php echo $partner->name;?></a></li>
-               
+
                 <?php if($role_link == 'superadmin'){?>
                 <li><a href="<?php echo site_url($role_link.'/manage_partner/list_partner/student/'.$partner_id.'/'.$region_id);?>">
                 <?php  }else if($role_link == 'admin') {?>
                 <li><a href="<?php echo site_url($role_link.'/manage_partner/list_partner/student/'.$partner_id);?>">
-                    <?php } 
-                    
+                    <?php }
+
                         // foreach ($subgroup as $gsb) {
                         //      // if($gsb->subgroup_id == $this->uri->segment(5)){
                         //         echo ucfirst(@$gsb->name);
                         //      // }
-                        //  } 
+                        //  }
                         echo $subgroup[0]->name;
                     ?>
                     </a>
@@ -61,7 +61,7 @@
                 </li>
             </ul>
         </div>
-    </div>  
+    </div>
 
     <div class="profilePic-top thumb-small left img-circle-big" style="border: 1px solid #fff;">
         <img src="<?php echo base_url($partner->profile_picture);?>" width="150" class="pure-img fit-cover-top" />
@@ -188,7 +188,7 @@
             <button class="btn-noborder btn-normal bg-white-fff" type="submit" value="delete_student" name="__submit"><img src="<?php echo base_url('assets/img/iconmonstr-x-mark-7-16.png');?>" class="left padding-t-1 padding-r-5"><em class="textDec-none text-cl-red">Delete Student From Group</em></button>
         </div> -->
 
-   
+
     <div class="left-list-tabs pure-menu pure-menu-horizontal padding-l-20">
         <ul class="pure-menu-list">
             <?php if($this->auth_manager->role() == 'ADM' && @$status == 'active'){ ?>
@@ -278,28 +278,28 @@
         <div class="box">
         <form class="pure-g pure-u-md-24-24 pure-u-sm-24-24 pure-u-lg-24-24" action="<?php echo site_url('admin_m/manage_partner/delete_student/'.$this->uri->segment(6).'/'.$this->uri->segment(6));?>" method="POST">
 
-                
+
                 <table id="large" class="display table-session tablesorter" cellspacing="0" width="100%">
                 <thead>
                     <tr>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">No</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Name</th>
                         <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Phone</th>
-                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Email</th>               
+                        <th class="bg-secondary uncek text-cl-white border-none" style="cursor:pointer;">Email</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
+                    <?php
                         $no = 2;
                         $a = $number_page;
                         $ph = 0;
-                        foreach ($students as $student) { 
+                        foreach ($students as $student) {
                           if($student->subgroup_id == $subgroup_id){
                     ?>
-                    
+
                     <tr>
-                        
-                        
+
+
                         <td><?php echo $a?></td>
                         <td><a href="<?php echo site_url($role_link.'/manage_partner/student_detail/'.$partner_id.'/'.$student->id);?>" class="status-disable bg-green text-cl-white"><?php echo $student->fullname?></a></td>
                         <td><?php echo $student->dial_code.$student->phone;?></td>

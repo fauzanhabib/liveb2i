@@ -48,15 +48,15 @@
             <form action="<?php echo site_url('admin_m/manage_partner/upload_profile_picture/'.$partner_id);?>" role="form" enctype="multipart/form-data" method="post" accept-charset="utf-8">
             <img src="<?php echo base_url($partner->profile_picture);?>" width="150" height="200" class="pure-img fit-cover img-circle-big">
             <?php if ($role_link == "admin"){ ?>
-            <div class="caption" style="opacity: 0;">
+            <!-- <div class="caption" style="opacity: 0;">
                 EDIT
-            </div>
+            </div> -->
             <?php } ?>
-            <div class="dropdown-form-photo text-center">
+            <!-- <div class="dropdown-form-photo text-center">
                 <input id="profile_picture" type="file" accept="image/*" name="profile_picture" style="width:144px;margin-bottom:5px;" class=" button-small btn-book btn-save pure-button">
                 <input type="submit" name="__submit" value="Save" id="btn_upload" class="pure-button btn-small btn-tertiary" disabled="">
                 <button type="reset" class="pure-button btn-red btn-small cancel-upload">Cancel</button>
-            </div>
+            </div> -->
             </form>
         </div>
     </div>
@@ -225,11 +225,11 @@
             <span class="left">Basic Info Setting</span>
             <?php echo form_open($role_link.'/manage_partner/update_partner/'.$partner_id, 'role="form" id="form_info" data-parsley-validate' );?>
 
-            <div class="edit action-icon box">
+            <!-- <div class="edit action-icon box">
                 <button id="btn_save_info" name="__submit" type="submit" class="pure-button btn-tiny btn-white-tertinary m-b-15 save_click asd">SAVE</button>
                 <i class="icon icon-close close_click" title="Cancel"></i>
                 <i class="icon icon-edit edit_click" title="Edit"></i>
-            </div>
+            </div> -->
         </div>
         <div class="pure-g padding-t-10">
             <div class="pure-u-19-24 profile-detail prelative padding-tl-20">

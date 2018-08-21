@@ -1,7 +1,7 @@
 <?php if($this->auth_manager->role() == 'RAD') {
     $role_link = "superadmin";
 } else {
-    $role_link = "admin";
+    $role_link = "admin_m";
 }
 
 ?>

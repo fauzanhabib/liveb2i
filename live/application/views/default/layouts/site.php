@@ -255,11 +255,7 @@
                                     <a href="<?php echo site_url('admin_m/match_partner'); ?>" class="pure-menu-link icon dyned-icon-partners-matching">Affiliate Matches</a>
                                 </li>
 
-                                <li class="pure-menu-item adm-capproval">
-                                    <a href="<?php echo site_url('admin_m/approve_user/index/coach'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Coach Approvals</a>
-                                </li>
-
-                                <li id="dropdown" class="pure-menu-item dropdown">
+                                <!-- <li id="dropdown" class="pure-menu-item dropdown">
                                     <a class="pure-menu-link icon dyned-icon-token" data-toggle="dropdown">Token
                                         <span></span>
                                     </a>
@@ -271,7 +267,7 @@
                                             <a href="<?php echo site_url('admin_m/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-request">Token Approval</a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> -->
 
                                 <li id="dropdown" class="pure-menu-item dropdown">
                                     <a class="pure-menu-link icon icon-study-dashboard" data-toggle="dropdown">Reporting
@@ -630,11 +626,7 @@
                                           <a href="<?php echo site_url('admin_m/match_partner'); ?>" class="pure-menu-link icon dyned-icon-partners-matching">Affiliate Matches</a>
                                       </li>
 
-                                      <li class="pure-menu-item adm-capproval">
-                                          <a href="<?php echo site_url('admin_m/approve_user/index/coach'); ?>" class="pure-menu-link icon dyned-icon-coach-approval">Coach Approvals</a>
-                                      </li>
-
-                                      <li id="dropdown" class="pure-menu-item adm-token dropdown">
+                                      <!-- <li id="dropdown" class="pure-menu-item adm-token dropdown">
                                           <a class="pure-menu-link icon dyned-icon-token" data-toggle="dropdown">Token
                                               <span></span>
                                           </a>
@@ -642,7 +634,7 @@
                                               <li class="pure-menu-item adm-rtoken"><a href="<?php echo site_url('admin_m/token'); ?>" class="pure-menu-link icon dyned-icon-token-approval">Request Token</a></li>
                                               <li class="pure-menu-item adm-tapproval"><a href="<?php echo site_url('admin_m/manage_partner/token'); ?>" class="pure-menu-link icon dyned-icon-token-request">Token Approval</a></li>
                                           </ul>
-                                      </li>
+                                      </li> -->
 
                                       <li id="dropdown" class="pure-menu-item dropdown">
                                           <a class="pure-menu-link icon icon-study-dashboard" data-toggle="dropdown">Reporting
