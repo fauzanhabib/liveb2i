@@ -756,7 +756,7 @@ $id = $pull_m_id[0]->id;
 
         // $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/list_partner/'.$type.'/'.$partner_id.'/'), count($this->subgroup_model->select('*')->join('user_profiles','user_profiles.subgroup_id = subgroup.id')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->get_all()), $per_page, $uri_segment);
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/list_partner/'.$type.'/'.$partner_id.'/'), count($this->subgroup_model->select('*')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->get_all()), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner/list_partner/'.$type.'/'.$partner_id.'/'), count($this->subgroup_model->select('*')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->get_all()), $per_page, $uri_segment);
 
         // $subgroup = $this->subgroup_model->select('subgroup.*')->join('user_profiles','user_profiles.partner_id = subgroup.partner_id','left')->where('subgroup.partner_id',$partner_id)->where('subgroup.type',$type)->limit($per_page)->offset($offset)->group_by('subgroup.id')->get_all();
 
@@ -1107,7 +1107,7 @@ $id = $pull_m_id[0]->id;
 
         if(!$data){
             $this->messages->add('Invalid ID', 'warning');
-            redirect('admin_m/manage_partner_m/member_of_student/'.$partner_id);
+            redirect('admin_m/manage_partner/member_of_student/'.$partner_id);
         }
         $vars = array(
             'partner_id' => $partner_id,

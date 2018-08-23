@@ -242,6 +242,9 @@
                                         </li>
                                     </ul>
                                 </li>
+                                <li class="pure-menu-item prt-reporting">
+                                    <a href="<?php echo site_url('admin/monitor/'); ?>" class="pure-menu-link icon icon-iconmonstr-monitoring-6">Monitor Accounts</a>
+                                </li>
                             <?php } else if ($this->auth_manager->role() == 'RAM') { ?>
                                 <li class="pure-menu-item std-profile">
                                     <a href="<?php echo site_url('account/identity/detail/profile'); ?>" class="pure-menu-link icon dyned-icon-profile">Profile</a>
@@ -612,6 +615,9 @@
                                                     <a href="<?php echo site_url('admin/reporting/student'); ?>" class="pure-menu-link icon icon-study-dashboard">Student</a>
                                                 </li>
                                             </ul>
+                                        </li>
+                                        <li class="pure-menu-item prt-reporting">
+                                            <a href="<?php echo site_url('admin/monitor/'); ?>" class="pure-menu-link icon icon-iconmonstr-monitoring-6">Monitor Accounts</a>
                                         </li>
                                   <?php } else if ($this->auth_manager->role() == 'RAM') { ?>
                                       <li class="pure-menu-item std-profile">

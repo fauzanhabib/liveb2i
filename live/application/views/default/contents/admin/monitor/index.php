@@ -75,7 +75,7 @@
                           <tr>
                               <td class="pad15">Email</td>
                               <td>
-                                  <input type="name" name="email" class="border-none" required>
+                                  <input type="email" name="email" class="border-none" required>
                               </td>
                           </tr>
                           <tr>
