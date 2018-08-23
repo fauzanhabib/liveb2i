@@ -233,6 +233,12 @@
                                         ->where('token_status_id',1)
                                         ->get()->result();
 
+                        $token_not_usage = $this->db->select('token_amount')
+                                        ->from('token_histories')
+                                        ->where('user_id',$d->user_id)
+                                        ->where_in('token_status_id',$refustatus)
+                                        ->get()->result();
+
                         $token_balance = $this->db->select('token_amount')
                                         ->from('token_histories')
                                         ->where('user_id',$d->user_id)
@@ -281,6 +287,14 @@
                                         ->where('token_status_id',1)
                                         ->order_by('transaction_date','DESC')
                                         ->get()->result();
+
+                        $token_not_usage = $this->db->select('token_amount')
+                                            ->from('token_histories')
+                                            ->where('transaction_date >=',$from)
+                                            ->where('user_id',$d->user_id)
+                                            ->where_in('token_status_id',$refustatus)
+                                            ->order_by('transaction_date','DESC')
+                                            ->get()->result();
 
                         $token_balance = $this->db->select('*')
                                         ->from('token_histories')
@@ -335,6 +349,15 @@
                                         ->where('token_status_id',1)
                                         ->order_by('transaction_date','DESC')
                                         ->get()->result();
+
+                        $token_not_usage = $this->db->select('token_amount')
+                                            ->from('token_histories')
+                                            ->where('transaction_date >=',$from)
+                                            ->where('transaction_date <=',$to)
+                                            ->where('user_id',$d->user_id)
+                                            ->where_in('token_status_id',$refustatus)
+                                            ->order_by('transaction_date','DESC')
+                                            ->get()->result();
 
                         $token_balance = $this->db->select('*')
                                         ->from('token_histories')
@@ -398,6 +421,12 @@
                          $sum += $value->token_amount;
                     }
 
+                    $sub = 0;
+                    foreach($token_not_usage as $key=>$value){
+                      if(isset($value->token_amount))
+                         $sub += $value->token_amount;
+                    }
+
 
                     $app_id="";
                     foreach($appid as $ap){
@@ -445,8 +474,8 @@
                         <td><?php if(@$addeds){echo @$addeds;}else{echo '0';} ?></td>
                         <td>
                             <?php if($sum != 0){ ?>
-                            <?php echo $sum; ?>
-                            <?php }else{ echo $sum; }?>
+                            <?php echo $sum - $sub; ?>
+                            <?php }else{ echo $sum - $sub; }?>
                         </td>
                         <td><?php echo @$tokenbal; ?></td>
                         <td>
