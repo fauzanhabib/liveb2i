@@ -983,7 +983,7 @@ class managing extends MY_Site_Controller {
                 $this->db->trans_rollback();
                 $this->messages->add('Invalid Action', 'warning');
                 // $this->index();
-        exit('a');
+        // exit('a');
                 redirect('partner_monitor/managing/reschedule/'.$appointment_id);
 
                 return;
@@ -991,7 +991,7 @@ class managing extends MY_Site_Controller {
         } else {
             $this->messages->add('Invalid Action', 'warning');
             // redirect('partner_monitor/member_list/coach');
-        exit('b');
+        // exit('b');
             redirect('partner_monitor/managing/reschedule/'.$appointment_id);
 
         }
