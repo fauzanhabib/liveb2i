@@ -1,7 +1,7 @@
 <?php if($this->auth_manager->role() == 'RAD') {
     $role_link = "superadmin";
 } else {
-    $role_link = "admin";
+    $role_link = "admin_m";
 }
 
 ?>
@@ -100,13 +100,13 @@
                         <!-- <a href="<?php echo site_url('student_partner/member_list/add_token/'.@$student[0]->id).'/'.$subgroup_id;?>" class="pure-button btn-small btn-white m-t-10">ADD TOKEN</a> -->
                     </div>
                 </div>
-            </div>           
+            </div>
                 <!-- end block photo -->
 
 
                 <div class="pure-u-18-24 profile-detail prelative">
                     <?php echo form_open($role_link.'/manage_partner/update_partner/'.$partner_id, 'role="form" id="form_info" data-parsley-validate' );?>
-                    <table class="table-no-border2"> 
+                    <table class="table-no-border2">
                         <tbody>
                             <tr>
                                 <td class="pad15">Name</td>
@@ -141,8 +141,8 @@
                                 </td>
                             </tr>
 
-                        </tbody>    
-                    </table>              
+                        </tbody>
+                    </table>
                 </div>
                 <?php echo form_close();?>
             </div>
@@ -157,7 +157,7 @@
 
         <div class="content">
             <div class="pure-u-24-24 prelative">
-                <table class="table-no-border2"> 
+                <table class="table-no-border2">
                     <tbody>
                         <tr>
                             <td class="pad15">Tokens</td>
@@ -179,11 +179,9 @@
                             <td class="pad15">Likes</td>
                             <td><span class=""><?php echo @$student[0]->like;?></span></td>
                         </tr>
-                    </tbody>    
+                    </tbody>
                 </table>
-            </div>  
-        </div>   
+            </div>
+        </div>
     </div>
     <?php echo form_close();?>
-
-
