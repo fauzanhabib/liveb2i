@@ -1201,7 +1201,7 @@ $id = $pull_m_id[0]->id;
         $offset = 0;
         $per_page = 6;
         $uri_segment = 7;
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/member_of_student/active/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_students($partner_id,$subgroup_id,$status)), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner/member_of_student/active/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_students($partner_id,$subgroup_id,$status)), $per_page, $uri_segment);
 
         $number_page = 0;
         if($page == ''){
@@ -1222,7 +1222,7 @@ $id = $pull_m_id[0]->id;
             'status' => $status,
             'type' => 'student',
             'status_set_setting' => @$status_set_setting[0]->status_set_setting,
-            'back' => site_url('admin_m/manage_partner_m/detail/'.$partner_id),
+            'back' => site_url('admin_m/manage_partner/detail/'.$partner_id),
             'number_page' => $number_page
 
         );
@@ -1370,7 +1370,7 @@ $id = $pull_m_id[0]->id;
         }
 
 
-        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner_m/member_of_coach/'.$status.'/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_coaches($partner_id,$subgroup_id,$status)), $per_page, $uri_segment);
+        $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('admin_m/manage_partner/member_of_coach/'.$status.'/'.$subgroup_id.'/'.$partner_id), count($this->user_profile_model->get_coaches($partner_id,$subgroup_id,$status)), $per_page, $uri_segment);
         $vars = array(
             'subgroup_id' => $subgroup_id,
             'subgroup' => $subgroup,
@@ -1381,7 +1381,7 @@ $id = $pull_m_id[0]->id;
             'pagination' => @$pagination,
             'status' => $status,
             'type' => 'coach',
-            'back' => site_url('admin_m/manage_partner_m/detail/'.$partner_id),
+            'back' => site_url('admin_m/manage_partner/detail/'.$partner_id),
             'number_page' => $number_page
         );
 
