@@ -611,8 +611,8 @@ class find_coaches extends MY_Site_Controller {
 
                 $message = '';
                 if(!$isValid){
-                    $this->messages->add('Invalid Appointment Or Coach is Having Day Off', 'warning');
-                    $message = 'Invalid Appointment Or Coach is Having Day Off';
+                    // $this->messages->add('Invalid Appointment Or Coach is Having Day Off', 'warning');
+                    // $message = 'Invalid Appointment Or Coach is Having Day Off';
                 }
 
                $dayoff = $this->is_day_off($coach_id, $dateconvertcoach,$start_time, $end_time);
