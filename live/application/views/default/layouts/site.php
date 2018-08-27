@@ -337,7 +337,6 @@
                                     @$hour_timenow = date("H:i", $usertime_timenow);
                                     @$m_timenow = date('i',$usertime_timenow);
                                     ?>
-
                                     <script>
                                         var today = new Date(),
                                         h = today.getHours(),
@@ -366,8 +365,13 @@
                                         // console.log(client_time+" "+user_time);
                                         if((user_time != client_time) && (selisih_menit > 6)){
                                             $('.alert-timezone').addClass('error');
-                                            $('.timezone_confirm').html('Your timezone ('+ user_time +') doesn’t match your system time ('+ client_time +')');
+                                            $('.timezone_confirm').html('Your timezone ('+ user_time +') doesn’t match your system time ('+ client_time +'). <b>It is best not to use back button on your browser.</b> <a id="refresh_time">Click here to refresh</a> ');
+
+                                            $("#refresh_time").click(function(){
+                                              location.reload();
+                                            });
                                         }
+
                                     </script>
 
                         </h5>
