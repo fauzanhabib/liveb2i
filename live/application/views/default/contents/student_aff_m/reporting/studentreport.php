@@ -222,6 +222,7 @@
                 $a = 1;
                 $no = 1;
                 $nowdate  = date("Y-m-d");
+                $refustatus = array(13,21,23);
 
                 foreach ($stu_rpt as $d) {
 
