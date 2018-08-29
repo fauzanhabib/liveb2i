@@ -2875,7 +2875,8 @@ class find_coaches extends MY_Site_Controller {
         $minutes = $tz[0]->minutes_val;
 
         $dt_conv  = date('Y-m-d', $date);
-        $dt_real  = strtotime($dt_conv);
+        $dt_comb  = $dt_conv.' '.$start_time;
+        $dt_real  = strtotime($dt_comb);
         $dr_conv  = $dt_real-(60*$minutes);
         $dt_db    = date('Y-m-d', $dr_conv);
 
@@ -2889,7 +2890,7 @@ class find_coaches extends MY_Site_Controller {
 
         $pull_sess  = $this->db->select('*')
                     ->from('appointments')
-                    ->where('date', $dt_conv)
+                    ->where('date', $dt_db)
                     ->where('start_time', $st_db)
                     ->where('end_time', $en_db)
                     ->get()->result();
@@ -3020,7 +3021,8 @@ class find_coaches extends MY_Site_Controller {
       $minutes = $tz[0]->minutes_val;
 
       $dt_conv  = date('Y-m-d', $date);
-      $dt_real  = strtotime($dt_conv);
+      $dt_comb  = $dt_conv.' '.$start_time;
+      $dt_real  = strtotime($dt_comb);
       $dr_conv  = $dt_real-(60*$minutes);
       $dt_db    = date('Y-m-d', $dr_conv);
 
