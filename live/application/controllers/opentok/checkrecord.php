@@ -26,7 +26,20 @@ class Checkrecord extends MY_Site_Controller {
     public function index() {
         $sessionID = $this->input->post("sessionid");
 
-        $asd = $this->downloadrecord->init();
+        $pullsess = $this->db->select('*')
+                ->from('appointments')
+                ->where('session', $sessionID)
+                ->get()->result();
+
+        if(@$pullsess[0]->key == '1'){
+          $apiKey  = $this->config->item('opentok_key');
+          $secret  = $this->config->item('opentok_secret');
+        }else{
+          $apiKey  = $this->config->item('opentok_key2');
+          $secret  = $this->config->item('opentok_secret2');
+        }
+
+        $asd = $this->downloadrecord->init($apiKey, $secret);
 
         $items = $asd->items;
         foreach($items as $a){
@@ -39,11 +52,6 @@ class Checkrecord extends MY_Site_Controller {
                 $downloadurl = $url;
             }
         }
-
-        $pullsess = $this->db->select('*')
-                ->from('appointments')
-                ->where('session', $sessionID)
-                ->get()->result();
 
         $cchatt = $pullsess[0]->cch_attend;
         $stdatt = $pullsess[0]->std_attend;

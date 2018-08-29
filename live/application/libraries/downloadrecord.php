@@ -7,14 +7,15 @@
  */
 class Downloadrecord {
 
-    public function init() {
+    public function init($apiKey, $secret) {
+      // echo $apiKey;exit();
 
         // Preparing API URL
 
-        $this->host = 'https://api.opentok.com/v2/partner/45992642/archive';
+        $this->host = 'https://api.opentok.com/v2/partner/'.$apiKey.'/archive';
         $ch = curl_init($this->host);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch,CURLOPT_HTTPHEADER,array('X-TB-PARTNER-AUTH: 45992642:c071e1e9cb983752fea257416b17e03209796a12'));
+        curl_setopt($ch,CURLOPT_HTTPHEADER,array('X-TB-PARTNER-AUTH:'.$apiKey.':'.$secret));
         $result = curl_exec($ch);
         curl_close($ch);
 
