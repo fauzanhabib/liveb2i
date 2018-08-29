@@ -3040,11 +3040,18 @@ class find_coaches extends MY_Site_Controller {
                   ->get()->result();
 
 
-      if(@$pull_sess){
-        echo "1"; //session already booked
-      }else{
-        echo "2"; //session available to book
-      }
+      // if(@$pull_sess){
+      //   echo "1"; //session already booked
+      // }else{
+      //   echo "2"; //session available to book
+      // }
+      $arr = array(
+        "date" => $dt_db,
+        "st" => $st_db,
+        "en" => $en_db
+      );
+
+      print json_encode($arr);
       // Check if session is already booked ==========================
     }
 
