@@ -127,6 +127,27 @@
 </div>
 
 <script>
+setInterval(function(){
+  var date = "<?php echo $date; ?>";
+  var start_time = "<?php echo $start_time; ?>";
+  var end_time = "<?php echo $end_time; ?>";
+
+  // console.log(date);
+  $.ajax({
+   type:"POST",
+   url:"<?php echo site_url('student/find_coaches/check_booked');?>",
+   data: {'date':date, 'start_time': start_time, 'end_time': end_time},
+   success: function(data){
+     if(data == '1'){
+       location.reload();
+     }
+   }
+  });
+  // console.log('a');
+},1000);
+</script>
+
+<script>
     document.getElementById("submit_summary").onclick = function () {
        location.href = "<?php echo $search_by == 'single_date' ? site_url('student/find_coaches/book_single_coach/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time) : site_url('student/find_coaches/booking/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time); ?>";
     };
