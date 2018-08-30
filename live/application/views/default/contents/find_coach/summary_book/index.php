@@ -127,25 +127,25 @@
 </div>
 
 <script>
-setInterval(function(){
-  var date = "<?php echo $date; ?>";
-  var start_time = "<?php echo $start_time; ?>";
-  var end_time = "<?php echo $end_time; ?>";
-
-  // console.log(date);
-  $.ajax({
-   type:"POST",
-   url:"<?php echo site_url('student/find_coaches/check_booked');?>",
-   data: {'date':date, 'start_time': start_time, 'end_time': end_time},
-   success: function(data){
-     console.log(data);
-     if(data == '1'){
-       location.reload();
-     }
-   }
-  });
-  // console.log('a');
-},1000);
+// setInterval(function(){
+//   var date = "<?php echo $date; ?>";
+//   var start_time = "<?php echo $start_time; ?>";
+//   var end_time = "<?php echo $end_time; ?>";
+//
+//   // console.log(date);
+//   $.ajax({
+//    type:"POST",
+//    url:"<?php echo site_url('student/find_coaches/check_booked');?>",
+//    data: {'date':date, 'start_time': start_time, 'end_time': end_time},
+//    success: function(data){
+//      console.log(data);
+//      if(data == '1'){
+//        location.reload();
+//      }
+//    }
+//   });
+//   // console.log('a');
+// },1000);
 </script>
 
 <script>

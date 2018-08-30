@@ -520,6 +520,51 @@ class find_coaches extends MY_Site_Controller {
     }
 
     public function book_single_coach($coach_id = '', $date_ = '', $start_time_ = '', $end_time_ = '', $token = '', $browser_type, $device_type, $device_os){
+
+      $id = $this->auth_manager->userid();
+
+      // Check if session is already booked ==========================
+      $tz    = $this->db->select('*')
+              ->from('user_timezones')
+              ->where('user_id', $id)
+              ->get()->result();
+
+      $minutes = $tz[0]->minutes_val;
+
+      $dt_conv  = date('Y-m-d', $date_);
+      $dt_comb  = $dt_conv.' '.$start_time_;
+      $dt_real  = strtotime($dt_comb);
+      $dr_conv  = $dt_real-(60*$minutes);
+      $dt_db    = date('Y-m-d', $dr_conv);
+
+      $st_real  = strtotime($start_time_);
+      $sr_conv  = $st_real-(60*$minutes);
+      $st_db    = date('H:i:s', $sr_conv);
+
+      $en_real  = strtotime($end_time_);
+      $er_conv  = $en_real-(60*$minutes);
+      $en_db    = date('H:i:s', $er_conv);
+
+      $pull_sess  = $this->db->select('*')
+                  ->from('appointments')
+                  ->where('date', $dt_db)
+                  ->where('start_time', $st_db)
+                  ->where('end_time', $en_db)
+                  ->get()->result();
+
+
+      // echo "<pre>";print_r($pull_sess);exit();
+      if(@$pull_sess){
+        // echo "<pre>";print_r($pull_sess);exit();
+        redirect('student/find_coaches/booked_page');
+        // $this->template->content->view('default/contents/find_coach/summary_book/booked');
+        // //publish template
+        // $this->template->publish();
+      }
+      // Check if session is already booked ==========================
+
+      // exit('a');
+
         $recuring = $this->session->userdata('recurring_booking_type');
 
         if(!$recuring){
