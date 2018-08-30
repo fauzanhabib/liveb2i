@@ -138,7 +138,7 @@ setInterval(function(){
    url:"<?php echo site_url('student/find_coaches/check_booked');?>",
    data: {'date':date, 'start_time': start_time, 'end_time': end_time},
    success: function(data){
-     // console.log(data);
+     console.log(data);
      if(data == '1'){
        location.reload();
      }

@@ -3036,7 +3036,7 @@ class find_coaches extends MY_Site_Controller {
 
       $pull_sess  = $this->db->select('*')
                   ->from('appointments')
-                  ->where('date', $dt_conv)
+                  ->where('date', $dt_db)
                   ->where('start_time', $st_db)
                   ->where('end_time', $en_db)
                   ->get()->result();
@@ -3053,7 +3053,7 @@ class find_coaches extends MY_Site_Controller {
       //   "en" => $en_db
       // );
       //
-      // print json_encode($arr);
+      // print json_encode($pull_sess);
       // Check if session is already booked ==========================
     }
 
