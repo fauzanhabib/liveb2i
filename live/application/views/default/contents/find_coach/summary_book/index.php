@@ -208,8 +208,8 @@ setInterval(function(){
 
     // detect_browser = '';
     // console.log(navigator.sayswho);
-    console.log(detect_browser);
-    if(!detect_browser){
+    // console.log(detect_browser);
+    if(!detect_browser || detect_browser === undefined){
       // console.log('detect_browser');
       $('#ch_browser').show();
 
