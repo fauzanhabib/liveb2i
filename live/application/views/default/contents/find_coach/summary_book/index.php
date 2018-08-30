@@ -159,7 +159,7 @@ setInterval(function(){
 </script>
 
 <script>
-
+    var detect_browser;
     var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
 
     // Firefox 1.0+
