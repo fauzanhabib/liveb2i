@@ -38,7 +38,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 <script src="<?php echo base_url();?>assets/js/script.js"></script>
 <!-- <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.1.1.js"></script> -->
-<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.3.1.js"></script>
+<script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.4.0.js"></script>
 
 <script>
     // Wait until the DOM has loaded before querying the document
@@ -1211,7 +1211,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
     var channel_name = "<?php echo $sessionId; ?>";
     // console.log("Ch Name = " + channel_name);
     // console.log("Init AgoraRTC client with vendor key: " + app_id);
-    client = AgoraRTC.createClient({mode: "rtc", codec: "h264"});
+    client = AgoraRTC.createClient({mode: "live", codec: "h264"})
     client.init(app_id, function () {
       console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
