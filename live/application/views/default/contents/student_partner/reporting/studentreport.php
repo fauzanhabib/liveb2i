@@ -219,6 +219,7 @@
                 $no = 1;
                 $nowdate  = date("Y-m-d");
                 $refustatus = array(13,21,23);
+                $startbal = 0;
 
                 foreach ($stu_rpt as $d) {
 
@@ -236,10 +237,23 @@
                                         ->where_in('token_status_id',$refustatus)
                                         ->get()->result();
 
-                        $token_balance = $this->db->select('token_amount')
+                        $token_balance = $this->db->select('*')
                                         ->from('token_histories')
                                         ->where('user_id',$d->user_id)
+                                        ->order_by('id','ASC')
                                         ->get()->result();
+
+                        if(empty($token_balance[0]->token_status_id)){
+                            $startbal = $d->token_amount;
+                        }elseif($token_balance[0]->token_status_id == 15 || $token_balance[0]->token_status_id == 27 || $token_balance[0]->token_status_id == 33){
+                            $startbal = $token_balance[0]->balance - $token_balance[0]->token_amount;
+                        }elseif($token_balance[0]->token_status_id == 13 || $token_balance[0]->token_status_id == 21 || $token_balance[0]->token_status_id == 23){
+                            $startbal = $token_balance[0]->balance;
+                        }elseif($token_balance[0]->token_status_id == 1){
+                            $startbal = $token_balance[0]->balance + $token_balance[0]->token_amount;
+                        }else{
+                            $startbal = $startbal;
+                        }
 
                         $token_added = $this->db->select('token_amount')
                                         ->from('token_histories')
@@ -299,6 +313,25 @@
                                         ->where('user_id',$d->user_id)
                                         ->order_by('transaction_date','DESC')
                                         ->get()->result();
+
+                        $token_balance3 = $this->db->select('*')
+                                        ->from('token_histories')
+                                        ->where('transaction_date <=',$from)
+                                        ->where('user_id',$d->user_id)
+                                        ->order_by('id','ASC')
+                                        ->get()->result();
+
+                        if(empty($token_balance3[0]->token_status_id)){
+                            $startbal = $d->token_amount;
+                        }elseif($token_balance3[0]->token_status_id == 15 || $token_balance3[0]->token_status_id == 27 || $token_balance3[0]->token_status_id == 33){
+                            $startbal = $token_balance3[0]->balance - $token_balance3[0]->token_amount;
+                        }elseif($token_balance3[0]->token_status_id == 13 || $token_balance3[0]->token_status_id == 21 || $token_balance3[0]->token_status_id == 23){
+                            $startbal = $token_balance3[0]->balance;
+                        }elseif($token_balance3[0]->token_status_id == 1){
+                            $startbal = $token_balance3[0]->balance + $token_balance3[0]->token_amount;
+                        }else{
+                            $startbal = $startbal;
+                        }
 
                         $token_added = $this->db->select('token_amount')
                                         ->from('token_histories')
@@ -369,6 +402,25 @@
                                         ->where('user_id',$d->user_id)
                                         ->order_by('transaction_date','DESC')
                                         ->get()->result();
+
+                        $token_balance3 = $this->db->select('*')
+                                        ->from('token_histories')
+                                        ->where('transaction_date <=',$from)
+                                        ->where('user_id',$d->user_id)
+                                        ->order_by('id','ASC')
+                                        ->get()->result();
+
+                        if(empty($token_balance3[0]->token_status_id)){
+                            $startbal = $d->token_amount;
+                        }elseif($token_balance3[0]->token_status_id == 15 || $token_balance3[0]->token_status_id == 27 || $token_balance3[0]->token_status_id == 33){
+                            $startbal = $token_balance3[0]->balance - $token_balance3[0]->token_amount;
+                        }elseif($token_balance3[0]->token_status_id == 13 || $token_balance3[0]->token_status_id == 21 || $token_balance3[0]->token_status_id == 23){
+                            $startbal = $token_balance3[0]->balance;
+                        }elseif($token_balance3[0]->token_status_id == 1){
+                            $startbal = $token_balance3[0]->balance + $token_balance3[0]->token_amount;
+                        }else{
+                            $startbal = $startbal;
+                        }
 
                         $tokenbal = @$token_balance2[0]->balance;
 
@@ -467,7 +519,8 @@
                         <td><?php echo $d->email; ?></td>
                         <td><?php echo $d->dyned_pro_id; ?></td>
                         <td><?php echo $d->cert_studying; ?></td>
-                        <td><?php if(@$start_b){echo @$start_b;}else{echo '0';} ?></td>
+                        <td><?php echo $startbal; ?></td>
+                        <!-- <td><?php if(@$start_b){echo @$start_b;}else{echo '0';} ?></td> -->
                         <td><?php if(@$addeds){echo @$addeds;}else{echo '0';} ?></td>
                         <td>
                             <?php if($sum != 0){ ?>
