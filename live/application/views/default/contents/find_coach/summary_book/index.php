@@ -107,9 +107,8 @@
                     <td>Choose Browser:</td>
                     <td><select class="choose_browser" id="sel_browser">
                       <option value="1">Choose Your Browser</option>
-                      <option value="Chrome">Chrome</option>
-                      <option value="Firefox">Firefox</option>
                       <option value="Safari">Safari</option>
+                      <option value="Other">Other Browsers</option>
                     </select></td>
                 </tr>
                 <tr>
