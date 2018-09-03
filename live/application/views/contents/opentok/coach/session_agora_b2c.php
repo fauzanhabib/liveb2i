@@ -1637,9 +1637,14 @@ var countdownTimer3 = setInterval('timer3()', 1000);
     var channel_name = "<?php echo $sessionId; ?>";
     // console.log("Ch Name = " + channel_name);
     // console.log("Init AgoraRTC client with vendor key: " + app_id);
-    client = AgoraRTC.createClient({mode: "live", codec: "h264"})
+    var key_type = "<?php echo $key_type; ?>";
+    if(key_type == '1'){
+      client = AgoraRTC.createClient({mode: "live", codec: "vp8"})
+    }else{
+      client = AgoraRTC.createClient({mode: "live", codec: "h264"})
+    }
     client.init(app_id, function () {
-      console.log("AgoraRTC client initialized");
+      // console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
         // console.log("User " + channel_key + " join channel successfully");
         // console.log("=====================================");
@@ -1663,12 +1668,12 @@ var countdownTimer3 = setInterval('timer3()', 1000);
 
           // The user has granted access to the camera and mic.
           localStream.on("accessAllowed", function() {
-            console.log("accessAllowed");
+            // console.log("accessAllowed");
           });
 
           // The user has denied access to the camera and mic.
           localStream.on("accessDenied", function() {
-            console.log("accessDenied");
+            // console.log("accessDenied");
           });
 
           localStream.init(function() {

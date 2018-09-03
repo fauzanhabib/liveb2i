@@ -253,6 +253,7 @@ class Live extends MY_Site_Controller {
                 'appointment_id' => $appoint_id,
                 'allmodule'  => @$allmodule,
                 'cert_plan'  => @$cert_plan,
+                'key_type'   => @$key_type,
                 'student_vrm'    => @$student_vrm,
                 'student_vrm_json' => @$student_vrm_json
             );
@@ -494,6 +495,7 @@ class Live extends MY_Site_Controller {
               'allmodule'  => @$allmodule,
               'cert_plan'  => @$cert_plan,
               'content'    => @$content,
+              'key_type'   => @$key_type,
               'student_vrm'    => @$student_vrm,
               'annualtoken'    => @$annualtoken,
               'student_vrm_json' => @$student_vrm_json,
