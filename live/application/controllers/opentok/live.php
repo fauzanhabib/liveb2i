@@ -236,6 +236,7 @@ class Live extends MY_Site_Controller {
 
             @$sessionIde  = $sessioninge[0]->session;
             @$tokene      = $sessioninge[0]->token;
+            @$key_type    = $sessioninge[0]->key;
 
             // $gentoken   = $opentok->generateToken($sessionId);
 
@@ -416,6 +417,7 @@ class Live extends MY_Site_Controller {
 
             @$sessionIde  = $sessioninge[0]->session;
             @$tokene      = $sessioninge[0]->token;
+            @$key_type    = $sessioninge[0]->key;
             if($sessioninge[0]->key == '1'){
               $apiKey       = $this->config->item('opentok_key');
             }else{

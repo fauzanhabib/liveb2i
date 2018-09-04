@@ -613,9 +613,14 @@ if(@$user_extract2){
     // console.log("Init AgoraRTC client with vendor key: " + app_id);
     var key_type = "<?php echo $key_type; ?>";
     if(key_type == '1'){
-      client = AgoraRTC.createClient({mode: "live", codec: "vp8"})
+      client = AgoraRTC.createClient({mode: "live", codec: "vp8"});
+      console.log('vp8');
+      console.log(key_type);
+      //2019-04-022171205917:00:0017:30:00 Channel Name
     }else{
-      client = AgoraRTC.createClient({mode: "live", codec: "h264"})
+      client = AgoraRTC.createClient({mode: "live", codec: "h264"});
+      console.log('h264');
+      console.log(key_type);
     }
 
     client.init(app_id, function () {
