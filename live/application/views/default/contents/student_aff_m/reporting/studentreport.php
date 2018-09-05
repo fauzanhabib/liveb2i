@@ -254,6 +254,7 @@
                         $total_ses = $this->db->select('id')
                                     ->from('appointments')
                                     ->where('student_id',$d->user_id)
+                                    ->where('status','completed')
                                     ->get();
 
                         $last_ses = $this->db->select('date')
@@ -315,6 +316,7 @@
                                     ->from('appointments')
                                     ->where('student_id',$d->user_id)
                                     ->where('date >=',$date_from)
+                                    ->where('status','completed')
                                     ->get();
 
                         $last_ses = $this->db->select('date')
@@ -389,6 +391,7 @@
                                     ->where('student_id',$d->user_id)
                                     ->where('date >=',$date_from)
                                     ->where('date <=',$date_to)
+                                    ->where('status','completed')
                                     ->get();
 
                         $last_ses = $this->db->select('date')
