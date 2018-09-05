@@ -250,8 +250,8 @@
                         $last_ses = $this->db->select('date')
                                             ->from('appointments')
                                             ->where('student_id',$d->user_id)
-                                            // ->where('status','comleted')
-                                            ->where('date <', $nowdate)
+                                            ->where('status','completed')
+                                            ->where('date <=', $nowdate)
                                             ->order_by('date','DESC')
                                             ->get()->result();
 
@@ -304,8 +304,8 @@
                         $last_ses = $this->db->select('date')
                                             ->from('appointments')
                                             ->where('student_id',$d->user_id)
-                                            // ->where('status','comleted')
-                                            ->where('date <', $date_from)
+                                            ->where('status','completed')
+                                            ->where('date <=', $nowdate)
                                             ->order_by('date','DESC')
                                             ->get()->result();
 
@@ -370,8 +370,9 @@
                         $last_ses = $this->db->select('date')
                                             ->from('appointments')
                                             ->where('student_id',$d->user_id)
-                                            // ->where('status','comleted')
-                                            ->where('date <', $date_from)
+                                            ->where('status','completed')
+                                            ->where('date >=', $date_from)
+                                            ->where('date <=', $date_to)
                                             ->order_by('date','DESC')
                                             ->get()->result();
 
