@@ -148,9 +148,9 @@
 </script>
 
 <script>
-    document.getElementById("submit_summary").onclick = function () {
-       location.href = "<?php echo $search_by == 'single_date' ? site_url('student/find_coaches/book_single_coach/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time) : site_url('student/find_coaches/booking/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time); ?>";
-    };
+    // document.getElementById("submit_summary").onclick = function () {
+    //    location.href = "<?php echo $search_by == 'single_date' ? site_url('student/find_coaches/book_single_coach/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time) : site_url('student/find_coaches/booking/' . $data_coach[0]->id . '/' . $date . '/' . $start_time . '/' . $end_time); ?>";
+    // };
 
     document.getElementById("cancel_summary").onclick = function () {
         location.href = "<?php echo $search_by == 'single_date' ? site_url('student/find_coaches/' . $search_by) : site_url('student/find_coaches/search/' . $search_by); ?>";
