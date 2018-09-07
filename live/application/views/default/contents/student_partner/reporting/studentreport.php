@@ -278,8 +278,8 @@
                         $next_ses = $this->db->select('date')
                                             ->from('appointments')
                                             ->where('student_id',$d->user_id)
-                                            // ->where('status','active')
-                                            ->where('date >', $nowdate)
+                                            ->where('status','active')
+                                            ->where('date >=', $nowdate)
                                             ->order_by('date','ASC')
                                             ->get()->result();
 
@@ -376,8 +376,8 @@
                         $next_ses = $this->db->select('date')
                                             ->from('appointments')
                                             ->where('student_id',$d->user_id)
-                                            // ->where('status','active')
-                                            ->where('date >', $nowdate)
+                                            ->where('status','active')
+                                            ->where('date >=', $nowdate)
                                             ->order_by('date','ASC')
                                             ->get()->result();
 
@@ -489,8 +489,8 @@
                         $next_ses = $this->db->select('date')
                                             ->from('appointments')
                                             ->where('student_id',$d->user_id)
-                                            // ->where('status','active')
-                                            ->where('date >', $date_to)
+                                            ->where('status','active')
+                                            ->where('date >=', $date_to)
                                             ->order_by('date','ASC')
                                             ->get()->result();
 

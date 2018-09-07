@@ -466,7 +466,7 @@ class Add_token extends MY_Site_Controller {
                                    'token_amount' => $request_token,
                                    'description' => 'Your Token has been added by your Student Affiliate',
                                    'token_status_id' => 15,
-                                   'balance' => $ts->token_amount,
+                                   'balance' => $ts->token_amount+$request_token,
                                    'dcrea' => time(),
                                    'dupd' => time());
 
