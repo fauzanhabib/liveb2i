@@ -219,6 +219,8 @@
                 $a = 1;
                 $no = 1;
                 $nowdate  = date("Y-m-d");
+                $refustatus = array(13,21,23);
+                $startbal = 0;
 
                 foreach ($stu_rpt as $d) {
 
@@ -230,10 +232,29 @@
                                         ->where('token_status_id',1)
                                         ->get()->result();
 
-                        $token_balance = $this->db->select('token_amount')
+                        $token_not_usage = $this->db->select('token_amount')
                                         ->from('token_histories')
                                         ->where('user_id',$d->user_id)
+                                        ->where_in('token_status_id',$refustatus)
                                         ->get()->result();
+
+                        $token_balance = $this->db->select('*')
+                                        ->from('token_histories')
+                                        ->where('user_id',$d->user_id)
+                                        ->order_by('id','ASC')
+                                        ->get()->result();
+
+                        if(empty($token_balance[0]->token_status_id)){
+                            $startbal = $d->token_amount;
+                        }elseif($token_balance[0]->token_status_id == 15 || $token_balance[0]->token_status_id == 27 || $token_balance[0]->token_status_id == 33){
+                            $startbal = $token_balance[0]->balance - $token_balance[0]->token_amount;
+                        }elseif($token_balance[0]->token_status_id == 3 || $token_balance[0]->token_status_id == 13 || $token_balance[0]->token_status_id == 17 || $token_balance[0]->token_status_id == 19 || $token_balance[0]->token_status_id == 21 || $token_balance[0]->token_status_id == 23){
+                            $startbal = $token_balance[0]->balance;
+                        }elseif($token_balance[0]->token_status_id == 1){
+                            $startbal = $token_balance[0]->balance + $token_balance[0]->token_amount;
+                        }else{
+                            $startbal = $startbal;
+                        }
 
                         $token_added = $this->db->select('token_amount')
                                         ->from('token_histories')
@@ -258,8 +279,8 @@
                         $next_ses = $this->db->select('date')
                                             ->from('appointments')
                                             ->where('student_id',$d->user_id)
-                                            // ->where('status','active')
-                                            ->where('date >', $nowdate)
+                                            ->where('status','active')
+                                            ->where('date >=', $nowdate)
                                             ->order_by('date','ASC')
                                             ->get()->result();
 
@@ -280,12 +301,56 @@
                                         ->order_by('transaction_date','DESC')
                                         ->get()->result();
 
+                        $token_not_usage = $this->db->select('token_amount')
+                                            ->from('token_histories')
+                                            ->where('transaction_date >=',$from)
+                                            ->where('user_id',$d->user_id)
+                                            ->where_in('token_status_id',$refustatus)
+                                            ->order_by('transaction_date','DESC')
+                                            ->get()->result();
+
                         $token_balance = $this->db->select('*')
                                         ->from('token_histories')
                                         ->where('transaction_date <=',$from)
                                         ->where('user_id',$d->user_id)
                                         ->order_by('transaction_date','DESC')
                                         ->get()->result();
+
+                        $token_balance3 = $this->db->select('*')
+                                        ->from('token_histories')
+                                        ->where('transaction_date >=',$from)
+                                        ->where('user_id',$d->user_id)
+                                        ->order_by('id','ASC')
+                                        ->get()->result();
+
+                        $token_balance_xx = $this->db->select('*')
+                                        ->from('token_histories')
+                                        ->where('transaction_date <=',$from)
+                                        ->where('user_id',$d->user_id)
+                                        ->order_by('id','DESC')
+                                        ->get()->result();
+
+                        if(empty($token_balance3[0]->token_status_id)){
+                            if(empty($token_balance_xx[0]->token_status_id)){
+                                $startbal = $d->token_amount;
+                            }elseif($token_balance_xx[0]->token_status_id == 15 || $token_balance_xx[0]->token_status_id == 27 || $token_balance_xx[0]->token_status_id == 33){
+                                $startbal = $token_balance_xx[0]->balance;
+                            }elseif($token_balance_xx[0]->token_status_id == 3 || $token_balance_xx[0]->token_status_id == 13 || $token_balance_xx[0]->token_status_id == 17 || $token_balance_xx[0]->token_status_id == 19 || $token_balance_xx[0]->token_status_id == 21 || $token_balance_xx[0]->token_status_id == 23){
+                                $startbal = $token_balance_xx[0]->balance;
+                            }elseif($token_balance_xx[0]->token_status_id == 1){
+                                $startbal = $token_balance_xx[0]->balance;
+                            }else{
+                                $startbal = $startbal;
+                            }
+                        }elseif($token_balance3[0]->token_status_id == 15 || $token_balance3[0]->token_status_id == 27 || $token_balance3[0]->token_status_id == 33){
+                            $startbal = $token_balance3[0]->balance - $token_balance3[0]->token_amount;
+                        }elseif($token_balance3[0]->token_status_id == 3 || $token_balance3[0]->token_status_id == 13 || $token_balance3[0]->token_status_id == 17 || $token_balance3[0]->token_status_id == 19 || $token_balance3[0]->token_status_id == 21 || $token_balance3[0]->token_status_id == 23){
+                            $startbal = $token_balance3[0]->balance;
+                        }elseif($token_balance3[0]->token_status_id == 1){
+                            $startbal = $token_balance3[0]->balance + $token_balance3[0]->token_amount;
+                        }else{
+                            $startbal = $startbal;
+                        }
 
                         $token_added = $this->db->select('token_amount')
                                         ->from('token_histories')
@@ -312,8 +377,8 @@
                         $next_ses = $this->db->select('date')
                                             ->from('appointments')
                                             ->where('student_id',$d->user_id)
-                                            // ->where('status','active')
-                                            ->where('date >', $nowdate)
+                                            ->where('status','active')
+                                            ->where('date >=', $nowdate)
                                             ->order_by('date','ASC')
                                             ->get()->result();
 
@@ -335,6 +400,15 @@
                                         ->order_by('transaction_date','DESC')
                                         ->get()->result();
 
+                        $token_not_usage = $this->db->select('token_amount')
+                                            ->from('token_histories')
+                                            ->where('transaction_date >=',$from)
+                                            ->where('transaction_date <=',$to)
+                                            ->where('user_id',$d->user_id)
+                                            ->where_in('token_status_id',$refustatus)
+                                            ->order_by('transaction_date','DESC')
+                                            ->get()->result();
+
                         $token_balance = $this->db->select('*')
                                         ->from('token_histories')
                                         ->where('transaction_date <=',$from)
@@ -348,6 +422,43 @@
                                         ->where('user_id',$d->user_id)
                                         ->order_by('transaction_date','DESC')
                                         ->get()->result();
+
+                        $token_balance3 = $this->db->select('*')
+                                        ->from('token_histories')
+                                        ->where('transaction_date >=',$from)
+                                        ->where('transaction_date <=',$to)
+                                        ->where('user_id',$d->user_id)
+                                        ->order_by('id','ASC')
+                                        ->get()->result();
+
+                        $token_balance_xx = $this->db->select('*')
+                                        ->from('token_histories')
+                                        ->where('transaction_date <=',$from)
+                                        ->where('user_id',$d->user_id)
+                                        ->order_by('id','DESC')
+                                        ->get()->result();
+
+                        if(empty($token_balance3[0]->token_status_id)){
+                            if(empty($token_balance_xx[0]->token_status_id)){
+                                $startbal = $d->token_amount;
+                            }elseif($token_balance_xx[0]->token_status_id == 15 || $token_balance_xx[0]->token_status_id == 27 || $token_balance_xx[0]->token_status_id == 33){
+                                $startbal = $token_balance_xx[0]->balance;
+                            }elseif($token_balance_xx[0]->token_status_id == 3 || $token_balance_xx[0]->token_status_id == 13 || $token_balance_xx[0]->token_status_id == 17 || $token_balance_xx[0]->token_status_id == 19 || $token_balance_xx[0]->token_status_id == 21 || $token_balance_xx[0]->token_status_id == 23){
+                                $startbal = $token_balance_xx[0]->balance;
+                            }elseif($token_balance_xx[0]->token_status_id == 1){
+                                $startbal = $token_balance_xx[0]->balance;
+                            }else{
+                                $startbal = $startbal;
+                            }
+                        }elseif($token_balance3[0]->token_status_id == 15 || $token_balance3[0]->token_status_id == 27 || $token_balance3[0]->token_status_id == 33){
+                            $startbal = $token_balance3[0]->balance - $token_balance3[0]->token_amount;
+                        }elseif($token_balance3[0]->token_status_id == 3 || $token_balance3[0]->token_status_id == 13 || $token_balance3[0]->token_status_id == 17 || $token_balance3[0]->token_status_id == 19 || $token_balance3[0]->token_status_id == 21 || $token_balance3[0]->token_status_id == 23){
+                            $startbal = $token_balance3[0]->balance;
+                        }elseif($token_balance3[0]->token_status_id == 1){
+                            $startbal = $token_balance3[0]->balance + $token_balance3[0]->token_amount;
+                        }else{
+                            $startbal = $startbal;
+                        }
 
                         $tokenbal = @$token_balance2[0]->balance;
 
@@ -379,8 +490,8 @@
                         $next_ses = $this->db->select('date')
                                             ->from('appointments')
                                             ->where('student_id',$d->user_id)
-                                            // ->where('status','active')
-                                            ->where('date >', $date_to)
+                                            ->where('status','active')
+                                            ->where('date >=', $date_to)
                                             ->order_by('date','ASC')
                                             ->get()->result();
 
@@ -397,6 +508,12 @@
                     foreach($token_usage as $key=>$value){
                       if(isset($value->token_amount))
                          $sum += $value->token_amount;
+                    }
+
+                    $sub = 0;
+                    foreach($token_not_usage as $key=>$value){
+                      if(isset($value->token_amount))
+                         $sub += $value->token_amount;
                     }
 
 
@@ -460,14 +577,19 @@
                         <td><?php echo $partname; ?></td>
                         <td><?php echo $d->name; ?></td>
                         <td><?php echo $d->cert_studying; ?></td>
-                        <td><?php if(@$start_b){echo @$start_b;}else{echo '0';} ?></td>
+                        <td><?php echo $startbal; ?></td>
+                        <!-- <td><?php if(@$start_b){echo @$start_b;}else{echo '0';} ?></td> -->
                         <td><?php if(@$addeds){echo @$addeds;}else{echo '0';} ?></td>
                         <td>
                             <?php if($sum != 0){ ?>
-                            <?php echo $sum; ?>
-                            <?php }else{ echo $sum; }?>
+                            <?php echo $sum - $sub; ?>
+                            <?php }else{ echo $sum - $sub; }?>
                         </td>
-                        <td><?php echo @$tokenbal; ?></td>
+                        <td>
+                            <?php if(empty(@$tokenbal)){ ?>
+                            <?php echo '0'; ?>
+                            <?php }else{ echo @$tokenbal; }?>
+                        </td>
                         <td>
                             <?php if($total_ses->num_rows() != 0){ ?>
                                 <?php echo $total_ses->num_rows(); ?>
