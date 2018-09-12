@@ -64,7 +64,11 @@ public function run()
                         $this->db->update('appointments', $data);
 
                         //$this->send_sms->student_reminder($student_phone, $q->student_name, $q->coach_name, $date_convert_student, $start_hour, $end_hour);
-                        $this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);                        
+                        if($q->student_login == 0){
+                            $this->send_email->student_reminder($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);
+                        }else{
+                            $this->send_email->student_reminder_b2c($q->student_email, $q->coach_name, $q->student_name, $date_convert_student, $start_hour, $end_hour, $q->student_gmt);
+                        }                        
                 }  
             }
             if($q->flag_sms == 0){
