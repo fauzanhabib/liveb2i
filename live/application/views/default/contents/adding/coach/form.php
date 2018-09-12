@@ -194,6 +194,10 @@
                 dataType: "html",
                 success: function (response) {
                    // console.log(response);
+                   if(response.indexOf("/**/ ") >= 0) {
+                     var response = response.replace("/**/ ", "");
+                     console.log(response);
+                   }
                    $('input[name=ptscore]').val(response);
 
                 },
@@ -216,6 +220,10 @@
                 dataType: "html",
                 success: function (response) {
                    // console.log(response);
+                   if(response.indexOf("/**/ ") >= 0) {
+                     var response = response.replace("/**/ ", "");
+                     console.log(response);
+                   }
                    $('input[name=ptscore]').val(response);
 
                 },
