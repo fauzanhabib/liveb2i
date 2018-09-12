@@ -596,7 +596,7 @@ class adding extends MY_Site_Controller {
         //         $ptscore = $b->last_pt_score;
         //     }
         // }
-        $ptscore = '/**/'.$ptscore;
+        // $ptscore = '/**/'.$ptscore;
 
         if (strpos($ptscore, "/**/") !== false) {
           $ptscore = str_replace("/**/", '', $ptscore);
