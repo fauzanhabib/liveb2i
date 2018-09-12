@@ -194,7 +194,7 @@
                 dataType: "html",
                 success: function (response) {
                    // console.log(response);
-                   if(response.indexOf("/**/ ") >= 0) {
+                   if(response.indexOf("/**/") >= 0) {
                      var response = response.replace("/**/ ", "");
                      console.log(response);
                    }
@@ -220,7 +220,7 @@
                 dataType: "html",
                 success: function (response) {
                    // console.log(response);
-                   if(response.indexOf("/**/ ") >= 0) {
+                   if(response.indexOf("/**/") >= 0) {
                      var response = response.replace("/**/ ", "");
                      console.log(response);
                    }
