@@ -193,13 +193,16 @@
                 data: { email : email, server: server },
                 dataType: "html",
                 success: function (response) {
-                   console.log(response);
-                   // if(response.indexOf("/**/") >= 0) {
+                   console.log(response+'-----1');
+                   response = response.replace(/(\r\n|\n|\r)/gm,"");
+                   response = response.replace(/\s+/g,"");
+                   console.log(response+'-----2');
+                   if(response.indexOf("/**/") >= 0) {
                      var response = response.replace("/**/", "");
-                     // console.log(response);
-                   // }
+                     console.log(response);
+                   }
                    $('input[name=ptscore]').val(response);
-                   console.log(response+'  bawah');
+                   console.log(response+'  last result');
                 },
             });
         }
@@ -219,13 +222,16 @@
                 data: { email : email, server: server },
                 dataType: "html",
                 success: function (response) {
-                   console.log(response);
-                   // if(response.indexOf("/**/") >= 0) {
-                     var response = response.replace("/**/", "");
-                     // console.log(response);
-                   // }
-                   $('input[name=ptscore]').val(response);
-                   console.log(response+'  bawah');
+                  console.log(response+'-----1');
+                  response = response.replace(/(\r\n|\n|\r)/gm,"");
+                  response = response.replace(/\s+/g,"");
+                  console.log(response+'-----2');
+                  if(response.indexOf("/**/") >= 0) {
+                    var response = response.replace("/**/", "");
+                    console.log(response);
+                  }
+                  $('input[name=ptscore]').val(response);
+                  console.log(response+'  last result');
                 },
             });
         }
