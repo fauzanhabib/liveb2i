@@ -33,7 +33,7 @@ class adding extends MY_Site_Controller {
         $this->load->model('user_token_model');
         $this->load->model('timezone_model');
 
-        
+
         // for messaging action and timing
         $this->load->library('queue');
 
@@ -180,7 +180,7 @@ class adding extends MY_Site_Controller {
 //            'content' => 'Welcome to Dyned Live as student, acccount information: Email = ' . $user['email'] . ' Password = ' . $password . ' This account is still disable, until Administrator approved, You will recive an email if this account has been approved',
 //        );
 //
-//        // Pushing queues to Pheanstalk server 
+//        // Pushing queues to Pheanstalk server
 //        foreach ($data as $d) {
 //            $this->queue->push($tube, $d, 'email.send_email');
 //        }
@@ -239,13 +239,13 @@ class adding extends MY_Site_Controller {
 
         $subgroup = '';
         foreach ($getsubgroup as $value) {
-            $subgroup[$value->id] = $value->name; 
+            $subgroup[$value->id] = $value->name;
         }
         $timezones = $this->timezone_model->where_not_in('minutes',array('-210','330','570',))->dropdown('id', 'timezone');
         $coach_type = $this->db->select('*')->from('coach_type')->get();
 
         $id_partner = $this->auth_manager->partner_id();
-        
+
         $partner = $this->partner_model->select('name, address, country, state, city, zip')->where('id',$id_partner)->get_all();
         $partner_country = $partner[0]->country;
 
@@ -312,7 +312,7 @@ class adding extends MY_Site_Controller {
 
         // generating password
         $password = $this->generateRandomString();
-        
+
         // Inserting user data
         $user = array(
             'email' => $this->input->post('email'),
@@ -342,10 +342,10 @@ class adding extends MY_Site_Controller {
             'creator_id' => $this->auth_manager->userid(),
             'member_id' => $user_id
         );
-        
-        
+
+
         $creator_member_id = $this->creator_member_model->insert($creator_member);
-        
+
         if (!$creator_member_id) {
             $this->db->trans_rollback();
             $this->messages->add(validation_errors(), 'danger');
@@ -379,8 +379,8 @@ class adding extends MY_Site_Controller {
             'dcrea' => time(),
             'dupd' => time()
         );
-        
-        
+
+
 
         // Inserting and checking to profile table then storing it into users_profile table
         $profile_id = $this->identity_model->get_identity('profile')->insert($profile);
@@ -390,8 +390,8 @@ class adding extends MY_Site_Controller {
             $this->coach();
             return;
         }
-        
-        
+
+
         // Inserting coach token cost profile data
         $token_cost = array(
             'coach_id' => $user_id,
@@ -401,7 +401,7 @@ class adding extends MY_Site_Controller {
             'dcrea' => time(),
             'dupd' => time()
         );
-        
+
         // Inserting and checking to profile table then storing it into users_profile table
         $token_cost_id = $this->coach_token_cost_model->insert($token_cost);
         if (!$token_cost_id) {
@@ -424,7 +424,7 @@ class adding extends MY_Site_Controller {
         // $token_id = $this->user_token_model->insert($token);
         $token_id = $this->db->insert('user_tokens',$token);
 
-        
+
 
         // Inserting user home town data
         $geography = array(
@@ -434,7 +434,7 @@ class adding extends MY_Site_Controller {
 
         // Inserting and checking to geography table then storing it into users_georaphy table
         $geography_id = $this->user_geography_model->insert($geography);
-        
+
         if (!$geography_id) {
             $this->user_model->delete($user_id);
             $this->messages->add(validation_errors(), 'danger');
@@ -457,7 +457,7 @@ class adding extends MY_Site_Controller {
             $this->coach();
             return;
         }
-        
+
         // Inserting user schedule and offwork data
         foreach ($this->days as $d) {
             $schedule = array(
@@ -489,7 +489,7 @@ class adding extends MY_Site_Controller {
         } else if($set_regid != 0){
             $regid = $set_regid;
         }
-        
+
         $partner_notification = array(
             'user_id' => $regid,
             'description' => 'New coach has been added, Please decide to approve or decline.',
@@ -498,7 +498,7 @@ class adding extends MY_Site_Controller {
             'dupd' => time(),
         );
 
-        
+
         $coach_notification = array(
             'user_id' => $user_id,
             'description' => 'Congratulation '.$this->input->post('fullname').' and Welcome to DynEd Live.',
@@ -525,16 +525,16 @@ class adding extends MY_Site_Controller {
 
          $this->db->trans_commit();
         // messaging inserting data notification
-         
+
         $this->user_notification_model->insert($partner_notification);
         // $this->user_notification_model->insert($coach_notification);
 
 
 
         // =====email====
-        
+
         $id_to_email_address = $this->user_model->dropdown('id', 'email');
-       
+
         $email_address = $this->user_model->select('id, email')->where('role_id', '4')->get_all();
         $email_admin = $this->user_model->select('id, email')->where('id', $regid)->get_all();
         $adminmail = $email_admin[0]->email;
@@ -542,7 +542,7 @@ class adding extends MY_Site_Controller {
         $adminname = $name_admin[0]->fullname;
         $partners = $partners = $this->partner_model->select('*')->where('id', $this->auth_manager->partner_id())->get_all();
         $partnername = $partners[0]->name;
-        
+
         // Tube name for messaging action
 
 
@@ -555,7 +555,7 @@ class adding extends MY_Site_Controller {
         $this->messages->add('Inserting Coach Successful', 'success');
         redirect('partner/subgroup/list_coach/'.$idsubgroup);
     }
-    
+
     public function is_email_available($email) {
         if ($this->user_model->where('email', $email)->get_all()) {
             $this->form_validation->set_message('is_email_available', $email . ' has been registered, use another email');
@@ -568,40 +568,47 @@ class adding extends MY_Site_Controller {
     function ptscore(){
         $this->load->library('call2');
 
-      
+
         $email = $this->input->post('email');
         $server = $this->input->post('server');
-   
+
 
         // $this->call2->init("site11", "sutomo@dyned.com");
         $this->call2->init($server, $email);
         $a = $this->call2->getDataJson();
         $b = json_decode($a);
-     
+
         $ptscore = '';
         if(@$b == ''){
             $ptscore = 0;
         } else if(@$b->error == 'Invalid student email'){
                 $ptscore = 0;
         } else {
-                $ptscore = $b->initial_pt_score;    
+                $ptscore = $b->initial_pt_score;
         }
         // if(($server == 'cn1') || ($server == 'cn2') || ($server == 'mx1') || ($server == 'mn1') || ($server == 'mone') || ($server == 'vs1')){
         //     $ptscore = "Email is not registered in this server";
         // } else {
- 
+
         //     if(@$b->error == 'Invalid student email'){
         //         $ptscore = 0;
         //     } else {
-        //         $ptscore = $b->last_pt_score;    
+        //         $ptscore = $b->last_pt_score;
         //     }
         // }
+        // $ptscore = '/**/ '.$ptscore;
 
+        if (strpos($ptscore, '/**/ ') !== false) {
+          $ptscore = str_replace('/**/ ', '', $ptscore);
+        }else{
+          $ptscore = $ptscore;
+        }
+        // $ptscore = intval(preg_replace('/[^0-9.,]+/', '', $ptscore), 10);
         echo $ptscore;
-        
+
         // echo header("Content-Type:application/json");
-        // print_r($a); 
-        
+        // print_r($a);
+
     }
 
     function check_email_pro_id($email){
