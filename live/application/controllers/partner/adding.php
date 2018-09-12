@@ -598,11 +598,11 @@ class adding extends MY_Site_Controller {
         // }
         // $ptscore = '/**/'.$ptscore;
 
-        if (strpos($ptscore, "/**/") !== false) {
-          $ptscore = str_replace("/**/", '', $ptscore);
-        }else{
-          $ptscore = $ptscore;
-        }
+        // if (strpos($ptscore, "/**/") !== false) {
+        //   $ptscore = str_replace("/**/", '', $ptscore);
+        // }else{
+        //   $ptscore = $ptscore;
+        // }
         // $ptscore = intval(preg_replace('/[^0-9.,]+/', '', $ptscore), 10);
         echo $ptscore;
 

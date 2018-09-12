@@ -194,10 +194,10 @@
                 dataType: "html",
                 success: function (response) {
                    console.log(response);
-                   if(response.indexOf("/**/") >= 0) {
+                   // if(response.indexOf("/**/") >= 0) {
                      var response = response.replace("/**/", "");
-                     console.log(response);
-                   }
+                     // console.log(response);
+                   // }
                    $('input[name=ptscore]').val(response);
                    console.log(response+'  bawah');
                 },
@@ -220,10 +220,10 @@
                 dataType: "html",
                 success: function (response) {
                    console.log(response);
-                   if(response.indexOf("/**/") >= 0) {
+                   // if(response.indexOf("/**/") >= 0) {
                      var response = response.replace("/**/", "");
-                     console.log(response);
-                   }
+                     // console.log(response);
+                   // }
                    $('input[name=ptscore]').val(response);
                    console.log(response+'  bawah');
                 },
