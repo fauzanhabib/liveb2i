@@ -32,18 +32,18 @@ class subgroup extends MY_Site_Controller {
         // for messaging action and timing
         $this->load->library('queue');
 		$this->load->library('common_function');
-		
+
         //checking user role and giving action
         if (!$this->auth_manager->role() || $this->auth_manager->role() != 'PRT') {
             $this->messages->add('Access Denied');
             redirect('account/identity/detail/profile');
         }
     }
-	
+
 		function generateRandomString($length = 5) {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
-	
+
   //   public function index($subgroup_id='', $page='') {
   //       $this->template->title = 'Add Subgroup';
   //       $offset = 0;
@@ -51,14 +51,14 @@ class subgroup extends MY_Site_Controller {
   //       $uri_segment = 4;
 		// $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/member_list/coach'.$subgroup_id), count($this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(),$subgroup_id)), $per_page, $uri_segment);
   //       $search_partner = $this->input->post('search_partner');
-		
+
   //       $data = $this->identity_model->get_subgroup_identity(null,'coach');
   //       $vars = array(
   //       'data' => $data,
 		// 'data2' => $this->identity_model->get_coach_identity('','',$this->auth_manager->partner_id(), '', $per_page, $offset, $subgroup_id),
 		// 'pagination' => @$pagination,
   //       );
-        
+
   //       $this->template->content->view('default/contents/partner/managing_subgroup/index', $vars);
 
   //       //publish template
@@ -124,7 +124,7 @@ class subgroup extends MY_Site_Controller {
                     ->get()->result();
             $w++;
         }
-        
+
         $total_sess_val = count(@$session_pull, COUNT_RECURSIVE);
         $total_sess_val = $total_sess_val - $w;
         // Total Sessions ---------------------------------------------------------
@@ -137,7 +137,7 @@ class subgroup extends MY_Site_Controller {
         $number_page = 0;
         if($page == ''){
             $number_page = (1 * $per_page)-$per_page+1;
-            
+
         } else {
             $number_page = ($page * $per_page)-$per_page+1;
         }
@@ -156,7 +156,7 @@ class subgroup extends MY_Site_Controller {
         // echo "<pre>";
         // print_r($all_coach);
         // exit();
-        
+
         $this->template->content->view('default/contents/partner/managing_subgroup/index', $vars);
 
         //publish template
@@ -222,7 +222,7 @@ class subgroup extends MY_Site_Controller {
                     ->get()->result();
             $w++;
         }
-        
+
         $total_sess_val = count(@$session_pull, COUNT_RECURSIVE);
         $total_sess_val = $total_sess_val - $w;
         // Total Sessions ---------------------------------------------------------
@@ -235,7 +235,7 @@ class subgroup extends MY_Site_Controller {
         $number_page = 0;
         if($page == ''){
             $number_page = (1 * $per_page)-$per_page+1;
-            
+
         } else {
             $number_page = ($page * $per_page)-$per_page+1;
         }
@@ -254,13 +254,13 @@ class subgroup extends MY_Site_Controller {
         // echo "<pre>";
         // print_r($all_coach);
         // exit();
-        
+
         $this->template->content->view('default/contents/partner/managing_subgroup/index_disable', $vars);
 
         //publish template
         $this->template->publish();
     }
-    
+
     public function add_subgroup() {
         $this->template->title = 'Add Group';
         $data = $this->identity_model->get_subgroup_identity();
@@ -271,11 +271,11 @@ class subgroup extends MY_Site_Controller {
         //echo "<pre>";
         //print_r($vars);
         //exit;
-        
+
         $this->template->content->view('default/contents/partner/managing_subgroup/add_subgroup_form', $vars);
         $this->template->publish();
     }
-    
+
     public function create_subgroup() {
         // Creating a partner
         if (!$this->input->post('__submit')) {
@@ -285,20 +285,20 @@ class subgroup extends MY_Site_Controller {
         if(!$partner_id){
             $partner_id = $this->auth_manager->partner_id();
         }
-        
+
         $rules = array(
                 array('field'=>'name', 'label' => 'Name', 'rules'=>'trim|required|xss_clean|max_length[30]|callback_is_subgroup_available'),
-                
+
             );
 
             if (!$this->common_function->run_validation($rules)) {
                 $this->messages->add(validation_errors(), 'warning');
                 redirect('partner/subgroup/add_subgroup');
             }
-        
+
         // inserting user data
         $partner = array(
-            
+
             'name' => $this->input->post('name'),
             'type' => 'coach',
             'partner_id' => $partner_id,
@@ -321,9 +321,9 @@ class subgroup extends MY_Site_Controller {
             return true;
         }
     }
-	
+
 	public function setting($subgroup_id='', $id='')
-    { 
+    {
 		$data3 = $this->identity_model->get_subgroup_identity($id,'coach','',$subgroup_id);
         $setting = $this->region_model->get_specific_setting($id);
         $data_subgroup = $this->identity_model->get_subgroup_identity($id);
@@ -332,8 +332,8 @@ class subgroup extends MY_Site_Controller {
 				'data_subgroup' => $data_subgroup,
 				'data3' => $data3,
 				'subgroup_id' => $subgroup_id,];
-				
-		
+
+
 
         $this->template->content->view('default/contents/partner/setting', $vars);
         $this->template->publish();
@@ -349,7 +349,7 @@ class subgroup extends MY_Site_Controller {
                             ->where('u.status', 'active')
                             ->where('s.partner_id', $partner)
                             ->get()->result();
-        
+
         header("Content-type: application/octet-stream");
         header("Content-Disposition: attachment; filename=CoachLate.xls");
         header("Pragma: no-cache");
@@ -366,9 +366,9 @@ class subgroup extends MY_Site_Controller {
           </tr>
         </thead>
         <tbody>';
-        foreach(@$coach as $c) { 
+        foreach(@$coach as $c) {
             $data = $this->db->select('id, coach_id, date, start_time, cch_attend')->from('appointments')->where('coach_id', $c->user_id)->where('status', 'completed')->get()->result();
-                foreach(@$data as $d) { 
+                foreach(@$data as $d) {
                     $cch_att_dif = strtotime($d->cch_attend) - strtotime($d->start_time);
                     $cch_att_val = date("H:i:s", $cch_att_dif);
                     if($cch_att_dif > '300'){ ; echo '
@@ -383,16 +383,16 @@ class subgroup extends MY_Site_Controller {
           </tbody>
         </table>';
     }
-	
+
     //---------------------------------------------------------------------------------------------------------------------
      public function edit_subgroup($subgroup_id = '', $page='', $id='') {
-        
+
         $this->template->title = 'Edit Group';
         $offset = 0;
         $per_page = 6;
         $uri_segment = 4;
         $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/managing_subgroup/detail'.$subgroup_id), count($this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(),$subgroup_id)), $per_page, $uri_segment);
-        
+
         $data = $this->identity_model->get_subgroup_identity($id,'coach','',$subgroup_id);
         $vars = array(
             'data' => $data,
@@ -421,7 +421,7 @@ class subgroup extends MY_Site_Controller {
             $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/subgroup/list_coach/'.$subgroup_id), count($this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(),null,null,null)), $per_page, $uri_segment,$subgroup_id);
             $data2 = $this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(), '', '', '', $per_page, $offset, $subgroup_id);
         }
-        
+
         $data = $this->identity_model->get_subgroup_identity($id,'coach','active','','');
         $partner_id = $this->auth_manager->partner_id($id);
         // Total Sessions ---------------------------------------------------------
@@ -456,7 +456,7 @@ class subgroup extends MY_Site_Controller {
         $number_page = 0;
         if($page == ''){
             $number_page = (1 * $per_page)-$per_page+1;
-            
+
         } else {
             $number_page = ($page * $per_page)-$per_page+1;
         }
@@ -488,7 +488,7 @@ class subgroup extends MY_Site_Controller {
         $per_page = 10;
         $uri_segment = 5;
         $pagination = $this->common_function->create_link_pagination($page, $offset, site_url('partner/subgroup/list_coach/'.$subgroup_id), count($this->identity_model->get_coach_identity('','','',$this->auth_manager->partner_id(),null,null,null)), $per_page, $uri_segment,$subgroup_id);
-        
+
         $data = $this->identity_model->get_subgroup_identity($id,'coach','disable',null);
         $partner_id = $this->auth_manager->partner_id($id);
         // Total Sessions ---------------------------------------------------------
@@ -523,7 +523,7 @@ class subgroup extends MY_Site_Controller {
         $number_page = 0;
         if($page == ''){
             $number_page = (1 * $per_page)-$per_page+1;
-            
+
         } else {
             $number_page = ($page * $per_page)-$per_page+1;
         }
@@ -540,7 +540,7 @@ class subgroup extends MY_Site_Controller {
             'number_page' => $number_page
         );
 
-        
+
 
         $this->template->content->view('default/contents/partner/managing_subgroup/detail_disable', $vars);
         $this->template->publish();
@@ -562,15 +562,15 @@ class subgroup extends MY_Site_Controller {
                 $this->detail($id);
                 return;
             }
-        
+
         $partner = array(
             'name' => $this->input->post('name'),
         );
-        
+
         // Inserting and checking to partner table
         $this->db->where('id', $id);
         $this->db->where('type', 'coach');
-        $this->db->update('subgroup', $partner); 
+        $this->db->update('subgroup', $partner);
 
         $this->messages->add('Update Group Successful', 'success');
         redirect('partner/subgroup');
@@ -581,7 +581,7 @@ class subgroup extends MY_Site_Controller {
     //   if(!empty($_POST['check_list'])) {
     //             $check_list = $_POST['check_list'];
     //             $type_submit = $_POST['__submit'];
-       
+
     //             if($type_submit == 'delete_subgroup'){
     //                 // check apakah group ada isinya
     //                 $check_group = $this->user_profile_model->select('user_profiles.id')->join('users','users.id = user_profiles.user_id')->where('users.status','active')->where_in('user_profiles.subgroup_id',$check_list)->get_all();
@@ -613,7 +613,7 @@ class subgroup extends MY_Site_Controller {
           if(!empty($_POST['check_list'])) {
                     $check_list = $_POST['check_list'];
                     $type_submit = $_POST['__submit'];
-           
+
                     if($type_submit == 'delete_subgroup'){
                         // check apakah group ada isinya
                         $check_group = $this->user_profile_model->select('*')->where_in('subgroup_id',$check_list)->get_all();
@@ -636,7 +636,7 @@ class subgroup extends MY_Site_Controller {
                         $status = array(
                             'status' => 'disable',
                         );
-                        foreach ($check_group as $c){ 
+                        foreach ($check_group as $c){
                         $this->db->where('id',$c->user_id);
                         $this->db->update('users', $status);
                         }
@@ -649,13 +649,13 @@ class subgroup extends MY_Site_Controller {
                         $this->db->trans_commit();
                         $this->messages->add('Disable Group Succeeded', 'success');
                             // $this->messages->add('This group has a Coach', 'error');
-                        } 
+                        }
                         // else if(count($check_group2) > 0){
                         //     $this->db->trans_begin();
                         // $status = array(
                         //     'status' => 'disable',
                         // );
-                        // foreach ($check_group2 as $c2){ 
+                        // foreach ($check_group2 as $c2){
                         // $this->db->where('id',$c2->user_id);
                         // $this->db->update('users', $status);
                         // }
@@ -690,12 +690,12 @@ class subgroup extends MY_Site_Controller {
                     $check_group = $this->user_profile_model->select('*')->where_in('subgroup_id',$check_list)->get_all();
 
                     if(count($check_group) > 0){
-                        
+
                         $this->db->trans_begin();
                         $status = array(
                             'status' => 'active',
                         );
-                        foreach ($check_group as $c){ 
+                        foreach ($check_group as $c){
                         $this->db->where('id',$c->user_id);
                         $this->db->update('users', $status);
                         }
@@ -736,7 +736,7 @@ class subgroup extends MY_Site_Controller {
     function delete_coach($id){
         if(!empty($_POST['check_list'])) {
             $check_list = $_POST['check_list'];
-            
+
             $type_submit = $_POST['_submit'];
             $now_date = date('Y-m-d');
             // check apakah coach ada appointment
@@ -767,16 +767,16 @@ class subgroup extends MY_Site_Controller {
                 $this->messages->add('Delete Successful', 'success');
 
             }
-            
+
         } else {
             $this->messages->add('Please choose coach', 'error');
         }
 
         redirect('partner/subgroup/list_coach/'.$id);
     }
-	
+
 	public function coach($subgroup_id = '') {
-        
+
         $this->template->title = 'Add Coach';
 
         // get partner id
@@ -792,8 +792,24 @@ class subgroup extends MY_Site_Controller {
         // baru diedit 27 sept 2017
         $subgroup = $getsubgroup[0]->name;
         // foreach ($getsubgroup as $value) {
-        //     $subgroup[$value->id] = $value->name; 
+        //     $subgroup[$value->id] = $value->name;
         // }
+
+        //============================================================
+        // $this->load->library('call2');
+        //
+        //
+        // $email = 'oteng@dyned.com';
+        // $server = 'cn2';
+        //
+        //
+        // // $this->call2->init("site11", "sutomo@dyned.com");
+        // $this->call2->init($server, $email);
+        // $a = $this->call2->getDataJson();
+        // $b = json_decode($a);
+        //
+        // echo "<pre>";print_r($b);exit();
+        //============================================================
 
         $partner_id = $this->auth_manager->partner_id();
         $partner = $this->partner_model->select('name, address, country, state, city, zip')->where('id',$partner_id)->get_all();
@@ -804,7 +820,7 @@ class subgroup extends MY_Site_Controller {
         $newoptions = $code;
         $arsearch = array_search($partner_country, array_column($option_country, 'name'));
         $dial_code = $option_country[$arsearch]['dial_code'];
-        
+
         $vars = array(
             'form_action' => 'create_coach',
             'subgroup' => $subgroup,
@@ -856,10 +872,10 @@ class subgroup extends MY_Site_Controller {
             $this->coach();
             return;
         }
-        
+
         // generating password
         $password = $this->generateRandomString();
-        
+
         // Inserting user data
         $user = array(
             'email' => $this->input->post('email'),
@@ -888,10 +904,10 @@ class subgroup extends MY_Site_Controller {
             'creator_id' => $this->auth_manager->userid(),
             'member_id' => $user_id
         );
-        
-        
+
+
         $creator_member_id = $this->creator_member_model->insert($creator_member);
-        
+
         if (!$creator_member_id) {
             $this->db->trans_rollback();
             $this->messages->add(validation_errors(), 'danger');
@@ -915,8 +931,8 @@ class subgroup extends MY_Site_Controller {
             'dcrea' => time(),
             'dupd' => time()
         );
-        
-        
+
+
 
         // Inserting and checking to profile table then storing it into users_profile table
         $profile_id = $this->identity_model->get_identity('profile')->insert($profile);
@@ -926,8 +942,8 @@ class subgroup extends MY_Site_Controller {
             $this->coach();
             return;
         }
-        
-        
+
+
         // Inserting coach token cost profile data
         $token_cost = array(
             'coach_id' => $user_id,
@@ -936,7 +952,7 @@ class subgroup extends MY_Site_Controller {
             'dcrea' => time(),
             'dupd' => time()
         );
-        
+
         // Inserting and checking to profile table then storing it into users_profile table
         $token_cost_id = $this->coach_token_cost_model->insert($token_cost);
         if (!$token_cost_id) {
@@ -946,7 +962,7 @@ class subgroup extends MY_Site_Controller {
             return;
         }
 
-        
+
 
         // Inserting user home town data
         $geography = array(
@@ -957,7 +973,7 @@ class subgroup extends MY_Site_Controller {
 
         // Inserting and checking to geography table then storing it into users_georaphy table
         $geography_id = $this->user_geography_model->insert($geography);
-        
+
         if (!$geography_id) {
             $this->user_model->delete($user_id);
             $this->messages->add(validation_errors(), 'danger');
@@ -980,7 +996,7 @@ class subgroup extends MY_Site_Controller {
             $this->coach();
             return;
         }
-        
+
         // Inserting user schedule and offwork data
         foreach ($this->days as $d) {
             $schedule = array(
@@ -1005,9 +1021,9 @@ class subgroup extends MY_Site_Controller {
 		$this->messages->add('Coach Added', 'success');
 		redirect('partner/subgroup/coach');
 	}
-    
-    
-    
+
+
+
     public function is_email_available($email) {
         if ($this->user_model->where('email', $email)->get_all()) {
             $this->form_validation->set_message('is_email_available', $email . ' has been registered, use another email');
@@ -1021,16 +1037,16 @@ class subgroup extends MY_Site_Controller {
 
         $this->template->title = 'Coach Detail';
         $data = $this->identity_model->get_coach_identity($id, '', '', $this->auth_manager->partner_id(), '', '', '', '', '', $subgroup_id);
-        
+
         if(!$data){
             $this->messages->add('Invalid Action', 'warning');
             redirect('partner/subgroup/list_coach/'.$subgroup_id);
         }
 
         $get_user_timezone = $this->db->select('minutes_val')->from('user_timezones')->where('user_id',$id)->get()->result();
-    
+
         if(!$get_user_timezone){
-            $minute_user_timezone = 0;            
+            $minute_user_timezone = 0;
         } else {
             $minute_user_timezone = $get_user_timezone[0]->minutes_val;
         }
@@ -1043,7 +1059,7 @@ class subgroup extends MY_Site_Controller {
             'coach_id' => $id,
             'user_tz' => $user_tz
         );
-        
+
 
         $this->template->content->view('default/contents/partner/managing_subgroup/coach_detail', $vars);
         $this->template->publish();
@@ -1051,10 +1067,10 @@ class subgroup extends MY_Site_Controller {
 
 
     // public function coach_detail($subgroup_id = '', $id = ''){
-        
+
     //     $this->template->title = 'Coach Detail';
     //     $data = $this->identity_model->get_coach_identity($id, '', '', $this->auth_manager->partner_id());
-    
+
     //     if(!$data){
     //         $this->messages->add('Invalid Action', 'warning');
     //         redirect('partner/subgroup/list_coach/'.$subgroup_id);
@@ -1062,7 +1078,7 @@ class subgroup extends MY_Site_Controller {
     //     $vars = array(
     //         'data' => $data,
     //     );
-        
+
 
     //     $this->template->content->view('default/contents/partner/managing_subgroup/coach_detail', $vars);
     //     $this->template->publish();
