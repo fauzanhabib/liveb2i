@@ -66,7 +66,7 @@
                             <label for="ptsocre">PT Score</label>
                         </div>
                         <div class="input ptscore">
-                            <input type="text" name="ptscore" data-parsley-trigger="change" id="ptscore" class="pure-input-1-2" readonly>
+                            <input type="number" name="ptscore" data-parsley-trigger="change" id="ptscore" class="pure-input-1-2" readonly>
                         </div>
                     </div>
 
@@ -193,13 +193,13 @@
                 data: { email : email, server: server },
                 dataType: "html",
                 success: function (response) {
-                   // console.log(response);
+                   console.log(response);
                    if(response.indexOf("/**/") >= 0) {
                      var response = response.replace("/**/", "");
                      console.log(response);
                    }
                    $('input[name=ptscore]').val(response);
-
+                   console.log(response+'  bawah');
                 },
             });
         }
@@ -219,13 +219,13 @@
                 data: { email : email, server: server },
                 dataType: "html",
                 success: function (response) {
-                   // console.log(response);
+                   console.log(response);
                    if(response.indexOf("/**/") >= 0) {
                      var response = response.replace("/**/", "");
                      console.log(response);
                    }
                    $('input[name=ptscore]').val(response);
-
+                   console.log(response+'  bawah');
                 },
             });
         }
