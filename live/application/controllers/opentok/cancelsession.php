@@ -133,8 +133,24 @@ class Cancelsession extends MY_Site_Controller {
                 $this->db->where('user_id', $coach_id);
                 $this->db->update('user_tokens', $token_coach_update);
 
+                $partner_id = $this->auth_manager->partner_id($coach_id);
+                  $organization_id = '';
+                  $organization_id = $this->db->select('gv_organizations.id')
+                            ->from('gv_organizations')
+                            ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                            ->where('users.id', $coach_id)
+                            ->get()->result();
+
+                  if(empty($organization_id)){
+                      $organization_id = $organization_id;
+                  }else{
+                      $organization_id = $organization_id[0]->id;
+                  }
+
                 $token_coach_hist = array(
                     'coach_id' => $coach_id,
+                    'partner_id' => $partner_id,
+                    'organization_id' => $organization_id,
                     'date'     => $date,
                     'time'     => $time,
                     'upd_token'    => $upd_token,

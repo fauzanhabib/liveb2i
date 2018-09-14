@@ -203,8 +203,24 @@ class Leavesession extends MY_Site_Controller {
                 $this->db->where('user_id', $coach_id);
                 $this->db->update('user_tokens', $token_coach_update);
 
+                $partner_id = $this->auth_manager->partner_id($coach_id);
+                  $organization_id = '';
+                  $organization_id = $this->db->select('gv_organizations.id')
+                            ->from('gv_organizations')
+                            ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                            ->where('users.id', $coach_id)
+                            ->get()->result();
+
+                  if(empty($organization_id)){
+                      $organization_id = $organization_id;
+                  }else{
+                      $organization_id = $organization_id[0]->id;
+                  }
+
                 $token_coach_hist = array(
                     'coach_id' => $coach_id,
+                    'partner_id' => $partner_id,
+                    'organization_id' => $organization_id,
                     'date'     => $date,
                     'time'     => $time,
                     'flag'     => 1,
@@ -268,8 +284,24 @@ class Leavesession extends MY_Site_Controller {
                     $idstat = 13;
                 }
 
+                $partner_id = $this->auth_manager->partner_id($coach_id);
+                  $organization_id = '';
+                  $organization_id = $this->db->select('gv_organizations.id')
+                            ->from('gv_organizations')
+                            ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                            ->where('users.id', $coach_id)
+                            ->get()->result();
+
+                  if(empty($organization_id)){
+                      $organization_id = $organization_id;
+                  }else{
+                      $organization_id = $organization_id[0]->id;
+                  }
+
                 $token_coach_hist = array(
                     'coach_id' => $coach_id,
+                    'partner_id' => $partner_id,
+                    'organization_id' => $organization_id,
                     'date'     => $date,
                     'time'     => $time,
                     'flag'     => 2,
@@ -285,8 +317,25 @@ class Leavesession extends MY_Site_Controller {
 
                 //update token histories for student
                 // if($this->auth_manager->role() == 'STD'){
+
+                $partner_id = $this->auth_manager->partner_id($student_id);
+                  $organization_id = '';
+                  $organization_id = $this->db->select('gv_organizations.id')
+                            ->from('gv_organizations')
+                            ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                            ->where('users.id', $student_id)
+                            ->get()->result();
+
+                  if(empty($organization_id)){
+                      $organization_id = $organization_id;
+                  }else{
+                      $organization_id = $organization_id[0]->id;
+                  }
+
                 $token_std_hist = array(
                     'user_id' => $student_id,
+                    'partner_id' => $partner_id,
+                    'organization_id' => $organization_id,
                     'transaction_date' => time(),
                     'token_amount'     => $cost,
                     'description'      => $desc,

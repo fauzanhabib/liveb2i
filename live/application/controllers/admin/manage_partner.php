@@ -1633,7 +1633,19 @@ class manage_partner extends MY_Site_Controller {
             // $this->identity_model->get_identity('token')->update($token->id,$update_data);
             $update_token_region = $this->db->where('user_id',$token->user_id)->update('user_tokens',$update_data);
 
+            $partner_id = $this->auth_manager->partner_id($token_request->user_id);
+            $organization_id = '';
+            $organization_id = $this->db->select('gv_organizations.id')
+                      ->from('gv_organizations')
+                      ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                      ->where('users.id', $token_request->user_id)
+                      ->get()->result();
 
+            if(empty($organization_id)){
+                $organization_id = $organization_id;
+            }else{
+                $organization_id = $organization_id[0]->id;
+            }
 
             $token_history = array(
                 'user_id' => $token_request->user_id,
@@ -2102,10 +2114,25 @@ class manage_partner extends MY_Site_Controller {
         $this->db->insert('token_requests',$insert_table_req);
 
         // insert into tabel token histories
+        $partner_id = $this->auth_manager->partner_id($student_supplier_id);
+        $organization_id = '';
+        $organization_id = $this->db->select('gv_organizations.id')
+                  ->from('gv_organizations')
+                  ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                  ->where('users.id', $student_supplier_id)
+                  ->get()->result();
+
+        if(empty($organization_id)){
+            $organization_id = $organization_id;
+        }else{
+            $organization_id = $organization_id[0]->id;
+        }
 
         $data_histories_token = array('balance' => $total_request_token,
                                       'token_amount' => $request_token,
                                       'user_id' => $student_supplier_id,
+                                      'partner_id' => $partner_id,
+                                      'organization_id' => $organization_id,
                                       'transaction_date' => time(),
                                       'description' => 'Your token has been added by your Region',
                                       'token_status_id' => 33);
@@ -2225,9 +2252,24 @@ class manage_partner extends MY_Site_Controller {
                                           ->update('user_tokens', $data_region);
         // insert into tabel token histories
         $data_token_student_partner = $this->db->select('token_amount')->from('user_tokens')->where('user_id', $student_partner_id)->get()->result();
+        $partner_id = $this->auth_manager->partner_id($student_partner_id);
+        $organization_id = '';
+        $organization_id = $this->db->select('gv_organizations.id')
+                  ->from('gv_organizations')
+                  ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                  ->where('users.id', $student_partner_id)
+                  ->get()->result();
+
+        if(empty($organization_id)){
+            $organization_id = $organization_id;
+        }else{
+            $organization_id = $organization_id[0]->id;
+        }
         $data_histories_token = array('balance' => $data_token_student_partner[0]->token_amount,
                                       'token_amount' => $token_amount,
                                       'user_id' => $student_partner_id,
+                                      'partner_id' => $partner_id,
+                                      'organization_id' => $organization_id,
                                       'transaction_date' => time(),
                                       'description' => 'Your tokens were refunded by Region',
                                       'token_status_id' => 35);

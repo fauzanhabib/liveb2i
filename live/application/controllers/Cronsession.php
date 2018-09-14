@@ -128,8 +128,24 @@ class Cronsession extends MY_Controller {
             $desc = "Your tokens were refunded because you and your coach didn't attend the session";
             $idstat = 23;
 
+            $partner_id = $this->auth_manager->partner_id($coach_id);
+              $organization_id = '';
+              $organization_id = $this->db->select('gv_organizations.id')
+                        ->from('gv_organizations')
+                        ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                        ->where('users.id', $coach_id)
+                        ->get()->result();
+
+              if(empty($organization_id)){
+                  $organization_id = $organization_id;
+              }else{
+                  $organization_id = $organization_id[0]->id;
+              }
+
             $token_coach_hist = array(
                 'coach_id' => $coach_id,
+                'partner_id' => $partner_id,
+                'organization_id' => $organization_id,
                 'date'     => $date,
                 'time'     => $time,
                 'flag'     => 2,
@@ -142,8 +158,26 @@ class Cronsession extends MY_Controller {
             $this->db->insert('token_histories_coach', $token_coach_hist);
 
             //update token histories for student
+
+            $partner_id = $this->auth_manager->partner_id($student_id);
+              $organization_id = '';
+              $organization_id = $this->db->select('gv_organizations.id')
+                        ->from('gv_organizations')
+                        ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                        ->where('users.id', $student_id)
+                        ->get()->result();
+
+              if(empty($organization_id)){
+                  $organization_id = $organization_id;
+              }else{
+                  $organization_id = $organization_id[0]->id;
+              }
+
             $token_std_hist = array(
+                'appointment_id' => $appoint_id,
                 'user_id' => $student_id,
+                'partner_id' => $partner_id,
+                'organization_id' => $organization_id,
                 'transaction_date' => time(),
                 'token_amount'     => $cost,
                 'description'      => $desc,

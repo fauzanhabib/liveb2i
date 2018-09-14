@@ -146,8 +146,23 @@ class Croncoachatt extends MY_Controller {
                                   //Update student token --------------------------------
 
                                   //Insert coach token history --------------------------------
+                                  $partner_id = $this->auth_manager->partner_id($coach_id);
+                                  $organization_id = '';
+                                  $organization_id = $this->db->select('gv_organizations.id')
+                                            ->from('gv_organizations')
+                                            ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                                            ->where('users.id', $coach_id)
+                                            ->get()->result();
+
+                                  if(empty($organization_id)){
+                                      $organization_id = $organization_id;
+                                  }else{
+                                      $organization_id = $organization_id[0]->id;
+                                  }
                                   $token_coach_hist = array(
                                       'coach_id' => $coach_id,
+                                      'partner_id' => $partner_id,
+                                      'organization_id' => $organization_id,
                                       'date'     => $date,
                                       'time'     => $timecoach,
                                       'flag'     => 2,
@@ -162,8 +177,24 @@ class Croncoachatt extends MY_Controller {
 
 
                                   //Insert student token history --------------------------------
+                                  $partner_id = $this->auth_manager->partner_id($student_id);
+                                  $organization_id = '';
+                                  $organization_id = $this->db->select('gv_organizations.id')
+                                            ->from('gv_organizations')
+                                            ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                                            ->where('users.id', $student_id)
+                                            ->get()->result();
+
+                                  if(empty($organization_id)){
+                                      $organization_id = $organization_id;
+                                  }else{
+                                      $organization_id = $organization_id[0]->id;
+                                  }
                                   $token_std_hist = array(
+                                      'appointment_id' => $appointment_id,
                                       'user_id' => $student_id,
+                                      'partner_id' => $partner_id,
+                                      'organization_id' => $organization_id,
                                       'transaction_date' => time(),
                                       'token_amount'     => $cost,
                                       'description'      => 'Coach is Late / Student tokens refunded',
@@ -213,8 +244,23 @@ class Croncoachatt extends MY_Controller {
                           //Update student token --------------------------------
 
                           //Insert coach token history --------------------------------
+                          $partner_id = $this->auth_manager->partner_id($coach_id);
+                          $organization_id = '';
+                          $organization_id = $this->db->select('gv_organizations.id')
+                                    ->from('gv_organizations')
+                                    ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                                    ->where('users.id', $coach_id)
+                                    ->get()->result();
+
+                          if(empty($organization_id)){
+                              $organization_id = $organization_id;
+                          }else{
+                              $organization_id = $organization_id[0]->id;
+                          }
                           $token_coach_hist = array(
                               'coach_id' => $coach_id,
+                              'partner_id' => $partner_id,
+                              'organization_id' => $organization_id,
                               'date'     => $date,
                               'time'     => $timecoach,
                               'flag'     => 2,
@@ -229,8 +275,24 @@ class Croncoachatt extends MY_Controller {
 
 
                           //Insert student token history --------------------------------
+                          $partner_id = $this->auth_manager->partner_id($student_id);
+                          $organization_id = '';
+                          $organization_id = $this->db->select('gv_organizations.id')
+                                    ->from('gv_organizations')
+                                    ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                                    ->where('users.id', $student_id)
+                                    ->get()->result();
+
+                          if(empty($organization_id)){
+                              $organization_id = $organization_id;
+                          }else{
+                              $organization_id = $organization_id[0]->id;
+                          }
                           $token_std_hist = array(
+                              'appointment_id' => $appointment_id,
                               'user_id' => $student_id,
+                              'partner_id' => $partner_id,
+                              'organization_id' => $organization_id,
                               'transaction_date' => time(),
                               'token_amount'     => $cost,
                               'description'      => "Coach didn't attend the session",

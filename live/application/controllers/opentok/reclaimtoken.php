@@ -77,8 +77,25 @@ class Reclaimtoken extends MY_Site_Controller {
           $tokenstat = 13;
           $time = time();
 
+          $partner_id = $this->auth_manager->partner_id($id);
+          $organization_id = '';
+          $organization_id = $this->db->select('gv_organizations.id')
+                    ->from('gv_organizations')
+                    ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                    ->where('users.id', $id)
+                    ->get()->result();
+
+          if(empty($organization_id)){
+              $organization_id = $organization_id;
+          }else{
+              $organization_id = $organization_id[0]->id;
+          }
+
           $insert_hist = array(
+              'appointment_id' => $appoint_id,
               'user_id' => $id,
+              'partner_id' => $partner_id,
+              'organization_id' => $organization_id,
               'transaction_date' => $time,
               'token_amount' => $amount,
               'description' => $desc,
