@@ -49,9 +49,25 @@ class history_token_requests extends MY_Site_Controller {
                 'token_amount' => $current_token,
             );
             $this->identity_model->get_identity('token')->update($token->id,$update_data);
+
+            $partner_id = $this->auth_manager->partner_id($token_request->student_id);
+            $organization_id = '';
+            $organization_id = $this->db->select('gv_organizations.id')
+                      ->from('gv_organizations')
+                      ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                      ->where('users.id', $token_request->student_id)
+                      ->get()->result();
+
+            if(empty($organization_id)){
+                $organization_id = $organization_id;
+            }else{
+                $organization_id = $organization_id[0]->id;
+            }
             
             $token_history = array(
                 'user_id' => $token_request->student_id,
+                'partner_id' => $partner_id,
+                'organization_id' => $organization_id,
                 'transaction_date' => time(),
                 'token_amount' => $token_request->token_amount,
                 'description' => 'Partner admin has approved your token request.',

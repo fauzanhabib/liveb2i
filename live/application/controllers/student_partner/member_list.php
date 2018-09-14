@@ -319,7 +319,22 @@ class member_list extends MY_Site_Controller {
         $this->db->insert('token_requests',$insert_table_req);
 
         // insert into token history
+        $partner_id = $this->auth_manager->partner_id($student_id);
+        $organization_id = '';
+        $organization_id = $this->db->select('gv_organizations.id')
+                  ->from('gv_organizations')
+                  ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                  ->where('users.id', $student_id)
+                  ->get()->result();
+
+        if(empty($organization_id)){
+            $organization_id = $organization_id;
+        }else{
+            $organization_id = $organization_id[0]->id;
+        }
         $insert_table_hist = array('user_id' => $student_id,
+                                   'partner_id' => $partner_id,
+                                   'organization_id' => $organization_id, 
                                    'transaction_date' => time(),
                                    'token_amount' => $request_token,
                                    'description' => 'Your Token has been added by your Student Affiliate',

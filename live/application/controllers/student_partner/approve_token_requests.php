@@ -80,9 +80,25 @@ class approve_token_requests extends MY_Site_Controller {
             
             $update_token_partner = $this->db->where('user_id', $this->auth_manager->userid())
                                              ->update('user_tokens', $update_data_partner);
+
+            $partner_id = $this->auth_manager->partner_id($token_request->user_id);
+            $organization_id = '';
+            $organization_id = $this->db->select('gv_organizations.id')
+                      ->from('gv_organizations')
+                      ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                      ->where('users.id', $token_request->user_id)
+                      ->get()->result();
+
+            if(empty($organization_id)){
+                $organization_id = $organization_id;
+            }else{
+                $organization_id = $organization_id[0]->id;
+            }
             
             $token_history = array(
                 'user_id' => $token_request->user_id,
+                'partner_id' => $partner_id,
+                'organization_id' => $organization_id,
                 'transaction_date' => time(),
                 'token_amount' => $token_request->token_amount,
                 'description' => 'Partner admin has approved you token request.',
@@ -182,9 +198,25 @@ class approve_token_requests extends MY_Site_Controller {
             // $this->messaging_student($token_request_id, 'declined');
             $token_request = $this->token_request_model->select('id, user_id, token_amount')->where('id', $token_request_id)->get();
             $token = $this->identity_model->get_identity('token')->select('id, user_id, token_amount')->where('user_id', $token_request->user_id)->get();
+
+            $partner_id = $this->auth_manager->partner_id($token_request->user_id);
+            $organization_id = '';
+            $organization_id = $this->db->select('gv_organizations.id')
+                      ->from('gv_organizations')
+                      ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                      ->where('users.id', $token_request->user_id)
+                      ->get()->result();
+
+            if(empty($organization_id)){
+                $organization_id = $organization_id;
+            }else{
+                $organization_id = $organization_id[0]->id;
+            }
       
             $token_history = array(
                 'user_id' => $token_request->user_id,
+                'partner_id' => $partner_id,
+                'organization_id' => $organization_id,
                 'transaction_date' => time(),
                 'token_amount' => $token_request->token_amount,
                 'description' => 'Partner admin has declined you token request.',

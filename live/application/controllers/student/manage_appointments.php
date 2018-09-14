@@ -1814,13 +1814,30 @@ class manage_appointments extends MY_Site_Controller {
 
     private function create_token_history($appointment_id = '', $coach_cost = '', $remain_token = '', $status = '') {
         $appointment = $this->appointment_model->get_appointment($appointment_id);
+        $partner_id = $this->auth_manager->partner_id($this->auth_manager->userid());
+        $id = $this->auth_manager->userid();
+        $organization_id = '';
+        $organization_id = $this->db->select('gv_organizations.id')
+                  ->from('gv_organizations')
+                  ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                  ->where('users.id', $id)
+                  ->get()->result();
+
+        if(empty($organization_id)){
+            $organization_id = $organization_id;
+        }else{
+            $organization_id = $organization_id[0]->id;
+        }
 
         if (!$appointment) {
             $this->messages->add('Invalid apppointment id', 'danger');
             redirect('student/find_coaches/single_date');
         }
         $token_history = array(
+            'appointment_id' => $appointment_id,
             'user_id' => $this->auth_manager->userid(),
+            'partner_id' => $partner_id,
+            'organization_id' => $organization_id,
             'transaction_date' => strtotime(date('d-m-Y')),
             'description' => 'Session with ' . $appointment[0]->coach_fullname . ' at ' . $appointment[0]->date . ' ' . $appointment[0]->start_time . ' until ' . $appointment[0]->end_time,
             'token_amount' => $coach_cost,

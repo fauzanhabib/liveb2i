@@ -130,10 +130,25 @@ class Refund_token extends MY_Site_Controller {
                                           ->update('user_tokens', $data_token_student_affiliate);
 
         // insert into tabel token histories
+        $partner_id = $this->auth_manager->partner_id($student_id);
+        $organization_id = '';
+        $organization_id = $this->db->select('gv_organizations.id')
+                  ->from('gv_organizations')
+                  ->join('users', 'users.organization_code = gv_organizations.organization_code')
+                  ->where('users.id', $student_id)
+                  ->get()->result();
+
+        if(empty($organization_id)){
+            $organization_id = $organization_id;
+        }else{
+            $organization_id = $organization_id[0]->id;
+        }
 
         $data_histories_token = array('balance' => $token_update,
                                       'token_amount' => $token_amount,
                                       'user_id' => $student_id,
+                                      'partner_id' => $partner_id,
+                                      'organization_id' => $organization_id,
                                       'transaction_date' => time(),
                                       'description' => 'Your tokens were refunded by Student Affiliate',
                                       'token_status_id' => 31);
