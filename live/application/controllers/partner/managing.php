@@ -1623,7 +1623,7 @@ class managing extends MY_Site_Controller {
                   ->get()->result();
 
         if(empty($organization_id)){
-            $organization_id = $organization_id;
+            $organization_id = '';
         }else{
             $organization_id = $organization_id[0]->id;
         }
