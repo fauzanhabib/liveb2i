@@ -128,13 +128,27 @@ class Cronsession extends MY_Controller {
             $desc = "Your tokens were refunded because you and your coach didn't attend the session";
             $idstat = 23;
 
-            $partner_id = $this->auth_manager->partner_id($coach_id);
+            // $partner_id = $this->auth_manager->partner_id($coach_id);
               $organization_id = '';
               $organization_id = $this->db->select('gv_organizations.id')
                         ->from('gv_organizations')
                         ->join('users', 'users.organization_code = gv_organizations.organization_code')
                         ->where('users.id', $coach_id)
                         ->get()->result();
+
+              $subgroup_id = $this->db->select('subgroup_id')
+                                            ->from('user_profiles')
+                                            ->where('user_profiles.user_id', $coach_id)
+                                            ->get()->result();
+
+              @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
+              $subgroup_id2 = $this->db->select('subgroup_id')
+                                            ->from('user_profiles')
+                                            ->where('user_profiles.user_id', $student_id)
+                                            ->get()->result();
+
+              @$subgroup_id2 = $subgroup_id2[0]->subgroup_id;
 
               if(empty($organization_id)){
                   $organization_id = '';
@@ -144,7 +158,10 @@ class Cronsession extends MY_Controller {
 
             $token_coach_hist = array(
                 'coach_id' => $coach_id,
+                'user_id' => $student_id,
                 'partner_id' => $partner_id,
+                'coach_affiliate_subgroup_id' => $subgroup_id,
+                'student_affiliate_subgroup_id' => $subgroup_id2,
                 'organization_id' => $organization_id,
                 'date'     => $date,
                 'time'     => $time,
@@ -159,13 +176,34 @@ class Cronsession extends MY_Controller {
 
             //update token histories for student
 
-            $partner_id = $this->auth_manager->partner_id($student_id);
+            // $partner_id = $this->auth_manager->partner_id($student_id);
               $organization_id = '';
               $organization_id = $this->db->select('gv_organizations.id')
                         ->from('gv_organizations')
                         ->join('users', 'users.organization_code = gv_organizations.organization_code')
                         ->where('users.id', $student_id)
                         ->get()->result();
+
+              $prt_id_student = $this->db->select('*')
+              ->from('user_profiles')
+              ->where('user_id', $student_id)
+              ->get()->result();
+
+              $partner_id_student = $prt_id_student[0]->partner_id;
+
+              $subgroup_id = $this->db->select('subgroup_id')
+                                            ->from('user_profiles')
+                                            ->where('user_profiles.user_id', $student_id)
+                                            ->get()->result();
+
+              @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
+              $subgroup_id2 = $this->db->select('subgroup_id')
+                                            ->from('user_profiles')
+                                            ->where('user_profiles.user_id', $coach_id)
+                                            ->get()->result();
+
+              @$subgroup_id2 = $subgroup_id2[0]->subgroup_id;
 
               if(empty($organization_id)){
                   $organization_id = '';
@@ -176,7 +214,10 @@ class Cronsession extends MY_Controller {
             $token_std_hist = array(
                 'appointment_id' => $appoint_id,
                 'user_id' => $student_id,
-                'partner_id' => $partner_id,
+                'coach_id' => $coach_id,
+                'partner_id' => $partner_id_student,
+                'coach_affiliate_subgroup_id' => $subgroup_id2,
+                'student_affiliate_subgroup_id' => $subgroup_id,
                 'organization_id' => $organization_id,
                 'transaction_date' => time(),
                 'token_amount'     => $cost,
