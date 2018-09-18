@@ -47,7 +47,17 @@ class Croncoachatt extends MY_Controller {
                 ->where('user_id', $student_id)
                 ->get()->result();
 
+          $usersss2 = $this->db->select('*')
+                ->from('user_profiles')
+                ->where('user_id', $coach_id)
+                ->get()->result();
+
           $student_name = @$usersss[0]->fullname;
+          $prt_id_student = @$usersss[0]->partner_id;
+          $subgroup_id_student = @$usersss[0]->subgroup_id;
+
+          $prt_id = @$usersss2[0]->partner_id;
+          $subgroup_id = @$usersss2[0]->subgroup_id; 
 
           $tz = $this->db->select('*')
                   ->from('user_timezones')
@@ -78,16 +88,9 @@ class Croncoachatt extends MY_Controller {
 
           $type_id = @$type_coach[0]->coach_type_id;
 
-          $prt_id = $this->db->select('*')
-              ->from('user_profiles')
-              ->where('user_id', $coach_id)
-              ->get()->result();
-
-          $partner_id = $prt_id[0]->partner_id;
-
           // $partner_id = $this->auth_manager->partner_id($coach_id);
           // echo "<pre>";print_r($partner_id);exit();
-          $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$partner_id)->get()->result();
+          $setting = $this->db->select('standard_coach_cost,elite_coach_cost')->from('specific_settings')->where('partner_id',$prt_id)->get()->result();
           $standard_coach_cost = @$setting[0]->standard_coach_cost;
           $elite_coach_cost = @$setting[0]->elite_coach_cost;
 
@@ -161,20 +164,6 @@ class Croncoachatt extends MY_Controller {
                                             ->where('users.id', $coach_id)
                                             ->get()->result();
 
-                                  $subgroup_id = $this->db->select('subgroup_id')
-                                            ->from('user_profiles')
-                                            ->where('user_profiles.user_id', $coach_id)
-                                            ->get()->result();
-
-                                  @$subgroup_id = $subgroup_id[0]->subgroup_id;
-
-                                  $subgroup_id2 = $this->db->select('subgroup_id')
-                                            ->from('user_profiles')
-                                            ->where('user_profiles.user_id', $student_id)
-                                            ->get()->result();
-
-                                  @$subgroup_id2 = $subgroup_id2[0]->subgroup_id;
-
                                   if(empty($organization_id)){
                                       $organization_id = '';
                                   }else{
@@ -183,9 +172,9 @@ class Croncoachatt extends MY_Controller {
                                   $token_coach_hist = array(
                                       'coach_id' => $coach_id,
                                       'user_id' => $student_id,
-                                      'partner_id' => $partner_id,
+                                      'partner_id' => $prt_id,
                                       'coach_affiliate_subgroup_id' => $subgroup_id,
-                                      'student_affiliate_subgroup_id' => $subgroup_id2,
+                                      'student_affiliate_subgroup_id' => $subgroup_id_student,
                                       'organization_id' => $organization_id,
                                       'date'     => $date,
                                       'time'     => $timecoach,
@@ -209,27 +198,6 @@ class Croncoachatt extends MY_Controller {
                                             ->where('users.id', $student_id)
                                             ->get()->result();
 
-                                  $prt_id_student = $this->db->select('*')
-                                        ->from('user_profiles')
-                                        ->where('user_id', $student_id)
-                                        ->get()->result();
-
-                                  $partner_id_student = $prt_id_student[0]->partner_id;
-
-                                  $subgroup_id = $this->db->select('subgroup_id')
-                                            ->from('user_profiles')
-                                            ->where('user_profiles.user_id', $student_id)
-                                            ->get()->result();
-
-                                  @$subgroup_id = $subgroup_id[0]->subgroup_id;
-
-                                  $subgroup_id2 = $this->db->select('subgroup_id')
-                                            ->from('user_profiles')
-                                            ->where('user_profiles.user_id', $coach_id)
-                                            ->get()->result();
-
-                                  @$subgroup_id2 = $subgroup_id2[0]->subgroup_id;
-
                                   if(empty($organization_id)){
                                       $organization_id = '';
                                   }else{
@@ -239,9 +207,9 @@ class Croncoachatt extends MY_Controller {
                                       'appointment_id' => $appointment_id,
                                       'user_id' => $student_id,
                                       'coach_id' => $coach_id,
-                                      'partner_id' => $partner_id_student,
-                                      'coach_affiliate_subgroup_id' => $subgroup_id2,
-                                      'student_affiliate_subgroup_id' => $subgroup_id,
+                                      'partner_id' => $prt_id_student,
+                                      'coach_affiliate_subgroup_id' => $subgroup_id,
+                                      'student_affiliate_subgroup_id' => $subgroup_id_student,
                                       'organization_id' => $organization_id,
                                       'transaction_date' => time(),
                                       'token_amount'     => $cost,
@@ -300,27 +268,6 @@ class Croncoachatt extends MY_Controller {
                                     ->where('users.id', $coach_id)
                                     ->get()->result();
 
-                          $prt_id_student = $this->db->select('*')
-                                ->from('user_profiles')
-                                ->where('user_id', $student_id)
-                                ->get()->result();
-
-                          $partner_id_student = $prt_id_student[0]->partner_id;
-
-                          $subgroup_id = $this->db->select('subgroup_id')
-                                            ->from('user_profiles')
-                                            ->where('user_profiles.user_id', $coach_id)
-                                            ->get()->result();
-
-                          @$subgroup_id = $subgroup_id[0]->subgroup_id;
-
-                          $subgroup_id2 = $this->db->select('subgroup_id')
-                                            ->from('user_profiles')
-                                            ->where('user_profiles.user_id', $student_id)
-                                            ->get()->result();
-
-                          @$subgroup_id2 = $subgroup_id2[0]->subgroup_id;
-
                           if(empty($organization_id)){
                               $organization_id = '';
                           }else{
@@ -329,9 +276,9 @@ class Croncoachatt extends MY_Controller {
                           $token_coach_hist = array(
                               'coach_id' => $coach_id,
                               'user_id' => $student_id,
-                              'partner_id' => $partner_id_student,
+                              'partner_id' => $prt_id,
                               'coach_affiliate_subgroup_id' => $subgroup_id,
-                              'student_affiliate_subgroup_id' => $subgroup_id2,
+                              'student_affiliate_subgroup_id' => $subgroup_id_student,
                               'organization_id' => $organization_id,
                               'date'     => $date,
                               'time'     => $timecoach,
@@ -355,27 +302,6 @@ class Croncoachatt extends MY_Controller {
                                     ->where('users.id', $student_id)
                                     ->get()->result();
 
-                          $prt_id_student = $this->db->select('*')
-                                ->from('user_profiles')
-                                ->where('user_id', $student_id)
-                                ->get()->result();
-
-                          $partner_id_student = $prt_id_student[0]->partner_id;
-
-                          $subgroup_id = $this->db->select('subgroup_id')
-                                            ->from('user_profiles')
-                                            ->where('user_profiles.user_id', $student_id)
-                                            ->get()->result();
-
-                          @$subgroup_id = $subgroup_id[0]->subgroup_id;
-
-                          $subgroup_id2 = $this->db->select('subgroup_id')
-                                            ->from('user_profiles')
-                                            ->where('user_profiles.user_id', $coach_id)
-                                            ->get()->result();
-
-                          @$subgroup_id2 = $subgroup_id2[0]->subgroup_id;
-
                           if(empty($organization_id)){
                               $organization_id = '';
                           }else{
@@ -385,9 +311,9 @@ class Croncoachatt extends MY_Controller {
                               'appointment_id' => $appointment_id,
                               'user_id' => $student_id,
                               'coach_id' => $coach_id,
-                              'partner_id' => $partner_id_student,
-                              'coach_affiliate_subgroup_id' => $subgroup_id2,
-                              'student_affiliate_subgroup_id' => $subgroup_id,
+                              'partner_id' => $prt_id_student,
+                              'coach_affiliate_subgroup_id' => $subgroup_id,
+                              'student_affiliate_subgroup_id' => $subgroup_id_student,
                               'organization_id' => $organization_id,
                               'transaction_date' => time(),
                               'token_amount'     => $cost,
