@@ -327,6 +327,13 @@ class member_list extends MY_Site_Controller {
                   ->where('users.id', $student_id)
                   ->get()->result();
 
+        $subgroup_id = $this->db->select('subgroup_id')
+                                ->from('user_profiles')
+                                ->where('user_profiles.user_id', $student_id)
+                                ->get()->result();
+
+        @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
         if(empty($organization_id)){
             $organization_id = '';
         }else{
@@ -334,6 +341,7 @@ class member_list extends MY_Site_Controller {
         }
         $insert_table_hist = array('user_id' => $student_id,
                                    'partner_id' => $partner_id,
+                                   'student_affiliate_subgroup_id' => $subgroup_id,
                                    'organization_id' => $organization_id, 
                                    'transaction_date' => time(),
                                    'token_amount' => $request_token,

@@ -85,6 +85,20 @@ class Reclaimtoken extends MY_Site_Controller {
                     ->where('users.id', $id)
                     ->get()->result();
 
+          $subgroup_id = $this->db->select('subgroup_id')
+                                            ->from('user_profiles')
+                                            ->where('user_profiles.user_id', $id)
+                                            ->get()->result();
+
+          @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
+          $subgroup_id2 = $this->db->select('subgroup_id')
+                                        ->from('user_profiles')
+                                        ->where('user_profiles.user_id', $coachid)
+                                        ->get()->result();
+
+          @$subgroup_id2 = $subgroup_id2[0]->subgroup_id;
+
           if(empty($organization_id)){
               $organization_id = '';
           }else{
@@ -94,7 +108,10 @@ class Reclaimtoken extends MY_Site_Controller {
           $insert_hist = array(
               'appointment_id' => $appoint_id,
               'user_id' => $id,
+              'coach_id' => $coachid,
               'partner_id' => $partner_id,
+              'coach_affiliate_subgroup_id' => $subgroup_id2,
+              'student_affiliate_subgroup_id' => $subgroup_id,
               'organization_id' => $organization_id,
               'transaction_date' => $time,
               'token_amount' => $amount,

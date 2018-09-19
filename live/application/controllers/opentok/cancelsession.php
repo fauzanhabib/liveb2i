@@ -141,6 +141,20 @@ class Cancelsession extends MY_Site_Controller {
                             ->where('users.id', $coach_id)
                             ->get()->result();
 
+                    $subgroup_id = $this->db->select('subgroup_id')
+                                            ->from('user_profiles')
+                                            ->where('user_profiles.user_id', $coach_id)
+                                            ->get()->result();
+
+                      @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
+                      $subgroup_id2 = $this->db->select('subgroup_id')
+                                                    ->from('user_profiles')
+                                                    ->where('user_profiles.user_id', $student_id)
+                                                    ->get()->result();
+
+                      @$subgroup_id2 = $subgroup_id2[0]->subgroup_id;
+
                   if(empty($organization_id)){
                       $organization_id = '';
                   }else{
@@ -149,7 +163,10 @@ class Cancelsession extends MY_Site_Controller {
 
                 $token_coach_hist = array(
                     'coach_id' => $coach_id,
+                    'user_id' => $student_id,
                     'partner_id' => $partner_id,
+                    'coach_affiliate_subgroup_id' => $subgroup_id,
+                    'student_affiliate_subgroup_id' => $subgroup_id2,
                     'organization_id' => $organization_id,
                     'date'     => $date,
                     'time'     => $time,

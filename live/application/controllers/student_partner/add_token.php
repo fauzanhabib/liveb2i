@@ -275,6 +275,13 @@ class Add_token extends MY_Site_Controller {
                   ->where('users.id', $student_id)
                   ->get()->result();
 
+        $subgroup_id = $this->db->select('subgroup_id')
+                                ->from('user_profiles')
+                                ->where('user_profiles.user_id', $student_id)
+                                ->get()->result();
+
+        @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
         if(empty($organization_id)){
             $organization_id = '';
         }else{
@@ -284,6 +291,7 @@ class Add_token extends MY_Site_Controller {
         // insert into token history
         $insert_table_hist = array('user_id' => $student_id,
                                    'partner_id' => $partner_id,
+                                   'student_affiliate_subgroup_id' => $subgroup_id,
                                    'organization_id' => $organization_id,
                                    'transaction_date' => time(),
                                    'token_amount' => $request_token,
@@ -484,6 +492,13 @@ class Add_token extends MY_Site_Controller {
                   ->where('users.id', $ts->id)
                   ->get()->result();
 
+        $subgroup_id = $this->db->select('subgroup_id')
+                                ->from('user_profiles')
+                                ->where('user_profiles.user_id', $ts->id)
+                                ->get()->result();
+
+        @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
         if(empty($organization_id)){
             $organization_id = '';
         }else{
@@ -492,6 +507,7 @@ class Add_token extends MY_Site_Controller {
         // insert into token history
         $insert_table_hist = array('user_id' => $ts->id,
                                    'partner_id' => $partner_id,
+                                   'student_affiliate_subgroup_id' => $subgroup_id,
                                    'organization_id' => $organization_id,
                                    'transaction_date' => time(),
                                    'token_amount' => $request_token,

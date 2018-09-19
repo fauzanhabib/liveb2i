@@ -58,6 +58,13 @@ class history_token_requests extends MY_Site_Controller {
                       ->where('users.id', $token_request->student_id)
                       ->get()->result();
 
+            $subgroup_id = $this->db->select('subgroup_id')
+                                ->from('user_profiles')
+                                ->where('user_profiles.user_id', $token_request->student_id)
+                                ->get()->result();
+
+            @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
             if(empty($organization_id)){
                 $organization_id = '';
             }else{
@@ -67,6 +74,7 @@ class history_token_requests extends MY_Site_Controller {
             $token_history = array(
                 'user_id' => $token_request->student_id,
                 'partner_id' => $partner_id,
+                'student_affiliate_subgroup_id' => $subgroup_id,
                 'organization_id' => $organization_id,
                 'transaction_date' => time(),
                 'token_amount' => $token_request->token_amount,

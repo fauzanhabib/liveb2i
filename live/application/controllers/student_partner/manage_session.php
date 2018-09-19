@@ -850,6 +850,13 @@ class manage_session extends MY_Site_Controller {
                       ->where('users.id', $student_id)
                       ->get()->result();
 
+            $subgroup_id = $this->db->select('subgroup_id')
+                                ->from('user_profiles')
+                                ->where('user_profiles.user_id', $student_id)
+                                ->get()->result();
+
+            @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
             if(empty($organization_id)){
                 $organization_id = '';
             }else{
@@ -864,6 +871,7 @@ class manage_session extends MY_Site_Controller {
             'appointment_id' => $appointment_id,
             'user_id' => $student_id,
             'partner_id' => $partner_id,
+            'student_affiliate_subgroup_id' => $subgroup_id,
             'organization_id' => $organization_id,
             'transaction_date' => strtotime(date('d-m-Y')),
             'description' => 'Session with ' . $appointment[0]->coach_fullname . ' at ' . $appointment[0]->date . ' ' . $appointment[0]->start_time . ' until ' . $appointment[0]->end_time,

@@ -1614,6 +1614,7 @@ class managing extends MY_Site_Controller {
 
     private function create_token_history($student_id = '', $appointment_id = '', $coach_cost = '', $remain_token = '', $status = '') {
         $appointment = $this->appointment_model->get_appointment($appointment_id);
+        @$coach_id = $appointment[0]->coach_id;
         $partner_id = $this->auth_manager->partner_id($student_id);
         $organization_id = '';
         $organization_id = $this->db->select('gv_organizations.id')
@@ -1621,6 +1622,20 @@ class managing extends MY_Site_Controller {
                   ->join('users', 'users.organization_code = gv_organizations.organization_code')
                   ->where('users.id', $student_id)
                   ->get()->result();
+
+        $subgroup_id = $this->db->select('subgroup_id')
+                                            ->from('user_profiles')
+                                            ->where('user_profiles.user_id', $student_id)
+                                            ->get()->result();
+
+          @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
+          $subgroup_id2 = $this->db->select('subgroup_id')
+                                        ->from('user_profiles')
+                                        ->where('user_profiles.user_id', $coach_id)
+                                        ->get()->result();
+
+          @$subgroup_id2 = $subgroup_id2[0]->subgroup_id;
 
         if(empty($organization_id)){
             $organization_id = '';
@@ -1635,7 +1650,10 @@ class managing extends MY_Site_Controller {
         $token_history = array(
             'appointment_id' => $appointment_id,
             'user_id' => $student_id,
+            'coach_id' => $coach_id,
             'partner_id' => $partner_id,
+            'coach_affiliate_subgroup_id' => $subgroup_id2,
+            'student_affiliate_subgroup_id' => $subgroup_id,
             'organization_id' => $organization_id,
             'transaction_date' => strtotime(date('d-m-Y')),
             'description' => 'Session with ' . $appointment[0]->coach_fullname . ' at ' . $appointment[0]->date . ' ' . $appointment[0]->start_time . ' until ' . $appointment[0]->end_time,

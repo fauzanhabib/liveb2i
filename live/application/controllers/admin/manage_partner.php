@@ -1649,6 +1649,7 @@ class manage_partner extends MY_Site_Controller {
 
             $token_history = array(
                 'user_id' => $token_request->user_id,
+                'partner_id' => $partner_id,
                 'transaction_date' => time(),
                 'token_amount' => $token_request->token_amount,
                 'description' => 'Admin has approved you token request.',

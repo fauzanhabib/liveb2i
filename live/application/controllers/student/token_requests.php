@@ -156,6 +156,13 @@ class token_requests extends MY_Site_Controller {
                   ->where('users.id', $id)
                   ->get()->result();
 
+        $subgroup_id = $this->db->select('subgroup_id')
+                                ->from('user_profiles')
+                                ->where('user_profiles.user_id', $id)
+                                ->get()->result();
+
+        @$subgroup_id = $subgroup_id[0]->subgroup_id;
+
         if(empty($organization_id)){
             $organization_id = '';
         }else{
@@ -164,6 +171,7 @@ class token_requests extends MY_Site_Controller {
 
         // insert to token history
         $data_token_history = array('user_id' => $this->auth_manager->userid(),
+                                'student_affiliate_subgroup_id' => $subgroup_id,
                                 'partner_id' => $partner_id,
                                 'organization_id' => $organization_id,
                                'transaction_date' => time(),
