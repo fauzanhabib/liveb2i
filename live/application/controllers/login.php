@@ -49,6 +49,20 @@ class Login extends MY_Controller {
 
             // Checking user's login attempt
             if($this->input->post('__submit')) {
+
+							$check_std_type = $this->db->select('login_type')
+											->from('users')
+											->where('email', $this->input->post('email'))
+											->get()->result();
+
+							$login_type = $check_std_type[0]->login_type;
+
+							if($login_type == '1'){
+								$this->messages->add('Email not registered', 'warning');
+								redirect('login');
+							}
+
+							// echo "<pre>";print_r($check_std_type);exit();
                 // Success to identify
                 if( $this->auth_manager->login( $this->input->post('email'), $this->input->post('password')) ) {
 
