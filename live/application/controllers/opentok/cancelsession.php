@@ -102,6 +102,7 @@ class Cancelsession extends MY_Site_Controller {
             $cost = $cost_pull[0]->token_for_student;
             $date         = $user_extract->date;
             $student_name = $user_extract->fullname;
+            $student_id = $user_extract->student_id;
             
             $a = $appoint_id;
             //Preventing refresh to insert token
