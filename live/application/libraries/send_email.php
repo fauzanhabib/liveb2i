@@ -17018,7 +17018,6 @@ function coach_partner_approve_dayoff($email = '', $content = '', $fullname = ''
         //             } else {
         //                 echo $this->CI->email->print_debugger();
         //             }
-    }
 }
 
 //------------------------------------------------student reminder B2C---------------------------------------------
@@ -17511,3 +17510,4 @@ auto;color:#fefefe;font-family:Helvetica,Arial,sans-serif;font-size:14px;font-we
         //                 echo $this->CI->email->print_debugger();
         //             }
     }
+}
