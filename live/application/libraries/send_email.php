@@ -17040,7 +17040,7 @@ function student_reminder_b2c($studentmail = '', $coachname = '', $studentname =
         );
 
         $year = date("Y");
-        $b2c_rem['content'] = '<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en" style="background-color:#232547;background-image:none;background-repeat:repeat;background-position:top left;background-attachment:scroll;min-height:100%;">
+        $b2c_rem['content'] = '<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
