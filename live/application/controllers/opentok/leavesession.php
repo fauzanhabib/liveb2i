@@ -252,7 +252,7 @@ class Leavesession extends MY_Site_Controller {
         }
 
         // Student get refund
-        if(@$cch_att_val > '05:00' || @$cch_att_val == NULL || @$cch_att_val == '00:00'){
+        if(@$cch_att_val > '05:00' || @$coach_att == NULL || @$cch_att_val == '00:00'){
             // exit('b');
             //Preventing refresh to insert token
 
