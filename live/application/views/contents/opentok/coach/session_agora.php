@@ -1570,11 +1570,7 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
     $("#sharescreench_ava").removeClass("hidden");
     $("#sharescreench_nava").removeClass("hidden");
 
-    // console.log('a');
-    // $(document).ready(function(){
-      // $("#sharescreenff").hide();
-      // $("#sharescreenff").addClass("hidden");
-    // });
+
     // console.log('a');
     setInterval(function(){
       function IsExist(extensionId,callback){
