@@ -1377,11 +1377,11 @@ document.getElementById('legend').appendChild(legendHolder.firstChild);
     // unpublish();
 
     var key_type = "<?php echo $key_type; ?>";
-    // if(key_type == '1'){
-      // client = AgoraRTC.createClient({mode: "live", codec: "vp8"})
-    // }else{
+    if(key_type == '1'){
+      client = AgoraRTC.createClient({mode: "live", codec: "vp8"})
+    }else{
       client = AgoraRTC.createClient({mode: "live", codec: "h264"})
-    // }
+    }
     client.init(app_id, function () {
       console.log("AgoraRTC client initialized");
       client.join(channel_key, channel_name, null, function(uid) {
