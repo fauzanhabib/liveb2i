@@ -1,3 +1,12 @@
+<style>
+  .td_warning{
+    padding: 10px 20px;
+    border: solid 1px;
+    border-radius: 5px;
+    color: #008abe;
+    background: #ffffff;
+  }
+</style>
 <div class="heading text-cl-primary padding15">
     <?php if($recuring > 1){ ?>
         <h1 class="margin0"><small>Multiple Booking Summary</small></h1>
@@ -110,6 +119,11 @@
                       <option value="Safari">Safari</option>
                       <option value="Other">Other Browsers</option>
                     </select></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                      <font class="td_warning">Please use the same device and browser when joining the session</font>
+                    </td>
                 </tr>
                 <tr>
                     <td style="display: table-cell;  width: auto !important;">
