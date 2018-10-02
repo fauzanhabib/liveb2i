@@ -459,7 +459,11 @@
                             $startbal = $startbal;
                         }
 
-                        $tokenbal = @$token_balance2[0]->balance;
+                        if(empty($token_balance2[0]->balance)){
+                            $tokenbal = @$d->token_amount;
+                        }else{
+                            $tokenbal = @$token_balance2[0]->balance;
+                        }
 
                         $token_added = $this->db->select('token_amount')
                                         ->from('token_histories')
