@@ -343,11 +343,15 @@ $(document).ready(function(){
           </tbody>
       </table>
       <?php } ?>
-      <p><b>IMPORTANT NOTES:</b></p>
-      <p style="color: #484848;">Download the recorded session in Session History.</p>
-      <p style="color: #484848;">Recording will be ready in 2 minutes.</p>
-      <p style="color: #484848;">Recording is available for 72 hours after end of session.</p>
-      <p></p>
+
+      <?php if($user->app_type == '0'){ ?>
+        <p><b>IMPORTANT NOTES:</b></p>
+        <p style="color: #484848;">Download the recorded session in Session History.</p>
+        <p style="color: #484848;">Recording will be ready in 2 minutes.</p>
+        <p style="color: #484848;">Recording is available for 72 hours after end of session.</p>
+        <p></p>
+      <?php } ?>
+
       <?php if($role == "STD"){?>
         <button class="pure-button btn-tertiary btn-expand-tiny height-30 exitbtn">Exit</button>
       <?php }else if($role == "CCH"){ ?>
