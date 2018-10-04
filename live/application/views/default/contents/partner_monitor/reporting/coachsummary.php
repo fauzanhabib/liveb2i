@@ -136,7 +136,8 @@
                             balanc = api.column( 7 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             comses = api.column( 8 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                             latses = api.column( 9 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
-                            rating = api.column( 10 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
+                            abses = api.column( 10 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
+                            rating = api.column( 11 ).data().reduce( function (a, b) {return intVal(a) + intVal(b);}, 0 );
                  
                             // Update footer
                             $( api.column( 4 ).footer() ).html(startb);
@@ -145,7 +146,8 @@
                             $( api.column( 7 ).footer() ).html(balanc);
                             $( api.column( 8 ).footer() ).html(comses);
                             $( api.column( 9 ).footer() ).html(latses);
-                            // $( api.column( 10 ).footer() ).html(rating);
+                            $( api.column( 10 ).footer() ).html(latses);
+                            // $( api.column( 11 ).footer() ).html(rating);
 
                             // console.log(api.column( 8 ).data());
                         },
@@ -188,8 +190,9 @@
                         <th class="bg-secondary uncek text-cl-white border-none">Earned Tokens</th>
                         <th class="bg-secondary uncek text-cl-white border-none">Refunded Tokens</th>               
                         <th class="bg-secondary uncek text-cl-white border-none">Token Balance</th>               
-                        <th class="bg-secondary uncek text-cl-white border-none">Completed Sessions</th>               
-                        <th class="bg-secondary uncek text-cl-white border-none">Late Session</th>         
+                        <th class="bg-secondary uncek text-cl-white border-none">Completed Sessions</th>            
+                        <th class="bg-secondary uncek text-cl-white border-none">Late Session</th>
+                        <th class="bg-secondary uncek text-cl-white border-none">Absent Session</th>         
                         <th class="bg-secondary uncek text-cl-white border-none">Rating Average</th>               
                     </tr>
                 </thead>
@@ -199,6 +202,7 @@
                         <th class="thfoot">Total</th>
                         <th class="thfoot resp__hide"></th>
                         <th class="thfoot resp__hide"></th>
+                        <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
                         <th class="thfoot"></th>
@@ -255,6 +259,13 @@
                                         ->where('status', 'rated')
                                         ->get()->result();
 
+                        $getlateses = $this->db->select('th.id, th.appointment_id')
+                                        ->from('token_histories_coach th')
+                                        ->join('appointments a', 'th.appointment_id = a.id')
+                                        ->where('TIME_TO_SEC(a.cch_attend) - TIME_TO_SEC(a.start_time)>300')
+                                        ->where_in('a.id',$idforquery)
+                                        ->get()->result();
+
                     }else if(@$date_from && !@$date_to){
                         $start_balance = $this->db->select('token_amount')
                                             ->from('token_histories_coach')
@@ -307,6 +318,13 @@
                                         ->where('status', 'rated')
                                         ->get()->result();
 
+                        $getlateses = $this->db->select('th.id, th.appointment_id')
+                                        ->from('token_histories_coach th')
+                                        ->join('appointments a', 'th.appointment_id = a.id')
+                                        ->where('TIME_TO_SEC(a.cch_attend) - TIME_TO_SEC(a.start_time)>300')
+                                        ->where_in('a.id',$idforquery)
+                                        ->get()->result();
+
                     }else if(@$date_from && @$date_to){
                         $start_balance = $this->db->select('token_amount')
                                             ->from('token_histories_coach')
@@ -357,6 +375,13 @@
                                         ->where_in('appointment_id',$idforquery)
                                         ->where('status', 'rated')
                                         ->get()->result();
+
+                        $getlateses = $this->db->select('th.id, th.appointment_id')
+                                        ->from('token_histories_coach th')
+                                        ->join('appointments a', 'th.appointment_id = a.id')
+                                        ->where('TIME_TO_SEC(a.cch_attend) - TIME_TO_SEC(a.start_time)>300')
+                                        ->where_in('a.id',$idforquery)
+                                        ->get()->result();
                     }
 
                     // $rfd_tokens = $this->db->select('')
@@ -384,6 +409,7 @@
                     }
 
                     $totalrfd = count($rfd_tokens);
+                    $totallate = count($getlateses);
 
                     $pullcoachprof = $this->db->select('coach_type_id')
                                     ->from('user_profiles')
@@ -453,7 +479,10 @@
                             <?php echo count($earned_tokens); ?>
                         </td>
                         <td><?php 
-                                echo @$totalrfd;
+                                echo @$totallate;
+                        ?></td>
+                        <td><?php 
+                                echo @$totalrfd - @$totallate;
                         ?></td>
                         <td><?php 
                             if(@$rateaverage == 0){

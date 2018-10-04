@@ -37,6 +37,7 @@
             <th>Token Balance</th>
             <th>Completed Sessions</th>
             <th>Late Session</th>
+            <th>Absent Session</th>
             <th>Rating Average</th>
         </tr>
     </thead>
@@ -86,6 +87,13 @@
                             ->where_in('appointment_id',$idforquery)
                             ->where('status', 'rated')
                             ->get()->result();
+
+            $getlateses = $this->db->select('th.id, th.appointment_id')
+                                ->from('token_histories_coach th')
+                                ->join('appointments a', 'th.appointment_id = a.id')
+                                ->where('TIME_TO_SEC(a.cch_attend) - TIME_TO_SEC(a.start_time)>300')
+                                ->where_in('a.id',$idforquery)
+                                ->get()->result();
 
         }else if(@$date_from && !@$date_to){
             $start_balance = $this->db->select('token_amount')
@@ -139,6 +147,13 @@
                             ->where('status', 'rated')
                             ->get()->result();
 
+            $getlateses = $this->db->select('th.id, th.appointment_id')
+                                ->from('token_histories_coach th')
+                                ->join('appointments a', 'th.appointment_id = a.id')
+                                ->where('TIME_TO_SEC(a.cch_attend) - TIME_TO_SEC(a.start_time)>300')
+                                ->where_in('a.id',$idforquery)
+                                ->get()->result();
+
         }else if(@$date_from && @$date_to){
             $start_balance = $this->db->select('token_amount')
                                 ->from('token_histories_coach')
@@ -189,6 +204,13 @@
                             ->where_in('appointment_id',$idforquery)
                             ->where('status', 'rated')
                             ->get()->result();
+
+            $getlateses = $this->db->select('th.id, th.appointment_id')
+                                ->from('token_histories_coach th')
+                                ->join('appointments a', 'th.appointment_id = a.id')
+                                ->where('TIME_TO_SEC(a.cch_attend) - TIME_TO_SEC(a.start_time)>300')
+                                ->where_in('a.id',$idforquery)
+                                ->get()->result();
         }
 
         // $rfd_tokens = $this->db->select('')
@@ -216,6 +238,7 @@
         }
 
         $totalrfd = count($rfd_tokens);
+        $totallate = count($getlateses);
 
         $pullcoachprof = $this->db->select('coach_type_id')
                         ->from('user_profiles')
@@ -308,7 +331,10 @@
                 <?php echo count($earned_tokens); ?>
             </td>
             <td><?php
-                    echo @$totalrfd;
+                    echo @$totallate;
+            ?></td>
+            <td><?php
+                    echo @$totalrfd - @$totallate;
             ?></td>
             <td><?php
                 if(@$rateaverage == 0){
