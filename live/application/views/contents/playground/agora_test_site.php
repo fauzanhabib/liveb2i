@@ -1,4 +1,5 @@
 <head>
+  <title> DynEd - Agora Test Site </title>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
   <script src="<?php echo base_url();?>assets/js/script.js"></script>
   <script src="<?php echo base_url();?>assets/js/AgoraRTCSDK-2.4.0.js"></script>
