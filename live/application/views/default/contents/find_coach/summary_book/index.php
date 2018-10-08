@@ -5,6 +5,13 @@
     border-radius: 5px;
     color: #008abe;
     background: #ffffff;
+    text-align: center;
+    width: 40%;
+  }
+  @media screen and (max-width: 425px) {
+    .td_warning {
+        width: 100%;
+    }
   }
 </style>
 <div class="heading text-cl-primary padding15">
@@ -122,7 +129,7 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                      <font class="td_warning">Please use the same device and browser when joining the session</font>
+                      <div class="td_warning">Please use the same device and browser when joining the session</div>
                     </td>
                 </tr>
                 <tr>
