@@ -118,7 +118,7 @@ class adding extends MY_Site_Controller {
 
         // echo "<pre>";print_r($cert_std);exit();
 
-        if($pt_score == '0' || $cert_std == '0'){
+        if($pt_score == '' || $cert_std == '0'){
           $this->messages->add('Invalid DynEd Pro ID', 'warning');
           redirect('student_partner/subgroup/student/'.@$subgroup_id);
 
