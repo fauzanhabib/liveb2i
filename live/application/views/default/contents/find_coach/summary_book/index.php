@@ -10,7 +10,7 @@
   }
   @media screen and (max-width: 425px) {
     .td_warning {
-        width: 100%;
+        width: auto;
     }
   }
 </style>
