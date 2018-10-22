@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = getenv("DB_HOST");
-$db['default']['username'] = getenv("DB_USERNAME");
-$db['default']['password'] = getenv("DB_PASSWORD");
-$db['default']['database'] = getenv("DB_NAME");
+$db['default']['hostname'] = 'localhost:3306';
+$db['default']['username'] = 'k5836501_live';
+$db['default']['password'] = 'Yourcallme009!';
+$db['default']['database'] = 'k5836501_live_dev';
 
 
 //$db['default']['dbdriver'] = 'mysql';
